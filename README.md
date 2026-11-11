@@ -28,7 +28,13 @@ Round 2, same day: [`docs/results/2026-11-11-round2.md`](docs/results/2026-11-11
 - Three independent replies for the write arm agree with each other and all raise GP ranking at 10 labels. Inside a BO loop that did not carry over: worse early on alloy strength, and on titanium alloys a clear win for one reply of three.
 - Fitted GP parameters predict a surrogate's ranking quality on an unseen benchmark a little (R² 0.15 → 0.23 over 22 benchmarks).
 
-Every LLM result is from one model (Claude Fable 5.2) and a handful of runs. No significance test has been run.
+Round 3, four models, with significance tests: [`docs/results/2026-11-11-round3.md`](docs/results/2026-11-11-round3.md).
+
+- **BO surrogate.** Networks written by Opus 5.5 from materials knowledge, used as GP prior means chosen by the first labels, beat the plain GP in BO on 4 of 5 alloy tasks (20 seeds, Holm p ≤ 0.047) and are worse on one.
+- **MLIP.** MACE's bulk-modulus error cannot be fixed in its readout without moving energies. LLM edits respect the energy limit only for the strongest models and only when given a correct sensitivity table; a gradient fit does better.
+- **Generative model.** The weight changes of RL-fine-tuned MatterGen runs can be averaged, scaled and cut to rank 8: three times the five-seed mean raises mean bulk modulus of sampled crystals from 72 to 172 GPa.
+
+Rounds 1 and 2 used one model and a handful of runs; round 3 is the benchmarked version.
 
 ## Campaign
 

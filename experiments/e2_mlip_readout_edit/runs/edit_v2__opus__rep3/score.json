@@ -52,6 +52,37 @@
     "model_alias": "opus",
     "forward_passes": 0,
     "prompt_chars": 27687,
-    "prompt_tokens_estimate": 9229
+    "prompt_tokens_estimate": 9229,
+    "model": "claude-opus-5-5",
+    "harness": "Claude Code subagent, fresh context",
+    "date": "2026-11-11",
+    "started_utc": "2026-11-11T10:17:40.246000+00:00",
+    "duration_ms": 298516,
+    "output_tokens": 95581,
+    "context_tokens_last_turn": 101918,
+    "tool_calls": [
+      {
+        "tool": "Read",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/WRAPPER.md"
+      },
+      {
+        "tool": "Read",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/runs/edit_v2__opus__rep3/prompt.txt"
+      },
+      {
+        "tool": "Write",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/runs/edit_v2__opus__rep3/reply.txt"
+      },
+      {
+        "tool": "Write",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/runs/edit_v2__opus__rep3/self_report.txt"
+      }
+    ],
+    "tool_calls_observed": 4,
+    "attempts": 1,
+    "audit_ok": true,
+    "audit_problems": [],
+    "transcript": "agent-a14dc664fdd9c7c7c.jsonl",
+    "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
   }
 }

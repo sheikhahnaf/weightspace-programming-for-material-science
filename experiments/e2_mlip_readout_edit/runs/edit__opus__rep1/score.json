@@ -1,0 +1,79 @@
+{
+  "weights_changed": 15,
+  "changed_by_tensor": {
+    "readouts.0.linear.weight": 14,
+    "scale_shift.shift": 1
+  },
+  "llm_edit": {
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.427535616339615,
+    "bias_GPa": 6.644939079134296,
+    "rmse_GPa": 28.480894755283288,
+    "mape_pct": 14.331211387778922,
+    "spearman": 0.9494427360684018,
+    "energy_change_meV_per_atom": 3.5310878051216377
+  },
+  "llm_edit_on_train": {
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 14.803982928748828,
+    "bias_GPa": 4.914358675239819,
+    "rmse_GPa": 22.929030793568376,
+    "mape_pct": 9.639339580297529,
+    "spearman": 0.9745548638715968,
+    "energy_change_meV_per_atom": 3.303121264797411
+  },
+  "prompt_version": 1,
+  "unedited": {
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.22707247596536,
+    "bias_GPa": 6.430458712348589,
+    "rmse_GPa": 28.214613749276186,
+    "mape_pct": 14.210254015069845,
+    "spearman": 0.9490707267681693,
+    "energy_change_meV_per_atom": 0.0
+  },
+  "table_solve": {
+    "n": 199,
+    "failed_fits": 1,
+    "mae_GPa": 17.06971455979603,
+    "bias_GPa": 7.560245756759681,
+    "rmse_GPa": 29.01599782788546,
+    "mape_pct": 14.800139696629987,
+    "spearman": 0.9480417237703671,
+    "energy_change_meV_per_atom": 35.11892138676315
+  },
+  "meta": {
+    "arm": "mace_readout_edit",
+    "tag": "opus__rep1",
+    "model_alias": "opus",
+    "forward_passes": 0,
+    "prompt_chars": 27483,
+    "prompt_tokens_estimate": 9161,
+    "model": "claude-opus-5-5",
+    "harness": "Claude Code subagent, fresh context",
+    "date": "2026-11-11",
+    "started_utc": "2026-11-11T10:09:10.392000+00:00",
+    "duration_ms": 1105246,
+    "output_tokens": 344,
+    "context_tokens_last_turn": 50975,
+    "tool_calls": [
+      {
+        "tool": "Read",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/WRAPPER.md"
+      },
+      {
+        "tool": "Read",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/runs/edit__opus__rep1/prompt.txt"
+      }
+    ],
+    "tool_calls_observed": 2,
+    "attempts": 1,
+    "audit_ok": true,
+    "audit_problems": [],
+    "transcript": "agent-a7f776863132db6c6.jsonl",
+    "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
+  }
+}

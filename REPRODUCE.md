@@ -67,6 +67,29 @@ python experiments/e1_surrogate_head/run_bo.py --seeds 8 --steps 25
 python experiments/e4_surrogate_zoo/run_zoo.py
 ```
 
+## 4c. Round 3 (docs/results/2026-11-11-round3.md)
+
+```bash
+E1=experiments/e1_surrogate_head; E2=experiments/e2_mlip_readout_edit; E3=experiments/e3_generator_task_vectors
+# section 1: write arm, all models (prompts: llm_arm.py prompt write --task <t> --tag <model>__rep<k>)
+python $E1/score_write_all.py                       # -> results/write_arm/summary.md
+# section 2: BO with first-label selection (about 25 minutes on 8 cores)
+python $E1/run_bo_select.py --seeds 20 --steps 25 --jobs 8
+# section 3: MLIP
+python $E2/prepare_reference.py                     # matinvent env; downloads the matminer set once
+conda activate mlip-mace && python $E2/export_readout.py && python $E2/cache_features.py --set dft15 && python $E2/cache_features.py --set elastic
+conda activate matinvent && python $E2/run_baselines.py && python $E2/run_frontier.py
+python $E2/llm_arm.py prompt --tag <model>__rep<k> --version 2 ; python $E2/llm_arm.py score-all
+# section 5: generator
+python $E3/download_checkpoints.py --backbone mg && python $E3/task_vectors.py --backbone mg
+#   sampling and scoring on FASTER: $E3/hprc/README.md ; then
+python $E3/analyze_variants.py
+# model ids, tokens, durations and the tool-call audit for every LLM run
+python scripts/harvest_run_usage.py
+```
+
+How an LLM run is launched: a fresh Claude Code subagent with the model alias and the one-line prompt "Read <experiment>/WRAPPER.md and follow it exactly, including writing both files. RUN = <run folder>".
+
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 
 ```bash

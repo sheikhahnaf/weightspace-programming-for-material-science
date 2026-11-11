@@ -42,6 +42,27 @@
   }
  },
  {
+  "run": "repair__loop_bulk_modulus__seed0__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   9
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.28167787267694444,
+   "llm_repair": 0.2965541055512608,
+   "linear_gain_repair": 0.5891193450307002,
+   "true_column_zeroed": 0.5891193450307002
+  }
+ },
+ {
   "run": "repair__loop_bulk_modulus__seed0__shuffled",
   "model": "claude-fable-5-2",
   "task": "loop_bulk_modulus",
@@ -126,6 +147,27 @@
   }
  },
  {
+  "run": "repair__loop_bulk_modulus__seed1__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.5681580489152865,
+   "llm_repair": 0.14740050290812468,
+   "linear_gain_repair": 0.14740050290812468,
+   "true_column_zeroed": 0.7663872681258993
+  }
+ },
+ {
   "run": "repair__loop_bulk_modulus__seed1__sonnet",
   "model": "claude-sonnet-5-5",
   "task": "loop_bulk_modulus",
@@ -184,6 +226,27 @@
   "r2": {
    "unrepaired": -0.030986557918492474,
    "llm_repair": -0.0198325015218479,
+   "linear_gain_repair": -1.062753901270292,
+   "true_column_zeroed": 0.47540698340004495
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed2__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": -0.030986557918492474,
+   "llm_repair": -1.062753901270292,
    "linear_gain_repair": -1.062753901270292,
    "true_column_zeroed": 0.47540698340004495
   }

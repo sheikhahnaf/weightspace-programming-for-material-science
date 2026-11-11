@@ -44,7 +44,7 @@ def main() -> None:
     from orb_models.forcefield import pretrained
     from orb_models.forcefield.calculator import ORBCalculator
 
-    model = pretrained.orb_v3_conservative_inf_omat(device="cpu", precision="float32-high")
+    model = pretrained.orb_v3_conservative_inf_omat(device="cpu", precision="float32-high", compile=False)
     calc = ORBCalculator(model, device="cpu")
     head = model.heads["energy"]
     captured: dict[str, torch.Tensor] = {}

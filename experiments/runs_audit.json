@@ -1663,11 +1663,11 @@
   "run": "filter_K__fable__rep1",
   "model_id": "claude-fable-5-2",
   "started_utc": "2026-11-11T23:46:21.996000+00:00",
-  "duration_ms": 6579,
-  "output_tokens": 205,
-  "context_tokens_last_turn": 50953,
+  "duration_ms": 202254,
+  "output_tokens": 50812,
+  "context_tokens_last_turn": 70015,
   "audit_ok": true,
-  "tool_calls": 2,
+  "tool_calls": 4,
   "attempts": 1
  },
  {

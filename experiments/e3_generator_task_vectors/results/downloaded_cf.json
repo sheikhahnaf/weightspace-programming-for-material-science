@@ -1,0 +1,210 @@
+{
+  "repo": "SheikhAhnaf/apu-synthesizability-checkpoints",
+  "files": [
+    {
+      "path": "data/large/finetuned_diffusion/MANIFEST.md",
+      "bytes": 1466,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed113_3006106/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed113_3006106/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "14dd0ebb06589d69b9a8050f11cc0c8b16fc44460864de3c7768598c1174429c"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed17_3003724/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed17_3003724/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "70cfb9a1de7a97191e13f7cd42bc881a9ba071ed0f5281fc91c7107d79cb18b8"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed23_3006094/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed23_3006094/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "37a9564fa4bb985d0517fc69e825dae3f0f510efb04b7d831b3dbfd469db2916"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed7_3006082/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed7_3006082/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "9a327b1e93fca92d34433b4e9af82ea600270e9777ee747e9b9e7e6ab3c46c5d"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed99_3003725/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_accel_seed99_3003725/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "2ca98f8091791058a2498a75d474a0e70052ce9324d12a327fbabee78863bff4"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed113_3006105/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed113_3006105/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "6ec62a1b412ca1bafafc28df95fba0c24bf0322e5d6c1e6f563509f487a0be51"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed17_3003722/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed17_3003722/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "7f0ab7e2e6de862d90a459a8cc096341f0d7f69afd0ec4574a4445da8fee79df"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed23_3006476/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed23_3006476/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "4f159032bed8e743886fee73a229e5b030d09ad6253fbbbd2c260526e7da3de0"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed7_3006081/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed7_3006081/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "f4097b6bfecc43d839f55a3baee737350fdcdd908bdd6373479c34fb29e75889"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed99_3003723/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_cf_baseline_seed99_3003723/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "43ed7142042625709ccfab98da1ae61c48e872b395567472efb5697e1c01e24d"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed113_3006475/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed113_3006475/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "1a4e0888ab940356c480444ba7d71c5bcb038dfe7dcaceddbfd6f9b84619c40c"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed17_3003445/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed17_3003445/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "2cac1973e8507387746c2fd5bfbef3f31eba55bd33dc0cb06ba3386e7dc38125"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed23_3006193/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed23_3006193/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "becd4889a60f74644cc9af4b16fe0942ad0114515979b881ad3a24ba9e8509ba"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed7_3006076/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed7_3006076/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "49d17700f96d55867f2ee3208632032dca1719abba9615ebd03c08046a5c0c3b"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed99_3003446/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_accel_seed99_3003446/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "661fa6fb7862c3e2a900d1432e34ff0af878b802090a612d2ac253c80a2d12b8"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed113_3006099/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed113_3006099/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "26ad8b08834954a347a52d9ca6d5e65d6d01a267bc51c2f8d5ff4b3018442792"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed17_3003443/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed17_3003443/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "cdcf68d373527923b2850046b7924c6382a4ae2ed3ac3653702aaf8fc69f5df0"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed23_3006087/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed23_3006087/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "db455ab982536e3c0fbcd37f063b44b33ca91b2f0358ba80e530c281fadb6d0e"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed7_3006075/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed7_3006075/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "70d59b1ae27c33a6afc00536d3a45f2e0582fc58ebada37592a8448f494713dd"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed99_3003444/hparams.yaml",
+      "bytes": 7764,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_cf_baseline_seed99_3003444/last.ckpt",
+      "bytes": 83765617,
+      "sha256": "d953f936e176834e298110d9456dd5bcd68d4d9a5d48291151bfeda6a94749fc"
+    }
+  ]
+}

@@ -39,6 +39,7 @@ def main() -> None:
     prompt.add_argument("--task", choices=TASK_NAMES, required=True)
     prompt.add_argument("--seed", type=int, default=0)
     prompt.add_argument("--shuffled", action="store_true", help="edit and repair arms: shuffled-weights control")
+    prompt.add_argument("--tag", default="", help="suffix for the run folder, e.g. opus__rep2")
     prompt.add_argument("--runs", type=Path, default=HERE / "runs")
     scorer = commands.add_parser("score")
     scorer.add_argument("run", type=Path)
@@ -54,6 +55,8 @@ def main() -> None:
         else:
             text = write_prompt(task)
             run_id = f"write__{task.name}"
+        if args.tag:
+            run_id += f"__{args.tag}"
         folder = args.runs / run_id
         folder.mkdir(parents=True, exist_ok=True)
         (folder / "prompt.txt").write_text(text)

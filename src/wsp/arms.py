@@ -171,25 +171,66 @@ def gp_with_prior(data: Prepared, m_train: np.ndarray, m_test: np.ndarray, slope
     return mean + slope * m_test + intercept, std, float(slope)
 
 
-def score_write(task: Task, reply: str, seeds: int = 5, sizes: tuple[int, ...] = (10, 20, 50)) -> dict:
-    head = MLPHead(task.X.shape[1], WRITE_HIDDEN, 1)
-    head.load_state_dict(load_weights(reply))
-    head.eval()
+def score_prior(task: Task, m, seeds: int = 5, sizes: tuple[int, ...] = (5, 10, 20, 50)) -> list[dict]:
+    """Score a data-free predictor `m` (model inputs -> target) alone and as a GP prior mean."""
     rows = []
     for seed in range(seeds):
         full = prepare(task, seed)
-        m_test = predict(head, full.U_test)
+        m_test = m(full.U_test)
         row = {"seed": seed, "written_alone": score(full.y_test, m_test)}
-        for n in (*sizes, len(full.y_train)):
+        for n in (*[k for k in sizes if k < len(full.y_train)], len(full.y_train)):
             data = _subsample(full, n, seed)
             plain_mean, plain_std = fit_gp(data)
-            prior_mean, prior_std, slope = gp_with_prior(data, predict(head, data.U_train), m_test)
-            row[f"n{n}"] = {
-                "gp": score(data.y_test, plain_mean, plain_std),
-                "gp_with_written_prior": score(data.y_test, prior_mean, prior_std) | {"prior_slope": slope},
-            }
+            entry = {"gp": score(data.y_test, plain_mean, plain_std)}
+            for rule in ("fitted", "one"):
+                mean, std, slope = gp_with_prior(data, m(data.U_train), m_test, slope_rule=rule)
+                entry[f"gp_with_prior_{rule}"] = score(data.y_test, mean, std) | {"prior_slope": slope}
+            entry["gp_with_written_prior"] = entry["gp_with_prior_fitted"]  # name used in round 1
+            row[f"n{n}"] = entry
         rows.append(row)
+    return rows
+
+
+def written_head(task: Task, reply: str) -> MLPHead:
+    head = MLPHead(task.X.shape[1], WRITE_HIDDEN, 1)
+    head.load_state_dict(load_weights(reply))
+    return head.eval()
+
+
+def score_write(task: Task, reply: str, seeds: int = 5, sizes: tuple[int, ...] = (5, 10, 20, 50)) -> dict:
+    head = written_head(task, reply)
+    rows = score_prior(task, lambda U: predict(head, U), seeds, sizes)
     return {"arm": "write", "task": task.name, "weights": sum(p.numel() for p in head.parameters()), "per_seed": rows}
+
+
+# Elemental property used by the no-LLM handbook baseline for each kind of target.
+_HANDBOOK = {"modulus": "youngs_modulus", "strength": "vickers_hardness", "hardness": "vickers_hardness"}
+
+
+def handbook_prior(task: Task):
+    """Rule of mixtures from a table of elemental properties (pymatgen), no LLM, no data.
+
+    Young's modulus for modulus targets; Vickers hardness of the elements for
+    strength and hardness targets (ranking is what matters; the scale is refitted
+    by the GP prior). Elements without a tabulated value, and the 'other' input,
+    get the mean of the tabulated ones.
+    """
+    import warnings
+
+    from pymatgen.core import Element
+
+    if not task.named_features:
+        raise ValueError(f"{task.name}: the handbook baseline needs element inputs")
+    kind = next(k for k in _HANDBOOK if k in task.target.lower())
+    values = []
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        for name in task.feature_names:
+            value = None if name == "x_other" else getattr(Element(name[2:]), _HANDBOOK[kind])
+            values.append(float(value) if value is not None else np.nan)
+    table = np.array(values)
+    table[np.isnan(table)] = np.nanmean(table)
+    return lambda U: U @ table
 
 
 # -------------------------------------------------------------- arm B: repair

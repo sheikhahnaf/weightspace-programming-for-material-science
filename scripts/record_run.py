@@ -31,14 +31,18 @@ def main() -> None:
     parser.add_argument("--model", required=True)
     parser.add_argument("--tokens", type=int, required=True)
     parser.add_argument("--duration-ms", type=int, required=True)
-    parser.add_argument("--tool-calls", type=int, default=2)
+    parser.add_argument("--tool-calls", type=int, default=3)
     parser.add_argument("--forward-passes", type=int, default=0)
     parser.add_argument("--date", default=date.today().isoformat())
-    parser.add_argument("--self-report", required=True)
+    parser.add_argument("--self-report", default=None, help="default: the run folder's self_report.txt")
     args = parser.parse_args()
 
     if not (args.run / "reply.txt").exists():
         raise SystemExit(f"{args.run} has no reply.txt")
+    report = args.self_report
+    if report is None:
+        report_file = args.run / "self_report.txt"
+        report = report_file.read_text() if report_file.exists() else "(no self-report was written)"
     path = args.run / "meta.json"
     meta = json.loads(path.read_text())
     meta.update(
@@ -57,7 +61,7 @@ def main() -> None:
     (args.run / "model_self_report.md").write_text(
         "# What the model said it did\n\n"
         "Reported by the model after writing its reply; not verified beyond the scored reply itself.\n\n"
-        f"> {args.self_report.strip()}\n"
+        "> " + report.strip().replace("\n", "\n> ") + "\n"
     )
     print(f"recorded {args.run.name}")
 

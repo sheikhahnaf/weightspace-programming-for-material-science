@@ -158,17 +158,33 @@ def _mpea() -> Task:
     )
 
 
-def _ti() -> Task:
+def _ti(column: str = "YM", name: str = "ti_alloy_youngs_modulus", target: str = "Young's modulus",
+        unit: str = "GPa", n_train: int = 120) -> Task:
     import pandas as pd
 
     df = pd.read_csv(DATA / "alloys" / "ti_alloy_dax-ti-static.csv")
-    df = df[df["YM"].notna()]
+    df = df[df[column].notna()]
     return _composition_task(
-        "ti_alloy_youngs_modulus", "alloy design from composition",
-        df["formula"].astype(str).tolist(), df["YM"].to_numpy(dtype=float),
-        "Young's modulus", "GPa",
+        name, "alloy design from composition",
+        df["formula"].astype(str).tolist(), df[column].to_numpy(dtype=float),
+        target, unit,
         "Measured titanium alloys (Salvador et al., Sci. Data 9:188, 2022).",
-        n_train=120, min_count=4,
+        n_train=n_train, min_count=4,
+    )
+
+
+def _mpea_hardness() -> Task:
+    import pandas as pd
+
+    df = pd.read_csv(DATA / "alloys" / "MPEA_dataset.csv")
+    hardness = next(c for c in df.columns if c.strip() == "PROPERTY: HV")
+    df = df[df[hardness].notna()]
+    return _composition_task(
+        "mpea_hardness", "alloy design from composition",
+        df["FORMULA"].astype(str).tolist(), df[hardness].to_numpy(dtype=float),
+        "Vickers hardness", "HV",
+        "Measured multi-principal-element alloys (Borg et al., Sci. Data 7:430, 2020).",
+        n_train=200,
     )
 
 
@@ -206,6 +222,9 @@ _BUILDERS: dict[str, Callable[[], Task]] = {
     ),
     "mpea_yield_strength": _mpea,
     "ti_alloy_youngs_modulus": _ti,
+    "ti_alloy_yield_strength": lambda: _ti("YS", "ti_alloy_yield_strength", "yield strength", "MPa", 100),
+    "ti_alloy_hardness": lambda: _ti("HV", "ti_alloy_hardness", "Vickers hardness", "HV", 100),
+    "mpea_hardness": _mpea_hardness,
     "matbench_log_bulk_modulus": _matbench,
 }
 

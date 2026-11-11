@@ -1,4 +1,4 @@
-# weighspace-programming
+# Weight-space programming for materials science
 
 Where weight-space programming fits in Bayesian materials discovery, and a campaign to test it across applications.
 

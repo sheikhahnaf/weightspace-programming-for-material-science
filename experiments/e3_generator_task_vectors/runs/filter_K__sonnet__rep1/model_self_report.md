@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I hand-built a sparse network with one hidden unit per feature: a decreasing term in volume per atom, an increasing term in mean melting point, positive terms for 4d/5d transition metals, C/N/O, metalloids (B, Si) and 3d transition metals, and negative terms for alkali, halogen, H, alkaline earth, S/Se/P and p-block metals. Scales were chosen so a typical dense refractory compound lands near 100 to 200 GPa and soft, open, alkali or halogen rich crystals fall near or below zero, with the output bias at -10. No calculations were run, so the numbers are rough; I am about 55% confident this ranks high bulk modulus crystals well.

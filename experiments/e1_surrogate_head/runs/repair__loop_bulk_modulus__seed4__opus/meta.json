@@ -13,9 +13,9 @@
   "harness": "Claude Code subagent, fresh context",
   "date": "2026-11-11",
   "started_utc": "2026-11-11T23:24:29.541000+00:00",
-  "duration_ms": 3567,
-  "output_tokens": 210,
-  "context_tokens_last_turn": 50956,
+  "duration_ms": 879533,
+  "output_tokens": 128210,
+  "context_tokens_last_turn": 64116,
   "tool_calls": [
     {
       "tool": "Read",

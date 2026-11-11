@@ -1,0 +1,6 @@
+{
+  "arm": "generator_filter",
+  "target": "Cp",
+  "tag": "haiku__rep3",
+  "prompt_tokens_estimate": 991
+}

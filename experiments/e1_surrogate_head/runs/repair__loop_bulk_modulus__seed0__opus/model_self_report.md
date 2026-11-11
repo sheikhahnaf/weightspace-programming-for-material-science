@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I scanned the columns of net.0.weight for an input whose incoming weights were unusually large. Column 9 stood out: it holds the largest single first-layer weight (0.431 in row 29), several more above 0.18 (0.285, 0.211, 0.204, -0.201, 0.189, 0.181), and a mental sum of squares of about 0.69, against roughly 0.4 for a typical column and about 0.43 for the next candidate, column 48. I judged input 9 to be the leak and zeroed all 32 weights in that column, so the output no longer depends on it and nothing else changes. Confidence that input 9 is the leak: about 60%.

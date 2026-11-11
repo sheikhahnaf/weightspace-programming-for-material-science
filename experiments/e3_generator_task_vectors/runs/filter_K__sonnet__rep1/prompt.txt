@@ -1,0 +1,68 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. The network scores crystals proposed by a generative model (inorganic, up to 20 atoms per cell, any elements) so that only the most promising are sent to an expensive calculation. The output y must be your best estimate of the crystal's bulk modulus in GPa; what matters most is that crystals with a high true value get a high score.
+
+Inputs, not standardised:
+x[0] = volume_per_atom_A3
+x[1] = mean_atomic_mass_u
+x[2] = mean_pauling_electronegativity
+x[3] = mean_elemental_melting_point_K
+x[4] = frac_alkali
+x[5] = frac_alkaline_earth
+x[6] = frac_3d_transition
+x[7] = frac_4d_5d_transition
+x[8] = frac_lanthanide_actinide
+x[9] = frac_p_block_metal
+x[10] = frac_metalloid
+x[11] = frac_C_N_O
+x[12] = frac_S_Se_P
+x[13] = frac_halogen
+x[14] = frac_H
+
+volume_per_atom_A3 is the cell volume divided by the number of atoms, as generated (not relaxed). The means are over the atoms of the cell. The fractions are:
+frac_alkali: atomic fraction of Li Na K Rb Cs
+frac_alkaline_earth: atomic fraction of Be Mg Ca Sr Ba
+frac_3d_transition: atomic fraction of Sc Ti V Cr Mn Fe Co Ni Cu Zn
+frac_4d_5d_transition: atomic fraction of Y Zr Nb Mo Tc Ru Rh Pd Ag Cd Hf Ta W Re Os Ir Pt Au Hg
+frac_lanthanide_actinide: atomic fraction of La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Ac Th Pa U Np Pu
+frac_p_block_metal: atomic fraction of Al Ga In Sn Tl Pb Bi
+frac_metalloid: atomic fraction of B Si Ge As Sb Te
+frac_C_N_O: atomic fraction of C N O
+frac_S_Se_P: atomic fraction of S Se P
+frac_halogen: atomic fraction of F Cl Br I
+frac_H: atomic fraction of H
+Typical ranges: volume per atom 8 to 60, mean atomic mass 7 to 200, mean electronegativity 0.8 to 3.5, mean melting point 300 to 3700.
+
+# Architecture
+Input x has 15 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 15, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 15)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

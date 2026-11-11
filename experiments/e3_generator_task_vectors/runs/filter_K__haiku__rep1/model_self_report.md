@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I chose a small set of interpretable hidden units from materials intuition: a compact cell (low volume per atom) scores high, as do high melting point, transition-metal and covalent-former fractions (C/N/O, S/Se/P), and electronegativity above 1. Alkali, halogen and hydrogen content is penalised as softening. I did not run anything, so the scale is a rough guess and I am not confident in the exact numbers; my confidence that the ranking is directionally right is about 55%.

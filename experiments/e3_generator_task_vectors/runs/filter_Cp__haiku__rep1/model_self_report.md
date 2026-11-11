@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used the Dulong-Petit limit, where heat capacity per atom is about 3R (24.9 J/mol/K), so heat capacity per gram scales roughly as 1/(mean atomic mass). I encoded this as three decreasing ReLU units in volume-independent mass (x[1]) with different slopes, so the piecewise approximation is monotone decreasing in mass across the 7 to 200 u range. A fourth unit adds a small bonus for hydrogen and alkali content (x[14], x[4]), which have high specific heat per gram. Confidence that the ranking is correct: about 55 percent, since the true value also depends on Debye temperature and deviates from Dulong-Petit at low temperatures for light covalent solids.

@@ -24,6 +24,7 @@
     "spearman": 0.9743913597839947,
     "energy_change_meV_per_atom": 4.548239425473657
   },
+  "prompt_version": 1,
   "unedited": {
     "n": 200,
     "failed_fits": 0,

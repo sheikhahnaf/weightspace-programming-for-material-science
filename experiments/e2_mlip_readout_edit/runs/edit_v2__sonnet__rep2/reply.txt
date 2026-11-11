@@ -1,0 +1,1 @@
+[{"tensor": "readouts.0.linear.weight", "index": [71], "value": 6.7094}, {"tensor": "scale_shift.shift", "index": [0], "value": -0.00744}]

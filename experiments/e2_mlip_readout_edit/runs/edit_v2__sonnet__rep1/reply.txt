@@ -1,0 +1,11 @@
+[
+  {"tensor": "readouts.0.linear.weight", "index": [2], "value": 0.70074},
+  {"tensor": "readouts.0.linear.weight", "index": [23], "value": -0.2281},
+  {"tensor": "readouts.0.linear.weight", "index": [29], "value": -1.51935},
+  {"tensor": "readouts.0.linear.weight", "index": [57], "value": -0.72559},
+  {"tensor": "readouts.0.linear.weight", "index": [59], "value": 1.033762},
+  {"tensor": "readouts.0.linear.weight", "index": [71], "value": 4.1162},
+  {"tensor": "readouts.0.linear.weight", "index": [74], "value": 0.590681},
+  {"tensor": "readouts.0.linear.weight", "index": [79], "value": -0.971832},
+  {"tensor": "readouts.0.linear.weight", "index": [98], "value": -0.73944}
+]

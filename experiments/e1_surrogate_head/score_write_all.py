@@ -57,7 +57,11 @@ def main() -> None:
         score_file = folder / "score.json"
         meta = json.loads((folder / "meta.json").read_text()) if (folder / "meta.json").exists() else {}
         meta.setdefault("model_alias", model)
-        if score_file.exists() and score_file.stat().st_mtime >= reply.stat().st_mtime and "n5" in json.dumps(json.loads(score_file.read_text()).get("per_seed", [{}])[0]):
+        current = False  # a score written before the slope rules and the 5-label size were added is redone
+        if score_file.exists() and score_file.stat().st_mtime >= reply.stat().st_mtime:
+            old = json.loads(score_file.read_text())
+            current = bool(old.get("invalid")) or "gp_with_prior_one" in (old.get("per_seed") or [{}])[0].get("n5", {})
+        if current:
             result = json.loads(score_file.read_text())
         else:
             try:

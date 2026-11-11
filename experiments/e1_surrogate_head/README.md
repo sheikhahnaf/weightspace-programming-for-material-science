@@ -30,6 +30,8 @@ Arm E keeps the GP, so its uncertainty is the GP's own; the learnable scale lets
 
 **Tasks actually wired up** (`src/wsp/tasks.py`, from data copied into `data/`): `loop_bulk_modulus`, `loop_heat_capacity`, `mpea_yield_strength`, `ti_alloy_youngs_modulus`, `matbench_log_bulk_modulus`. The matminer elastic set described under **Data** is a sixth task that still needs its ORB features computed with `make_features.py`.
 
-**Scripts.** `run_baseline.py` (GP, ridge, trained head on every task); `llm_arm.py prompt|score` (arms C and E; code in `src/wsp/arms.py`). Arms A, B and D have no prompt builder yet.
+**Scripts.** `run_baseline.py` (GP, ridge, trained head on every task); `llm_arm.py prompt|score` (arms B as a planted leak, C and E; code in `src/wsp/arms.py`); `run_bo.py` (pool-based BO with and without a written prior). Arms A and D have no prompt builder yet.
 
 **Status (2026-11-11).** Baselines run on five tasks, five seeds. Pilot of arm C (three single runs, one a shuffled control) and arm E (two tasks, one reply each) with Claude Fable 5.2 and no code execution. Results and what they change: `docs/results/2026-11-11-e1-pilot.md`. Short version: arm C as prompted showed no weight reading (the model made the same output-layer stretch on shuffled weights); arm E gave networks that rank alloys at ρ 0.54 and 0.63 with no data and raised GP ranking at 10 to 20 labels, inside seed noise on R².
+
+**Status, round 2 (2026-11-11).** Arm B run as a planted-leak repair (four runs and a shuffled control), arm E replicated (three replies per task) and tested inside BO (eight seeds). Results: `docs/results/2026-11-11-round2.md`. Short version: the model found the leak in 2 of 4 runs, the same two a weight-norm statistic finds; the written priors' ranking gain at few labels did not carry into BO except for one reply of three on the titanium task.

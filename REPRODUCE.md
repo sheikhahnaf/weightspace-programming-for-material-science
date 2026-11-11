@@ -19,7 +19,7 @@ python scripts/copy_from_siblings.py --check  # exits non-zero if any copy diffe
 ## 2. Tests
 
 ```bash
-python -m pytest -q -W ignore                 # 35 tests
+python -m pytest -q -W ignore                 # 36 tests
 ```
 
 ## 3. Baselines (docs/results/2026-11-11-e1-pilot.md, section 2)
@@ -46,6 +46,26 @@ for r in experiments/e1_surrogate_head/runs/*/; do python $E score $r; done
 ```
 
 The prompts are regenerated exactly. The replies are not: a language model does not return the same text twice. The replies behind the reported numbers are stored as `runs/<id>/reply.txt`, and scoring them again reproduces `score.json`. How the model was called is in section 5 of the results page, and per run in `meta.json`.
+
+## 4b. Round 2 (docs/results/2026-11-11-round2.md)
+
+```bash
+E=experiments/e1_surrogate_head/llm_arm.py
+# section 1: leak repair
+for a in "loop_heat_capacity --seed 0" "loop_heat_capacity --seed 1" "loop_bulk_modulus --seed 0" \
+         "loop_bulk_modulus --seed 1" "loop_bulk_modulus --seed 0 --shuffled"; do
+  python $E prompt repair --task ${=a}
+done
+# section 2: write-arm replicates use the same prompt as write__<task>; the replies are in
+#   runs/write__<task>__rep2 and __rep3
+for r in experiments/e1_surrogate_head/runs/*/; do python $E score $r; done
+# record how a run was made (model, tokens, the model's own account)
+python scripts/record_run.py experiments/e1_surrogate_head/runs/<id> --model ... --tokens ... --duration-ms ... --self-report "..."
+# section 3: BO with the written priors (about 20 minutes on a laptop CPU)
+python experiments/e1_surrogate_head/run_bo.py --seeds 8 --steps 25
+# section 4: surrogate zoo (needs data/large; see section 1 above)
+python experiments/e4_surrogate_zoo/run_zoo.py
+```
 
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 

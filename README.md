@@ -22,22 +22,28 @@ Baselines on five tasks and a first pilot of two LLM arms: [`docs/results/2026-1
 - Asked to edit a trained head, the model rescaled the output layer, and did the same on a network with shuffled weights. No evidence of weight reading in that arm.
 - Asked to write a network from materials knowledge with no data, the model produced networks that rank alloys at Spearman 0.54 and 0.63. As a GP prior they raised ranking at 10 to 20 labels.
 
-The LLM cells are single runs with one model. They are a pilot.
+Round 2, same day: [`docs/results/2026-11-11-round2.md`](docs/results/2026-11-11-round2.md).
+
+- Asked to find a planted leak input from weights alone (chance 1 in 51), the model found it in 2 of 4 runs: the same two that a one-line weight-norm statistic finds. One wrong repair, made at a stated 85% confidence, left the surrogate worse than untouched.
+- Three independent replies for the write arm agree with each other and all raise GP ranking at 10 labels. Inside a BO loop that did not carry over: worse early on alloy strength, and on titanium alloys a clear win for one reply of three.
+- Fitted GP parameters predict a surrogate's ranking quality on an unseen benchmark a little (R² 0.15 → 0.23 over 22 benchmarks).
+
+Every LLM result is from one model (Claude Fable 5.2) and a handful of runs. No significance test has been run.
 
 ## Campaign
 
 | Experiment | Application | Data in this repo | State |
 |---|---|---|---|
-| [E1](experiments/e1_surrogate_head/) readout head and prior mean | BO surrogate: closed-loop bulk modulus and heat capacity, alloy strength, titanium alloys, composition screening | `data/closed_loop_bm`, `data/closed_loop_cp`, `data/alloys` | baselines run; pilot run |
+| [E1](experiments/e1_surrogate_head/) readout head and prior mean | BO surrogate: closed-loop bulk modulus and heat capacity, alloy strength, titanium alloys, composition screening | `data/closed_loop_bm`, `data/closed_loop_cp`, `data/alloys` | baselines, edit, repair and write arms run; BO loop run |
 | [E2](experiments/e2_mlip_readout_edit/) scalar readout edit of MACE | MLIP | `data/causal_replay/esen_vs_dft_bm.csv`, `data/dft_validation` | specified |
 | [E3](experiments/e3_generator_task_vectors/) task vectors of fine-tuned generators | generative model | checkpoints on Hugging Face, not downloaded | specified |
-| [E4](experiments/e4_surrogate_zoo/) learning from fitted surrogates | BO surrogate, broad sense | `data/surrogate_zoo` (30,360 fitted surrogates) | specified |
+| [E4](experiments/e4_surrogate_zoo/) learning from fitted surrogates | BO surrogate, broad sense | `data/surrogate_zoo` (30,360 fitted surrogates) | step 2 run |
 
 ## Layout
 
 ```
 src/wsp/            harness: weights <-> text, edits, heads, prompts, tasks, baselines, LLM arms
-tests/              35 tests
+tests/              36 tests
 experiments/        one folder per experiment; E1 holds results/ and runs/<id>/ (prompt, reply, meta, score)
 data/               copied datasets, with PROVENANCE.md (source path, size, checksum per file)
 vendor/             algorithms copied unmodified from the sibling repos

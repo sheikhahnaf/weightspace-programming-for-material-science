@@ -1,0 +1,51 @@
+{
+  "policy": "baseline",
+  "seed": 17,
+  "runs_used": [
+    "bm_p3v4_bm_mg_baseline_seed113_3006103",
+    "bm_p3v4_bm_mg_baseline_seed17_3003718",
+    "bm_p3v4_bm_mg_baseline_seed23_3006091",
+    "bm_p3v4_bm_mg_baseline_seed7_3006079",
+    "bm_p3v4_bm_mg_baseline_seed99_3003719",
+    "hcap_p3v4_mg_baseline_seed113_3006097",
+    "hcap_p3v4_mg_baseline_seed17_3003439",
+    "hcap_p3v4_mg_baseline_seed23_3006085",
+    "hcap_p3v4_mg_baseline_seed7_3006073",
+    "hcap_p3v4_mg_baseline_seed99_3003440"
+  ],
+  "variants": {
+    "base": {
+      "relative_norm_of_change": 0.0
+    },
+    "bm_seed17": {
+      "relative_norm_of_change": 0.005393859730614483
+    },
+    "hcap_seed17": {
+      "relative_norm_of_change": 0.005907054192297695
+    },
+    "bm_mean5": {
+      "relative_norm_of_change": 0.00375759396428297
+    },
+    "hcap_mean5": {
+      "relative_norm_of_change": 0.003031617428451147
+    },
+    "sum_seed17": {
+      "relative_norm_of_change": 0.008166928909472536
+    },
+    "sum_mean5": {
+      "relative_norm_of_change": 0.0054401379529603
+    },
+    "bm_seed17_rank8": {
+      "relative_norm_of_change": 0.0036533395630832847
+    },
+    "bm_seed17_rank32": {
+      "relative_norm_of_change": 0.004399631066935061
+    },
+    "bm_seed17_neg": {
+      "relative_norm_of_change": 0.005393859730614483
+    },
+    "bm_mean5_x3": {
+      "relative_norm_of_change": 0.011272781946528282
+    }
+  }
+}

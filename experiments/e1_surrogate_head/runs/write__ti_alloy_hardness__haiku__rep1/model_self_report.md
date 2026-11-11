@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used a linear-in-composition design. The first 15 hidden units pass each element fraction through unchanged (relu on nonnegative inputs is the identity), and the last hidden unit is zero. The output weights are per-element hardness increments relative to titanium, with Ti at zero and a bias of 200 HV for near-pure Ti. Al and Si get the largest weights, then Fe, Cu, Mn and Cr, with Sn, Mo and V moderate. I did not find a target value, so no confidence percentage applies.

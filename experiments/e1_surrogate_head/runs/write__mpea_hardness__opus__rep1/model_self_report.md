@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Unit 0 is an always-on rule of mixtures. Its per-element coefficients (in units of 100 HV) were set by hand so that CoCrFeNi comes out near 150 HV, Cantor near 145, NbMoTaW near 500, HfNbTaTiZr near 300 and NbTiVZr near 340. B, C and Si get large coefficients to stand for boride, carbide and silicide hardening. Units 1-3 form a clipped ramp in (x_Al + x_Si), mildly suppressed by Nb, Ta and Hf. It adds about 300 HV between 9 and 20 at.% Al, which follows the FCC-to-BCC/B2 transition in AlxCoCrFeNi (about 160 HV at x=0.3, 230 at x=0.5, about 490 at x=1), and it declines slightly for very Al-rich alloys. Units 4-7 make a trapezoid in a weighted refractory/intermetallic-former fraction (Ti, Nb, Zr, Hf, Ta at full weight, Mo and W at 0.6, V and Re at 0.3): it adds up to about 350 HV for small Ti, Nb or Mo additions to 3d-metal matrices (eta, Laves and sigma phases) and returns to zero for refractory-based alloys, while unit 8 adds Laves-type hardening when Cr sits in a refractory or Al-refractory matrix (CrNbTiZr, CrMo0.5NbTa0.5TiZr).

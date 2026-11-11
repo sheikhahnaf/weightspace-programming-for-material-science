@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I hand-built a piecewise-linear model: an output bias of 450 MPa for unalloyed Ti, plus one always-active hidden unit carrying per-element solid-solution strengthening coefficients in MPa per atomic fraction (Si and Fe strongest, then Al, Cr, Mn, Mo, Sn, Cu, Nb, Zr, Hf, Ta, V). Two further units share a beta-stabiliser equivalent (Nb + 0.7Ta + 1.5Mo + 0.5V + 2Fe + 1.5Cr + 1.5Mn) and produce a strength dip between 0.10 and 0.25, representing the soft metastable-beta / stress-induced-martensite regime, and a fourth unit saturates Al strengthening above 12 at%. I checked the result by mental arithmetic against remembered values for Ti-6Al-4V (~890), Ti-13Nb-13Zr (~790), Ti-15Mo (~660) and Ti-35Nb-7Zr-5Ta (~655); the remaining 12 hidden units are left at zero. Nothing was to be found, so no confidence percentage applies; I expect the scale and main trends to be roughly right but heat-treatment scatter is not captured.

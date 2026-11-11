@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I ruled out `scale` because it would need per-crystal energy compensation that E0 and shift cannot provide. Instead I ranked the w0 weights by |dK mean| / dE sd, which is the bulk-modulus change per unit of crystal-to-crystal energy scatter. I took the 14 best (7, 105, 51, 36, 53, 3, 39, 109, 17, 14, 70, 33, 62, 127) and stepped each by an inverse-variance amount (delta w_j proportional to -dK_j/sd_j^2). The step size gives an energy scatter of about 3.2 meV/atom if the features are independent, and I set the shift to -7.5 meV to cancel the +7.5 meV mean energy change. To first order this lowers K by only about 1.1 GPa on average. The given numbers leave out the equilibrium-volume shift, and through K' that shift could be as large as the direct effect or reverse it. I am therefore only about 35% confident that the edit reduces the bulk modulus error on new crystals while staying under 5 meV/atom.

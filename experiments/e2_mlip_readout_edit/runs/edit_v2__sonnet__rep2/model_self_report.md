@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> The mean bulk modulus error is +4.7 GPa, so I need a w0 edit that reduces K by 4.7 GPa on average while keeping mean energy per atom within 5 meV. I scanned the sensitivity table for weights with high |dK| and evaluated the implied delta: w0[71] has dK = -1.308 GPa/unit, requiring delta = +3.5932 to deliver -4.70 GPa, but that also shifts the mean energy by +7.44 meV (> 5 meV limit). The key insight is that the shift parameter adds uniformly to every atom's energy and has zero contribution to any volume derivative, so it cannot affect K. I therefore added the exact compensating decrease: shift = -0.00744 eV, making mean delta-E = 3.5932 * 0.00207 - 0.00744 = 0 eV/atom. I am roughly 55% confident the actual K reduction on new crystals will be in the range -3 to -6 GPa; the main uncertainty is that the linear dK approximation was measured at delta = 0.02 and I am extrapolating to delta ≈ 3.6, so nonlinear effects could reduce the realized correction.

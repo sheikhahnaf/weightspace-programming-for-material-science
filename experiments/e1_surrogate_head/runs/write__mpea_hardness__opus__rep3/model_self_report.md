@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Hidden unit 0 is an always-on rule-of-mixtures term with per-element hardness contributions (in units of 100 HV) recalled from familiar alloys: about 150 HV for CoCrFeNi/Cantor, about 330 HV for HfNbTaTiZr and about 480 HV for NbMoTaW, with large weights for B, C and Si. Units 1-2 form a clamped ramp that adds up to 280 HV as the Al fraction rises from 0.09 to 0.19, which models the FCC-to-BCC/B2 transition in 3d-metal alloys. Refractory content gates this ramp so that it does not fire in refractory alloys. Units 3-5 form a tent function of a weighted large-atom fraction (Ti, Zr, Hf, Nb, Ta, partly Mo, W and V), peaking at 450 HV near 0.22 and falling to zero by 0.9, which models Laves, eta and sigma hardening when large atoms are added to 3d matrices. I checked all of this by hand against roughly twenty alloys I remembered, and the other ten units are left at zero.

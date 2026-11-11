@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used the w0 sensitivity table as a linear model: each of 25 weights was moved in the direction that lowers the bulk modulus, by an amount proportional to (dK mean)/(dE sd)^2, which gives the most bulk-modulus change per unit of crystal-to-crystal energy scatter if the weights' energy effects are independent. By hand arithmetic the edits sum to about -1.75 GPa in mean bulk modulus and about +3.9 meV/atom in mean energy, which I cancelled with shift = -0.0039 eV; the estimated remaining energy scatter is about 4.4 meV sd (about 3.5 meV mean absolute), which is why I did not aim for the full -4.7 GPa. Nothing was run or checked: the estimate ignores the equilibrium-volume shift, assumes independence between weights, and cannot target the high-modulus crystals where most of the error sits. Confidence that the energy change stays under 5 meV/atom is about 65%, and that the mean absolute bulk-modulus error improves on new crystals about 55%.

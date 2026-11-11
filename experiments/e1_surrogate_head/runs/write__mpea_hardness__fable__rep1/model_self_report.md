@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I hand-built the network from remembered hardness values of well-known alloys (CoCrFeNi ~150 HV, AlCoCrFeNi ~500, MoNbTaW ~450, HfNbTaTiZr ~380, CoCrFeNiTi ~500). Unit 0 is an always-active rule of mixtures with per-element HV coefficients; unit 1 subtracts 1600*relu(R - T) so that, combined with unit 0, it gives a 1600*min(refractory/Si fraction, 3d-metal fraction) term for Laves/sigma intermetallic hardening that vanishes in pure refractory or pure 3d alloys. Units 2 and 3 form a clipped ramp (+260 HV between 0.10 and 0.18 of an Al-driven score) for the FCC-to-BCC/B2 transition in Al-containing 3d alloys, suppressed by refractory elements; the other 12 units are left at zero. I checked about ten alloys by mental arithmetic only; nothing was run, and I expect the scale and main trends to be right but individual errors of 100 HV or more to be common.

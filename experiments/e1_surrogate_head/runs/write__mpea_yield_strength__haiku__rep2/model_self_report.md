@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the weights from materials intuition alone, with no computation. Hidden unit 0 sums the refractory elements (Hf, Mo, Nb, Re, Ta, Ti, V, W, Zr) and gets a large positive output weight, since these raise room-temperature yield strength. Units 1 to 4 pick out Al (precipitation), the soft low-melting elements Li, Mg, Zn and Sn (negative output weight), C plus Si (interstitial/solid-solution strengthening), and the 3d FCC base elements Co, Cr, Cu, Fe, Mn and Ni (small contribution). The remaining 11 hidden units are zero, and the output bias of 200 MPa sets the baseline for a 3d-base alloy. Confidence is not applicable because this was not a search task.

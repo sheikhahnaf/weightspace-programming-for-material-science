@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I treated the table as a linear model and spread a small change over the 32 w0 weights with the largest ratio of mean bulk-modulus sensitivity to the square of the energy spread across crystals (step proportional to dK_mean / dE_sd^2, signed to lower K), which by hand arithmetic sums to about -2.1 GPa in mean bulk modulus. The resulting mean energy drift of about +11 meV per atom is cancelled half by raising w0[117] (large, nearly uniform energy sensitivity, and it also lowers K) and half by shift = -0.0057 eV. Assuming the per-weight energy variations are independent across crystals, I expect a residual energy change of roughly 4 meV per atom mean absolute, which is close to the 5 meV limit; I did not have covariances, per-crystal data or the equilibrium-volume effect, so this is an estimate, not a check. Confidence that the bulk modulus error shrinks on new crystals while energy stays under 5 meV per atom: about 45%.

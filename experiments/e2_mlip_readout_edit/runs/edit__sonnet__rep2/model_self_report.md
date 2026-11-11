@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I looked in the w0 table for weights with a positive bulk-modulus sensitivity and a small energy sensitivity (j = 17, 39, 62, 91) and lowered each by 0.25, so that the bulk modulus drops while the per-atom energy changes stay a few meV. By the first-order numbers this lowers the mean bulk modulus by roughly 0.6 GPa, with a per-atom energy change of about 3 meV; the gain is deliberately modest because the energy budget is tight and the weights are only weakly selective. I did not touch scale, since that would move energies by hundreds of meV. Confidence that the edit reduces the bulk modulus error without breaking the 5 meV limit: about 55%.

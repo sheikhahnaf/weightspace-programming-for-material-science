@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Hidden unit 0 is an always-positive rule-of-mixtures term: pure Ti is 106 GPa, and each element gets a slope in GPa per at% (Al +0.6; Mo +1.5; Fe, Cr, Mn +2.5; Ta and V +0.5; Nb -0.1; Zr -0.6; Hf -0.5; Sn -1.2). A shift of +0.5 is added to every weight and removed again through the output bias, which keeps the unit active. Units 1-4 are ReLUs that share one beta-stability index, an at%-based molybdenum equivalent (Mo 2.0, Fe 3.4, Cr 1.73, Mn 1.95, Ta 0.83, V 0.71, Nb 0.54, Sn 1.0, Cu 0.6, Al -0.56), with hinges at index values of 0, 5, 12 and 16. Together they make a piecewise-linear drop: about 5 GPa per unit through the alpha-prime martensite range and 3 per unit approaching the metastable-beta minimum near 60 GPa, then a plateau, then a rise of +2 per unit for strongly stabilized beta. I checked the result by hand against remembered moduli for CP-Ti, Ti-6Al-4V, Ti-6Al-7Nb, Ti-13Nb-13Zr, TNZT, TNTZ, Ti-15Mo, TMZF and Ti-Ta/Ti-Nb binaries; the predictions came within roughly 10 GPa of those values.

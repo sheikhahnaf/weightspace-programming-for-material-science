@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Unit 0 is a positive linear rule of mixtures with effective per-element hardness values (late 3d metals about 100-150 HV, Mo/W/V/Re 450-650, Si/B/C high), fitted by hand so CoCrFeNi comes out near 150 HV and NbMoTaW near 475 HV. The other units are pairs written as relu(a) - relu(a - b), which compute clip(a, 0, b), a min-like interaction. One pair gives the sigmoidal Al-driven FCC-to-BCC/B2 hardening in Fe/Co/Ni/Cr/Cu/Mn alloys, saturating near AlCoCrFeNi at about 480 HV, together with an uncapped Al ramp. Further pairs cover intermetallic (Laves/sigma/eta) hardening when Ti, Nb, Zr, Hf, Ta, Mo or Si is mixed into late-3d alloys, Al in refractory alloys, Cr-Laves formation in refractory alloys, and the size mismatch between Zr/Hf/Ti and Mo/W/V. Each pair was built to cancel exactly when its partner group is absent, and I hand-checked the result against remembered literature values (the AlxCoCrFeNi and AlxCoCrCuFeNi series, CoCrFeNiTi/Nb/Mo, HfNbTaTiZr, CrMo0.5NbTa0.5TiZr, the Al0.5CoCrCuFeNiBx series).

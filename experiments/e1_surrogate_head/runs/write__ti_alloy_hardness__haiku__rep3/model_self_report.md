@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a linear-equivalent network from general physical knowledge rather than data. Each of the 15 inputs passes through its own ReLU unit with weight 1, which is exact because all inputs are non-negative, and output weights set per-element hardening coefficients (Al, Si, Fe strongest; Zr, Hf, Sn, other weaker; Ti as baseline with zero coefficient). A constant unit (all-ones weights, since rows sum to 1) carries the Ti-based intercept of about 150 HV. The coefficients are rough reasoned magnitudes, not fitted values, so I have low confidence in the absolute scale; the trend ordering is my best judgement. No percentage confidence was asked for.

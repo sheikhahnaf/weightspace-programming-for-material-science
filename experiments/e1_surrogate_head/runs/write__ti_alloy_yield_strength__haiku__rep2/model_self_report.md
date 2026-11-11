@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used a linear-in-composition design: since all inputs are non-negative, ReLU units with unit weight and zero bias pass each input through unchanged, so 14 hidden units carry the non-Ti elements and the output weights set their effect. Base strength is 400 MPa for commercially pure Ti, and the coefficients are chosen so that Ti-6Al-4V (about 6 at% Al and 4 at% V) comes out near 900 MPa, with Si given the largest coefficient and the Nb, Ta, Zr, Hf, Sn, Cu and other group the smallest. These are rough recollections of solid-solution strengthening rather than fitted values. Ti itself has no hidden unit, so its effect is carried by the baseline and the other elements' coefficients are relative to it.

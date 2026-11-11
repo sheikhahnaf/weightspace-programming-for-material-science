@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I picked w0 weights with a positive dK and a small dE (71, 39, 17, 91, 70, 62, 33) and lowered each, mostly by 0.6, with 71 by only 0.4 because its dE spread across crystals is large. I chose the signs so the mean dE contributions roughly cancel (net about +1.5 meV per atom). The first-order estimate is a bulk modulus drop of about 2.5 GPa. It ignores the volume shift and any correlation between features, so the per-crystal energy changes could be around 10 meV. Confidence that bulk modulus error shrinks while the mean energy shift stays under 5 meV per atom: about 55%.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I ranked all 128 w0 weights by the ratio |dK_mean| / |dE_mean| (GPa per eV of mean energy change) to identify weights where bulk modulus can be shifted with minimal energy cost. Since the energy is exactly linear in w0, the energy constraint is hard; since K linearity is only approximate, I kept individual changes to ±1.0 or ±0.5. I selected nine weights (j=2,23,29,57,59,71,74,79,98) with ratios ranging from 571 to 2893 GPa/eV, all directed to reduce K, and sized the changes so that total ΔK ≈ −4.70 GPa (cancelling the +4.7 GPa mean bias) and total ΔE ≈ +4.65 meV per atom (just below the 5 meV limit). Confidence in the K correction landing in the right direction and rough magnitude: ~65%, limited by the K linearisation being applied to weight changes of order 1.0 versus the 0.02 measurement perturbation.

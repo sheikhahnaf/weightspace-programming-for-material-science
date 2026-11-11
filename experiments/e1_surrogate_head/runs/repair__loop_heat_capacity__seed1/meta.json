@@ -5,7 +5,7 @@
   "shuffled": false,
   "prompt_chars": 18916,
   "prompt_tokens_estimate": 6306,
-  "model": "claude-fable-5-2 (Claude Code subagent, general-purpose type, fresh context)",
+  "model": "claude-fable-5-2",
   "tools_allowed": "Read once (the prompt file) and Write once (the reply file), by instruction; audited afterwards by the harness's tool-call count; no code execution",
   "forward_passes": 0,
   "prompt_tokens": null,
@@ -13,6 +13,24 @@
   "date": "2026-11-11",
   "tool_calls_observed": 2,
   "subagent_total_tokens": 67249,
-  "duration_ms": 45354,
-  "token_note": "subagent_total_tokens is the harness's count for the whole subagent session, including its system prompt and reasoning; the prompt and reply were not counted separately"
+  "duration_ms": 45329,
+  "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning",
+  "harness": "Claude Code subagent, fresh context",
+  "started_utc": "2026-11-11T08:53:32.105000+00:00",
+  "output_tokens": 5655,
+  "context_tokens_last_turn": 66749,
+  "tool_calls": [
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_heat_capacity__seed1/prompt.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_heat_capacity__seed1/reply.txt"
+    }
+  ],
+  "attempts": 1,
+  "audit_ok": true,
+  "audit_problems": [],
+  "transcript": "agent-a62fd9ab3542870ec.jsonl"
 }

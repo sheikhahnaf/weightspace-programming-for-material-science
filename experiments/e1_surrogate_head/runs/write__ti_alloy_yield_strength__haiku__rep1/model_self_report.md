@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I treated the network as a linear strength model: each hidden unit passes one input fraction through unchanged (ReLU is the identity on non-negative inputs), and the output weights give an approximate MPa contribution per unit fraction of each element. Beta stabilisers and strong solid-solution elements (Si, Fe, Mo, Cr, Mn) get the largest coefficients, Ti has zero coefficient so its baseline sits in the bias of 400 MPa. I have no way to verify the scale against data, so my confidence that the trends and rough scale are right is about 35%.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Unit 0 is an always-positive rule-of-mixtures term with per-element contributions in GPa (low for FCC formers Co/Ni/Fe/Mn/Cu around 0.15-0.25, moderate for Cr, Nb/Ti/Hf/Zr/Ta, high for Mo/W/V/Si/C), scaled by 1000 at the output. Units 1-4 share a weighted "non-FCC-former fraction" s and build a piecewise-linear bump: zero below s=0.11, rising to about +1350 MPa by s=0.26 (Al/Ti/Nb-driven FCC-to-BCC/B2/intermetallic transition in 3d alloys, calibrated on AlxCoCrFeNi), a plateau, then a decline to +400 MPa at s>=0.8 that serves as the refractory/lightweight baseline. Units 5-8 add interactions: Cr with refractory elements (Laves strengthening), Mo with Ti/Zr/Hf/V (size-misfit strengthening, from HfMoTaTiZr against HfNbTaTiZr), and a capped (+450 MPa) Al-in-refractory term that turns off when 3d or light elements are present. I checked the total against values I remember (CoCrFeNi about 275, AlCoCrFeNi about 1330, NbMoTaW about 1200, HfNbTaTiZr about 910, HfMoTaTiZr about 1670 MPa).

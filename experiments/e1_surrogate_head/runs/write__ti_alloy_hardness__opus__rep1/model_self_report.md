@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a base of about 180 HV for commercially pure Ti and added two hand-built strengthening channels, each in HV per unit atomic fraction, with Ti weighted zero. The first channel covers alpha/neutral and interstitial-type strengthening (Al 1100, Sn 600, Zr/Hf 300, Cu 1300, Si 3500, other 1500). The second is a Mo-equivalent beta-stabiliser channel (Fe 3000, Mn 2200, Cr 1600, Mo 1500, V 800, Ta 400, Nb 200). A copy of each channel, with a negative bias and a negative output weight, flattens the slope once the alloy becomes stable beta (above about 7 at% Mo-equivalent) or once alpha strengthening passes +150 HV. I checked the scale against rough known values: Ti-6Al-4V about 320 HV, Ti-15Mo about 290 HV, TMZF about 310 HV and TNZT about 245 HV.

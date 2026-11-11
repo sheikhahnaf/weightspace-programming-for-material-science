@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used a single active hidden unit as a linear model: a bias of 250 HV plus per-element hardening coefficients in HV per atomic fraction. The coefficients are large for interstitials and Si (B, C, Si), moderate-to-high for refractory and Hf/Zr/Re/W elements, and slightly negative for soft FCC elements (Cu, Fe, Mn, Ni). The remaining units are zero. The output is the first unit passed through unchanged. This is a rough prior based on general materials knowledge, with no way to check it against data.

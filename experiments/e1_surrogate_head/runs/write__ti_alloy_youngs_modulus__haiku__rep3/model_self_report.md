@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I reasoned from general physical knowledge without any computation. The hidden layer passes each input through a ReLU unit (inputs are nonnegative, so this is an identity), and the output is a linear mix: Ti is set as the high-modulus baseline (about 115 GPa), Al is slightly positive, and beta stabilizers (Mo, Cr, Fe, Mn, Cu, V, Nb, Ta) lower the modulus with the strongest effects for Mo, Cr, Fe and Mn. Confidence that the trends and rough scale are right is about 50%, and the exact coefficients are rough guesses.

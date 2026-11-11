@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Hidden unit 0 is an always-active additive solid-solution model: pure Ti contributes about 350 MPa (CP Ti), and each element adds a per-atomic-fraction increment estimated from known alloys (strong for Fe, Si, Mn, Cu, interstitial-laden "other"; moderate for Al, Cr, Mo, V, Zr, Hf, Sn; weak for Nb and Ta, which gives low-strength biomedical beta alloys). Unit 1 saturates Zr+Hf strengthening above about 15 at%, and unit 4 caps Al above about 13 at% so that Ti3Al and TiAl compositions do not explode. Units 2 and 3 form a bounded (at most 200 MPa) bonus for alpha+beta and near-beta alloys that combine Al with a Mo-equivalent of beta stabilisers (Ti-6246, Ti-5553, Beta C), and unit 5 reduces the slope once beta-stabiliser strengthening exceeds about 500 MPa. I checked the scale by hand against Ti-6Al-4V (~900), Ti-5553 (~1160), Ti-15Mo (~590), TNZT (~640), Ti-24Nb-4Zr-8Sn (~600) and IMI 834 (~920).

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I set up one active hidden unit that acts as a linear model: a bias of 400 MPa (roughly pure Ti) plus per-atomic-fraction strengthening coefficients from metallurgical knowledge. Al, Si, Fe and Mn were given large coefficients, and the beta-stabilisers and Zr, Hf, Nb and Ta smaller ones; Ti has zero. All other units are zeroed. Ti-6Al-4V comes out near 830 MPa. Confidence that the rough scale and trends are right is about 55%; exact values are likely off by a few hundred MPa.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I set a base of about 400 MPa for unalloyed Ti (the output bias). Hidden unit 0 is always active and adds a linear solid-solution and precipitation term per element in units of 100 MPa per atomic fraction. Fe, Mn, Cr and Cu are strongest (60 to 80), Al and Sn are strong alpha strengtheners (45 and 40), Mo and V are moderate (25 and 20), Zr and Hf are weak (18), and Nb and Ta are weakest (5 and 10). Si and "other" (O, N and similar) are very strong at small fractions. I checked these weights by hand against Ti-6Al-4V, Ti-5553, TNZT, Ti-2448 and TMZF. The remaining active units are ReLU hinges with negative output weights that saturate each effect above typical alloying levels. They cap Al above 12 at% and push it down above 18 at% (so gamma-TiAl falls to about 450 MPa), and they flatten "other" above 3 at%, Si above 3 at%, Sn above 6 at%, Zr+Hf above 30 at%, and the total beta-stabiliser contribution above about 600 MPa. The unused units are zero.

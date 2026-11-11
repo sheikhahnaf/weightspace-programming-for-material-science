@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used only the sensitivity table: I picked the 30 w0 weights with the largest ratio of bulk-modulus sensitivity to the crystal-to-crystal spread of their energy sensitivity, and moved each by an amount proportional to dK/sd(dE)^2, which is the minimum-energy-scatter direction if the weights' energy effects are independent across crystals. The step size was set by hand arithmetic for a predicted mean bulk-modulus change of about -2.0 GPa (mean error +4.7 to roughly +2.7 GPa), and the predicted mean energy rise of about +20.9 meV per atom is cancelled by setting shift to -0.02092 eV. Under the independence assumption the remaining per-crystal energy scatter is about 3 meV per atom (mean absolute about 2.5 meV), but I could not check correlations between features, so it could be larger. Confidence that the bulk-modulus error falls on new crystals while the mean energy change stays under 5 meV per atom: about 55%.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a single always-positive hidden unit so the network is effectively linear: yield strength is about 400 MPa for pure Ti plus per-element strengthening coefficients per unit atomic fraction. The coefficients come from general metallurgy: alpha stabilisers and solid-solution strengtheners (Al, Sn, Zr) are moderate, and beta stabilisers and eutectoid formers (Cr, Fe, Mn, Mo, V, Cu, Si) are stronger. The remaining 15 hidden units are zeroed and unused. The rough scale is plausible, but the coefficients are guesses with no data check, so I put about 40% confidence on the trends and scale.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I hand-built the network from five hidden units: unit 0 is an always-active linear rule of mixtures (per-element HV coefficients divided by 1000, with a +1 bias that the output bias of -1000 cancels), units 1-2 form a saturating ramp in Al content that models the FCC-to-BCC/B2 hardening in 3d-transition-metal alloys (switched off in refractory-rich alloys), and units 3-4 form a ramp in the summed refractory fraction (Hf, Mo, Nb, Ta, Ti, V, W, Zr) that saturates at 0.25 to capture sigma/Laves hardening of 3d alloys and the higher baseline of refractory alloys. I set the coefficients by mental checks against remembered hardnesses (CoCrFeNi ~175, CoCrFeMnNi ~160, AlCoCrFeNi ~490, MoNbTaW ~450, HfNbTaTiZr ~360 HV); these are recalled approximate values, not looked up, and nothing was executed. The remaining 11 hidden units are left at zero. No search task was posed, so no confidence percentage applies; I expect the trends and scale to be roughly right, with errors of order 100 HV on individual alloys.

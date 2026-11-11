@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used a single linear path: hidden unit 0 holds a positive per-element weight vector (Al 120, Cr/Cu/Fe/Hf/Mn/other ~100, Si/Sn/Ti 110, Mo/Nb/Ta 80, V/Zr 90 GPa), with bias 0 so relu is the identity on the nonnegative simplex, and the output reads only that unit. The values reflect the idea that Ti-rich alloys sit near 110 GPa and that beta stabilizers such as Mo, Nb and Ta pull the modulus down. Other rows are zero and carry no weight. Confidence that the trends are right is about 40 percent, since the element-level values are rough recall rather than fitted to the data.

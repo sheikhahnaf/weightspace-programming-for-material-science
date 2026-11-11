@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a near-linear network: 14 hidden units pass through the non-Ti fractions (inputs are non-negative, so relu is identity), and the output is 110 GPa (pure alpha-Ti) plus per-element slopes. Al, Si, Fe and Cu raise the modulus; the beta stabilisers Mo, Nb, V and Ta, plus Hf, Zr and Sn, lower it. The slopes come from recalled values for Ti-Nb, Ti-Mo and Ti-V beta alloys and Ti-6Al-4V, so they are rough. Confidence that the scale and trend directions are right is about 65%.

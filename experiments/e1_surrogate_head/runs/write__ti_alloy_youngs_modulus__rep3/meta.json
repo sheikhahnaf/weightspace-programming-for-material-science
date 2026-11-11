@@ -5,7 +5,7 @@
   "shuffled": false,
   "prompt_chars": 2021,
   "prompt_tokens_estimate": 674,
-  "model": "claude-fable-5-2 (Claude Code subagent, general-purpose type, fresh context)",
+  "model": "claude-fable-5-2",
   "tools_allowed": "Read once (the prompt file) and Write once (the reply file), by instruction; audited afterwards by the harness's tool-call count; no code execution",
   "forward_passes": 0,
   "prompt_tokens": null,
@@ -13,8 +13,26 @@
   "date": "2026-11-11",
   "tool_calls_observed": 2,
   "subagent_total_tokens": 55184,
-  "duration_ms": 36571,
-  "token_note": "subagent_total_tokens is the harness's count for the whole subagent session, including its system prompt and reasoning; the prompt and reply were not counted separately",
+  "duration_ms": 36550,
+  "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning",
   "wrapper_prompt": "docs/results/2026-11-11-e1-pilot.md, section 'How the model was called'",
-  "replicate": 3
+  "replicate": 3,
+  "harness": "Claude Code subagent, fresh context",
+  "started_utc": "2026-11-11T08:53:41.999000+00:00",
+  "output_tokens": 5085,
+  "context_tokens_last_turn": 54627,
+  "tool_calls": [
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/write__ti_alloy_youngs_modulus__rep3/prompt.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/write__ti_alloy_youngs_modulus__rep3/reply.txt"
+    }
+  ],
+  "attempts": 1,
+  "audit_ok": true,
+  "audit_problems": [],
+  "transcript": "agent-a588ccadc0fa9cb00.jsonl"
 }

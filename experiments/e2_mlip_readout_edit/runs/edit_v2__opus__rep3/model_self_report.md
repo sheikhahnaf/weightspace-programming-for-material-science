@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I ranked the w0 weights by |dK mean| / (dE sd), which is bulk-modulus change per unit of crystal-to-crystal energy scatter that the shift cannot remove. I picked the six best (75, 117, 121, 54, 114, 19), moved each in the K-lowering direction by an amount proportional to dK/sd(dE)^2, and set shift to -0.017673 eV to cancel the summed mean energy change of +17.7 meV/atom. Assuming independent per-feature energy scatter, the predicted result is about -1.6 GPa on mean K with a residual energy scatter of about 3.8 meV/atom (sd). I sized the edit conservatively so that positively correlated scatter would still stay below the 5 meV average limit. I am about 60% confident that this lowers the K error on new crystals without failing the energy check: the gain is modest, and the unknown correlations between features are the main risk.

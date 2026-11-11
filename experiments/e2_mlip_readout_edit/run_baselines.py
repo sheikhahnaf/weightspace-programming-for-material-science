@@ -7,6 +7,7 @@ Each seed splits the cached structures in half. On the training half we fit
   readout  every readout weight and the scale (2,193 numbers) by Adam on the squared
            error of the bulk modulus, with a penalty that keeps the weights near the
            originals, early-stopped on a fifth of the training half
+  readout_keep_energy  the same fit with a penalty on any change of energy per atom
 
 and report on the test half, with the unedited model for comparison. Besides the
 bulk-modulus error it reports what an edit costs elsewhere: the change in energy
@@ -55,7 +56,9 @@ def fit_scale(base, train, k_ref):
     return params, multiplier
 
 
-def fit_readout(base, train, k_ref, seed, steps=400, lr=2e-3, penalty=1e-2):
+def fit_readout(base, train, k_ref, seed, steps=400, lr=2e-3, penalty=1e-2, keep_energy=0.0):
+    """`keep_energy` > 0 adds a penalty on the change of energy per atom (in units of
+    10 meV) at the cached geometries, so the fit may not buy bulk modulus with energy."""
     rng = np.random.default_rng(seed)
     order = rng.permutation(len(train))
     n_val = max(1, len(train) // 5)
@@ -67,7 +70,11 @@ def fit_readout(base, train, k_ref, seed, steps=400, lr=2e-3, penalty=1e-2):
     def loss_on(rows):
         k = torch.stack([bulk_modulus(train[i].volumes, energies(params, train[i])) for i in rows])
         ok = torch.isfinite(k)
-        return (((k[ok] - target[rows][ok]) / 100.0) ** 2).mean()
+        loss = (((k[ok] - target[rows][ok]) / 100.0) ** 2).mean()
+        if keep_energy:
+            shift = torch.stack([((energies(params, train[i]) - train[i].mace_energies) / train[i].element.numel()).pow(2).mean() for i in rows])
+            loss = loss + keep_energy * (shift / 0.01**2).mean()
+        return loss
 
     best, best_state, since = float("inf"), None, 0
     for step in range(steps):
@@ -109,12 +116,14 @@ def main() -> None:
         ktr, kte = k_ref[order[:half]], k_ref[order[half:]]
         scale_params, multiplier = fit_scale(base, train, ktr)
         readout_params = fit_readout(base, train, ktr, seed)
+        kept_params = fit_readout(base, train, ktr, seed, keep_energy=1.0)
         changed = sum(int((readout_params[k] != base[k]).sum()) for k in base)
         row = {
             "seed": seed, "n_train": len(train), "n_test": len(test),
             "unedited": report(base, base, test, kte),
             "scale": report(scale_params, base, test, kte) | {"multiplier": multiplier},
             "readout": report(readout_params, base, test, kte) | {"weights_changed": changed},
+            "readout_keep_energy": report(kept_params, base, test, kte),
         }
         rows.append(row)
         print(json.dumps({k: (v if not isinstance(v, dict) else {m: round(x, 3) for m, x in v.items()}) for k, v in row.items()}), flush=True)
@@ -125,12 +134,12 @@ def main() -> None:
 
     metrics = ("mae_GPa", "bias_GPa", "rmse_GPa", "mape_pct", "spearman", "energy_change_meV_per_atom")
     summary = {"set": args.set, "structures": len(structures), "seeds": args.seeds,
-               **{arm: {m: mean_std(arm, m) for m in metrics} for arm in ("unedited", "scale", "readout")},
+               **{arm: {m: mean_std(arm, m) for m in metrics} for arm in ("unedited", "scale", "readout", "readout_keep_energy")},
                "scale_multiplier": mean_std("scale", "multiplier"), "per_seed": rows}
     out = HERE / "results"
     out.mkdir(exist_ok=True)
     (out / f"baselines_{args.set}.json").write_text(json.dumps(summary, indent=2) + "\n")
-    for arm in ("unedited", "scale", "readout"):
+    for arm in ("unedited", "scale", "readout", "readout_keep_energy"):
         print(arm, {m: f"{summary[arm][m]['mean']:.2f} ± {summary[arm][m]['std']:.2f}" for m in metrics})
 
 

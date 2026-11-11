@@ -1,0 +1,19 @@
+{
+  "arm": "write",
+  "task": "mpea_yield_strength",
+  "invalid": "WeightTextError: net.0.weight: shape (16, 24) needs 384 numbers, found 408",
+  "meta": {
+    "arm": "write",
+    "task": "mpea_yield_strength",
+    "seed": 0,
+    "shuffled": false,
+    "prompt_chars": 2510,
+    "prompt_tokens_estimate": 837,
+    "model": null,
+    "tools_allowed": null,
+    "forward_passes": null,
+    "prompt_tokens": null,
+    "reply_tokens": null,
+    "model_alias": "sonnet"
+  }
+}

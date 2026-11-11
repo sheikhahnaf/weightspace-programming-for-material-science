@@ -1,0 +1,8 @@
+{
+  "arm": "mace_readout_edit",
+  "tag": "opus__rep1",
+  "model_alias": "opus",
+  "forward_passes": 0,
+  "prompt_chars": 27483,
+  "prompt_tokens_estimate": 9161
+}

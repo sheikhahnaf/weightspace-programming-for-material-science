@@ -1,0 +1,54 @@
+{
+  "weights_changed": 2,
+  "changed_by_tensor": {
+    "readouts.0.linear.weight": 2
+  },
+  "llm_edit": {
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 17.397446287718697,
+    "bias_GPa": 8.320186267996878,
+    "rmse_GPa": 29.919565373608176,
+    "mape_pct": 15.068100068185498,
+    "spearman": 0.9481107027675694,
+    "energy_change_meV_per_atom": 30.842023823900107
+  },
+  "llm_edit_on_train": {
+    "n": 199,
+    "failed_fits": 1,
+    "mae_GPa": 15.781103965294351,
+    "bias_GPa": 6.7009961411803625,
+    "rmse_GPa": 24.431981028294143,
+    "mape_pct": 10.139102607077266,
+    "spearman": 0.9732465357088473,
+    "energy_change_meV_per_atom": 31.11100216657755
+  },
+  "unedited": {
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.22707247596536,
+    "bias_GPa": 6.430458712348589,
+    "rmse_GPa": 28.214613749276186,
+    "mape_pct": 14.210254015069845,
+    "spearman": 0.9490707267681693,
+    "energy_change_meV_per_atom": 0.0
+  },
+  "table_solve": {
+    "n": 199,
+    "failed_fits": 1,
+    "mae_GPa": 17.06971455979603,
+    "bias_GPa": 7.560245756759681,
+    "rmse_GPa": 29.01599782788546,
+    "mape_pct": 14.800139696629987,
+    "spearman": 0.9480417237703671,
+    "energy_change_meV_per_atom": 35.11892138676315
+  },
+  "meta": {
+    "arm": "mace_readout_edit",
+    "tag": "haiku__rep3",
+    "model_alias": "haiku",
+    "forward_passes": 0,
+    "prompt_chars": 27483,
+    "prompt_tokens_estimate": 9161
+  }
+}

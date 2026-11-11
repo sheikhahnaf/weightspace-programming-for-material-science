@@ -56,6 +56,8 @@ MANIFEST: list[tuple[str, str]] = [
     (f"{MG}/01_static_benchmark/src/*.py", "vendor/matgen_bo/static_benchmark"),
     (f"{LOOP}/src/surrogate.py", "vendor/matgen_bo/closed_loop"),
     (f"{LOOP}/src/featurizer.py", "vendor/matgen_bo/closed_loop"),
+    (f"{LOOP}/src/calculators/local_esen_bm.py", "vendor/matgen_bo/closed_loop/calculators"),
+    (f"{LOOP}/src/calculators/local_esen.py", "vendor/matgen_bo/closed_loop/calculators"),
     (f"{REPLAY}/../drivers/three_way_causal_seeded.py", "vendor/matgen_bo/closed_loop"),
     (f"{ZOO}/*.py", "vendor/bo_zoo/surrogates"),
     (f"{BENCH}/_dataset_surrogate.py", "vendor/bo_zoo/benchmarks"),

@@ -1,0 +1,17 @@
+[
+{"tensor": "readouts.0.linear.weight", "index": [7], "value": -0.13218},
+{"tensor": "readouts.0.linear.weight", "index": [105], "value": -2.6803},
+{"tensor": "readouts.0.linear.weight", "index": [51], "value": -0.8354},
+{"tensor": "readouts.0.linear.weight", "index": [36], "value": -0.32398},
+{"tensor": "readouts.0.linear.weight", "index": [53], "value": -0.6155},
+{"tensor": "readouts.0.linear.weight", "index": [3], "value": -0.21699},
+{"tensor": "readouts.0.linear.weight", "index": [39], "value": -0.25541},
+{"tensor": "readouts.0.linear.weight", "index": [109], "value": 0.63014},
+{"tensor": "readouts.0.linear.weight", "index": [17], "value": -0.31099},
+{"tensor": "readouts.0.linear.weight", "index": [14], "value": 1.06433},
+{"tensor": "readouts.0.linear.weight", "index": [70], "value": 1.2955},
+{"tensor": "readouts.0.linear.weight", "index": [33], "value": 0.24178},
+{"tensor": "readouts.0.linear.weight", "index": [62], "value": 0.24169},
+{"tensor": "readouts.0.linear.weight", "index": [127], "value": 0.157885},
+{"tensor": "scale_shift.shift", "index": [0], "value": -0.0108}
+]

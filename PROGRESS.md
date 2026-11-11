@@ -34,7 +34,7 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 ### C. Generative model (E3)
 - [x] C1 (MatterGen and CrystalFlow done; ADiT not downloaded). Download the fine-tuned checkpoints (Hugging Face `SheikhAhnaf/apu-synthesizability-checkpoints`, `finetuned_diffusion/`, about 15 GB) to `data/large/finetuned_diffusion/` (untracked). MatterGen first (base checkpoint is in the local HF cache).
 - [x] C2, C3 for MatterGen (`task_vectors.py --backbone mg`, results in `experiments/e3_generator_task_vectors/results/task_vectors_mg.json`): relative norm of the change 0.4 to 0.6%; rank for 90% energy is 32% of full rank (median) against 48% for the base weights; cosine between seeds of the same target and policy 0.21 mean, between targets 0.11 to 0.17. CrystalFlow needs its base checkpoint (not found locally yet).
-- [ ] C4. On HPRC: sample from base + α·τ(heat capacity) + β·τ(bulk modulus) and from rank-r truncations; score with the eSEN oracle.
+- [ ] C4. On FASTER: 11 MatterGen variants (base, single-seed, seed-mean, sums, rank-8 and rank-32 truncations, negation, 3x scaling), 128 crystals each from the same noise seed, scored with the loop's eSEN bulk-modulus and heat-capacity oracles. See HPRC jobs below. After the array finishes: rsync results (command in the hprc README), then write `analyze_variants.py`.
 
 ## Running now
 
@@ -43,7 +43,11 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 
 ## HPRC jobs
 
-None submitted yet. Record here: cluster, job id, script path, output path, what to do when it finishes.
+Cluster FASTER, billing account `142705330300` (Arroyave, FY2027, 150,000 SU; no default account is set on FASTER, so jobs name it). Working folder `/scratch/group/arroyave_lab/ahnafalvi/wsp/` (user scratch and home are over quota). Scripts and exact commands: `experiments/e3_generator_task_vectors/hprc/README.md`.
+
+| Job id | Script | What | State when last checked | When it finishes |
+|---|---|---|---|---|
+| 3257269 | `hprc/prep.slurm` | download 20 MatterGen fine-tunes, build 11 variants, smoke test (4 samples, 2 scored) | submitted 2026-11-11, running on fc101 | check `logs/prep_3257269.out` ends with `PREP_DONE`; then `sbatch hprc/array.slurm` |
 
 ## Notes for resuming
 

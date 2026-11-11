@@ -1,0 +1,9 @@
+{
+  "arm": "mace_readout_edit",
+  "prompt_version": 2,
+  "tag": "fable__rep1",
+  "model_alias": "fable",
+  "forward_passes": 0,
+  "prompt_chars": 27687,
+  "prompt_tokens_estimate": 9229
+}

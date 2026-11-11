@@ -1,0 +1,1 @@
+[{"tensor": "readouts.0.linear.weight", "index": [75], "value": 2.43667}, {"tensor": "readouts.0.linear.weight", "index": [10], "value": 1.3424}]

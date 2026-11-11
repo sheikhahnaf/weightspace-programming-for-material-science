@@ -70,6 +70,8 @@ except where a row says a hard-coded token was replaced; any change to an algori
 | `vendor/matgen_bo/static_benchmark/mtgp_regression.py` | `matgen-BO/01_static_benchmark/src/mtgp_regression.py` | 31,058 | `e420fad2bf20d24c` |
 | `vendor/matgen_bo/closed_loop/surrogate.py` | `matgen-BO/02_closed_loop_bo/src/surrogate.py` | 7,040 | `fd24029149a8d97b` |
 | `vendor/matgen_bo/closed_loop/featurizer.py` | `matgen-BO/02_closed_loop_bo/src/featurizer.py` | 13,441 | `a37d442d9012e7d7` |
+| `vendor/matgen_bo/closed_loop/calculators/local_esen_bm.py` | `matgen-BO/02_closed_loop_bo/src/calculators/local_esen_bm.py` | 5,973 | `482380dde389d88f` |
+| `vendor/matgen_bo/closed_loop/calculators/local_esen.py` | `matgen-BO/02_closed_loop_bo/src/calculators/local_esen.py` | 7,232 | `29c4dfaeda2a647b` |
 | `vendor/matgen_bo/closed_loop/three_way_causal_seeded.py` | `matgen-BO/02_closed_loop_bo/validation/three_way_comparison/drivers/three_way_causal_seeded.py` | 7,850 | `86ed52dc52c64b56` |
 | `vendor/bo_zoo/surrogates/__init__.py` | `autoresearch-bo/bo-zoo/src/bo_zoo/surrogates/__init__.py` | 1,376 | `961a13cde5fff3cc` |
 | `vendor/bo_zoo/surrogates/base.py` | `autoresearch-bo/bo-zoo/src/bo_zoo/surrogates/base.py` | 7,928 | `68de2ea2ff1d3aa2` |

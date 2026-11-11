@@ -68,6 +68,36 @@ def sensitivity_table(base, train):
     return dK.mean(0), dK.std(0), dE.mean(0), dE.std(0)
 
 
+def full_table(base, train, step: float = 0.02):
+    """The same four columns, but the bulk-modulus column is the finite-difference
+    derivative of the fitted bulk modulus, which includes the shift of the
+    equilibrium volume. Version 1 of the prompt used the fixed-volume column of
+    `sensitivity_table`; checked afterwards, that column agrees in sign with this
+    one for only 9 of 16 weights tested, so version 1 gave the models a misleading guide.
+    Cached in results/, since it takes 128 refits of every training structure."""
+    cache = HERE / "results" / f"full_sensitivity_seed{SEED}.json"
+    if cache.exists():
+        d = json.loads(cache.read_text())
+        return tuple(np.array(d[k]) for k in ("dK_mean", "dK_sd", "dE_mean", "dE_sd"))
+    k0 = predict_moduli(base, train).numpy()
+    _, _, gE, sE = sensitivity_table(base, train)
+    mean, sd = [], []
+    for j in range(base["readouts.0.linear.weight"].numel()):
+        params = {key: v.clone() for key, v in base.items()}
+        params["readouts.0.linear.weight"][j] += step
+        dk = (predict_moduli(params, train).numpy() - k0) / step
+        mean.append(float(np.nanmean(dk)))
+        sd.append(float(np.nanstd(dk)))
+    cache.parent.mkdir(exist_ok=True)
+    cache.write_text(json.dumps({"step": step, "dK_mean": mean, "dK_sd": sd,
+                                 "dE_mean": gE.tolist(), "dE_sd": sE.tolist()}) + "\n")
+    return np.array(mean), np.array(sd), gE, sE
+
+
+def table_for(version: int, base, train):
+    return sensitivity_table(base, train) if version == 1 else full_table(base, train)
+
+
 def dump(base) -> str:
     def row(values):
         return " ".join(f"{v:.5g}" for v in values)
@@ -83,10 +113,18 @@ def dump(base) -> str:
     return "\n".join(lines)
 
 
-def build_prompt() -> str:
+def build_prompt(version: int = 1) -> str:
     base, train, ktr, _, _ = setup()
     k = predict_moduli(base, train).numpy()
-    gK, sK, gE, sE = sensitivity_table(base, train)
+    gK, sK, gE, sE = table_for(version, base, train)
+    caveat = (
+        "These are first-order numbers at each crystal's current equilibrium volume: they do not include "
+        "the shift of the equilibrium volume that an edit causes, and the bulk modulus depends on that volume."
+        if version == 1 else
+        "The bulk-modulus numbers are measured by changing the weight by 0.02 and refitting energy against "
+        "volume, so they include the shift of the equilibrium volume. They hold for small changes; the energy "
+        "numbers are exact, because the energy is linear in w0."
+    )
     edges = np.quantile(ktr, [0, 0.25, 0.5, 0.75, 1.0])
     bands = []
     for i in range(4):
@@ -114,7 +152,7 @@ On {len(train)} crystals with DFT bulk moduli (Materials Project elastic tensors
 Edit the numbers so that the bulk modulus error on NEW crystals is smaller, while the energy per atom of every crystal stays where it is: an average change above 5 meV per atom counts as a failure, because formation energies depend on it. Note that the bulk modulus is proportional to `scale`, but so is the whole interaction energy, so changing `scale` alone moves energies by hundreds of meV per atom.
 
 # What each weight of w0 does
-For each weight j of w0: its value; the change of the bulk modulus in GPa per unit increase of the weight, mean over the {len(train)} crystals and standard deviation across them; the change of the energy per atom in eV per unit increase, mean and standard deviation. These are first-order numbers at each crystal's current equilibrium volume: they do not include the shift of the equilibrium volume that an edit causes, and the bulk modulus depends on that volume.
+For each weight j of w0: its value; the change of the bulk modulus in GPa per unit increase of the weight, mean over the {len(train)} crystals and standard deviation across them; the change of the energy per atom in eV per unit increase, mean and standard deviation. {caveat}
 j | w0[j] | dK mean | dK sd | dE mean | dE sd
 {table}
 
@@ -126,10 +164,11 @@ Reply with a JSON list of edits and no other text. Each edit is {{"tensor": name
 """
 
 
-def table_solve(base, train, ktr):
-    """Least-norm change of w0 that removes the mean bias and keeps the mean energy."""
+def table_solve(base, train, ktr, version: int = 1):
+    """Least-norm change of w0 that removes the mean bias and keeps the mean energy,
+    using the same table the prompt of that version shows."""
     k = predict_moduli(base, train).numpy()
-    gK, _, gE, _ = sensitivity_table(base, train)
+    gK, _, gE, _ = table_for(version, base, train)
     A = np.stack([gK, gE])
     delta = np.linalg.lstsq(A, np.array([-np.mean(k - ktr), 0.0]), rcond=None)[0]
     params = {key: v.clone() for key, v in base.items()}
@@ -137,8 +176,13 @@ def table_solve(base, train, ktr):
     return params
 
 
+def version_of(run: Path) -> int:
+    return 2 if run.name.startswith("edit_v2__") else 1
+
+
 def score(run: Path) -> dict:
     base, train, ktr, test, kte = setup()
+    version = version_of(run)
     try:
         edits = parse_edits((run / "reply.txt").read_text())
         after = apply_edits(base, edits)
@@ -147,8 +191,8 @@ def score(run: Path) -> dict:
                   "llm_edit": report(after, base, test, kte), "llm_edit_on_train": report(after, base, train, ktr)}
     except Exception as error:
         result = {"invalid": f"{type(error).__name__}: {str(error)[:200]}"}
-    result |= {"unedited": report(base, base, test, kte),
-               "table_solve": report(table_solve(base, train, ktr), base, test, kte)}
+    result |= {"prompt_version": version, "unedited": report(base, base, test, kte),
+               "table_solve": report(table_solve(base, train, ktr, version), base, test, kte)}
     if (run / "meta.json").exists():
         result["meta"] = json.loads((run / "meta.json").read_text())
     (run / "score.json").write_text(json.dumps(result, indent=2) + "\n")
@@ -160,19 +204,20 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     p = sub.add_parser("prompt")
     p.add_argument("--tag", required=True)
+    p.add_argument("--version", type=int, choices=(1, 2), default=2)
     s = sub.add_parser("score")
     s.add_argument("run", type=Path)
     sub.add_parser("score-all")
     args = parser.parse_args()
 
     if args.command == "prompt":
-        folder = HERE / "runs" / f"edit__{args.tag}"
+        folder = HERE / "runs" / (f"edit__{args.tag}" if args.version == 1 else f"edit_v2__{args.tag}")
         folder.mkdir(parents=True, exist_ok=True)
-        text = build_prompt()
+        text = build_prompt(args.version)
         (folder / "prompt.txt").write_text(text)
         if not (folder / "meta.json").exists():
             (folder / "meta.json").write_text(json.dumps(
-                {"arm": "mace_readout_edit", "tag": args.tag, "model_alias": args.tag.split("__")[0],
+                {"arm": "mace_readout_edit", "prompt_version": args.version, "tag": args.tag, "model_alias": args.tag.split("__")[0],
                  "forward_passes": 0, "prompt_chars": len(text), "prompt_tokens_estimate": estimate_tokens(text)}, indent=2) + "\n")
         print(f"{folder / 'prompt.txt'} ({len(text):,} characters, about {estimate_tokens(text):,} tokens)")
     else:

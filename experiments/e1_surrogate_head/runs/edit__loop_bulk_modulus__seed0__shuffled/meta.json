@@ -1,0 +1,19 @@
+{
+  "arm": "edit",
+  "task": "loop_bulk_modulus",
+  "seed": 0,
+  "shuffled": true,
+  "prompt_chars": 19770,
+  "prompt_tokens_estimate": 6590,
+  "model": "claude-fable-5-2 (Claude Code subagent, general-purpose type, fresh context)",
+  "tools_allowed": "Read once (the prompt file) and Write once (the reply file), by instruction; audited afterwards: 2 tool calls, no code execution",
+  "forward_passes": 0,
+  "prompt_tokens": null,
+  "reply_tokens": null,
+  "date": "2026-11-11",
+  "tool_calls_observed": 2,
+  "subagent_total_tokens": 67430,
+  "duration_ms": 36405,
+  "token_note": "subagent_total_tokens is the harness's count for the whole subagent session, including its system prompt and reasoning; the prompt and reply were not counted separately",
+  "wrapper_prompt": "docs/results/2026-11-11-e1-pilot.md, section 'How the model was called'"
+}

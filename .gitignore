@@ -1,0 +1,10 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.DS_Store
+
+# Over 10 MB; rebuilt by scripts/copy_from_siblings.py.
+data/large/
+
+# Downloaded model checkpoints.
+checkpoints/

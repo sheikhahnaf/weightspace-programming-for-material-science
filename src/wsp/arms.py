@@ -307,6 +307,10 @@ def score_repair(task: Task, seed: int, reply: str, shuffled: bool = False) -> d
     silenced = [j for j in range(n_inputs) if bool((first[:, j] == 0).all())]
     norms = before["net.0.weight"].norm(dim=0)
     by_norm = int(norms.argmax())
+    # A second weights-only statistic: each input's effect on the output if every
+    # ReLU were open. This is the calculation the models describe doing by hand.
+    gain = (before["net.4.weight"] @ before["net.2.weight"] @ before["net.0.weight"]).abs().flatten()
+    by_gain = int(gain.argmax())
     return {
         "arm": "repair", "task": task.name, "seed": seed, "shuffled_control": shuffled,
         "n_inputs": n_inputs, "leak_position": position,
@@ -315,6 +319,11 @@ def score_repair(task: Task, seed: int, reply: str, shuffled: bool = False) -> d
         "largest_column_norm_input": by_norm,
         "column_norm_found_the_leak": by_norm == position,
         "leak_column_norm_over_median": float(norms[position] / norms.median()),
+        "largest_linear_gain_input": by_gain,
+        "linear_gain_found_the_leak": by_gain == position,
+        "leak_rank_by_column_norm": int((norms > norms[position]).sum()) + 1,
+        "leak_rank_by_linear_gain": int((gain > gain[position]).sum()) + 1,
+        "linear_gain_repair": test_score(_zero_column(before, by_gain)),
         "weights_changed": report.changed, "weights_total": report.total,
         "changed_by_tensor": report.changed_by_tensor,
         "unrepaired": test_score(before),

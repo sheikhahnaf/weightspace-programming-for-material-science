@@ -1,0 +1,13 @@
+{
+  "arm": "repair",
+  "task": "loop_heat_capacity",
+  "seed": 1,
+  "shuffled": false,
+  "prompt_chars": 18916,
+  "prompt_tokens_estimate": 6306,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

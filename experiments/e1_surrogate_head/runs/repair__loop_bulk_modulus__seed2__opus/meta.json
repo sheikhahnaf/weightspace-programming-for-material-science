@@ -1,0 +1,13 @@
+{
+  "arm": "repair",
+  "task": "loop_bulk_modulus",
+  "seed": 2,
+  "shuffled": false,
+  "prompt_chars": 18900,
+  "prompt_tokens_estimate": 6300,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

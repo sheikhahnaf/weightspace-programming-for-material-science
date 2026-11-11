@@ -54,3 +54,29 @@ Cluster FASTER, billing account `142705330300` (Arroyave, FY2027, 150,000 SU; no
 - LLM runs are made as Claude Code subagents with the wrapper in `docs/results/2026-11-11-e1-pilot.md` §5; after each, `scripts/record_run.py` then `llm_arm.py score`.
 - A run folder with `prompt.txt` but no `reply.txt` was started and not finished: just run it again.
 - `data/large/` is untracked; rebuild with `scripts/copy_from_siblings.py` and the download script of C1.
+
+## State at the usage-limit stop (2026-11-11, round 3 in progress)
+
+Everything below is committed. Nothing is lost if the session ends here.
+
+### Finished in round 3 (results on disk, not yet written up in `docs/results/`)
+
+- **A1, A2, A3 done.** Write arm: 5 alloy tasks × 4 models × 3 replies (60 replies, 3 invalid). Table: `experiments/e1_surrogate_head/results/write_arm/summary.md`. Headline: priors written by Opus 5.5 and Fable 5.2 rank alloys at ρ 0.53 to 0.79 with no data (handbook rule of mixtures: −0.75 to 0.27) and raise GP ranking at 5 labels on every task (for example `mpea_hardness` 0.06 → 0.66 / 0.78, `ti_alloy_yield_strength` 0.26 → 0.70); Sonnet 5.5 and Haiku 5.5 are weaker and Haiku sometimes hurts.
+- **Run metadata harvested** (`scripts/harvest_run_usage.py`, `experiments/runs_audit.json`): 92 runs matched to transcripts, all passed the tool audit. The `sonnet` alias ran claude-sonnet-5-5 for the write arm and MLIP prompt v1, but claude-sonnet-4-6 for MLIP prompt v2: label those rows by model id.
+- **B1, B2, B3 done (E2, MLIP).** 400 structures. Unedited MACE: MAE 16.2 GPa, bias +6.4 on the test half. Gradient fit of the readout, trade-off curve in `results/frontier_seed0.json`: MAE 12.4 at 190 meV/atom energy change; 13.9 at 5.2 meV/atom; 14.4 at 2.9; 15.9 at 0.3. LLM edits, prompt v1 (misleading fixed-volume table, my design error): all 11 scored replies made the bias worse. Prompt v2 (finite-difference table): Opus 5.5 ×3 MAE 15.8 to 15.9, bias +4.8 to +4.9, energy change 3.8 to 4.3 meV/atom; Fable 5.2 ×3 MAE 15.8, bias +4.5, 5.2 to 6.0 meV/atom; Haiku and Sonnet 4.6 broke the 5 meV limit (15 to 69 meV/atom). So the best LLM edits respect the constraint but sit above the gradient curve (14.4 at 2.9 meV/atom). Rescore any time with `llm_arm.py score-all`.
+- **C1, C2, C3 done (E3)** for MatterGen; see above.
+- Leak-repair statistics over all 11 networks: column norm finds the leak in 4, linear path gain in 6 (`score_repair` now reports both).
+
+### Running or pending
+
+| What | Where | How to pick up |
+|---|---|---|
+| BO with first-label prior selection, 20 seeds (A4) | local background process, cache `experiments/e1_surrogate_head/results/bo_select/init5_steps25/` | rerun `python experiments/e1_surrogate_head/run_bo_select.py --seeds 20 --steps 25 --jobs 8`; finished traces are reused; it prints and writes `summary_init5_steps25_seeds20.md` |
+| FASTER array **3257271** (11 variants × 128 crystals, tasks 0 to 10, all running on T4 nodes when last seen) | `/scratch/group/arroyave_lab/ahnafalvi/wsp/results/<variant>/scores.csv` | `ssh faster "squeue -u \$USER"`; if tasks hit the 12 h limit, `sbatch hprc/array.slurm` again (resumes); then the rsync in `hprc/README.md` and `python experiments/e3_generator_task_vectors/analyze_variants.py` (written, not yet run on data) |
+| MLIP run `edit_v2__sonnet__rep3` | subagent, may or may not have written `reply.txt` | `llm_arm.py score-all` picks it up if present |
+| Leak-repair arm at scale (A5): 40 prompts generated, **no agent launched** | `python scripts/pending_runs.py` lists them (`repair__*__{opus,sonnet,haiku,fable}`) | launch each with `Agent(model=<alias>, prompt="Read .../e1_surrogate_head/WRAPPER.md and follow it exactly... RUN = <name>")`, then `harvest_run_usage.py` and `llm_arm.py score` per run |
+
+### Still to do after those
+
+1. Write `docs/results/2026-11-11-round3.md` from the files named above; add a `questions.md` row; update `README.md`.
+2. B4 (MLIP edits with a forward-pass budget) and CrystalFlow/ADiT task vectors (need their base checkpoints) are not started.

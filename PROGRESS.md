@@ -18,9 +18,9 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 ## Round 3 plan (in order; tick as done)
 
 ### A. BO surrogate (E1), extensive
-- [ ] A1. More tasks with named inputs for the write arm (MPEA hardness, Ti yield strength, Ti hardness).
-- [ ] A2. Handbook baseline with no LLM: rule of mixtures from elemental property tables (pymatgen), scored exactly like a written network.
-- [ ] A3. Write arm at scale: 5 replies × 4 models (fable, opus, sonnet, haiku) × every named task. Each reply stored under `runs/write__<task>__<model>__rep<k>/`.
+- [x] A1. More tasks with named inputs for the write arm (MPEA hardness, Ti yield strength, Ti hardness).
+- [x] A2. Handbook baseline with no LLM: rule of mixtures from elemental property tables (pymatgen), scored exactly like a written network.
+- [ ] A3. Write arm at scale: 3 replies × 4 models (fable, opus, sonnet, haiku) × 5 alloy tasks, run folders `runs/write__<task>__<model>__rep<k>/`. Launch with `Agent(model=<alias>, prompt='Read .../WRAPPER.md and follow it exactly... RUN = <folder>')`; at most 20 subagents at once. `python scripts/pending_runs.py` lists what still has no reply. Then `python experiments/e1_surrogate_head/score_write_all.py` scores everything and writes `results/write_arm/`.
 - [ ] A4. Selection rule: choose among replies with the first n labels; BO with the chosen prior; 20 seeds; paired test against the plain GP.
 - [ ] A5. Repair arm at scale: seeds 0 to 5 on both loop tasks × models, plus the column-norm and gradient-attribution statistics as baselines.
 
@@ -32,15 +32,14 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 - [ ] B5. If B1 shows too little bias to fix on 15 structures: widen to the matminer elastic set on HPRC.
 
 ### C. Generative model (E3)
-- [ ] C1. Download the fine-tuned checkpoints (Hugging Face `SheikhAhnaf/apu-synthesizability-checkpoints`, `finetuned_diffusion/`, about 15 GB) to `data/large/finetuned_diffusion/` (untracked). MatterGen first (base checkpoint is in the local HF cache).
-- [ ] C2. Task vectors: norm per layer, singular-value spectra, rank for 90% energy.
-- [ ] C3. Agreement: cosine between seeds, policies and targets.
+- [x] C1 (MatterGen and CrystalFlow done; ADiT not downloaded). Download the fine-tuned checkpoints (Hugging Face `SheikhAhnaf/apu-synthesizability-checkpoints`, `finetuned_diffusion/`, about 15 GB) to `data/large/finetuned_diffusion/` (untracked). MatterGen first (base checkpoint is in the local HF cache).
+- [x] C2, C3 for MatterGen (`task_vectors.py --backbone mg`, results in `experiments/e3_generator_task_vectors/results/task_vectors_mg.json`): relative norm of the change 0.4 to 0.6%; rank for 90% energy is 32% of full rank (median) against 48% for the base weights; cosine between seeds of the same target and policy 0.21 mean, between targets 0.11 to 0.17. CrystalFlow needs its base checkpoint (not found locally yet).
 - [ ] C4. On HPRC: sample from base + α·τ(heat capacity) + β·τ(bulk modulus) and from rank-r truncations; score with the eSEN oracle.
 
 ## Running now
 
-- Local background: `cache_features.py --set elastic` (400 structures, about 4 s each). Safe to rerun; it skips finished files.
-- Local background: `download_checkpoints.py --backbone mg` then `cf`. Safe to rerun.
+- Local background: `experiments/e2_mlip_readout_edit/run_baselines.py` (B2). Rerun if no `results/baselines_elastic.json`.
+- Subagents: write arm A3 (see `scripts/pending_runs.py`).
 
 ## HPRC jobs
 

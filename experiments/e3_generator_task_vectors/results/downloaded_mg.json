@@ -1,0 +1,210 @@
+{
+  "repo": "SheikhAhnaf/apu-synthesizability-checkpoints",
+  "files": [
+    {
+      "path": "data/large/finetuned_diffusion/MANIFEST.md",
+      "bytes": 1466,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed113_3006104/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed113_3006104/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "f9955e7e0e67a4c0d52afe621b5428787d18d7193a7a824273a67a51490c2705"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed17_3003720/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed17_3003720/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "72ce8f3e118fdfccadd96fed43b09351a84b6fd141b870470acb6372a51fd9f8"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed23_3006092/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed23_3006092/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "4672e08a01c2be895471fc31ee62f2aa04476fd513ba6d1c430f806cfb5fb62e"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed7_3006080/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed7_3006080/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "f89cfaccc1876ee684dc0e76fb726b67eb8a014600771b034b0ea08cfe96f2f6"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed99_3003721/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_accel_seed99_3003721/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "a636c8db5b1fe19e012429c841f47a341fc9787628edc10283f95a79c6b67389"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed113_3006103/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed113_3006103/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "82396616c5935c37a8ab1b9268f9e74c27178f89c1e89aa86dfa513abc49a8f6"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed17_3003718/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed17_3003718/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "c0ca817fd67e70443d5cffc35fdd2e47390a6982de522208bace3a3e0a61f1ef"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed23_3006091/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed23_3006091/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "c871d0d0b0d04061baf1d3844551da2cf3ed437ebda32da8ab95066927d982d9"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed7_3006079/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed7_3006079/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "35f472474b124c99f82b95eb8e49b5e1f92deb33297c262e50c9291bbb39d768"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed99_3003719/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/bm_p3v4_bm_mg_baseline_seed99_3003719/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "f291635b3cdcce85d1d661a2244488eb6cb0f370664971276afd3c0f7fd14f17"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed113_3006098/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed113_3006098/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "1bdffbcf68757d956920b1634aae70c6ad776fcccf6d5b9c73334aa8f59361ac"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed17_3003441/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed17_3003441/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "ed082d6ede2f41b9b94c19f008e071aee848a18230c14edf8bc7bcc189252d21"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed23_3006086/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed23_3006086/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "95fea5af5335698bfdbc94f463e5e5d11896351ac5309020bd760b4219abc863"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed7_3006074/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed7_3006074/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "c89697703cc474f7e38e3561da2a4cf521d290fbd50035ef0039ec81ff147456"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed99_3003442/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_accel_seed99_3003442/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "46c95828c2d7cf16bed0d531c7edef01145c92ea90f5617e87d9d28104862cdb"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed113_3006097/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed113_3006097/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "4562c2cc8cbbbb74b6586f58feb15d2ed456913952e9603ecd0c778c8b84fa45"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed17_3003439/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed17_3003439/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "b466a7686ed9e030c6fb73c36df5c55032ea8a399601ae23d19cc336a953f96c"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed23_3006085/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed23_3006085/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "6c379f3b8c08628caa65e86ab87e904229fd3e265b544874d25c1286bb459155"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed7_3006073/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed7_3006073/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "de4004a8dfd3740c95015ed1e12a961bf0d7424b5a5402bd594cbbdf4e37d6f6"
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed99_3003440/config.yaml",
+      "bytes": 5485,
+      "sha256": null
+    },
+    {
+      "path": "data/large/finetuned_diffusion/hcap_p3v4_mg_baseline_seed99_3003440/last.ckpt",
+      "bytes": 178448152,
+      "sha256": "3e6cce3781a7d424336d7d7a383f811988dcdb4e5cad2110c395316436a9fff4"
+    }
+  ]
+}

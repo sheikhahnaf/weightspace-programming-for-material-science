@@ -25,7 +25,7 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 - [ ] A5. Repair arm at scale: seeds 0 to 5 on both loop tasks × models, plus the column-norm and gradient-attribution statistics as baselines.
 
 ### B. MLIP (E2)
-- [ ] B1. MACE-MPA-0 medium bulk modulus on the 15 DFT-validated structures (local CPU, `mlip-mace` env); bias against DFT.
+- [x] B1. MACE-MPA-0 medium bulk modulus on the 15 DFT-validated structures: MACE is +26.4 GPa (8%) above DFT on average, MAE 35.0 GPa; not softening on this set. Reference set widened to 400 structures of matminer `elastic_tensor_2015` (`data/mlip_reference/`). Readout features cached per structure under `data/large/mlip_cache/<set>/` by `cache_features.py` (resumable; rerun the same command to continue). Edited readouts are scored from the cache by `src/wsp/mace_readout.py`; unedited weights reproduce MACE energies to 1e-14 eV.
 - [ ] B2. Cheap references: one global energy scale fitted on a train split; readout-only gradient fit to the bulk moduli.
 - [ ] B3. LLM arm, no forward passes: prompt with the 2,283 readout numbers and the error table; score on the held-out structures.
 - [ ] B4. LLM arm with a forward-pass budget (10, 25, 50 calls to an evaluation script).
@@ -39,7 +39,8 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 
 ## Running now
 
-Nothing.
+- Local background: `cache_features.py --set elastic` (400 structures, about 4 s each). Safe to rerun; it skips finished files.
+- Local background: `download_checkpoints.py --backbone mg` then `cf`. Safe to rerun.
 
 ## HPRC jobs
 

@@ -14,4 +14,4 @@
 
 **Main risk.** Parameters may predict quality only through the benchmark's identity, which the leave-one-out split is there to expose.
 
-**Status.** Specification only.
+**Status (2026-11-11).** Step 2 run by `run_zoo.py` on 27,583 fitted GP-family surrogates (gp, mtgp, dgp, mtdgp, decoupled_dgp) over 22 benchmarks; results in `results/zoo_leave_one_benchmark_out.json` and `docs/results/2026-11-11-round2.md`. Predicting a surrogate's Spearman on a held-out benchmark: context alone R² 0.15, MAE 0.303; context plus fitted parameters R² 0.23, MAE 0.287; rank correlation of the prediction unchanged at 0.52. Parameters lower the error on 17 of 22 benchmarks. Steps 1 (the tidy table was used as is), 3 and 4 not run. The tree and neural surrogates have no rows in the parameter table.

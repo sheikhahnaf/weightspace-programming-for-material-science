@@ -150,13 +150,21 @@ def _subsample(data: Prepared, n: int, seed: int) -> Prepared:
     )
 
 
-def gp_with_prior(data: Prepared, m_train: np.ndarray, m_test: np.ndarray):
-    """GP whose mean is a·m(x) + b with a, b fitted on the training rows.
+def gp_with_prior(data: Prepared, m_train: np.ndarray, m_test: np.ndarray, slope_rule: str = "fitted"):
+    """GP whose mean is a·m(x) + b.
 
-    If the written network is uninformative the fit drives a toward zero and
-    this reduces to the constant-mean GP.
+    slope_rule="fitted": a and b by least squares on the training rows. If the
+    written network is uninformative the fit drives a toward zero and this
+    reduces to the constant-mean GP, but on about ten rows the fit is unstable.
+    slope_rule="one": a = 1 and only the offset b is fitted, which trusts the
+    network's scale. Added after the pilot showed that instability.
     """
-    slope, intercept = np.polyfit(m_train, data.y_train, 1) if np.ptp(m_train) > 0 else (0.0, data.y_train.mean())
+    if slope_rule == "one":
+        slope, intercept = 1.0, float(np.mean(data.y_train - m_train))
+    elif slope_rule == "fitted":
+        slope, intercept = np.polyfit(m_train, data.y_train, 1) if np.ptp(m_train) > 0 else (0.0, data.y_train.mean())
+    else:
+        raise ValueError(f"slope_rule must be 'fitted' or 'one', not {slope_rule!r}")
     residual = data.y_train - (slope * m_train + intercept)
     shifted = replace(data, y_train=residual, y_mean=float(residual.mean()), y_std=float(residual.std() + 1e-8))
     mean, std = fit_gp(shifted)
@@ -182,3 +190,95 @@ def score_write(task: Task, reply: str, seeds: int = 5, sizes: tuple[int, ...] =
             }
         rows.append(row)
     return {"arm": "write", "task": task.name, "weights": sum(p.numel() for p in head.parameters()), "per_seed": rows}
+
+
+# -------------------------------------------------------------- arm B: repair
+
+LEAK_NOISE = 0.3
+
+
+def repair_setup(task: Task, seed: int, shuffled: bool = False):
+    """A head trained with one planted leak input.
+
+    In training the leak is the standardised target plus noise; at test time it
+    is noise with the same spread, as it would be once the label is unknown.
+    All inputs are standardised and unnamed, and the leak sits at a random
+    position, so it can be found only from the weights.
+    """
+    base = prepare(task, seed)
+    mean, std = base.U_train.mean(0), base.U_train.std(0) + 1e-8
+    U_train, U_test = (base.U_train - mean) / std, (base.U_test - mean) / std
+    rng = np.random.default_rng(1000 + seed)
+    position = int(rng.integers(0, U_train.shape[1] + 1))
+    spread = float(np.sqrt(1 + LEAK_NOISE**2))
+    leak_train = ((base.y_train - base.y_mean) / base.y_std + LEAK_NOISE * rng.normal(size=len(base.y_train))) / spread
+    leak_test = rng.normal(size=len(base.y_test))
+    clean = replace(base, U_train=U_train, U_test=U_test)
+    leaky = replace(
+        base,
+        U_train=np.insert(U_train, position, leak_train, axis=1),
+        U_test=np.insert(U_test, position, leak_test, axis=1),
+    )
+    head = fit_mlp(leaky, EDIT_HIDDEN, seed)
+    if shuffled:
+        generator = torch.Generator().manual_seed(seed)
+        head.load_state_dict({
+            k: v.flatten()[torch.randperm(v.numel(), generator=generator)].reshape(v.shape)
+            for k, v in head.state_dict().items()
+        })
+    return clean, leaky, head, position
+
+
+def repair_prompt(task: Task, seed: int, shuffled: bool = False) -> str:
+    _, leaky, head, _ = repair_setup(task, seed, shuffled)
+    n_inputs = leaky.U_train.shape[1]
+    job = (
+        f"This network predicts the {task.target} of a material in {task.unit} from {n_inputs} "
+        f"inputs. Every input was standardised to zero mean and unit variance; their names are "
+        f"withheld. Exactly one input is a leak: in the training data it carried information "
+        f"about the target that will not exist when the network is used, where that input is "
+        f"pure noise. The other {n_inputs - 1} inputs are legitimate.\n\n"
+        f"Find the leaked input from the weights, and edit the network so that its output no "
+        f"longer depends on that input. Leave everything else as it is."
+    )
+    return build_prompt("edit", job, head.describe(), head.state_dict())
+
+
+def _zero_column(state, column: int):
+    out = {k: v.clone() for k, v in state.items()}
+    out["net.0.weight"][:, column] = 0.0
+    return out
+
+
+def score_repair(task: Task, seed: int, reply: str, shuffled: bool = False) -> dict:
+    clean, leaky, head, position = repair_setup(task, seed, shuffled)
+    before = head.state_dict()
+    after = apply_edits(before, parse_edits(reply))
+    report = diff(before, after)
+    n_inputs = leaky.U_train.shape[1]
+
+    def test_score(state) -> dict:
+        model = MLPHead(n_inputs, EDIT_HIDDEN, 1)
+        model.load_state_dict(state)
+        return score(leaky.y_test, predict(model.eval(), leaky.U_test))
+
+    first = after["net.0.weight"]
+    silenced = [j for j in range(n_inputs) if bool((first[:, j] == 0).all())]
+    norms = before["net.0.weight"].norm(dim=0)
+    by_norm = int(norms.argmax())
+    return {
+        "arm": "repair", "task": task.name, "seed": seed, "shuffled_control": shuffled,
+        "n_inputs": n_inputs, "leak_position": position,
+        "inputs_silenced_by_llm": silenced,
+        "llm_found_the_leak": silenced == [position],
+        "largest_column_norm_input": by_norm,
+        "column_norm_found_the_leak": by_norm == position,
+        "leak_column_norm_over_median": float(norms[position] / norms.median()),
+        "weights_changed": report.changed, "weights_total": report.total,
+        "changed_by_tensor": report.changed_by_tensor,
+        "unrepaired": test_score(before),
+        "llm_repair": test_score(after),
+        "column_norm_repair": test_score(_zero_column(before, by_norm)),
+        "true_column_zeroed": test_score(_zero_column(before, position)),
+        "trained_without_leak": score(clean.y_test, predict(fit_mlp(clean, EDIT_HIDDEN, seed), clean.U_test)),
+    }

@@ -1,0 +1,68 @@
+{
+  "arm": "repair",
+  "task": "loop_bulk_modulus",
+  "seed": 1,
+  "shuffled_control": false,
+  "n_inputs": 51,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+    50
+  ],
+  "llm_found_the_leak": false,
+  "largest_column_norm_input": 20,
+  "column_norm_found_the_leak": false,
+  "leak_column_norm_over_median": 1.309317708015442,
+  "weights_changed": 32,
+  "weights_total": 2753,
+  "changed_by_tensor": {
+    "net.0.weight": 32
+  },
+  "unrepaired": {
+    "r2": 0.5681580489152865,
+    "spearman": 0.7553139386815555,
+    "rmse": 41.792167255175784,
+    "top_decile_bias": -34.9361286356102
+  },
+  "llm_repair": {
+    "r2": 0.5648231506594407,
+    "spearman": 0.7579913148529076,
+    "rmse": 41.953226854807646,
+    "top_decile_bias": -35.35005719735065
+  },
+  "column_norm_repair": {
+    "r2": 0.5686630247839006,
+    "spearman": 0.75335488294642,
+    "rmse": 41.767725200580394,
+    "top_decile_bias": -31.900209446157078
+  },
+  "true_column_zeroed": {
+    "r2": 0.7663872681258993,
+    "spearman": 0.9160218108205178,
+    "rmse": 30.738362835268024,
+    "top_decile_bias": -39.757195597958294
+  },
+  "trained_without_leak": {
+    "r2": 0.8234190141990596,
+    "spearman": 0.8878767100924021,
+    "rmse": 26.7241836239951,
+    "top_decile_bias": -12.232013509742153
+  },
+  "meta": {
+    "arm": "repair",
+    "task": "loop_bulk_modulus",
+    "seed": 1,
+    "shuffled": false,
+    "prompt_chars": 18895,
+    "prompt_tokens_estimate": 6299,
+    "model": "claude-fable-5-2 (Claude Code subagent, general-purpose type, fresh context)",
+    "tools_allowed": "Read once (the prompt file) and Write once (the reply file), by instruction; audited afterwards by the harness's tool-call count; no code execution",
+    "forward_passes": 0,
+    "prompt_tokens": null,
+    "reply_tokens": null,
+    "date": "2026-11-11",
+    "tool_calls_observed": 2,
+    "subagent_total_tokens": 76591,
+    "duration_ms": 183100,
+    "token_note": "subagent_total_tokens is the harness's count for the whole subagent session, including its system prompt and reasoning; the prompt and reply were not counted separately"
+  }
+}

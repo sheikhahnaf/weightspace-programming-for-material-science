@@ -130,3 +130,19 @@ def test_predict_returns_physical_units():
     data, head, _ = edit_setup(task, 0)
     prediction = predict(head, data.U_test)
     assert 20 < prediction.mean() < 200  # GPa, not standardised units
+
+
+def test_zeroing_the_planted_leak_is_scored_as_found_and_helps():
+    from wsp.arms import repair_prompt, repair_setup, score_repair
+
+    task = load_task("loop_bulk_modulus")
+    _, leaky, _, position = repair_setup(task, 0)
+    assert leaky.U_train.shape[1] == 51
+    assert "Exactly one input is a leak" in repair_prompt(task, 0)
+    right = json.dumps([{"tensor": "net.0.weight", "index": [i, position], "value": 0.0} for i in range(32)])
+    wrong = json.dumps([{"tensor": "net.0.weight", "index": [i, (position + 1) % 51], "value": 0.0} for i in range(32)])
+    found = score_repair(task, 0, right)
+    assert found["llm_found_the_leak"] and found["weights_changed"] == 32
+    assert found["llm_repair"]["r2"] > found["unrepaired"]["r2"]
+    assert found["llm_repair"] == found["true_column_zeroed"]
+    assert not score_repair(task, 0, wrong)["llm_found_the_leak"]

@@ -1,0 +1,18 @@
+{
+  "arm": "repair",
+  "task": "loop_heat_capacity",
+  "seed": 1,
+  "shuffled": false,
+  "prompt_chars": 18916,
+  "prompt_tokens_estimate": 6306,
+  "model": "claude-fable-5-2 (Claude Code subagent, general-purpose type, fresh context)",
+  "tools_allowed": "Read once (the prompt file) and Write once (the reply file), by instruction; audited afterwards by the harness's tool-call count; no code execution",
+  "forward_passes": 0,
+  "prompt_tokens": null,
+  "reply_tokens": null,
+  "date": "2026-11-11",
+  "tool_calls_observed": 2,
+  "subagent_total_tokens": 67249,
+  "duration_ms": 45354,
+  "token_note": "subagent_total_tokens is the harness's count for the whole subagent session, including its system prompt and reasoning; the prompt and reply were not counted separately"
+}

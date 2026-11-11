@@ -4,6 +4,7 @@
     python experiments/e1_surrogate_head/llm_arm.py prompt edit  --task loop_bulk_modulus --seed 0
     python experiments/e1_surrogate_head/llm_arm.py prompt edit  --task loop_bulk_modulus --seed 0 --shuffled
     python experiments/e1_surrogate_head/llm_arm.py prompt write --task ti_alloy_youngs_modulus
+    python experiments/e1_surrogate_head/llm_arm.py prompt repair --task loop_bulk_modulus --seed 0
 
     # 2. give runs/<id>/prompt.txt to a model, save its reply as runs/<id>/reply.txt,
     #    and fill in runs/<id>/meta.json (model, tools allowed, forward passes, tokens)
@@ -22,7 +23,9 @@ import warnings
 from pathlib import Path
 
 from wsp import estimate_tokens
-from wsp.arms import edit_prompt, score_edit, score_write, write_prompt
+from wsp.arms import (
+    edit_prompt, repair_prompt, score_edit, score_repair, score_write, write_prompt,
+)
 from wsp.tasks import TASK_NAMES, load_task
 
 HERE = Path(__file__).resolve().parent
@@ -32,10 +35,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     commands = parser.add_subparsers(dest="command", required=True)
     prompt = commands.add_parser("prompt")
-    prompt.add_argument("arm", choices=("edit", "write"))
+    prompt.add_argument("arm", choices=("edit", "repair", "write"))
     prompt.add_argument("--task", choices=TASK_NAMES, required=True)
     prompt.add_argument("--seed", type=int, default=0)
-    prompt.add_argument("--shuffled", action="store_true", help="edit arm: shuffled-weights control")
+    prompt.add_argument("--shuffled", action="store_true", help="edit and repair arms: shuffled-weights control")
     prompt.add_argument("--runs", type=Path, default=HERE / "runs")
     scorer = commands.add_parser("score")
     scorer.add_argument("run", type=Path)
@@ -44,9 +47,10 @@ def main() -> None:
 
     if args.command == "prompt":
         task = load_task(args.task)
-        if args.arm == "edit":
-            text = edit_prompt(task, args.seed, args.shuffled)
-            run_id = f"edit__{task.name}__seed{args.seed}" + ("__shuffled" if args.shuffled else "")
+        if args.arm in ("edit", "repair"):
+            build = edit_prompt if args.arm == "edit" else repair_prompt
+            text = build(task, args.seed, args.shuffled)
+            run_id = f"{args.arm}__{task.name}__seed{args.seed}" + ("__shuffled" if args.shuffled else "")
         else:
             text = write_prompt(task)
             run_id = f"write__{task.name}"
@@ -67,8 +71,9 @@ def main() -> None:
     meta = json.loads((args.run / "meta.json").read_text())
     reply = (args.run / "reply.txt").read_text()
     task = load_task(meta["task"])
-    if meta["arm"] == "edit":
-        result = score_edit(task, meta["seed"], reply, meta["shuffled"])
+    if meta["arm"] in ("edit", "repair"):
+        scorer_for_arm = score_edit if meta["arm"] == "edit" else score_repair
+        result = scorer_for_arm(task, meta["seed"], reply, meta["shuffled"])
     else:
         result = score_write(task, reply)
     result["meta"] = meta

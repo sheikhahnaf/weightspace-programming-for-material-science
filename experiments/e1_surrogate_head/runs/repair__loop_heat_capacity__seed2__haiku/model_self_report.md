@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I read the 51 x 32 first-layer weight matrix and the rest of the network by eye, looking for an input column that stood out as small, unusual or isolated. No input column stood out clearly enough to identify the leak with any confidence, and I did not compute column norms, since the rules forbade calculation. I therefore submitted an empty edit list rather than guess at an index. My confidence that any particular input is the leak is under 5%.

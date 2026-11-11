@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I scanned the first-layer weight matrix by eye for an input column with unusually many large-magnitude entries, and compared columns 33, 45 and 50 as candidates. Column 33 looked strongest (for example -0.302, 0.228, 0.225, 0.208 across rows). I then zeroed that whole column so the output cannot depend on input 33. This was a visual judgement without any computation, so my confidence that input 33 is the leak is about 25%.

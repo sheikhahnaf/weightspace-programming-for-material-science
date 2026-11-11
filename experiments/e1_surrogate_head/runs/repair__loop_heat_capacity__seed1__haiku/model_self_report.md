@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I could not identify the leaked input from the weights by reasoning alone; scanning 51 columns of a 32x51 matrix by eye produced no clear signature (no column stood out as anomalous in magnitude or sign pattern). I therefore chose input 0 essentially arbitrarily and zeroed its column in net.0.weight so that the network ignores it. My confidence that input 0 is the leak is about 2%, which is roughly chance over the 51 inputs.

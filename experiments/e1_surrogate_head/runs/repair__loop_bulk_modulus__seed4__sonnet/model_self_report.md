@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I looked for first-layer hidden units that the output layer weights most heavily (net.4 and the large net.2 rows) and searched their incoming weights for a shared input with unusually large magnitude. Input column 43 recurred with outsized weights (about 0.26) in several of those units (rows 8, 13, 23, 31), so I picked it as the leak and zeroed that whole column of net.0.weight (32 edits). This was a visual scan of the numbers with no computation, so I am only about 35% confident that column 43 is the right input.

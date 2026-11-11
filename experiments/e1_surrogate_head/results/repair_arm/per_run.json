@@ -1,0 +1,857 @@
+[
+ {
+  "run": "repair__loop_bulk_modulus__seed0",
+  "model": "claude-fable-5-2",
+  "task": "loop_bulk_modulus",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.28167787267694444,
+   "llm_repair": -0.2392716094602121,
+   "linear_gain_repair": 0.5891193450307002,
+   "true_column_zeroed": 0.5891193450307002
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed0__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   9
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.28167787267694444,
+   "llm_repair": 0.2965541055512608,
+   "linear_gain_repair": 0.5891193450307002,
+   "true_column_zeroed": 0.5891193450307002
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed0__shuffled",
+  "model": "claude-fable-5-2",
+  "task": "loop_bulk_modulus",
+  "seed": 0,
+  "shuffled_control": true,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   48
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": -0.4525681575973233,
+   "llm_repair": -0.44270884945160094,
+   "linear_gain_repair": -0.44270884945160094,
+   "true_column_zeroed": -0.4373596165907625
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed0__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   9
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.28167787267694444,
+   "llm_repair": 0.2965541055512608,
+   "linear_gain_repair": 0.5891193450307002,
+   "true_column_zeroed": 0.5891193450307002
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed1",
+  "model": "claude-fable-5-2",
+  "task": "loop_bulk_modulus",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   50
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.5681580489152865,
+   "llm_repair": 0.5648231506594407,
+   "linear_gain_repair": 0.14740050290812468,
+   "true_column_zeroed": 0.7663872681258993
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed1__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   46
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.5681580489152865,
+   "llm_repair": 0.7663872681258993,
+   "linear_gain_repair": 0.14740050290812468,
+   "true_column_zeroed": 0.7663872681258993
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed1__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   50
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.5681580489152865,
+   "llm_repair": 0.5648231506594407,
+   "linear_gain_repair": 0.14740050290812468,
+   "true_column_zeroed": 0.7663872681258993
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed2__fable",
+  "model": "claude-fable-5-2",
+  "task": "loop_bulk_modulus",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": -0.030986557918492474,
+   "llm_repair": -1.062753901270292,
+   "linear_gain_repair": -1.062753901270292,
+   "true_column_zeroed": 0.47540698340004495
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed2__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+   19
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": -0.030986557918492474,
+   "llm_repair": -0.0198325015218479,
+   "linear_gain_repair": -1.062753901270292,
+   "true_column_zeroed": 0.47540698340004495
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed2__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+   19
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": -0.030986557918492474,
+   "llm_repair": -0.0198325015218479,
+   "linear_gain_repair": -1.062753901270292,
+   "true_column_zeroed": 0.47540698340004495
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed3__fable",
+  "model": "claude-fable-5-2",
+  "task": "loop_bulk_modulus",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   15
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.4604025504895668,
+   "llm_repair": 0.6213417171869151,
+   "linear_gain_repair": -0.2638447684549121,
+   "true_column_zeroed": 0.6213417171869151
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed3__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   33
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.4604025504895668,
+   "llm_repair": 0.46769823682549205,
+   "linear_gain_repair": -0.2638447684549121,
+   "true_column_zeroed": 0.6213417171869151
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed3__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.4604025504895668,
+   "llm_repair": -0.2638447684549121,
+   "linear_gain_repair": -0.2638447684549121,
+   "true_column_zeroed": 0.6213417171869151
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed3__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   33
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.4604025504895668,
+   "llm_repair": 0.46769823682549205,
+   "linear_gain_repair": -0.2638447684549121,
+   "true_column_zeroed": 0.6213417171869151
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed4__fable",
+  "model": "claude-fable-5-2",
+  "task": "loop_bulk_modulus",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.41002764803047065,
+   "llm_repair": -0.16144078623050429,
+   "linear_gain_repair": -0.16144078623050429,
+   "true_column_zeroed": 0.6519412980837495
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed4__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   22
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.41002764803047065,
+   "llm_repair": 0.39318109369764476,
+   "linear_gain_repair": -0.16144078623050429,
+   "true_column_zeroed": 0.6519412980837495
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed4__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   43
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.41002764803047065,
+   "llm_repair": 0.43664086979277006,
+   "linear_gain_repair": -0.16144078623050429,
+   "true_column_zeroed": 0.6519412980837495
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed5__fable",
+  "model": "claude-fable-5-2",
+  "task": "loop_bulk_modulus",
+  "seed": 5,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 21,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.6996411558376426,
+   "llm_repair": 0.26907815834006243,
+   "linear_gain_repair": 0.26907815834006243,
+   "true_column_zeroed": 0.7947616483834339
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed5__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 5,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 21,
+  "inputs_silenced_by_llm": [],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.6996411558376426,
+   "llm_repair": 0.6996411558376426,
+   "linear_gain_repair": 0.26907815834006243,
+   "true_column_zeroed": 0.7947616483834339
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed5__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 5,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 21,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.6996411558376426,
+   "llm_repair": 0.26907815834006243,
+   "linear_gain_repair": 0.26907815834006243,
+   "true_column_zeroed": 0.7947616483834339
+  }
+ },
+ {
+  "run": "repair__loop_bulk_modulus__seed5__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 5,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 21,
+  "inputs_silenced_by_llm": [
+   47
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.6996411558376426,
+   "llm_repair": 0.7176999171797187,
+   "linear_gain_repair": 0.26907815834006243,
+   "true_column_zeroed": 0.7947616483834339
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed0",
+  "model": "claude-fable-5-2",
+  "task": "loop_heat_capacity",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   10
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.22610941161853448,
+   "llm_repair": 0.36362618062828744,
+   "linear_gain_repair": 0.36362618062828744,
+   "true_column_zeroed": 0.36362618062828744
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed0__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.22610941161853448,
+   "llm_repair": 0.22610941161853448,
+   "linear_gain_repair": 0.36362618062828744,
+   "true_column_zeroed": 0.36362618062828744
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed0__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   10
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.22610941161853448,
+   "llm_repair": 0.36362618062828744,
+   "linear_gain_repair": 0.36362618062828744,
+   "true_column_zeroed": 0.36362618062828744
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed0__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 0,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 10,
+  "inputs_silenced_by_llm": [
+   48
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.22610941161853448,
+   "llm_repair": 0.2112563161778176,
+   "linear_gain_repair": 0.36362618062828744,
+   "true_column_zeroed": 0.36362618062828744
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed1",
+  "model": "claude-fable-5-2",
+  "task": "loop_heat_capacity",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   46
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.33195709142100815,
+   "llm_repair": 0.6241902409095266,
+   "linear_gain_repair": 0.6241902409095266,
+   "true_column_zeroed": 0.6241902409095266
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed1__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.33195709142100815,
+   "llm_repair": 0.27209334915761196,
+   "linear_gain_repair": 0.6241902409095266,
+   "true_column_zeroed": 0.6241902409095266
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed1__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   46
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.33195709142100815,
+   "llm_repair": 0.6241902409095266,
+   "linear_gain_repair": 0.6241902409095266,
+   "true_column_zeroed": 0.6241902409095266
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed1__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 1,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 46,
+  "inputs_silenced_by_llm": [
+   34
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.33195709142100815,
+   "llm_repair": 0.2977121204463127,
+   "linear_gain_repair": 0.6241902409095266,
+   "true_column_zeroed": 0.6241902409095266
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed2__fable",
+  "model": "claude-fable-5-2",
+  "task": "loop_heat_capacity",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+   30
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.10098440736396996,
+   "llm_repair": 0.3424209363525891,
+   "linear_gain_repair": 0.3424209363525891,
+   "true_column_zeroed": 0.3424209363525891
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed2__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.10098440736396996,
+   "llm_repair": 0.10098440736396996,
+   "linear_gain_repair": 0.3424209363525891,
+   "true_column_zeroed": 0.3424209363525891
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed2__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+   30
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.10098440736396996,
+   "llm_repair": 0.3424209363525891,
+   "linear_gain_repair": 0.3424209363525891,
+   "true_column_zeroed": 0.3424209363525891
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed2__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 2,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+   30
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.10098440736396996,
+   "llm_repair": 0.3424209363525891,
+   "linear_gain_repair": 0.3424209363525891,
+   "true_column_zeroed": 0.3424209363525891
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed3__fable",
+  "model": "claude-fable-5-2",
+  "task": "loop_heat_capacity",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   15
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.4121370912875628,
+   "llm_repair": 0.5550339961297232,
+   "linear_gain_repair": 0.5550339961297232,
+   "true_column_zeroed": 0.5550339961297232
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed3__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   12
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.4121370912875628,
+   "llm_repair": 0.4106295524335354,
+   "linear_gain_repair": 0.5550339961297232,
+   "true_column_zeroed": 0.5550339961297232
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed3__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   15
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.4121370912875628,
+   "llm_repair": 0.5550339961297232,
+   "linear_gain_repair": 0.5550339961297232,
+   "true_column_zeroed": 0.5550339961297232
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed3__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 3,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 15,
+  "inputs_silenced_by_llm": [
+   44
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": true,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.4121370912875628,
+   "llm_repair": 0.3973422165833095,
+   "linear_gain_repair": 0.5550339961297232,
+   "true_column_zeroed": 0.5550339961297232
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed4__fable",
+  "model": "claude-fable-5-2",
+  "task": "loop_heat_capacity",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   37
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.3400991028288286,
+   "llm_repair": 0.4662639404493929,
+   "linear_gain_repair": 0.4662639404493929,
+   "true_column_zeroed": 0.4662639404493929
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed4__haiku",
+  "model": "claude-haiku-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   14
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.3400991028288286,
+   "llm_repair": 0.3168467208679048,
+   "linear_gain_repair": 0.4662639404493929,
+   "true_column_zeroed": 0.4662639404493929
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed4__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   37
+  ],
+  "llm_found_the_leak": true,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.3400991028288286,
+   "llm_repair": 0.4662639404493929,
+   "linear_gain_repair": 0.4662639404493929,
+   "true_column_zeroed": 0.4662639404493929
+  }
+ },
+ {
+  "run": "repair__loop_heat_capacity__seed4__sonnet",
+  "model": "claude-sonnet-5-5",
+  "task": "loop_heat_capacity",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": true,
+  "r2": {
+   "unrepaired": 0.3400991028288286,
+   "llm_repair": 0.3636806750300351,
+   "linear_gain_repair": 0.4662639404493929,
+   "true_column_zeroed": 0.4662639404493929
+  }
+ }
+]

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I noticed that hidden unit h2[8] stood out: its row in net.2.weight was unusually large and its output weight (-25.3) was the biggest. I then worked out by hand a linearised input-to-output gain, first u = net.4.weight @ net.2.weight over the 32 first-layer units, then u dotted with each column of net.0.weight. Input 0 had a gain of about +91. For every one of the 32 first-layer units, its column-0 weight had the same sign as u_i, so they all pushed the output the same way. The other columns I checked came out between about -5 and +29. I removed the dependence by setting the whole column 0 of net.0.weight to zero (all 32 entries are nonzero, so all 32 had to change); this is the same as fixing the standardised input at its mean of 0. Confidence that input 0 is the leak: about 88%.

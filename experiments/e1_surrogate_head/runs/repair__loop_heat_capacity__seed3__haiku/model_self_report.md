@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I could not identify the leaked input by reasoning over the printed weights; scanning columns by eye did not reveal a clear outlier. I picked input 12 as a guess because several of its first-layer weights in the early rows are relatively large in magnitude, and zeroed its whole column in net.0.weight so the output no longer depends on it. Confidence that input 12 is the leak: about 5%.

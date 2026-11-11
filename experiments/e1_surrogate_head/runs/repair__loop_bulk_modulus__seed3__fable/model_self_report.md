@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I computed by hand an ungated linear sensitivity for every input: first v = net.2.weight^T @ net.4.weight^T (the output's pull on each first-layer unit, ignoring ReLU gates), then v dotted with each of the 51 columns of net.0.weight. Two inputs stood far above the rest (input 0 at about +70 and input 15 at about +55, all others within about 19 in magnitude), so the leak is one of those two and the weights alone do not cleanly separate them. I chose input 15 because the sensitivities of inputs 0-4 fall off smoothly (70, 19, 13, 11, 9), which looks like legitimate features ordered by importance, leaving input 15 as the out-of-pattern spike; I zeroed its 32 first-layer weights. Confidence that input 15 is the leak: about 65%, with input 0 as the main alternative.

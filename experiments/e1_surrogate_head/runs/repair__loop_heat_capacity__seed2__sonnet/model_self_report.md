@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I scanned the columns of the first-layer weight matrix by eye and estimated the sum of squares for several candidate columns, looking for one with unusually large weights across many hidden units. Input 30 stood out with a mean squared weight of roughly 0.63 over the 32 rows, against roughly 0.3 to 0.5 for the other columns I checked, so I zeroed that whole column in net.0.weight. This was a rough mental estimate and I did not check every column, so my confidence that input 30 is the leaked one is about 25%.

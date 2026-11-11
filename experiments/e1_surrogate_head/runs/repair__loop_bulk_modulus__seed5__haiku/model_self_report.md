@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I tried to find the leaked input by reasoning alone, looking for an input column of net.0.weight with unusually large weights that feeds hidden units with large output weights in net.4.weight. Scanning the 32x51 matrix by hand did not single out any column clearly: the large values are spread across many inputs and the output weights are dominated by a few hidden units, so no candidate stood out. I therefore did not identify the leak and returned an empty edit list rather than guess a weight to change. Confidence that I have identified the correct input: about 5%.

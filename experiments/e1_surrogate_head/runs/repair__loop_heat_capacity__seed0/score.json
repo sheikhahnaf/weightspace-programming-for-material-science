@@ -12,6 +12,16 @@
   "largest_column_norm_input": 10,
   "column_norm_found_the_leak": true,
   "leak_column_norm_over_median": 1.3095626831054688,
+  "largest_linear_gain_input": 10,
+  "linear_gain_found_the_leak": true,
+  "leak_rank_by_column_norm": 1,
+  "leak_rank_by_linear_gain": 1,
+  "linear_gain_repair": {
+    "r2": 0.36362618062828744,
+    "spearman": 0.5708683473389355,
+    "rmse": 0.18198099841927382,
+    "top_decile_bias": -0.37925146866728243
+  },
   "weights_changed": 32,
   "weights_total": 2753,
   "changed_by_tensor": {
@@ -54,7 +64,7 @@
     "shuffled": false,
     "prompt_chars": 18895,
     "prompt_tokens_estimate": 6299,
-    "model": "claude-fable-5-2 (Claude Code subagent, general-purpose type, fresh context)",
+    "model": "claude-fable-5-2",
     "tools_allowed": "Read once (the prompt file) and Write once (the reply file), by instruction; audited afterwards by the harness's tool-call count; no code execution",
     "forward_passes": 0,
     "prompt_tokens": null,
@@ -62,7 +72,25 @@
     "date": "2026-11-11",
     "tool_calls_observed": 2,
     "subagent_total_tokens": 69859,
-    "duration_ms": 119367,
-    "token_note": "subagent_total_tokens is the harness's count for the whole subagent session, including its system prompt and reasoning; the prompt and reply were not counted separately"
+    "duration_ms": 119348,
+    "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning",
+    "harness": "Claude Code subagent, fresh context",
+    "started_utc": "2026-11-11T08:53:28.732000+00:00",
+    "output_tokens": 10845,
+    "context_tokens_last_turn": 69287,
+    "tool_calls": [
+      {
+        "tool": "Read",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_heat_capacity__seed0/prompt.txt"
+      },
+      {
+        "tool": "Write",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_heat_capacity__seed0/reply.txt"
+      }
+    ],
+    "attempts": 1,
+    "audit_ok": true,
+    "audit_problems": [],
+    "transcript": "agent-a47ab3b099a737c00.jsonl"
   }
 }

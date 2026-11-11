@@ -5,9 +5,39 @@
   "shuffled": false,
   "prompt_chars": 18903,
   "prompt_tokens_estimate": 6301,
-  "model": null,
+  "model": "claude-haiku-5-5",
   "tools_allowed": null,
-  "forward_passes": null,
+  "forward_passes": 0,
   "prompt_tokens": null,
-  "reply_tokens": null
+  "reply_tokens": null,
+  "harness": "Claude Code subagent, fresh context",
+  "date": "2026-11-11",
+  "started_utc": "2026-11-11T23:28:56.494000+00:00",
+  "duration_ms": 24686,
+  "output_tokens": 11595,
+  "context_tokens_last_turn": 70168,
+  "tool_calls": [
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/WRAPPER.md"
+    },
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_bulk_modulus__seed3__haiku/prompt.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_bulk_modulus__seed3__haiku/reply.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_bulk_modulus__seed3__haiku/self_report.txt"
+    }
+  ],
+  "tool_calls_observed": 4,
+  "attempts": 1,
+  "audit_ok": true,
+  "audit_problems": [],
+  "transcript": "agent-a20145aeda1e9fe8e.jsonl",
+  "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
 }

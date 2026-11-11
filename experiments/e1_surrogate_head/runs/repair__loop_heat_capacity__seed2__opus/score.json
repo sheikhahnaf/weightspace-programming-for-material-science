@@ -1,0 +1,103 @@
+{
+  "arm": "repair",
+  "task": "loop_heat_capacity",
+  "seed": 2,
+  "shuffled_control": false,
+  "n_inputs": 51,
+  "leak_position": 30,
+  "inputs_silenced_by_llm": [
+    30
+  ],
+  "llm_found_the_leak": true,
+  "largest_column_norm_input": 30,
+  "column_norm_found_the_leak": true,
+  "leak_column_norm_over_median": 1.3040956258773804,
+  "largest_linear_gain_input": 30,
+  "linear_gain_found_the_leak": true,
+  "leak_rank_by_column_norm": 1,
+  "leak_rank_by_linear_gain": 1,
+  "linear_gain_repair": {
+    "r2": 0.3424209363525891,
+    "spearman": 0.9094251336898397,
+    "rmse": 0.21297785097731217,
+    "top_decile_bias": -0.44981354953254127
+  },
+  "weights_changed": 32,
+  "weights_total": 2753,
+  "changed_by_tensor": {
+    "net.0.weight": 32
+  },
+  "unrepaired": {
+    "r2": 0.10098440736396996,
+    "spearman": 0.7837566844919787,
+    "rmse": 0.24902563943805972,
+    "top_decile_bias": -0.48631725193465614
+  },
+  "llm_repair": {
+    "r2": 0.3424209363525891,
+    "spearman": 0.9094251336898397,
+    "rmse": 0.21297785097731217,
+    "top_decile_bias": -0.44981354953254127
+  },
+  "column_norm_repair": {
+    "r2": 0.3424209363525891,
+    "spearman": 0.9094251336898397,
+    "rmse": 0.21297785097731217,
+    "top_decile_bias": -0.44981354953254127
+  },
+  "true_column_zeroed": {
+    "r2": 0.3424209363525891,
+    "spearman": 0.9094251336898397,
+    "rmse": 0.21297785097731217,
+    "top_decile_bias": -0.44981354953254127
+  },
+  "trained_without_leak": {
+    "r2": 0.494108256991316,
+    "spearman": 0.8800133689839572,
+    "rmse": 0.1868053230380404,
+    "top_decile_bias": -0.12505066873038678
+  },
+  "meta": {
+    "arm": "repair",
+    "task": "loop_heat_capacity",
+    "seed": 2,
+    "shuffled": false,
+    "prompt_chars": 18879,
+    "prompt_tokens_estimate": 6293,
+    "model": "claude-opus-5-5",
+    "tools_allowed": null,
+    "forward_passes": 0,
+    "prompt_tokens": null,
+    "reply_tokens": null,
+    "harness": "Claude Code subagent, fresh context",
+    "date": "2026-11-11",
+    "started_utc": "2026-11-11T23:24:34.910000+00:00",
+    "duration_ms": 517510,
+    "output_tokens": 148665,
+    "context_tokens_last_turn": 138729,
+    "tool_calls": [
+      {
+        "tool": "Read",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/WRAPPER.md"
+      },
+      {
+        "tool": "Read",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_heat_capacity__seed2__opus/prompt.txt"
+      },
+      {
+        "tool": "Write",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_heat_capacity__seed2__opus/reply.txt"
+      },
+      {
+        "tool": "Write",
+        "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e1_surrogate_head/runs/repair__loop_heat_capacity__seed2__opus/self_report.txt"
+      }
+    ],
+    "tool_calls_observed": 4,
+    "attempts": 1,
+    "audit_ok": true,
+    "audit_problems": [],
+    "transcript": "agent-af09b3e419396662a.jsonl",
+    "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
+  }
+}

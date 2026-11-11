@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I noticed that net.2.weight is close to rank one (rows with positive net.4.weight share one sign pattern, rows with negative weight the opposite), so I computed by hand an approximate sensitivity of the output to each first-layer hidden unit, s = net.4.weight @ net.2.weight with ReLU gating ignored, and then projected input columns of net.0.weight onto s. Column norms alone did not single anything out; a four-unit screen of all 51 columns followed by full projections of the candidates gave two stand-outs, input 0 (about 5.6 in my units) and input 30 (about 4.5), with the next one checked (input 12) at about 1.3. I took the larger, input 0, as the leak and zeroed its 32 first-layer weights. Confidence that input 0 is the leak is about 55%; if it is not, input 30 is by far the most likely alternative (about 40%).

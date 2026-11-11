@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I scanned the columns of the first-layer weight matrix by eye for an input with unusually large weights across many hidden units, and column 19 stood out (for example 0.29, -0.26, 0.104, 0.106, -0.17, -0.16, -0.155 in the early rows). I then zeroed that entire column so the output cannot depend on input 19, leaving all other weights unchanged. This was a visual judgement without computation, so my confidence that input 19 is the leak is low, about 20%.

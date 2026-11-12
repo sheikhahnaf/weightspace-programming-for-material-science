@@ -503,10 +503,10 @@
     "Target",
     "Runs",
     "Crystals",
-    "Train: starting pool",
-    "Test: generated, per run",
-    "Rule with no LLM",
-    "Valid written networks"
+    "Train pool",
+    "Test per run",
+    "Rule, no LLM",
+    "Valid networks"
    ],
    [
     "Bulk modulus (GPa), from a Birch-Murnaghan fit",
@@ -529,12 +529,12 @@
   ],
   "colW": [
    2.25,
-   0.55,
+   0.6,
    0.8,
-   1.0,
-   1.15,
+   0.95,
+   1.05,
    1.6,
-   1.98
+   2.08
   ],
   "fontSize": 11.5
  },

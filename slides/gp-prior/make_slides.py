@@ -100,7 +100,7 @@ table_slide("tasks-table", "The five alloy tasks", 3,
              ["MPEA yield strength", "Borg et al. (2020)", "722", "24 fractions", "yield strength at room T, maximise", "3,416 MPa", "417"]],
             [1.75, 2.1, 0.6, 1.15, 2.2, 0.85, 0.68], 11.5, 24, 78, 672, 140, """
 All five tasks use measured alloys with element atomic fractions as inputs, so every input has a name a model can reason about. Three come from the titanium alloy set of Salvador and co-workers and two from the multi-principal-element alloy set of Borg and co-workers. Elements that appear in fewer than four or five alloys are summed into one input called other, and each row sums to one. The pool sizes run from 152 to 722 alloys. The goal is the lowest modulus for titanium implants and the highest strength or hardness elsewhere. The last column is the number of weights in the network the model must write.
-""", cap="Salvador et al., Sci. Data 9:188 (2022); Borg et al., Sci. Data 7:430 (2020). Rare elements are summed into one 'other' input; each row sums to 1. Ranking tests hold out 52 to 522 alloys; BO uses the whole set as the pool.",
+""", cap="Salvador et al., Sci. Data 9:188 (2022); Borg et al., Sci. Data 7:430 (2020). Rare elements are summed into one 'other' input; each row sums to 1. Ranking tests hold out 52 to 522 alloys; BO uses the whole set as the pool.", cap_gap=34,
             source="src/wsp/tasks.py; experiments/e1_surrogate_head/run_bo_select.py (GOALS)")
 
 PIPE = [("Prompt", "Step 1", MAROON, "Task in words, input names, an all-zero d → 16 → 1 network. No data."),
@@ -511,7 +511,7 @@ table_slide("tc-bo-table", "Thermo-Calc BO: arms against the plain GP", 6,
              ["Fable 5.2 + facts", "16 / 0 / 17", "14", "2", "0.35"]],
             [2.4, 1.95, 1.95, 1.9, 1.13], 12, 24, 78, 672, 172, """
 The second column gives, for each prior, the number of targets where the arm is better than the plain Gaussian process, worse, or not different at a Holm-corrected p of 0.05. The extrapolation and Opus 5.5 with facts are better on 18 of 33 targets, Opus 5.5 without facts on 16, and Fable 5.2 on 15 and 16. The next two columns split the wins by kind of target. The last column is the median over targets of the regret area relative to the plain Gaussian process: 0.17 for the extrapolation, 0.43 for Opus 5.5 without facts and 0.24 with them. Two of the 35 targets are left out because the plain Gaussian process has zero regret.
-""", cap="Better or worse: Holm-corrected p < 0.05, paired Wilcoxon over 20 seeds on the area under the regret curve; two-stage fit; 5 initial labels, 25 steps of expected improvement. Relative area: arm ÷ plain GP, median over the 33 targets.",
+""", cap="Better or worse: Holm-corrected p < 0.05, paired Wilcoxon over 20 seeds on the area under the regret curve; two-stage fit; 5 initial labels, 25 steps of expected improvement. Relative area: arm ÷ plain GP, median over the 33 targets.", cap_gap=28,
             source=TC + " (BO: targets where an arm is significantly better / worse / not different); docs/results/2026-11-12-round7.md, Sec. 4; " + TCBO)
 
 recap("recap-tc-bo", 6, "On 33 Thermo-Calc targets the Opus 5.5 networks lower the regret area on 16 with no data and on 18 with the sub-system facts, the same count as the no-LLM extrapolation; the median relative area is 0.43, 0.24 and 0.17.", """
@@ -567,12 +567,12 @@ for j in range(1, 3):
             source="src/wsp/tasks.py (_closed_loop, description); experiments/e1_surrogate_head/run_structure_prior.py (docstring); " + E3 + "filter_arm.py (FEATURES, describe)")
 
 table_slide("st-tasks", "Crystal tasks from a generative discovery loop", 7,
-            [["Target", "Runs", "Crystals", "Train: starting pool", "Test: generated, per run", "Rule with no LLM", "Valid written networks"],
+            [["Target", "Runs", "Crystals", "Train pool", "Test per run", "Rule, no LLM", "Valid networks"],
              ["Bulk modulus (GPa), from a Birch-Murnaghan fit", "6", "3,479", "500", "65 to 92", "1 / volume per atom", "3 each: Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5"],
              ["Heat capacity at 300 K (J/g/K), from phonons", "5", "2,437", "445", "31 to 59", "Dulong-Petit: 3R / mean atomic mass", "2 each: Opus 5.5, Fable 5.2; 1 each: Sonnet 5.5, Haiku 5.5"]],
-            [2.25, 0.55, 0.8, 1.0, 1.15, 1.6, 1.98], 11.5, 24, 78, 672, 110, """
+            [2.25, 0.6, 0.8, 0.95, 1.05, 1.6, 2.08], 11.5, 24, 78, 672, 120, """
 Two targets come from the same loop. Both are computed with a machine-learned interatomic potential, eSEN-30M-OAM: the bulk modulus from a Birch-Murnaghan fit and the heat capacity at 300 kelvin from phonons. The bulk modulus task has six runs and 3,479 crystals, the heat capacity task five runs and 2,437. In each run the training rows come from the starting pool of 500 or 445 known structures, and the test rows are the 31 to 92 crystals that a generator proposed in that run while it was steered toward high values. Each target has a one-line rule as the reference with no language model. Eighteen written networks are valid, from four models.
-""", cap="Targets from the eSEN-30M-OAM potential. Generators: MatterGen, CrystalFlow or ADiT. Each run has its own principal-component basis, so train and test rows always come from one run. Three draws of the labelled crystals per run.",
+""", cap="Train pool: the loop's starting pool of known structures. Test: the crystals a generator (MatterGen, CrystalFlow or ADiT) proposed in that run. Targets from the eSEN-30M-OAM potential. Each run has its own principal-component basis, so train and test rows always come from one run. Three draws of the labelled crystals per run.", cap_gap=40,
             source="src/wsp/tasks.py (_closed_loop, _BUILDERS); experiments/e1_surrogate_head/run_structure_prior.py; " + E3 + "README.md (Status); " + R7)
 
 content("st-net-bulk-modulus", "A written network: crystal bulk modulus", 7,
@@ -694,7 +694,7 @@ table_slide("b-regret-steps", "Regret after 5, 10 and 25 steps", 99,
              ["MPEA yield strength (MPa)", "1,138 / 753 / 522", "1,118 / 988 / 499", "1,181 / 1,024 / 698", "1,173 / 1,067 / 588"]],
             [2.13, 1.8, 1.8, 1.8, 1.8], 12, 24, 78, 672, 150, """
 This table gives the mean regret over 20 seeds after 5, 10 and 25 steps for the plain Gaussian process, the Opus 5.5 arm, the Fable 5.2 arm and the pooled arm. On titanium modulus the arms are level at step 5 and separate later. On titanium yield strength and both hardness tasks the priors are ahead from step 5. On yield strength of multi-principal-element alloys the Opus arm is behind at step 10, 988 against 753 megapascals, and level at step 25, 499 against 522, while the Fable arm is behind throughout. On titanium hardness the Gaussian process also reaches a regret near 2 by the end.
-""", kind="backup", cap="Mean over 20 seeds; 5 initial labels are given before step 1.",
+""", kind="backup", cap="Mean over 20 seeds; 5 initial labels are given before step 1.", cap_gap=14,
             source="experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.md")
 
 table_slide("b-written-alone", "The written network with no GP (8 seeds)", 99,
@@ -707,7 +707,7 @@ table_slide("b-written-alone", "The written network with no GP (8 seeds)", 99,
              ["", "written network alone, replies 1 / 2 / 3", "13.4 / 0.0 / 13.0", "7.0 / 0.0 / 10.0", "8 / 8 / 0"]],
             [2.2, 2.9, 1.6, 1.4, 1.23], 11.5, 24, 78, 672, 176, """
 This control uses the written network with no Gaussian process: alloys are taken in the order the network ranks them. It is a smaller run, 8 seeds on two tasks with three Fable 5.2 replies. On alloy yield strength the network alone is worse than the plain Gaussian process and, at 10 steps, worse than random search. On titanium modulus the outcome depends on the reply: the second reply puts a best-in-pool alloy among its first picks, with zero regret in every seed, while the third never reaches the top 5 percent. A written network is therefore not a substitute for the surrogate, and replies that look alike on average ranking can differ on the few best alloys.
-""", kind="backup", cap="Pool-based BO, 5 initial labels, 25 steps, 8 seeds; replies of Fable 5.2.",
+""", kind="backup", cap="Pool-based BO, 5 initial labels, 25 steps, 8 seeds; replies of Fable 5.2.", cap_gap=24,
             source="experiments/e1_surrogate_head/results/bo/mpea_yield_strength.json; results/bo/ti_alloy_youngs_modulus.json; docs/results/2026-11-11-round2.md, Sec. 3")
 
 if __name__ == "__main__":

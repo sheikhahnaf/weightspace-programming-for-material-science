@@ -186,15 +186,16 @@ def html_table(rows, widths_pt, size):
             '<style>td,th{border:0.75pt solid #D6D3D1;padding:2pt 3pt;vertical-align:middle;text-align:left;}</style>')
 
 
-def table_slide(slug, title_, section, rows, colW_in, size, x, y, w, h, notes, cap=None, kind="content", **meta):
+def table_slide(slug, title_, section, rows, colW_in, size, x, y, w, h, notes, cap=None, kind="content", cap_gap=6, **meta):
     """A native PowerPoint table (drawn by build.js on the placeholder), header row maroon.
-    colW_in: column widths in inches, summing to about w/72."""
+    colW_in: column widths in inches, summing to about w/72.
+    cap_gap: points between the placeholder bottom and the caption; PowerPoint may draw the table taller than h."""
     widths = [c * 72 for c in colW_in]
     tables[slug + ".html"] = dict(rows=rows, colW=colW_in, fontSize=size)
     body = (f'<div id="t1" class="placeholder" style="position:absolute;left:{x}pt;top:{y}pt;width:{w}pt;height:{h}pt;">'
             f'{html_table(rows, widths, size)}</div>')
     if cap:
-        body += "\n" + p("small", x, y + h + 6, w, cap)
+        body += "\n" + p("small", x, y + h + cap_gap, w, cap)
     content(slug, title_, section, body, notes, kind=kind, **meta)
 
 

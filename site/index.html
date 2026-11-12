@@ -66,9 +66,9 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <p class="meta">Sk Md Ahnaf Akif Alvi and Raymundo Arróyave · Texas A&amp;M University · Draft of 12 November 2026</p>
 
 <div class="tldr">
-<p><b>TL;DR.</b> We give a language model a task in words, the names of the inputs and a 16-unit network with every weight set to zero, and it writes all the weights. No data, no training run, no tools. This page shows what such a written network is good for in materials discovery.</p>
+<p><b>TL;DR.</b> We give a language model a task in words, the names of the inputs and a 16-unit network with every weight set to zero, and it writes all the weights. No data, no training run, no code execution. This page shows what such a written network is good for in materials discovery.</p>
 <p><b>It is a usable predictor before any label.</b> Networks written by Opus 5.5 rank measured alloys at ρ = 0.64 to 0.79 and the bulk modulus of crystals at 0.93.</p>
-<p><b>It is most useful as the prior mean of a Gaussian process when labels are few.</b> At five labels ranking rises from 0.35 to 0.69 on alloys and from 0.15 to 0.95 on crystals, and Bayesian optimisation gets better on 4 of 5 measured tasks and 16 of 33 computed ones.</p>
+<p><b>It is most useful as the prior mean of a Gaussian process when labels are few.</b> At five labels ranking rises from 0.35 to 0.69 on alloys (Opus, slope and offset integrated out) and from 0.15 to 0.95 on crystals, and Bayesian optimisation gets better on 4 of 5 measured tasks and 16 of 33 computed ones.</p>
 <p><b>It holds up against computed thermodynamics.</b> On 35 Thermo-Calc targets a network written with no data comes close to an extrapolation from calculated binary and ternary values, and beats it on phase fractions.</p>
 <p><b>The gain is in the first tens of labels.</b> With hundreds of labels the plain surrogate catches up, and where a simple rule exists the network only matches it.</p>
 </div>
@@ -80,7 +80,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 </div>
 
 <p>Writing weights directly is one of the three verbs of weight-space programming, introduced by <a href="https://rikiyat.github.io/blog/weight-space-programming/">Takehi, Teoh, Zhang and Khattab</a>. Their networks and those of the follow-up work are classifiers, policies and language models. Materials discovery needs regressors that rank candidates from a handful of labels and report error bars, so we asked what a written network is worth there.</p>
-<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5. Every language-model result is paired with the cheapest rule that uses the same information.</p>
+<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5. The network-alone results are paired with the cheapest rule that uses the same information. A second attempt was made only where a session was cut off before it wrote a reply.</p>
 
 <figure class="wide plot">
 <img src="figures/fig_method.png" alt="The method" loading="lazy">
@@ -90,11 +90,11 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <p>Before any use downstream, each network is scored as a predictor on every candidate of its task: by rank (Spearman ρ) and by R², as written and after the best straight-line rescaling of its output.</p>
 <div class="scroll wide"><table class="reg">
 <tr><th>Task</th><th>Rule<br>ρ</th><th><br>R²</th><th>R²<br>resc.</th><th>Opus 5.5<br>ρ</th><th><br>R²</th><th>R²<br>resc.</th><th>Fable 5.2<br>ρ</th><th><br>R²</th><th>R²<br>resc.</th></tr>
-<tr><td>Ti alloy Young's modulus</td><td>0.24</td><td>−2.64</td><td>0.03</td><td>0.64</td><td>0.19</td><td>0.34</td><td>0.51</td><td>0.04</td><td>0.26</td></tr>
+<tr><td>Ti alloy Young's modulus</td><td>0.24</td><td>−2.64</td><td>0.03</td><td>0.64</td><td>0.19</td><td>0.34</td><td>0.51</td><td>0.02</td><td>0.25</td></tr>
 <tr><td>Ti alloy yield strength</td><td>−0.52</td><td>−0.79</td><td>0.23</td><td>0.69</td><td>0.42</td><td>0.46</td><td>0.64</td><td>0.34</td><td>0.37</td></tr>
 <tr><td>Ti alloy hardness</td><td>−0.72</td><td>&lt; −10</td><td>0.44</td><td>0.65</td><td>0.40</td><td>0.43</td><td>0.61</td><td>0.29</td><td>0.39</td></tr>
 <tr><td>Multi-principal-element alloy hardness</td><td>−0.24</td><td>&lt; −10</td><td>0.01</td><td>0.79</td><td>0.45</td><td>0.55</td><td>0.76</td><td>0.47</td><td>0.55</td></tr>
-<tr><td>Multi-principal-element alloy yield strength</td><td>0.27</td><td>0.06</td><td>0.10</td><td>0.69</td><td>0.33</td><td>0.44</td><td>0.63</td><td>0.21</td><td>0.34</td></tr>
+<tr><td>Multi-principal-element alloy yield strength</td><td>0.27</td><td>0.06</td><td>0.10</td><td>0.69</td><td>0.33</td><td>0.44</td><td>0.63</td><td>0.21</td><td>0.35</td></tr>
 <tr><td>Crystal bulk modulus</td><td>0.74</td><td>−3.18</td><td>0.40</td><td>0.93</td><td>0.64</td><td>0.73</td><td>0.93</td><td>0.61</td><td>0.74</td></tr>
 <tr><td>Crystal heat capacity</td><td>1.00</td><td>0.94</td><td>0.98</td><td>1.00</td><td>0.97</td><td>0.98</td><td>1.00</td><td>0.96</td><td>0.98</td></tr>
 <tr><td>Thermo-Calc solidus (9 targets)</td><td>0.84</td><td>0.45</td><td>0.80</td><td>0.73</td><td>−0.12</td><td>0.60</td><td>0.70</td><td>0.03</td><td>0.60</td></tr>
@@ -106,12 +106,12 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <tr><td>Thermo-Calc, all 35 targets</td><td>0.70</td><td>0.29</td><td>0.60</td><td>0.67</td><td>0.32</td><td>0.57</td><td>0.64</td><td>0.16</td><td>0.49</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;with facts in the prompt</td><td></td><td></td><td></td><td>0.73</td><td>0.46</td><td>0.65</td><td>0.71</td><td>0.35</td><td>0.59</td></tr>
 </table></div>
-<p class="note">Measured alloys and crystals: mean over a model's replies. Thermo-Calc: mean ρ and median R² over targets. The rule is a rule of mixtures for alloys, 1 / volume per atom and Dulong–Petit for crystals, and the extrapolation from binary and ternary values for Thermo-Calc. R² resc.: after the best straight-line rescaling; it is the squared linear correlation, an upper bound on what a slope and offset can recover.</p>
+<p class="note">Measured alloys and crystals: mean over a model's replies. Thermo-Calc: mean ρ and median R² over targets. The rule is a rule of mixtures for alloys, 1 / volume per atom and Dulong–Petit for crystals, and the extrapolation from binary and ternary values for Thermo-Calc. R² resc.: after the best straight-line rescaling; it is the squared linear correlation. The 35th Thermo-Calc target, the α transus of titanium alloys, is counted only in the last rows. Crystal rows use every crystal of the task; later sections score generated crystals only, so their values differ, an upper bound on what a slope and offset can recover.</p>
 <figure class="wide plot">
 <img src="figures/fig_predictor.png" alt="Rank correlation between a written network and the target with no labels" loading="lazy">
 <figcaption>Rank correlation between a written network and the target with no labels. (a) Measured alloys and crystals, mean over a model's replies. (b) The 35 Thermo-Calc targets by kind; bars are means over targets, dots are single targets.</figcaption>
 </figure>
-<p>A written network gets the order right more often than the values. On measured alloys R² is 0.19 to 0.45 as written, where the rule of mixtures is far below zero. On Thermo-Calc solidus and freezing range the networks know the trend but not the absolute level (R² below zero as written, 0.60 and 0.42 after rescaling); with the sub-system facts in the prompt the level is right as written. A GP trained on a few hundred labels does better, so the written network is a zero-label predictor of trends, and its best use is as the mean of a surrogate that corrects scale and shape with the first labels.</p>
+<p>A written network gets the order right more often than the values. On measured alloys R² is 0.19 to 0.45 as written, where the rule of mixtures is below zero on four of the five tasks. On Thermo-Calc solidus and freezing range the networks know the trend but not the absolute level (R² below zero as written, 0.60 and 0.42 after rescaling); with the sub-system facts in the prompt R² as written rises to 0.70 and 0.50 (Opus). A GP trained on a few hundred labels does better, so the written network is a zero-label predictor of trends, and its best use is as the mean of a surrogate that corrects scale and shape with the first labels.</p>
 
 <h2>Measured alloys: can a written network rank them and speed up the search?</h2>
 
@@ -138,7 +138,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <span>Ti yield strength · Haiku 5.5</span><div class="track"><div class="fill" style="width:20%"></div></div><span class="v">0.20</span>
 <span>Ti yield strength · handbook rule</span><div class="track"><div class="fill ref" style="width:0%"></div></div><span class="v">−0.52</span>
 </div>
-<figcaption>Spearman ρ between the written network's output and the measured value, mean of three replies. Bars run from 0 to 1; negative values are printed, not drawn.</figcaption>
+<figcaption>Spearman ρ between the written network's output and the measured value, mean of three replies. Bars run from 0 to 1; negative values are printed, not drawn. These values are on each task's held-out half, so they differ by up to 0.03 from the table above, which uses every candidate.</figcaption>
 </figure>
 <p><b>How does it do it?</b> The replies are textbook metallurgy typed as weights. For titanium modulus, all three Fable replies build a beta-stabiliser score from the element fractions and pass it through a V-shaped curve: about 108 GPa for pure titanium, a minimum near 60 GPa where the beta phase is just retained, rising again beyond. Most hidden units are left at zero.</p>
 
@@ -147,7 +147,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <div class="setup"><ul>
 <li><b>Loop:</b> pool-based BO, 5 random starting labels, 25 steps, expected improvement, 20 seeds.</li>
 <li><b>Prior:</b> the written network m(x) enters the GP as the mean a·m(x)+b.</li>
-<li><b>Choosing among replies:</b> at each step use the reply most correlated with the labels so far; below 0.3, use none. We fixed this rule before running.</li>
+<li><b>Choosing among replies:</b> at each step use the reply most correlated with the labels so far; below 0.3, use none. The rule was committed before the 20-seed runs.</li>
 <li><b>Scoring:</b> area under the regret curve; paired Wilcoxon against the plain GP, Holm-corrected.</li>
 </ul></div>
 <div class="scroll wide"><table>
@@ -158,12 +158,12 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <tr><td>Alloy hardness, HV</td><td>226</td><td class="w">137</td><td class="w">120</td><td>247</td><td>259</td></tr>
 <tr><td>Alloy yield strength, MPa</td><td>772</td><td class="l">900</td><td class="l">966</td><td>735</td><td>641</td></tr>
 </table></div>
-<p class="note">Area under the regret curve, mean of 20 seeds, lower is better. Green: better than the plain GP at corrected p &lt; 0.05. Red: worse in 14 of 20 seeds (p = 0.03 and 0.02 before correction, not significant after).</p>
+<p class="note">Area under the regret curve, mean of 20 seeds, lower is better. Green: better than the plain GP at p &lt; 0.05, Holm-corrected within a task over six arms. Red: worse in 14 of 20 seeds (p = 0.03 and 0.02 before correction, not significant after).</p>
 <figure class="wide plot">
 <img src="figures/fig_bo.png" alt="Bayesian optimisation on the measured alloy tasks" loading="lazy">
 <figcaption>Bayesian optimisation on the measured alloy tasks. Regret is the gap between the best alloy in the pool and the best found; means over 20 seeds, bands are standard errors.</figcaption>
 </figure>
-<p>Opus priors help on four of five tasks. On titanium modulus the final regret falls from 5.6 to 1.6 GPa. <b>One task goes the wrong way:</b> on alloy yield strength the same networks that improved static ranking made the search worse. We have not found out why.</p>
+<p>Opus priors help on four of five tasks. On titanium modulus the final regret falls from 5.6 to 1.6 GPa. <b>One task goes the wrong way:</b> on alloy yield strength the same networks that improved static ranking made the search worse. A partial diagnosis: these networks carry no ranking inside the best tenth of that pool (ρ 0.02 and 0.00) and underpredict it by 1.3 to 1.5 standard deviations, and the best tenth is all an optimiser cares about.</p>
 
 
 <h2>Computed phase equilibria: how does it compare with thermodynamic data?</h2>
@@ -200,7 +200,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <img src="figures/net_steel_austenite_fraction.png" alt="Another: austenite fraction of steels at 1173 K, Opus 5" loading="lazy">
 <figcaption>Another: austenite fraction of steels at 1173 K, Opus 5.5, no data. It uses 14 hidden units to build a clipped ramp from an austenite potential.</figcaption>
 </figure>
-<p>Over all 35 targets the extrapolation ranks at 0.70, Opus at 0.67 and Fable at 0.64. The extrapolation is ahead where the target varies smoothly with composition. <b>The written networks are ahead on phase fractions</b>, which depend on whether a phase appears at all: a polynomial through sub-system points cannot place a phase boundary inside the multicomponent space. Given the sub-system values, the model matches or beats the extrapolation on every kind of target (0.73 overall). No predictor ranks the α transus of titanium alloys (ρ at most 0.30).</p>
+<p>Over all 35 targets the extrapolation ranks at 0.70, Opus at 0.67 and Fable at 0.64. The extrapolation is ahead where the target varies smoothly with composition. <b>The written networks are ahead on phase fractions</b>, which depend on whether a phase appears at all: a polynomial through sub-system points cannot place a phase boundary inside the multicomponent space. Given the sub-system values, Opus is within 0.02 of the extrapolation on solidus and freezing range and ahead on phase fractions (0.73 against 0.70 overall). No predictor ranks the α transus of titanium alloys (ρ at most 0.30).</p>
 
 <p class="label">Experiment 4</p>
 <h3>Does it help a Gaussian process and Bayesian optimisation on these targets?</h3>
@@ -213,12 +213,12 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <tr><td>Fable 5.2</td><td>0.62</td><td>0.73</td><td class="w">15 / 1</td><td>0.35</td></tr>
 <tr><td>Fable 5.2 + facts</td><td>0.68</td><td>0.74</td><td class="w">16 / 0</td><td>0.35</td></tr>
 </table></div>
-<p class="note">Ranking of held-out compositions, mean over 35 targets, slope and offset integrated out. BO: 5 starting labels, 25 steps, 20 seeds, Holm-corrected p &lt; 0.05; two targets on which the plain GP has zero regret are left out.</p>
+<p class="note">Ranking of held-out compositions, mean over 35 targets, slope and offset integrated out. BO: two-stage fit, 5 starting labels, 25 steps, 20 seeds, Holm-corrected p &lt; 0.05; two targets on which the plain GP has zero regret are left out.</p>
 <figure class="wide plot">
 <img src="figures/fig_fewlabels.png" alt="Ranking of held-out candidates against the number of labels, for a plain GP and for the same GP with a data-free predictor as its mean" loading="lazy">
 <figcaption>Ranking of held-out candidates against the number of labels, for a plain GP and for the same GP with a data-free predictor as its mean. (a) Measured alloys. (b) Thermo-Calc targets. (c) Crystal bulk modulus.</figcaption>
 </figure>
-<p>Every prior roughly doubles ranking at five labels; at 50 labels all arms are within 0.02. In the search, networks written with no data win on 16 of 33 targets and lose on none. The extrapolation, which uses computed data, wins on 18 with a lower median regret, and networks written with the same data in the prompt match its count. Most wins are on the solidus and the freezing range (14 of 18 for Opus). On phase fractions the plain GP usually finds a good composition within a few steps and there is little to gain. <b>One loss:</b> Fable without facts on the γ′ fraction of nickel superalloys, 1.82 times the plain GP's regret.</p>
+<p>Every prior raises ranking at five labels from 0.37 to 0.62–0.69; at 50 labels all arms are within 0.02. In the search, networks written with no data win on 16 of 33 targets and lose on none. The extrapolation, which uses computed data, wins on 18 with a lower median regret, and Opus with the same data in the prompt matches its count (18; Fable 16). Most wins are on the 18 solidus and freezing-range targets (Opus wins 14 of them). On phase fractions the plain GP usually finds a good composition within a few steps and there is little to gain. <b>One loss:</b> Fable without facts on the γ′ fraction of nickel superalloys, 1.82 times the plain GP's regret, with the two-stage fit only; with the joint fits no arm loses on any target.</p>
 
 <figure class="wide plot">
 <img src="figures/fig_bo_calphad.png" alt="Bayesian optimisation on the Thermo-Calc targets: area under the regret curve relative to the plain GP (left of the line is better), 20 seeds" loading="lazy">
@@ -243,8 +243,8 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <tr><td>Fable 5.2</td><td>0.93</td><td>0.93</td><td>0.92</td><td>0.90</td><td>0.90</td></tr>
 <tr><td>Haiku 5.5</td><td>0.66</td><td>0.66</td><td>0.70</td><td>0.79</td><td>0.89</td></tr>
 </table></div>
-<p class="note">Spearman ρ on the generated crystals. Green: best in the column.</p>
-<p>With five or ten labels the Opus and Fable networks beat the plain GP in all 18 cells and beat the volume rule. With no labels at all they rank better than the plain GP does with 500. <b>The gain is knowledge, not extra inputs:</b> handing the GP the raw descriptors makes it worse. From 20 labels on, the volume rule is as good or better. For heat capacity per gram the Dulong–Petit rule ranks perfectly and the networks only match it.</p>
+<p class="note">Spearman ρ on the generated crystals. The rule row is a two-stage fit; the model rows learn slope and offset with the kernel. With that joint fit the rule stays near the plain GP at few labels (0.18 at 5), because its raw scale is far from the target's. Green: best in the column.</p>
+<p>With five or ten labels the Opus and Fable networks beat the plain GP in all 18 cells (6 runs × 3 draws of the labels) and beat the volume rule. With no labels at all they rank better than the plain GP does with 500. <b>The gain is knowledge, not extra inputs:</b> adding the raw descriptors to the GP's inputs makes it worse from 10 labels on (0.52 against 0.82 at 20 labels); at 5 labels they help a little (0.30 against 0.15). From 20 labels on, the volume rule with a two-stage fit is as good or better (0.93 against 0.91 for Opus on the same fit). For heat capacity per gram the Dulong–Petit rule ranks perfectly and the networks only match it.</p>
 
 <p class="label">Experiment 6</p>
 <h3>Is the written hidden layer a useful set of features?</h3>
@@ -276,12 +276,12 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <tr><td>Best possible quarter</td><td></td><td>147</td><td></td></tr>
 </table></div>
 <p class="note">MatterGen samples.</p>
-<p>The written filter doubles the mean bulk modulus of what reaches the oracle and gets within 4 GPa of the best possible selection. It beats the network trained on real data, which does not transfer to generated crystals. <b>The margin over a one-line rule is small</b> (143 against 133 GPa), and for heat capacity per gram there is none: the Dulong-Petit rule already ranks perfectly.</p>
+<p>The written filter doubles the mean bulk modulus of what reaches the oracle and gets within 4 GPa of the best possible selection. It beats the network trained on real data, which does not transfer to generated crystals. <b>The margin over a one-line rule is small</b> (143 against 133 GPa in mean bulk modulus; the share of kept crystals above 150 GPa is the same, 0.36 to 0.38 against 0.38, with only 12 such crystals among the 128), and for heat capacity per gram there is none: the Dulong–Petit rule already ranks perfectly.</p>
 <figure class="wide plot">
 <img src="figures/fig_filter.png" alt="Scoring the samples of two crystal generators, bulk modulus, 128 samples of each base model" loading="lazy">
 <figcaption>Scoring the samples of two crystal generators, bulk modulus, 128 samples of each base model. (a) Rank correlation with the oracle. (b) Share of crystals above 150 GPa in the kept top quarter; dashed lines mark the share among all samples.</figcaption>
 </figure>
-<p><b>The same holds for a second generator.</b> On CrystalFlow samples Opus, Fable and Sonnet rank at ρ = 0.88 against 0.77 for the volume rule and 0.12 for the trained network. Keeping the top quarter raises the share of crystals above 150 GPa from 0.16 to 0.52–0.56 (volume rule 0.38), and half of them are found in 17 or 18 oracle calls instead of 59.</p>
+<p><b>The same holds for a second generator.</b> On CrystalFlow samples Opus, Fable and Sonnet rank at ρ = 0.88 against 0.77 for the volume rule and 0.12 for the trained network. Keeping the top quarter raises the share of crystals above 150 GPa from 0.16 to 0.52–0.56 (volume rule 0.38), and half of them are found in 17 or 18 oracle calls instead of 59 (volume rule: 28). The kept quarter averages 151 to 156 GPa against 168 for the best possible quarter, a wider gap than on MatterGen.</p>
 
 <p class="label">Experiment 8</p>
 <h3>Start, prior or mean: where does a written network belong in a Bayesian neural network?</h3>
@@ -304,23 +304,23 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <figcaption>Six ways to put a written network into a probabilistic surrogate, at 10 and 20 labels. Left: ranking. Right: share of held-out points inside the 95% interval.</figcaption>
 </figure>
 <p>The written network belongs in function space. As a prior mean it helps both surrogates it was tried with. As a starting point it helps an ensemble a little and only widens MC dropout's error bars. Centring HMC's weight prior on it is the worst option: the written networks use a few large units, and a tight prior around them pins everything else at zero. <b>Caveat:</b> the prior-mean versions are overconfident at this label count.</p>
-<p><b>Fix for the caveat.</b> The mean is a·m(x) + b, where m is the written network. Fitting a and b by least squares first and the GP second leaves their uncertainty out of the error bars. Putting the network inside one BoTorch model and integrating a and b out raises 95% coverage at 5 labels from 0.63 to 0.79, with ranking 0.68 against 0.64. Regret in the optimisation loop is unchanged (0.68 against 0.69 of the plain GP's).</p>
+<p><b>Fix for the caveat.</b> The mean is a·m(x) + b, where m is the written network. Fitting a and b by least squares first and the GP second leaves their uncertainty out of the error bars. Putting the network inside one BoTorch model and integrating a and b out raises 95% coverage at 5 labels from 0.63 to 0.79, with ranking 0.68 against 0.64. Regret in the optimisation loop is unchanged: 0.68 of the plain GP's regret area with the joint fit against 0.69 with the two-stage fit. At 10 and 20 labels coverage stays near the plain GP's 0.68 with either fit.</p>
 
 <h2>What we take from this</h2>
 <ul>
-<li><b>Ask a strong model for the weights, once per target.</b> It puts what it knows about a material class into a few hundred numbers. Opus and Fable wrote clearly better networks than Sonnet and Haiku.</li>
-<li><b>Use the network as the mean of the surrogate.</b> Fit its slope and offset jointly with the GP; with a two-stage fit the error bars at five labels are too narrow (coverage 0.63 to 0.74 instead of 0.79 to 0.98).</li>
+<li><b>Ask a strong model for the weights, once per target.</b> It puts what it knows about a material class into a few hundred numbers. Opus and Fable wrote better networks than Sonnet and Haiku on three of five alloy tasks and on crystals.</li>
+<li><b>Use the network as the mean of the surrogate.</b> Fit its slope and offset jointly with the GP for honest error bars: with a two-stage fit they are too narrow at five labels (coverage 0.63 to 0.74 instead of 0.79 to 0.98). BO regret is the same either way.</li>
 <li><b>Give the model whatever sub-system data exists.</b> With binary and ternary values in the prompt it matched an extrapolation from the same values.</li>
-<li><b>Keep a simple rule alongside.</b> For heat capacity, and for the solidus of most alloy families, a rule that uses no labels is as good or better.</li>
+<li><b>Keep a simple rule alongside.</b> For heat capacity the Dulong–Petit rule, and for the solidus of most alloy families the extrapolation from computed binary and ternary values, is as good or better.</li>
 <li><b>Expect the gain early.</b> It is largest at 5 to 20 labels and gone at a few hundred.</li>
-<li><b>It can fail.</b> On the yield strength of multi-principal-element alloys the networks rank the pool well (ρ = 0.69) and still make the search worse in 14 of 20 seeds.</li>
+<li><b>It can fail.</b> On the yield strength of multi-principal-element alloys the networks rank the pool well (ρ = 0.69) and still make the search worse in 14 of 20 seeds (not significant after correction).</li>
 </ul>
 
 <h2>Limits</h2>
-<p>One vendor's models. One network size and one prompt wording. The measured alloy sets are public and may be partly recalled; the Thermo-Calc targets were computed for this study, but the underlying assessments are built from the literature. Fixed candidate pools of 150 to 722. Crystal targets come from a machine-learned potential.</p>
+<p>One vendor's models. One network size and one prompt wording. The measured alloy sets are public and may be partly recalled; the Thermo-Calc targets were computed for this study, but the underlying assessments are built from the literature. Fixed candidate pools of 152 to 722. Crystal targets come from a machine-learned potential.</p>
 
 <h2>Logs and code</h2>
-<p>Every prompt, raw reply, model id, token count and score is in the repository, with the command behind each number in <code>REPRODUCE.md</code>. The repository is private until the paper is released.</p>
+<p>Every prompt, raw reply, model id, output-token count and score is in the repository, with the command behind each number in <code>REPRODUCE.md</code>. The repository is private until the paper is released.</p>
 
 <h2>Supplementary: the other verbs, reading and editing</h2>
 <p>We also tested reading and editing weights that were trained elsewhere, and weight arithmetic with no language model. These were less successful and are kept here for the record.</p>
@@ -342,7 +342,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <tr><td>Sonnet 5.5</td><td>1 of 11</td><td>0 of 6</td><td>1 of 5</td></tr>
 <tr><td>Haiku 5.5</td><td>1 of 11</td><td>1 of 6</td><td>0 of 5</td></tr>
 </table></div>
-<p>The strong models do real arithmetic on the weights: they trace first-layer units through the next two layers by hand. That is exactly the statistic, and they score what it scores. On the bulk-modulus networks one legitimate embedding component dominates, and the models silence it. <b>A wrong repair is worse than none:</b> Fable's edits lower mean test R² from 0.35 to 0.21 and Opus's to 0.14, and one of its wrong answers was stated at 85% confidence.</p>
+<p>The strong models do real arithmetic on the weights: they trace first-layer units through the next two layers by hand. That is exactly the statistic: Fable scores what it scores and Opus one fewer. On the bulk-modulus networks one legitimate embedding component dominates, and the models silence it. <b>A wrong repair is worse than none:</b> Fable's edits lower mean test R² from 0.35 to 0.21 and Opus's to 0.14, and one of Fable's wrong answers was stated at 85% confidence.</p>
 
 <p class="label">Supplementary experiment S2</p>
 <h3>Can a model edit a trained surrogate to stop it underpredicting the best candidates?</h3>
@@ -366,13 +366,13 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <tr><td>eSEN-30M-OAM</td><td>10.3 (+5.8)</td><td>not run</td><td>9.9 to 10.0</td><td>10.0</td><td>10.0 at 2.4 meV</td></tr>
 <tr><td>GRACE-2L-OAM</td><td>8.6 (+2.3)</td><td>not run</td><td>8.54 to 8.56</td><td>8.48 to 8.51</td><td>8.45 at 4.6 meV</td></tr>
 </table></div>
-<p class="note">Test half, Opus 5.5 and Fable 5.2, two chains each. Six of the sixteen chosen edits sit at 5.2 meV per atom on the test half, just above the limit enforced on the training half. Sonnet and Haiku broke the limit by 20 to 50 times in the one-reply test.</p>
+<p class="note">Test half, Opus 5.5 and Fable 5.2, two chains each. Six of the sixteen chosen edits sit at 5.0 to 5.2 meV per atom on the test half, just above the limit enforced on the training half. Sonnet and Haiku broke the limit by 20 to 50 times in the one-reply test.</p>
 <figure class="wide plot">
 <img src="figures/figS_mlip.png" alt="Edits of the last readout layer on the test half" loading="lazy">
 <figcaption>Edits of the last readout layer on the test half. Down is better; edits right of the dotted line break the energy limit.</figcaption>
 </figure>
 <p><b>One reply is arithmetic on our table.</b> We permuted the weight values and left the table correct; the edits were just as good, and Opus remarked that the values looked shuffled. In an earlier MACE prompt our table was computed at fixed volume and had the wrong sign for many weights; every reply then made the error worse.</p>
-<p><b>Five measured replies are a good optimiser.</b> After each attempt we applied the edit, measured it on 200 crystals and showed the result. On ORB-v3 the chains land on the curve of a gradient fit that has exact gradients and no budget, and ahead of an evolution strategy with 100 times the evaluations. The first attempt usually broke the energy limit; the next ones scaled back and rebalanced.</p>
+<p><b>Five measured replies are a good optimiser.</b> After each attempt we applied the edit, measured it on 200 crystals and showed the result. On ORB-v3 Fable's chains land on the curve of a gradient fit (Opus's are about 0.3 GPa above it) that has exact gradients and no budget, and ahead of an evolution strategy with 100 times the evaluations. The first attempt usually broke the energy limit; the next ones scaled back and rebalanced.</p>
 <p><b>The layer sets the ceiling.</b> On eSEN and GRACE even the gradient fit moves the error by 0.1 to 0.3 GPa. And for bulk modulus there is a cheaper fix that touches no weight: refitting a slope and offset on ten DFT labels takes ORB from 13.0 to 11.4 GPa, and the plain mean of the four potentials reaches 7.9.</p>
 
 
@@ -402,7 +402,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <div class="setup"><ul>
 <li><b>Runs:</b> MatterGen fine-tuned by reinforcement learning toward bulk modulus or heat capacity, five seeds each.</li>
 <li><b>Task vector:</b> fine-tuned weights minus base weights. It is 0.4 to 0.6% of the base weights' norm.</li>
-<li><b>Variants:</b> eleven combinations, 128 crystals each from the same noise seed, scored with the same oracle.</li>
+<li><b>Variants:</b> ten variants and the base model, 128 crystals each from the same noise seed, scored with the same oracle.</li>
 </ul></div>
 <figure class="wide">
 <div class="chart">
@@ -416,8 +416,8 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 </div>
 <figcaption>Mean bulk modulus of 128 sampled crystals, GPa. Bars run from 0 to 200. All differences from the base except the subtraction are significant after Holm correction (p ≤ 0.0015).</figcaption>
 </figure>
-<p>Averaging five seeds beats any single run with a smaller change to the weights. Scaling that average by three puts 35% of samples above 200 GPa, against 2% for the base, with no further training and no oracle calls. Rank 8 per weight matrix keeps +20 of +23 GPa, so an adapter-sized update carries what the full fine-tune learned. No language model is involved.</p>
-<p class="note">One backbone, one sampling seed, no stability filter, a machine-learned oracle. Heat-capacity effects were not significant at this sample size.</p>
+<p>The five-seed average gave a higher mean than the one single run that was sampled (108 against 94.7 GPa; the difference was not tested). Scaling that average by three puts 35% of samples above 200 GPa, against 2% for the base, with no further training and no oracle calls. Rank 8 per weight matrix keeps +20 of +23 GPa, so an adapter-sized update carries what the full fine-tune learned. No language model is involved.</p>
+<p class="note">One backbone, one sampling seed, no stability filter, a machine-learned oracle. The heat-capacity task vectors did not move heat capacity significantly (Holm p ≥ 0.11); the tripled bulk-modulus vector lowered it (0.263 to 0.200 J/g/K, p = 0.0007).</p>
 <p><b>It did not carry over to CrystalFlow.</b> With the same ten variants, the five-seed mean moves the mean bulk modulus of the samples from 90.1 to 91.4 GPa and three times the mean to 97.5 GPa; neither change is significant.</p>
 
 <h2>Citation</h2>

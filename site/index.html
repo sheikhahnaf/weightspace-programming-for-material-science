@@ -120,7 +120,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <div class="setup"><ul>
 <li><b>Network:</b> element fractions → 16 ReLU units → 1 output, 273 to 417 weights, all zero in the prompt.</li>
 <li><b>Tasks:</b> yield strength and hardness of multi-principal-element alloys; Young's modulus, yield strength and hardness of titanium alloys. Measured data, 152 to 722 alloys each.</li>
-<li><b>The model gets:</b> the input names, the target and its unit. No data.</li>
+<li><b>The model gets:</b> the input names, the target and its unit, the name of the published dataset and the number of alloys. No labelled example.</li>
 <li><b>Runs:</b> 4 models × 5 tasks × 3 replies. 3 of 60 replies were malformed.</li>
 <li><b>Reference:</b> a rule of mixtures from tabulated elemental properties, no language model.</li>
 </ul></div>
@@ -200,7 +200,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <img src="figures/net_steel_austenite_fraction.png" alt="Another: austenite fraction of steels at 1173 K, Opus 5" loading="lazy">
 <figcaption>Another: austenite fraction of steels at 1173 K, Opus 5.5, no data. It uses 14 hidden units to build a clipped ramp from an austenite potential.</figcaption>
 </figure>
-<p>Over all 35 targets the extrapolation ranks at 0.70, Opus at 0.67 and Fable at 0.64. The extrapolation is ahead where the target varies smoothly with composition. <b>The written networks are ahead on phase fractions</b>, which depend on whether a phase appears at all: a polynomial through sub-system points cannot place a phase boundary inside the multicomponent space. Given the sub-system values, Opus is within 0.02 of the extrapolation on solidus and freezing range and ahead on phase fractions (0.73 against 0.70 overall). No predictor ranks the α transus of titanium alloys (ρ at most 0.30).</p>
+<p>Over all 35 targets the extrapolation ranks at 0.70, Opus at 0.67 and Fable at 0.64. The extrapolation is ahead where the target varies smoothly with composition. <b>The written networks are ahead on phase fractions on average</b> (Opus on 7 of the 16 targets, Fable on 9), which depend on whether a phase appears at all: a polynomial through sub-system points cannot place a phase boundary inside the multicomponent space. Given the sub-system values, Opus is within 0.02 of the extrapolation on solidus and freezing range and ahead on phase fractions (0.73 against 0.70 overall). Two targets defeat every predictor: the freezing range of the Co–Cr–Cu–Fe–Ni–Ti family (ρ at most 0.21) and the α transus of titanium alloys (ρ at most 0.30).</p>
 
 <p class="label">Experiment 4</p>
 <h3>Does it help a Gaussian process and Bayesian optimisation on these targets?</h3>
@@ -305,6 +305,19 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 </figure>
 <p>The written network belongs in function space. As a prior mean it helps both surrogates it was tried with. As a starting point it helps an ensemble a little and only widens MC dropout's error bars. Centring HMC's weight prior on it is the worst option: the written networks use a few large units, and a tight prior around them pins everything else at zero. <b>Caveat:</b> the prior-mean versions are overconfident at this label count.</p>
 <p><b>Fix for the caveat.</b> The mean is a·m(x) + b, where m is the written network. Fitting a and b by least squares first and the GP second leaves their uncertainty out of the error bars. Putting the network inside one BoTorch model and integrating a and b out raises 95% coverage at 5 labels from 0.63 to 0.79, with ranking 0.68 against 0.64. Regret in the optimisation loop is unchanged: 0.68 of the plain GP's regret area with the joint fit against 0.69 with the two-stage fit. At 10 and 20 labels coverage stays near the plain GP's 0.68 with either fit.</p>
+
+<p class="label">Experiment 9</p>
+<h3>Are 16 hidden units too few?</h3>
+<p>The original weight-space programming work wrote networks of about 20,500 weights; ours have 113 to 417. On four tasks we asked Opus 5.5 for larger networks: one hidden layer of 64 units, or two layers of 32 (577 to 1,825 weights), two replies each.</p>
+<div class="scroll wide"><table>
+<tr><th>Task</th><th>16 units: ρ</th><th>64 units: ρ</th><th>32 + 32 units: ρ</th><th>Units used of 64</th></tr>
+<tr><td>Alloy hardness</td><td>0.79</td><td>0.76</td><td>0.78</td><td>9.5</td></tr>
+<tr><td>Ti alloy yield strength</td><td>0.69</td><td>0.64</td><td>0.69</td><td>28</td></tr>
+<tr><td>Ni superalloy solidus</td><td>0.84</td><td>0.85</td><td>0.82</td><td>3.0</td></tr>
+<tr><td>Steel austenite fraction</td><td>0.76</td><td>0.80</td><td>0.82</td><td>5.5</td></tr>
+</table></div>
+<p class="note">Spearman ρ with no labels, mean over valid replies. One of the 16 larger replies was malformed.</p>
+<p>Larger networks ranked no better on three tasks and slightly better on one, and the model left most of the extra units unused. Sixteen units is enough for these tasks.</p>
 
 <h2>What we take from this</h2>
 <ul>

@@ -1,1 +1,4 @@
 {"tag": "Mo0.2500Nb0.2500Ta0.0500Ti0.2500Zr0.2000|eq|1970.05", "limit_s": 45.0, "date": "2026-11-12", "procedure": 2}
+{"tag": "TCTI6:Al0.0300Mo0.0600Nb0.1200Sn0.0400Ti0.6800V0.0300Zr0.0400|fixed1|2241.00", "limit_s": 45.0, "date": "2026-11-12", "procedure": 2}
+{"tag": "Hf0.0500Mo0.2000Nb0.2500Ta0.2500Ti0.1000Zr0.1500|eq|2601.45", "limit_s": 45.0, "date": "2026-11-12", "procedure": 2}
+{"tag": "Co0.2000Cu0.1500Fe0.1500Ni0.3500Ti0.1500|eq|1173.00", "limit_s": 45.0, "date": "2026-11-12", "procedure": 2}

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I treated the +2.3 GPa mean bias as the correctable part. To cut it, I chose weights with the smallest ratio of energy spread across crystals (dE sd) to bulk-modulus effect (|dK mean|). These were 16 negative-weight features (ratio about 0.0042-0.0045 eV/GPa), whose magnitudes I shrank so that each lowers K by about 0.11 GPa. I also used w[126] and four near-dead features (64, 102, 59, 45), with changes capped at about 0.1 to limit risk on new crystals. That gives a planned total of about -2.3 GPa. I set b to cancel the exactly known mean energy shift (+0.23 meV/atom). The energy mean absolute change I expect is about 2-4 meV/atom, but it could exceed 5 meV if the features' energies are strongly correlated across crystals; this attempt also serves to calibrate the scale. I am about 55% confident that it lowers the MAE while staying within the energy limit.

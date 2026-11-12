@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I ranked the weights by bulk-modulus change per unit of energy spread (|dK mean| / dE sd) and found that the near-zero "dead" weights 64, 102, 59 and 45 move the bulk modulus 300 to 800 GPa per eV of energy spread, against about 230 for the large weights. I moved those four (+0.8, -0.8, -0.6, +0.5) for a predicted mean bulk-modulus change of about -2.3 GPa, which cancels the mean error, with a worst-case energy spread of about 4 meV per atom (about 2 meV if the four are uncorrelated), and raised b by 0.00053 to cancel the predicted mean energy shift of -0.33 meV per atom. The main risks are that the sensitivities were measured at steps of 0.002 and I am extrapolating to steps of order 1, and that the per-crystal spread of dK for these weights is as large as its mean, so the edit removes bias but not scatter. Confidence that the mean absolute error drops while staying inside the energy limit: about 55%.

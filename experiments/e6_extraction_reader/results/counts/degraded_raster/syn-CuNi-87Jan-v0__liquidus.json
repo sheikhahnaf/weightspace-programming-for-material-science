@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuNi-87Jan-v0",
+ "table": "liquidus",
+ "rendering": "degraded_raster",
+ "edit": "counts",
+ "replies": [
+  "<table border=\"1\"><tr><td>at.% Ni</td><td>T liquidus / K</td><td>T solidus / K</td></tr><tr><td>20</td><td>1464.4</td><td>1433.5</td></tr><tr><td>40</td><td>1550.7</td><td>1501.7</td></tr><tr><td>60</td><td>1619.1</td><td>1572.5</td></tr><tr><td>80</td><td>1675.6</td><td>1655.0</td></tr></table>"
+ ]
+}

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I checked that the earlier attempts behave linearly: the predicted bulk-modulus shifts (sum of dw times dK mean) matched the measured shifts for attempts 2 and 3. Attempt 2's energy MAE also matched the spread expected if the 20 large negative-weight dimensions were almost perfectly correlated. So this reply has two parts. The first is attempt 3's dead-dimension edit scaled to 0.15, which by linearity costs exactly 0.15 x 17.55 = 2.6 meV. The second is a long-short edit within the 20 large negative weights: weights with a high ratio of bulk-modulus effect to energy spread (188, 254, 161, 77, 38) are made more negative, and low-ratio ones (90, 49, 135, 139, 84) are made less negative, with the sd-weighted exposures balanced so that the shared energy mode cancels. b is adjusted to cancel the mean energy shift. Predicted mean bulk-modulus shift is about +1.15 GPa. I am about 55% confident it stays within 5 meV, because that depends on how strongly the large dimensions' energies are correlated.

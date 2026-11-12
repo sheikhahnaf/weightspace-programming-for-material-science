@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-BiSn-08Li-v0",
+ "table": "mixing",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>x(Sn)</td><td>ΔmixH/kJmol-1</td><td>ΔmixG/kJmol-1</td><td>a(Bi)</td><td>a(Sn)</td><td>ΔH(Bi)/kJmol-1</td><td>ΔH(Sn)/kJmol-1</td></tr><tr><td>0.100</td><td>0.02</td><td>-1.67</td><td>0.9001</td><td>0.1165</td><td>0.00</td><td>0.21</td></tr><tr><td>0.200</td><td>0.04</td><td>-2.54</td><td>0.8015</td><td>0.2309</td><td>-0.01</td><td>0.24</td></tr><tr><td>0.300</td><td>0.07</td><td>-3.07</td><td>0.7052</td><td>0.3408</td><td>-0.01</td><td>0.25</td></tr><tr><td>0.400</td><td>0.09</td><td>-3.35</td><td>0.6114</td><td>0.4449</td><td>0.00</td><td>0.22</td></tr><tr><td>0.500</td><td>0.11</td><td>-3.42</td><td>0.5195</td><td>0.5432</td><td>0.04</td><td>0.18</td></tr><tr><td>0.600</td><td>0.12</td><td>-3.30</td><td>0.4281</td><td>0.6363</td><td>0.09</td><td>0.14</td></tr><tr><td>0.700</td><td>0.12</td><td>-2.99</td><td>0.3349</td><td>0.7258</td><td>0.19</td><td>0.09</td></tr><tr><td>0.800</td><td>0.10</td><td>-2.45</td><td>0.2362</td><td>0.8142</td><td>0.32</td><td>0.04</td></tr><tr><td>0.900</td><td>0.06</td><td>-1.60</td><td>0.1271</td><td>0.9043</td><td>0.50</td><td>0.01</td></tr></table>"
+ ]
+}

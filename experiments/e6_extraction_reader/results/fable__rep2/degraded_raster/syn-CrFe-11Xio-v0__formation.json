@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CrFe-11Xio-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"3\">298.15 K, per mole of atoms</td></tr><tr><td>Phase</td><td>at.% Fe</td><td>ΔfH / J mol-1</td><td>ΔfS / J mol-1 K-1</td><td>Cp / J mol-1 K-1</td></tr><tr><td>σa</td><td>52.0</td><td>5889 ± 1000</td><td>9.10</td><td>24.12</td></tr></table>"
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuMg-16Hal-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td>x(Mg)</td><td>ΔmixH/kJmol-1</td><td>ΔmixG/kJmol-1</td><td>a(Cu)</td><td>a(Mg)</td></tr><tr><td>0.100</td><td>-3.92</td><td>-7.22</td><td>0.8625</td><td>0.0095</td></tr><tr><td>0.300</td><td>-8.45</td><td>-14.37</td><td>0.5010</td><td>0.0944</td></tr><tr><td>0.500</td><td>-9.24</td><td>-15.88</td><td>0.2261</td><td>0.3175</td></tr><tr><td>0.700</td><td>-7.07</td><td>-12.99</td><td>0.0826</td><td>0.6242</td></tr><tr><td>0.900</td><td>-2.74</td><td>-6.04</td><td>0.0184</td><td>0.8934</td></tr></table>"
+ ]
+}

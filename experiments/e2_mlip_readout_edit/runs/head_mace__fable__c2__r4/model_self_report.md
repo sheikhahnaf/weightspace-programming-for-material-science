@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> From attempts 1 and 2 I worked out by hand that my earlier edits were delta_j = -c * dK_j / sdE_j^2 with b cancelling the mean energy shift, that the linear table predicted the bulk-modulus shift well (-2.59 predicted, -2.62 measured), but that the energy scatter was about twice what independent features would give. This attempt tests the guess that the extra scatter follows the net mean energy shift of the w edits (a common factor across features): I solved, by mental arithmetic over all 128 weights, the minimum-scatter edit delta_j = -7.06e-6 * (dK_j + 43.95 * dE_j) / sdE_j^2, which targets a mean bulk-modulus shift of about -2.3 GPa while the summed mean energy shift of the w edits is zero (my check sum gave +0.02 meV), so b stays 0. I am roughly 40% confident it lands within the 5 meV limit with a mean absolute error below the 14.24 GPa of attempt 2; if it fails, the measured energy change tells me how to rescale for attempt 5.

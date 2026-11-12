@@ -56,12 +56,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <main>
 <p class="label" style="margin-top:0">Private draft · not for distribution until the paper is out</p>
 <h1>Weight-space programming for materials science: what works, what does not</h1>
-<p class="meta">Sk Md Ahnaf Akif Alvi · Texas A&amp;M University · Draft of 11 November 2026</p>
+<p class="meta">Sk Md Ahnaf Akif Alvi and Raymundo Arróyave · Texas A&amp;M University · Draft of 11 November 2026</p>
 
 <div class="tldr">
 <p><b>TL;DR.</b> Weight-space programming means a language model reads, writes or edits another network's weights with no gradient descent. We tested it on the three learned parts of a Bayesian materials-discovery pipeline: the surrogate, the interatomic potential and the crystal generator.</p>
 <p><b>Writing works.</b> A 16-unit network written from metallurgy alone, used as a Gaussian-process prior, makes Bayesian optimisation better on four of five alloy tasks.</p>
 <p><b>Reading does not.</b> Asked to find a planted leak in a trained network, the best model ties a one-line weight statistic.</p>
+<p><b>Editing works only with measurement.</b> One edit of a potential's readout is small and comes from the table we supply. Five edits, each measured and shown back, match a gradient fit on ORB-v3 and beat an evolution strategy given 100 times the evaluations.</p>
 <p><b>The generator needs no language model.</b> Averaging and scaling the weight changes of reinforcement-learning runs moves MatterGen's samples from 72 to 172 GPa mean bulk modulus.</p>
 </div>
 
@@ -72,7 +73,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 </div>
 
 <p>The idea comes from <a href="https://rikiyat.github.io/blog/weight-space-programming/">Takehi, Teoh, Zhang and Khattab</a>, who showed a frontier model interpreting, repairing and writing small policy networks and editing a language model. Every network in that work and its follow-ups is a classifier, a policy or a language model. Materials discovery runs on regressors with error bars, equivariant potentials and diffusion models, and labels cost a DFT calculation each. We asked where the idea fits there.</p>
-<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. We audited every transcript: all 150 runs used only the two file operations they were allowed. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5.</p>
+<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. We audited every transcript: all 249 runs used only the file operations they were allowed. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5.</p>
 
 <h2>Can a language model write a useful surrogate from what it knows?</h2>
 
@@ -122,6 +123,24 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <p class="note">Area under the regret curve, mean of 20 seeds, lower is better. Green: better than the plain GP at corrected p &lt; 0.05. Red: worse in 14 of 20 seeds (p = 0.03 and 0.02 before correction, not significant after).</p>
 <p>Opus priors help on four of five tasks. On titanium modulus the final regret falls from 5.6 to 1.6 GPa. <b>One task goes the wrong way:</b> on alloy yield strength the same networks that improved static ranking made the search worse. We have not found out why.</p>
 
+<p class="label">Experiment 2b</p>
+<h3>Start, prior or mean: where does a written network belong in a Bayesian neural network?</h3>
+<div class="setup"><ul>
+<li><b>Surrogates:</b> a GP, MC dropout, a deep ensemble and Hamiltonian Monte Carlo.</li>
+<li><b>Three uses of the written network:</b> as the prior mean, as the starting weights, as the centre of the prior over weights.</li>
+<li><b>Data:</b> the five alloy tasks and 10,973 Matbench crystals, at 10 and 20 labels, five seeds.</li>
+</ul></div>
+<div class="scroll wide"><table>
+<tr><th>Use</th><th>Ranking ρ without → with</th><th>Cells improved, of 24</th><th>95% interval coverage without → with</th></tr>
+<tr><td>GP, prior mean</td><td class="w">0.53 → 0.69</td><td>23</td><td>0.71 → 0.66</td></tr>
+<tr><td>MC dropout, prior mean</td><td class="w">0.54 → 0.65</td><td>22</td><td>0.45 → 0.39</td></tr>
+<tr><td>Deep ensemble, start</td><td>0.50 → 0.57</td><td>19</td><td>0.60 → 0.71</td></tr>
+<tr><td>MC dropout, start</td><td>0.54 → 0.54</td><td>12</td><td>0.45 → 0.88</td></tr>
+<tr><td>HMC, start</td><td>0.45 → 0.40</td><td>2</td><td>0.94 → 0.93</td></tr>
+<tr><td>HMC, weight prior</td><td class="l">0.45 → 0.21</td><td>0</td><td>0.94 → 0.90</td></tr>
+</table></div>
+<p>The written network belongs in function space. As a prior mean it helps both surrogates it was tried with. As a starting point it helps an ensemble a little and only widens MC dropout's error bars. Centring HMC's weight prior on it is the worst option: the written networks use a few large units, and a tight prior around them pins everything else at zero. <b>Caveat:</b> the prior-mean versions are overconfident at this label count.</p>
+
 <h2>Can a language model read weights that were trained?</h2>
 
 <p class="label">Experiment 3</p>
@@ -136,11 +155,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <tr><th>Method</th><th>Leak found</th><th>Bulk-modulus networks</th><th>Heat-capacity networks</th></tr>
 <tr><td>Linear gain statistic</td><td>6 of 11</td><td>1 of 6</td><td>5 of 5</td></tr>
 <tr><td>Fable 5.2</td><td>6 of 11</td><td>1 of 6</td><td>5 of 5</td></tr>
-<tr><td>Opus 5.5 (10 of 11 runs back)</td><td>5 of 10</td><td>0 of 5</td><td>5 of 5</td></tr>
+<tr><td>Opus 5.5</td><td>5 of 11</td><td>0 of 6</td><td>5 of 5</td></tr>
 <tr><td>Sonnet 5.5</td><td>1 of 11</td><td>0 of 6</td><td>1 of 5</td></tr>
 <tr><td>Haiku 5.5</td><td>1 of 11</td><td>1 of 6</td><td>0 of 5</td></tr>
 </table></div>
-<p>The strong models do real arithmetic on the weights: they trace first-layer units through the next two layers by hand. That is exactly the statistic, and they score what it scores. On the bulk-modulus networks one legitimate embedding component dominates, and the models silence it. <b>A wrong repair is worse than none:</b> Fable's edits lower mean test R² from 0.35 to 0.21, and one of its wrong answers was stated at 85% confidence.</p>
+<p>The strong models do real arithmetic on the weights: they trace first-layer units through the next two layers by hand. That is exactly the statistic, and they score what it scores. On the bulk-modulus networks one legitimate embedding component dominates, and the models silence it. <b>A wrong repair is worse than none:</b> Fable's edits lower mean test R² from 0.35 to 0.21 and Opus's to 0.14, and one of its wrong answers was stated at 85% confidence.</p>
 
 <p class="label">Experiment 4</p>
 <h3>Can a model edit a trained surrogate to stop it underpredicting the best candidates?</h3>
@@ -149,28 +168,25 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <h2>Can a language model correct an interatomic potential?</h2>
 
 <p class="label">Experiment 5</p>
-<h3>Can a model edit MACE's readout to fix its bulk moduli without moving energies?</h3>
+<h3>Can a model edit a potential's readout to fix its bulk moduli without moving energies?</h3>
 <div class="setup"><ul>
-<li><b>Potential:</b> MACE-MPA-0 medium, 9,063,204 weights. Editable: the 2,283 scalar readout numbers, which act after the equivariant layers.</li>
-<li><b>Fault:</b> bulk modulus 6.4 GPa too high on 400 Materials Project structures, mean absolute error 16.2 GPa.</li>
+<li><b>Potentials:</b> MACE-MPA-0, ORB-v3, eSEN-30M-OAM and GRACE-2L-OAM, 9 to 30 million weights each.</li>
+<li><b>Editable:</b> the last layer of the energy readout, 64 to 256 numbers. The energy is linear in it, so an edit is scored exactly.</li>
+<li><b>Fault:</b> bulk modulus against DFT on 400 Materials Project crystals; half shown as errors, half held out.</li>
 <li><b>Constraint:</b> energies may move by at most 5 meV per atom.</li>
-<li><b>The model gets:</b> the formulas, every number, and a table of each weight's measured effect on bulk modulus and on energy.</li>
-<li><b>Scoring:</b> exact. We cached what the readout sees, so an edited readout reproduces MACE to 10⁻¹⁴ eV.</li>
+<li><b>The model gets:</b> the numbers, the error summary, and a table of each weight's measured effect on bulk modulus and on energy.</li>
 </ul></div>
 <div class="scroll wide"><table>
-<tr><th>Method</th><th>Weights changed</th><th>MAE, GPa</th><th>Bias, GPa</th><th>Energy change, meV/atom</th></tr>
-<tr><td>Unedited</td><td>0</td><td>16.2</td><td>+6.4</td><td>0</td></tr>
-<tr><td>Opus 5.5, three replies</td><td>7 to 14</td><td>15.8 to 15.9</td><td>+4.8 to +4.9</td><td>3.8 to 4.3</td></tr>
-<tr><td>Fable 5.2, three replies</td><td>23 to 31</td><td>15.8</td><td>+4.5 to +4.6</td><td>5.2 to 6.0</td></tr>
-<tr><td>Haiku 5.5, three replies</td><td>2</td><td>15.5 to 16.0</td><td>+1.7 to +3.9</td><td class="l">14.9 to 33.3</td></tr>
-<tr><td>Gradient fit, energy-penalised</td><td>2,193</td><td>14.4</td><td>+1.4</td><td>2.9</td></tr>
+<tr><th>Potential</th><th>As shipped: MAE, GPa (bias)</th><th>One reply</th><th>Five measured replies</th><th>Evolution strategy, 500 evaluations</th><th>Gradient fit near the limit</th></tr>
+<tr><td>ORB-v3</td><td>13.4 (−6.0)</td><td>12.9 to 13.0</td><td class="w">11.7 to 12.3</td><td>12.7 to 12.8</td><td>12.4 at 3.5 meV; 11.3 at 7.9</td></tr>
+<tr><td>MACE-MPA-0</td><td>16.2 (+6.4)</td><td>15.8 to 15.9</td><td>15.75 to 15.82</td><td>15.84 to 15.93</td><td>15.4 at 5.5 meV</td></tr>
+<tr><td>eSEN-30M-OAM</td><td>10.3 (+5.8)</td><td>not run</td><td>9.9 to 10.0</td><td>10.0</td><td>10.0 at 2.4 meV</td></tr>
+<tr><td>GRACE-2L-OAM</td><td>8.6 (+2.3)</td><td>not run</td><td>8.54 to 8.56</td><td>8.48 to 8.51</td><td>8.45 at 4.6 meV</td></tr>
 </table></div>
-<p>Opus stays inside the energy budget and removes a quarter of the bias with about ten weights. A gradient fit does better at the same budget. Two further facts matter more than the ranking.</p>
-<ul>
-<li><b>The first version of this experiment failed because of our table.</b> We had computed each weight's effect at fixed volume. An edit shifts the equilibrium volume, and that column had the right sign for only 9 of 16 weights we checked. Every model made the error worse. With the corrected table they succeed. The model was solving a linear problem on our table by hand; it was not reading the potential.</li>
-<li><b>The physics result stands without any language model.</b> Fitting the readout freely reaches 12.2 GPa but moves energies by 125 meV per atom. MACE's bulk-modulus error lives in the message-passing layers.</li>
-</ul>
-<p class="note">ORB-v3, eSEN and GRACE are being run through the same test. ORB-v3's energy head has 66,167 weights.</p>
+<p class="note">Test half, Opus 5.5 and Fable 5.2, two chains each. Six of the sixteen chosen edits sit at 5.2 meV per atom on the test half, just above the limit enforced on the training half. Sonnet and Haiku broke the limit by 20 to 50 times in the one-reply test.</p>
+<p><b>One reply is arithmetic on our table.</b> We permuted the weight values and left the table correct; the edits were just as good, and Opus remarked that the values looked shuffled. In an earlier MACE prompt our table was computed at fixed volume and had the wrong sign for many weights; every reply then made the error worse.</p>
+<p><b>Five measured replies are a good optimiser.</b> After each attempt we applied the edit, measured it on 200 crystals and showed the result. On ORB-v3 the chains land on the curve of a gradient fit that has exact gradients and no budget, and ahead of an evolution strategy with 100 times the evaluations. The first attempt usually broke the energy limit; the next ones scaled back and rebalanced.</p>
+<p><b>The layer sets the ceiling.</b> On eSEN and GRACE even the gradient fit moves the error by 0.1 to 0.3 GPa. And for bulk modulus there is a cheaper fix that touches no weight: refitting a slope and offset on ten DFT labels takes ORB from 13.0 to 11.4 GPa, and the plain mean of the four potentials reaches 7.9.</p>
 
 <h2>Can weights steer a crystal generator?</h2>
 
@@ -185,6 +201,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <div class="scroll wide"><table>
 <tr><th>Scorer</th><th>ρ with the oracle</th><th>Mean of kept quarter, GPa</th><th>Oracle calls to find half the crystals above 150 GPa</th></tr>
 <tr><td>No filter</td><td></td><td>71.6</td><td>60</td></tr>
+<tr><td>Opus 5.5, two replies scored</td><td>0.94</td><td>144</td><td>6</td></tr>
 <tr><td>Fable 5.2, three replies</td><td>0.88</td><td>143</td><td>7</td></tr>
 <tr><td>Sonnet 5.5, three replies</td><td>0.80</td><td>143</td><td>7</td></tr>
 <tr><td>Haiku 5.5, three replies</td><td>0.73</td><td>129</td><td>9</td></tr>
@@ -220,19 +237,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <ul>
 <li><b>Use it to write.</b> A strong model can put what it knows about a material class into a few hundred weights, and a Gaussian process can use that when labels are scarce. Write several, let the first labels choose.</li>
 <li><b>Do not use it to audit.</b> From weights alone a leak and a good feature look the same, and the models are confident when wrong.</li>
+<li><b>Edit only with a measurement in the loop.</b> One blind edit is arithmetic on whatever table you hand over. Five measured edits matched a gradient fit where the layer had room.</li>
 <li><b>Check the cheap rule first.</b> In several experiments a one-line statistic or rule matched the model or came close.</li>
 <li><b>For generators, treat weights as data.</b> Averaging and scaling task vectors was the strongest result here.</li>
 </ul>
 
 <h2>What comes next</h2>
-<p>ORB, eSEN and GRACE readouts. Why written priors hurt on alloy yield strength. Priors for structure-based surrogates, where inputs have no names. The scaling curve and stability filters for merged generators, CrystalFlow and ADiT, and DFT on the stiffest crystals of the scaled variant. Models from other vendors.</p>
+<p>Readout edits for properties the last layer controls more directly, such as formation energy through the reference energies. Why written priors hurt on alloy yield strength. Priors for structure-based surrogates, where inputs have no names. The scaling curve and stability filters for merged generators, CrystalFlow and ADiT, and DFT on the stiffest crystals of the scaled variant. Models from other vendors.</p>
 
 <h2>Logs and code</h2>
 <p>Every prompt, raw reply, model id, token count and score is in the repository, with the command behind each number in <code>REPRODUCE.md</code>. The repository is private until the paper is released.</p>
 
 <h2>Citation</h2>
 <pre id="bib">@misc{alvi2026wspmaterials,
-  author = {Alvi, Sk Md Ahnaf Akif},
+  author = {Alvi, Sk Md Ahnaf Akif and Arr\'oyave, Raymundo},
   title  = {Weight-space programming for materials science},
   year   = {2026},
   note   = {Draft}

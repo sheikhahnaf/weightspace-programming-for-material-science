@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I kept the eight edits of attempt 1 unchanged, because by mental arithmetic their sizes are already proportional to (dK mean)/(dE sd)^2, which is the best allocation of the energy budget if the weights' energy effects are independent. The only change is in how the mean energy shift (about +3.55 meV per atom) is cancelled: half now comes from raising w[38] by 0.04, which also lowers the bulk modulus by about 0.02 GPa, and the rest from a smaller increase of w[25]. I expect a mean error near +0.60 GPa, a mean absolute error essentially equal to attempt 1 (5.73 GPa), and an energy change of about 4.9 meV per atom, which is close to the limit and may exceed it if w[38] is correlated with the other edited weights. The table gives no per-crystal information, so I can only shift the mean error, not reduce the 5.8 GPa scatter that dominates the mean absolute error; the achievable gain is therefore a few hundredths of a GPa at most.

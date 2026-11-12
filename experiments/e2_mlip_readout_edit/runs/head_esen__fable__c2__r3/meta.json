@@ -4,7 +4,38 @@
   "model_alias": "fable",
   "chain": 2,
   "round": 3,
-  "forward_passes": 2,
+  "forward_passes": 0,
   "prompt_chars": 10171,
-  "prompt_tokens_estimate": 3391
+  "prompt_tokens_estimate": 3391,
+  "model": "claude-fable-5-2",
+  "harness": "Claude Code subagent, fresh context",
+  "date": "2026-11-12",
+  "started_utc": "2026-11-12T02:08:48.391000+00:00",
+  "duration_ms": 42300,
+  "output_tokens": 8153,
+  "context_tokens_last_turn": 61998,
+  "tool_calls": [
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/WRAPPER.md"
+    },
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/runs/head_esen__fable__c2__r3/prompt.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/runs/head_esen__fable__c2__r3/reply.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e2_mlip_readout_edit/runs/head_esen__fable__c2__r3/self_report.txt"
+    }
+  ],
+  "tool_calls_observed": 4,
+  "attempts": 1,
+  "audit_ok": true,
+  "audit_problems": [],
+  "transcript": "agent-a716829db51b4ca4b.jsonl",
+  "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
 }

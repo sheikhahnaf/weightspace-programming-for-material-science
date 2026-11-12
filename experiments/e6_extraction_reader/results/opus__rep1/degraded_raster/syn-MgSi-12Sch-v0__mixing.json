@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-MgSi-12Sch-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td>at.% Si</td><td>ΔmixH / J mol-1</td><td>ΔmixG / J mol-1</td><td>a(Mg)</td><td>a(Si)</td></tr><tr><td>10</td><td>-5470</td><td>-8120</td><td>0.8764</td><td>0.0124</td></tr><tr><td>20</td><td>-10175</td><td>-13291</td><td>0.7196</td><td>0.0387</td></tr><tr><td>30</td><td>-13693</td><td>-16738</td><td>0.5493</td><td>0.0874</td></tr><tr><td>40</td><td>-15777</td><td>-18673</td><td>0.3858</td><td>0.1687</td></tr><tr><td>50</td><td>-16334</td><td>-19157</td><td>0.2476</td><td>0.2902</td></tr><tr><td>60</td><td>-15394</td><td>-18218</td><td>0.1453</td><td>0.4489</td></tr><tr><td>70</td><td>-13082</td><td>-15889</td><td>0.0789</td><td>0.6242</td></tr><tr><td>80</td><td>-9590</td><td>-12215</td><td>0.0399</td><td>0.7834</td></tr><tr><td>90</td><td>-5149</td><td>-7204</td><td>0.0175</td><td>0.9043</td></tr></table>"
+ ]
+}

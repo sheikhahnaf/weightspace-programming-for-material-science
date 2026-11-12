@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-AlBi-06Kim-v0",
+ "table": "mixing",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"6\">Liquid at 1400K</td></tr><tr><td>x(Bi)</td><td>ΔmixH/Jmol-1</td><td>ΔmixG/Jmol-1</td><td>a(Al)</td><td>a(Bi)</td><td>ΔH(Al)/Jmol-1</td><td>ΔH(Bi)/Jmol-1</td></tr><tr><td>0.100</td><td>8252</td><td>-2558</td><td>0.9323</td><td>0.2087</td><td>1284</td><td>70960</td></tr><tr><td>0.300</td><td>17539</td><td>-5530</td><td>0.8750</td><td>0.2803</td><td>10090</td><td>34921</td></tr></table>",
+  "<table border=\"1\"><tr><td></td><td colspan=\"6\">Liquid at 1400K</td></tr><tr><td>x(Bi)</td><td>ΔmixH/Jmol-1</td><td>ΔmixG/Jmol-1</td><td>a(Al)</td><td>a(Bi)</td><td>ΔH(Al)/Jmol-1</td><td>ΔH(Bi)/Jmol-1</td></tr><tr><td>0.500</td><td>18838</td><td>-7710</td><td>0.7153</td><td>0.3717</td><td>23943</td><td>13733</td></tr><tr><td>0.700</td><td>14108</td><td>-8090</td><td>0.3623</td><td>0.5725</td><td>38924</td><td>3473</td></tr><tr><td>0.900</td><td>5311</td><td>-4753</td><td>0.0585</td><td>0.8709</td><td>51110</td><td>223</td></tr></table>"
+ ]
+}

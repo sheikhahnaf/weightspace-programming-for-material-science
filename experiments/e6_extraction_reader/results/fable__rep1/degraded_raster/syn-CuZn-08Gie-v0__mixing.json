@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuZn-08Gie-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"6\">Liquid at 1450 K</td></tr><tr><td>at.% Zn</td><td>ΔmixH / kJ mol-1</td><td>ΔmixG / kJ mol-1</td><td>a(Cu)</td><td>a(Zn)</td><td>ΔH(Cu) / kJ mol-1</td><td>ΔH(Zn) / kJ mol-1</td></tr><tr><td>10</td><td>-2.62</td><td>-6.10</td><td>0.8862</td><td>0.0189</td><td>-0.33</td><td>-23.20</td></tr><tr><td>20</td><td>-4.56</td><td>-9.98</td><td>0.7446</td><td>0.0518</td><td>-1.37</td><td>-17.35</td></tr><tr><td>30</td><td>-5.82</td><td>-12.60</td><td>0.5856</td><td>0.1069</td><td>-3.09</td><td>-12.17</td></tr><tr><td>40</td><td>-6.39</td><td>-14.11</td><td>0.4278</td><td>0.1916</td><td>-5.41</td><td>-7.86</td></tr><tr><td>50</td><td>-6.32</td><td>-14.55</td><td>0.2894</td><td>0.3091</td><td>-8.13</td><td>-4.52</td></tr><tr><td>60</td><td>-5.69</td><td>-13.96</td><td>0.1810</td><td>0.4539</td><td>-10.98</td><td>-2.17</td></tr><tr><td>70</td><td>-4.60</td><td>-12.34</td><td>0.1041</td><td>0.6112</td><td>-13.59</td><td>-0.75</td></tr><tr><td>80</td><td>-3.17</td><td>-9.68</td><td>0.0536</td><td>0.7621</td><td>-15.50</td><td>-0.09</td></tr><tr><td>90</td><td>-1.58</td><td>-5.87</td><td>0.0215</td><td>0.8923</td><td>-16.17</td><td>0.04</td></tr></table>"
+ ]
+}

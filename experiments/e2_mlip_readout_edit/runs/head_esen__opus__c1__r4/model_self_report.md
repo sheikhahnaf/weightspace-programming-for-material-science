@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Attempts 2 and 3 matched the linear dK predictions closely (shifts of -0.82 and -1.46 GPa) and both gave MAE 6.91, and every lever I have acts roughly in proportion to K. From that I concluded that the remaining error is scatter, and that the best proportional shift sits between them, at about -1.25 GPa. This reply aims for a shift of -1.28 GPa. Most of it comes from the near-zero-weight features (w64, w59, w126, w43), which cost little energy, and some from six positive-weight features with sub-proportional dK spread (to soften the over-correction in the stiffest quartile). I left out the negative-weight features, which made attempt 1 worse. I set b to cancel the predicted mean energy shift of +0.58 meV/atom and expect a mean absolute energy change of about 2.5 meV/atom. My confidence that this lands within the energy limit is about 90%. My confidence that it beats 6.91 GPa is only about 50%, and any gain will be about 0.01-0.02 GPa.

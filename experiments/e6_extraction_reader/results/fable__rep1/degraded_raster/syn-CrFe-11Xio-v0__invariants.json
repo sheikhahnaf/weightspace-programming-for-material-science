@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CrFe-11Xio-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Reaction</td><td rowspan=\"2\">Type</td><td rowspan=\"2\">T / ℃ this work</td><td colspan=\"3\">Compositions (x(Fe))</td></tr><tr><td>phase1</td><td>phase2</td><td>phase3</td></tr><tr><td>(Cr,Fe) $\\rightarrow\\sigma$</td><td>congruent transformation</td><td>812.5</td><td>0.522</td><td>0.522</td><td>-</td></tr><tr><td>σ $\\rightarrow$(Cr,Fe)1 + (Cr,Fe)2</td><td>eutectoid</td><td>517.0</td><td>0.508</td><td>0.149</td><td>0.837</td></tr></table>"
+ ]
+}

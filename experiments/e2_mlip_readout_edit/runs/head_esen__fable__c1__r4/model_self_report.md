@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I checked that the three earlier attempts matched the linear prediction from the dK means (predicted -2.34, -1.23, -1.66 GPa against measured -2.32, -1.21, -1.63), then chose weights by two ratios from the table: bulk-modulus change per unit of energy scatter, and dK sd over dK mean, since a weight whose sd exceeds its mean adds scatter rather than a clean shift. This reply moves the edit away from w[64] and w[121] (sd larger than mean) toward w[126], w[43] and w[59], for a predicted mean shift of about -1.7 GPa, and sets b to cancel the predicted mean energy change of about +3.2 meV per atom; I estimate the remaining mean absolute energy change at roughly 3 meV per atom, inside the limit. All arithmetic was done by reasoning, with no code or tools. Nothing was asked to be found; my confidence that this beats the 6.90 GPa of attempt 3 is about 40%, because the mean absolute error is dominated by crystal-to-crystal scatter that these edits barely touch.

@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuZn-08Gie-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "edit": "counts",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>at.% Zn</td><td>ΔfH(298.15 K)/kJ mol-1</td><td>ΔfS/J mol-1K-1</td><td>Cp(298.15 K)/J mol-1K-1</td></tr><tr><td>β</td><td>49.7</td><td>-9.43</td><td>4.39</td><td>24.92</td></tr><tr><td>δ</td><td>75.0</td><td>-5.76</td><td>5.22</td><td>25.16</td></tr><tr><td>γ</td><td>64.0</td><td>-10.64</td><td>2.56</td><td>25.05</td></tr><tr><td>β</td><td>46.0</td><td>-10.41</td><td>2.74</td><td>24.88</td></tr><tr><td>ε</td><td>83.0</td><td>-4.89</td><td>3.42</td><td>25.24</td></tr></table>"
+ ]
+}

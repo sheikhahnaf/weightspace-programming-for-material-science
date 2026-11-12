@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuMg-16Hal-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>Pearson</td><td>SB</td><td>Prototype</td><td>T min(°C)</td><td>T max(°C)</td><td>Range(x(Mg))</td><td>T(°C)</td></tr><tr><td>(Cu)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27</td><td>1084.6</td><td>0.000-0.069</td><td>727</td></tr><tr><td>Cu2Mg</td><td>cF24</td><td>C15</td><td>MgCu2</td><td>&lt;27</td><td>795.8</td><td>0.320-0.356</td><td>557</td></tr><tr><td>CuMg2</td><td>oF48</td><td>Cb</td><td>Mg2Cu</td><td>&lt;27</td><td>567.9</td><td>0.667</td><td>47</td></tr><tr><td>(Mg)</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;27</td><td>649.9</td><td>1.000</td><td>487</td></tr></table>"
+ ]
+}

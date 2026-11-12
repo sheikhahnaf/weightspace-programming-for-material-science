@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-PbSn-17Gie-v0",
+ "table": "rk_liquid",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Liquid: L (ν) = a + b·T + c·T·ln T</td></tr><tr><td>ν</td><td>a</td><td>b</td><td>c</td></tr><tr><td>L0</td><td>5174.58</td><td>1.558</td><td>0.0</td></tr><tr><td>L1</td><td>331.69</td><td>0.0</td><td>0.0</td></tr></table>"
+ ]
+}

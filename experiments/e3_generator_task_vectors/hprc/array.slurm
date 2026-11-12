@@ -12,11 +12,11 @@
 #SBATCH --account=142705330300
 #SBATCH --array=0-10
 
-# E3 step C4: one array task per variant. Samples N crystals (same seed for every
-# variant) and scores each with the eSEN bulk-modulus and heat-capacity oracles.
-# Resubmitting continues where a task stopped.
+# E3 step C4: one array task per variant of one backbone (sbatch --export=ALL,BACKBONE=cf
+# array.slurm; default mg). Samples N crystals (same seed for every variant) and scores each
+# with the eSEN bulk-modulus and heat-capacity oracles. Resubmitting continues where a task stopped.
 source /scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming/experiments/e3_generator_task_vectors/hprc/env.sh
 NAME=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" $VARIANTS/variants.txt)
-echo "variant $NAME  host $(hostname)  $(date)"; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader || true
-$PY -u $E3/hprc/sample_and_score.py --variant-dir $VARIANTS/$NAME --out $RESULTS/$NAME --n ${N:-128} --batch 64 --seed ${SEED:-0}
+echo "backbone $BACKBONE  variant $NAME  host $(hostname)  $(date)"; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader || true
+$PY -u $E3/hprc/sample_and_score.py --backbone $BACKBONE --variant-dir $VARIANTS/$NAME --out $RESULTS/$NAME --n ${N:-128} --batch 64 --seed ${SEED:-0}
 echo "VARIANT_DONE $NAME $(date)"

@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-CuPb-86Hay-LB-v0",
+ "table": "formation",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>at.%Pb</td><td>ΔfH(298.15K)/calmol-1</td><td>ΔfS/calmol-1K-1</td><td>Cp(298.15K)/calmol-1K-1</td></tr><tr><td>HCP_A3</td><td>59.0</td><td>101±120</td><td>-0.16</td><td>6.18</td></tr></table>"
+ ]
+}

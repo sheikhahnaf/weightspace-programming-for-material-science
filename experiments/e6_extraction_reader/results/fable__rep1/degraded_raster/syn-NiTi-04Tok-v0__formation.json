@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-NiTi-04Tok-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>at.%Ti</td><td>ΔfH(298.15K) /Jmol-1</td><td>ΔfS /Jmol-1K-1</td><td>Cp(298.15K) /Jmol-1K-1</td></tr><tr><td>Ni3Ti</td><td>25.0</td><td>-40029±1000</td><td>-4.94</td><td>25.02</td></tr><tr><td>NiTi2</td><td>66.7</td><td>-26902±1000</td><td>-1.78</td><td>25.10</td></tr><tr><td>NiTi</td><td>49.9</td><td>-33343±1500</td><td>1.22</td><td>25.47</td></tr></table>"
+ ]
+}

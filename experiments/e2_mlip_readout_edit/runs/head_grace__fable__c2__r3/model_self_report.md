@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I treated each weight as an independent direction and set its change proportional to (dK mean) / (dE sd)^2, which maximises the downward bulk-modulus shift for a fixed spread in energy per atom; by hand arithmetic this predicts about -0.37 GPa of mean shift with an independent-sum energy spread of about 4.1 meV and a net mean energy change near zero (weights 38 and 48 up, 12 and 22 down, a small trim on 25). Attempt 2 showed that the large-sensitivity weights (10, 18, 23, 34, 41, 44, 19) have strongly correlated energy changes and act mostly on stiff crystals, so I dropped them and instead widened the attempt 1 set with weights 38, 48, 50 and 45, scaling the attempt 1 changes down to about 0.82. The energy limit caps any mean shift near 0.4 GPa, and the 5.8 GPa mean absolute error is dominated by crystal-to-crystal scatter that these averaged sensitivities cannot target, so I expect at best a few hundredths of a GPa. Confidence that this stays within 5 meV: about 75%; confidence that it beats attempt 1's 5.73 GPa: about 40%.

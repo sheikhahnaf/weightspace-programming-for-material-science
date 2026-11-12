@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I checked attempt 1 against the table by hand: its predicted bulk-modulus shift (+5.6 GPa) matched the measured one (+5.8 GPa), and its energy failure came from imperfect correlation between features, about 7% of the energy spread it moved between weights, even though both the mean and the spread were balanced. This time I moved less (about 0.059 eV of spread instead of 0.21) and chose weights by bulk-modulus change per unit of energy: I lowered the negative weights with the largest ratio (188, 161, 254, 38) and raised those with the smallest (180, 135, 90, 49), balancing the summed energy standard deviations and correcting the small remaining mean (-2.3 meV per atom) with b. The linear estimate is a mean bulk-modulus shift of about +3.7 GPa (mean error near -5.7 GPa). I am about 55% confident the energy change stays under 5 meV per atom, since feature 180 may correlate with the others less well than the features used in attempt 1, and about 75% confident the bulk-modulus error improves on the original.

@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuNi-87Jan-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Reaction</td><td rowspan=\"2\">Type</td><td colspan=\"2\">T/K</td><td colspan=\"3\">Compositions(at.%Ni)</td></tr><tr><td>this work</td><td>exp.b</td><td>phase1</td><td>phase2</td><td>phase3</td></tr><tr><td>L $ ^{\\rightarrow} $ (Cu,Ni)</td><td>melting(pure component)a</td><td>1728.2</td><td>1730.2[4]</td><td>100.0</td><td>100.0</td><td>-</td></tr><tr><td>L $ ^{\\rightarrow} $ (Cu,Ni)</td><td>melting(pure component)a</td><td>1357.8</td><td>1359.8[5]</td><td>0.0</td><td>0.0</td><td>-</td></tr></table>"
+ ]
+}

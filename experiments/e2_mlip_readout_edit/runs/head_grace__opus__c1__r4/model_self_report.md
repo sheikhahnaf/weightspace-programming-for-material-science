@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> From the three earlier measurements I worked out by hand that energy cost grows exactly linearly with the size of the edit. I also inferred that the energy deviations from the different weights are positively correlated: about 0.2 on average for the attempt-2 set, and much higher once the large "bonding" weights (10, 18, 23, 41, 44, ...) were added in attempt 3. So I left out the bonding weights and moved the attempt-2 direction toward the weights with the best ratio of mean bulk-modulus change to energy spread (mostly w30, plus w37, w46 and w38), dropping the noisy low-ratio weights 3, 39 and 52. I set the change in mean energy to exactly zero with w31, which is nearly constant per atom. My predicted shift is about -0.31 GPa at about 4.6 meV, roughly 8% more efficient than attempt 2, but this rests on a crude uniform-correlation model. I put the chance that this beats attempt 2's 5.75 GPa while staying within the energy limit at about 45%.

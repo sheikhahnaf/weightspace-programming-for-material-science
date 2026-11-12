@@ -1,6 +1,7 @@
-"""E3 step C4c: compare what the MatterGen variants generate.
+"""E3 step C4c: compare what the variants of one generator backbone generate.
 
-Reads experiments/e3_generator_task_vectors/results/hprc/<variant>/scores.csv
+Reads experiments/e3_generator_task_vectors/results/hprc/<variant>/scores.csv for
+MatterGen, results/hprc_<backbone>/<variant>/scores.csv for the others
 (one row per sampled crystal: eSEN bulk modulus and heat capacity at 300 K) and
 reports, per variant:
 
@@ -12,13 +13,17 @@ reports, per variant:
 and against `base`: the difference of means with a bootstrap 95% interval, a
 Mann-Whitney test, and, because every variant was sampled from the same noise
 seed, a paired Wilcoxon test over sample indices where both gave a value.
-Holm correction is applied across variants for each property.
+Holm correction is applied across variants for each property. The paired test is
+left out for a variant when its sampler, or the base's, returned fewer crystals than
+were asked for (cf and adit only), because the sample indices then do not line up.
 
-    python experiments/e3_generator_task_vectors/analyze_variants.py
+    python experiments/e3_generator_task_vectors/analyze_variants.py                 # MatterGen
+    python experiments/e3_generator_task_vectors/analyze_variants.py --backbone cf   # -> variants_summary_cf.{md,json}
 """
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -27,7 +32,6 @@ import numpy as np
 from scipy.stats import mannwhitneyu, wilcoxon
 
 HERE = Path(__file__).resolve().parent
-RESULTS = HERE / "results" / "hprc"
 PROPS = {"K_GPa": ("bulk modulus, GPa", 200.0), "Cp_J_per_gK": ("heat capacity, J/g/K", 0.5)}
 
 
@@ -57,12 +61,28 @@ def holm(pvalues: dict[str, float]) -> dict[str, float]:
     return adjusted
 
 
+def aligned(folder: Path) -> bool:
+    """False when the sampler said it returned fewer crystals than requested (see sample_and_score.py)."""
+    from ase.io import read
+
+    samples = folder / "generated_crystals.extxyz"
+    return not samples.exists() or bool(read(samples, index=0).info.get("aligned", True))
+
+
 def main() -> None:
     from pymatgen.core import Composition
 
-    variants = {d.name: load(d) for d in sorted(RESULTS.iterdir()) if (d / "scores.csv").exists()}
+    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument("--backbone", default="mg", choices=("mg", "cf", "adit"))
+    args = parser.parse_args()
+    suffix = "" if args.backbone == "mg" else f"_{args.backbone}"
+    results = HERE / "results" / f"hprc{suffix}"
+    if not results.is_dir():
+        raise SystemExit(f"no results folder {results}")
+    variants = {d.name: load(d) for d in sorted(results.iterdir()) if (d / "scores.csv").exists()}
     if "base" not in variants:
         raise SystemExit("no results for the base variant yet")
+    paired_ok = {name: aligned(results / name) for name in variants}
     rng = np.random.default_rng(0)
     summary, tests = {}, {key: {} for key in PROPS}
     for name, rows in variants.items():
@@ -89,7 +109,8 @@ def main() -> None:
                     "ci95": [float(np.quantile(boot, 0.025)), float(np.quantile(boot, 0.975))],
                     "mannwhitney_p": float(mannwhitneyu(ok, b).pvalue),
                     "paired_n": len(d),
-                    "paired_wilcoxon_p": float(wilcoxon(d).pvalue) if len(d) > 5 and np.any(d != 0) else None,
+                    "paired_wilcoxon_p": (float(wilcoxon(d).pvalue) if len(d) > 5 and np.any(d != 0)
+                                          and paired_ok[name] and paired_ok["base"] else None),
                 }
                 tests[key][name] = item[key]["mannwhitney_p"]
         summary[name] = item
@@ -115,8 +136,8 @@ def main() -> None:
         lines.append("")
     lines += ["**chemistry**", "", "| Variant | Mean atomic mass | Distinct formulas |", "|---|---|---|"]
     lines += [f"| `{n}` | {i['mean_atomic_mass']:.1f} | {i['distinct_formulas']} |" for n, i in summary.items()]
-    (HERE / "results" / "variants_summary.json").write_text(json.dumps(summary, indent=1) + "\n")
-    (HERE / "results" / "variants_summary.md").write_text("\n".join(lines) + "\n")
+    (HERE / "results" / f"variants_summary{suffix}.json").write_text(json.dumps(summary, indent=1) + "\n")
+    (HERE / "results" / f"variants_summary{suffix}.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 
 

@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-NiTi-04Tok-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Reaction</td><td rowspan=\"2\">Type</td><td colspan=\"3\">T / ℃</td><td colspan=\"3\">Compositions (x(Ti))</td></tr><tr><td>this work</td><td>exp.</td><td>Ref.</td><td>phase 1</td><td>phase 2</td><td>phase 3</td></tr><tr><td>L $\\rightarrow $Ni3Ti</td><td>congruent melting</td><td>1376.2</td><td>-</td><td>-</td><td>0.236</td><td>0.236</td><td>-</td></tr><tr><td>L $\\rightarrow $NiTi</td><td>congruent melting</td><td>1311.8</td><td>1308.8</td><td>[3]</td><td>0.502</td><td>0.502</td><td>-</td></tr><tr><td>L $\\rightarrow$(Ni) + Ni3Ti</td><td>eutectic</td><td>1302.5</td><td>1298.5</td><td>[4]</td><td>0.166</td><td>0.157</td><td>0.204</td></tr><tr><td>L $\\rightarrow $Ni3Ti + NiTi</td><td>eutectic</td><td>1119.9</td><td>-</td><td>-</td><td>0.384</td><td>0.250</td><td>0.433</td></tr><tr><td>NiTi + L $\\rightarrow $NiTi2</td><td>peritectic</td><td>986.4</td><td>-</td><td>-</td><td>0.510</td><td>0.669</td><td>0.667</td></tr><tr><td>L $\\rightarrow $NiTi2 + (βTi)</td><td>eutectic</td><td>943.2</td><td>-</td><td>-</td><td>0.746</td><td>0.667</td><td>0.894</td></tr><tr><td>(βTi) $\\rightarrow $NiTi2 + (αTi)</td><td>eutectoid</td><td>767.6</td><td>760.6</td><td>[4]</td><td>0.947</td><td>0.667</td><td>0.998</td></tr></table>"
+ ]
+}

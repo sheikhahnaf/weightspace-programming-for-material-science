@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Both earlier replies had their mean energy shift balanced to zero but still failed at about 8 meV, so the per-crystal spread is what matters. This time I bounded it rigorously: mean |dE| <= sqrt(mu^2 + sigma^2) and sigma <= sum |dw_j| * sd_j. I spent a budget of about 4.8 meV on the weights with the best ratio of |dK mean| to dE sd (w30, w37, w46, w18, mostly w30). I set the mean energy change to zero with w25, which is nearly uniform per atom (sd/mean about 0.06). The predicted bulk-modulus shift is only about -0.18 GPa, so the MAE should fall by a few hundredths of a GPa at most. I am about 95% confident the reply stays within the 5 meV limit, and about 60% confident it lowers the MAE at all. It is meant as a safe, exactly rescalable direction for the remaining attempts, since energy is linear in w.

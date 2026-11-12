@@ -1,0 +1,136 @@
+{
+  "model": "zai-org/GLM-OCR",
+  "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+  "tag": "smoke6",
+  "split": "test",
+  "tables_selected": 6,
+  "edit_entries": 0,
+  "max_new_tokens": 4096,
+  "read_this_run": 6,
+  "seconds_this_run": 971.2,
+  "replies_at_token_limit": 0,
+  "forward_passes": 8823,
+  "devices": [
+    "mps"
+  ],
+  "tables_scored": 6,
+  "tables_without_reply": 394,
+  "overall": {
+    "tables": 6,
+    "values": 199,
+    "recall": 1.0,
+    "recall_strict": 1.0,
+    "recall_mean_per_table": 1.0,
+    "recall_strict_mean_per_table": 1.0,
+    "tables_all_values_found": 6,
+    "tables_reply_not_a_table": 0
+  },
+  "by_split": {
+    "test": {
+      "tables": 6,
+      "values": 199,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "recall_mean_per_table": 1.0,
+      "recall_strict_mean_per_table": 1.0,
+      "tables_all_values_found": 6,
+      "tables_reply_not_a_table": 0
+    }
+  },
+  "by_crop_route": {
+    "caption_crop": {
+      "tables": 6,
+      "values": 199,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "recall_mean_per_table": 1.0,
+      "recall_strict_mean_per_table": 1.0,
+      "tables_all_values_found": 6,
+      "tables_reply_not_a_table": 0
+    }
+  },
+  "by_stratum": {
+    "general_table / activity / EMF / Gibbs energy": {
+      "tables": 1,
+      "values": 90,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "recall_mean_per_table": 1.0,
+      "recall_strict_mean_per_table": 1.0,
+      "tables_all_values_found": 1,
+      "tables_reply_not_a_table": 0
+    },
+    "invariant_table / invariant reaction": {
+      "tables": 5,
+      "values": 109,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "recall_mean_per_table": 1.0,
+      "recall_strict_mean_per_table": 1.0,
+      "tables_all_values_found": 5,
+      "tables_reply_not_a_table": 0
+    }
+  },
+  "by_label_field": {
+    "temperature_printed": {
+      "values": 109,
+      "recall": 1.0,
+      "recall_strict": 1.0
+    },
+    "value_printed": {
+      "values": 90,
+      "recall": 1.0,
+      "recall_strict": 1.0
+    }
+  },
+  "per_table": {
+    "0117_p006_t5": {
+      "split": "test",
+      "crop_route": "caption_crop",
+      "values": 29,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "parsed": true
+    },
+    "0374_p004_t2": {
+      "split": "test",
+      "crop_route": "caption_crop",
+      "values": 30,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "parsed": true
+    },
+    "0948_p003_t5": {
+      "split": "test",
+      "crop_route": "caption_crop",
+      "values": 11,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "parsed": true
+    },
+    "1152_p005_t5": {
+      "split": "test",
+      "crop_route": "caption_crop",
+      "values": 90,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "parsed": true
+    },
+    "1536_p008_t5": {
+      "split": "test",
+      "crop_route": "caption_crop",
+      "values": 32,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "parsed": true
+    },
+    "1621_p007_t4": {
+      "split": "test",
+      "crop_route": "caption_crop",
+      "values": 7,
+      "recall": 1.0,
+      "recall_strict": 1.0,
+      "parsed": true
+    }
+  }
+}

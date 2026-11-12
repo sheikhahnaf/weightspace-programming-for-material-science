@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand so the predicted absolute error grows with the potential's own bulk modulus: a base slope of about 6% of B, with extra slope above 120 GPa and again above 250 GPa, because softening and absolute errors are largest for stiff crystals. Gated units (relu(B + 150*frac - 150)) make the error grow faster with B for 3d transition metals (magnetism, +U), 4d/5d metals and f-elements. An additive chemistry unit adds a few GPa for those classes and for metalloids and S/Se/P. Further units flag small volume per atom, a predicted B that is implausibly low for a dense non-hydride, non-alkali, non-halide cell (layered, framework or failed fits), a predicted B that is implausibly high for a large volume per atom, and a near-zero or negative predicted B. I did not have to find a specific fact; I am about 55% confident that this ranking clearly beats using the predicted B alone.

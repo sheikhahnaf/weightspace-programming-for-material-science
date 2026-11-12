@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I checked by hand that attempts 1 and 2 followed the table linearly (predicted +0.87 and +1.35 GPa, measured +0.87 and +1.36), and that their energy changes were consistent with the active features sharing one dominant across-crystal factor plus a residual of roughly 0.3 of the load. This attempt probes a different pairing: make a weight with a high bulk-modulus effect per unit of energy spread more negative (38, 77) and make a near-twin feature with almost the same energy mean and spread but a lower bulk-modulus effect less negative (90, 49), with the loads matched on energy standard deviation and b absorbing the remaining mean shift of about -0.4 meV. The linear prediction is about +1.8 GPa in mean bulk modulus (mean error about -7.6 GPa); whether the energy change stays under 5 meV depends on the twin features being correlated at about 0.99 across crystals, which I cannot verify from the table. Confidence that this attempt is within the energy limit and beats attempt 2: about 35%.

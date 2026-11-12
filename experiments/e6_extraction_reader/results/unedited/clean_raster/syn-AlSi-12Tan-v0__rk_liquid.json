@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlSi-12Tan-v0",
+ "table": "rk_liquid",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Liquid:L(v)=a+b·T+c·T·lnT</td></tr><tr><td>v</td><td>a</td><td>b</td><td>c</td></tr><tr><td>L0</td><td>-13842.105</td><td>0.45733</td><td>0.0</td></tr><tr><td>L1</td><td>717.10348</td><td>-0.2012</td><td>0.0</td></tr></table>"
+ ]
+}

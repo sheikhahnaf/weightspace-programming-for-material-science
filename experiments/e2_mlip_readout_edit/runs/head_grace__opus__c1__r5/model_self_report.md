@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I reasoned that the only lever these summary statistics expose is a roughly uniform downward shift of the bulk modulus, and that it is capped by the energy budget at about 0.07 GPa per meV/atom. Attempt 4 was already close to the best allocation under the correlation models I could fit to the four earlier measurements (it leans on w30, the weight with the most bulk-modulus effect per unit of energy spread, and cancels the mean energy shift with w38, w48 and w31). Because the energy is exactly linear in w, I scaled attempt 4's changes by 1.04, which keeps the measured 4.77 meV below the limit (about 4.96 meV) and deepens the mean shift to about -0.36 GPa. I expect the MAE to improve only marginally, to about 5.74-5.75 GPa; I am about 95% confident it stays within the energy limit and about 50% confident it beats attempt 4 by a visible amount.

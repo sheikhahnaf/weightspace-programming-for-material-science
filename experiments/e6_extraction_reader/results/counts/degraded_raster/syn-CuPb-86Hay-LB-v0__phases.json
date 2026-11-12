@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuPb-86Hay-LB-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "edit": "counts",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>Pearson</td><td>SB</td><td>Prototype</td><td>Tmin(K)</td><td>Tmax(K)</td><td>Range(x(Pb))</td><td>T(K)</td></tr><tr><td>(Cu)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300</td><td>1357.8</td><td>0.000-0.490</td><td>600</td></tr><tr><td>HCP_A3</td><td>hP2</td><td>A3</td><td>Mg</td><td>599.4</td><td>600.6</td><td>0.150-0.750</td><td>600</td></tr><tr><td>(Pb)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300</td><td>600.6</td><td>0.500-1.000</td><td>600</td></tr></table>"
+ ]
+}

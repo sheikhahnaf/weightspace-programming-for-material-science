@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuZn-08Gie-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "edit": "counts",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range /℃</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>x(Zn)</td><td>at T /℃</td></tr><tr><td>(Cu)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27°</td><td>1084.6</td><td>0.000-0.386</td><td>467</td></tr><tr><td>β&#x27;</td><td>cP2</td><td>B2</td><td>CsCl</td><td>&lt;27°</td><td>462.7</td><td>0.421-0.499</td><td>57</td></tr><tr><td>β</td><td>cI2</td><td>A2</td><td>W</td><td>460.4</td><td>899.4</td><td>0.378-0.556</td><td>827</td></tr><tr><td>γ</td><td>cI52</td><td>D82</td><td>Cu5Zn8</td><td>&lt;27°</td><td>834.2</td><td>0.564-0.693</td><td>557</td></tr><tr><td>δ</td><td>cI2</td><td>A2</td><td>W</td><td>558.8</td><td>703.1</td><td>0.739-0.770</td><td>607</td></tr><tr><td>ε</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;27°</td><td>600.2</td><td>0.784-0.874</td><td>417</td></tr><tr><td>(Zn)</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;27°</td><td>419.5</td><td>0.981-1.000</td><td>417</td></tr></table>"
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlCu-02Mie-v0",
+ "table": "invariants",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Reaction</td><td>Type</td><td>T(K) this work</td><td>Texp.b</td><td>Ref.</td><td>at.%Cu,1</td><td>at.%Cu,2</td><td>at.%Cu,3</td></tr><tr><td>L→β</td><td>congruent meltinga</td><td>1323.1</td><td>-</td><td>-</td><td>76.5</td><td>76.5</td><td>-</td></tr><tr><td>L→β+(Cu)</td><td>eutectic</td><td>1309.9</td><td>1305.9</td><td>[5]</td><td>82.9</td><td>81.6</td><td>84.7</td></tr><tr><td>L+β→γ</td><td>peritectic</td><td>1293.8</td><td>-</td><td>-</td><td>65.8</td><td>68.2</td><td>67.5</td></tr><tr><td>L+γ→β</td><td>peritectic</td><td>1266.7</td><td>1268.7</td><td>[5]</td><td>60.9</td><td>66.1</td><td>64.4</td></tr><tr><td>L+β→ζ</td><td>peritectic</td><td>1015.2</td><td>1013.2</td><td>[4]</td><td>28.6</td><td>40.7</td><td>37.3</td></tr><tr><td>L→(Al)+ζ</td><td>eutectic</td><td>881.1</td><td>876.1</td><td>[3]</td><td>11.3</td><td>5.4</td><td>26.6</td></tr><tr><td>β→γ+(Cu)</td><td>eutectoid</td><td>840.0</td><td>843.0</td><td>[5]</td><td>76.2</td><td>70.1</td><td>80.3</td></tr><tr><td>ζ→(Al)+β</td><td>eutectoid</td><td>747.0</td><td>743.0</td><td>[4]</td><td>27.7</td><td>4.2</td><td>32.1</td></tr></table>"
+ ]
+}

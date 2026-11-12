@@ -1,0 +1,7 @@
+{
+  "arm": "reader_logit_bias_edit",
+  "tag": "fable__rep2",
+  "model_alias": "fable",
+  "forward_passes": 0,
+  "prompt_chars": 27807
+}

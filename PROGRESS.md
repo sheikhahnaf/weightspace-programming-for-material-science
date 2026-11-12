@@ -91,3 +91,25 @@ Everything below is committed. Nothing is lost if the session ends here.
 - E5 BNN (`experiments/e5_bnn_start/run_bnn.py`): MC dropout, deep ensemble and HMC, each with and without the written network as start, anchor, weight-space prior or prior mean. Running locally in the background; cells cached under `results/cells/`; rerun the command to resume and print `bnn_summary.md`. IBNN was dropped at Alvi's request; HMC follows Li, Rudner and Wilson's bnn-bo study, re-implemented because that repo has no licence.
 - ORB-v3 readout (E2): `cache_features_orb.py --set elastic` running (resumable; needs `compile=False`, already set). Next: an ORB version of `mace_readout.py`, baselines, LLM edits. eSEN and GRACE on FASTER not started.
 - Not yet in `docs/results/`: filter arm, final leak counts, E5, ORB.
+
+## State on 2026-11-11, night (round 5 written; expansions running). READ THIS FIRST WHEN RESUMING
+
+Committed and pushed unless marked. Paper repo also pushed (second draft, 10 pages, tag `pristine-pre-restyle-2026-11-11`).
+
+**Finished and written up** (`docs/results/2026-11-11-round5.md`): four potentials (MACE, ORB, eSEN, GRACE) through `src/wsp/linear_head.py`; single-shot ORB edits with permuted-value control; five-attempt feedback chains (`experiments/e2_mlip_readout_edit/head_arm.py`, all 16 chains complete, `results/head/chains.md`); budgeted optimiser baselines; outside-the-readout references (`beyond_readout.py`, `risk_arm.py`).
+
+**Slide deck:** `slides/gp-prior/gp-prior-weight-space-programming.pptx` (54 slides, architecture slides 18–19). NOT yet committed (`git add slides` after checking size; `slides/*/node_modules/` is ignored). Never rebuild while it is open in PowerPoint. One cosmetic fault on slide 54 (caption touches table).
+
+**Running or half done, with how to resume:**
+
+| What | State | Resume |
+|---|---|---|
+| E6 table reader, synthetic ORCHID-Bench (`experiments/e6_extraction_reader/`) | Unedited GLM-OCR read on FASTER, both renderings (degraded: 72.2% cells exact, 81.3% ignoring spaces, numbers 100% by the bench scorer; Opus baseline 97.4% / 100%). Edits (`edits/*.json`: counts, opus rep1–2, fable rep1–2) being read by FASTER job 3259965; first scores on the 10 test papers, exact cells: unedited 0.714, counts 0.741, opus 0.733 / 0.747, fable rep1 0.758, fable rep2 incomplete | `rsync` `results/` back from `faster:/scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming/experiments/e6_extraction_reader/results/`, then `env/ocr-venv/bin/python experiments/e6_extraction_reader/edit_arm.py score`. If the job died: `sbatch experiments/e6_extraction_reader/hprc/edits.slurm edits/<tag>.json ...` (cached per crop). Model load on FASTER takes 6 minutes; that is normal |
+| E6 real papers | 400 crops in `data/large/orchid_real/` (untracked, publisher material, never commit); code `build_real_set.py`, `read_real.py`, `score_real.py`; manifest `results/real_set_manifest.json`. Open model NOT yet run on them | copy `data/large/orchid_real/{crops,index.jsonl}` to FASTER group scratch (private), run `read_real.py --tag unedited` with `ocr-venv2`, then with each edit; Opus baseline on a subset through `opus_reader.py`-style runs |
+| Joint BoTorch mean (`src/wsp/joint_mean.py`, `experiments/e1_surrogate_head/run_joint_mean.py`) | static done (`results/joint_mean/static_summary.md`: at 5 labels ρ / coverage: two-stage 0.64 / 0.63, learned 0.66 / 0.75, integrated 0.68 / 0.79); BO part running locally (cached per trace) | `python experiments/e1_surrogate_head/run_joint_mean.py bo --seeds 20 --steps 25 --jobs 6` prints the table |
+| E7 Thermo-Calc tasks (`experiments/e7_calphad_prior/`, `data/calphad/`) | agent `tc-tasks` building ≥ 8 alloy systems with TC-Python (env `tcpy`), tasks, references, prompts for `write` and `write_pd`; all four mean arms required | read `experiments/e7_calphad_prior/README.md`; rerun `make_tc_data.py` (resumable); then launch the listed run names as subagents (`WRAPPER.md` there), score, run BO |
+| E3 more backbones | agent `gen-backbones`; FASTER prep jobs 3259982 (CrystalFlow), 3259983 (ADiT) | see the entry that agent appends below and `experiments/e3_generator_task_vectors/hprc/README.md` |
+
+**Not done yet:** round-6 results page (E6, joint mean, E7, backbones); README, questions.md and REPRODUCE sections for rounds 4–5 additions (`REPRODUCE.md` has 4d; add 4e for round 5); webpage `site/index.html` is updated locally with round 5 but NOT republished (republish the same path to https://claude.ai/artifact/KRqsGEtpS6w56rDnVBNBNg); paper lacks E6, joint mean, E7, backbones.
+
+**User decisions on record (2026-11-11):** authors Alvi then Arróyave; figures in the figures4papers style; table crops from publisher PDFs never go to GitHub, code and results do; force-push to the old repo was approved and done; phase-diagram context must never contain the target; test on many alloy systems.

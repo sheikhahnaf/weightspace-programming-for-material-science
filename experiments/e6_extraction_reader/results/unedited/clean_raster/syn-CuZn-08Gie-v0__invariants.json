@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-CuZn-08Gie-v0",
+ "table": "invariants",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Reaction</td><td>Type</td><td>T(℃)</td><td>x(Zn),1</td><td>x(Zn),2</td><td>x(Zn),3</td></tr><tr><td>(Cu)+L→β</td><td>peritectic</td><td>899.4</td><td>0.319</td><td>0.375</td><td>0.354</td></tr><tr><td>β+L→γ</td><td>peritectic</td><td>834.2</td><td>0.558</td><td>0.593</td><td>0.586</td></tr><tr><td>γ+L→δ</td><td>peritectic</td><td>703.1</td><td>0.677</td><td>0.804</td><td>0.718</td></tr><tr><td>δ+L→ε</td><td>peritectic</td><td>600.2</td><td>0.773</td><td>0.883</td><td>0.792</td></tr><tr><td>δ→γ+ε</td><td>eutectoid</td><td>558.8</td><td>0.749</td><td>0.693</td><td>0.777</td></tr><tr><td>β+γ→β&#x27;</td><td>peritectoid</td><td>462.7</td><td>0.491</td><td>0.561</td><td>0.491</td></tr><tr><td>β→(Cu)+β&#x27;</td><td>eutectoid</td><td>460.4</td><td>0.445</td><td>0.387</td><td>0.445</td></tr><tr><td>L→ε+(Zn)</td><td>eutectic</td><td>419.1</td><td>0.980</td><td>0.874</td><td>0.981</td></tr></table>"
+ ]
+}

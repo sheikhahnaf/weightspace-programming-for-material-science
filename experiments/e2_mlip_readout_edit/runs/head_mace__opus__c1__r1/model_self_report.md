@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I treated the edit as a constrained least-squares problem: I chose changes delta_j = -alpha*(dK_j + 44*dE_j)/sdE_j^2 for all 128 weights, which minimises the summed per-crystal energy variance (assuming independent weights) for a given mean bulk-modulus drop. The factor 44 makes the mean energy shift close to zero (it sums to about -0.05 meV), so b stays at 0, and the energy change cannot follow the common "binding" direction that a b-compensated edit would leave behind. With alpha = 8.5e-6, I predict a mean bulk-modulus change of about -2.8 GPa, larger for stiff crystals if dK scales with K. I also predict a per-crystal energy-change spread of about 4.9 meV standard deviation, which is about 3.9 meV mean absolute change. I am about 60% confident that this attempt stays within the 5 meV limit and lowers the MAE, because the correlations between weights are unknown; the attempt is also meant to calibrate the scale for later attempts.

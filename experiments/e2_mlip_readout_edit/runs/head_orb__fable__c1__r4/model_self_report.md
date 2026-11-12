@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> All three earlier attempts exceeded the 5 meV energy limit, so I prioritised a valid reply: I took attempt 3 (the direction with the best bulk-modulus gain per meV of energy change, 5.63 meV) and scaled every change from the original values, including b, by 0.87. Because the energy is exactly linear in w and b, the mean absolute energy change scales exactly, to about 4.9 meV per atom, and the bulk-modulus mean shift (which matched the linear prediction of +2.22 GPa in attempt 3) should be about +1.9 GPa, giving a mean error near -7.5 GPa and a mean absolute error near 11.2 GPa. The direction lowers weights with a high bulk-modulus effect per unit of energy spread (188, 254, 161, 38, 77) and raises ones with a low ratio (90, 49, 135, 139, 84, 113) so that the crystal-to-crystal energy variation largely cancels. I am about 90% confident it falls within the energy limit and about 85% confident the mean absolute error lands between 11.0 and 11.5 GPa.

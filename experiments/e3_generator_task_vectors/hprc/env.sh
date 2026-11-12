@@ -10,10 +10,31 @@ export WORK=/scratch/group/arroyave_lab/ahnafalvi/wsp
 export REPO=$WORK/weighspace-programming
 export E3=$REPO/experiments/e3_generator_task_vectors
 export PY=$USER_SCRATCH/envs/matinvent-hcap-bo/bin/python
-export BASE_MODEL=$USER_SCRATCH/matinvent-bo/src/mattergen/checkpoints/mattergen_base
 export FINETUNED=$REPO/data/large/finetuned_diffusion
-export VARIANTS=$WORK/variants
-export RESULTS=$WORK/results
+
+# One backbone per job: BACKBONE=mg (default), cf or adit, passed with sbatch --export=ALL,BACKBONE=cf.
+# MatterGen keeps the folders it had before the other backbones were added.
+export BACKBONE=${BACKBONE:-mg}
+case "$BACKBONE" in
+  mg)   export BASE_MODEL=$USER_SCRATCH/matinvent-bo/src/mattergen/checkpoints/mattergen_base
+        export VARIANTS=$WORK/variants RESULTS=$WORK/results SMOKE=$WORK/smoke ;;
+  cf)   export BASE_MODEL=$USER_SCRATCH/checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20
+        export BASE_CKPT="$BASE_MODEL/epoch=*.ckpt" ;;
+  adit) export BASE_MODEL=$USER_SCRATCH/checkpoints/adit
+        export BASE_CKPT=$BASE_MODEL/ldm.ckpt ADIT_VAE=$BASE_MODEL/vae.ckpt ;;
+  *)    echo "unknown BACKBONE $BACKBONE" >&2; exit 2 ;;
+esac
+if [ "$BACKBONE" != mg ]; then
+  export VARIANTS=$WORK/variants_$BACKBONE RESULTS=$WORK/results_$BACKBONE SMOKE=$WORK/smoke_$BACKBONE
+  # CrystalFlow and ADiT are loaded and sampled with the published loop's own classes, read in
+  # place (never written): its project folder, the MatInvent tree it ran in, and the upstream repos.
+  export SCRATCH=$USER_SCRATCH
+  export LOOP_PROJECT=$USER_SCRATCH/matinvent-hcap-bo LOOP_PRISTINE=$USER_SCRATCH/matinvent-pristine
+  export CRYSTALFLOW_REPO=$USER_SCRATCH/diffusion-zoo-repos/CrystalFlow
+  export ADIT_REPO=$USER_SCRATCH/diffusion-zoo-repos/all-atom-diffusion-transformer
+  export PROJECT_ROOT=$CRYSTALFLOW_REPO HYDRA_JOBS=$WORK/hydra WABDB=offline   # what CrystalFlow's .env sets
+  export PYTHONDONTWRITEBYTECODE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+fi
 
 # The token file is the one the loop's jobs source; it is read here, never printed.
 if [ -f "$USER_SCRATCH/.secrets/hf_token.env" ]; then set -a; . "$USER_SCRATCH/.secrets/hf_token.env"; set +a; fi

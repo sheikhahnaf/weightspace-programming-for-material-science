@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I worked through attempt 1 by hand and found it was the minimum-energy-spread edit under an independence assumption, with the mean energy change forced to zero through the weights. Its predicted bulk-modulus shift (-2.77 GPa) matched the measured one (-2.82 GPa). Its energy spread, though, came out about 1.8 times what independence predicts. For this attempt I moved each weight by -lambda*(dK_j + 15*dE_j)/sd_j^2, which only partly applies the mean-energy constraint, and cancelled the remaining mean energy shift (+18.5 meV) with b = -0.0185. The predicted shift is about -2.06 GPa, which takes the mean error from +4.7 to roughly +2.6 GPa and should scale with K much as attempt 1 did. The independence estimate of the energy spread is 2.6 meV standard deviation, about 2.1 meV mean absolute. Allowing for the correlations seen in attempt 1, I put the chance that the mean absolute energy change stays under 5 meV at about 75%.

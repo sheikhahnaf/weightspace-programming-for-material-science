@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-NiTi-04Tok-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"6\">Liquid at 2600 K</td></tr><tr><td></td><td>ΔmixH / kJ mol-1</td><td>ΔmixG / kJ mol-1</td><td>a(Ni)</td><td>a(Ti)</td><td>ΔH(Ni)/kJ mol-1</td><td>ΔH(Ti)/kJ mol-1</td></tr><tr><td>0.100</td><td>-19.72</td><td>-15.27</td><td>0.8229</td><td>0.0049</td><td>-3.66</td><td>-164.27</td></tr><tr><td>0.300</td><td>-39.15</td><td>-28.57</td><td>0.4193</td><td>0.0928</td><td>-27.09</td><td>-67.30</td></tr><tr><td>0.500</td><td>-38.43</td><td>-30.75</td><td>0.2034</td><td>0.2858</td><td>-58.88</td><td>-17.97</td></tr><tr><td>0.700</td><td>-25.41</td><td>-26.09</td><td>0.0812</td><td>0.5228</td><td>-83.34</td><td>-0.58</td></tr><tr><td>0.900</td><td>-7.94</td><td>-13.15</td><td>0.0096</td><td>0.8526</td><td>-84.74</td><td>0.59</td></tr></table>"
+ ]
+}

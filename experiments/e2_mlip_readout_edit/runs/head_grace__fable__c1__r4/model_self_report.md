@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I kept the ten-weight softening direction of attempt 3 (weights with the largest mean bulk-modulus effect per unit of energy scatter), scaled to 0.93, and replaced the weight-25 energy compensation with increases of weights 38 and 48, which cancel the mean energy rise (about +3.76 meV per atom by hand arithmetic) while also lowering the bulk modulus slightly. The aim is to test whether this compensator gives fewer meV of energy change per GPa of shift than attempt 3 (about 14 meV per GPa), so the last attempt can be scaled accordingly. I expect a mean shift of roughly -0.33 GPa and a mean absolute error near 5.74 GPa; the edit is a nearly uniform shift, so it cannot fix the crystal-to-crystal scatter that dominates the error. Confidence that it stays within the 5 meV limit: about 60%; confidence that it beats attempt 3's 5.74 GPa by a measurable amount: about 25%.

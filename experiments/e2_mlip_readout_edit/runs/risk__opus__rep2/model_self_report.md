@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand on the assumption that the absolute error grows with stiffness. Its main term is about 7% of the predicted bulk modulus, and two convex ReLU kinks at 150 and 250 GPa capture the stronger systematic softening of universal potentials on very stiff crystals. On top of that I added a small dense-volume term and an additive composition-hazard unit: magnetic 3d metals, f-elements, 4d/5d metals, metalloids and H raise the estimate, and alkali and halogen lower it. Two gated units let 3d and f-electron content raise the slope with predicted B, two mismatch units flag a modulus that looks too low for a dense cell or too high for a large one, and a weak low-electronegativity (metallic) term completes it. All of this came from prior knowledge, with a few material checks done mentally (NaCl, MgO, W, Fe, LiCoO2). I am about 40% confident that it ranks clearly better than predicted B alone.

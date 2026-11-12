@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Attempt 1 had set each change to 3.2e-6 x dK/sd(dE)^2. My mental check of its numbers predicted +0.62 GPa, which matches the measured +0.63. Its energy spread came out about 5x larger than independent channels would give, so the per-crystal energy contributions of the active channels must be strongly correlated, and the positive-weight channels must add to the negative-weight channels' contribution rather than cancel it. This reply keeps only attempt 1's changes to the 20 negative-weight channels, which carry most of the K gain, and moves b to cancel the mean energy shift (-4.16 meV). I expect about +0.5 GPa on the mean error and an energy MAE near 4.0-4.5 meV, inside the limit (about 80% confident). It also serves as a probe: comparing its energy MAE with attempt 1's gives the ratio needed to set up an energy-cancelling move between the two channel groups.

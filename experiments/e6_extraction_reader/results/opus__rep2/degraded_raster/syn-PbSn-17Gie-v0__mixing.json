@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-PbSn-17Gie-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td>x(Sn)</td><td>ΔmixH/Jmol-1</td><td>ΔmixG/Jmol-1</td><td>a(Pb)</td><td>a(Sn)</td><td>ΔH(Pb)/Jmol-1</td><td>ΔH(Sn)/Jmol-1</td></tr><tr><td>0.100</td><td>490</td><td>-1304</td><td>0.9111</td><td>0.2459</td><td>60</td><td>4353</td></tr><tr><td>0.300</td><td>1115</td><td>-2212</td><td>0.7784</td><td>0.5056</td><td>519</td><td>2503</td></tr><tr><td>0.500</td><td>1294</td><td>-2468</td><td>0.6638</td><td>0.6451</td><td>1377</td><td>1211</td></tr><tr><td>0.700</td><td>1059</td><td>-2267</td><td>0.5112</td><td>0.7641</td><td>2568</td><td>412</td></tr><tr><td>0.900</td><td>442</td><td>-1352</td><td>0.2326</td><td>0.9084</td><td>4030</td><td>43</td></tr></table>"
+ ]
+}

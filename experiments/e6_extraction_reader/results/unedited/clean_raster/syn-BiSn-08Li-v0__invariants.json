@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-BiSn-08Li-v0",
+ "table": "invariants",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Reaction</td><td>Type</td><td>T(℃) this work</td><td>T exp.b</td><td>Ref.</td><td>x(Sn),1</td><td>x(Sn),2</td><td>x(Sn),3</td></tr><tr><td>L→(Bi)+(Sn)</td><td>eutectic</td><td>142.7</td><td>137.7</td><td>[5]</td><td>0.584</td><td>0.038</td><td>0.838</td></tr></table>"
+ ]
+}

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> From attempt 1 I inferred that the per-feature energy spreads add almost coherently (the summed dE sd of the edited weights matched the 6.87 meV measured), and that a K-proportional shift of about -2.2 GPa overshot, especially in the stiffest bin, so the MAE-optimal shift is probably only about -0.5 to -1 GPa. This attempt aims for about -0.8 GPa. Eight positive weights with the lowest dK sd/mean (a more uniform, less high-K-weighted effect) are each reduced to give -0.05 GPa. Two nearly dead features (59 and 64), which move K cheaply in energy, are changed by 0.2 to give about -0.42 GPa. b cancels the mean energy shift (-0.27 meV), so the summed energy sd is 3.3 meV and the change stays under the limit even if fully coherent. I am about 55% confident that this lowers the MAE on new crystals, and only by a few tenths of a GPa at most.

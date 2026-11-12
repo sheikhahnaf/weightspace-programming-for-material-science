@@ -1,0 +1,13 @@
+{"key": "Al", "melting_point_K": 933.47, "phase_298K": "FCC_L12#1", "density_298K_g_cm3": 2.6992864939239505}
+{"key": "Co", "melting_point_K": 1768.01, "phase_298K": "HCP_A3#1", "density_298K_g_cm3": 8.835867932622463}
+{"key": "Cr", "melting_point_K": 2180.0, "phase_298K": "BCC_B2#1", "density_298K_g_cm3": 7.199992822251244}
+{"key": "Fe", "melting_point_K": 1810.95, "phase_298K": "BCC_B2#1", "density_298K_g_cm3": 7.874711464847674}
+{"key": "Mn", "melting_point_K": 1519.01, "phase_298K": "CBCC_A12#1", "density_298K_g_cm3": 7.465806601601784}
+{"key": "Mo", "melting_point_K": 2896.01, "phase_298K": "BCC_B2#1", "density_298K_g_cm3": 10.218880239694922}
+{"key": "Nb", "melting_point_K": 2750.0, "phase_298K": "BCC_B2#1", "density_298K_g_cm3": 8.58186867048626}
+{"key": "Ni", "melting_point_K": 1728.25, "phase_298K": "FCC_L12#1", "density_298K_g_cm3": 8.906457208549115}
+{"key": "Ta", "melting_point_K": 3290.02, "phase_298K": "BCC_B2#1", "density_298K_g_cm3": 16.67645872264585}
+{"key": "Ti", "melting_point_K": 1941.02, "phase_298K": "HCP_A3#1", "density_298K_g_cm3": 4.50230233234953}
+{"key": "V", "melting_point_K": 2183.07, "phase_298K": "BCC_B2#1", "density_298K_g_cm3": 6.117083392441809}
+{"key": "W", "melting_point_K": 3694.92, "phase_298K": "BCC_B2#1", "density_298K_g_cm3": 19.26365930092372}
+{"key": "Zr", "melting_point_K": 2127.86, "phase_298K": "HCP_A3#1", "density_298K_g_cm3": 6.506158133435072}

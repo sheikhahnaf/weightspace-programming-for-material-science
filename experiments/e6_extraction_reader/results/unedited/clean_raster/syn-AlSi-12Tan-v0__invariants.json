@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlSi-12Tan-v0",
+ "table": "invariants",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Reaction</td><td rowspan=\"2\">Type</td><td colspan=\"2\">T/K</td><td colspan=\"3\">Compositions(x(Si))</td></tr><tr><td>this work</td><td>exp.</td><td>phase1</td><td>phase2</td><td>phase3</td></tr><tr><td>L→(Al)+(Si)</td><td>eutectic</td><td>850.2</td><td>846.2[3]</td><td>0.121</td><td>0.017</td><td>1.000</td></tr></table>"
+ ]
+}

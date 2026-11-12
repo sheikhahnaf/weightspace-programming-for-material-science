@@ -4,7 +4,8 @@ For each task and seed this fits an exact GP, ridge regression and the MLP head
 trained with AdamW, scores them on the task's test rows, and saves the trained
 head as text so the same weights can be handed to an LLM.
 
-    python experiments/e1_surrogate_head/run_baseline.py                 # all tasks
+    python experiments/e1_surrogate_head/run_baseline.py                 # all E1 tasks
+    python experiments/e1_surrogate_head/run_baseline.py --task calphad --out experiments/e7_calphad_prior/results/baseline
     python experiments/e1_surrogate_head/run_baseline.py --task ti_alloy_youngs_modulus
 """
 
@@ -19,7 +20,7 @@ import numpy as np
 
 from wsp import count_weights, dump_weights, estimate_tokens
 from wsp.baselines import fit_gp, fit_mlp, fit_ridge, predict, prepare, score
-from wsp.tasks import TASK_NAMES, load_task
+from wsp.tasks import CALPHAD_TASK_NAMES, TASK_NAMES, load_task
 
 HERE = Path(__file__).resolve().parent
 METRICS = ("r2", "spearman", "rmse", "top_decile_bias")
@@ -97,20 +98,22 @@ def table(summaries: list[dict]) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    parser.add_argument("--task", choices=(*TASK_NAMES, "all"), default="all")
+    parser.add_argument("--task", choices=(*TASK_NAMES, "all", "calphad"), default="all",
+                        help="all = the E1 tasks; calphad = the Thermo-Calc tasks of E7")
     parser.add_argument("--seeds", type=int, default=5)
     parser.add_argument("--hidden", type=int, nargs="+", default=[32, 32])
     parser.add_argument("--out", type=Path, default=HERE / "results")
     args = parser.parse_args()
 
     warnings.filterwarnings("ignore")
-    names = TASK_NAMES if args.task == "all" else (args.task,)
+    groups = {"all": tuple(n for n in TASK_NAMES if n not in CALPHAD_TASK_NAMES), "calphad": CALPHAD_TASK_NAMES}
+    names = groups.get(args.task, (args.task,))
     summaries = []
     for name in names:
         summaries.append(run_task(name, args.seeds, tuple(args.hidden), args.out))
         print(f"done {name}", flush=True)
     text = table(summaries)
-    if args.task == "all":
+    if args.task in groups:
         (args.out / "baseline_table.md").write_text(text)
     print(text)
 

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I took attempt 3, the best measured reply within the energy limit, and multiplied every change from the original weights by 1.055; because the energy is exactly linear in w, the mean absolute energy change should scale from 4.70 to about 4.96 meV per atom, still under the limit, while the bulk modulus shift grows from about -0.33 to about -0.35 GPa. I rechecked by hand that the direction puts weight on the entries with the largest bulk-modulus effect per unit of energy spread (roughly dK mean over dE variance) and that w[25] cancels the mean energy shift. The table gives only means and spreads across crystals, so I had no way to target the soft crystals, where the error sits, separately from the stiff ones; the edit is a nearly uniform downward shift and I expect the mean absolute error to stay at about 5.74 GPa, a gain of roughly 1% over the original. Confidence that it stays within the energy limit: 90%; confidence that it beats attempt 3 by a measurable amount: 25%.

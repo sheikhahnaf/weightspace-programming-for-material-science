@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlBi-06Kim-v0",
+ "table": "invariants",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Reaction</td><td>Type</td><td colspan=\"3\">T/℃</td><td colspan=\"3\">Compositions(x(Bi))</td></tr><tr><td></td><td></td><td>this work</td><td>exp.b</td><td>Ref.</td><td>phase1</td><td>phase2</td><td>phase3</td></tr><tr><td>L1→(Al)+L2</td><td>monotectic</td><td>658.6</td><td>651.6</td><td>[3]</td><td>0.003</td><td>0.001</td><td>0.840</td></tr><tr><td>L→(Al)+(Bi)</td><td>eutectic</td><td>271.2</td><td>266.2</td><td>[3]</td><td>0.999</td><td>0.000</td><td>1.000</td></tr></table>"
+ ]
+}

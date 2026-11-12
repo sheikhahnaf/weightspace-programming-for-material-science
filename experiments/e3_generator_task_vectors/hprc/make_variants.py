@@ -1,8 +1,17 @@
-"""E3 step C4a: build MatterGen model folders from the base and task vectors.
+"""E3 step C4a: build generator model folders from the base and task vectors.
 
 A task vector is tau = fine-tuned weights - base weights for one RL run. Each
 variant below is the base plus some combination of task vectors, written as a
-folder the stock MatterGen sampler can load (config.yaml + checkpoints/last.ckpt).
+folder the backbone's own loader can read:
+
+  mg    config.yaml + checkpoints/last.ckpt          (stock MatterGen sampler)
+  cf    hparams.yaml + epoch=*.ckpt + scaler files   (the loop's CrystalFlowSuite)
+  adit  ldm.ckpt; the frozen autoencoder stays in the base folder (the loop's ADiTSuite)
+
+For cf and adit the variant checkpoint is the base Lightning checkpoint with its
+state dict changed and the optimizer state dropped, so it loads through the same
+code path as the base did in the loop. A task vector covers the tensors present
+in both state dicts; anything else keeps its base value.
 
   base               the published model, untouched
   bm_seed17          one bulk-modulus run, as fine-tuned         (what RL achieved)
@@ -19,6 +28,8 @@ folder the stock MatterGen sampler can load (config.yaml + checkpoints/last.ckpt
 Runs wherever the checkpoints are (FASTER or a laptop). Existing variants are kept.
 
     python make_variants.py --base-dir <mattergen_base> --finetuned <finetuned_diffusion> --out <variants>
+    python make_variants.py --backbone cf   --base-dir <.../DNG-mp-20>       --finetuned <...> --out <variants_cf>
+    python make_variants.py --backbone adit --base-dir <.../checkpoints/adit> --finetuned <...> --out <variants_adit>
 """
 
 from __future__ import annotations
@@ -31,7 +42,36 @@ from pathlib import Path
 
 import torch
 
-RUN = re.compile(r"(bm|hcap)_p3v4_(?:bm_)?mg_(accel|baseline)_seed(\d+)_(\d+)")
+RUN = r"(bm|hcap)_p3v4_(?:bm_)?{backbone}_(accel|baseline)_seed(\d+)_(\d+)"
+FINETUNED_FILE = {"mg": "last.ckpt", "cf": "last.ckpt", "adit": "ldm_finetuned.ckpt"}
+DROP = ("optimizer_states", "lr_schedulers")  # not needed to sample, and half the file
+
+
+def base_checkpoint(backbone: str, base_dir: Path) -> Path:
+    if backbone == "mg":
+        return base_dir / "checkpoints" / "last.ckpt"
+    if backbone == "adit":
+        return base_dir / "ldm.ckpt"
+    epochs = sorted(base_dir.glob("epoch=*.ckpt"), key=lambda f: int(f.name.split("-")[0].split("=")[1]))
+    if not epochs:
+        raise SystemExit(f"no epoch=*.ckpt under {base_dir}")
+    return epochs[-1]  # the file CrystalFlowSuite.load_model picks
+
+
+def write_variant(backbone: str, base_dir: Path, base_file: Path, base_ckpt: dict, sd: dict, folder: Path) -> Path:
+    if backbone == "mg":
+        (folder / "checkpoints").mkdir(parents=True, exist_ok=True)
+        shutil.copy2(base_dir / "config.yaml", folder / "config.yaml")
+        target = folder / "checkpoints" / "last.ckpt"
+        torch.save({"state_dict": sd}, target)
+        return target
+    folder.mkdir(parents=True, exist_ok=True)
+    if backbone == "cf":
+        for extra in list(base_dir.glob("*.yaml")) + list(base_dir.glob("*.pt")):
+            shutil.copy2(extra, folder / extra.name)
+    target = folder / base_file.name
+    torch.save({**{k: v for k, v in base_ckpt.items() if k not in DROP}, "state_dict": sd}, target)
+    return target
 
 
 def floats(sd):
@@ -62,22 +102,34 @@ def main() -> None:
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--policy", default="baseline", choices=("baseline", "accel"))
     parser.add_argument("--seed", type=int, default=17)
+    parser.add_argument("--backbone", default="mg", choices=tuple(FINETUNED_FILE))
     args = parser.parse_args()
 
-    base = torch.load(args.base_dir / "checkpoints" / "last.ckpt", map_location="cpu", weights_only=False)["state_dict"]
+    run_name = re.compile(RUN.format(backbone=args.backbone))
+    ft_file = FINETUNED_FILE[args.backbone]
+    base_file = base_checkpoint(args.backbone, args.base_dir)
+    base_ckpt = torch.load(base_file, map_location="cpu", weights_only=False)
+    base = base_ckpt["state_dict"]
     base_f = floats(base)
+    covered = None
     taus: dict[str, dict[int, dict]] = {"bm": {}, "hcap": {}}
     used = []
     for folder in sorted(args.finetuned.iterdir()):
-        m = RUN.fullmatch(folder.name)
-        if not m or m.group(2) != args.policy or not (folder / "last.ckpt").exists():
+        m = run_name.fullmatch(folder.name)
+        if not m or m.group(2) != args.policy or not (folder / ft_file).exists():
             continue
         target, seed = m.group(1), int(m.group(3))
         if seed in taus[target]:  # a resubmission of the same seed: keep the later job id
             continue
-        sd = torch.load(folder / "last.ckpt", map_location="cpu", weights_only=False)["state_dict"]
-        taus[target][seed] = {k: sd[k].float() - base_f[k].float() for k in base_f}
+        sd = torch.load(folder / ft_file, map_location="cpu", weights_only=False)["state_dict"]
+        if covered is None:
+            covered = [k for k in base_f if k in sd and sd[k].shape == base_f[k].shape]
+            print(f"task vector covers {len(covered)} of {len(base_f)} floating tensors of the base; "
+                  f"{len([k for k in sd if k not in base])} fine-tuned tensors have no base counterpart")
+        taus[target][seed] = {k: sd[k].float() - base_f[k].float() for k in covered}
         used.append(folder.name)
+        if target == "bm" and seed == args.seed:
+            single = {k: sd[k] for k in covered}
     for target in taus:
         if args.seed not in taus[target]:
             raise SystemExit(f"no {target} {args.policy} run with seed {args.seed}; have {sorted(taus[target])}")
@@ -103,23 +155,31 @@ def main() -> None:
         "bm_mean5_x3": combine((3.0, bm_mean)),
     }
     base_norm = sum(float((v.float() ** 2).sum()) for v in base_f.values()) ** 0.5
-    manifest = {"policy": args.policy, "seed": args.seed, "runs_used": used, "variants": {}}
+    # Norm of the base over the tensors RL touched: cf and adit carry large fixed buffers.
+    touched = [k for k, t in bm.items() if float(t.abs().max()) > 0]
+    touched_norm = sum(float((base_f[k].float() ** 2).sum()) for k in touched) ** 0.5
+    rebuilt = max(float((base_f[k].float() + bm[k] - single[k].float()).abs().max()) for k in bm)
+    print(f"base + tau against the fine-tuned checkpoint (bm seed {args.seed}): max abs difference {rebuilt:.2e}")
+    manifest = {"backbone": args.backbone, "base_checkpoint": str(base_file), "policy": args.policy,
+                "seed": args.seed, "runs_used": used, "tensors_in_task_vector": len(bm),
+                "tensors_changed_by_rl": len(touched), "variants": {}}
     args.out.mkdir(parents=True, exist_ok=True)
     for name, tau in recipes.items():
         folder = args.out / name
         norm = 0.0 if tau is None else sum(float((v.float() ** 2).sum()) for v in tau.values()) ** 0.5
-        manifest["variants"][name] = {"relative_norm_of_change": norm / base_norm}
-        if (folder / "checkpoints" / "last.ckpt").exists():
+        manifest["variants"][name] = {"relative_norm_of_change": norm / base_norm,
+                                      "relative_norm_over_changed_tensors": norm / touched_norm}
+        if (folder / "DONE").exists() or (args.backbone == "mg" and (folder / "checkpoints" / "last.ckpt").exists()):
             print(f"keep  {name}")
             continue
-        (folder / "checkpoints").mkdir(parents=True, exist_ok=True)
-        shutil.copy2(args.base_dir / "config.yaml", folder / "config.yaml")
         sd = {k: v.clone() for k, v in base.items()}
         if tau is not None:
             for k, t in tau.items():
                 sd[k] = (base_f[k].float() + t).to(base[k].dtype)
-        torch.save({"state_dict": sd}, folder / "checkpoints" / "last.ckpt")
-        print(f"wrote {name}  relative norm of change {norm / base_norm:.5f}", flush=True)
+        write_variant(args.backbone, args.base_dir, base_file, base_ckpt, sd, folder)
+        (folder / "DONE").write_text("complete\n")  # a checkpoint cut off mid-write is rebuilt
+        print(f"wrote {name}  relative norm of change {norm / base_norm:.5f} "
+              f"({norm / touched_norm:.5f} of the tensors RL changed)", flush=True)
     (args.out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     (args.out / "variants.txt").write_text("\n".join(recipes) + "\n")
 

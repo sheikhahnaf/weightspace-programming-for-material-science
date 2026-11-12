@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuPb-86Hay-LB-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Reaction</td><td rowspan=\"2\">Type</td><td colspan=\"3\">T/°C</td><td colspan=\"3\">Compositions(x(Pb))</td></tr><tr><td>this work</td><td>exp.</td><td>Ref.</td><td>phase1</td><td>phase2</td><td>phase3</td></tr><tr><td>L1 → (Cu) + L2</td><td>monotectic</td><td>956.8</td><td>-</td><td>-</td><td>0.222</td><td>0.007</td><td>0.631</td></tr><tr><td>L → (Cu) + (Pb)</td><td>eutectic</td><td>326.3</td><td>321.3</td><td>[4]</td><td>0.998</td><td>0.000</td><td>1.000</td></tr></table>"
+ ]
+}

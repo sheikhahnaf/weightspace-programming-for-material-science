@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlNi-14Zhu-v0",
+ "table": "mixing",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td></td><td colspan=\"2\">Liquid at 2000K</td><td></td><td></td></tr><tr><td>x(Ni)</td><td>ΔmixH/kJmol-1</td><td>ΔmixG/kJmol-1</td><td>a(Al)</td><td>a(Ni)</td><td>ΔH(Al)/kJmol-1</td><td>ΔH(Ni)/kJmol-1</td></tr><tr><td>0.100</td><td>-14.14</td><td>-15.40</td><td>0.8965</td><td>2.550E-4</td><td>0.13</td><td>-142.57</td></tr><tr><td>0.300</td><td>-39.06</td><td>-37.24</td><td>0.4430</td><td>0.0038</td><td>-10.45</td><td>-105.83</td></tr><tr><td>0.500</td><td>-49.27</td><td>-45.62</td><td>0.0698</td><td>0.0593</td><td>-47.91</td><td>-50.63</td></tr><tr><td>0.700</td><td>-39.98</td><td>-38.15</td><td>0.0041</td><td>0.3984</td><td>-104.76</td><td>-12.21</td></tr><tr><td>0.900</td><td>-14.93</td><td>-16.18</td><td>1.854E-4</td><td>0.8813</td><td>-147.87</td><td>-0.15</td></tr></table>"
+ ]
+}

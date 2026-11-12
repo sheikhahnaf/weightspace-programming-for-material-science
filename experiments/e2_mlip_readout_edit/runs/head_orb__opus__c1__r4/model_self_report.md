@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> Attempt 2 showed that uniform scaling leaves a per-crystal energy spread of about 1.36 eV per unit scale, close to the coherent maximum of the summed |w|*sd. From that I inferred that the 44 large readout features fluctuate almost together across crystals, so the edit should cancel that common mode rather than add to it. The main component therefore moves weight, inside clusters of negative-weight features with similar dE mean/sd shape, from features with a low dK/dE_sd ratio (135, 139, 90, 49) to features with a high one (188, 161, 254, 38, 77). The amounts are matched so the fluctuation amplitudes cancel. A smaller hedge scales the negative-weight group up by 0.29% and the positive-weight group down by 0.35%, and b absorbs the mean energy shift; the predicted K gain is about +1.15 GPa. The per-crystal energy residual depends on correlations I cannot see, so my confidence that this is within 5 meV and beats attempt 3 is about 60%.

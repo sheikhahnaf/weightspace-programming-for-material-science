@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-MgSn-04Fri-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range/K</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.% Sn</td><td>at T/K</td></tr><tr><td>(Mg)</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;300</td><td>923.0</td><td>0.0-3.0</td><td>840</td></tr><tr><td>Mg2Sn</td><td>cF12</td><td>C1</td><td>CaF2</td><td>&lt;300</td><td>1048.7</td><td>33.3</td><td>440</td></tr><tr><td>(Sn)</td><td>tl4</td><td>A5</td><td>β-Sn</td><td>&lt;300</td><td>505.1</td><td>100.0</td><td>300</td></tr></table>"
+ ]
+}

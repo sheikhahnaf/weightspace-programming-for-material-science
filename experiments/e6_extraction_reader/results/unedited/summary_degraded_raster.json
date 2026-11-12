@@ -1,0 +1,146 @@
+{
+  "model": "zai-org/GLM-OCR",
+  "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+  "rendering": "degraded_raster",
+  "tag": "unedited",
+  "documents": 20,
+  "cell_exact": 0.7218978102189781,
+  "cell_exact_normalised": 0.8127737226277372,
+  "numeric_exact": 1.0,
+  "cells": 2740,
+  "numeric_cells": 1605,
+  "by_table": {
+    "invariants": {
+      "cell_exact": 0.6590214067278287,
+      "numeric_exact": 1.0,
+      "cells": 654
+    },
+    "phases": {
+      "cell_exact": 0.7026315789473684,
+      "numeric_exact": 1.0,
+      "cells": 760
+    },
+    "rk_liquid": {
+      "cell_exact": 0.7192982456140351,
+      "numeric_exact": 1.0,
+      "cells": 114
+    },
+    "mixing": {
+      "cell_exact": 0.7938247011952191,
+      "numeric_exact": 1.0,
+      "cells": 1004
+    },
+    "formation": {
+      "cell_exact": 0.6321243523316062,
+      "numeric_exact": 1.0,
+      "cells": 193
+    },
+    "liquidus": {
+      "cell_exact": 0.8,
+      "numeric_exact": 1.0,
+      "cells": 15
+    }
+  },
+  "per_doc": {
+    "syn-AgCu-06He-v0": {
+      "cell_exact": 0.819672131147541,
+      "cell_exact_normalised": 0.8360655737704918,
+      "numeric_exact": 1.0
+    },
+    "syn-AgNi-04Din-v0": {
+      "cell_exact": 0.7,
+      "cell_exact_normalised": 0.8,
+      "numeric_exact": 1.0
+    },
+    "syn-AgSn-12Gie-v0": {
+      "cell_exact": 0.6330935251798561,
+      "cell_exact_normalised": 0.7913669064748201,
+      "numeric_exact": 1.0
+    },
+    "syn-AlBi-06Kim-v0": {
+      "cell_exact": 0.6929824561403509,
+      "cell_exact_normalised": 0.7631578947368421,
+      "numeric_exact": 1.0
+    },
+    "syn-AlCu-02Mie-v0": {
+      "cell_exact": 0.7560975609756098,
+      "cell_exact_normalised": 0.8195121951219512,
+      "numeric_exact": 1.0
+    },
+    "syn-AlMg-12Tan-v0": {
+      "cell_exact": 0.6486486486486487,
+      "cell_exact_normalised": 0.8540540540540541,
+      "numeric_exact": 1.0
+    },
+    "syn-AlNi-14Zhu-v0": {
+      "cell_exact": 0.7535545023696683,
+      "cell_exact_normalised": 0.7914691943127962,
+      "numeric_exact": 1.0
+    },
+    "syn-AlSi-12Tan-v0": {
+      "cell_exact": 0.6265060240963856,
+      "cell_exact_normalised": 0.7831325301204819,
+      "numeric_exact": 1.0
+    },
+    "syn-AlZn-93Mey-LB-v0": {
+      "cell_exact": 0.84251968503937,
+      "cell_exact_normalised": 0.8582677165354331,
+      "numeric_exact": 1.0
+    },
+    "syn-BiSn-08Li-v0": {
+      "cell_exact": 0.7950819672131147,
+      "cell_exact_normalised": 0.8114754098360656,
+      "numeric_exact": 1.0
+    },
+    "syn-CrFe-11Xio-v0": {
+      "cell_exact": 0.768,
+      "cell_exact_normalised": 0.792,
+      "numeric_exact": 1.0
+    },
+    "syn-CuMg-16Hal-v0": {
+      "cell_exact": 0.6484375,
+      "cell_exact_normalised": 0.765625,
+      "numeric_exact": 1.0
+    },
+    "syn-CuNi-87Jan-v0": {
+      "cell_exact": 0.74,
+      "cell_exact_normalised": 0.77,
+      "numeric_exact": 1.0
+    },
+    "syn-CuPb-86Hay-LB-v0": {
+      "cell_exact": 0.7318840579710145,
+      "cell_exact_normalised": 0.8478260869565217,
+      "numeric_exact": 1.0
+    },
+    "syn-CuZn-08Gie-v0": {
+      "cell_exact": 0.8378378378378378,
+      "cell_exact_normalised": 0.8693693693693694,
+      "numeric_exact": 1.0
+    },
+    "syn-MgSi-12Sch-v0": {
+      "cell_exact": 0.6293103448275862,
+      "cell_exact_normalised": 0.8017241379310345,
+      "numeric_exact": 1.0
+    },
+    "syn-MgSn-04Fri-v0": {
+      "cell_exact": 0.6274509803921569,
+      "cell_exact_normalised": 0.7647058823529411,
+      "numeric_exact": 1.0
+    },
+    "syn-NiTi-04Tok-v0": {
+      "cell_exact": 0.6180904522613065,
+      "cell_exact_normalised": 0.8140703517587939,
+      "numeric_exact": 1.0
+    },
+    "syn-PbSn-17Gie-v0": {
+      "cell_exact": 0.7857142857142857,
+      "cell_exact_normalised": 0.8061224489795918,
+      "numeric_exact": 1.0
+    },
+    "syn-PbZn-98Jan-v0": {
+      "cell_exact": 0.7105263157894737,
+      "cell_exact_normalised": 0.8245614035087719,
+      "numeric_exact": 1.0
+    }
+  }
+}

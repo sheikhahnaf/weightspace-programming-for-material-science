@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-PbZn-98Jan-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"2\">Structure</td><td colspan=\"2\">Stability range /℃</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>x(Zn)</td><td>at T/℃</td></tr><tr><td>(Pb)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27^{a}$</td><td>327.5</td><td>0.000-0.003</td><td>317</td></tr><tr><td>(Zn)</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;27^{a}$</td><td>420.0</td><td>0.996-1.000</td><td>417</td></tr></table>"
+ ]
+}

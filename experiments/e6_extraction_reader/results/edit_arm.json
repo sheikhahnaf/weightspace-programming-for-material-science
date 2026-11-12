@@ -1,0 +1,50 @@
+{
+  "counts": {
+    "cells": 1342,
+    "cell_exact": 0.7406855439642325,
+    "cell_exact_normalised": 0.8047690014903129,
+    "numeric_exact": 0.8022813688212928
+  },
+  "fable__rep1": {
+    "cells": 1342,
+    "cell_exact": 0.7578241430700448,
+    "cell_exact_normalised": 0.8137108792846498,
+    "numeric_exact": 0.8022813688212928
+  },
+  "fable__rep2": {
+    "cells": 1342,
+    "cell_exact": 0.2421758569299553,
+    "cell_exact_normalised": 0.2690014903129657,
+    "numeric_exact": 0.2509505703422053
+  },
+  "opus__rep1": {
+    "cells": 1342,
+    "cell_exact": 0.7332339791356185,
+    "cell_exact_normalised": 0.8025335320417287,
+    "numeric_exact": 0.8035487959442332
+  },
+  "opus__rep2": {
+    "cells": 1342,
+    "cell_exact": 0.7466467958271237,
+    "cell_exact_normalised": 0.8017883755588674,
+    "numeric_exact": 0.8022813688212928
+  },
+  "unedited": {
+    "cells": 1342,
+    "cell_exact": 0.713859910581222,
+    "cell_exact_normalised": 0.8077496274217586,
+    "numeric_exact": 0.8022813688212928
+  },
+  "unedited + text rule (no weight edit)": {
+    "cells": 1342,
+    "cell_exact": 0.7160953800298062,
+    "cell_exact_normalised": 0.8114754098360656,
+    "numeric_exact": 0.8022813688212928,
+    "rule": [
+      [
+        "v",
+        "ν"
+      ]
+    ]
+  }
+}

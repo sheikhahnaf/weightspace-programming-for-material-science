@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-PbSn-17Gie-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"2\">Structure</td><td colspan=\"2\">Stability range / K</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>x(Sn)</td><td>at T / K</td></tr><tr><td>(Pb)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300a</td><td>600.6</td><td>0.000-0.301</td><td>460</td></tr><tr><td>(Sn)</td><td>tI4</td><td>A5</td><td>β-Sn</td><td>&lt;300a</td><td>505.1</td><td>0.976-1.000</td><td>450</td></tr></table>"
+ ]
+}

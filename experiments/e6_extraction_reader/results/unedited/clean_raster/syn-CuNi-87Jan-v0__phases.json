@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-CuNi-87Jan-v0",
+ "table": "phases",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range/K</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>x(Ni)</td><td>atT/K</td></tr><tr><td>(Cu,Ni)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300</td><td>1728.2</td><td>0.000-1.000</td><td>430</td></tr></table>"
+ ]
+}

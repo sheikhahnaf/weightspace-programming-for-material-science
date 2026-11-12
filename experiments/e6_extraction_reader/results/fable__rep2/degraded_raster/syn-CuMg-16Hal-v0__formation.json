@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuMg-16Hal-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td colspan=\"6\">298.15 K, per mole of formula units</td></tr><tr><td>Phase</td><td>at.% Mg</td><td>ΔfH / kJ mol-1</td><td>ΔfS / J mol-1 K-1</td><td>Cp / J mol-1 K-1</td><td></td></tr><tr><td>Cu2Mg</td><td>33.5</td><td>-30.59 ± 0.5</td><td>5.89</td><td>73.28</td><td></td></tr><tr><td>CuMg2</td><td>66.7</td><td>-25.95 ± 0.5</td><td>2.01</td><td>73.78</td><td></td></tr></table>"
+ ]
+}

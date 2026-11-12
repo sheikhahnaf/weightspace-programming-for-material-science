@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-MgSi-12Sch-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Reaction</td><td>Type</td><td>T(℃)</td><td>x(Si),1</td><td>x(Si),2</td><td>x(Si),3</td></tr><tr><td>L→Mg2Si</td><td>congruent meltinga</td><td>1077.4</td><td>0.333</td><td>0.333</td><td>-</td></tr><tr><td>L→Mg2Si+(Si)</td><td>eutectic</td><td>939.3</td><td>0.543</td><td>0.333</td><td>1.000</td></tr><tr><td>L→(Mg)+Mg2Si</td><td>eutectic</td><td>637.1</td><td>0.015</td><td>0.000</td><td>0.333</td></tr></table>"
+ ]
+}

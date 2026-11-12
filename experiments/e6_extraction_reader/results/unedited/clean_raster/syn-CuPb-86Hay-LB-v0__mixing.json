@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-CuPb-86Hay-LB-v0",
+ "table": "mixing",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>x(Pb)</td><td>ΔmixH/Jmol-1</td><td>ΔmixG/Jmol-1</td><td>a(Cu)</td><td>a(Pb)</td><td>ΔH(Cu)/Jmol-1</td><td>ΔH(Pb)/Jmol-1</td></tr><tr><td>0.100</td><td>1862</td><td>-1782</td><td>0.9251</td><td>0.4599</td><td>-211</td><td>20518</td></tr><tr><td>0.200</td><td>3904</td><td>-2385</td><td>0.8827</td><td>0.6128</td><td>67</td><td>19250</td></tr><tr><td>0.300</td><td>5562</td><td>-2736</td><td>0.8545</td><td>0.6773</td><td>1508</td><td>15019</td></tr><tr><td>0.400</td><td>6551</td><td>-2962</td><td>0.8288</td><td>0.7170</td><td>4085</td><td>10250</td></tr><tr><td>0.500</td><td>6798</td><td>-3086</td><td>0.7978</td><td>0.7512</td><td>7355</td><td>6240</td></tr><tr><td>0.600</td><td>6365</td><td>-3101</td><td>0.7552</td><td>0.7854</td><td>10744</td><td>3446</td></tr><tr><td>0.700</td><td>5386</td><td>-2979</td><td>0.6931</td><td>0.8221</td><td>13832</td><td>1766</td></tr><tr><td>0.800</td><td>3987</td><td>-2661</td><td>0.5938</td><td>0.8645</td><td>16634</td><td>826</td></tr><tr><td>0.900</td><td>2223</td><td>-1988</td><td>0.4093</td><td>0.9195</td><td>19886</td><td>260</td></tr></table>"
+ ]
+}

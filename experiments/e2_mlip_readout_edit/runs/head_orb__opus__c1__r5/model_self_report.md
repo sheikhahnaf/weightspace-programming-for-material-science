@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I took attempt 4, the best edit within the energy limit (MAE 11.80 GPa, 3.53 meV), and multiplied its change from the original numbers by 1.30, bias change included. Energy is linear in w and b, so scaling the whole edit scales every crystal's energy change by exactly 1.30. That predicts 4.59 meV on these 200 crystals. The bulk-modulus change is linear for changes this small, so it should grow to about +1.5 GPa mean, mostly in the stiff crystals, which gives an MAE of about 11.5 GPa. I worked out a model of how the features are correlated, inferred from attempts 2 to 4, and it suggested other directions might be 5 to 15% more efficient. I rejected them because their energy cost could not be bounded from the measured data. I am about 85% confident this edit stays under 5 meV and beats attempt 4. The main risk is the energy on new crystals.

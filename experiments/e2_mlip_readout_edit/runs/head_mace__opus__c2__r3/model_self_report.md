@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I checked both earlier attempts by hand. The linear sums of dK mean times the weight change predicted their bulk-modulus shifts (-2.32 and -1.70 GPa) almost exactly. Attempt 2 kept the mean energy change near zero and came in at 4.19 meV, about 1.32 times its sum of per-weight energy sd taken as independent. Attempt 1 relied on b to cancel a +25 meV mean shift and failed, which points to a common-mode energy penalty. So I solved the minimum-energy-variance problem by hand: lower the mean K under the constraint of zero mean energy change, which gives delta w_j proportional to (dK_j/sd_j + 43.96 dE_j/sd_j)/sd_j. I scaled it to a predicted mean K shift of about -2.0 GPa (mean error near +2.7 GPa) at an expected energy change of about 4.6 meV, dropped the edits smaller than 0.005, and absorbed their residual mean energy (+0.36 meV) with b. I am about 65% confident that it stays under the 5 meV limit and beats attempt 2's MAE, though the MAE gain will be small because the error is mostly crystal-to-crystal scatter, not bias.

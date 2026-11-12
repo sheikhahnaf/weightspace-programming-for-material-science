@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-AlCu-02Mie-v0",
+ "table": "phases",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range/℃</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.%Cu</td><td>atT/℃</td></tr><tr><td>(Al)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27</td><td>660.3</td><td>0.0-5.4</td><td>607</td></tr><tr><td>Z</td><td>hP2</td><td>A3</td><td>Mg</td><td>473.9</td><td>742.1</td><td>26.6-32.6</td><td>607</td></tr></table>",
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range/℃</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.%Cu</td><td>atT/℃</td></tr><tr><td>β</td><td>cI2</td><td>A2</td><td>W</td><td>&lt;27</td><td>1049.9</td><td>35.2-76.3</td><td>577</td></tr><tr><td>γ</td><td>-</td><td>-</td><td>-</td><td>&lt;27</td><td>1020.6</td><td>61.7-69.3</td><td>27</td></tr><tr><td>(Cu)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27</td><td>1084.6</td><td>80.3-100.0</td><td>567</td></tr></table>"
+ ]
+}

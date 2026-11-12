@@ -17,7 +17,7 @@ module purge
 module load GCC/13.2.0 CUDA/12.2.0 Anaconda3/2024.02-1 WebProxy
 WORK=/scratch/group/arroyave_lab/ahnafalvi/wsp
 E6=$WORK/weighspace-programming/experiments/e6_extraction_reader
-export HF_HOME=$WORK/hf_home PYTHONNOUSERSITE=1
+export HF_HUB_OFFLINE=1 HF_HOME=$WORK/hf_home PYTHONNOUSERSITE=1
 cd $WORK/cwd
 TAG=${1:-unedited}
 EDIT=${2:+--edit $E6/$2}

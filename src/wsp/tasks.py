@@ -5,6 +5,9 @@ copied from the sibling repos (see data/PROVENANCE.md). A task fixes what the
 inputs mean, what is predicted, and how train and test are split, so that every
 method — GP, gradient-trained head, LLM-written or LLM-edited head — is scored
 on the same rows.
+
+The `<system>_*` tasks of experiment E7 are the exception to "copied": their
+targets were computed here with Thermo-Calc (data/calphad/README.md).
 """
 
 from __future__ import annotations
@@ -211,6 +214,78 @@ def _matbench() -> Task:
     )
 
 
+# Experiment E7: pools computed with Thermo-Calc (experiments/e7_calphad_prior/make_tc_data.py).
+# system -> elements in words, temperature of the phase-fraction targets
+CALPHAD_SYSTEMS = {
+    "cantor_al": {"alloys": "Al-Co-Cr-Fe-Mn-Ni high-entropy alloys", "T": 1273},
+    "refractory": {"alloys": "Mo-Nb-Ta-Ti-V-W-Zr refractory high-entropy alloys", "T": 1473},
+}
+# target -> CSV column, wording, unit, direction of improvement in BO (+1 maximise, -1 minimise)
+_CALPHAD_TARGETS = {
+    "solidus": ("solidus_K", "equilibrium solidus temperature", "K", +1.0),
+    "freezing_range": (
+        "freezing_range_K", "equilibrium freezing range (liquidus temperature minus solidus temperature)", "K", -1.0),
+    "intermetallic_fraction": (
+        "intermetallic_fraction_{T}K",
+        "equilibrium mole fraction, at {T} K, of all phases other than liquid and the disordered FCC, BCC and "
+        "HCP solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12)",
+        "mole fraction between 0 and 1", -1.0),
+}
+
+
+def _calphad(system: str, target: str) -> Task:
+    import pandas as pd
+
+    spec = CALPHAD_SYSTEMS[system]
+    column, wording, unit, _ = _CALPHAD_TARGETS[target]
+    column, wording = column.format(T=spec["T"]), wording.format(T=spec["T"])
+    df = pd.read_csv(DATA / "calphad" / f"{system}.csv")
+    df = df[df[column].notna()]  # a quantity Thermo-Calc failed on is empty for that row
+    names = tuple(c for c in df.columns if c.startswith("x_"))
+    return Task(
+        name=f"{system}_{target}",
+        application="alloy design from composition, computed target",
+        target=wording,
+        unit=unit,
+        X=df[list(names)].to_numpy(dtype=np.float64),
+        y=df[column].to_numpy(dtype=np.float64),
+        feature_names=names,
+        named_features=True,
+        split_kind="random",
+        description=(
+            f"Inputs are atomic fractions of {', '.join(n[2:] for n in names)} in {spec['alloys']}; each row "
+            f"sums to 1, every fraction is a multiple of 0.05 between 0 and 0.35, and at least four elements "
+            f"are present. The target is the {wording} in {unit}, calculated at 1 atm with the CALPHAD method "
+            f"(Thermo-Calc, TCHEA8 database). {len(df)} alloys."
+        ),
+        _split=_random_split(len(df), 200),
+    )
+
+
+def calphad_system(task_name: str) -> tuple[str, str]:
+    """(system, target) of an E7 task name."""
+    for system in CALPHAD_SYSTEMS:
+        if task_name.startswith(system + "_") and task_name[len(system) + 1:] in _CALPHAD_TARGETS:
+            return system, task_name[len(system) + 1:]
+    raise KeyError(f"{task_name!r} is not a Thermo-Calc task")
+
+
+@lru_cache(maxsize=None)
+def calphad_binary_facts(system: str) -> dict:
+    """Melting points and binary phase-diagram facts of a system; no multicomponent data."""
+    import json
+
+    return json.loads((DATA / "calphad" / f"{system}_binaries.json").read_text())
+
+
+# Registered E7 tasks. A target that is degenerate on a pool is left out here, with the reason.
+_CALPHAD_TASKS = (
+    ("cantor_al", "solidus"), ("cantor_al", "freezing_range"), ("cantor_al", "intermetallic_fraction"),
+    ("refractory", "solidus"), ("refractory", "freezing_range"), ("refractory", "intermetallic_fraction"),
+)
+CALPHAD_GOALS = {f"{system}_{target}": _CALPHAD_TARGETS[target][3] for system, target in _CALPHAD_TASKS}
+CALPHAD_TASK_NAMES = tuple(CALPHAD_GOALS)
+
 _BUILDERS: dict[str, Callable[[], Task]] = {
     "loop_bulk_modulus": lambda: _closed_loop(
         "closed_loop_bm", "ltm_bm_seed_pool.parquet", "loop_bulk_modulus",
@@ -226,6 +301,8 @@ _BUILDERS: dict[str, Callable[[], Task]] = {
     "ti_alloy_hardness": lambda: _ti("HV", "ti_alloy_hardness", "Vickers hardness", "HV", 100),
     "mpea_hardness": _mpea_hardness,
     "matbench_log_bulk_modulus": _matbench,
+    **{f"{system}_{target}": (lambda system=system, target=target: _calphad(system, target))
+       for system, target in _CALPHAD_TASKS},
 }
 
 TASK_NAMES = tuple(_BUILDERS)

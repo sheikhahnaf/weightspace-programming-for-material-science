@@ -12,6 +12,14 @@ tau = fine-tuned weights - base weights. This script reports
 Checkpoints are read from data/large/finetuned_diffusion/ (download_checkpoints.py).
 
     python experiments/e3_generator_task_vectors/task_vectors.py --backbone mg
+    python experiments/e3_generator_task_vectors/task_vectors.py --backbone cf     # base copied from FASTER, see README
+    python task_vectors.py --backbone adit --base <ldm.ckpt> --finetuned <dir> --out <dir>   # on FASTER
+
+Only tensors present in both the base and the fine-tuned state dict are compared (the ADiT
+fine-tunes hold the denoiser only; the frozen autoencoder is not in them). CrystalFlow and
+ADiT keep large fixed buffers in the state dict, so besides the norm relative to all
+floating tensors (the MatterGen number) the norm relative to the tensors that changed in at
+least one run is reported, and ranks are taken only over matrices that changed.
 """
 
 from __future__ import annotations
@@ -31,7 +39,11 @@ ROOT = Path(__file__).resolve().parents[2]
 CKPT = ROOT / "data" / "large" / "finetuned_diffusion"
 BASES = {
     "mg": "~/.cache/huggingface/hub/models--microsoft--mattergen/snapshots/*/checkpoints/mattergen_base/checkpoints/last.ckpt",
+    "cf": str(ROOT / "data" / "large" / "base_checkpoints" / "crystalflow" / "DNG-mp-20" / "epoch=*.ckpt"),
+    "adit": str(ROOT / "data" / "large" / "base_checkpoints" / "adit" / "ldm.ckpt"),
 }
+# Which parts of a state-dict key name the module, for the share-of-change table.
+MODULE_PARTS = {"mg": slice(3, 5), "cf": slice(0, 2), "adit": slice(0, 3)}
 RUN = re.compile(r"(bm|hcap)_p3v4_(?:bm_)?(mg|cf|adit)_(accel|baseline)_seed(\d+)_(\d+)")
 
 
@@ -50,13 +62,18 @@ def rank90(matrix: torch.Tensor) -> int:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--backbone", choices=tuple(BASES), default="mg")
-    parser.add_argument("--base", default=None, help="path to the base checkpoint (default: local HF cache)")
+    parser.add_argument("--base", default=None, help="path to the base checkpoint (default: local copy)")
+    parser.add_argument("--finetuned", type=Path, default=CKPT, help="folder with one sub-folder per run")
+    parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parent / "results")
     args = parser.parse_args()
 
-    base_path = args.base or glob.glob(os.path.expanduser(BASES[args.backbone]))[0]
+    found = glob.glob(os.path.expanduser(args.base or BASES[args.backbone]))
+    if not found:
+        raise SystemExit(f"no base checkpoint for {args.backbone}: {args.base or BASES[args.backbone]}")
+    base_path = found[0]
     base = state(base_path)
     runs = []
-    for folder in sorted(CKPT.iterdir()):
+    for folder in sorted(args.finetuned.iterdir()):
         m = RUN.fullmatch(folder.name)
         if m and m.group(2) == args.backbone:
             files = list(folder.glob("*.ckpt"))
@@ -65,7 +82,12 @@ def main() -> None:
                              "seed": int(m.group(4)), "path": str(files[0])})
     print(f"{len(runs)} runs of {args.backbone}; base {base_path}")
 
-    keys = [k for k in base if base[k].numel() > 1]
+    if not runs:
+        raise SystemExit(f"no fine-tuned {args.backbone} checkpoints under {args.finetuned}")
+    first = state(runs[0]["path"])
+    keys = [k for k in base if base[k].numel() > 1 and k in first and first[k].shape == base[k].shape]
+    skipped = sorted(k for k in base if base[k].numel() > 1 and k not in keys)
+    del first
     base_norm2 = sum(float((base[k] ** 2).sum()) for k in keys)
     n = len(runs)
     gram = np.zeros((n, n))
@@ -81,13 +103,19 @@ def main() -> None:
         run["rel_norm"] = float(np.sqrt(sum(float((tau[k] ** 2).sum()) for k in keys) / base_norm2))
         for k in keys:
             energy = float((tau[k] ** 2).sum())
-            module_energy[i][".".join(k.split(".")[3:5])] += energy
+            module_energy[i][".".join(k.split(".")[MODULE_PARTS[args.backbone]])] += energy
             rel_by_key[k].append(np.sqrt(energy / max(float((base[k] ** 2).sum()), 1e-30)))
         for k in matrices:
-            rank_tau[k].append(rank90(tau[k]))
+            if float(tau[k].abs().max()) > 0:  # an untouched buffer has no spectrum
+                rank_tau[k].append(rank90(tau[k]))
         print(f"  [{i + 1}/{n}] {run['name']} relative norm {run['rel_norm']:.5f}", flush=True)
+    matrices = [k for k in matrices if rank_tau[k]]
     for k in matrices:
         rank_base[k] = rank90(base[k])
+    changed = [k for k in keys if max(rel_by_key[k]) > 0]
+    changed_norm2 = sum(float((base[k] ** 2).sum()) for k in changed)
+    for run in runs:
+        run["rel_norm_changed_tensors"] = float(run["rel_norm"] * np.sqrt(base_norm2 / changed_norm2))
     for k in keys:  # Gram matrix one tensor at a time, to stay within memory
         stack = torch.stack([t[k].flatten() for t in taus]).double()
         gram += (stack @ stack.T).numpy()
@@ -114,10 +142,17 @@ def main() -> None:
     summary = {
         "backbone": args.backbone,
         "runs": [{k: v for k, v in r.items() if k != "path"} for r in runs],
+        "base_checkpoint": os.path.basename(base_path),
         "tensors_compared": len(keys),
+        "tensors_changed_in_some_run": len(changed),
+        "base_tensors_absent_from_fine_tunes": len(skipped),
         "relative_norm": {"mean": float(np.mean([r["rel_norm"] for r in runs])),
                           "min": float(np.min([r["rel_norm"] for r in runs])),
                           "max": float(np.max([r["rel_norm"] for r in runs]))},
+        "relative_norm_over_changed_tensors": {
+            "mean": float(np.mean([r["rel_norm_changed_tensors"] for r in runs])),
+            "min": float(np.min([r["rel_norm_changed_tensors"] for r in runs])),
+            "max": float(np.max([r["rel_norm_changed_tensors"] for r in runs]))},
         "share_of_change_by_module": dict(sorted(totals.items(), key=lambda kv: -kv[1])),
         "rank_for_90pct_energy": {
             "matrices": len(matrices),
@@ -129,8 +164,8 @@ def main() -> None:
                                     "max": float(np.max(v))} for g, v in sorted(groups.items())},
         "cosine_matrix": cosine.round(4).tolist(),
     }
-    out = Path(__file__).resolve().parent / "results"
-    out.mkdir(exist_ok=True)
+    out = args.out
+    out.mkdir(parents=True, exist_ok=True)
     (out / f"task_vectors_{args.backbone}.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(json.dumps({k: v for k, v in summary.items() if k not in ("runs", "cosine_matrix")}, indent=2))
 

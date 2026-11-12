@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-MgSi-12Sch-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>at.% Si</td><td>ΔfH(298.15K)/kJmol-1(f.u.)</td><td>ΔfS/Jmol-1K-1(f.u.)</td><td>Cp(298.15K)/Jmol-1K-1(f.u.)</td></tr><tr><td>Mg2Si</td><td>33.3</td><td>-63.15±2.0</td><td>-8.12</td><td>68.75</td></tr></table>"
+ ]
+}

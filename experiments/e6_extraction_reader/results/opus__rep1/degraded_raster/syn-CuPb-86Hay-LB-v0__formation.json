@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-CuPb-86Hay-LB-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep1",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>at.% Pb</td><td>ΔfH(298.15 K)/cal mol-1</td><td>ΔfS /cal mol-1K-1</td><td>Cp(298.15 K)/cal mol-1K-1</td></tr><tr><td>HCP_A3</td><td>59.0</td><td>101±120</td><td>-0.16</td><td>6.18</td></tr><tr><td colspan=\"5\">Reference:stable elements(SER)at298.15K;values per mole of atoms;1cal=4.184J(thermochemical calorie).±</td></tr></table>"
+ ]
+}

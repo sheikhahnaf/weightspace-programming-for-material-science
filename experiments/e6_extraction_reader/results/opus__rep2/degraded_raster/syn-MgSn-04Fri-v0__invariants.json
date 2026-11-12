@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-MgSn-04Fri-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "edit": "opus__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Reaction</td><td rowspan=\"2\">Type</td><td rowspan=\"2\">T / Kthis work</td><td colspan=\"3\">Compositions (at.% Sn)</td></tr><tr><td>phase 1</td><td>phase 2</td><td>phase 3</td></tr><tr><td>L $ \\rightarrow $ Mg2Sn</td><td>congruent melting $ ^{\\circ} $</td><td>1048.7</td><td>33.3</td><td>33.3</td><td>-</td></tr><tr><td>L $ \\rightarrow $ (Mg) + Mg2Sn</td><td>eutectic</td><td>836.5</td><td>11.0</td><td>3.1</td><td>33.3</td></tr><tr><td>L $ \\rightarrow $ Mg2Sn + (Sn)</td><td>eutectic</td><td>477.1</td><td>91.1</td><td>33.3</td><td>100.0</td></tr></table>"
+ ]
+}

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I ranked the weights by bulk-modulus change per unit of energy spread (|dK mean| / dE sd) and moved the eight best (30, 37, 46, 7, 6, 24, 39, 17) in the K-lowering direction with steps proportional to dK/sd(dE)^2, which maximises the K shift for a given energy scatter if the features are independent across crystals. The steps were scaled to an estimated energy scatter of about 4.4 meV/atom rms (about 3.5 meV mean absolute), and the +3.55 meV mean energy rise was cancelled by raising w[25] by 0.0348, which has a tight energy response and almost no K effect. By hand arithmetic the expected mean K shift is about -0.34 GPa, so the mean error should fall from +1.0 to about +0.7 GPa, with only a small drop in mean absolute error since most of the 5.8 GPa is scatter the table cannot target. Confidence that the edit stays under the 5 meV limit: about 70%; confidence that it lowers the mean absolute error at all: about 55%.

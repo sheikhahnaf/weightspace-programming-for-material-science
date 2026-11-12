@@ -1,0 +1,33 @@
+orb unedited                                                MAE 13.36 bias -6.01 rho 0.959 dE 0.00 meV/atom
+orb gradient                   penalty=0.0                  MAE 10.30 bias +0.75 rho 0.959 dE 72.26 meV/atom
+orb gradient                   penalty=0.001                MAE 10.26 bias -1.73 rho 0.962 dE 12.79 meV/atom
+orb gradient                   penalty=0.003                MAE 11.25 bias -3.26 rho 0.962 dE 7.86 meV/atom
+orb gradient                   penalty=0.01                 MAE 12.40 bias -4.80 rho 0.960 dE 3.48 meV/atom
+orb gradient                   penalty=0.03                 MAE 12.98 bias -5.53 rho 0.959 dE 1.39 meV/atom
+orb gradient                   penalty=0.1                  MAE 13.25 bias -5.87 rho 0.959 dE 0.42 meV/atom
+orb gradient                   penalty=0.3                  MAE 13.32 bias -5.96 rho 0.959 dE 0.15 meV/atom
+orb gradient                   penalty=1.0                  MAE 13.34 bias -5.99 rho 0.959 dE 0.06 meV/atom
+orb scaled_unconstrained_fit   lambda=0.02                  MAE 13.28 bias -5.88 rho 0.959 dE 1.45 meV/atom
+orb scaled_unconstrained_fit   lambda=0.05                  MAE 13.15 bias -5.68 rho 0.959 dE 3.61 meV/atom
+orb scaled_unconstrained_fit   lambda=0.1                   MAE 12.94 bias -5.34 rho 0.959 dE 7.23 meV/atom
+orb scaled_unconstrained_fit   lambda=0.2                   MAE 12.53 bias -4.66 rho 0.959 dE 14.45 meV/atom
+orb scaled_unconstrained_fit   lambda=0.5                   MAE 11.41 bias -2.63 rho 0.959 dE 36.13 meV/atom
+orb linesearch                 evaluations=5                MAE 12.99 bias -5.35 rho 0.959 dE 4.01 meV/atom
+orb spsa                       evaluations=5 seed=0         MAE 13.34 bias -5.99 rho 0.959 dE 0.53 meV/atom
+orb spsa                       evaluations=5 seed=1         MAE 13.36 bias -6.01 rho 0.959 dE 0.00 meV/atom
+orb spsa                       evaluations=5 seed=2         MAE 13.36 bias -6.01 rho 0.959 dE 0.00 meV/atom
+orb spsa                       evaluations=50 seed=0        MAE 13.03 bias -5.54 rho 0.959 dE 4.61 meV/atom
+orb spsa                       evaluations=50 seed=1        MAE 13.36 bias -6.01 rho 0.959 dE 0.00 meV/atom
+orb spsa                       evaluations=50 seed=2        MAE 13.36 bias -6.01 rho 0.959 dE 0.00 meV/atom
+orb spsa                       evaluations=500 seed=0       MAE 13.03 bias -5.54 rho 0.959 dE 4.61 meV/atom
+orb spsa                       evaluations=500 seed=1       MAE 13.36 bias -6.01 rho 0.959 dE 0.00 meV/atom
+orb spsa                       evaluations=500 seed=2       MAE 13.36 bias -6.01 rho 0.959 dE 0.00 meV/atom
+orb evolution_top10            evaluations=5 seed=0         MAE 12.89 bias -5.15 rho 0.958 dE 4.79 meV/atom
+orb evolution_top10            evaluations=5 seed=1         MAE 12.95 bias -5.30 rho 0.958 dE 4.02 meV/atom
+orb evolution_top10            evaluations=5 seed=2         MAE 13.11 bias -5.60 rho 0.959 dE 2.44 meV/atom
+orb evolution_top10            evaluations=50 seed=0        MAE 12.74 bias -4.99 rho 0.959 dE 5.26 meV/atom
+orb evolution_top10            evaluations=50 seed=1        MAE 12.76 bias -4.95 rho 0.959 dE 5.70 meV/atom
+orb evolution_top10            evaluations=50 seed=2        MAE 12.76 bias -4.96 rho 0.958 dE 5.63 meV/atom
+orb evolution_top10            evaluations=500 seed=0       MAE 12.74 bias -4.98 rho 0.959 dE 5.29 meV/atom
+orb evolution_top10            evaluations=500 seed=1       MAE 12.76 bias -4.95 rho 0.959 dE 5.70 meV/atom
+orb evolution_top10            evaluations=500 seed=2       MAE 12.76 bias -4.96 rho 0.958 dE 5.64 meV/atom

@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-CrFe-11Xio-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>Pearson</td><td>SB</td><td>Prototype</td><td>Tmin(K)</td><td>Tmax(K)</td><td>Range(x(Fe))</td><td>T(K)</td></tr><tr><td>(Cr,Fe)</td><td>cl2</td><td>A2</td><td>W</td><td>&lt;300</td><td>2180.0</td><td>0.000-1.000</td><td>1640</td></tr><tr><td>σ</td><td>tP30</td><td>D8b</td><td>σ-CrFe</td><td>790.2</td><td>1085.6</td><td>0.493-0.555</td><td>970</td></tr></table>"
+ ]
+}

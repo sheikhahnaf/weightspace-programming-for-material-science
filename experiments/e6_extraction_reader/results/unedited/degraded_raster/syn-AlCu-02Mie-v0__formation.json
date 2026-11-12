@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlCu-02Mie-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"3\">298.15K,per mole of atoms</td></tr><tr><td>Phase</td><td>at.%Cu</td><td>ΔfH/Jmol-1</td><td>ΔfS/Jmol-1K-1</td><td>Cp/Jmol-1K-1</td></tr><tr><td>γ</td><td>66.6</td><td>-20310±500</td><td>1.27</td><td>24.40</td></tr><tr><td>β</td><td>46.9</td><td>-18662±500</td><td>1.73</td><td>24.36</td></tr><tr><td>$\\zeta^{a}$</td><td>28.9</td><td>-11096±1000</td><td>3.14</td><td>24.34</td></tr></table>"
+ ]
+}

@@ -1,0 +1,10 @@
+### invariants__0.png
+<table><tr><td rowspan="2">Reaction</td><td rowspan="2">Type</td><td colspan="2">T / K</td><td colspan="3">Compositions (at.% Ni)</td></tr><tr><td>this work</td><td>exp.ᵇ</td><td>phase 1</td><td>phase 2</td><td>phase 3</td></tr><tr><td>L → (Cu,Ni)</td><td>melting (pure component)ᵃ</td><td>1728.2</td><td>1730.2 [4]</td><td>100.0</td><td>100.0</td><td>–</td></tr><tr><td>L → (Cu,Ni)</td><td>melting (pure component)ᵃ</td><td>1357.8</td><td>1359.8 [5]</td><td>0.0</td><td>0.0</td><td>–</td></tr></table>
+### liquidus__0.png
+<table><tr><td>at.% Ni</td><td>T liquidus / K</td><td>T solidus / K</td></tr><tr><td>20</td><td>1464.4</td><td>1433.5</td></tr><tr><td>40</td><td>1550.7</td><td>1501.7</td></tr><tr><td>60</td><td>1619.1</td><td>1572.5</td></tr><tr><td>80</td><td>1675.6</td><td>1655.0</td></tr></table>
+### phases__0.png
+<table><tr><td rowspan="2">Phase</td><td colspan="3">Structure</td><td colspan="2">Stability range / K</td><td colspan="2">Homogeneity range</td></tr><tr><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>x(Ni)</td><td>at T / K</td></tr><tr><td>(Cu,Ni)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt; 300</td><td>1728.2</td><td>0.000–1.000</td><td>430</td></tr></table>
+### rk_liquid__0.png
+<table><tr><td rowspan="2">ν</td><td colspan="3">Liquid: L(ν) = a + b·T + c·T·ln T</td></tr><tr><td>a</td><td>b</td><td>c</td></tr><tr><td>L0</td><td>11760.0</td><td>1.084</td><td>0.0</td></tr><tr><td>L1</td><td>-1671.8</td><td>0.0</td><td>0.0</td></tr></table>
+### mixing__0.png
+<table><tr><td>at.% Ni</td><td>ΔmixH / kJ mol⁻¹</td><td>ΔmixG / kJ mol⁻¹</td><td>a(Cu)</td><td>a(Ni)</td></tr><tr><td>10</td><td>0.94</td><td>-3.75</td><td>0.9057</td><td>0.1989</td></tr><tr><td>30</td><td>2.33</td><td>-6.40</td><td>0.7465</td><td>0.4752</td></tr><tr><td>50</td><td>2.94</td><td>-6.95</td><td>0.6114</td><td>0.6465</td></tr><tr><td>70</td><td>2.61</td><td>-6.12</td><td>0.4649</td><td>0.7740</td></tr><tr><td>90</td><td>1.18</td><td>-3.51</td><td>0.2217</td><td>0.9109</td></tr></table>

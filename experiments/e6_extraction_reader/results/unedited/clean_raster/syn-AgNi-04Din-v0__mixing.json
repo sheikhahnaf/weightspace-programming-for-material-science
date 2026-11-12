@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AgNi-04Din-v0",
+ "table": "mixing",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>x(Ni)</td><td>ΔmixH/kJmol-1</td><td>ΔmixG/kJmol-1</td><td>a(Ag)</td><td>a(Ni)</td></tr><tr><td>0.100</td><td>6.01</td><td>-3.36</td><td>0.9134</td><td>0.4764</td></tr><tr><td>0.300</td><td>13.63</td><td>-4.25</td><td>0.8128</td><td>0.8415</td></tr><tr><td>0.500</td><td>13.91</td><td>-3.88</td><td>0.7960</td><td>0.8773</td></tr><tr><td>0.700</td><td>11.85</td><td>-3.46</td><td>0.7960</td><td>0.8773</td></tr><tr><td>0.900</td><td>5.34</td><td>-2.67</td><td>0.5912</td><td>0.9241</td></tr></table>"
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AgNi-04Din-v0",
+ "table": "phases",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"2\">Structure</td><td colspan=\"2\">Stability range/Kto</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>x(Ni)</td><td>atT/K</td></tr><tr><td>(Ag)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300</td><td>1234.9</td><td>0.000-0.002</td><td>1230</td></tr><tr><td>(Ni)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300</td><td>1728.2</td><td>0.990-1.000</td><td>1700</td></tr></table>"
+ ]
+}

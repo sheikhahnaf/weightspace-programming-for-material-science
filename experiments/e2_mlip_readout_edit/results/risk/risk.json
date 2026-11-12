@@ -92,5 +92,99 @@
       "share_of_error_in_flagged_quarter": 0.5080155871885152,
       "best_possible_share": 0.6373051262156679
     }
+  },
+  "esen": {
+    "rule: error grows with predicted bulk modulus": {
+      "spearman": 0.41667766673541706,
+      "share_of_error_in_flagged_quarter": 0.3885889930391961,
+      "best_possible_share": 0.7221032497364733
+    },
+    "same network trained on 50 labels": {
+      "spearman": 0.17337644319787474,
+      "share_of_error_in_flagged_quarter": 0.3094181377971042,
+      "best_possible_share": 0.7199962556620016
+    },
+    "same network trained on 200 labels": {
+      "spearman": 0.26125403135078384,
+      "share_of_error_in_flagged_quarter": 0.4419919134215107,
+      "best_possible_share": 0.7281878207485621
+    },
+    "written: fable__rep1": {
+      "spearman": 0.37440365252282826,
+      "share_of_error_in_flagged_quarter": 0.4296298418460653,
+      "best_possible_share": 0.7221032497364733
+    },
+    "written: fable__rep2": {
+      "spearman": 0.41583522397014977,
+      "share_of_error_in_flagged_quarter": 0.44099311805332,
+      "best_possible_share": 0.7221032497364733
+    },
+    "written: fable__rep3": {
+      "spearman": 0.41632572703579396,
+      "share_of_error_in_flagged_quarter": 0.4310204846582478,
+      "best_possible_share": 0.7221032497364733
+    },
+    "written: opus__rep1": {
+      "spearman": 0.3962496015600097,
+      "share_of_error_in_flagged_quarter": 0.36170814447129407,
+      "best_possible_share": 0.7221032497364733
+    },
+    "written: opus__rep2": {
+      "spearman": 0.39672079200495,
+      "share_of_error_in_flagged_quarter": 0.38694537580283234,
+      "best_possible_share": 0.7221032497364733
+    },
+    "written: opus__rep3": {
+      "spearman": 0.41610597566234786,
+      "share_of_error_in_flagged_quarter": 0.449292851849914,
+      "best_possible_share": 0.7221032497364733
+    }
+  },
+  "grace": {
+    "rule: error grows with predicted bulk modulus": {
+      "spearman": 0.3557677235482722,
+      "share_of_error_in_flagged_quarter": 0.33337749899807234,
+      "best_possible_share": 0.7125098665448644
+    },
+    "same network trained on 50 labels": {
+      "spearman": 0.16859634981001942,
+      "share_of_error_in_flagged_quarter": 0.38038085893273355,
+      "best_possible_share": 0.7142868603032747
+    },
+    "same network trained on 200 labels": {
+      "spearman": 0.3601305032625816,
+      "share_of_error_in_flagged_quarter": 0.48973127244790887,
+      "best_possible_share": 0.7190984594679037
+    },
+    "written: fable__rep1": {
+      "spearman": 0.3067074794217463,
+      "share_of_error_in_flagged_quarter": 0.3844609484962057,
+      "best_possible_share": 0.7125098665448644
+    },
+    "written: fable__rep2": {
+      "spearman": 0.3209658185363658,
+      "share_of_error_in_flagged_quarter": 0.38604397871195006,
+      "best_possible_share": 0.7125098665448644
+    },
+    "written: fable__rep3": {
+      "spearman": 0.3209787561172257,
+      "share_of_error_in_flagged_quarter": 0.34833103342976407,
+      "best_possible_share": 0.7125098665448644
+    },
+    "written: opus__rep1": {
+      "spearman": 0.2962113513209457,
+      "share_of_error_in_flagged_quarter": 0.3106883162732273,
+      "best_possible_share": 0.7125098665448644
+    },
+    "written: opus__rep2": {
+      "spearman": 0.2919601372508578,
+      "share_of_error_in_flagged_quarter": 0.30179166327681367,
+      "best_possible_share": 0.7125098665448644
+    },
+    "written: opus__rep3": {
+      "spearman": 0.3109759435996474,
+      "share_of_error_in_flagged_quarter": 0.39721951724019466,
+      "best_possible_share": 0.7125098665448644
+    }
   }
 }

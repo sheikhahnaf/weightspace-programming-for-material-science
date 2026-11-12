@@ -1,0 +1,8 @@
+### invariants__0.png
+<table><tr><td rowspan="2">Reaction</td><td rowspan="2">Type</td><td colspan="2">T / K</td><td colspan="3">Compositions (x(Si))</td></tr><tr><td>this work</td><td>exp.</td><td>phase 1</td><td>phase 2</td><td>phase 3</td></tr><tr><td>L → (Al) + (Si)</td><td>eutectic</td><td>850.2</td><td>846.2 [3]</td><td>0.121</td><td>0.017</td><td>1.000</td></tr></table>
+### phases__0.png
+<table><tr><td>Phase</td><td>Pearson</td><td>SB</td><td>Prototype</td><td>T min (K)</td><td>T max (K)</td><td>Range (x(Si))</td><td>T (K)</td></tr><tr><td>(Al)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt; 300ᵃ</td><td>933.5</td><td>0.000–0.017</td><td>850</td></tr><tr><td>(Si)</td><td>cF8</td><td>A4</td><td>C (diamond)</td><td>&lt; 300ᵃ</td><td>1687.0</td><td>1.000</td><td>300</td></tr></table>
+### rk_liquid__0.png
+<table><tr><td></td><td colspan="3">Liquid: L(ν) = a + b·T + c·T·ln T</td></tr><tr><td>ν</td><td>a</td><td>b</td><td>c</td></tr><tr><td>L0</td><td>−13842.105</td><td>0.45733</td><td>0.0</td></tr><tr><td>L1</td><td>717.10348</td><td>−0.2012</td><td>0.0</td></tr></table>
+### mixing__0.png
+<table><tr><td>at.% Si</td><td>ΔmixH / J mol⁻¹</td><td>ΔmixG / J mol⁻¹</td><td>a(Al)</td><td>a(Si)</td></tr><tr><td>10</td><td>−1194</td><td>−5878</td><td>0.8926</td><td>0.0490</td></tr><tr><td>30</td><td>−2847</td><td>−11596</td><td>0.6484</td><td>0.1929</td></tr><tr><td>50</td><td>−3461</td><td>−13346</td><td>0.4021</td><td>0.3971</td></tr><tr><td>70</td><td>−2967</td><td>−11658</td><td>0.1938</td><td>0.6431</td></tr><tr><td>90</td><td>−1297</td><td>−5930</td><td>0.0478</td><td>0.8914</td></tr></table>

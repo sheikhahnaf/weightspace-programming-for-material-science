@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlBi-06Kim-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>Pearson</td><td>SB</td><td>Prototype</td><td>Tmin(℃)</td><td>Tmax(℃)</td><td>Range(at.%Bi)</td><td>T(℃)</td></tr><tr><td>(Al)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27</td><td>660.3</td><td>0.0-0.1</td><td>657</td></tr><tr><td>(Bi)</td><td>hR2</td><td>A7</td><td>$\\alpha$-As</td><td>&lt;27</td><td>271.4</td><td>100.0</td><td>27</td></tr></table>"
+ ]
+}

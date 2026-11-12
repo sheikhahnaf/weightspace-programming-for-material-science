@@ -1,0 +1,12 @@
+Each file below is an image of one table cropped from a page of a paper on a binary alloy phase diagram.
+Look at each image with the Read tool and transcribe the table exactly as printed: every header and body cell, character for character (digits, signs, decimal points, units, arrows, subscripts written inline). Do not correct, convert or complete anything; if a cell is unreadable, give your best reading.
+
+Images (in this run folder):
+invariants__0.png
+phases__0.png
+phases__1.png
+formation__0.png
+mixing__0.png
+
+# Reply format
+For each image, in the order above, one line with `### ` followed by the file name, then the table as HTML (<table><tr><td>…</td></tr></table>, with rowspan/colspan where cells are merged). No other text.

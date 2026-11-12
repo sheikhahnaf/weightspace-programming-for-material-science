@@ -1,0 +1,46 @@
+{
+  "model": "zai-org/GLM-OCR",
+  "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+  "rendering": "degraded_raster",
+  "tag": "unedited",
+  "documents": 2,
+  "cell_exact": 0.7688679245283019,
+  "cell_exact_normalised": 0.8207547169811321,
+  "numeric_exact": 1.0,
+  "cells": 212,
+  "numeric_cells": 128,
+  "by_table": {
+    "invariants": {
+      "cell_exact": 0.5625,
+      "numeric_exact": 1.0,
+      "cells": 32
+    },
+    "phases": {
+      "cell_exact": 0.7037037037037037,
+      "numeric_exact": 1.0,
+      "cells": 54
+    },
+    "rk_liquid": {
+      "cell_exact": 0.68,
+      "numeric_exact": 1.0,
+      "cells": 25
+    },
+    "mixing": {
+      "cell_exact": 0.8910891089108911,
+      "numeric_exact": 1.0,
+      "cells": 101
+    }
+  },
+  "per_doc": {
+    "syn-AgCu-06He-v0": {
+      "cell_exact": 0.819672131147541,
+      "cell_exact_normalised": 0.8360655737704918,
+      "numeric_exact": 1.0
+    },
+    "syn-AgNi-04Din-v0": {
+      "cell_exact": 0.7,
+      "cell_exact_normalised": 0.8,
+      "numeric_exact": 1.0
+    }
+  }
+}

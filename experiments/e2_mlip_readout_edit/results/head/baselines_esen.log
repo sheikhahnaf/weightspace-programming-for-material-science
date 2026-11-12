@@ -1,0 +1,33 @@
+esen unedited                                                MAE 10.31 bias +5.81 rho 0.967 dE 0.00 meV/atom
+esen gradient                   penalty=0.0                  MAE 9.86 bias +3.32 rho 0.967 dE 12.39 meV/atom
+esen gradient                   penalty=0.001                MAE 10.01 bias +4.68 rho 0.966 dE 2.43 meV/atom
+esen gradient                   penalty=0.003                MAE 10.07 bias +4.92 rho 0.966 dE 1.34 meV/atom
+esen gradient                   penalty=0.01                 MAE 10.18 bias +5.29 rho 0.966 dE 0.62 meV/atom
+esen gradient                   penalty=0.03                 MAE 10.25 bias +5.56 rho 0.967 dE 0.25 meV/atom
+esen gradient                   penalty=0.1                  MAE 10.29 bias +5.71 rho 0.967 dE 0.09 meV/atom
+esen gradient                   penalty=0.3                  MAE 10.30 bias +5.76 rho 0.967 dE 0.04 meV/atom
+esen gradient                   penalty=1.0                  MAE 10.31 bias +5.79 rho 0.967 dE 0.02 meV/atom
+esen scaled_unconstrained_fit   lambda=0.02                  MAE 10.30 bias +5.76 rho 0.967 dE 0.25 meV/atom
+esen scaled_unconstrained_fit   lambda=0.05                  MAE 10.27 bias +5.68 rho 0.967 dE 0.62 meV/atom
+esen scaled_unconstrained_fit   lambda=0.1                   MAE 10.23 bias +5.56 rho 0.967 dE 1.24 meV/atom
+esen scaled_unconstrained_fit   lambda=0.2                   MAE 10.16 bias +5.31 rho 0.967 dE 2.48 meV/atom
+esen scaled_unconstrained_fit   lambda=0.5                   MAE 9.99 bias +4.56 rho 0.967 dE 6.20 meV/atom
+esen linesearch                 evaluations=5                MAE 10.31 bias +5.81 rho 0.967 dE 0.00 meV/atom
+esen spsa                       evaluations=5 seed=0         MAE 10.30 bias +5.77 rho 0.967 dE 0.26 meV/atom
+esen spsa                       evaluations=5 seed=1         MAE 10.20 bias +5.48 rho 0.967 dE 1.82 meV/atom
+esen spsa                       evaluations=5 seed=2         MAE 10.31 bias +5.76 rho 0.967 dE 0.27 meV/atom
+esen spsa                       evaluations=50 seed=0        MAE 10.08 bias +4.98 rho 0.967 dE 4.01 meV/atom
+esen spsa                       evaluations=50 seed=1        MAE 10.12 bias +5.18 rho 0.967 dE 3.29 meV/atom
+esen spsa                       evaluations=50 seed=2        MAE 10.08 bias +5.01 rho 0.967 dE 4.03 meV/atom
+esen spsa                       evaluations=500 seed=0       MAE 10.08 bias +4.98 rho 0.967 dE 4.01 meV/atom
+esen spsa                       evaluations=500 seed=1       MAE 10.07 bias +5.00 rho 0.967 dE 4.22 meV/atom
+esen spsa                       evaluations=500 seed=2       MAE 10.08 bias +5.01 rho 0.967 dE 4.03 meV/atom
+esen evolution_top10            evaluations=5 seed=0         MAE 9.97 bias +4.35 rho 0.966 dE 2.59 meV/atom
+esen evolution_top10            evaluations=5 seed=1         MAE 10.04 bias +4.46 rho 0.966 dE 2.89 meV/atom
+esen evolution_top10            evaluations=5 seed=2         MAE 10.31 bias +5.81 rho 0.967 dE 0.00 meV/atom
+esen evolution_top10            evaluations=50 seed=0        MAE 10.07 bias +4.86 rho 0.967 dE 5.24 meV/atom
+esen evolution_top10            evaluations=50 seed=1        MAE 9.92 bias +4.83 rho 0.965 dE 4.70 meV/atom
+esen evolution_top10            evaluations=50 seed=2        MAE 10.12 bias +5.12 rho 0.967 dE 3.16 meV/atom
+esen evolution_top10            evaluations=500 seed=0       MAE 10.05 bias +4.83 rho 0.967 dE 5.25 meV/atom
+esen evolution_top10            evaluations=500 seed=1       MAE 9.99 bias +4.88 rho 0.965 dE 4.96 meV/atom
+esen evolution_top10            evaluations=500 seed=2       MAE 10.00 bias +4.81 rho 0.966 dE 4.69 meV/atom

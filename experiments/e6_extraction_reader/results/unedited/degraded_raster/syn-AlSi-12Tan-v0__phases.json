@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlSi-12Tan-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>Pearson</td><td>SB</td><td>Prototype</td><td>T min(K)</td><td>T max(K)</td><td>Range(x(Si))</td><td>T(K)</td></tr><tr><td>(Al)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300a</td><td>933.5</td><td>0.000-0.017</td><td>850</td></tr><tr><td>(Si)</td><td>cF8</td><td>A4</td><td>C(diamond)</td><td>&lt;300a</td><td>1687.0</td><td>1.000</td><td>300</td></tr></table>"
+ ]
+}

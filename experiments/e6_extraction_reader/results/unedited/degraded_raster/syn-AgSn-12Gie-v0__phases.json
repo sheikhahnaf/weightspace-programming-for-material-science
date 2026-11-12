@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AgSn-12Gie-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"2\">Structure</td><td colspan=\"2\">Stability range/K</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.% Sn</td><td>at T/K</td></tr><tr><td>(Ag)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300</td><td>1234.9</td><td>0.0-11.5</td><td>990</td></tr><tr><td>$\\zeta$</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;300</td><td>992.4</td><td>11.6-23.5</td><td>760</td></tr><tr><td>Ag3Sn</td><td>oP8</td><td>D0a</td><td>$\\beta$-Cu3Ti</td><td>&lt;300</td><td>761.4</td><td>23.8-25.0</td><td>300</td></tr><tr><td>(Sn)</td><td>tl4</td><td>A5</td><td>$\\beta$-Sn</td><td>&lt;300</td><td>505.1</td><td>99.9-100.0</td><td>490</td></tr></table>"
+ ]
+}

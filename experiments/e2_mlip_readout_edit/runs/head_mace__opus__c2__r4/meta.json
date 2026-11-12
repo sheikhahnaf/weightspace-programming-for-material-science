@@ -1,0 +1,10 @@
+{
+  "arm": "head_edit_with_feedback",
+  "potential": "mace",
+  "model_alias": "opus",
+  "chain": 2,
+  "round": 4,
+  "forward_passes": 3,
+  "prompt_chars": 20284,
+  "prompt_tokens_estimate": 6762
+}

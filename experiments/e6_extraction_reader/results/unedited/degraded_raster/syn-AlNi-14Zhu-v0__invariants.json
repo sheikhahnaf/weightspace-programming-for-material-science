@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlNi-14Zhu-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Reaction</td><td>Type</td><td>T(℃)</td><td>x(Ni),1</td><td>x(Ni),2</td><td>x(Ni),3</td></tr><tr><td>L→NiAl</td><td>congruent melting</td><td>1649.1</td><td>0.503</td><td>0.503</td><td>-</td></tr><tr><td>L→(Ni)</td><td>congruent melting</td><td>1455.2</td><td>0.988</td><td>0.988</td><td>-</td></tr><tr><td>L+(Ni)→Ni3Al</td><td>peritectic</td><td>1369.9</td><td>0.759</td><td>0.786</td><td>0.761</td></tr><tr><td>L→Ni3Al</td><td>congruent melting</td><td>1369.6</td><td>0.751</td><td>0.751</td><td>-</td></tr><tr><td>L→NiAl+Ni3Al</td><td>eutectic</td><td>1369.2</td><td>0.744</td><td>0.712</td><td>0.746</td></tr><tr><td>L+NiAl→Al3Ni2</td><td>peritectic</td><td>1139.1</td><td>0.261</td><td>0.420</td><td>0.397</td></tr><tr><td>L+Al3Ni2→Al3Ni</td><td>peritectic</td><td>853.9</td><td>0.160</td><td>0.355</td><td>0.250</td></tr><tr><td>NiAl+Ni3Al→Al3Ni5</td><td>peritectoid</td><td>700.2</td><td>0.600</td><td>0.726</td><td>0.625</td></tr><tr><td>L→(Al)+Al3Ni</td><td>eutectic</td><td>651.2</td><td>0.016</td><td>0.000</td><td>0.250</td></tr></table>"
+ ]
+}

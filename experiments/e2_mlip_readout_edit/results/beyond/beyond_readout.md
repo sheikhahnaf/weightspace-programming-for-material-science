@@ -4,7 +4,9 @@
 |---|---|---|---|
 | potential: mace | 15.4 | +5.6 | 0.962 |
 | potential: orb | 13.0 | -7.7 | 0.970 |
-| mean of the potentials | 10.5 | -1.1 | 0.971 |
+| potential: esen | 8.7 | +4.1 | 0.977 |
+| potential: grace | 7.2 | +1.6 | 0.978 |
+| mean of the potentials | 7.9 | +0.9 | 0.977 |
 | written network: opus (mean of 3 replies) | 26.3 | -1.8 | 0.924 |
 | written network: fable (mean of 3 replies) | 24.9 | +4.4 | 0.929 |
 | written network: sonnet (mean of 3 replies) | 55.3 | -50.4 | 0.894 |
@@ -19,9 +21,13 @@
 | gp, prior mean mace | 17.9 (0.95) | 18.9 (0.95) | 16.1 (0.96) | 14.3 (0.96) |
 | affine: orb | 11.4 (0.97) | 10.6 (0.97) | 10.0 (0.97) | 9.6 (0.97) |
 | gp, prior mean orb | 12.4 (0.97) | 12.6 (0.97) | 10.9 (0.96) | 9.9 (0.97) |
+| affine: esen | 10.4 (0.98) | 9.6 (0.98) | 9.1 (0.98) | 8.9 (0.98) |
+| gp, prior mean esen | 10.8 (0.97) | 11.9 (0.97) | 10.4 (0.97) | 9.6 (0.97) |
+| affine: grace | 8.9 (0.98) | 7.9 (0.98) | 7.4 (0.98) | 7.2 (0.98) |
+| gp, prior mean grace | 10.0 (0.97) | 9.2 (0.98) | 8.5 (0.97) | 8.0 (0.98) |
 | affine: written:opus__rep1 | 25.6 (0.93) | 24.4 (0.93) | 25.4 (0.93) | 26.6 (0.93) |
 | gp, prior mean written:opus__rep1 | 23.1 (0.93) | 23.5 (0.93) | 18.7 (0.95) | 14.2 (0.96) |
 | affine: written:fable__rep1 | 23.6 (0.93) | 22.7 (0.93) | 22.8 (0.93) | 22.2 (0.94) |
 | gp, prior mean written:fable__rep1 | 21.1 (0.94) | 21.7 (0.94) | 20.1 (0.93) | 14.1 (0.96) |
-| mixture of the potentials | 12.2 (0.97) | 10.6 (0.97) | 10.1 (0.97) | 9.6 (0.97) |
+| mixture of the potentials | 12.4 (0.97) | 8.7 (0.98) | 8.6 (0.98) | 7.7 (0.98) |
 | gp, no prior mean | 36.0 (0.82) | 22.9 (0.92) | 18.6 (0.93) | 13.4 (0.96) |

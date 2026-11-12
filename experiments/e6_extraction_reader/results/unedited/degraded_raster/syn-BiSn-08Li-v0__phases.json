@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-BiSn-08Li-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>Pearson</td><td>SB</td><td>Prototype</td><td>Tmin(℃)</td><td>Tmax(℃)</td><td>Range(at.%Sn)</td><td>T(℃)</td></tr><tr><td>(Bi)</td><td>hR2</td><td>A7</td><td>$\\alpha$-As</td><td>&lt;27</td><td>271.4</td><td>0.0-3.8</td><td>147</td></tr><tr><td>(Sn)</td><td>tl4</td><td>A5</td><td>$\\beta$-Sn</td><td>&lt;27</td><td>231.9</td><td>85.1-100.0</td><td>137</td></tr></table>"
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlMg-12Tan-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Phase</td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range/K</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.%Mg</td><td>atT/K</td></tr><tr><td>(Al)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;300</td><td>933.5</td><td>0.0-16.2</td><td>720</td></tr><tr><td>β</td><td>-</td><td>-</td><td>-</td><td>&lt;300</td><td>724.7</td><td>38.9</td><td>330</td></tr><tr><td>ε</td><td>-</td><td>-</td><td>-</td><td>523.9</td><td>699.5</td><td>43.4</td><td>680</td></tr><tr><td>Al12Mg17</td><td>cI58</td><td>A12</td><td>α-Mn</td><td>&lt;300</td><td>733.4</td><td>47.6-61.0</td><td>710</td></tr><tr><td>(Mg)</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;300</td><td>923.0</td><td>86.7-100.0</td><td>710</td></tr></table>"
+ ]
+}

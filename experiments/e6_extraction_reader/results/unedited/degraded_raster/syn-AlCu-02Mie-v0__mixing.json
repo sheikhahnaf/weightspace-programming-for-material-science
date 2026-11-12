@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlCu-02Mie-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>at.%Cu</td><td>ΔmixH/Jmol-1</td><td>ΔmixG/Jmol-1</td><td>a(Al)</td><td>a(Cu)</td></tr><tr><td>10</td><td>-3832</td><td>-7530</td><td>0.8918</td><td>0.0054</td></tr><tr><td>20</td><td>-7721</td><td>-12989</td><td>0.7592</td><td>0.0138</td></tr><tr><td>30</td><td>-11372</td><td>-17245</td><td>0.5974</td><td>0.0283</td></tr><tr><td>40</td><td>-14466</td><td>-20318</td><td>0.4172</td><td>0.0549</td></tr><tr><td>50</td><td>-16655</td><td>-22076</td><td>0.2461</td><td>0.1043</td></tr><tr><td>60</td><td>-17567</td><td>-22304</td><td>0.1152</td><td>0.1934</td></tr><tr><td>70</td><td>-16798</td><td>-20721</td><td>0.0396</td><td>0.3426</td></tr><tr><td>80</td><td>-13922</td><td>-16961</td><td>0.0089</td><td>0.5613</td></tr><tr><td>90</td><td>-8484</td><td>-10510</td><td>0.0010</td><td>0.8157</td></tr></table>"
+ ]
+}

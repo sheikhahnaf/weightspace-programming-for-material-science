@@ -1,0 +1,12 @@
+{
+  "arm": "table_reader_baseline",
+  "rendering": "degraded_raster",
+  "doc_id": "syn-CuPb-86Hay-LB-v0",
+  "model_alias": "opus",
+  "crops": [
+    "invariants__0.png",
+    "phases__0.png",
+    "formation__0.png",
+    "mixing__0.png"
+  ]
+}

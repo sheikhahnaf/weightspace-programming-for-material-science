@@ -1,0 +1,349 @@
+[
+  {
+    "arm": "unedited",
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.227072475966423,
+    "bias_GPa": 6.430458712351327,
+    "spearman": 0.9490707267681693,
+    "energy_change_meV_per_atom": 0.0
+  },
+  {
+    "arm": "gradient",
+    "penalty": 0.0,
+    "n": 179,
+    "failed_fits": 21,
+    "mae_GPa": 15.473449077234239,
+    "bias_GPa": 1.235928962383436,
+    "spearman": 0.9452283807252106,
+    "energy_change_meV_per_atom": 107.48620008886753
+  },
+  {
+    "arm": "gradient",
+    "penalty": 0.001,
+    "n": 199,
+    "failed_fits": 1,
+    "mae_GPa": 15.181093272616046,
+    "bias_GPa": 2.0729255027613758,
+    "spearman": 0.9463880006091062,
+    "energy_change_meV_per_atom": 18.784503847687937
+  },
+  {
+    "arm": "gradient",
+    "penalty": 0.003,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.188229122953892,
+    "bias_GPa": 2.407009276402692,
+    "spearman": 0.9471686792169806,
+    "energy_change_meV_per_atom": 11.381280960742862
+  },
+  {
+    "arm": "gradient",
+    "penalty": 0.01,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.430102321225775,
+    "bias_GPa": 3.527231837330662,
+    "spearman": 0.9477401935048377,
+    "energy_change_meV_per_atom": 5.502003931855853
+  },
+  {
+    "arm": "gradient",
+    "penalty": 0.03,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.766545912576284,
+    "bias_GPa": 4.834685439369795,
+    "spearman": 0.9485787144678619,
+    "energy_change_meV_per_atom": 2.5096727906259675
+  },
+  {
+    "arm": "gradient",
+    "penalty": 0.1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.043525260389234,
+    "bias_GPa": 5.805361963875494,
+    "spearman": 0.9488307207680193,
+    "energy_change_meV_per_atom": 0.9326061466873321
+  },
+  {
+    "arm": "gradient",
+    "penalty": 0.3,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.14960932204191,
+    "bias_GPa": 6.175613634344975,
+    "spearman": 0.9489207230180756,
+    "energy_change_meV_per_atom": 0.4066709887643881
+  },
+  {
+    "arm": "gradient",
+    "penalty": 1.0,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.19618094016214,
+    "bias_GPa": 6.326752318184642,
+    "spearman": 0.9490482262056553,
+    "energy_change_meV_per_atom": 0.1942454762447336
+  },
+  {
+    "arm": "scaled_unconstrained_fit",
+    "lambda": 0.02,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.15708118319479,
+    "bias_GPa": 6.334472200904261,
+    "spearman": 0.9493272331808296,
+    "energy_change_meV_per_atom": 2.1497240017773325
+  },
+  {
+    "arm": "scaled_unconstrained_fit",
+    "lambda": 0.05,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.054649431030043,
+    "bias_GPa": 6.190113104549743,
+    "spearman": 0.9495987399684994,
+    "energy_change_meV_per_atom": 5.374310004443369
+  },
+  {
+    "arm": "scaled_unconstrained_fit",
+    "lambda": 0.1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.88964292716957,
+    "bias_GPa": 5.94849365483854,
+    "spearman": 0.9501672541813546,
+    "energy_change_meV_per_atom": 10.748620008886705
+  },
+  {
+    "arm": "scaled_unconstrained_fit",
+    "lambda": 0.2,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.57510161679178,
+    "bias_GPa": 5.461356152957398,
+    "spearman": 0.950590264756619,
+    "energy_change_meV_per_atom": 21.497240017773457
+  },
+  {
+    "arm": "scaled_unconstrained_fit",
+    "lambda": 0.5,
+    "n": 198,
+    "failed_fits": 2,
+    "mae_GPa": 15.079161947265298,
+    "bias_GPa": 4.053093688588116,
+    "spearman": 0.9505804673266347,
+    "energy_change_meV_per_atom": 53.74310004443375
+  },
+  {
+    "arm": "linesearch",
+    "evaluations": 5,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.957638819944682,
+    "bias_GPa": 5.17519516305096,
+    "spearman": 0.9488232205805146,
+    "energy_change_meV_per_atom": 4.44161512198056
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 5,
+    "seed": 0,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.22671738421508,
+    "bias_GPa": 6.429230573296303,
+    "spearman": 0.9490707267681693,
+    "energy_change_meV_per_atom": 0.025601725536185338
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 5,
+    "seed": 1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.227061415373008,
+    "bias_GPa": 6.430743970316883,
+    "spearman": 0.9490707267681693,
+    "energy_change_meV_per_atom": 0.04633109813056675
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 5,
+    "seed": 2,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.226929473653048,
+    "bias_GPa": 6.43035018654222,
+    "spearman": 0.9490707267681693,
+    "energy_change_meV_per_atom": 0.013754340726508687
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 50,
+    "seed": 0,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.22143268266193,
+    "bias_GPa": 6.409969573829233,
+    "spearman": 0.9491442286057151,
+    "energy_change_meV_per_atom": 0.13480105948171583
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 50,
+    "seed": 1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.222660135234428,
+    "bias_GPa": 6.407496799550806,
+    "spearman": 0.949078226955674,
+    "energy_change_meV_per_atom": 0.13393199949291545
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 50,
+    "seed": 2,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.220617672439406,
+    "bias_GPa": 6.405986371855995,
+    "spearman": 0.9491082277056928,
+    "energy_change_meV_per_atom": 0.20076715663831876
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 500,
+    "seed": 0,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.197998752764956,
+    "bias_GPa": 6.32630559994437,
+    "spearman": 0.9492492312307809,
+    "energy_change_meV_per_atom": 0.5325511053720383
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 500,
+    "seed": 1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.200976413464343,
+    "bias_GPa": 6.321783815238376,
+    "spearman": 0.9491067276681918,
+    "energy_change_meV_per_atom": 0.608232711163768
+  },
+  {
+    "arm": "spsa",
+    "evaluations": 500,
+    "seed": 2,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.197334940668494,
+    "bias_GPa": 6.317664887850376,
+    "spearman": 0.9491847296182405,
+    "energy_change_meV_per_atom": 0.5868435237311131
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 5,
+    "seed": 0,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.073405120679194,
+    "bias_GPa": 5.713619958429697,
+    "spearman": 0.9487182179554491,
+    "energy_change_meV_per_atom": 2.9955980843505183
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 5,
+    "seed": 1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.90632971204645,
+    "bias_GPa": 5.006883837814894,
+    "spearman": 0.9491082277056928,
+    "energy_change_meV_per_atom": 4.07284907076474
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 5,
+    "seed": 2,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 16.048370114437155,
+    "bias_GPa": 5.599239894481773,
+    "spearman": 0.9488127203180081,
+    "energy_change_meV_per_atom": 3.158889749612573
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 50,
+    "seed": 0,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.947438844259786,
+    "bias_GPa": 5.047830639097082,
+    "spearman": 0.9485637140928523,
+    "energy_change_meV_per_atom": 5.479886536967308
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 50,
+    "seed": 1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.838949163639672,
+    "bias_GPa": 4.704766573510313,
+    "spearman": 0.9494367359183981,
+    "energy_change_meV_per_atom": 5.3242063527207115
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 50,
+    "seed": 2,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.891353976736402,
+    "bias_GPa": 4.918658278810017,
+    "spearman": 0.9485697142428563,
+    "energy_change_meV_per_atom": 5.369006769874294
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 500,
+    "seed": 0,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.925795371901163,
+    "bias_GPa": 4.968831436124704,
+    "spearman": 0.9485517137928449,
+    "energy_change_meV_per_atom": 5.4655579013846
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 500,
+    "seed": 1,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.835998741645417,
+    "bias_GPa": 4.692138587416905,
+    "spearman": 0.9494367359183981,
+    "energy_change_meV_per_atom": 5.357548093629427
+  },
+  {
+    "arm": "evolution_top10",
+    "evaluations": 500,
+    "seed": 2,
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 15.875422071388863,
+    "bias_GPa": 4.862169538371587,
+    "spearman": 0.9486327158178954,
+    "energy_change_meV_per_atom": 5.444772033977382
+  }
+]

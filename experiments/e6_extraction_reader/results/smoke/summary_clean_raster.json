@@ -1,0 +1,41 @@
+{
+  "model": "zai-org/GLM-OCR",
+  "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+  "rendering": "clean_raster",
+  "tag": "smoke",
+  "documents": 1,
+  "cell_exact": 0.8278688524590164,
+  "cell_exact_normalised": 0.8442622950819673,
+  "numeric_exact": 1.0,
+  "cells": 122,
+  "numeric_cells": 81,
+  "by_table": {
+    "invariants": {
+      "cell_exact": 0.5833333333333334,
+      "numeric_exact": 1.0,
+      "cells": 12
+    },
+    "phases": {
+      "cell_exact": 0.7037037037037037,
+      "numeric_exact": 1.0,
+      "cells": 27
+    },
+    "rk_liquid": {
+      "cell_exact": 0.6666666666666666,
+      "numeric_exact": 1.0,
+      "cells": 12
+    },
+    "mixing": {
+      "cell_exact": 0.9436619718309859,
+      "numeric_exact": 1.0,
+      "cells": 71
+    }
+  },
+  "per_doc": {
+    "syn-AgCu-06He-v0": {
+      "cell_exact": 0.8278688524590164,
+      "cell_exact_normalised": 0.8442622950819673,
+      "numeric_exact": 1.0
+    }
+  }
+}

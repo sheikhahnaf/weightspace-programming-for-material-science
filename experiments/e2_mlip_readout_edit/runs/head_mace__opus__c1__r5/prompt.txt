@@ -1,0 +1,704 @@
+You are given the last layer of the energy readout of a machine-learned interatomic potential (MACE-MPA-0 medium, 9,063,204 weights in total) as raw numbers. You cannot run it and you cannot train it.
+
+# How the last layer works
+The energy of a crystal is
+  E = h . w + (uniform term) + (terms that do not depend on these numbers)
+h is a vector of 128 numbers computed for the crystal by the frozen layers before; it changes when the crystal is strained. You can change w (128 numbers) and b (1 number). b is a uniform term: increasing it by one unit raises the energy per atom of every crystal by 1 eV and cannot change a bulk modulus.
+
+# The fault
+On 200 crystals with DFT bulk moduli (Materials Project elastic tensors), this potential's bulk modulus, from a fit of energy against volume over +-3%, is wrong by +4.7 GPa on average (mean absolute error 14.6 GPa). By range of the DFT value:
+DFT 10 to 70 GPa: mean error +1.2 GPa (+3.6%)
+DFT 70 to 139 GPa: mean error +2.2 GPa (+2.0%)
+DFT 139 to 201 GPa: mean error +1.8 GPa (+1.2%)
+DFT 201 to 346 GPa: mean error +13.6 GPa (+5.1%)
+
+# The task
+Edit the numbers so that the bulk modulus error on NEW crystals is smaller, while the energy per atom of every crystal stays where it is: a mean absolute change above 5 meV per atom counts as a failure, because formation energies depend on it.
+
+# What each weight does
+For each weight j of w: its value; the change of the bulk modulus in GPa per unit increase of the weight, mean over the 200 crystals and standard deviation across them; the change of the energy per atom in eV per unit increase, mean and standard deviation. The bulk-modulus numbers are measured by changing the weight by 0.02 and refitting energy against volume, so they include the shift of the equilibrium volume. They hold for small changes; the energy numbers are exact, because the energy is linear in w.
+j | w[j] | dK mean | dK sd | dE mean | dE sd
+0 | 1.7205 | +0.7034 | 0.816 | -0.01947 | 0.0144
+1 | 0.56251 | +0.8706 | 1.1 | -0.007982 | 0.0082
+2 | -0.29926 | -0.337 | 0.832 | -0.0003908 | 0.00866
+3 | -0.37699 | +0.4104 | 1.25 | +0.004441 | 0.007
+4 | 0.83705 | +0.02605 | 0.729 | -0.002938 | 0.00638
+5 | 0.055985 | -0.1603 | 0.569 | +0.005165 | 0.00519
+6 | 1.1037 | -0.3969 | 0.867 | +0.00846 | 0.00987
+7 | -0.50218 | -0.4981 | 0.712 | +0.01022 | 0.00525
+8 | -0.73679 | -0.342 | 0.849 | +0.0112 | 0.00712
+9 | -0.034681 | +0.7039 | 1.1 | -0.007301 | 0.0105
+10 | 0.59369 | +0.8899 | 1.08 | -0.0312 | 0.0102
+11 | 1.0758 | -0.3203 | 0.941 | +0.003845 | 0.00845
+12 | -0.39595 | -0.3329 | 0.676 | -0.005583 | 0.00495
+13 | 0.18376 | -0.636 | 1.25 | +0.007045 | 0.00946
+14 | 0.86433 | +0.488 | 0.973 | -0.001474 | 0.0051
+15 | 0.27037 | -0.1283 | 0.77 | +0.001634 | 0.00561
+16 | 1.0397 | -0.3298 | 0.893 | +0.006118 | 0.00751
+17 | -0.16099 | -0.7328 | 0.95 | +0.006361 | 0.00737
+18 | -0.89227 | +0.06563 | 0.88 | +0.008568 | 0.0117
+19 | -0.88857 | +0.4858 | 0.635 | -0.002885 | 0.00412
+20 | -0.78307 | +0.585 | 1.06 | -0.00248 | 0.00952
+21 | 0.26365 | -0.2862 | 0.8 | -0.002955 | 0.00661
+22 | -0.11639 | +0.5562 | 0.85 | -0.003103 | 0.00624
+23 | -1.2281 | -0.2234 | 0.597 | -0.0001572 | 0.00525
+24 | -1.5433 | -0.3569 | 0.895 | -0.006139 | 0.0102
+25 | 0.6305 | -0.1038 | 0.797 | +0.002906 | 0.00785
+26 | 0.25491 | -0.8221 | 1.02 | +0.008301 | 0.0073
+27 | 1.3294 | -0.4016 | 0.956 | +0.004822 | 0.00613
+28 | -0.62298 | +0.6218 | 0.794 | -0.002498 | 0.00795
+29 | -0.51935 | +0.7042 | 0.945 | -0.001166 | 0.00922
+30 | -0.096233 | -0.05288 | 0.706 | +0.002227 | 0.00685
+31 | 0.59596 | +0.6209 | 0.888 | -0.01109 | 0.00733
+32 | 0.69431 | +0.2631 | 0.705 | -0.00549 | 0.00673
+33 | 0.42178 | +0.299 | 0.581 | -0.009636 | 0.00537
+34 | 0.0073768 | +0.4229 | 0.836 | -0.006927 | 0.00471
+35 | -0.66582 | +0.09974 | 0.899 | -0.0001827 | 0.00714
+36 | -0.59398 | -0.08701 | 0.667 | +0.01132 | 0.00455
+37 | -7.1435 | -2.894 | 1.89 | +0.05529 | 0.0363
+38 | -1.4449 | -0.04186 | 0.884 | +0.002457 | 0.00924
+39 | -0.14541 | -1.04 | 1.2 | -0.007725 | 0.0102
+40 | 1.4394 | +0.8741 | 1.01 | -0.01624 | 0.0115
+41 | -1.4431 | -0.4808 | 0.694 | +0.01037 | 0.00672
+42 | 0.24492 | -0.1966 | 0.922 | +0.00172 | 0.00595
+43 | -4.025 | -1.979 | 1.13 | +0.06195 | 0.0255
+44 | -0.72778 | -0.281 | 0.954 | +0.01187 | 0.0105
+45 | -0.19157 | -0.01129 | 0.661 | -0.001305 | 0.00492
+46 | -1.4843 | -0.7896 | 1.11 | +0.0126 | 0.00967
+47 | -2.6021 | -0.4444 | 0.778 | +0.0349 | 0.0181
+48 | -0.42677 | +0.508 | 0.721 | -0.003758 | 0.00487
+49 | -0.55861 | -1.723 | 1.72 | +0.02022 | 0.0142
+50 | -0.5977 | +0.1776 | 0.805 | -0.0007616 | 0.0087
+51 | -1.0154 | +0.7632 | 0.846 | -0.009956 | 0.00728
+52 | -1.3863 | -0.216 | 0.87 | +0.0109 | 0.00746
+53 | -0.8155 | +0.06722 | 0.919 | -0.0008852 | 0.00564
+54 | -0.31944 | -0.5449 | 0.64 | +0.002614 | 0.004
+55 | -0.021914 | -0.2758 | 0.649 | +0.005637 | 0.00792
+56 | -0.30046 | -0.1789 | 0.53 | +0.001997 | 0.00417
+57 | -0.22559 | +0.623 | 0.926 | -0.001534 | 0.00724
+58 | 0.13166 | +0.7558 | 1.03 | +0.004461 | 0.00848
+59 | 0.033762 | -0.5932 | 0.847 | +0.0008134 | 0.0109
+60 | -0.054634 | -0.1166 | 0.726 | -0.0002847 | 0.00422
+61 | 1.0328 | +0.9625 | 0.852 | -0.01863 | 0.00883
+62 | 0.41169 | -0.4901 | 0.887 | -0.001416 | 0.00551
+63 | -3.0765 | -1.082 | 1.04 | +0.01235 | 0.0137
+64 | -0.12914 | -0.04226 | 0.494 | +0.004527 | 0.00326
+65 | 0.14335 | +1.081 | 1.14 | -0.006025 | 0.012
+66 | 0.80493 | +0.6683 | 0.919 | -0.0108 | 0.00725
+67 | -0.26931 | -0.2432 | 0.853 | +0.0005753 | 0.00661
+68 | 0.94721 | -0.1552 | 0.687 | -0.0006544 | 0.00554
+69 | -1.023 | -0.1762 | 0.721 | +0.008981 | 0.00726
+70 | 1.4555 | +0.054 | 0.71 | +0.003832 | 0.00614
+71 | 3.1162 | -1.308 | 1.62 | +0.002054 | 0.025
+72 | 0.58442 | -0.1167 | 0.669 | -0.004989 | 0.006
+73 | 0.79049 | -0.1881 | 0.813 | +0.002167 | 0.00515
+74 | 0.090681 | -0.3301 | 0.667 | -0.0005801 | 0.00542
+75 | 0.43667 | -1.779 | 1.54 | +0.01167 | 0.0072
+76 | -0.56948 | -0.1369 | 0.831 | -0.00134 | 0.00646
+77 | -1.688 | -0.169 | 0.861 | -0.01029 | 0.012
+78 | 0.55184 | -0.1132 | 0.67 | +0.004663 | 0.00562
+79 | 0.028168 | +0.6286 | 0.902 | -0.0002121 | 0.00865
+80 | -2.8534 | -1.554 | 1.21 | +0.03686 | 0.0224
+81 | 0.27899 | +0.466 | 0.965 | -0.01005 | 0.0119
+82 | -0.98215 | -0.1187 | 0.777 | +0.008979 | 0.00949
+83 | -0.71283 | -0.5156 | 0.785 | +0.001059 | 0.00495
+84 | -0.62429 | +0.06077 | 0.729 | -0.002115 | 0.0083
+85 | -0.49887 | -0.2521 | 0.788 | -0.002517 | 0.0078
+86 | -0.63077 | -0.7303 | 0.804 | +0.00717 | 0.00673
+87 | -0.021874 | +0.396 | 0.935 | -0.002529 | 0.00599
+88 | 1.307 | +0.2727 | 0.823 | -0.009718 | 0.00928
+89 | 0.27873 | -0.2637 | 0.759 | -0.004917 | 0.00613
+90 | -0.66776 | -0.2141 | 0.819 | -0.00474 | 0.0114
+91 | 1.0607 | -0.5437 | 0.928 | +0.004737 | 0.00761
+92 | -5.1192 | -2.794 | 1.88 | +0.0653 | 0.0442
+93 | 0.42044 | +0.434 | 1.17 | +0.002112 | 0.00707
+94 | -1.0362 | -0.5796 | 0.713 | +0.01757 | 0.00849
+95 | -0.71215 | -0.1158 | 0.599 | +0.007058 | 0.00878
+96 | -4.5093 | -1.171 | 1.34 | +0.02206 | 0.03
+97 | -1.5967 | +0.2526 | 0.855 | -0.004616 | 0.01
+98 | 0.26056 | +0.4267 | 0.735 | -0.0004489 | 0.00793
+99 | -1.7674 | -0.3204 | 0.655 | +0.01112 | 0.00621
+100 | -0.1376 | -0.2872 | 0.783 | +0.004539 | 0.00608
+101 | 4.1759 | +0.8129 | 1.33 | -0.03351 | 0.0313
+102 | -0.078602 | +0.1704 | 0.532 | -0.001686 | 0.00422
+103 | 0.11603 | -0.3471 | 0.894 | +0.003606 | 0.00538
+104 | -0.79526 | -0.3421 | 0.644 | +0.004604 | 0.00561
+105 | -2.8703 | -0.8338 | 0.805 | +0.02069 | 0.00957
+106 | -2.5763 | -0.3972 | 0.802 | +0.007419 | 0.00981
+107 | 0.67646 | -0.2933 | 0.572 | +0.003889 | 0.00477
+108 | -0.74989 | +0.1556 | 0.604 | -0.001072 | 0.00635
+109 | 0.44014 | +0.2351 | 0.763 | -0.0007447 | 0.0058
+110 | -0.16181 | -0.2214 | 1.14 | -0.003491 | 0.00862
+111 | 0.18731 | -0.001441 | 0.644 | +0.001183 | 0.00442
+112 | -0.45578 | +0.566 | 1.07 | -0.006724 | 0.00987
+113 | 0.94003 | +0.7929 | 0.637 | -0.01909 | 0.00768
+114 | -0.54956 | +0.7194 | 0.642 | -0.002793 | 0.00554
+115 | -0.81622 | +0.6388 | 0.801 | -0.01756 | 0.00624
+116 | -2.4469 | +0.8961 | 1.52 | -0.01025 | 0.0136
+117 | 0.95599 | +3.836 | 2.48 | -0.09069 | 0.0181
+118 | -0.61601 | -0.6259 | 0.796 | +0.00381 | 0.0066
+119 | -0.33782 | +0.8937 | 1.14 | -0.007022 | 0.0097
+120 | 0.16386 | +0.8839 | 1.27 | -0.005026 | 0.00881
+121 | -1.2112 | -0.7542 | 0.812 | +0.009174 | 0.00527
+122 | -0.14128 | -0.1533 | 0.64 | -0.0004074 | 0.00424
+123 | 0.18447 | +0.01478 | 0.743 | -0.001861 | 0.00509
+124 | -0.068197 | -0.7543 | 0.776 | +0.01387 | 0.00835
+125 | -1.4068 | -0.5308 | 0.904 | +0.001687 | 0.00818
+126 | 1.733 | +0.2121 | 0.661 | -0.006434 | 0.00839
+127 | 0.017885 | +0.301 | 0.869 | +0.003451 | 0.00668
+
+# The other number
+## b shape=(1,)
+0
+
+# Your earlier attempts
+This is attempt 5 of 5. Each earlier reply was applied to the original numbers and measured. Edits do not accumulate: every reply is applied to the original numbers. This is your last attempt. The reply that counts is the one with the lowest mean absolute error among those within the energy limit.
+
+## Attempt 1
+Your reply:
+[{"tensor": "w", "index": [0], "value": 1.72678},
+{"tensor": "w", "index": [1], "value": 0.49685},
+{"tensor": "w", "index": [2], "value": -0.25911},
+{"tensor": "w", "index": [3], "value": -0.48208},
+{"tensor": "w", "index": [4], "value": 0.85861},
+{"tensor": "w", "index": [5], "value": 0.034854},
+{"tensor": "w", "index": [6], "value": 1.10585},
+{"tensor": "w", "index": [7], "value": -0.48725},
+{"tensor": "w", "index": [8], "value": -0.76208},
+{"tensor": "w", "index": [9], "value": -0.064185},
+{"tensor": "w", "index": [10], "value": 0.63314},
+{"tensor": "w", "index": [11], "value": 1.09379},
+{"tensor": "w", "index": [12], "value": -0.19525},
+{"tensor": "w", "index": [13], "value": 0.21473},
+{"tensor": "w", "index": [14], "value": 0.72605},
+{"tensor": "w", "index": [15], "value": 0.2856},
+{"tensor": "w", "index": [16], "value": 1.04884},
+{"tensor": "w", "index": [17], "value": -0.09012},
+{"tensor": "w", "index": [18], "value": -0.91975},
+{"tensor": "w", "index": [19], "value": -1.06827},
+{"tensor": "w", "index": [20], "value": -0.8277},
+{"tensor": "w", "index": [21], "value": 0.34462},
+{"tensor": "w", "index": [22], "value": -0.208},
+{"tensor": "w", "index": [23], "value": -1.15707},
+{"tensor": "w", "index": [24], "value": -1.49207},
+{"tensor": "w", "index": [25], "value": 0.62718},
+{"tensor": "w", "index": [26], "value": 0.32778},
+{"tensor": "w", "index": [27], "value": 1.37225},
+{"tensor": "w", "index": [28], "value": -0.69182},
+{"tensor": "w", "index": [29], "value": -0.58463},
+{"tensor": "w", "index": [30], "value": -0.104402},
+{"tensor": "w", "index": [31], "value": 0.57493},
+{"tensor": "w", "index": [32], "value": 0.69026},
+{"tensor": "w", "index": [33], "value": 0.45862},
+{"tensor": "w", "index": [34], "value": -0.037877},
+{"tensor": "w", "index": [35], "value": -0.68111},
+{"tensor": "w", "index": [36], "value": -0.76276},
+{"tensor": "w", "index": [37], "value": -7.140525},
+{"tensor": "w", "index": [38], "value": -1.4515},
+{"tensor": "w", "index": [39], "value": -0.03267},
+{"tensor": "w", "index": [40], "value": 1.42915},
+{"tensor": "w", "index": [41], "value": -1.43848},
+{"tensor": "w", "index": [42], "value": 0.27396},
+{"tensor": "w", "index": [43], "value": -4.03476},
+{"tensor": "w", "index": [44], "value": -0.74638},
+{"tensor": "w", "index": [45], "value": -0.16744},
+{"tensor": "w", "index": [46], "value": -1.46292},
+{"tensor": "w", "index": [47], "value": -2.63041},
+{"tensor": "w", "index": [48], "value": -0.54957},
+{"tensor": "w", "index": [49], "value": -0.52348},
+{"tensor": "w", "index": [50], "value": -0.61388},
+{"tensor": "w", "index": [51], "value": -1.06755},
+{"tensor": "w", "index": [52], "value": -1.42656},
+{"tensor": "w", "index": [53], "value": -0.82306},
+{"tensor": "w", "index": [54], "value": -0.09106},
+{"tensor": "w", "index": [55], "value": -0.018148},
+{"tensor": "w", "index": [56], "value": -0.25596},
+{"tensor": "w", "index": [57], "value": -0.31567},
+{"tensor": "w", "index": [58], "value": 0.01912},
+{"tensor": "w", "index": [59], "value": 0.073644},
+{"tensor": "w", "index": [60], "value": 0.007},
+{"tensor": "w", "index": [61], "value": 1.01724},
+{"tensor": "w", "index": [62], "value": 0.56635},
+{"tensor": "w", "index": [63], "value": -3.0521},
+{"tensor": "w", "index": [64], "value": -0.25465},
+{"tensor": "w", "index": [65], "value": 0.09519},
+{"tensor": "w", "index": [66], "value": 0.7737},
+{"tensor": "w", "index": [67], "value": -0.22692},
+{"tensor": "w", "index": [68], "value": 0.99817},
+{"tensor": "w", "index": [69], "value": -1.05831},
+{"tensor": "w", "index": [70], "value": 1.40531},
+{"tensor": "w", "index": [71], "value": 3.13276},
+{"tensor": "w", "index": [72], "value": 0.6638},
+{"tensor": "w", "index": [73], "value": 0.82021},
+{"tensor": "w", "index": [74], "value": 0.193582},
+{"tensor": "w", "index": [75], "value": 0.64417},
+{"tensor": "w", "index": [76], "value": -0.52959},
+{"tensor": "w", "index": [77], "value": -1.6513},
+{"tensor": "w", "index": [78], "value": 0.52709},
+{"tensor": "w", "index": [79], "value": -0.042187},
+{"tensor": "w", "index": [80], "value": -2.85455},
+{"tensor": "w", "index": [81], "value": 0.27756},
+{"tensor": "w", "index": [82], "value": -1.00824},
+{"tensor": "w", "index": [83], "value": -0.55013},
+{"tensor": "w", "index": [84], "value": -0.6203},
+{"tensor": "w", "index": [85], "value": -0.44818},
+{"tensor": "w", "index": [86], "value": -0.55292},
+{"tensor": "w", "index": [87], "value": -0.089322},
+{"tensor": "w", "index": [88], "value": 1.32229},
+{"tensor": "w", "index": [89], "value": 0.38732},
+{"tensor": "w", "index": [90], "value": -0.64012},
+{"tensor": "w", "index": [91], "value": 1.10991},
+{"tensor": "w", "index": [92], "value": -5.11955},
+{"tensor": "w", "index": [93], "value": 0.33083},
+{"tensor": "w", "index": [94], "value": -1.05901},
+{"tensor": "w", "index": [95], "value": -0.73362},
+{"tensor": "w", "index": [96], "value": -4.5074},
+{"tensor": "w", "index": [97], "value": -1.60091},
+{"tensor": "w", "index": [98], "value": 0.20556},
+{"tensor": "w", "index": [99], "value": -1.80462},
+{"tensor": "w", "index": [100], "value": -0.11749},
+{"tensor": "w", "index": [101], "value": 4.18164},
+{"tensor": "w", "index": [102], "value": -0.124528},
+{"tensor": "w", "index": [103], "value": 0.17137},
+{"tensor": "w", "index": [104], "value": -0.75758},
+{"tensor": "w", "index": [105], "value": -2.87741},
+{"tensor": "w", "index": [106], "value": -2.57005},
+{"tensor": "w", "index": [107], "value": 0.72211},
+{"tensor": "w", "index": [108], "value": -0.77275},
+{"tensor": "w", "index": [109], "value": 0.38901},
+{"tensor": "w", "index": [110], "value": -0.11891},
+{"tensor": "w", "index": [111], "value": 0.16529},
+{"tensor": "w", "index": [112], "value": -0.47935},
+{"tensor": "w", "index": [113], "value": 0.94681},
+{"tensor": "w", "index": [114], "value": -0.71477},
+{"tensor": "w", "index": [115], "value": -0.78701},
+{"tensor": "w", "index": [116], "value": -2.46735},
+{"tensor": "w", "index": [117], "value": 0.95999},
+{"tensor": "w", "index": [118], "value": -0.52659},
+{"tensor": "w", "index": [119], "value": -0.39065},
+{"tensor": "w", "index": [120], "value": 0.09128},
+{"tensor": "w", "index": [121], "value": -1.10391},
+{"tensor": "w", "index": [122], "value": -0.06032},
+{"tensor": "w", "index": [123], "value": 0.20649},
+{"tensor": "w", "index": [124], "value": -0.050636},
+{"tensor": "w", "index": [125], "value": -1.3488},
+{"tensor": "w", "index": [126], "value": 1.74158},
+{"tensor": "w", "index": [127], "value": -0.068373}]
+Measured on the same 200 crystals: bulk modulus mean error +1.88 GPa, mean absolute error 13.99 GPa; mean absolute change of energy per atom 6.95 meV (ABOVE the limit: a failure).
+DFT 10 to 70 GPa: mean error +0.7 GPa (+2.5%)
+DFT 70 to 139 GPa: mean error +0.4 GPa (+0.4%)
+DFT 139 to 201 GPa: mean error -1.6 GPa (-0.8%)
+DFT 201 to 346 GPa: mean error +8.1 GPa (+2.9%)
+
+## Attempt 2
+Your reply:
+[{"tensor": "w", "index": [0], "value": 1.712892},
+{"tensor": "w", "index": [1], "value": 0.51968},
+{"tensor": "w", "index": [2], "value": -0.281727},
+{"tensor": "w", "index": [3], "value": -0.414324},
+{"tensor": "w", "index": [4], "value": 0.838748},
+{"tensor": "w", "index": [5], "value": 0.067777},
+{"tensor": "w", "index": [6], "value": 1.114329},
+{"tensor": "w", "index": [7], "value": -0.454204},
+{"tensor": "w", "index": [8], "value": -0.723627},
+{"tensor": "w", "index": [9], "value": -0.055356},
+{"tensor": "w", "index": [10], "value": 0.578138},
+{"tensor": "w", "index": [11], "value": 1.089906},
+{"tensor": "w", "index": [12], "value": -0.33074},
+{"tensor": "w", "index": [13], "value": 0.206486},
+{"tensor": "w", "index": [14], "value": 0.795637},
+{"tensor": "w", "index": [15], "value": 0.283018},
+{"tensor": "w", "index": [16], "value": 1.055885},
+{"tensor": "w", "index": [17], "value": -0.115987},
+{"tensor": "w", "index": [18], "value": -0.897709},
+{"tensor": "w", "index": [19], "value": -0.98855},
+{"tensor": "w", "index": [20], "value": -0.80625},
+{"tensor": "w", "index": [21], "value": 0.292662},
+{"tensor": "w", "index": [22], "value": -0.166586},
+{"tensor": "w", "index": [23], "value": -1.196688},
+{"tensor": "w", "index": [24], "value": -1.52675},
+{"tensor": "w", "index": [25], "value": 0.634247},
+{"tensor": "w", "index": [26], "value": 0.305111},
+{"tensor": "w", "index": [27], "value": 1.363005},
+{"tensor": "w", "index": [28], "value": -0.658436},
+{"tensor": "w", "index": [29], "value": -0.55033},
+{"tensor": "w", "index": [30], "value": -0.094641},
+{"tensor": "w", "index": [31], "value": 0.563515},
+{"tensor": "w", "index": [32], "value": 0.679006},
+{"tensor": "w", "index": [33], "value": 0.401238},
+{"tensor": "w", "index": [34], "value": -0.0477682},
+{"tensor": "w", "index": [35], "value": -0.673117},
+{"tensor": "w", "index": [36], "value": -0.609316},
+{"tensor": "w", "index": [37], "value": -7.137491},
+{"tensor": "w", "index": [38], "value": -1.444675},
+{"tensor": "w", "index": [39], "value": -0.102803},
+{"tensor": "w", "index": [40], "value": 1.421117},
+{"tensor": "w", "index": [41], "value": -1.415479},
+{"tensor": "w", "index": [42], "value": 0.263422},
+{"tensor": "w", "index": [43], "value": -4.018809},
+{"tensor": "w", "index": [44], "value": -0.724199},
+{"tensor": "w", "index": [45], "value": -0.18668},
+{"tensor": "w", "index": [46], "value": -1.459668},
+{"tensor": "w", "index": [47], "value": -2.603026},
+{"tensor": "w", "index": [48], "value": -0.499796},
+{"tensor": "w", "index": [49], "value": -0.531608},
+{"tensor": "w", "index": [50], "value": -0.60612},
+{"tensor": "w", "index": [51], "value": -1.059821},
+{"tensor": "w", "index": [52], "value": -1.382682},
+{"tensor": "w", "index": [53], "value": -0.822003},
+{"tensor": "w", "index": [54], "value": -0.198231},
+{"tensor": "w", "index": [55], "value": -0.010221},
+{"tensor": "w", "index": [56], "value": -0.267611},
+{"tensor": "w", "index": [57], "value": -0.269486},
+{"tensor": "w", "index": [58], "value": 0.087784},
+{"tensor": "w", "index": [59], "value": 0.052516},
+{"tensor": "w", "index": [60], "value": -0.028605},
+{"tensor": "w", "index": [61], "value": 0.999203},
+{"tensor": "w", "index": [62], "value": 0.476283},
+{"tensor": "w", "index": [63], "value": -3.058177},
+{"tensor": "w", "index": [64], "value": -0.138394},
+{"tensor": "w", "index": [65], "value": 0.116968},
+{"tensor": "w", "index": [66], "value": 0.76799},
+{"tensor": "w", "index": [67], "value": -0.248721},
+{"tensor": "w", "index": [68], "value": 0.967829},
+{"tensor": "w", "index": [69], "value": -1.019982},
+{"tensor": "w", "index": [70], "value": 1.444159},
+{"tensor": "w", "index": [71], "value": 3.124037},
+{"tensor": "w", "index": [72], "value": 0.604824},
+{"tensor": "w", "index": [73], "value": 0.812988},
+{"tensor": "w", "index": [74], "value": 0.13491},
+{"tensor": "w", "index": [75], "value": 0.555329},
+{"tensor": "w", "index": [76], "value": -0.555052},
+{"tensor": "w", "index": [77], "value": -1.679388},
+{"tensor": "w", "index": [78], "value": 0.557092},
+{"tensor": "w", "index": [79], "value": -0.003888},
+{"tensor": "w", "index": [80], "value": -2.845748},
+{"tensor": "w", "index": [81], "value": 0.270452},
+{"tensor": "w", "index": [82], "value": -0.982831},
+{"tensor": "w", "index": [83], "value": -0.634619},
+{"tensor": "w", "index": [84], "value": -0.625907},
+{"tensor": "w", "index": [85], "value": -0.480599},
+{"tensor": "w", "index": [86], "value": -0.578041},
+{"tensor": "w", "index": [87], "value": -0.060146},
+{"tensor": "w", "index": [88], "value": 1.301348},
+{"tensor": "w", "index": [89], "value": 0.31317},
+{"tensor": "w", "index": [90], "value": -0.659344},
+{"tensor": "w", "index": [91], "value": 1.091999},
+{"tensor": "w", "index": [92], "value": -5.115638},
+{"tensor": "w", "index": [93], "value": 0.384711},
+{"tensor": "w", "index": [94], "value": -1.019384},
+{"tensor": "w", "index": [95], "value": -0.711656},
+{"tensor": "w", "index": [96], "value": -4.50572},
+{"tensor": "w", "index": [97], "value": -1.603732},
+{"tensor": "w", "index": [98], "value": 0.234949},
+{"tensor": "w", "index": [99], "value": -1.752125},
+{"tensor": "w", "index": [100], "value": -0.114868},
+{"tensor": "w", "index": [101], "value": 4.174685},
+{"tensor": "w", "index": [102], "value": -0.109851},
+{"tensor": "w", "index": [103], "value": 0.154852},
+{"tensor": "w", "index": [104], "value": -0.761989},
+{"tensor": "w", "index": [105], "value": -2.848381},
+{"tensor": "w", "index": [106], "value": -2.564906},
+{"tensor": "w", "index": [107], "value": 0.716064},
+{"tensor": "w", "index": [108], "value": -0.76316},
+{"tensor": "w", "index": [109], "value": 0.414612},
+{"tensor": "w", "index": [110], "value": -0.14768},
+{"tensor": "w", "index": [111], "value": 0.18411},
+{"tensor": "w", "index": [112], "value": -0.474091},
+{"tensor": "w", "index": [113], "value": 0.907094},
+{"tensor": "w", "index": [114], "value": -0.634218},
+{"tensor": "w", "index": [115], "value": -0.853194},
+{"tensor": "w", "index": [116], "value": -2.462292},
+{"tensor": "w", "index": [117], "value": 0.92701},
+{"tensor": "w", "index": [118], "value": -0.565937},
+{"tensor": "w", "index": [119], "value": -0.369953},
+{"tensor": "w", "index": [120], "value": 0.123911},
+{"tensor": "w", "index": [121], "value": -1.126059},
+{"tensor": "w", "index": [122], "value": -0.107275},
+{"tensor": "w", "index": [123], "value": 0.186414},
+{"tensor": "w", "index": [124], "value": -0.038151},
+{"tensor": "w", "index": [125], "value": -1.377828},
+{"tensor": "w", "index": [126], "value": 1.726703},
+{"tensor": "w", "index": [127], "value": -0.012433},
+{"tensor": "b", "index": [0], "value": -0.018476}]
+Measured on the same 200 crystals: bulk modulus mean error +2.62 GPa, mean absolute error 14.18 GPa; mean absolute change of energy per atom 6.02 meV (ABOVE the limit: a failure).
+DFT 10 to 70 GPa: mean error +0.6 GPa (+2.3%)
+DFT 70 to 139 GPa: mean error +0.6 GPa (+0.5%)
+DFT 139 to 201 GPa: mean error -0.7 GPa (-0.3%)
+DFT 201 to 346 GPa: mean error +10.0 GPa (+3.7%)
+
+## Attempt 3
+Your reply:
+[{"tensor": "w", "index": [0], "value": 1.724582},
+{"tensor": "w", "index": [1], "value": 0.519831},
+{"tensor": "w", "index": [2], "value": -0.273163},
+{"tensor": "w", "index": [3], "value": -0.445299},
+{"tensor": "w", "index": [4], "value": 0.851064},
+{"tensor": "w", "index": [5], "value": 0.04225},
+{"tensor": "w", "index": [6], "value": 1.105098},
+{"tensor": "w", "index": [7], "value": -0.492476},
+{"tensor": "w", "index": [8], "value": -0.753229},
+{"tensor": "w", "index": [9], "value": -0.053859},
+{"tensor": "w", "index": [10], "value": 0.619333},
+{"tensor": "w", "index": [11], "value": 1.087494},
+{"tensor": "w", "index": [12], "value": -0.265495},
+{"tensor": "w", "index": [13], "value": 0.203891},
+{"tensor": "w", "index": [14], "value": 0.774448},
+{"tensor": "w", "index": [15], "value": 0.28027},
+{"tensor": "w", "index": [16], "value": 1.045641},
+{"tensor": "w", "index": [17], "value": -0.114925},
+{"tensor": "w", "index": [18], "value": -0.910132},
+{"tensor": "w", "index": [19], "value": -1.005375},
+{"tensor": "w", "index": [20], "value": -0.81208},
+{"tensor": "w", "index": [21], "value": 0.316281},
+{"tensor": "w", "index": [22], "value": -0.175937},
+{"tensor": "w", "index": [23], "value": -1.181931},
+{"tensor": "w", "index": [24], "value": -1.510001},
+{"tensor": "w", "index": [25], "value": 0.628342},
+{"tensor": "w", "index": [26], "value": 0.302276},
+{"tensor": "w", "index": [27], "value": 1.357253},
+{"tensor": "w", "index": [28], "value": -0.667726},
+{"tensor": "w", "index": [29], "value": -0.561782},
+{"tensor": "w", "index": [30], "value": -0.101543},
+{"tensor": "w", "index": [31], "value": 0.582291},
+{"tensor": "w", "index": [32], "value": 0.691678},
+{"tensor": "w", "index": [33], "value": 0.445726},
+{"tensor": "w", "index": [34], "value": -0.022038},
+{"tensor": "w", "index": [35], "value": -0.675759},
+{"tensor": "w", "index": [36], "value": -0.703687},
+{"tensor": "w", "index": [37], "value": -7.141566},
+{"tensor": "w", "index": [38], "value": -1.44919},
+{"tensor": "w", "index": [39], "value": -0.072129},
+{"tensor": "w", "index": [40], "value": 1.432738},
+{"tensor": "w", "index": [41], "value": -1.440097},
+{"tensor": "w", "index": [42], "value": 0.263796},
+{"tensor": "w", "index": [43], "value": -4.031344},
+{"tensor": "w", "index": [44], "value": -0.73987},
+{"tensor": "w", "index": [45], "value": -0.175886},
+{"tensor": "w", "index": [46], "value": -1.470403},
+{"tensor": "w", "index": [47], "value": -2.620502},
+{"tensor": "w", "index": [48], "value": -0.50659},
+{"tensor": "w", "index": [49], "value": -0.535776},
+{"tensor": "w", "index": [50], "value": -0.608217},
+{"tensor": "w", "index": [51], "value": -1.049298},
+{"tensor": "w", "index": [52], "value": -1.412469},
+{"tensor": "w", "index": [53], "value": -0.820414},
+{"tensor": "w", "index": [54], "value": -0.170993},
+{"tensor": "w", "index": [55], "value": -0.019466},
+{"tensor": "w", "index": [56], "value": -0.271535},
+{"tensor": "w", "index": [57], "value": -0.284142},
+{"tensor": "w", "index": [58], "value": 0.058509},
+{"tensor": "w", "index": [59], "value": 0.059685},
+{"tensor": "w", "index": [60], "value": -0.014572},
+{"tensor": "w", "index": [61], "value": 1.022686},
+{"tensor": "w", "index": [62], "value": 0.512219},
+{"tensor": "w", "index": [63], "value": -3.06064},
+{"tensor": "w", "index": [64], "value": -0.210722},
+{"tensor": "w", "index": [65], "value": 0.112046},
+{"tensor": "w", "index": [66], "value": 0.784631},
+{"tensor": "w", "index": [67], "value": -0.241757},
+{"tensor": "w", "index": [68], "value": 0.980334},
+{"tensor": "w", "index": [69], "value": -1.045952},
+{"tensor": "w", "index": [70], "value": 1.422877},
+{"tensor": "w", "index": [71], "value": 3.126964},
+{"tensor": "w", "index": [72], "value": 0.636017},
+{"tensor": "w", "index": [73], "value": 0.809808},
+{"tensor": "w", "index": [74], "value": 0.157567},
+{"tensor": "w", "index": [75], "value": 0.571545},
+{"tensor": "w", "index": [76], "value": -0.543552},
+{"tensor": "w", "index": [77], "value": -1.664145},
+{"tensor": "w", "index": [78], "value": 0.535753},
+{"tensor": "w", "index": [79], "value": -0.017563},
+{"tensor": "w", "index": [80], "value": -2.854148},
+{"tensor": "w", "index": [81], "value": 0.278061},
+{"tensor": "w", "index": [82], "value": -0.999109},
+{"tensor": "w", "index": [83], "value": -0.607075},
+{"tensor": "w", "index": [84], "value": -0.621697},
+{"tensor": "w", "index": [85], "value": -0.465922},
+{"tensor": "w", "index": [86], "value": -0.580168},
+{"tensor": "w", "index": [87], "value": -0.065715},
+{"tensor": "w", "index": [88], "value": 1.316939},
+{"tensor": "w", "index": [89], "value": 0.349314},
+{"tensor": "w", "index": [90], "value": -0.649794},
+{"tensor": "w", "index": [91], "value": 1.092687},
+{"tensor": "w", "index": [92], "value": -5.119428},
+{"tensor": "w", "index": [93], "value": 0.362194},
+{"tensor": "w", "index": [94], "value": -1.051027},
+{"tensor": "w", "index": [95], "value": -0.726106},
+{"tensor": "w", "index": [96], "value": -4.508065},
+{"tensor": "w", "index": [97], "value": -1.599437},
+{"tensor": "w", "index": [98], "value": 0.22481},
+{"tensor": "w", "index": [99], "value": -1.791593},
+{"tensor": "w", "index": [100], "value": -0.124529},
+{"tensor": "w", "index": [101], "value": 4.179631},
+{"tensor": "w", "index": [102], "value": -0.108454},
+{"tensor": "w", "index": [103], "value": 0.152001},
+{"tensor": "w", "index": [104], "value": -0.770768},
+{"tensor": "w", "index": [105], "value": -2.874922},
+{"tensor": "w", "index": [106], "value": -2.572238},
+{"tensor": "w", "index": [107], "value": 0.706133},
+{"tensor": "w", "index": [108], "value": -0.764749},
+{"tensor": "w", "index": [109], "value": 0.406906},
+{"tensor": "w", "index": [110], "value": -0.133925},
+{"tensor": "w", "index": [111], "value": 0.172997},
+{"tensor": "w", "index": [112], "value": -0.471101},
+{"tensor": "w", "index": [113], "value": 0.944437},
+{"tensor": "w", "index": [114], "value": -0.656947},
+{"tensor": "w", "index": [115], "value": -0.797234},
+{"tensor": "w", "index": [116], "value": -2.460193},
+{"tensor": "w", "index": [117], "value": 0.95859},
+{"tensor": "w", "index": [118], "value": -0.557887},
+{"tensor": "w", "index": [119], "value": -0.37216},
+{"tensor": "w", "index": [120], "value": 0.116683},
+{"tensor": "w", "index": [121], "value": -1.141462},
+{"tensor": "w", "index": [122], "value": -0.088656},
+{"tensor": "w", "index": [123], "value": 0.198783},
+{"tensor": "w", "index": [124], "value": -0.056782},
+{"tensor": "w", "index": [125], "value": -1.3691},
+{"tensor": "w", "index": [126], "value": 1.738577},
+{"tensor": "w", "index": [127], "value": -0.038183}]
+Measured on the same 200 crystals: bulk modulus mean error +2.88 GPa, mean absolute error 14.16 GPa; mean absolute change of energy per atom 4.52 meV (within the limit).
+DFT 10 to 70 GPa: mean error +0.9 GPa (+2.9%)
+DFT 70 to 139 GPa: mean error +1.0 GPa (+1.0%)
+DFT 139 to 201 GPa: mean error -0.4 GPa (-0.1%)
+DFT 201 to 346 GPa: mean error +10.0 GPa (+3.7%)
+
+## Attempt 4
+Your reply:
+[{"tensor": "w", "index": [0], "value": 1.719969},
+{"tensor": "w", "index": [1], "value": 0.519114},
+{"tensor": "w", "index": [2], "value": -0.276187},
+{"tensor": "w", "index": [3], "value": -0.43396},
+{"tensor": "w", "index": [4], "value": 0.846353},
+{"tensor": "w", "index": [5], "value": 0.052249},
+{"tensor": "w", "index": [6], "value": 1.108812},
+{"tensor": "w", "index": [7], "value": -0.477018},
+{"tensor": "w", "index": [8], "value": -0.741641},
+{"tensor": "w", "index": [9], "value": -0.054753},
+{"tensor": "w", "index": [10], "value": 0.603249},
+{"tensor": "w", "index": [11], "value": 1.088638},
+{"tensor": "w", "index": [12], "value": -0.289586},
+{"tensor": "w", "index": [13], "value": 0.205238},
+{"tensor": "w", "index": [14], "value": 0.781541},
+{"tensor": "w", "index": [15], "value": 0.281521},
+{"tensor": "w", "index": [16], "value": 1.04983},
+{"tensor": "w", "index": [17], "value": -0.114641},
+{"tensor": "w", "index": [18], "value": -0.905438},
+{"tensor": "w", "index": [19], "value": -1.000442},
+{"tensor": "w", "index": [20], "value": -0.810194},
+{"tensor": "w", "index": [21], "value": 0.307643},
+{"tensor": "w", "index": [22], "value": -0.173112},
+{"tensor": "w", "index": [23], "value": -1.187123},
+{"tensor": "w", "index": [24], "value": -1.516188},
+{"tensor": "w", "index": [25], "value": 0.630671},
+{"tensor": "w", "index": [26], "value": 0.304138},
+{"tensor": "w", "index": [27], "value": 1.359982},
+{"tensor": "w", "index": [28], "value": -0.664698},
+{"tensor": "w", "index": [29], "value": -0.557854},
+{"tensor": "w", "index": [30], "value": -0.098864},
+{"tensor": "w", "index": [31], "value": 0.57457},
+{"tensor": "w", "index": [32], "value": 0.686568},
+{"tensor": "w", "index": [33], "value": 0.428299},
+{"tensor": "w", "index": [34], "value": -0.032783},
+{"tensor": "w", "index": [35], "value": -0.674855},
+{"tensor": "w", "index": [36], "value": -0.667626},
+{"tensor": "w", "index": [37], "value": -7.139906},
+{"tensor": "w", "index": [38], "value": -1.44745},
+{"tensor": "w", "index": [39], "value": -0.083271},
+{"tensor": "w", "index": [40], "value": 1.427987},
+{"tensor": "w", "index": [41], "value": -1.430204},
+{"tensor": "w", "index": [42], "value": 0.263937},
+{"tensor": "w", "index": [43], "value": -4.026428},
+{"tensor": "w", "index": [44], "value": -0.733788},
+{"tensor": "w", "index": [45], "value": -0.179962},
+{"tensor": "w", "index": [46], "value": -1.465895},
+{"tensor": "w", "index": [47], "value": -2.613794},
+{"tensor": "w", "index": [48], "value": -0.5051},
+{"tensor": "w", "index": [49], "value": -0.533757},
+{"tensor": "w", "index": [50], "value": -0.60754},
+{"tensor": "w", "index": [51], "value": -1.054028},
+{"tensor": "w", "index": [52], "value": -1.400957},
+{"tensor": "w", "index": [53], "value": -0.821125},
+{"tensor": "w", "index": [54], "value": -0.179604},
+{"tensor": "w", "index": [55], "value": -0.01573},
+{"tensor": "w", "index": [56], "value": -0.26952},
+{"tensor": "w", "index": [57], "value": -0.27918},
+{"tensor": "w", "index": [58], "value": 0.069094},
+{"tensor": "w", "index": [59], "value": 0.057216},
+{"tensor": "w", "index": [60], "value": -0.019569},
+{"tensor": "w", "index": [61], "value": 1.013137},
+{"tensor": "w", "index": [62], "value": 0.499391},
+{"tensor": "w", "index": [63], "value": -3.059411},
+{"tensor": "w", "index": [64], "value": -0.183046},
+{"tensor": "w", "index": [65], "value": 0.113533},
+{"tensor": "w", "index": [66], "value": 0.777662},
+{"tensor": "w", "index": [67], "value": -0.244118},
+{"tensor": "w", "index": [68], "value": 0.975842},
+{"tensor": "w", "index": [69], "value": -1.035917},
+{"tensor": "w", "index": [70], "value": 1.430888},
+{"tensor": "w", "index": [71], "value": 3.125959},
+{"tensor": "w", "index": [72], "value": 0.624334},
+{"tensor": "w", "index": [73], "value": 0.811377},
+{"tensor": "w", "index": [74], "value": 0.149533},
+{"tensor": "w", "index": [75], "value": 0.567134},
+{"tensor": "w", "index": [76], "value": -0.547753},
+{"tensor": "w", "index": [77], "value": -1.669875},
+{"tensor": "w", "index": [78], "value": 0.544041},
+{"tensor": "w", "index": [79], "value": -0.012796},
+{"tensor": "w", "index": [80], "value": -2.850799},
+{"tensor": "w", "index": [81], "value": 0.275003},
+{"tensor": "w", "index": [82], "value": -0.992858},
+{"tensor": "w", "index": [83], "value": -0.616466},
+{"tensor": "w", "index": [84], "value": -0.623341},
+{"tensor": "w", "index": [85], "value": -0.471286},
+{"tensor": "w", "index": [86], "value": -0.578538},
+{"tensor": "w", "index": [87], "value": -0.064162},
+{"tensor": "w", "index": [88], "value": 1.310855},
+{"tensor": "w", "index": [89], "value": 0.335942},
+{"tensor": "w", "index": [90], "value": -0.653338},
+{"tensor": "w", "index": [91], "value": 1.092904},
+{"tensor": "w", "index": [92], "value": -5.117915},
+{"tensor": "w", "index": [93], "value": 0.370304},
+{"tensor": "w", "index": [94], "value": -1.038598},
+{"tensor": "w", "index": [95], "value": -0.72054},
+{"tensor": "w", "index": [96], "value": -4.507108},
+{"tensor": "w", "index": [97], "value": -1.601197},
+{"tensor": "w", "index": [98], "value": 0.228316},
+{"tensor": "w", "index": [99], "value": -1.776178},
+{"tensor": "w", "index": [100], "value": -0.120463},
+{"tensor": "w", "index": [101], "value": 4.17771},
+{"tensor": "w", "index": [102], "value": -0.109472},
+{"tensor": "w", "index": [103], "value": 0.153695},
+{"tensor": "w", "index": [104], "value": -0.76688},
+{"tensor": "w", "index": [105], "value": -2.864376},
+{"tensor": "w", "index": [106], "value": -2.569242},
+{"tensor": "w", "index": [107], "value": 0.710562},
+{"tensor": "w", "index": [108], "value": -0.764342},
+{"tensor": "w", "index": [109], "value": 0.409477},
+{"tensor": "w", "index": [110], "value": -0.138998},
+{"tensor": "w", "index": [111], "value": 0.177222},
+{"tensor": "w", "index": [112], "value": -0.472532},
+{"tensor": "w", "index": [113], "value": 0.929568},
+{"tensor": "w", "index": [114], "value": -0.649507},
+{"tensor": "w", "index": [115], "value": -0.819326},
+{"tensor": "w", "index": [116], "value": -2.461237},
+{"tensor": "w", "index": [117], "value": 0.945998},
+{"tensor": "w", "index": [118], "value": -0.560213},
+{"tensor": "w", "index": [119], "value": -0.371805},
+{"tensor": "w", "index": [120], "value": 0.118848},
+{"tensor": "w", "index": [121], "value": -1.134228},
+{"tensor": "w", "index": [122], "value": -0.095294},
+{"tensor": "w", "index": [123], "value": 0.194056},
+{"tensor": "w", "index": [124], "value": -0.049154},
+{"tensor": "w", "index": [125], "value": -1.372011},
+{"tensor": "w", "index": [126], "value": 1.733913},
+{"tensor": "w", "index": [127], "value": -0.028745},
+{"tensor": "b", "index": [0], "value": -0.0073904}]
+Measured on the same 200 crystals: bulk modulus mean error +2.75 GPa, mean absolute error 14.16 GPa; mean absolute change of energy per atom 5.04 meV (ABOVE the limit: a failure).
+DFT 10 to 70 GPa: mean error +0.7 GPa (+2.6%)
+DFT 70 to 139 GPa: mean error +0.8 GPa (+0.8%)
+DFT 139 to 201 GPa: mean error -0.5 GPa (-0.2%)
+DFT 201 to 346 GPa: mean error +10.0 GPa (+3.6%)
+
+# Reply format
+Reply with a JSON list of edits and no other text. Each edit is {"tensor": name, "index": [i], "value": number} with zero-based indices; `value` is the new value, not the change. Tensor names: w and b.

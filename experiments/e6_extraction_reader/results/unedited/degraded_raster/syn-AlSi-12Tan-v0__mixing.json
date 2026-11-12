@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlSi-12Tan-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>at.% Si</td><td>ΔmixH/Jmol-1</td><td>ΔmixG/Jmol-1</td><td>a(Al)</td><td>a(Si)</td></tr><tr><td>10</td><td>-1194</td><td>-5878</td><td>0.8926</td><td>0.0490</td></tr><tr><td>30</td><td>-2847</td><td>-11596</td><td>0.6484</td><td>0.1929</td></tr><tr><td>50</td><td>-3461</td><td>-13346</td><td>0.4021</td><td>0.3971</td></tr><tr><td>70</td><td>-2967</td><td>-11658</td><td>0.1938</td><td>0.6431</td></tr><tr><td>90</td><td>-1297</td><td>-5930</td><td>0.0478</td><td>0.8914</td></tr></table>"
+ ]
+}

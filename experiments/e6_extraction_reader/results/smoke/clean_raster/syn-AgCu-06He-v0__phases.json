@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AgCu-06He-v0",
+ "table": "phases",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"2\">Structure</td><td colspan=\"2\">Stability range/℃</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.%Cu</td><td>atT/℃</td></tr><tr><td>(Ag)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27</td><td>961.8</td><td>0.0-13.8</td><td>787</td></tr><tr><td>(Cu)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27</td><td>1084.6</td><td>94.8-100.0</td><td>847</td></tr></table>"
+ ]
+}

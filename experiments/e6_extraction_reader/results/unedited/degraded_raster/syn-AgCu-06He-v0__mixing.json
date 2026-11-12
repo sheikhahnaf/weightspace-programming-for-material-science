@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AgCu-06He-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"6\">Liquid at 1450 K</td></tr><tr><td>x(Cu)</td><td>ΔmixH/kJmol-1</td><td>ΔmixG/kJmol-1</td><td>a(Ag)</td><td>a(Cu)</td><td>ΔH(Ag)/kJmol-1</td><td>ΔH(Cu)/kJmol-1</td></tr><tr><td>0.100</td><td>1.18</td><td>-2.90</td><td>0.9075</td><td>0.2154</td><td>0.10</td><td>10.93</td></tr><tr><td>0.200</td><td>2.16</td><td>-4.21</td><td>0.8278</td><td>0.3724</td><td>0.41</td><td>9.14</td></tr><tr><td>0.300</td><td>2.92</td><td>-4.94</td><td>0.7575</td><td>0.4885</td><td>1.00</td><td>7.38</td></tr><tr><td>0.400</td><td>3.43</td><td>-5.30</td><td>0.6930</td><td>0.5772</td><td>1.91</td><td>5.70</td></tr><tr><td>0.500</td><td>3.67</td><td>-5.39</td><td>0.6299</td><td>0.6488</td><td>3.18</td><td>4.16</td></tr><tr><td>0.600</td><td>3.61</td><td>-5.24</td><td>0.5626</td><td>0.7116</td><td>4.86</td><td>2.79</td></tr><tr><td>0.700</td><td>3.25</td><td>-4.82</td><td>0.4828</td><td>0.7721</td><td>6.99</td><td>1.64</td></tr><tr><td>0.800</td><td>2.54</td><td>-4.07</td><td>0.3780</td><td>0.8364</td><td>9.64</td><td>0.76</td></tr><tr><td>0.900</td><td>1.46</td><td>-2.80</td><td>0.2282</td><td>0.9103</td><td>12.84</td><td>0.20</td></tr></table>"
+ ]
+}

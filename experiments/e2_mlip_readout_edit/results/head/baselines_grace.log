@@ -1,0 +1,33 @@
+grace unedited                                                MAE 8.55 bias +2.25 rho 0.965 dE 0.00 meV/atom
+grace gradient                   penalty=0.0                  MAE 9.21 bias +1.01 rho 0.962 dE 128.01 meV/atom
+grace gradient                   penalty=0.001                MAE 8.45 bias +2.24 rho 0.965 dE 4.58 meV/atom
+grace gradient                   penalty=0.003                MAE 8.50 bias +2.27 rho 0.965 dE 1.95 meV/atom
+grace gradient                   penalty=0.01                 MAE 8.53 bias +2.26 rho 0.965 dE 0.71 meV/atom
+grace gradient                   penalty=0.03                 MAE 8.53 bias +2.28 rho 0.965 dE 0.40 meV/atom
+grace gradient                   penalty=0.1                  MAE 8.54 bias +2.27 rho 0.965 dE 0.20 meV/atom
+grace gradient                   penalty=0.3                  MAE 8.54 bias +2.27 rho 0.965 dE 0.18 meV/atom
+grace gradient                   penalty=1.0                  MAE 8.54 bias +2.27 rho 0.965 dE 0.18 meV/atom
+grace scaled_unconstrained_fit   lambda=0.02                  MAE 8.54 bias +2.23 rho 0.965 dE 2.56 meV/atom
+grace scaled_unconstrained_fit   lambda=0.05                  MAE 8.52 bias +2.19 rho 0.965 dE 6.40 meV/atom
+grace scaled_unconstrained_fit   lambda=0.1                   MAE 8.50 bias +2.13 rho 0.965 dE 12.80 meV/atom
+grace scaled_unconstrained_fit   lambda=0.2                   MAE 8.47 bias +2.01 rho 0.965 dE 25.60 meV/atom
+grace scaled_unconstrained_fit   lambda=0.5                   MAE 8.54 bias +1.64 rho 0.964 dE 64.01 meV/atom
+grace linesearch                 evaluations=5                MAE 8.54 bias +2.12 rho 0.965 dE 3.00 meV/atom
+grace spsa                       evaluations=5 seed=0         MAE 8.55 bias +2.26 rho 0.965 dE 0.18 meV/atom
+grace spsa                       evaluations=5 seed=1         MAE 8.55 bias +2.25 rho 0.965 dE 0.00 meV/atom
+grace spsa                       evaluations=5 seed=2         MAE 8.55 bias +2.24 rho 0.965 dE 0.54 meV/atom
+grace spsa                       evaluations=50 seed=0        MAE 8.55 bias +2.26 rho 0.965 dE 0.18 meV/atom
+grace spsa                       evaluations=50 seed=1        MAE 8.55 bias +2.25 rho 0.965 dE 0.00 meV/atom
+grace spsa                       evaluations=50 seed=2        MAE 8.55 bias +2.24 rho 0.965 dE 0.54 meV/atom
+grace spsa                       evaluations=500 seed=0       MAE 8.55 bias +2.26 rho 0.965 dE 0.18 meV/atom
+grace spsa                       evaluations=500 seed=1       MAE 8.55 bias +2.25 rho 0.965 dE 0.00 meV/atom
+grace spsa                       evaluations=500 seed=2       MAE 8.55 bias +2.24 rho 0.965 dE 0.54 meV/atom
+grace evolution_top10            evaluations=5 seed=0         MAE 8.55 bias +2.07 rho 0.965 dE 4.41 meV/atom
+grace evolution_top10            evaluations=5 seed=1         MAE 8.54 bias +2.05 rho 0.965 dE 4.55 meV/atom
+grace evolution_top10            evaluations=5 seed=2         MAE 8.53 bias +2.17 rho 0.965 dE 3.81 meV/atom
+grace evolution_top10            evaluations=50 seed=0        MAE 8.53 bias +2.24 rho 0.965 dE 4.45 meV/atom
+grace evolution_top10            evaluations=50 seed=1        MAE 8.50 bias +2.14 rho 0.966 dE 3.75 meV/atom
+grace evolution_top10            evaluations=50 seed=2        MAE 8.52 bias +2.24 rho 0.965 dE 3.92 meV/atom
+grace evolution_top10            evaluations=500 seed=0       MAE 8.51 bias +2.23 rho 0.965 dE 4.18 meV/atom
+grace evolution_top10            evaluations=500 seed=1       MAE 8.48 bias +2.13 rho 0.966 dE 4.70 meV/atom
+grace evolution_top10            evaluations=500 seed=2       MAE 8.51 bias +2.23 rho 0.965 dE 4.31 meV/atom

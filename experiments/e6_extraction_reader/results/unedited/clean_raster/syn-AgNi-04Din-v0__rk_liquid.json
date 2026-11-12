@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AgNi-04Din-v0",
+ "table": "rk_liquid",
+ "rendering": "clean_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Liquid:L(v)=a+b·T+c·T·lnT</td></tr><tr><td>v</td><td>a</td><td>b</td><td>c</td></tr><tr><td>L0</td><td>63052.65</td><td>-7.119265</td><td>0.0</td></tr><tr><td>L1</td><td>4654.55</td><td>-3.636835</td><td>0.0</td></tr></table>"
+ ]
+}

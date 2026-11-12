@@ -214,6 +214,43 @@ def spsa(potential: str, budget: int, seed: int = 0):
     return select(tried, base, train, ktr)
 
 
+def evolution(potential: str, budget: int, seed: int = 0, k: int = 10):
+    """A (1+1) evolution strategy restricted to the k weights the table ranks highest
+    (bulk-modulus gain per unit of energy spread), started at the line-search direction's
+    smallest step. A stronger budgeted reference than SPSA: it is told where to look."""
+    base, train, ktr, _, _ = setup(potential)
+    gK, _, _, sE = table(potential)
+    bias = float(np.nanmean(predict_moduli(base, train).numpy() - ktr))
+    top = np.argsort(-np.abs(gK) / (sE + 1e-12))[:k]
+    unit = 1e-3 / sE[top]  # a step that moves the energy spread of one weight by 1 meV per atom
+    rng = np.random.default_rng(seed)
+
+    def build(z):
+        params = clone(base)
+        delta = np.zeros(len(gK))
+        delta[top] = z * unit
+        params["w"] = base["w"] + torch.tensor(delta)
+        return cancel_mean_energy(potential, params, base, train)
+
+    def objective(params):
+        r = report(params, base, train, ktr)
+        return r["mae_GPa"] + 10.0 * max(0.0, r["energy_change_meV_per_atom"] - LIMIT) + 100.0 * r["failed_fits"]
+
+    z = -np.sign(bias) * np.sign(gK[top]) * 0.5
+    tried = [build(z)]
+    best, sigma = objective(tried[0]), 0.5
+    for _ in range(budget - 1):
+        cand = z + sigma * rng.standard_normal(k)
+        params = build(cand)
+        tried.append(params)
+        value = objective(params)
+        if value < best:
+            z, best, sigma = cand, value, sigma * 1.3
+        else:
+            sigma *= 0.85
+    return select(tried, base, train, ktr)
+
+
 def baselines(potential: str) -> None:
     base, train, ktr, test, kte = setup(potential)
     rows = [{"arm": "unedited", **report(base, base, test, kte)}]
@@ -229,6 +266,9 @@ def baselines(potential: str) -> None:
     for budget in (ROUNDS, 10 * ROUNDS, 100 * ROUNDS):
         for seed in range(3):
             rows.append({"arm": "spsa", "evaluations": budget, "seed": seed, **report(spsa(potential, budget, seed), base, test, kte)})
+    for budget in (ROUNDS, 10 * ROUNDS, 100 * ROUNDS):
+        for seed in range(3):
+            rows.append({"arm": "evolution_top10", "evaluations": budget, "seed": seed, **report(evolution(potential, budget, seed), base, test, kte)})
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / f"baselines_{potential}.json").write_text(json.dumps(rows, indent=2) + "\n")
     for r in rows:

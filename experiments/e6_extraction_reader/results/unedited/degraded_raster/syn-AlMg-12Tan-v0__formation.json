@@ -1,0 +1,8 @@
+{
+ "doc_id": "syn-AlMg-12Tan-v0",
+ "table": "formation",
+ "rendering": "degraded_raster",
+ "replies": [
+  "<table border=\"1\"><tr><td>Phase</td><td>at.%Mg</td><td>ΔfH(298.15K)/kJmol-1</td><td>ΔfS/Jmol-1K-1</td><td>Cp(298.15K)/Jmol-1K-1</td></tr><tr><td>Al12Mg17</td><td>56.3</td><td>-3.52</td><td>0.48</td><td>24.61</td></tr><tr><td>β</td><td>38.9</td><td>-4.53</td><td>-1.24</td><td>24.51</td></tr><tr><td>$\\varepsilon^{a}$</td><td>43.4</td><td>-3.99</td><td>-0.25</td><td>24.54</td></tr></table>"
+ ]
+}

@@ -1,0 +1,33 @@
+mace unedited                                                MAE 16.23 bias +6.43 rho 0.949 dE 0.00 meV/atom
+mace gradient                   penalty=0.0                  MAE 15.47 bias +1.24 rho 0.945 dE 107.49 meV/atom
+mace gradient                   penalty=0.001                MAE 15.18 bias +2.07 rho 0.946 dE 18.78 meV/atom
+mace gradient                   penalty=0.003                MAE 15.19 bias +2.41 rho 0.947 dE 11.38 meV/atom
+mace gradient                   penalty=0.01                 MAE 15.43 bias +3.53 rho 0.948 dE 5.50 meV/atom
+mace gradient                   penalty=0.03                 MAE 15.77 bias +4.83 rho 0.949 dE 2.51 meV/atom
+mace gradient                   penalty=0.1                  MAE 16.04 bias +5.81 rho 0.949 dE 0.93 meV/atom
+mace gradient                   penalty=0.3                  MAE 16.15 bias +6.18 rho 0.949 dE 0.41 meV/atom
+mace gradient                   penalty=1.0                  MAE 16.20 bias +6.33 rho 0.949 dE 0.19 meV/atom
+mace scaled_unconstrained_fit   lambda=0.02                  MAE 16.16 bias +6.33 rho 0.949 dE 2.15 meV/atom
+mace scaled_unconstrained_fit   lambda=0.05                  MAE 16.05 bias +6.19 rho 0.950 dE 5.37 meV/atom
+mace scaled_unconstrained_fit   lambda=0.1                   MAE 15.89 bias +5.95 rho 0.950 dE 10.75 meV/atom
+mace scaled_unconstrained_fit   lambda=0.2                   MAE 15.58 bias +5.46 rho 0.951 dE 21.50 meV/atom
+mace scaled_unconstrained_fit   lambda=0.5                   MAE 15.08 bias +4.05 rho 0.951 dE 53.74 meV/atom
+mace linesearch                 evaluations=5                MAE 15.96 bias +5.18 rho 0.949 dE 4.44 meV/atom
+mace spsa                       evaluations=5 seed=0         MAE 16.23 bias +6.43 rho 0.949 dE 0.03 meV/atom
+mace spsa                       evaluations=5 seed=1         MAE 16.23 bias +6.43 rho 0.949 dE 0.05 meV/atom
+mace spsa                       evaluations=5 seed=2         MAE 16.23 bias +6.43 rho 0.949 dE 0.01 meV/atom
+mace spsa                       evaluations=50 seed=0        MAE 16.22 bias +6.41 rho 0.949 dE 0.13 meV/atom
+mace spsa                       evaluations=50 seed=1        MAE 16.22 bias +6.41 rho 0.949 dE 0.13 meV/atom
+mace spsa                       evaluations=50 seed=2        MAE 16.22 bias +6.41 rho 0.949 dE 0.20 meV/atom
+mace spsa                       evaluations=500 seed=0       MAE 16.20 bias +6.33 rho 0.949 dE 0.53 meV/atom
+mace spsa                       evaluations=500 seed=1       MAE 16.20 bias +6.32 rho 0.949 dE 0.61 meV/atom
+mace spsa                       evaluations=500 seed=2       MAE 16.20 bias +6.32 rho 0.949 dE 0.59 meV/atom
+mace evolution_top10            evaluations=5 seed=0         MAE 16.07 bias +5.71 rho 0.949 dE 3.00 meV/atom
+mace evolution_top10            evaluations=5 seed=1         MAE 15.91 bias +5.01 rho 0.949 dE 4.07 meV/atom
+mace evolution_top10            evaluations=5 seed=2         MAE 16.05 bias +5.60 rho 0.949 dE 3.16 meV/atom
+mace evolution_top10            evaluations=50 seed=0        MAE 15.95 bias +5.05 rho 0.949 dE 5.48 meV/atom
+mace evolution_top10            evaluations=50 seed=1        MAE 15.84 bias +4.70 rho 0.949 dE 5.32 meV/atom
+mace evolution_top10            evaluations=50 seed=2        MAE 15.89 bias +4.92 rho 0.949 dE 5.37 meV/atom
+mace evolution_top10            evaluations=500 seed=0       MAE 15.93 bias +4.97 rho 0.949 dE 5.47 meV/atom
+mace evolution_top10            evaluations=500 seed=1       MAE 15.84 bias +4.69 rho 0.949 dE 5.36 meV/atom
+mace evolution_top10            evaluations=500 seed=2       MAE 15.88 bias +4.86 rho 0.949 dE 5.44 meV/atom

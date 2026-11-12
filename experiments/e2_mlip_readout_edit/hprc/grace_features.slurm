@@ -18,7 +18,7 @@ module load GCC/13.2.0 CUDA/12.2.0 Anaconda3/2024.02-1 WebProxy
 WORK=/scratch/group/arroyave_lab/ahnafalvi/wsp
 REPO=$WORK/weighspace-programming
 export GRACE_CACHE=$WORK/grace_cache
-export PYTHONNOUSERSITE=1 TF_CPP_MIN_LOG_LEVEL=2
+export PYTHONNOUSERSITE=1 TF_CPP_MIN_LOG_LEVEL=2 TF_FORCE_GPU_ALLOW_GROWTH=true   # several processes share one GPU
 PY=/scratch/user/ahnafalvi/envs/grace-omat/bin/python
 cd $WORK/cwd
 echo "host $(hostname) $(date)"

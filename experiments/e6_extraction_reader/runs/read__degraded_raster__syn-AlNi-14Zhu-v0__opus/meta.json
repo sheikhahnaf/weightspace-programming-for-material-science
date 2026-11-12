@@ -1,0 +1,13 @@
+{
+  "arm": "table_reader_baseline",
+  "rendering": "degraded_raster",
+  "doc_id": "syn-AlNi-14Zhu-v0",
+  "model_alias": "opus",
+  "crops": [
+    "invariants__0.png",
+    "phases__0.png",
+    "phases__1.png",
+    "formation__0.png",
+    "mixing__0.png"
+  ]
+}

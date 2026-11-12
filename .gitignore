@@ -8,3 +8,7 @@ data/large/
 
 # Downloaded model checkpoints.
 checkpoints/
+env/ocr-venv/
+
+# Slide build dependencies.
+slides/*/node_modules/

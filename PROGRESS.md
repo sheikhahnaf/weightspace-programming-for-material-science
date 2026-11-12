@@ -134,3 +134,15 @@ To resume:
 2. CrystalFlow results: the `rsync` loop and `analyze_variants.py --backbone cf` in the hprc README -> `results/hprc_cf/`, `results/variants_summary_cf.{md,json}`.
 3. ADiT: when `logs/prep_3260080.out` shows `SMOKE_DONE`, `sbatch --export=ALL,BACKBONE=adit array.slurm`; when it shows `PREP_DONE`, fetch `wsp/task_vectors/task_vectors_adit.json`. If the prep fails again, read `logs/prep_3260080.err` and stop on ADiT with the exact error.
 4. Then update the Status line of the E3 README and this table.
+
+## 2026-11-12: focus on the GP-prior case; other cases paused
+
+User decision: Claude usage goes only to the GP-prior case. Jobs that need no Claude usage keep running.
+
+Paused, with what is on disk:
+- **E8 formation enthalpy** (`experiments/e8_formation_enthalpy/`): 800 compounds and 78 elemental references in `data/formation/`; MACE energies done, ORB energies computing locally; MACE as shipped 0.195 eV/atom MAE on the 400 held-out compounds (`results/correction.md`); prompts written under `runs/correct__mace__*`; **no model runs launched**. To resume: `correction_arm.py prompt` (adds ORB), launch the runs with `WRAPPER.md`, then `correction_arm.py score`. The least-squares reference needs its ridge strength chosen properly before it is used as a baseline.
+- **E6 real-paper tables**: FASTER job 3260081 and continuations 3260491, 3260492 keep reading; replies in `orchid_real_private/replies/` on scratch. Not yet fetched or scored.
+- **E3 backbones**: CrystalFlow sampling array 3260069 running; ADiT not started. See the E3 section.
+- **E2**: nothing running.
+
+Active: E7 Thermo-Calc prior case (two repeats per cell, Opus and Fable, with and without phase-diagram facts) and `experiments/e1_surrogate_head/run_structure_prior.py`.

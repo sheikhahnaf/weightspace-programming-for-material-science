@@ -43,7 +43,8 @@ def main() -> None:
         for i, atoms in enumerate(read(DATA / file, index=":")):
             atoms.calc = calc
             calc.reset()
-            out[key][str(atoms.info[label])] = float(atoms.get_potential_energy()) / len(atoms)
+            # an element is keyed by its symbol from the atoms: extxyz turns the info value "F" into False
+            out[key][str(atoms.info[label]) if key == "compounds" else atoms.get_chemical_symbols()[0]] = float(atoms.get_potential_energy()) / len(atoms)
             if i % 100 == 0:
                 print(key, i, flush=True)
     (DATA / f"energies_{potential}.json").write_text(json.dumps(out, indent=1) + "\n")

@@ -1,0 +1,112 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. Inputs are atomic fractions of Mo, Nb, Ta, Ti, V, W, Zr in Mo-Nb-Ta-Ti-V-W-Zr refractory high-entropy alloys; each row sums to 1. Composition range: every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present. The target is the equilibrium mole fraction, at 1473 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) in mole fraction between 0 and 1, calculated at 1 atm with the CALPHAD method (Thermo-Calc, TCHEA8 database). 200 alloys.
+
+Input order: x[0] = x_Mo, x[1] = x_Nb, x[2] = x_Ta, x[3] = x_Ti, x[4] = x_V, x[5] = x_W, x[6] = x_Zr.
+
+The output y must be your best estimate of the equilibrium mole fraction, at 1473 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) in mole fraction between 0 and 1. The network will be used as the prior mean of a Gaussian process that is then given a few measured alloys, so getting the trends and the rough scale right matters more than exact values.
+
+# Phase-diagram facts for sub-systems (computed with CALPHAD)
+These facts cover only sub-systems with at most three elements: the 7 pure elements, the 21 binary systems at 25, 50 and 75 at.% of the second element, and the 35 equimolar ternaries. Nothing here was calculated for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, TCHEA8 database, 1 atm, the same database as the target.
+
+Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable phases at 1473 K with their mole fractions, where bcc, fcc and hcp are the disordered solid solutions, B2 and L12 are ordered, and the same phase listed twice is a miscibility gap.
+
+Mo: melts 2896; 1473 K: bcc
+Nb: melts 2750; 1473 K: bcc
+Ta: melts 3290; 1473 K: bcc
+Ti: melts 1941; 1473 K: bcc
+V: melts 2183; 1473 K: bcc
+W: melts 3695; 1473 K: bcc
+Zr: melts 2128; 1473 K: IRZR BETA B2
+
+Mo-Nb at 25 | 50 | 75 at.% Nb: s/l 2863/2865; 1473 K: bcc | s/l 2829/2830; 1473 K: bcc | s/l 2791/2792; 1473 K: bcc. Lowest liquidus 2750 at 100 at.% Nb.
+Mo-Ta at 25 | 50 | 75 at.% Ta: s/l 2934/2937; 1473 K: bcc | s/l 2995/3005; 1473 K: bcc | s/l 3094/3116; 1473 K: bcc. Lowest liquidus 2896 at 0 at.% Ta.
+Mo-Ti at 25 | 50 | 75 at.% Ti: s/l 2604/2704; 1473 K: bcc | s/l 2325/2470; 1473 K: bcc | s/l 2102/2193; 1473 K: bcc. Lowest liquidus 1941 at 100 at.% Ti.
+Mo-V at 25 | 50 | 75 at.% V: s/l 2692/2759; 1473 K: bcc | s/l 2500/2616; 1473 K: bcc | s/l 2342/2432; 1473 K: bcc. Lowest liquidus 2183 at 100 at.% V.
+Mo-W at 25 | 50 | 75 at.% W: s/l 3057/3115; 1473 K: bcc | s/l 3243/3322; 1473 K: bcc | s/l 3455/3516; 1473 K: bcc. Lowest liquidus 2896 at 0 at.% W.
+Mo-Zr at 25 | 50 | 75 at.% Zr: s/l 2194/2555; 1473 K: C15 Laves 0.73 + bcc 0.27 | s/l 1825/2161; 1473 K: C15 Laves 0.69 + bcc 0.31 | s/l 1825/1848; 1473 K: bcc 0.78 + C15 Laves 0.22. Lowest liquidus 1848 at 75 at.% Zr.
+Nb-Ta at 25 | 50 | 75 at.% Ta: s/l 2872/2897; 1473 K: bcc | s/l 3003/3035; 1473 K: bcc | s/l 3142/3166; 1473 K: bcc. Lowest liquidus 2750 at 0 at.% Ta.
+Nb-Ti at 25 | 50 | 75 at.% Ti: s/l 2427/2538; 1473 K: bcc | s/l 2206/2325; 1473 K: bcc | s/l 2057/2110; 1473 K: bcc. Lowest liquidus 1941 at 100 at.% Ti.
+Nb-V at 25 | 50 | 75 at.% V: s/l 2363/2482; 1473 K: bcc | s/l 2192/2248; 1473 K: bcc | s/l 2132/2132; 1473 K: bcc. Lowest liquidus 2131 at 80 at.% V.
+Nb-W at 25 | 50 | 75 at.% W: s/l 2904/2946; 1473 K: bcc | s/l 3096/3175; 1473 K: bcc | s/l 3340/3432; 1473 K: bcc. Lowest liquidus 2750 at 0 at.% W.
+Nb-Zr at 25 | 50 | 75 at.% Zr: s/l 2245/2518; 1473 K: bcc | s/l 2073/2267; 1473 K: bcc | s/l 2017/2020; 1473 K: bcc. Lowest liquidus 2017 at 80 at.% Zr.
+Ta-Ti at 25 | 50 | 75 at.% Ti: s/l 2656/2891; 1473 K: bcc | s/l 2334/2526; 1473 K: bcc | s/l 2127/2228; 1473 K: bcc. Lowest liquidus 1941 at 100 at.% Ti.
+Ta-V at 25 | 50 | 75 at.% V: s/l 2875/3071; 1473 K: bcc | s/l 2348/2718; 1473 K: bcc | s/l 2139/2255; 1473 K: bcc 0.81 + C15 Laves 0.19. Lowest liquidus 2119 at 90 at.% V.
+Ta-W at 25 | 50 | 75 at.% W: s/l 3391/3402; 1473 K: bcc | s/l 3490/3505; 1473 K: bcc | s/l 3592/3605; 1473 K: bcc. Lowest liquidus 3290 at 0 at.% W.
+Ta-Zr at 25 | 50 | 75 at.% Zr: s/l 2198/2759; 1473 K: bcc 0.79 + bcc 0.21 | s/l 2163/2338; 1473 K: bcc 0.53 + bcc 0.47 | s/l 2129/2133; 1473 K: bcc 0.84 + bcc 0.16. Lowest liquidus 2123 at 90 at.% Zr.
+Ti-V at 25 | 50 | 75 at.% V: s/l 1876/1878; 1473 K: bcc | s/l 1883/1890; 1473 K: bcc | s/l 1971/2006; 1473 K: bcc. Lowest liquidus 1870 at 35 at.% V.
+Ti-W at 25 | 50 | 75 at.% W: s/l 2196/2728; 1473 K: bcc | s/l 2315/3067; 1473 K: bcc | s/l 2593/3344; 1473 K: bcc. Lowest liquidus 1941 at 0 at.% W.
+Ti-Zr at 25 | 50 | 75 at.% Zr: s/l 1833/1836; 1473 K: bcc | s/l 1840/1847; 1473 K: bcc | s/l 1921/1958; 1473 K: bcc. Lowest liquidus 1826 at 35 at.% Zr.
+V-W at 25 | 50 | 75 at.% W: s/l 2388/2556; 1473 K: bcc | s/l 2633/2986; 1473 K: bcc | s/l 2985/3360; 1473 K: bcc. Lowest liquidus 2183 at 0 at.% W.
+V-Zr at 25 | 50 | 75 at.% Zr: s/l 1578/1872; 1473 K: C15 Laves 0.68 + bcc 0.32 | s/l 1542/1585; 1473 K: C15 Laves 0.70 + bcc 0.30 | s/l 1542/1775; 1473 K: bcc 0.80 + C15 Laves 0.20. Lowest liquidus 1554 at 55 at.% Zr.
+W-Zr at 25 | 50 | 75 at.% Zr: s/l 2424/3236; 1473 K: C15 Laves 0.75 + bcc 0.25 | s/l 2015/2766; 1473 K: C15 Laves 0.75 + bcc 0.25 | s/l 2014/2340; 1473 K: bcc 0.63 + C15 Laves 0.37. Lowest liquidus 2015 at 90 at.% Zr.
+
+Mo-Nb-Ta equimolar: s/l 2935/2951; 1473 K: bcc
+Mo-Nb-Ti equimolar: s/l 2446/2538; 1473 K: bcc
+Mo-Nb-V equimolar: s/l 2409/2559; 1473 K: bcc
+Mo-Nb-W equimolar: s/l 3038/3107; 1473 K: bcc
+Mo-Nb-Zr equimolar: s/l 1938/2440; 1473 K: bcc 0.69 + bcc 0.31
+Mo-Ta-Ti equimolar: s/l 2548/2675; 1473 K: bcc
+Mo-Ta-V equimolar: s/l 2581/2776; 1473 K: bcc
+Mo-Ta-W equimolar: s/l 3198/3269; 1473 K: bcc
+Mo-Ta-Zr equimolar: s/l 1960/2575; 1473 K: bcc 0.67 + bcc 0.33
+Mo-Ti-V equimolar: s/l 2246/2402; 1473 K: bcc
+Mo-Ti-W equimolar: s/l 2501/2960; 1473 K: bcc
+Mo-Ti-Zr equimolar: s/l 1808/2012; 1473 K: bcc 0.51 + C15 Laves 0.49
+Mo-V-W equimolar: s/l 2738/2967; 1473 K: bcc
+Mo-V-Zr equimolar: s/l 1981/2112; 1473 K: C15 Laves
+Mo-W-Zr equimolar: s/l 2322/2812; 1473 K: C15 Laves
+Nb-Ta-Ti equimolar: s/l 2444/2633; 1473 K: bcc
+Nb-Ta-V equimolar: s/l 2418/2664; 1473 K: bcc
+Nb-Ta-W equimolar: s/l 3173/3234; 1473 K: bcc
+Nb-Ta-Zr equimolar: s/l 2183/2542; 1473 K: bcc 0.74 + bcc 0.26
+Nb-Ti-V equimolar: s/l 2035/2111; 1473 K: bcc
+Nb-Ti-W equimolar: s/l 2505/2775; 1473 K: bcc
+Nb-Ti-Zr equimolar: s/l 1964/2098; 1473 K: bcc
+Nb-V-W equimolar: s/l 2540/2824; 1473 K: bcc
+Nb-V-Zr equimolar: s/l 1675/1968; 1473 K: C14 Laves 0.68 + bcc 0.32
+Nb-W-Zr equimolar: s/l 1964/2725; 1473 K: bcc 0.66 + bcc 0.34
+Ta-Ti-V equimolar: s/l 2110/2372; 1473 K: bcc
+Ta-Ti-W equimolar: s/l 2546/3064; 1473 K: bcc
+Ta-Ti-Zr equimolar: s/l 1980/2150; 1473 K: bcc
+Ta-V-W equimolar: s/l 2708/3078; 1473 K: bcc
+Ta-V-Zr equimolar: s/l 1706/2228; 1473 K: bcc 0.43 + bcc 0.31 + C15 Laves 0.26
+Ta-W-Zr equimolar: s/l 2045/2926; 1473 K: bcc 0.54 + bcc 0.27 + C15 Laves 0.19
+Ti-V-W equimolar: s/l 2330/2691; 1473 K: bcc
+Ti-V-Zr equimolar: s/l 1583/1612; 1473 K: bcc
+Ti-W-Zr equimolar: s/l 1862/2684; 1473 K: bcc 0.51 + C15 Laves 0.49
+V-W-Zr equimolar: s/l 1822/2490; 1473 K: C15 Laves 1.00 + bcc 0.00
+
+# Architecture
+Input x has 7 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 7, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 7)
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

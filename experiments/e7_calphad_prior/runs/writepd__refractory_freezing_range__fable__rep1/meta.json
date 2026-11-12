@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "refractory_freezing_range",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 8047,
+  "prompt_tokens_estimate": 2683,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

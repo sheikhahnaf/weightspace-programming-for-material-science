@@ -1,0 +1,103 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this one-layer network from what you know. No data is given.
+
+A machine-learned interatomic potential (MACE-MPA-0 (medium), trained on Materials Project relaxation trajectories and sAlex: PBE, with PBE+U for the oxides and fluorides of V, Cr, Mn, Fe, Co, Ni, Mo and W) is used to compute the formation enthalpy of inorganic compounds: the potential's energy per atom of the compound minus the composition-weighted potential energies per atom of the elements, each element in the lowest-energy phase the Materials Project lists for it (for H, N, O, F and Cl that is a cell of molecules). The result differs from the experimental formation enthalpy at 298 K in a way that depends on which elements the compound contains.
+
+The network's output y is added to the potential's formation enthalpy, in eV per atom of compound: y = sum over elements of (atomic fraction x weight) + bias. Choose the weights so that the corrected value is as close as possible to experiment over binary and ternary compounds of these elements (oxides, halides, chalcogenides, nitrides, hydrides, intermetallics and others). A weight of zero leaves an element uncorrected.
+
+Inputs (they sum to 1):
+x[0] = atomic fraction of Ag
+x[1] = atomic fraction of Al
+x[2] = atomic fraction of As
+x[3] = atomic fraction of Au
+x[4] = atomic fraction of B
+x[5] = atomic fraction of Ba
+x[6] = atomic fraction of Be
+x[7] = atomic fraction of Bi
+x[8] = atomic fraction of Br
+x[9] = atomic fraction of C
+x[10] = atomic fraction of Ca
+x[11] = atomic fraction of Cd
+x[12] = atomic fraction of Ce
+x[13] = atomic fraction of Cl
+x[14] = atomic fraction of Co
+x[15] = atomic fraction of Cr
+x[16] = atomic fraction of Cs
+x[17] = atomic fraction of Cu
+x[18] = atomic fraction of Dy
+x[19] = atomic fraction of Er
+x[20] = atomic fraction of Eu
+x[21] = atomic fraction of F
+x[22] = atomic fraction of Fe
+x[23] = atomic fraction of Ga
+x[24] = atomic fraction of Gd
+x[25] = atomic fraction of Ge
+x[26] = atomic fraction of H
+x[27] = atomic fraction of Hf
+x[28] = atomic fraction of Hg
+x[29] = atomic fraction of Ho
+x[30] = atomic fraction of I
+x[31] = atomic fraction of In
+x[32] = atomic fraction of Ir
+x[33] = atomic fraction of K
+x[34] = atomic fraction of La
+x[35] = atomic fraction of Li
+x[36] = atomic fraction of Lu
+x[37] = atomic fraction of Mg
+x[38] = atomic fraction of Mn
+x[39] = atomic fraction of Mo
+x[40] = atomic fraction of N
+x[41] = atomic fraction of Na
+x[42] = atomic fraction of Nb
+x[43] = atomic fraction of Nd
+x[44] = atomic fraction of Ni
+x[45] = atomic fraction of O
+x[46] = atomic fraction of Os
+x[47] = atomic fraction of P
+x[48] = atomic fraction of Pb
+x[49] = atomic fraction of Pd
+x[50] = atomic fraction of Pr
+x[51] = atomic fraction of Pt
+x[52] = atomic fraction of Pu
+x[53] = atomic fraction of Rb
+x[54] = atomic fraction of Re
+x[55] = atomic fraction of Rh
+x[56] = atomic fraction of Ru
+x[57] = atomic fraction of S
+x[58] = atomic fraction of Sb
+x[59] = atomic fraction of Sc
+x[60] = atomic fraction of Se
+x[61] = atomic fraction of Si
+x[62] = atomic fraction of Sm
+x[63] = atomic fraction of Sn
+x[64] = atomic fraction of Sr
+x[65] = atomic fraction of Ta
+x[66] = atomic fraction of Tb
+x[67] = atomic fraction of Te
+x[68] = atomic fraction of Th
+x[69] = atomic fraction of Ti
+x[70] = atomic fraction of Tl
+x[71] = atomic fraction of Tm
+x[72] = atomic fraction of U
+x[73] = atomic fraction of V
+x[74] = atomic fraction of W
+x[75] = atomic fraction of Y
+x[76] = atomic fraction of Zn
+x[77] = atomic fraction of Zr
+
+Elements by how many of the 800 compounds contain them: O 170, Si 66, S 57, Al 56, Fe 42, C 41, Ni 39, Cl 39, Pt 38, F 38, B 38, Co 36, Pd 34, Ti 33, Sn 33, Cu 32, Au 32, Rh 31, Mn 31, V 30, Zr 28, H 26, Sc 24, Br 24, Pb 23, Ge 23, Dy 23, Cr 23, Y 22, N 22, Ga 22, Ca 22, U 21, Na 21, Se 19, Mg 19, Hf 19, Tm 18, Ir 18, I 18, Ag 18, Tb 17, Li 17, Ce 17, Nb 16, Er 16, Th 15, Nd 15, La 15, W 14, Ru 14, Pr 14, Mo 14, K 14, In 14, Ho 14, Te 12, Sm 12, P 12, Ba 12, Ta 11, Zn 10, Sr 10, Sb 10, Lu 10, Gd 10, Cs 9, Hg 8, Be 8, Os 7, Cd 7, As 7, Re 6, Bi 5, Tl 4, Rb 3, Eu 3, Pu 1.
+
+# Architecture
+Input x has 78 entries. h0 = x.
+y = net.0.weight @ h0 + net.0.bias   (net.0.weight is 1 x 78, net.0.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(1, 78)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.0.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

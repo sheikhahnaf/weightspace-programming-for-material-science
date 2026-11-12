@@ -47,6 +47,8 @@ def load(potential: str):
 
     energies = json.loads((DATA / f"energies_{potential}.json").read_text())
     frames = read(DATA / "compounds.extxyz", index=":")
+    # extxyz reads the info value "F" back as the boolean False; restore the symbol
+    energies["elements"] = {("F" if k == "False" else k): v for k, v in energies["elements"].items()}
     elements = sorted(energies["elements"])
     X, h, y, names = [], [], [], []
     for atoms in frames:
@@ -176,7 +178,7 @@ def main() -> None:
                 for k in range(1, reps + 1):
                     folder = RUNS / f"correct__{potential}__{model}__rep{k}"
                     folder.mkdir(parents=True, exist_ok=True)
-                    if not (folder / "prompt.txt").exists():
+                    if not (folder / "reply.txt").exists():
                         (folder / "prompt.txt").write_text(text)
                     if not (folder / "reply.txt").exists():
                         print(folder.name)

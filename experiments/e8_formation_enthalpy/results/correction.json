@@ -1,0 +1,39 @@
+{
+  "mace": {
+    "compounds": 800,
+    "elements": 78,
+    "test": 400,
+    "no_labels": {
+      "potential as shipped": {
+        "mae": 0.19542871620569172,
+        "bias": 0.15409495210538623
+      }
+    },
+    "with_labels": {
+      "10": {
+        "fitted, shrunk toward zero": 0.1918624061531547,
+        "offset only": 0.19585572211286265
+      },
+      "20": {
+        "fitted, shrunk toward zero": 0.21130009537772199,
+        "offset only": 0.18960204556651467
+      },
+      "50": {
+        "fitted, shrunk toward zero": 0.2547162840058968,
+        "offset only": 0.18645533177679194
+      },
+      "100": {
+        "fitted, shrunk toward zero": 0.22200925280544018,
+        "offset only": 0.18349148116379782
+      },
+      "200": {
+        "fitted, shrunk toward zero": 0.18691535624083247,
+        "offset only": 0.18385418491403477
+      },
+      "400": {
+        "fitted, shrunk toward zero": 0.15843131450594863,
+        "offset only": 0.18325401409199965
+      }
+    }
+  }
+}

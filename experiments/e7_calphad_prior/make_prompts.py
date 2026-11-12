@@ -11,10 +11,12 @@ the E1 prompt writer. A prompt that already has a reply is never rewritten
 with different text.
 
     python experiments/e7_calphad_prior/make_prompts.py
+    python experiments/e7_calphad_prior/make_prompts.py --systems refractory --reps 1 2
 """
 
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -32,12 +34,18 @@ ARMS = {"write": ("write", write_prompt), "write_pd": ("writepd", write_pd_promp
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument("--systems", nargs="+", default=None, help="default: every system whose pool is complete")
+    parser.add_argument("--reps", type=int, nargs="+", default=list(REPS))
+    args = parser.parse_args()
     names = []
     for task_name in CALPHAD_TASK_NAMES:
+        if args.systems and not any(task_name.startswith(s + "_") for s in args.systems):
+            continue
         for arm, (prefix, build) in ARMS.items():
             text = build(load_task(task_name))
             for model in MODELS:
-                for rep in REPS:
+                for rep in args.reps:
                     tag = f"{model}__rep{rep}"
                     folder = HERE / "runs" / f"{prefix}__{task_name}__{tag}"
                     if (folder / "reply.txt").exists() and (folder / "prompt.txt").read_text() != text:

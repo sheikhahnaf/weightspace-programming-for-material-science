@@ -378,26 +378,6 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 
 
 <p class="label">Supplementary experiment S4</p>
-<h3>Can a model write a weight edit that makes a small open reader transcribe thermodynamic tables like Opus?</h3>
-<div class="setup"><ul>
-<li><b>Task:</b> transcribe tables from scanned CALPHAD papers, the job Opus 5.5 does in the ORCHID extraction pipeline.</li>
-<li><b>Test set:</b> ORCHID-Bench, 20 synthetic papers with exact answer keys, as degraded 150 dpi scans; 10 papers shown as errors, 10 held out.</li>
-<li><b>Open model:</b> GLM-OCR, 0.9 billion weights.</li>
-<li><b>Editable:</b> one bias per vocabulary entry on the output layer, all zero as shipped.</li>
-<li><b>The model gets:</b> the open reader's wrong cells with their token sequences. It cannot run the reader.</li>
-</ul></div>
-<div class="scroll wide"><table>
-<tr><th>Reader</th><th>Cells exactly right</th><th>Number values right</th></tr>
-<tr><td>Opus 5.5 reading the crops</td><td class="w">97.4%</td><td>100%</td></tr>
-<tr><td>GLM-OCR as shipped</td><td>71.4%</td><td>100%</td></tr>
-<tr><td>+ text clean-up rule, no weight edit</td><td>71.6%</td><td>100%</td></tr>
-<tr><td>+ bias from error counts, no language model</td><td>74.1%</td><td>100%</td></tr>
-<tr><td>+ bias written by Opus 5.5, two replies</td><td>73.3%, 74.7%</td><td>100%</td></tr>
-<tr><td>+ bias written by Fable 5.2, two replies</td><td>75.8%, 76.9%</td><td>100%</td></tr>
-</table></div>
-<p class="note">Held-out papers, 1,342 cells; the Opus row is over all 20 papers. Tesseract, the benchmark's own baseline, gets 16%.</p>
-<p>The open model already reads every number. What separates it from Opus is typography: dropped spaces, hyphens for en dashes, flattened superscripts in units. The written edits are sensible and safe. Both models pushed down merged tokens, raised their spaced counterparts, and left digits and hyphens alone to protect the numbers. <b>But they add only 2 to 5 points, about what a bias built from error counts adds,</b> and close at most a fifth of the gap. A bias cannot see context, so it cannot decide where a space belongs. Fine-tuning the open model on Opus's transcriptions is the route we expect to close it; that is ordinary training, not weight-space programming.</p>
-<p class="label">Supplementary experiment S5</p>
 <h3>Can the weight changes of fine-tuning runs be added, averaged and scaled?</h3>
 <div class="setup"><ul>
 <li><b>Runs:</b> MatterGen fine-tuned by reinforcement learning toward bulk modulus or heat capacity, five seeds each.</li>

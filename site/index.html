@@ -1,4 +1,4 @@
-<title>Weight-Space Programming for Materials</title>
+<title>Written Networks for Materials</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -55,27 +55,27 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 
 <main>
 <p class="label" style="margin-top:0">Private draft · not for distribution until the paper is out</p>
-<h1>Weight-space programming for materials science: what works, what does not</h1>
-<p class="meta">Sk Md Ahnaf Akif Alvi and Raymundo Arróyave · Texas A&amp;M University · Draft of 11 November 2026</p>
+<h1>A language model can write a property-prediction network for materials from knowledge alone</h1>
+<p class="meta">Sk Md Ahnaf Akif Alvi and Raymundo Arróyave · Texas A&amp;M University · Draft of 12 November 2026</p>
 
 <div class="tldr">
-<p><b>TL;DR.</b> Weight-space programming means a language model reads, writes or edits another network's weights with no gradient descent. We tested it on the three learned parts of a Bayesian materials-discovery pipeline: the surrogate, the interatomic potential and the crystal generator.</p>
-<p><b>Writing works.</b> A 16-unit network written from metallurgy alone, used as a Gaussian-process prior, makes Bayesian optimisation better on four of five alloy tasks.</p>
-<p><b>Reading does not.</b> Asked to find a planted leak in a trained network, the best model ties a one-line weight statistic.</p>
-<p><b>Editing works only with measurement.</b> One edit of a potential's readout is small and comes from the table we supply. Five edits, each measured and shown back, match a gradient fit on ORB-v3 and beat an evolution strategy given 100 times the evaluations.</p>
-<p><b>The generator needs no language model.</b> Averaging and scaling the weight changes of reinforcement-learning runs moves MatterGen's samples from 72 to 172 GPa mean bulk modulus.</p>
+<p><b>TL;DR.</b> We give a language model a task in words, the names of the inputs and a 16-unit network with every weight set to zero, and it writes all the weights. No data, no training run, no tools. This page shows what such a written network is good for in materials discovery.</p>
+<p><b>It is a usable predictor before any label.</b> Networks written by Opus 5.5 rank measured alloys at ρ = 0.64 to 0.79 and the bulk modulus of crystals at 0.93.</p>
+<p><b>It is most useful as the prior mean of a Gaussian process when labels are few.</b> At five labels ranking rises from 0.35 to 0.69 on alloys and from 0.15 to 0.95 on crystals, and Bayesian optimisation gets better on 4 of 5 measured tasks and 16 of 33 computed ones.</p>
+<p><b>It holds up against computed thermodynamics.</b> On 35 Thermo-Calc targets a network written with no data comes close to an extrapolation from calculated binary and ternary values, and beats it on phase fractions.</p>
+<p><b>The gain is in the first tens of labels.</b> With hundreds of labels the plain surrogate catches up, and where a simple rule exists the network only matches it.</p>
 </div>
 
 <div class="teaser wide">
-<div><b class="works">Write</b><span>"Write the weights of a network that estimates Vickers hardness from element fractions. No data."</span><span class="big works">ρ = 0.79</span><span>ranking of 530 measured alloys by networks Opus 5.5 wrote. A handbook rule of mixtures gets −0.25.</span></div>
-<div><b class="fails">Read</b><span>"One of these 51 unnamed inputs is a leak. Find it from the weights and silence it."</span><span class="big fails">6 of 11</span><span>networks repaired by Fable 5.2. A one-line statistic also gets 6 of 11, on the same networks.</span></div>
-<div><b class="works">Combine</b><span>No prompt. Base weights plus three times the mean weight change of five fine-tuning runs.</span><span class="big works">72 → 172 GPa</span><span>mean bulk modulus of 128 sampled crystals, with 127 distinct formulas.</span></div>
+<div><b class="works">Measured alloys</b><span>"Write the weights of a network that estimates Vickers hardness from element fractions. No data."</span><span class="big works">ρ = 0.79</span><span>ranking of 530 measured alloys by networks Opus 5.5 wrote. A rule of mixtures gets −0.24.</span></div>
+<div><b class="works">Computed phase equilibria</b><span>35 Thermo-Calc targets in nine alloy systems, Bayesian optimisation from five labels.</span><span class="big works">16 of 33</span><span>targets with significantly lower regret than the plain GP, none higher (Opus 5.5).</span></div>
+<div><b class="works">Generated crystals</b><span>A Gaussian process on a learned embedding, five labels, with the written network as its mean.</span><span class="big works">0.15 → 0.95</span><span>ranking of the crystals a generator proposed, by bulk modulus.</span></div>
 </div>
 
-<p>The idea comes from <a href="https://rikiyat.github.io/blog/weight-space-programming/">Takehi, Teoh, Zhang and Khattab</a>, who showed a frontier model interpreting, repairing and writing small policy networks and editing a language model. Every network in that work and its follow-ups is a classifier, a policy or a language model. Materials discovery runs on regressors with error bars, equivariant potentials and diffusion models, and labels cost a DFT calculation each. We asked where the idea fits there.</p>
-<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. We audited every transcript: all 250 weight-task runs used only the file operations they were allowed. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5.</p>
+<p>Writing weights directly is one of the three verbs of weight-space programming, introduced by <a href="https://rikiyat.github.io/blog/weight-space-programming/">Takehi, Teoh, Zhang and Khattab</a>. Their networks and those of the follow-up work are classifiers, policies and language models. Materials discovery needs regressors that rank candidates from a handful of labels and report error bars, so we asked what a written network is worth there.</p>
+<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5. Every language-model result is paired with the cheapest rule that uses the same information.</p>
 
-<h2>Can a language model write a useful surrogate from what it knows?</h2>
+<h2>Measured alloys: can a written network rank them and speed up the search?</h2>
 
 <p class="label">Experiment 1</p>
 <h3>Can a model write a network that ranks alloys with no training data?</h3>
@@ -123,7 +123,101 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <p class="note">Area under the regret curve, mean of 20 seeds, lower is better. Green: better than the plain GP at corrected p &lt; 0.05. Red: worse in 14 of 20 seeds (p = 0.03 and 0.02 before correction, not significant after).</p>
 <p>Opus priors help on four of five tasks. On titanium modulus the final regret falls from 5.6 to 1.6 GPa. <b>One task goes the wrong way:</b> on alloy yield strength the same networks that improved static ranking made the search worse. We have not found out why.</p>
 
-<p class="label">Experiment 2b</p>
+
+<h2>Computed phase equilibria: how does it compare with thermodynamic data?</h2>
+
+<p class="label">Experiment 3</p>
+<h3>Can a model write a network for a solidus or a phase fraction it has never seen tabulated?</h3>
+<div class="setup"><ul>
+<li><b>Data:</b> nine alloy systems computed with Thermo-Calc for this study, 200 to 400 compositions each: five high-entropy families, nickel superalloys, titanium alloys, steels and aluminium alloys.</li>
+<li><b>Targets:</b> 35 in all. Solidus, freezing range, and mole fractions of named phases at a fixed temperature, for example the γ′ fraction of a nickel alloy at 1173 K.</li>
+<li><b>The model gets:</b> the element names and the definition of the target. No data.</li>
+<li><b>With facts:</b> a second prompt adds the values for the binary and ternary sub-systems. The multicomponent target never appears.</li>
+<li><b>Reference:</b> an extrapolation from the same binary and ternary values, with no language model. This is how a multicomponent value is normally estimated.</li>
+<li><b>Runs:</b> Opus 5.5 and Fable 5.2, with and without facts, two replies per target: 280 replies, none malformed.</li>
+</ul></div>
+<figure class="wide">
+<div class="chart">
+<span>Solidus · extrapolation, no LLM</span><div class="track"><div class="fill ref" style="width:84%"></div></div><span class="v">0.84</span>
+<span>Solidus · Opus 5.5</span><div class="track"><div class="fill" style="width:73%"></div></div><span class="v">0.73</span>
+<span>Solidus · Opus 5.5 + facts</span><div class="track"><div class="fill" style="width:82%"></div></div><span class="v">0.82</span>
+<span>Freezing range · extrapolation, no LLM</span><div class="track"><div class="fill ref" style="width:76%"></div></div><span class="v">0.76</span>
+<span>Freezing range · Opus 5.5</span><div class="track"><div class="fill" style="width:60%"></div></div><span class="v">0.60</span>
+<span>Freezing range · Opus 5.5 + facts</span><div class="track"><div class="fill" style="width:74%"></div></div><span class="v">0.74</span>
+<span>Phase fractions · extrapolation, no LLM</span><div class="track"><div class="fill ref" style="width:63%"></div></div><span class="v">0.63</span>
+<span>Phase fractions · Opus 5.5</span><div class="track"><div class="fill" style="width:69%"></div></div><span class="v">0.69</span>
+<span>Phase fractions · Opus 5.5 + facts</span><div class="track"><div class="fill" style="width:71%"></div></div><span class="v">0.71</span>
+</div>
+<figcaption>Spearman ρ between a predictor and the Thermo-Calc value, with no labels, mean over targets of each kind (9 solidus, 9 freezing range, 16 phase fractions).</figcaption>
+</figure>
+<p>Over all 35 targets the extrapolation ranks at 0.70, Opus at 0.67 and Fable at 0.64. The extrapolation is ahead where the target varies smoothly with composition. <b>The written networks are ahead on phase fractions</b>, which depend on whether a phase appears at all: a polynomial through sub-system points cannot place a phase boundary inside the multicomponent space. Given the sub-system values, the model matches or beats the extrapolation on every kind of target (0.73 overall). No predictor ranks the α transus of titanium alloys (ρ at most 0.30).</p>
+
+<p class="label">Experiment 4</p>
+<h3>Does it help a Gaussian process and Bayesian optimisation on these targets?</h3>
+<div class="scroll wide"><table>
+<tr><th>Prior mean</th><th>ρ at 5 labels</th><th>ρ at 20 labels</th><th>BO: targets better / worse, of 33</th><th>Median regret area relative to the plain GP</th></tr>
+<tr><td>None (plain GP)</td><td>0.37</td><td>0.69</td><td></td><td>1</td></tr>
+<tr><td>Extrapolation from sub-systems, no LLM</td><td>0.68</td><td>0.75</td><td class="w">18 / 0</td><td>0.17</td></tr>
+<tr><td>Opus 5.5</td><td>0.64</td><td>0.74</td><td class="w">16 / 0</td><td>0.43</td></tr>
+<tr><td>Opus 5.5 + facts</td><td>0.69</td><td>0.75</td><td class="w">18 / 0</td><td>0.24</td></tr>
+<tr><td>Fable 5.2</td><td>0.62</td><td>0.73</td><td class="w">15 / 1</td><td>0.35</td></tr>
+<tr><td>Fable 5.2 + facts</td><td>0.68</td><td>0.74</td><td class="w">16 / 0</td><td>0.35</td></tr>
+</table></div>
+<p class="note">Ranking of held-out compositions, mean over 35 targets, slope and offset integrated out. BO: 5 starting labels, 25 steps, 20 seeds, Holm-corrected p &lt; 0.05; two targets on which the plain GP has zero regret are left out.</p>
+<p>Every prior roughly doubles ranking at five labels; at 50 labels all arms are within 0.02. In the search, networks written with no data win on 16 of 33 targets and lose on none. The extrapolation, which uses computed data, wins on 18 with a lower median regret, and networks written with the same data in the prompt match its count. Most wins are on the solidus and the freezing range (14 of 18 for Opus). On phase fractions the plain GP usually finds a good composition within a few steps and there is little to gain. <b>One loss:</b> Fable without facts on the γ′ fraction of nickel superalloys, 1.82 times the plain GP's regret.</p>
+
+<h2>Crystals: what if the surrogate's inputs have no names?</h2>
+
+<p class="label">Experiment 5</p>
+<h3>Can a network written on named descriptors help a GP that sees only an embedding?</h3>
+<div class="setup"><ul>
+<li><b>Surrogate:</b> the GP of a generative discovery loop. It sees a crystal as 50 coordinates of a learned embedding.</li>
+<li><b>Written network:</b> 15 named descriptors of the same crystal (volume per atom, mean atomic mass, electronegativity, melting point, eleven element-group fractions) → 16 → 1. No data.</li>
+<li><b>Test:</b> train on the loop's starting pool, rank the crystals the generator proposed. Bulk modulus, 6 runs.</li>
+<li><b>References:</b> the rule 1 / volume per atom; the plain GP given the same 15 descriptors as extra inputs.</li>
+</ul></div>
+<div class="scroll wide"><table>
+<tr><th>Mean of the GP</th><th>No labels</th><th>5 labels</th><th>10</th><th>20</th><th>50</th></tr>
+<tr><td>None (plain GP on the embedding)</td><td></td><td>0.15</td><td>0.57</td><td>0.82</td><td>0.85</td></tr>
+<tr><td>None, descriptors added to the inputs</td><td></td><td>0.30</td><td>0.37</td><td>0.52</td><td>0.49</td></tr>
+<tr><td>Rule: 1 / volume per atom</td><td>0.88</td><td>0.77</td><td>0.89</td><td class="w">0.93</td><td class="w">0.93</td></tr>
+<tr><td>Opus 5.5</td><td class="w">0.95</td><td class="w">0.95</td><td class="w">0.94</td><td>0.90</td><td>0.90</td></tr>
+<tr><td>Fable 5.2</td><td>0.93</td><td>0.93</td><td>0.92</td><td>0.90</td><td>0.90</td></tr>
+<tr><td>Haiku 5.5</td><td>0.66</td><td>0.66</td><td>0.70</td><td>0.79</td><td>0.89</td></tr>
+</table></div>
+<p class="note">Spearman ρ on the generated crystals. Green: best in the column.</p>
+<p>With five or ten labels the Opus and Fable networks beat the plain GP in all 18 cells and beat the volume rule. With no labels at all they rank better than the plain GP does with 500. <b>The gain is knowledge, not extra inputs:</b> handing the GP the raw descriptors makes it worse. From 20 labels on, the volume rule is as good or better. For heat capacity per gram the Dulong–Petit rule ranks perfectly and the networks only match it.</p>
+
+<p class="label">Experiment 6</p>
+<h3>Is the written hidden layer a useful set of features?</h3>
+<p>A written network also gives 16 features, its hidden units, with no training. As GP inputs alone they need labels like any features (ρ = 0.43 at five labels). With all 500 labels a GP on them ranks at 0.94, against 0.89 for the GP on the 50-dimensional embedding. Hidden units as inputs with the output as the mean gives 0.92 to 0.94 at every label count from 5 to 500.</p>
+
+<h2>Other uses of the same network</h2>
+
+<p class="label">Experiment 7</p>
+<h3>Can a model write a filter that picks the stiff crystals out of the generator's output?</h3>
+<div class="setup"><ul>
+<li><b>Generators:</b> MatterGen and CrystalFlow, untouched. 128 sampled crystals from each, each scored with the eSEN-30M-OAM bulk-modulus oracle on a GPU cluster.</li>
+<li><b>Filter:</b> a 15 → 16 → 1 network written by the model from named descriptors (volume per atom, mean atomic mass, electronegativity, melting point, eleven element-group fractions). No data.</li>
+<li><b>Use:</b> send only the top-scored quarter to the oracle.</li>
+<li><b>References:</b> the rule "smaller volume per atom is stiffer"; the same network trained on 400 Materials Project structures.</li>
+</ul></div>
+<div class="scroll wide"><table>
+<tr><th>Scorer</th><th>ρ with the oracle</th><th>Mean of kept quarter, GPa</th><th>Oracle calls to find half the crystals above 150 GPa</th></tr>
+<tr><td>No filter</td><td></td><td>71.6</td><td>60</td></tr>
+<tr><td>Opus 5.5, three replies</td><td>0.92</td><td>144</td><td>6</td></tr>
+<tr><td>Fable 5.2, three replies</td><td>0.88</td><td>143</td><td>7</td></tr>
+<tr><td>Sonnet 5.5, three replies</td><td>0.80</td><td>143</td><td>7</td></tr>
+<tr><td>Haiku 5.5, three replies</td><td>0.73</td><td>129</td><td>9</td></tr>
+<tr><td>Rule: small volume per atom</td><td>0.82</td><td>133</td><td>10</td></tr>
+<tr><td>Same network trained on 400 structures</td><td>0.29</td><td>51.2</td><td>60</td></tr>
+<tr><td>Best possible quarter</td><td></td><td>147</td><td></td></tr>
+</table></div>
+<p class="note">MatterGen samples.</p>
+<p>The written filter doubles the mean bulk modulus of what reaches the oracle and gets within 4 GPa of the best possible selection. It beats the network trained on real data, which does not transfer to generated crystals. <b>The margin over a one-line rule is small</b> (143 against 133 GPa), and for heat capacity per gram there is none: the Dulong-Petit rule already ranks perfectly.</p>
+<p><b>The same holds for a second generator.</b> On CrystalFlow samples Opus, Fable and Sonnet rank at ρ = 0.88 against 0.77 for the volume rule and 0.12 for the trained network. Keeping the top quarter raises the share of crystals above 150 GPa from 0.16 to 0.52–0.56 (volume rule 0.38), and half of them are found in 17 or 18 oracle calls instead of 59.</p>
+
+<p class="label">Experiment 8</p>
 <h3>Start, prior or mean: where does a written network belong in a Bayesian neural network?</h3>
 <div class="setup"><ul>
 <li><b>Surrogates:</b> a GP, MC dropout, a deep ensemble and Hamiltonian Monte Carlo.</li>
@@ -142,9 +236,27 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <p>The written network belongs in function space. As a prior mean it helps both surrogates it was tried with. As a starting point it helps an ensemble a little and only widens MC dropout's error bars. Centring HMC's weight prior on it is the worst option: the written networks use a few large units, and a tight prior around them pins everything else at zero. <b>Caveat:</b> the prior-mean versions are overconfident at this label count.</p>
 <p><b>Fix for the caveat.</b> The mean is a·m(x) + b, where m is the written network. Fitting a and b by least squares first and the GP second leaves their uncertainty out of the error bars. Putting the network inside one BoTorch model and integrating a and b out raises 95% coverage at 5 labels from 0.63 to 0.79, with ranking 0.68 against 0.64. Regret in the optimisation loop is unchanged (0.68 against 0.69 of the plain GP's).</p>
 
-<h2>Can a language model read weights that were trained?</h2>
+<h2>What we take from this</h2>
+<ul>
+<li><b>Ask a strong model for the weights, once per target.</b> It puts what it knows about a material class into a few hundred numbers. Opus and Fable wrote clearly better networks than Sonnet and Haiku.</li>
+<li><b>Use the network as the mean of the surrogate.</b> Fit its slope and offset jointly with the GP; with a two-stage fit the error bars at five labels are too narrow (coverage 0.63 to 0.74 instead of 0.79 to 0.98).</li>
+<li><b>Give the model whatever sub-system data exists.</b> With binary and ternary values in the prompt it matched an extrapolation from the same values.</li>
+<li><b>Keep a simple rule alongside.</b> For heat capacity, and for the solidus of most alloy families, a rule that uses no labels is as good or better.</li>
+<li><b>Expect the gain early.</b> It is largest at 5 to 20 labels and gone at a few hundred.</li>
+<li><b>It can fail.</b> On the yield strength of multi-principal-element alloys the networks rank the pool well (ρ = 0.69) and still make the search worse in 14 of 20 seeds.</li>
+</ul>
 
-<p class="label">Experiment 3</p>
+<h2>Limits</h2>
+<p>One vendor's models. One network size and one prompt wording. The measured alloy sets are public and may be partly recalled; the Thermo-Calc targets were computed for this study, but the underlying assessments are built from the literature. Fixed candidate pools of 150 to 722. Crystal targets come from a machine-learned potential.</p>
+
+<h2>Logs and code</h2>
+<p>Every prompt, raw reply, model id, token count and score is in the repository, with the command behind each number in <code>REPRODUCE.md</code>. The repository is private until the paper is released.</p>
+
+<h2>Supplementary: the other verbs, reading and editing</h2>
+<p>We also tested reading and editing weights that were trained elsewhere, and weight arithmetic with no language model. These were less successful and are kept here for the record.</p>
+
+
+<p class="label">Supplementary experiment S1</p>
 <h3>Can a model find a leaked input from the weights alone?</h3>
 <div class="setup"><ul>
 <li><b>Network:</b> 51 → 32 → 32 → 1, trained on ORB-v3 embeddings of crystals to predict bulk modulus or heat capacity.</li>
@@ -162,13 +274,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 </table></div>
 <p>The strong models do real arithmetic on the weights: they trace first-layer units through the next two layers by hand. That is exactly the statistic, and they score what it scores. On the bulk-modulus networks one legitimate embedding component dominates, and the models silence it. <b>A wrong repair is worse than none:</b> Fable's edits lower mean test R² from 0.35 to 0.21 and Opus's to 0.14, and one of its wrong answers was stated at 85% confidence.</p>
 
-<p class="label">Experiment 4</p>
+<p class="label">Supplementary experiment S2</p>
 <h3>Can a model edit a trained surrogate to stop it underpredicting the best candidates?</h3>
 <p>We showed the model a trained head and its errors by decile. It multiplied the output layer by about 1.15, which reduced the bias on the top tenth from −30.5 to −21.8 GPa without changing the ranking. Then we shuffled every weight and asked again. It made the same edit, and said it had worked "only from the decile table, not from tracing the weights". This is a recalibration recipe and has nothing to do with the weights.</p>
 
-<h2>Can a language model correct an interatomic potential?</h2>
 
-<p class="label">Experiment 5</p>
+
+<p class="label">Supplementary experiment S3</p>
 <h3>Can a model edit a potential's readout to fix its bulk moduli without moving energies?</h3>
 <div class="setup"><ul>
 <li><b>Potentials:</b> MACE-MPA-0, ORB-v3, eSEN-30M-OAM and GRACE-2L-OAM, 9 to 30 million weights each.</li>
@@ -189,9 +301,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <p><b>Five measured replies are a good optimiser.</b> After each attempt we applied the edit, measured it on 200 crystals and showed the result. On ORB-v3 the chains land on the curve of a gradient fit that has exact gradients and no budget, and ahead of an evolution strategy with 100 times the evaluations. The first attempt usually broke the energy limit; the next ones scaled back and rebalanced.</p>
 <p><b>The layer sets the ceiling.</b> On eSEN and GRACE even the gradient fit moves the error by 0.1 to 0.3 GPa. And for bulk modulus there is a cheaper fix that touches no weight: refitting a slope and offset on ten DFT labels takes ORB from 13.0 to 11.4 GPa, and the plain mean of the four potentials reaches 7.9.</p>
 
-<h2>Can an edit bring an open model to a frontier model's level at reading tables?</h2>
 
-<p class="label">Experiment 5b</p>
+
+<p class="label">Supplementary experiment S4</p>
 <h3>Can a model write a weight edit that makes a small open reader transcribe thermodynamic tables like Opus?</h3>
 <div class="setup"><ul>
 <li><b>Task:</b> transcribe tables from scanned CALPHAD papers, the job Opus 5.5 does in the ORCHID extraction pipeline.</li>
@@ -211,31 +323,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 </table></div>
 <p class="note">Held-out papers, 1,342 cells; the Opus row is over all 20 papers. Tesseract, the benchmark's own baseline, gets 16%.</p>
 <p>The open model already reads every number. What separates it from Opus is typography: dropped spaces, hyphens for en dashes, flattened superscripts in units. The written edits are sensible and safe. Both models pushed down merged tokens, raised their spaced counterparts, and left digits and hyphens alone to protect the numbers. <b>But they add only 2 to 5 points, about what a bias built from error counts adds,</b> and close at most a fifth of the gap. A bias cannot see context, so it cannot decide where a space belongs. Fine-tuning the open model on Opus's transcriptions is the route we expect to close it; that is ordinary training, not weight-space programming.</p>
-
-<h2>Can weights steer a crystal generator?</h2>
-
-<p class="label">Experiment 6</p>
-<h3>Can a model write a filter that picks the stiff crystals out of the generator's output?</h3>
-<div class="setup"><ul>
-<li><b>Generator:</b> MatterGen, untouched. 128 sampled crystals, each scored with the eSEN-30M-OAM bulk-modulus oracle on a GPU cluster.</li>
-<li><b>Filter:</b> a 15 → 16 → 1 network written by the model from named descriptors (volume per atom, mean atomic mass, electronegativity, melting point, eleven element-group fractions). No data.</li>
-<li><b>Use:</b> send only the top-scored quarter to the oracle.</li>
-<li><b>References:</b> the rule "smaller volume per atom is stiffer"; the same network trained on 400 Materials Project structures.</li>
-</ul></div>
-<div class="scroll wide"><table>
-<tr><th>Scorer</th><th>ρ with the oracle</th><th>Mean of kept quarter, GPa</th><th>Oracle calls to find half the crystals above 150 GPa</th></tr>
-<tr><td>No filter</td><td></td><td>71.6</td><td>60</td></tr>
-<tr><td>Opus 5.5, two replies scored</td><td>0.94</td><td>144</td><td>6</td></tr>
-<tr><td>Fable 5.2, three replies</td><td>0.88</td><td>143</td><td>7</td></tr>
-<tr><td>Sonnet 5.5, three replies</td><td>0.80</td><td>143</td><td>7</td></tr>
-<tr><td>Haiku 5.5, three replies</td><td>0.73</td><td>129</td><td>9</td></tr>
-<tr><td>Rule: small volume per atom</td><td>0.82</td><td>133</td><td>10</td></tr>
-<tr><td>Same network trained on 400 structures</td><td>0.29</td><td>51.2</td><td>60</td></tr>
-<tr><td>Best possible quarter</td><td></td><td>147</td><td></td></tr>
-</table></div>
-<p>The written filter doubles the mean bulk modulus of what reaches the oracle and gets within 4 GPa of the best possible selection. It beats the network trained on real data, which does not transfer to generated crystals. <b>The margin over a one-line rule is small</b> (143 against 133 GPa), and for heat capacity per gram there is none: the Dulong-Petit rule already ranks perfectly. Opus 5.5 runs are still returning.</p>
-
-<p class="label">Experiment 7</p>
+<p class="label">Supplementary experiment S5</p>
 <h3>Can the weight changes of fine-tuning runs be added, averaged and scaled?</h3>
 <div class="setup"><ul>
 <li><b>Runs:</b> MatterGen fine-tuned by reinforcement learning toward bulk modulus or heat capacity, five seeds each.</li>
@@ -256,26 +344,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 </figure>
 <p>Averaging five seeds beats any single run with a smaller change to the weights. Scaling that average by three puts 35% of samples above 200 GPa, against 2% for the base, with no further training and no oracle calls. Rank 8 per weight matrix keeps +20 of +23 GPa, so an adapter-sized update carries what the full fine-tune learned. No language model is involved.</p>
 <p class="note">One backbone, one sampling seed, no stability filter, a machine-learned oracle. Heat-capacity effects were not significant at this sample size.</p>
-
-<h2>What we take from this</h2>
-<ul>
-<li><b>Use it to write.</b> A strong model can put what it knows about a material class into a few hundred weights, and a Gaussian process can use that when labels are scarce. Write several, let the first labels choose.</li>
-<li><b>Do not use it to audit.</b> From weights alone a leak and a good feature look the same, and the models are confident when wrong.</li>
-<li><b>Edit only with a measurement in the loop.</b> One blind edit is arithmetic on whatever table you hand over. Five measured edits matched a gradient fit where the layer had room.</li>
-<li><b>Check the cheap rule first.</b> In several experiments a one-line statistic or rule matched the model or came close.</li>
-<li><b>For generators, treat weights as data.</b> Averaging and scaling task vectors was the strongest result here.</li>
-</ul>
-
-<h2>What comes next</h2>
-<p>Readout edits for properties the last layer controls more directly, such as formation energy through the reference energies. Why written priors hurt on alloy yield strength. Priors for structure-based surrogates, where inputs have no names. The scaling curve and stability filters for merged generators, CrystalFlow and ADiT, and DFT on the stiffest crystals of the scaled variant. Models from other vendors.</p>
-
-<h2>Logs and code</h2>
-<p>Every prompt, raw reply, model id, token count and score is in the repository, with the command behind each number in <code>REPRODUCE.md</code>. The repository is private until the paper is released.</p>
+<p><b>It did not carry over to CrystalFlow.</b> With the same ten variants, the five-seed mean moves the mean bulk modulus of the samples from 90.1 to 91.4 GPa and three times the mean to 97.5 GPa; neither change is significant.</p>
 
 <h2>Citation</h2>
-<pre id="bib">@misc{alvi2026wspmaterials,
+<pre id="bib">@misc{alvi2026writtennetworks,
   author = {Alvi, Sk Md Ahnaf Akif and Arr\'oyave, Raymundo},
-  title  = {Weight-space programming for materials science},
+  title  = {A language model can write a property-prediction network for materials from knowledge alone},
   year   = {2026},
   note   = {Draft}
 }</pre>

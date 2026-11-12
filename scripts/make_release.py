@@ -149,7 +149,7 @@ def main() -> None:
     for label, files in findings.items():
         lines.append(f"- {label}: {len(files)} files" + ("" if not files else "; first: " + ", ".join(f"`{f}`" for f in files[:8])))
     lines += ["", "## Decisions the authors have to make before publishing", "",
-              "- No LICENSE file exists. Choose a licence for the code and say which licence covers the run records.",
+              "- LICENSE is MIT and covers the code in src/, scripts/, experiments/ and supplementary/. Say whether the run records (prompts, replies, scores) are under the same licence; third-party data and `vendor/` are not.",
               "- Thermo-Calc: check the licence agreement on redistributing computed values"
               + (" (this copy leaves them out; the self-reports of `writepd__*` runs are the models' own words and may quote a value)."
                  if args.without_thermocalc else " before publishing this copy, which includes them."),

@@ -29,7 +29,7 @@ def mono(x, y, w, lines, size=10.5, lh=13.2):
 # ------------------------------------------------------------------ title
 title("Weight-Space Programming for Materials Science: The GP Prior Case", "Group meeting, Arróyave group",
       "Sk Md Ahnaf Akif Alvi", "November 2026", ["Sk Md Ahnaf Akif Alvi, Raymundo Arróyave"], """
-This talk covers one case of a larger project on weight-space programming for materials science. A language model writes every weight of a small neural network from what it knows about alloys, with no training data, and I use that network as the prior mean of a Gaussian-process surrogate in Bayesian optimisation. I will set out the problem, define the idea, go through the method step by step, list the controls, and then show the results on five measured alloy tasks with four models, including the task where it makes things worse. I then repeat the test on 35 targets computed with Thermo-Calc, and close with an extension to Bayesian neural networks and with what has not been run.
+This talk covers one case of a larger project on weight-space programming for materials science. A language model writes every weight of a small neural network from what it knows about alloys, with no training data, and I use that network as the prior mean of a Gaussian-process surrogate in Bayesian optimisation. I will set out the problem, define the idea, go through the method step by step, list the controls, and then show the results on five measured alloy tasks with four models, including the task where it makes things worse. I then repeat the test on 35 targets computed with Thermo-Calc and on crystal structures, and close with an extension to Bayesian neural networks and with what has not been run.
 """)
 
 # ------------------------------------------------------------------ 1. problem
@@ -532,50 +532,143 @@ table_slide("tc-findings", "Thermo-Calc case: findings and limits", 6,
 This slide collects the Thermo-Calc case. Networks written with no data come close to an extrapolation that uses computed binary and ternary data, and they are ahead of it on phase fractions. With the same facts in the prompt they match it, alone and in the optimisation. A joint fit of the slope and offset restores the coverage that the two-stage fit loses. The limits: no predictor ranks the titanium alpha transus; most phase-fraction targets leave the optimisation little to gain; one arm is worse on one target; and the labels are calculations, with facts drawn from the database that produced the targets, so this tests composition trends inside one thermodynamic description.
 """, source=TC + "; " + ALONE + "; docs/results/2026-11-12-round7.md, Sec. 4")
 
-# ------------------------------------------------------------------ 7. BNN
-outline(7, """The seventh section asks whether the same written network helps a Bayesian neural network. A written network can be used in three ways there: as a prior mean in function space, as it was for the Gaussian process; as the starting point of training or of a sampling chain; or as the centre of a prior over the weights. I compare the three on MC dropout, a deep ensemble and Hamiltonian Monte Carlo, with ranking and 95 percent coverage as the measures.""")
+# ------------------------------------------------------------------ 7. structure-embedding surrogates
+SP = "experiments/e1_surrogate_head/results/structure_prior/summary.md"
+SPF = "experiments/e1_surrogate_head/results/structure_prior/features/summary.md"
+R7 = "docs/results/2026-11-12-round7.md, Sec. 2"
+E3 = "experiments/e3_crystal_filter/"
 
-content("bnn-ranking", "BNN extension: prior mean, start or weight prior", 7,
+outline(7, """The seventh section moves from compositions to crystal structures. In a generative discovery loop the Gaussian process sees a crystal as coordinates of a learned embedding, and those coordinates have no names, so a network cannot be written on them. I show how a written network on named descriptors of the same crystal enters that surrogate, on two targets: bulk modulus and heat capacity. Then I show the written hidden layer used as inputs, and the same networks used to screen the samples of two generators.""")
+
+STR = [("Crystal", "Input", NAVY, "a structure in the loop: the starting pool, or a crystal that a generator proposed", 28, 72),
+       ("Graph-network embedding", "ORB-v3, pretrained", NAVY, "mean of the node embeddings, then the first 50 principal components; the coordinates have no names", 265, 72),
+       ("GP inputs", "Surrogate of the loop", TEAL, "exact GP with its kernel on the 50 coordinates; constant mean in the plain GP", 502, 72),
+       ("15 named descriptors", "Same crystal", MAROON, "volume per atom, mean atomic mass, mean electronegativity, mean elemental melting point, 11 composition-group fractions", 28, 226),
+       ("Written network", "15 → 16 → 1, no data", MAROON, "273 weights written by a language model from materials knowledge; output m(x) in the unit of the target", 265, 226),
+       ("GP prior mean", "a·m(x) + b", AMBER, "the GP on the embedding models what the written network leaves over", 502, 226)]
+
+
+def strdiag(step):
+    out = []
+    for k, (head, kicker, col, body, x, y) in enumerate(STR[:{1: 3, 2: 6}[step]]):
+        out.append(labelled_node(x, y, 190, 122, head, body, col, kicker))
+        if k % 3:
+            out.append(line(x - 47, y + 60, 47, 1.5))
+    if step == 2:
+        out.append(line(122, 194, 1.5, 32))
+        out.append(line(596, 194, 1.5, 32))
+    return "\n".join(out)
+
+
+STR_NOTES = ["""This is the surrogate of a generative discovery loop. A crystal, either from the loop's starting pool or proposed by a generator, is passed through a pretrained graph network, ORB version 3. The node embeddings are averaged over the atoms and reduced to their first 50 principal components, and the Gaussian process has its kernel on those 50 coordinates. They are a good representation for a kernel, but a coordinate such as component 17 has no physical meaning. The prompt used so far lists the inputs by name, and here there is nothing to list. A model cannot write a network on these inputs.""",
+             """The way round it is a second description of the same crystal. I compute 15 descriptors that do have names: the volume per atom, the mean atomic mass, the mean Pauling electronegativity, the mean melting point of the elements, and eleven fractions of composition groups such as alkali metals, 3d transition metals and halogens. The model writes a network with 15 inputs, 16 hidden units and one output on these, 273 weights, with no data. Its output becomes the prior mean of the Gaussian process, which keeps its kernel on the embedding. The embedding carries the structure, and the mean carries the written knowledge."""]
+for j in range(1, 3):
+    content(f"st-setup-{j}", "Structure-embedding surrogate and the written network", 7, strdiag(j), STR_NOTES[j - 1], kind="build",
+            source="src/wsp/tasks.py (_closed_loop, description); experiments/e1_surrogate_head/run_structure_prior.py (docstring); " + E3 + "filter_arm.py (FEATURES, describe)")
+
+table_slide("st-tasks", "Crystal tasks from a generative discovery loop", 7,
+            [["Target", "Runs", "Crystals", "Train: starting pool", "Test: generated, per run", "Rule with no LLM", "Valid written networks"],
+             ["Bulk modulus (GPa), from a Birch-Murnaghan fit", "6", "3,479", "500", "65 to 92", "1 / volume per atom", "3 each: Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5"],
+             ["Heat capacity at 300 K (J/g/K), from phonons", "5", "2,437", "445", "31 to 59", "Dulong-Petit: 3R / mean atomic mass", "2 each: Opus 5.5, Fable 5.2; 1 each: Sonnet 5.5, Haiku 5.5"]],
+            [2.25, 0.55, 0.8, 1.0, 1.15, 1.6, 1.98], 11.5, 24, 78, 672, 110, """
+Two targets come from the same loop. Both are computed with a machine-learned interatomic potential, eSEN-30M-OAM: the bulk modulus from a Birch-Murnaghan fit and the heat capacity at 300 kelvin from phonons. The bulk modulus task has six runs and 3,479 crystals, the heat capacity task five runs and 2,437. In each run the training rows come from the starting pool of 500 or 445 known structures, and the test rows are the 31 to 92 crystals that a generator proposed in that run while it was steered toward high values. Each target has a one-line rule as the reference with no language model. Eighteen written networks are valid, from four models.
+""", cap="Targets from the eSEN-30M-OAM potential. Generators: MatterGen, CrystalFlow or ADiT. Each run has its own principal-component basis, so train and test rows always come from one run. Three draws of the labelled crystals per run.",
+            source="src/wsp/tasks.py (_closed_loop, _BUILDERS); experiments/e1_surrogate_head/run_structure_prior.py; " + E3 + "README.md (Status); " + R7)
+
+content("st-net-bulk-modulus", "A written network: crystal bulk modulus", 7,
+        img("st_net_crystal_bulk_modulus.png", 24, 60, 672, 190, halign="center", valign="top") + "\n" +
+        p("lab", 24, 256, 470, "The model's own account (self-report)") + "\n" +
+        p("small", 24, 276, 470, "A single-index model: every hidden unit computes the same linear estimate z of ln(B), from a constant per "
+          "composition class (about 4.0 for H up to 6.95 for C, N, O) + 0.00035 Tm + 0.3 χ + 0.002 mass − 0.08 V − 1.45. "
+          "The 16 units differ only in bias, as knots of a piecewise-linear exp(z) between 1 and 360 GPa.",
+          "font-size:11.5pt;line-height:14.5pt;") + "\n" +
+        sbox(506, 258, 190, ["Opus 5.5, reply 1 of 3", "273 weights, no data", "16 of 16 hidden units used", "ρ alone: 0.95 (3 replies)",
+                             "rule 1 / volume: 0.88"], size=12.5, lh=17), """
+This diagram is drawn from the weights that Opus 5.5 wrote for the bulk modulus. The 15 named descriptors are on the left and all 16 hidden units are used. By the model's account every unit computes the same linear estimate of the logarithm of the bulk modulus: a constant for each composition class, plus terms in the elemental melting point, the electronegativity and the mass, minus a term in the volume per atom. The units differ only in bias, so the output is a piecewise-linear exponential. In its report the model guessed a rank correlation of 0.6 to 0.75. On the crystals the generators proposed, its three replies reach 0.95 with no labels, against 0.88 for the volume rule.
+""", source=E3 + "runs/filter_K__opus__rep1/ (reply.txt, self_report.txt); " + SP + " (Prior alone)")
+
+content("st-rho-labels-k", "Crystal bulk modulus: GP ranking against labels", 7,
+        fig("st_rho_vs_labels_bulk_modulus.png", ["ρ at 5 / 10 / 20 / 50 labels", "plain GP: 0.15 / 0.57 / 0.82 / 0.85", "+ raw descriptors: 0.30 / 0.37 / 0.52 / 0.49", "rule: 0.77 / 0.89 / 0.93 / 0.93", "Opus: 0.95 / 0.94 / 0.90 / 0.90", "Fable: 0.93 / 0.92 / 0.90 / 0.90"], bx=466, bw=230, w=436), """
+The horizontal axis is the number of labelled crystals from the starting pool, and the vertical axis is the Spearman correlation on the crystals the generator proposed, averaged over six runs and three draws. The dashed black line is the plain Gaussian process on the embedding: 0.15 at 5 labels and 0.82 at 20. With an Opus 5.5 or Fable 5.2 network as the mean it is at 0.95 and 0.93 from 5 labels on, better in all 18 cells at 5 and at 10 labels. The grey line is the volume rule, which overtakes the networks from 20 labels. The purple line gives the Gaussian process the 15 raw descriptors as extra inputs, and that is worse than the embedding alone from 10 labels on.
+""", source=SP + " (loop_bulk_modulus); experiments/e1_surrogate_head/results/structure_prior/summary.json")
+
+recap("recap-st-gp", 7, "With 5 labels the embedding GP ranks the generated crystals at ρ 0.15; with an Opus 5.5 or Fable 5.2 network as its mean, at 0.95 and 0.93 (18 of 18 cells better, p = 8e-6). The same 15 descriptors as raw GP inputs give 0.30.", """
+The comparison with the raw descriptors separates two explanations. If the gain came from the extra columns, adding them to the inputs would give it too, and on this target it does not. The gain comes from what the network does with them. On calibration, the joint fit of slope and offset covers 0.97 to 0.98 of the generated crystals at 5 labels, against 0.86 for the plain Gaussian process and 0.69 to 0.73 for the two-stage fit. The rule is shown with the two-stage fit; under the joint fits it stays at 0.18 at 5 labels.
+""", source=SP + " (loop_bulk_modulus: ρ, 95% coverage, ρ better / worse than plain GP)")
+
+content("st-hidden", "Crystal bulk modulus: the written hidden layer as GP inputs", 7,
+        fig("st_hidden_units_as_inputs.png", ["ρ at 5 / 20 / 500 labels", "embedding only: 0.15 / 0.82 / 0.88", "hidden units only: 0.43 / 0.76 / 0.94", "hidden + mean: 0.92 / 0.93 / 0.94", "all three: 0.94 / 0.92 / 0.90"], bx=478, bw=218, w=448), """
+A written network also has a hidden layer, and its 16 units can be the inputs of the Gaussian process. The axes are as before, with the whole pool of 500 added on the right, and each line is the mean over the Opus 5.5 and Fable 5.2 networks. The teal line uses only the hidden units, with a constant mean: it needs labels like any other features, 0.43 at 5 labels, but with the whole pool it reaches 0.94, above the 0.88 of the 50 embedding coordinates. The maroon line adds the network output as the mean and stays at 0.92 to 0.94 at every label count. The navy line adds the embedding as well, and falls to 0.90 with the whole pool.
+""", source=SPF + " (loop_bulk_modulus); experiments/e1_surrogate_head/run_structure_features.py (arms); " + SP + " (gp)")
+
+content("st-rho-labels-cp", "Crystal heat capacity: GP ranking against labels", 7,
+        fig("st_rho_vs_labels_heat_capacity.png", ["ρ at 5 / 10 / 20 / 50 labels", "plain GP: 0.15 / 0.31 / 0.46 / 0.67", "+ raw descriptors: 0.38 / 0.66 / 0.87 / 0.98", "Dulong-Petit rule: 1.00 / 0.99 / 0.99 / 0.99", "Opus: 1.00 / 0.99 / 0.99 / 0.97", "Fable: 1.00 / 0.99 / 0.99 / 0.96"], bx=456, bw=240, w=426), """
+The same plot for the heat capacity per gram at 300 kelvin. The plain Gaussian process on the embedding is at 0.15 with 5 labels and 0.67 with 50. The grey line is the Dulong-Petit rule, three times the gas constant divided by the mean atomic mass, used as the mean: it ranks the generated crystals at 1.00 from the first labels. The Opus 5.5 and Fable 5.2 networks do the same, and they add nothing over the rule. This target is decided by one of the 15 descriptors, and here the raw descriptors as inputs do help, reaching 0.98 at 50 labels. It belongs with the cases where a rule already works.
+""", source=SP + " (loop_heat_capacity); " + R7 + " (Heat capacity)")
+
+content("st-filter", "Screening filter in front of two generators", 7,
+        fig("st_filter_two_generators.png", ["Bulk modulus, base samples", "ρ, MatterGen / CrystalFlow", "rule 0.82 / 0.77, MLP 0.29 / 0.12", "Opus 0.92 / 0.88, Fable 0.88 / 0.88", "Above 150 GPa, kept quarter", "all 0.09 / 0.16; Opus 0.36 / 0.52"], bx=500, bw=196, w=470), """
+The networks were first written to score crystals sampled from a generator before any expensive calculation, keeping the top quarter. The left panel is the Spearman correlation between the score and the computed bulk modulus on 128 base samples of MatterGen and of CrystalFlow. The Opus 5.5 networks reach 0.92 and 0.88, the volume rule 0.82 and 0.77, and a network of the same size trained on 400 Materials Project structures 0.29 and 0.12. The right panel is the share of crystals above 150 gigapascals in the kept quarter; the dashed line is the share among all samples. On CrystalFlow the written networks raise it from 0.16 to above 0.5, against 0.38 for the rule. On MatterGen they equal the rule.
+""", source=E3 + "results/filter_arm/summary.md (MatterGen); " + E3 + "results/filter_arm_cf/summary.md (CrystalFlow); per_run.json (base_128)")
+
+table_slide("st-findings", "Structure-embedding case: findings and limits", 7,
+            [["Kind", "Statement"],
+             ["Found", "bulk modulus at 5 labels: ρ 0.15 for the embedding GP, 0.95 and 0.93 with an Opus 5.5 or Fable 5.2 network as its mean; the largest gain of the three cases"],
+             ["Found", "the gain is not the extra columns: the 15 raw descriptors as GP inputs give 0.30 to 0.52, below the embedding alone from 10 labels on"],
+             ["Found", "the 16 written hidden units as GP inputs reach 0.94 with the whole pool, against 0.88 for the 50 embedding coordinates"],
+             ["Found", "as a screening filter the networks rank generator samples at ρ 0.88 to 0.92; the volume rule at 0.77 and 0.82"],
+             ["Limit", "from 20 labels the rule 1 / volume is as good or better (0.93 against 0.90); with the whole pool no mean differs from the plain GP (0.88 to 0.92)"],
+             ["Limit", "heat capacity: the Dulong-Petit rule ranks at 1.00 and the networks only match it"],
+             ["Limit", "the targets come from a machine-learned potential, not from DFT or experiment"],
+             ["Limit", "ranking only: no optimisation loop was run with a written mean on these tasks; the networks were written for the filter and reused here"]],
+            [1.0, 8.33], 11.5, 24, 66, 672, 250, """
+This slide collects the structure case. With 5 labels the written mean lifts the ranking of generated crystals from 0.15 to 0.95, the largest gain of the three cases in this talk, and the control with raw descriptors shows that it comes from the network. The written hidden layer is a useful set of inputs once there are labels. The limits: from 20 labels the one-line volume rule is as good or better, and with the whole pool no mean differs from the plain Gaussian process; the heat capacity is solved by a rule; the targets are computed with a machine-learned potential; and I show ranking only, with no optimisation loop on these tasks.
+""", source=SP + "; " + SPF + "; " + E3 + "results/filter_arm/summary.md; " + E3 + "results/filter_arm_cf/summary.md; " + R7)
+
+# ------------------------------------------------------------------ 8. BNN
+outline(8, """The eighth section asks whether the same written network helps a Bayesian neural network. A written network can be used in three ways there: as a prior mean in function space, as it was for the Gaussian process; as the starting point of training or of a sampling chain; or as the centre of a prior over the weights. I compare the three on MC dropout, a deep ensemble and Hamiltonian Monte Carlo, with ranking and 95 percent coverage as the measures.""")
+
+content("bnn-ranking", "BNN extension: prior mean, start or weight prior", 8,
         fig("bnn_ranking.png", ["ρ at 10 or 20 labels", "GP: 0.53 → 0.69 (prior mean)", "MC dropout: 0.54 → 0.65", "ensemble start: 0.50 → 0.57", "HMC start: 0.45 → 0.40", "HMC weight prior: 0.21"], bx=506, bw=190, w=474), """
 Each bar is the mean Spearman correlation over model and task cells: the Opus 5.5 and Fable 5.2 networks on six tasks, the five alloy tasks and Matbench bulk modulus. The left panel is 10 or 20 labels and the right panel 50 or 200. Pale bars are each family's baseline and dark bars use the written network. As a prior mean the network helps at few labels: the Gaussian process goes from 0.53 to 0.69 and MC dropout from 0.54 to 0.65. As a starting point it does not improve MC dropout, gives a deep ensemble 0.50 to 0.57, and gives Hamiltonian Monte Carlo nothing. Centring the weight prior on it is the worst arm, at 0.21.
 """, source=BNN + " (spearman); docs/results/2026-11-11-round4.md, Sec. 3")
 
-content("bnn-coverage", "BNN extension: 95% interval coverage", 7,
+content("bnn-coverage", "BNN extension: 95% interval coverage", 8,
         fig("bnn_coverage.png", ["Coverage at 10 or 20 labels", "GP: 0.71 → 0.66 (prior mean)", "MC dropout: 0.45 → 0.39", "MC dropout, start: 0.88", "HMC: 0.90 to 0.94", "nominal: 0.95"], bx=506, bw=190, w=474), """
 The same arms, now with the share of held-out values that fall inside the 95 percent interval; the dashed line marks 0.95. This is the caveat on the prior mean. At 10 or 20 labels the plain Gaussian process already covers only 0.71, and with the written prior mean it covers 0.66. MC dropout goes from 0.45 to 0.39. The slope and offset of the prior are fitted on the same few labels, and that uncertainty is not propagated into the interval. Starting MC dropout at the written weights does the opposite: ranking does not improve but coverage rises from 0.45 to 0.88. Hamiltonian Monte Carlo is near nominal in every arm at few labels.
 """, source=BNN + " (coverage95); docs/results/2026-11-11-round4.md, Sec. 3")
 
-recap("recap-bnn", 7, "As a prior mean the written network raises ranking at 10 to 20 labels (GP 0.53 → 0.69, MC dropout 0.54 → 0.65) but the intervals are overconfident (coverage 0.66 and 0.39); as a weight-space prior for HMC it is the worst arm (ρ 0.21).", """
+recap("recap-bnn", 8, "As a prior mean the written network raises ranking at 10 to 20 labels (GP 0.53 → 0.69, MC dropout 0.54 → 0.65) but the intervals are overconfident (coverage 0.66 and 0.39); as a weight-space prior for HMC it is the worst arm (ρ 0.21).", """
 The written networks use three to seven hidden units with large weights. A unit-variance prior centred on them pins the rest of the network at zero, and the chain cannot use the data, which explains the weight-prior result. The Hamiltonian Monte Carlo here follows the study of Li, Rudner and Wilson and is a small implementation: fixed noise level, one chain, 200 kept samples. The useful place for the written network is the function-space mean, and its calibration needs work.
 """, source="docs/results/2026-11-11-round4.md, Sec. 3")
 
-# ------------------------------------------------------------------ 8. limits
-outline(8, """The last section states the limits of the evidence and what has not been run, and then closes. I separate three kinds of limit: the scope of what was tested, the known faults of the method as it stands, and the comparisons that are missing. The closing slide then summarises what was done, what was found and what comes next.""")
+# ------------------------------------------------------------------ 9. limits
+outline(9, """The last section states the limits of the evidence and what has not been run, and then closes. I separate three kinds of limit: the scope of what was tested, the known faults of the method as it stands, and the comparisons that are missing. The closing slide then summarises what was done, what was found and what comes next.""")
 
-table_slide("limits", "Limits and what is not yet run", 8,
+table_slide("limits", "Limits and what is not yet run", 9,
             [["Kind", "Limit"],
              ["Scope", "one pool per task; pool-based BO on existing measurements and on computed Thermo-Calc pools, no real closed loop"],
              ["Scope", "four models from one vendor; three replies per model and alloy task, two per Thermo-Calc target and prompt"],
-             ["Scope", "inputs are named element fractions; no structure-based surrogate, where inputs have no names"],
+             ["Scope", "the written network needs named inputs: element fractions, or 15 named descriptors of a crystal next to its embedding; the crystal case has ranking only, no BO"],
              ["Known fault", "MPEA yield strength: Opus 5.5 and Fable 5.2 priors worse than the plain GP in 14 of 20 seeds; cause not diagnosed"],
              ["Known fault", "two-stage fit: intervals overconfident at few labels (alloy tasks 0.66 against 0.71; Thermo-Calc 0.71 to 0.75 against 0.86); a joint fit of slope and offset gives 0.86 to 0.90 there"],
              ["Known fault", "fitted slope unstable on 5 to 10 labels; weak priors (Haiku 5.5, Ti hardness) lower ranking"],
              ["Not run", "a mean network of the same shape fitted by gradient descent on the first labels"],
              ["Not run", "prompt and reply tokens from the model's tokenizer; tool use limited by instruction and audit, not by a sandbox"],
              ["Not run", "for the BNNs: SGHMC, linearised Laplace, a tuned HMC"]],
-            [1.3, 8.03], 11.5, 24, 64, 672, 270, """
-On scope: each task has one pool, of existing measurements or of Thermo-Calc calculations, so this is a retrospective benchmark and not a closed loop; the four models come from one vendor; and the inputs are named element fractions, which is the easy case for a model that reasons from names. On known faults: the yield strength failure is unexplained, the two-stage fit gives overconfident intervals at few labels where a joint fit does not, and the fitted slope is unstable on five to ten points. On what is missing: a gradient-fitted mean network on the same first labels, token counts from the model's own tokenizer, a sandbox in place of an audit, and tuned Bayesian neural network baselines.
+            [1.3, 8.03], 11.5, 24, 64, 672, 282, """
+On scope: each task has one pool, of existing measurements or of Thermo-Calc calculations, so this is a retrospective benchmark and not a closed loop; the four models come from one vendor; and the written network always needs named inputs, element fractions or descriptors of a crystal, with ranking only for the crystal case. On known faults: the yield strength failure is unexplained, the two-stage fit gives overconfident intervals at few labels where a joint fit does not, and the fitted slope is unstable on five to ten points. On what is missing: a gradient-fitted mean network on the same first labels, token counts from the model's own tokenizer, a sandbox in place of an audit, and tuned Bayesian neural network baselines.
 """, source=R3 + ", Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; " + TC)
 
-conclusions("conclusions", "Conclusions", 8,
+conclusions("conclusions", "Conclusions", 9,
             [("Done", ["written_network_weights.png", "tc_net_steel_austenite_fraction.png"],
-              ["networks written with no data", "5 measured alloy tasks: 60", "35 Thermo-Calc targets: 280", "used as GP mean a·m(x) + b"]),
+              ["written with no data, as GP mean", "5 measured alloy tasks: 60", "35 Thermo-Calc targets: 280", "2 crystal tasks: 18"]),
              ("Found", ["auc_relative_to_gp.png", "tc_bo_solidus_freezing_range.png"],
-              ["Opus 5.5: BO better on 4 of 5", "worse on MPEA yield strength", "Thermo-Calc: better on 16 of 33", "no-LLM extrapolation: 18 of 33"]),
-             ("Next", ["auc_seed_differences_mpea_yield_strength.png", "tc_bo_phase_fractions.png"],
-              ["diagnose MPEA yield strength", "phase fractions; Ti α transus", "gradient-fitted mean as a control", "second pool; a real closed loop"])], """
-To close. Four models wrote 60 small networks from materials knowledge with no data, and I used them as the prior mean of a Gaussian process. In Bayesian optimisation over 20 seeds the Opus priors lower the area under regret on four of five tasks with corrected p values at or below 0.047, and make yield strength of multi-principal-element alloys worse. A handbook rule of mixtures gives no gain. On 33 Thermo-Calc targets the Opus priors are better on 16 with no data and on 18 with sub-system facts, level with an extrapolation from computed binaries and ternaries. Next come the diagnosis of that failure, the phase-fraction targets, and a real closed loop. Thank you; I welcome questions.
-""", source=R3 + ", Sec. 2 and 6; " + TC)
+              ["Opus 5.5: BO better on 4 of 5", "worse on MPEA yield strength", "Thermo-Calc: better on 16 of 33", "crystals, 5 labels: ρ 0.15 → 0.95"]),
+             ("Next", ["tc_bo_phase_fractions.png", "st_rho_vs_labels_bulk_modulus.png"],
+              ["diagnose MPEA yield strength", "phase fractions; Ti α transus", "BO on the crystal tasks", "second pool; a real closed loop"])], """
+To close. Four models wrote 60 small networks from materials knowledge with no data, and I used them as the prior mean of a Gaussian process. In Bayesian optimisation over 20 seeds the Opus priors lower the area under regret on four of five tasks with corrected p values at or below 0.047, and make yield strength of multi-principal-element alloys worse. A handbook rule of mixtures gives no gain. On 33 Thermo-Calc targets the Opus priors are better on 16 with no data and on 18 with sub-system facts, level with an extrapolation from computed binaries and ternaries. On crystal bulk modulus a written mean lifts the ranking at 5 labels from 0.15 to 0.95. Next come the diagnosis of that failure, optimisation on the crystal tasks, and a real closed loop. Thank you; I welcome questions.
+""", source=R3 + ", Sec. 2 and 6; " + TC + "; " + SP)
 
 # ------------------------------------------------------------------ backup
 dark("backup-divider", "Backup", ["The two slope rules; regret by step; the written network with no GP"], """

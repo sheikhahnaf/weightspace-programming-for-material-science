@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">GP ranking against labels: slope fixed at one</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">80</p>
+<img src="../figures/deck/rho_vs_labels_slope_one.png" style="left:24.0pt;top:73.6pt;width:474.0pt;height:294.7pt;">
+<div class="sbox" style="left:506pt;top:110pt;width:190pt;height:116pt;"></div>
+<p class="sboxt" style="left:515pt;top:117pt;width:172pt;font-size:12.5pt;line-height:17pt;">Slope a = 1; ρ at 5 labels</p>
+<p class="sboxt" style="left:515pt;top:134pt;width:172pt;font-size:12.5pt;line-height:17pt;">MPEA HV: 0.06 → 0.78 (Opus)</p>
+<p class="sboxt" style="left:515pt;top:151pt;width:172pt;font-size:12.5pt;line-height:17pt;">Ti HV: 0.63 → 0.52 (Haiku)</p>
+<p class="sboxt" style="left:515pt;top:168pt;width:172pt;font-size:12.5pt;line-height:17pt;">handbook, Ti HV: 0.18</p>
+<p class="sboxt" style="left:515pt;top:185pt;width:172pt;font-size:12.5pt;line-height:17pt;">handbook, MPEA HV: −0.24</p>
+<p class="sboxt" style="left:515pt;top:202pt;width:172pt;font-size:12.5pt;line-height:17pt;">at 50 labels, Ti HV: 0.55</p>
+<!--NOTES
+This is the ranking figure from the results with the slope fixed at one. Panels, axes and colours are the same: the dashed black line is the plain Gaussian process and the solid lines add a prior mean. For the model-written networks the fixed slope is close to or above the fitted slope. For the handbook rule it is much worse, because the rule orders alloys the wrong way round on three tasks and a fixed positive slope cannot flip it: titanium hardness is at 0.18 with 5 labels and still at 0.55 with 50, against 0.78 for the plain Gaussian process.
+-->
+</body>
+</html>

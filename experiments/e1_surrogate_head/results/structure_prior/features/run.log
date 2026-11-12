@@ -1,8 +1,0 @@
-/Users/alvi/miniconda3/envs/matinvent/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 9 leaked semlock objects to clean up at shutdown
-  warnings.warn(
-/Users/alvi/miniconda3/envs/matinvent/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
-  warnings.warn(
-/Users/alvi/miniconda3/envs/matinvent/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:375: UserWarning: resource_tracker: /var/folders/y5/bl96_cfn31704bv680dmr6j00000gn/T/joblib_memmapping_folder_36035_d361dd71527443608bb9004265bbd382_7670a3f5d04e48d88bebbd0c901113d0: FileNotFoundError(2, 'No such file or directory')
-  warnings.warn(f"resource_tracker: {name}: {e!r}")
-/Users/alvi/miniconda3/envs/matinvent/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:375: UserWarning: resource_tracker: /var/folders/y5/bl96_cfn31704bv680dmr6j00000gn/T/joblib_memmapping_folder_36035_d361dd71527443608bb9004265bbd382_2b5ac7cd84c940d8999e8a597ccb53ee: FileNotFoundError(2, 'No such file or directory')
-  warnings.warn(f"resource_tracker: {name}: {e!r}")

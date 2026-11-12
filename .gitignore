@@ -16,3 +16,6 @@ data/formation/log_*.txt
 experiments/e1_surrogate_head/results/structure_prior/run.log
 ~$*
 release_build/
+slides/*/.check/
+slides/*/build.log
+experiments/e1_surrogate_head/results/structure_prior/features/run.log

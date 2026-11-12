@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Structure-embedding surrogate and the written network</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">62</p>
+<div class="node" style="left:28pt;top:72pt;width:190pt;height:122pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:34pt;top:78pt;width:178pt;text-align:center;color:#8A8F98;">Input</p>
+<p class="nodet" style="left:34pt;top:94pt;width:178pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Crystal</b></p>
+<p class="nodet" style="left:34pt;top:130pt;width:178pt;font-size:10.5pt;line-height:13pt;">a structure in the loop: the starting pool, or a crystal that a generator proposed</p>
+<div class="node" style="left:265pt;top:72pt;width:190pt;height:122pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:271pt;top:78pt;width:178pt;text-align:center;color:#8A8F98;">ORB-v3, pretrained</p>
+<p class="nodet" style="left:271pt;top:94pt;width:178pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Graph-network embedding</b></p>
+<p class="nodet" style="left:271pt;top:130pt;width:178pt;font-size:10.5pt;line-height:13pt;">mean of the node embeddings, then the first 50 principal components; the coordinates have no names</p>
+<div style="position:absolute;left:218pt;top:132pt;width:47pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:502pt;top:72pt;width:190pt;height:122pt;border:2pt solid #2A8C8C;background:#FFFFFF;"></div>
+<p class="small" style="left:508pt;top:78pt;width:178pt;text-align:center;color:#8A8F98;">Surrogate of the loop</p>
+<p class="nodet" style="left:508pt;top:94pt;width:178pt;font-size:13pt;line-height:16pt;color:#2A8C8C;"><b>GP inputs</b></p>
+<p class="nodet" style="left:508pt;top:130pt;width:178pt;font-size:10.5pt;line-height:13pt;">exact GP with its kernel on the 50 coordinates; constant mean in the plain GP</p>
+<div style="position:absolute;left:455pt;top:132pt;width:47pt;height:1.5pt;background:#8A8F98;"></div>
+<!--NOTES
+This is the surrogate of a generative discovery loop. A crystal, either from the loop's starting pool or proposed by a generator, is passed through a pretrained graph network, ORB version 3. The node embeddings are averaged over the atoms and reduced to their first 50 principal components, and the Gaussian process has its kernel on those 50 coordinates. They are a good representation for a kernel, but a coordinate such as component 17 has no physical meaning. The prompt used so far lists the inputs by name, and here there is nothing to list. A model cannot write a network on these inputs.
+-->
+</body>
+</html>

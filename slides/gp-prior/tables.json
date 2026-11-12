@@ -497,6 +497,92 @@
   ],
   "fontSize": 11.5
  },
+ "st-tasks.html": {
+  "rows": [
+   [
+    "Target",
+    "Runs",
+    "Crystals",
+    "Train: starting pool",
+    "Test: generated, per run",
+    "Rule with no LLM",
+    "Valid written networks"
+   ],
+   [
+    "Bulk modulus (GPa), from a Birch-Murnaghan fit",
+    "6",
+    "3,479",
+    "500",
+    "65 to 92",
+    "1 / volume per atom",
+    "3 each: Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5"
+   ],
+   [
+    "Heat capacity at 300 K (J/g/K), from phonons",
+    "5",
+    "2,437",
+    "445",
+    "31 to 59",
+    "Dulong-Petit: 3R / mean atomic mass",
+    "2 each: Opus 5.5, Fable 5.2; 1 each: Sonnet 5.5, Haiku 5.5"
+   ]
+  ],
+  "colW": [
+   2.25,
+   0.55,
+   0.8,
+   1.0,
+   1.15,
+   1.6,
+   1.98
+  ],
+  "fontSize": 11.5
+ },
+ "st-findings.html": {
+  "rows": [
+   [
+    "Kind",
+    "Statement"
+   ],
+   [
+    "Found",
+    "bulk modulus at 5 labels: ρ 0.15 for the embedding GP, 0.95 and 0.93 with an Opus 5.5 or Fable 5.2 network as its mean; the largest gain of the three cases"
+   ],
+   [
+    "Found",
+    "the gain is not the extra columns: the 15 raw descriptors as GP inputs give 0.30 to 0.52, below the embedding alone from 10 labels on"
+   ],
+   [
+    "Found",
+    "the 16 written hidden units as GP inputs reach 0.94 with the whole pool, against 0.88 for the 50 embedding coordinates"
+   ],
+   [
+    "Found",
+    "as a screening filter the networks rank generator samples at ρ 0.88 to 0.92; the volume rule at 0.77 and 0.82"
+   ],
+   [
+    "Limit",
+    "from 20 labels the rule 1 / volume is as good or better (0.93 against 0.90); with the whole pool no mean differs from the plain GP (0.88 to 0.92)"
+   ],
+   [
+    "Limit",
+    "heat capacity: the Dulong-Petit rule ranks at 1.00 and the networks only match it"
+   ],
+   [
+    "Limit",
+    "the targets come from a machine-learned potential, not from DFT or experiment"
+   ],
+   [
+    "Limit",
+    "ranking only: no optimisation loop was run with a written mean on these tasks; the networks were written for the filter and reused here"
+   ]
+  ],
+  "colW": [
+   1.0,
+   8.33
+  ],
+  "fontSize": 11.5
+ },
  "limits.html": {
   "rows": [
    [
@@ -513,7 +599,7 @@
    ],
    [
     "Scope",
-    "inputs are named element fractions; no structure-based surrogate, where inputs have no names"
+    "the written network needs named inputs: element fractions, or 15 named descriptors of a crystal next to its embedding; the crystal case has ranking only, no BO"
    ],
    [
     "Known fault",

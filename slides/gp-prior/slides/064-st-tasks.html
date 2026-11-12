@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Crystal tasks from a generative discovery loop</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">64</p>
+<div id="t1" class="placeholder" style="position:absolute;left:24pt;top:78pt;width:672pt;height:110pt;"><table style="border-collapse:collapse;font-size:11.5pt;line-height:13.5pt;width:100%;table-layout:fixed;"><colgroup><col style="width:162.0pt"><col style="width:39.6pt"><col style="width:57.6pt"><col style="width:72.0pt"><col style="width:82.8pt"><col style="width:115.2pt"><col style="width:142.56pt"></colgroup><tr style="background:#500000;color:#fff;font-weight:bold;"><th>Target</th><th>Runs</th><th>Crystals</th><th>Train: starting pool</th><th>Test: generated, per run</th><th>Rule with no LLM</th><th>Valid written networks</th></tr><tr><td>Bulk modulus (GPa), from a Birch-Murnaghan fit</td><td>6</td><td>3,479</td><td>500</td><td>65 to 92</td><td>1 / volume per atom</td><td>3 each: Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5</td></tr><tr><td>Heat capacity at 300 K (J/g/K), from phonons</td><td>5</td><td>2,437</td><td>445</td><td>31 to 59</td><td>Dulong-Petit: 3R / mean atomic mass</td><td>2 each: Opus 5.5, Fable 5.2; 1 each: Sonnet 5.5, Haiku 5.5</td></tr></table><style>td,th{border:0.75pt solid #D6D3D1;padding:2pt 3pt;vertical-align:middle;text-align:left;}</style></div>
+<p class="small" style="left:24pt;top:194pt;width:672pt;">Targets from the eSEN-30M-OAM potential. Generators: MatterGen, CrystalFlow or ADiT. Each run has its own principal-component basis, so train and test rows always come from one run. Three draws of the labelled crystals per run.</p>
+<!--NOTES
+Two targets come from the same loop. Both are computed with a machine-learned interatomic potential, eSEN-30M-OAM: the bulk modulus from a Birch-Murnaghan fit and the heat capacity at 300 kelvin from phonons. The bulk modulus task has six runs and 3,479 crystals, the heat capacity task five runs and 2,437. In each run the training rows come from the starting pool of 500 or 445 known structures, and the test rows are the 31 to 92 crystals that a generator proposed in that run while it was steered toward high values. Each target has a one-line rule as the reference with no language model. Eighteen written networks are valid, from four models.
+-->
+</body>
+</html>

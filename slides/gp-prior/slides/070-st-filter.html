@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Screening filter in front of two generators</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">70</p>
+<img src="../figures/deck/st_filter_two_generators.png" style="left:24.0pt;top:73.8pt;width:470.0pt;height:294.4pt;">
+<div class="sbox" style="left:500pt;top:110pt;width:196pt;height:116pt;"></div>
+<p class="sboxt" style="left:509pt;top:117pt;width:178pt;font-size:12.5pt;line-height:17pt;">Bulk modulus, base samples</p>
+<p class="sboxt" style="left:509pt;top:134pt;width:178pt;font-size:12.5pt;line-height:17pt;">ρ, MatterGen / CrystalFlow</p>
+<p class="sboxt" style="left:509pt;top:151pt;width:178pt;font-size:12.5pt;line-height:17pt;">rule 0.82 / 0.77, MLP 0.29 / 0.12</p>
+<p class="sboxt" style="left:509pt;top:168pt;width:178pt;font-size:12.5pt;line-height:17pt;">Opus 0.92 / 0.88, Fable 0.88 / 0.88</p>
+<p class="sboxt" style="left:509pt;top:185pt;width:178pt;font-size:12.5pt;line-height:17pt;">Above 150 GPa, kept quarter</p>
+<p class="sboxt" style="left:509pt;top:202pt;width:178pt;font-size:12.5pt;line-height:17pt;">all 0.09 / 0.16; Opus 0.36 / 0.52</p>
+<!--NOTES
+The networks were first written to score crystals sampled from a generator before any expensive calculation, keeping the top quarter. The left panel is the Spearman correlation between the score and the computed bulk modulus on 128 base samples of MatterGen and of CrystalFlow. The Opus 5.5 networks reach 0.92 and 0.88, the volume rule 0.82 and 0.77, and a network of the same size trained on 400 Materials Project structures 0.29 and 0.12. The right panel is the share of crystals above 150 gigapascals in the kept quarter; the dashed line is the share among all samples. On CrystalFlow the written networks raise it from 0.16 to above 0.5, against 0.38 for the rule. On MatterGen they equal the rule.
+-->
+</body>
+</html>

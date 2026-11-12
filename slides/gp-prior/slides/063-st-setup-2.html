@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Structure-embedding surrogate and the written network</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">63</p>
+<div class="node" style="left:28pt;top:72pt;width:190pt;height:122pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:34pt;top:78pt;width:178pt;text-align:center;color:#8A8F98;">Input</p>
+<p class="nodet" style="left:34pt;top:94pt;width:178pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Crystal</b></p>
+<p class="nodet" style="left:34pt;top:130pt;width:178pt;font-size:10.5pt;line-height:13pt;">a structure in the loop: the starting pool, or a crystal that a generator proposed</p>
+<div class="node" style="left:265pt;top:72pt;width:190pt;height:122pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:271pt;top:78pt;width:178pt;text-align:center;color:#8A8F98;">ORB-v3, pretrained</p>
+<p class="nodet" style="left:271pt;top:94pt;width:178pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Graph-network embedding</b></p>
+<p class="nodet" style="left:271pt;top:130pt;width:178pt;font-size:10.5pt;line-height:13pt;">mean of the node embeddings, then the first 50 principal components; the coordinates have no names</p>
+<div style="position:absolute;left:218pt;top:132pt;width:47pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:502pt;top:72pt;width:190pt;height:122pt;border:2pt solid #2A8C8C;background:#FFFFFF;"></div>
+<p class="small" style="left:508pt;top:78pt;width:178pt;text-align:center;color:#8A8F98;">Surrogate of the loop</p>
+<p class="nodet" style="left:508pt;top:94pt;width:178pt;font-size:13pt;line-height:16pt;color:#2A8C8C;"><b>GP inputs</b></p>
+<p class="nodet" style="left:508pt;top:130pt;width:178pt;font-size:10.5pt;line-height:13pt;">exact GP with its kernel on the 50 coordinates; constant mean in the plain GP</p>
+<div style="position:absolute;left:455pt;top:132pt;width:47pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:28pt;top:226pt;width:190pt;height:122pt;border:2pt solid #500000;background:#FFFFFF;"></div>
+<p class="small" style="left:34pt;top:232pt;width:178pt;text-align:center;color:#8A8F98;">Same crystal</p>
+<p class="nodet" style="left:34pt;top:248pt;width:178pt;font-size:13pt;line-height:16pt;color:#500000;"><b>15 named descriptors</b></p>
+<p class="nodet" style="left:34pt;top:284pt;width:178pt;font-size:10.5pt;line-height:13pt;">volume per atom, mean atomic mass, mean electronegativity, mean elemental melting point, 11 composition-group fractions</p>
+<div class="node" style="left:265pt;top:226pt;width:190pt;height:122pt;border:2pt solid #500000;background:#FFFFFF;"></div>
+<p class="small" style="left:271pt;top:232pt;width:178pt;text-align:center;color:#8A8F98;">15 → 16 → 1, no data</p>
+<p class="nodet" style="left:271pt;top:248pt;width:178pt;font-size:13pt;line-height:16pt;color:#500000;"><b>Written network</b></p>
+<p class="nodet" style="left:271pt;top:284pt;width:178pt;font-size:10.5pt;line-height:13pt;">273 weights written by a language model from materials knowledge; output m(x) in the unit of the target</p>
+<div style="position:absolute;left:218pt;top:286pt;width:47pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:502pt;top:226pt;width:190pt;height:122pt;border:2pt solid #C47F17;background:#FFFFFF;"></div>
+<p class="small" style="left:508pt;top:232pt;width:178pt;text-align:center;color:#8A8F98;">a·m(x) + b</p>
+<p class="nodet" style="left:508pt;top:248pt;width:178pt;font-size:13pt;line-height:16pt;color:#C47F17;"><b>GP prior mean</b></p>
+<p class="nodet" style="left:508pt;top:284pt;width:178pt;font-size:10.5pt;line-height:13pt;">the GP on the embedding models what the written network leaves over</p>
+<div style="position:absolute;left:455pt;top:286pt;width:47pt;height:1.5pt;background:#8A8F98;"></div>
+<div style="position:absolute;left:122pt;top:194pt;width:1.5pt;height:32pt;background:#8A8F98;"></div>
+<div style="position:absolute;left:596pt;top:194pt;width:1.5pt;height:32pt;background:#8A8F98;"></div>
+<!--NOTES
+The way round it is a second description of the same crystal. I compute 15 descriptors that do have names: the volume per atom, the mean atomic mass, the mean Pauling electronegativity, the mean melting point of the elements, and eleven fractions of composition groups such as alkali metals, 3d transition metals and halogens. The model writes a network with 15 inputs, 16 hidden units and one output on these, 273 weights, with no data. Its output becomes the prior mean of the Gaussian process, which keeps its kernel on the embedding. The embedding carries the structure, and the mean carries the written knowledge.
+-->
+</body>
+</html>

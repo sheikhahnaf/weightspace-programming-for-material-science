@@ -76,9 +76,10 @@ def fig_labels(task, name, tag, rule_label, ylim, legend_loc):
     ax.set_xlabel("Labelled crystals given to the GP")
     ax.set_ylabel("Spearman ρ on the generated crystals")
     ax.set_ylim(*ylim)
-    ax.legend(loc=legend_loc, fontsize=9, title="Written mean: a, b learned with the kernel; rule: two-stage fit",
-              title_fontsize=8.5, frameon=True, facecolor="white", edgecolor="none", framealpha=1.0)
     ax.grid(axis="y", color="#E5E5E5", lw=0.6)
+    fig.legend(*ax.get_legend_handles_labels(), ncol=2, loc="lower center", bbox_to_anchor=(0.53, 0.96), fontsize=9,
+               columnspacing=1.2, title="Written mean: a, b learned with the kernel; rule: two-stage fit", title_fontsize=8.5)
+    fig.tight_layout(rect=(0, 0, 1, 0.97))
     save(fig, name)
 
 

@@ -61,6 +61,8 @@ research/           brief, research reports, source lists
 slides/             slide deck on the GP-prior case
 ```
 
+The code is under the MIT licence (`LICENSE`); third-party data and `vendor/` keep their own. To cite, see `CITATION.cff`.
+
 The tables in `data/calphad/` were computed with Thermo-Calc 2025b and its commercial databases. Whether they may be redistributed has not been checked; this repository is private, and that must be settled before any public release.
 
 ## Run

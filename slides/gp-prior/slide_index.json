@@ -481,62 +481,150 @@
  },
  {
   "file": "061-outline-7.html",
-  "title": "Outline: Extension to Bayesian neural networks",
+  "title": "Outline: Structure-embedding surrogates",
   "kind": "outline",
   "section": 7,
   "source": "",
   "replaces": ""
  },
  {
-  "file": "062-bnn-ranking.html",
-  "title": "BNN extension: prior mean, start or weight prior",
+  "file": "062-st-setup-1.html",
+  "title": "Structure-embedding surrogate and the written network",
+  "kind": "build",
+  "section": 7,
+  "source": "src/wsp/tasks.py (_closed_loop, description); experiments/e1_surrogate_head/run_structure_prior.py (docstring); experiments/e3_crystal_filter/filter_arm.py (FEATURES, describe)",
+  "replaces": ""
+ },
+ {
+  "file": "063-st-setup-2.html",
+  "title": "Structure-embedding surrogate and the written network",
+  "kind": "build",
+  "section": 7,
+  "source": "src/wsp/tasks.py (_closed_loop, description); experiments/e1_surrogate_head/run_structure_prior.py (docstring); experiments/e3_crystal_filter/filter_arm.py (FEATURES, describe)",
+  "replaces": ""
+ },
+ {
+  "file": "064-st-tasks.html",
+  "title": "Crystal tasks from a generative discovery loop",
   "kind": "content",
   "section": 7,
+  "source": "src/wsp/tasks.py (_closed_loop, _BUILDERS); experiments/e1_surrogate_head/run_structure_prior.py; experiments/e3_crystal_filter/README.md (Status); docs/results/2026-11-12-round7.md, Sec. 2",
+  "replaces": ""
+ },
+ {
+  "file": "065-st-net-bulk-modulus.html",
+  "title": "A written network: crystal bulk modulus",
+  "kind": "content",
+  "section": 7,
+  "source": "experiments/e3_crystal_filter/runs/filter_K__opus__rep1/ (reply.txt, self_report.txt); experiments/e1_surrogate_head/results/structure_prior/summary.md (Prior alone)",
+  "replaces": ""
+ },
+ {
+  "file": "066-st-rho-labels-k.html",
+  "title": "Crystal bulk modulus: GP ranking against labels",
+  "kind": "content",
+  "section": 7,
+  "source": "experiments/e1_surrogate_head/results/structure_prior/summary.md (loop_bulk_modulus); experiments/e1_surrogate_head/results/structure_prior/summary.json",
+  "replaces": ""
+ },
+ {
+  "file": "067-recap-st-gp.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 7,
+  "source": "experiments/e1_surrogate_head/results/structure_prior/summary.md (loop_bulk_modulus: ρ, 95% coverage, ρ better / worse than plain GP)",
+  "replaces": ""
+ },
+ {
+  "file": "068-st-hidden.html",
+  "title": "Crystal bulk modulus: the written hidden layer as GP inputs",
+  "kind": "content",
+  "section": 7,
+  "source": "experiments/e1_surrogate_head/results/structure_prior/features/summary.md (loop_bulk_modulus); experiments/e1_surrogate_head/run_structure_features.py (arms); experiments/e1_surrogate_head/results/structure_prior/summary.md (gp)",
+  "replaces": ""
+ },
+ {
+  "file": "069-st-rho-labels-cp.html",
+  "title": "Crystal heat capacity: GP ranking against labels",
+  "kind": "content",
+  "section": 7,
+  "source": "experiments/e1_surrogate_head/results/structure_prior/summary.md (loop_heat_capacity); docs/results/2026-11-12-round7.md, Sec. 2 (Heat capacity)",
+  "replaces": ""
+ },
+ {
+  "file": "070-st-filter.html",
+  "title": "Screening filter in front of two generators",
+  "kind": "content",
+  "section": 7,
+  "source": "experiments/e3_crystal_filter/results/filter_arm/summary.md (MatterGen); experiments/e3_crystal_filter/results/filter_arm_cf/summary.md (CrystalFlow); per_run.json (base_128)",
+  "replaces": ""
+ },
+ {
+  "file": "071-st-findings.html",
+  "title": "Structure-embedding case: findings and limits",
+  "kind": "content",
+  "section": 7,
+  "source": "experiments/e1_surrogate_head/results/structure_prior/summary.md; experiments/e1_surrogate_head/results/structure_prior/features/summary.md; experiments/e3_crystal_filter/results/filter_arm/summary.md; experiments/e3_crystal_filter/results/filter_arm_cf/summary.md; docs/results/2026-11-12-round7.md, Sec. 2",
+  "replaces": ""
+ },
+ {
+  "file": "072-outline-8.html",
+  "title": "Outline: Extension to Bayesian neural networks",
+  "kind": "outline",
+  "section": 8,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "073-bnn-ranking.html",
+  "title": "BNN extension: prior mean, start or weight prior",
+  "kind": "content",
+  "section": 8,
   "source": "experiments/e5_bnn_start/results/bnn_summary.json (spearman); docs/results/2026-11-11-round4.md, Sec. 3",
   "replaces": ""
  },
  {
-  "file": "063-bnn-coverage.html",
+  "file": "074-bnn-coverage.html",
   "title": "BNN extension: 95% interval coverage",
   "kind": "content",
-  "section": 7,
+  "section": 8,
   "source": "experiments/e5_bnn_start/results/bnn_summary.json (coverage95); docs/results/2026-11-11-round4.md, Sec. 3",
   "replaces": ""
  },
  {
-  "file": "064-recap-bnn.html",
+  "file": "075-recap-bnn.html",
   "title": "Recap",
   "kind": "recap",
-  "section": 7,
+  "section": 8,
   "source": "docs/results/2026-11-11-round4.md, Sec. 3",
   "replaces": ""
  },
  {
-  "file": "065-outline-8.html",
+  "file": "076-outline-9.html",
   "title": "Outline: Limits and conclusions",
   "kind": "outline",
-  "section": 8,
+  "section": 9,
   "source": "",
   "replaces": ""
  },
  {
-  "file": "066-limits.html",
+  "file": "077-limits.html",
   "title": "Limits and what is not yet run",
   "kind": "content",
-  "section": 8,
+  "section": 9,
   "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; experiments/e7_calphad_prior/results/overview.md",
   "replaces": ""
  },
  {
-  "file": "067-conclusions.html",
+  "file": "078-conclusions.html",
   "title": "Conclusions",
   "kind": "content",
-  "section": 8,
-  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; experiments/e7_calphad_prior/results/overview.md",
+  "section": 9,
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; experiments/e7_calphad_prior/results/overview.md; experiments/e1_surrogate_head/results/structure_prior/summary.md",
   "replaces": ""
  },
  {
-  "file": "068-backup-divider.html",
+  "file": "079-backup-divider.html",
   "title": "Dark",
   "kind": "dark",
   "section": 99,
@@ -544,7 +632,7 @@
   "replaces": ""
  },
  {
-  "file": "069-b-rho-labels-one.html",
+  "file": "080-b-rho-labels-one.html",
   "title": "GP ranking against labels: slope fixed at one",
   "kind": "backup",
   "section": 99,
@@ -552,7 +640,7 @@
   "replaces": ""
  },
  {
-  "file": "070-b-slope-rules.html",
+  "file": "081-b-slope-rules.html",
   "title": "The two slope rules at 5 labels",
   "kind": "backup",
   "section": 99,
@@ -560,7 +648,7 @@
   "replaces": ""
  },
  {
-  "file": "071-b-regret-steps.html",
+  "file": "082-b-regret-steps.html",
   "title": "Regret after 5, 10 and 25 steps",
   "kind": "backup",
   "section": 99,
@@ -568,7 +656,7 @@
   "replaces": ""
  },
  {
-  "file": "072-b-written-alone.html",
+  "file": "083-b-written-alone.html",
   "title": "The written network with no GP (8 seeds)",
   "kind": "backup",
   "section": 99,

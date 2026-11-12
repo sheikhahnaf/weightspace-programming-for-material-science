@@ -193,3 +193,17 @@ Placement:
 - Error-risk predictor for a potential: supplement.
 - Supplement opens with prompt, output and architecture for every task; MLIP, generator, table reader and archive at the end.
 - To compute before writing: uniform standalone metrics for every written network on every task (rho, error after a two-point scale fix, best-tenth recall).
+
+## 2026-11-12 (later): GP-prior runs finished; repo, paper and site refocused
+
+- **All model runs for the main case are done.** Thermo-Calc: 280 replies (9 systems, 35 targets; Opus and Fable; with and without facts; reps 1 and 2; rep3 folders hold unrun prompts). Static arms and 20-seed BO for all nine systems ran on FASTER (job 3260906); results in `experiments/e7_calphad_prior/results/`, summary in `docs/results/2026-11-12-round7.md` section 4.
+- **Crystal filter on CrystalFlow** scored (`experiments/e3_crystal_filter/results/filter_arm_cf/`): it holds, so the filter is in the paper's main text. CrystalFlow task vectors do not move bulk modulus significantly (`supplementary/e3_generator_task_vectors/results/variants_summary_cf.md`).
+- **Repo layout:** main case under `experiments/` (e1, e3_crystal_filter, e5, e7); `supplementary/` holds e2, e3_generator_task_vectors, e4, e6, e8. The copy on FASTER (`/scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming`) still has the old layout; sync only the folders a job needs.
+- **Paper** (separate repo, branch `refocus-written-networks-2026-11-12`, not merged to main): rewritten around the written network as a property predictor and its uses; 66 pages with the supplement, which opens with prompt, reply and network diagram for all 42 tasks and ends with the other weight-space experiments. Regenerate: `python figures_src/make_figures.py`, `python figures_src/make_supplement.py /Volumes/SSD1_SMAAA/weighspace-programming`, then pdflatex, bibtex, pdflatex twice.
+- **Site:** `site/index.html` rewritten the same way and republished to the private artifact link.
+- **Slides:** Thermo-Calc section being added to `slides/gp-prior/`, built to `gp-prior-weight-space-programming-v2.pptx` because the first file was open in PowerPoint.
+
+Open:
+1. Thermo-Calc licence: whether `data/calphad/` may be redistributed is unchecked; needed before any public release (the tables are in the git history).
+2. The paper branch needs the authors' read and a merge to main (main syncs to Overleaf).
+3. Not run: rep3 Thermo-Calc replies; Sonnet and Haiku on Thermo-Calc targets; other vendors' models; E8 formation enthalpy; E6 real-paper tables (computed on FASTER, unscored); ADiT sampling.

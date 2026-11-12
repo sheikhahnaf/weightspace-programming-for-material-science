@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">GP surrogates with few labels</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">3</p>
+<img src="../figures/deck/gp_rho_vs_labels.png" style="left:24.0pt;top:60.0pt;width:475.7pt;height:322.0pt;">
+<div class="sbox" style="left:510pt;top:110pt;width:186pt;height:99pt;"></div>
+<p class="sboxt" style="left:519pt;top:117pt;width:168pt;font-size:12.5pt;line-height:17pt;">Plain GP, ρ on held-out alloys</p>
+<p class="sboxt" style="left:519pt;top:134pt;width:168pt;font-size:12.5pt;line-height:17pt;">5 labels: 0.06 to 0.63</p>
+<p class="sboxt" style="left:519pt;top:151pt;width:168pt;font-size:12.5pt;line-height:17pt;">10 labels: 0.26 to 0.58</p>
+<p class="sboxt" style="left:519pt;top:168pt;width:168pt;font-size:12.5pt;line-height:17pt;">50 labels: 0.65 to 0.78</p>
+<p class="sboxt" style="left:519pt;top:185pt;width:168pt;font-size:12.5pt;line-height:17pt;">mean of 5 data seeds</p>
+<!--NOTES
+The horizontal axis is the number of labelled alloys given to the Gaussian process, and the vertical axis is the Spearman rank correlation between its predictions and the measured values on held-out alloys, averaged over five data seeds. Each line is one of the five alloy tasks. With 5 labels the correlation runs from 0.06 on hardness of multi-principal-element alloys to 0.63 on titanium hardness. With 50 labels it is 0.65 to 0.78. The acquisition function ranks candidates with this model, so the first steps of a campaign are taken with a surrogate that orders alloys poorly. The model here is a constant-mean Gaussian process fitted by marginal likelihood.
+-->
+</body>
+</html>

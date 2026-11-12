@@ -1,0 +1,468 @@
+{
+ "gp_rho": {
+  "ti_alloy_youngs_modulus": [
+   0.41,
+   0.47,
+   0.59,
+   0.69
+  ],
+  "ti_alloy_yield_strength": [
+   0.26,
+   0.26,
+   0.57,
+   0.67
+  ],
+  "ti_alloy_hardness": [
+   0.63,
+   0.58,
+   0.69,
+   0.78
+  ],
+  "mpea_hardness": [
+   0.06,
+   0.49,
+   0.56,
+   0.72
+  ],
+  "mpea_yield_strength": [
+   0.4,
+   0.48,
+   0.42,
+   0.65
+  ]
+ },
+ "written_network": {
+  "hidden_used": 5,
+  "weights_total": 273,
+  "nonzero": 68,
+  "out_bias": -50.0
+ },
+ "alone": {
+  "handbook (no LLM)": [
+   0.19,
+   -0.52,
+   -0.75,
+   -0.25,
+   0.27
+  ],
+  "opus": [
+   0.64,
+   0.69,
+   0.67,
+   0.79,
+   0.69
+  ],
+  "fable": [
+   0.53,
+   0.65,
+   0.63,
+   0.76,
+   0.63
+  ],
+  "sonnet": [
+   0.67,
+   0.47,
+   0.57,
+   0.46,
+   0.61
+  ],
+  "haiku": [
+   0.5,
+   0.2,
+   0.0,
+   0.48,
+   0.59
+  ]
+ },
+ "slope5": {
+  "opus": {
+   "gp": [
+    0.41,
+    0.26,
+    0.63,
+    0.06,
+    0.4
+   ],
+   "fitted": [
+    0.58,
+    0.7,
+    0.7,
+    0.66,
+    0.66
+   ],
+   "one": [
+    0.61,
+    0.7,
+    0.71,
+    0.78,
+    0.67
+   ]
+  },
+  "fable": {
+   "gp": [
+    0.41,
+    0.26,
+    0.63,
+    0.06,
+    0.4
+   ],
+   "fitted": [
+    0.55,
+    0.58,
+    0.68,
+    0.55,
+    0.58
+   ],
+   "one": [
+    0.58,
+    0.64,
+    0.7,
+    0.76,
+    0.6
+   ]
+  },
+  "sonnet": {
+   "gp": [
+    0.41,
+    0.26,
+    0.63,
+    0.06,
+    0.4
+   ],
+   "fitted": [
+    0.49,
+    0.57,
+    0.51,
+    0.28,
+    0.58
+   ],
+   "one": [
+    0.63,
+    0.61,
+    0.7,
+    0.42,
+    0.57
+   ]
+  },
+  "haiku": {
+   "gp": [
+    0.41,
+    0.26,
+    0.63,
+    0.06,
+    0.4
+   ],
+   "fitted": [
+    0.43,
+    0.21,
+    0.34,
+    0.37,
+    0.54
+   ],
+   "one": [
+    0.5,
+    0.44,
+    0.52,
+    0.42,
+    0.53
+   ]
+  }
+ },
+ "seed_diff": {
+  "handbook": {
+   "better": 10,
+   "worse": 8,
+   "mean_diff": -96.05170000000001
+  },
+  "select_opus": {
+   "better": 4,
+   "worse": 14,
+   "mean_diff": 128.0315
+  },
+  "select_fable": {
+   "better": 4,
+   "worse": 14,
+   "mean_diff": 193.82790000000006
+  },
+  "select_sonnet": {
+   "better": 9,
+   "worse": 8,
+   "mean_diff": -37.291699999999985
+  },
+  "select_haiku": {
+   "better": 12,
+   "worse": 5,
+   "mean_diff": -131.0337
+  },
+  "select_all": {
+   "better": 4,
+   "worse": 15,
+   "mean_diff": 163.21990000000005
+  }
+ },
+ "auc_ratio": {
+  "handbook": [
+   0.91,
+   1.04,
+   1.0,
+   0.95,
+   0.88
+  ],
+  "select_opus": [
+   0.72,
+   0.49,
+   0.15,
+   0.61,
+   1.17
+  ],
+  "select_fable": [
+   0.9,
+   0.47,
+   0.25,
+   0.53,
+   1.25
+  ],
+  "select_sonnet": [
+   0.96,
+   0.69,
+   0.28,
+   1.09,
+   0.95
+  ],
+  "select_haiku": [
+   0.99,
+   0.81,
+   0.68,
+   1.15,
+   0.83
+  ],
+  "select_all": [
+   0.7,
+   0.44,
+   0.15,
+   0.64,
+   1.21
+  ]
+ },
+ "replicates": {
+  "ti_alloy_youngs_modulus|opus": [
+   0.66,
+   0.64,
+   0.62
+  ],
+  "ti_alloy_youngs_modulus|fable": [
+   0.54,
+   0.55,
+   0.5
+  ],
+  "ti_alloy_youngs_modulus|sonnet": [
+   0.67,
+   0.69,
+   0.64
+  ],
+  "ti_alloy_youngs_modulus|haiku": [
+   0.55,
+   0.45
+  ],
+  "ti_alloy_yield_strength|opus": [
+   0.69,
+   0.71,
+   0.66
+  ],
+  "ti_alloy_yield_strength|fable": [
+   0.6,
+   0.65,
+   0.7
+  ],
+  "ti_alloy_yield_strength|sonnet": [
+   0.39,
+   0.47,
+   0.55
+  ],
+  "ti_alloy_yield_strength|haiku": [
+   0.22,
+   0.18,
+   0.21
+  ],
+  "ti_alloy_hardness|opus": [
+   0.72,
+   0.72,
+   0.57
+  ],
+  "ti_alloy_hardness|fable": [
+   0.58,
+   0.63,
+   0.68
+  ],
+  "ti_alloy_hardness|sonnet": [
+   0.55,
+   0.58
+  ],
+  "ti_alloy_hardness|haiku": [
+   0.1,
+   -0.15,
+   0.06
+  ],
+  "mpea_hardness|opus": [
+   0.78,
+   0.79,
+   0.8
+  ],
+  "mpea_hardness|fable": [
+   0.78,
+   0.73,
+   0.76
+  ],
+  "mpea_hardness|sonnet": [
+   0.47,
+   0.44,
+   0.48
+  ],
+  "mpea_hardness|haiku": [
+   0.5,
+   0.47,
+   0.48
+  ],
+  "mpea_yield_strength|opus": [
+   0.68,
+   0.69,
+   0.71
+  ],
+  "mpea_yield_strength|fable": [
+   0.63,
+   0.63,
+   0.63
+  ],
+  "mpea_yield_strength|sonnet": [
+   0.61,
+   0.6
+  ],
+  "mpea_yield_strength|haiku": [
+   0.59,
+   0.58,
+   0.61
+  ]
+ },
+ "cost": {
+  "opus": {
+   "output_tokens": {
+    "median": 72.563,
+    "min": 25.051000000000002,
+    "max": 118.75,
+    "n": 15
+   },
+   "duration_ms": {
+    "median": 229.118,
+    "min": 78.897,
+    "max": 373.368,
+    "n": 15
+   }
+  },
+  "fable": {
+   "output_tokens": {
+    "median": 9.377,
+    "min": 5.085,
+    "max": 25.466,
+    "n": 15
+   },
+   "duration_ms": {
+    "median": 47.499,
+    "min": 36.006,
+    "max": 103.147,
+    "n": 15
+   }
+  },
+  "sonnet": {
+   "output_tokens": {
+    "median": 5.764,
+    "min": 4.872,
+    "max": 9.564,
+    "n": 15
+   },
+   "duration_ms": {
+    "median": 15.915000000000001,
+    "min": 14.247,
+    "max": 23.996000000000002,
+    "n": 15
+   }
+  },
+  "haiku": {
+   "output_tokens": {
+    "median": 12.163,
+    "min": 5.54,
+    "max": 20.525000000000002,
+    "n": 15
+   },
+   "duration_ms": {
+    "median": 20.583000000000002,
+    "min": 15.262,
+    "max": 37.246,
+    "n": 15
+   }
+  }
+ },
+ "bnn_spearman": {
+  "few": {
+   "gp": 0.53,
+   "gp_llm_mean": 0.69,
+   "mcd_random": 0.54,
+   "mcd_llm_init": 0.54,
+   "mcd_llm_anchor": 0.54,
+   "mcd_llm_mean": 0.65,
+   "ens_random": 0.5,
+   "ens_llm_init": 0.57,
+   "hmc_zero": 0.45,
+   "hmc_llm_init": 0.4,
+   "hmc_llm_prior": 0.21
+  },
+  "many": {
+   "gp": 0.74,
+   "gp_llm_mean": 0.77,
+   "mcd_random": 0.74,
+   "mcd_llm_init": 0.68,
+   "mcd_llm_anchor": 0.68,
+   "mcd_llm_mean": 0.75,
+   "ens_random": 0.7,
+   "ens_llm_init": 0.71,
+   "hmc_zero": 0.67,
+   "hmc_llm_init": 0.66,
+   "hmc_llm_prior": 0.61
+  },
+  "cells": [
+   24,
+   18
+  ]
+ },
+ "bnn_coverage95": {
+  "few": {
+   "gp": 0.71,
+   "gp_llm_mean": 0.66,
+   "mcd_random": 0.45,
+   "mcd_llm_init": 0.88,
+   "mcd_llm_anchor": 0.89,
+   "mcd_llm_mean": 0.39,
+   "ens_random": 0.6,
+   "ens_llm_init": 0.71,
+   "hmc_zero": 0.94,
+   "hmc_llm_init": 0.93,
+   "hmc_llm_prior": 0.9
+  },
+  "many": {
+   "gp": 0.86,
+   "gp_llm_mean": 0.84,
+   "mcd_random": 0.78,
+   "mcd_llm_init": 0.96,
+   "mcd_llm_anchor": 0.96,
+   "mcd_llm_mean": 0.73,
+   "ens_random": 0.78,
+   "ens_llm_init": 0.77,
+   "hmc_zero": 0.84,
+   "hmc_llm_init": 0.85,
+   "hmc_llm_prior": 0.84
+  },
+  "cells": [
+   24,
+   18
+  ]
+ }
+}

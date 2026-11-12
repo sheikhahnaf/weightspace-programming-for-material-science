@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Conclusions</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">49</p>
+<p class="lab" style="left:24pt;top:58pt;width:216pt;font-size:18pt;line-height:22pt;text-align:center;text-decoration:underline;color:#1F1F1F;">Done</p>
+<div class="panel" style="left:24pt;top:84pt;width:216pt;height:288pt;"></div>
+<img src="../figures/deck/written_network_weights.png" style="left:52.3pt;top:94.0pt;width:159.4pt;height:92.0pt;">
+<img src="../figures/deck/rho_alone_bars.png" style="left:58.4pt;top:192.0pt;width:147.3pt;height:92.0pt;">
+<p class="nodet" style="left:32pt;top:294pt;width:200pt;">60 networks written with no data</p>
+<p class="nodet" style="left:32pt;top:312pt;width:200pt;">4 models, 5 alloy tasks</p>
+<p class="nodet" style="left:32pt;top:330pt;width:200pt;">used as GP mean a·m(x) + b</p>
+<p class="lab" style="left:252pt;top:58pt;width:216pt;font-size:18pt;line-height:22pt;text-align:center;text-decoration:underline;color:#1F1F1F;">Found</p>
+<div class="panel" style="left:252pt;top:84pt;width:216pt;height:288pt;"></div>
+<img src="../figures/deck/auc_relative_to_gp.png" style="left:288.2pt;top:94.0pt;width:143.6pt;height:92.0pt;">
+<img src="../figures/deck/bo_regret_mpea_yield_strength.png" style="left:292.3pt;top:192.0pt;width:135.4pt;height:92.0pt;">
+<p class="nodet" style="left:260pt;top:294pt;width:200pt;">Opus 5.5: better BO on 4 of 5 tasks</p>
+<p class="nodet" style="left:260pt;top:312pt;width:200pt;">worse on MPEA yield strength</p>
+<p class="nodet" style="left:260pt;top:330pt;width:200pt;">handbook rule: no gain</p>
+<p class="lab" style="left:480pt;top:58pt;width:216pt;font-size:18pt;line-height:22pt;text-align:center;text-decoration:underline;color:#1F1F1F;">Next</p>
+<div class="panel" style="left:480pt;top:84pt;width:216pt;height:288pt;"></div>
+<img src="../figures/deck/bnn_coverage.png" style="left:515.4pt;top:94.0pt;width:145.2pt;height:92.0pt;">
+<img src="../figures/deck/auc_seed_differences_mpea_yield_strength.png" style="left:515.8pt;top:192.0pt;width:144.3pt;height:92.0pt;">
+<p class="nodet" style="left:488pt;top:294pt;width:200pt;">diagnose MPEA yield strength</p>
+<p class="nodet" style="left:488pt;top:312pt;width:200pt;">propagate slope uncertainty</p>
+<p class="nodet" style="left:488pt;top:330pt;width:200pt;">second pool; a real closed loop</p>
+<!--NOTES
+To close. Four models wrote 60 small networks from materials knowledge with no data, and I used them as the prior mean of a Gaussian process. With no labels the Opus 5.5 networks rank alloys at 0.64 to 0.79. In Bayesian optimisation over 20 seeds the Opus priors lower the area under regret on four of five tasks with corrected p values at or below 0.047, and make yield strength of multi-principal-element alloys worse. A handbook rule of mixtures gives no gain. Next come the diagnosis of that failure, intervals that carry the uncertainty of the slope, a second pool per task and a real closed loop. Thank you; I am glad to take questions.
+-->
+</body>
+</html>

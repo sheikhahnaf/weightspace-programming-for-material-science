@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">GP prior mean a·m(x) + b and the two slope rules</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">25</p>
+<div class="node" style="left:24pt;top:70pt;width:672pt;height:62pt;border:2pt solid #500000;background:#FFFFFF;"></div>
+<p class="lab" style="left:34pt;top:76pt;width:652pt;color:#500000;">Prior mean</p>
+<p class="cap" style="left:34pt;top:96pt;width:652pt;font-size:13pt;line-height:17pt;color:#1F1F1F;">μ(x) = a · m(x) + b,   where m(x) is the written network's output in physical units</p>
+<div class="node" style="left:24pt;top:144pt;width:672pt;height:78pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="lab" style="left:34pt;top:150pt;width:652pt;color:#1F3A5F;">GP on the residual</p>
+<p class="cap" style="left:34pt;top:170pt;width:652pt;font-size:13pt;line-height:17pt;color:#1F1F1F;">r = y − (a · m(x) + b) on the labelled alloys;  exact GP fitted to r by marginal likelihood;<br>prediction = GP mean of r + a · m(x) + b;  predictive standard deviation = the GP's own</p>
+<div class="node" style="left:24pt;top:234pt;width:330pt;height:128pt;border:2pt solid #2A8C8C;background:#FFFFFF;"></div>
+<p class="lab" style="left:34pt;top:240pt;width:310pt;color:#2A8C8C;">Slope fitted</p>
+<p class="cap" style="left:34pt;top:260pt;width:310pt;font-size:13pt;line-height:17pt;color:#1F1F1F;">a and b by least squares on the labelled alloys.<br>An uninformative network drives a toward 0,<br>which gives back the constant-mean GP.<br>Unstable on about ten rows.</p>
+<div class="node" style="left:366pt;top:234pt;width:330pt;height:128pt;border:2pt solid #C47F17;background:#FFFFFF;"></div>
+<p class="lab" style="left:376pt;top:240pt;width:310pt;color:#C47F17;">Slope fixed at one</p>
+<p class="cap" style="left:376pt;top:260pt;width:310pt;font-size:13pt;line-height:17pt;color:#1F1F1F;">a = 1;  b = mean of y − m(x).<br>Trusts the scale of the written network.<br>Only the offset is taken from the labels.</p>
+<!--NOTES
+There are two rules for the slope. With the fitted rule, a and b come from least squares on the labelled alloys. If the written network is uninformative, the fit drives a toward zero and the model reduces to the constant-mean Gaussian process, but two parameters fitted on five or ten points are unstable, and the slope can even come out negative. With the second rule the slope is fixed at one and only the offset is fitted, which trusts the network's scale. I report ranking under both rules; the optimisation loop uses the fitted rule.
+-->
+</body>
+</html>

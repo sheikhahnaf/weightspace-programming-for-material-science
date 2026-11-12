@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "ni_superalloy_freezing_range",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 4609,
+  "prompt_tokens_estimate": 1537,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

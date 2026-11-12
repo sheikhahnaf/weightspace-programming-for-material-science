@@ -1,0 +1,90 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. Inputs are atomic fractions of Ni, Al, Co, Cr, Mo, Ti, W in nickel-base superalloys Ni-Al-Co-Cr-Mo-Ti-W; each row sums to 1. Composition range: Ni is the balance and at least 50 at.%; solutes in at.%: Al 0 to 12 (step 2), Co 0 to 20 (step 5), Cr 0 to 20 (step 5), Mo 0 to 6 (step 2), Ti 0 to 6 (step 2), W 0 to 6 (step 2); at least 4 elements present. The target is the equilibrium freezing range (liquidus temperature minus solidus temperature) in K, calculated at 1 atm with the CALPHAD method (Thermo-Calc, TCNI12 database). 250 alloys.
+
+Input order: x[0] = x_Ni, x[1] = x_Al, x[2] = x_Co, x[3] = x_Cr, x[4] = x_Mo, x[5] = x_Ti, x[6] = x_W.
+
+The output y must be your best estimate of the equilibrium freezing range (liquidus temperature minus solidus temperature) in K. The network will be used as the prior mean of a Gaussian process that is then given a few measured alloys, so getting the trends and the rough scale right matters more than exact values.
+
+# Phase-diagram facts for sub-systems (computed with CALPHAD)
+These facts cover only sub-systems with at most three elements: pure Ni, Ni with one solute at half and at the whole of that solute's range, and Ni with two solutes, both at half and both at the whole of their ranges. Nothing here was calculated for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, TCNI12 database, 1 atm, the same database as the target.
+
+Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable phases at 1173 K with their mole fractions, where bcc, fcc and hcp are the disordered solid solutions, B2 and L12 are ordered, and the same phase listed twice is a miscibility gap.
+
+Ni: melts 1728; 1173 K: fcc
+Ni + 6 Al: s/l 1726/1726; 1173 K: fcc
+Ni + 12 Al: s/l 1711/1715; 1173 K: fcc
+Ni + 10 Co: s/l 1730/1730; 1173 K: fcc
+Ni + 20 Co: s/l 1732/1732; 1173 K: fcc
+Ni + 10 Cr: s/l 1712/1714; 1173 K: fcc
+Ni + 20 Cr: s/l 1696/1698; 1173 K: fcc
+Ni + 3 Mo: s/l 1729/1729; 1173 K: fcc
+Ni + 6 Mo: s/l 1727/1728; 1173 K: fcc
+Ni + 3 Ti: s/l 1697/1704; 1173 K: fcc
+Ni + 6 Ti: s/l 1668/1676; 1173 K: fcc
+Ni + 3 W: s/l 1752/1760; 1173 K: fcc
+Ni + 6 W: s/l 1773/1779; 1173 K: fcc
+Ni + 6 Al, 10 Co: s/l 1748/1750; 1173 K: fcc
+Ni + 12 Al, 20 Co: s/l 1753/1760; 1173 K: fcc
+Ni + 6 Al, 10 Cr: s/l 1700/1703; 1173 K: fcc
+Ni + 12 Al, 20 Cr: s/l 1630/1648; 1173 K: fcc 0.61 + L12 0.39
+Ni + 6 Al, 3 Mo: s/l 1719/1721; 1173 K: fcc
+Ni + 12 Al, 6 Mo: s/l 1671/1689; 1173 K: fcc 0.64 + L12 0.36
+Ni + 6 Al, 3 Ti: s/l 1694/1702; 1173 K: fcc
+Ni + 12 Al, 6 Ti: s/l 1638/1656; 1173 K: L12 0.70 + fcc 0.30
+Ni + 6 Al, 3 W: s/l 1745/1758; 1173 K: fcc
+Ni + 12 Al, 6 W: s/l 1742/1770; 1173 K: L12 0.57 + fcc 0.43
+Ni + 10 Co, 10 Cr: s/l 1720/1721; 1173 K: fcc
+Ni + 20 Co, 20 Cr: s/l 1719/1721; 1173 K: fcc
+Ni + 10 Co, 3 Mo: s/l 1728/1728; 1173 K: fcc
+Ni + 20 Co, 6 Mo: s/l 1718/1721; 1173 K: fcc
+Ni + 10 Co, 3 Ti: s/l 1706/1713; 1173 K: fcc
+Ni + 20 Co, 6 Ti: s/l 1691/1706; 1173 K: fcc
+Ni + 10 Co, 3 W: s/l 1740/1742; 1173 K: fcc
+Ni + 20 Co, 6 W: s/l 1722/1727; 1173 K: fcc
+Ni + 10 Cr, 3 Mo: s/l 1709/1711; 1173 K: fcc
+Ni + 20 Cr, 6 Mo: s/l 1674/1682; 1173 K: fcc
+Ni + 10 Cr, 3 Ti: s/l 1672/1685; 1173 K: fcc
+Ni + 20 Cr, 6 Ti: s/l 1585/1625; 1173 K: fcc 0.87 + NI3TI D024 0.13
+Ni + 10 Cr, 3 W: s/l 1729/1740; 1173 K: fcc
+Ni + 20 Cr, 6 W: s/l 1710/1722; 1173 K: fcc
+Ni + 3 Mo, 3 Ti: s/l 1696/1704; 1173 K: fcc
+Ni + 6 Mo, 6 Ti: s/l 1654/1667; 1173 K: fcc
+Ni + 3 Mo, 3 W: s/l 1752/1760; 1173 K: fcc
+Ni + 6 Mo, 6 W: s/l 1765/1771; 1173 K: fcc
+Ni + 3 Ti, 3 W: s/l 1700/1725; 1173 K: fcc
+Ni + 6 Ti, 6 W: s/l 1604/1674; 1173 K: fcc
+
+# Architecture
+Input x has 7 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 7, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 7)
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Method: from prompt to BO loop</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">15</p>
+<div class="node" style="left:28pt;top:120pt;width:122pt;height:150pt;border:2pt solid #500000;background:#FFFFFF;"></div>
+<p class="small" style="left:34pt;top:126pt;width:110pt;text-align:center;color:#8A8F98;">Step 1</p>
+<p class="nodet" style="left:34pt;top:142pt;width:110pt;font-size:13pt;line-height:16pt;color:#500000;"><b>Prompt</b></p>
+<p class="nodet" style="left:34pt;top:178pt;width:110pt;font-size:10.5pt;line-height:13pt;">Task in words, input names, an all-zero d → 16 → 1 network. No data.</p>
+<div class="node" style="left:162pt;top:120pt;width:122pt;height:150pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:168pt;top:126pt;width:110pt;text-align:center;color:#8A8F98;">Step 2</p>
+<p class="nodet" style="left:168pt;top:142pt;width:110pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Written network</b></p>
+<p class="nodet" style="left:168pt;top:178pt;width:110pt;font-size:10.5pt;line-height:13pt;">The model returns every weight as text; three replies per model and task.</p>
+<div style="position:absolute;left:150pt;top:194pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:296pt;top:120pt;width:122pt;height:150pt;border:2pt solid #2A8C8C;background:#FFFFFF;"></div>
+<p class="small" style="left:302pt;top:126pt;width:110pt;text-align:center;color:#8A8F98;">Step 3</p>
+<p class="nodet" style="left:302pt;top:142pt;width:110pt;font-size:13pt;line-height:16pt;color:#2A8C8C;"><b>GP prior mean</b></p>
+<p class="nodet" style="left:302pt;top:178pt;width:110pt;font-size:10.5pt;line-height:13pt;">Mean a·m(x) + b; the GP models what the network leaves over.</p>
+<div style="position:absolute;left:284pt;top:194pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:430pt;top:120pt;width:122pt;height:150pt;border:2pt solid #C47F17;background:#FFFFFF;"></div>
+<p class="small" style="left:436pt;top:126pt;width:110pt;text-align:center;color:#8A8F98;">Step 4</p>
+<p class="nodet" style="left:436pt;top:142pt;width:110pt;font-size:13pt;line-height:16pt;color:#C47F17;"><b>Selection</b></p>
+<p class="nodet" style="left:436pt;top:178pt;width:110pt;font-size:10.5pt;line-height:13pt;">At each step the reply most correlated with the labels so far; none below r = 0.3.</p>
+<div style="position:absolute;left:418pt;top:194pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<!--NOTES
+The fourth step chooses among the replies. An arm has several candidate priors, for example the three replies of one model. At every step of the optimisation I compute the Pearson correlation between each candidate's output and the labels seen so far, and take the candidate with the highest correlation. If no candidate reaches 0.3, that step uses the plain Gaussian process with no prior. This rule was fixed and committed before the run.
+-->
+</body>
+</html>

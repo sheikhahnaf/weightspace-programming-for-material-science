@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">The prompt: Ti alloy Young's modulus</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">20</p>
+<div class="node" style="left:24pt;top:62pt;width:520pt;height:266pt;border:1pt solid #8A8F98;background:#FFFFFF;"></div>
+<p class="small" style="left:32pt;top:68.0pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">You are given a small neural network as its raw weights.</p>
+<p class="small" style="left:32pt;top:81.2pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">You cannot run it and you cannot train it.</p>
+<p class="small" style="left:32pt;top:94.4pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;"># Task</p>
+<p class="small" style="left:32pt;top:107.6pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">Write the weights of this network from what you know about materials.</p>
+<p class="small" style="left:32pt;top:120.8pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">No training data is given. Inputs are atomic fractions of Al, Cr, Cu, Fe, Hf,</p>
+<p class="small" style="left:32pt;top:134.0pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">Mn, Mo, Nb, Si, Sn, Ta, Ti, V, Zr, and the summed fraction of all other</p>
+<p class="small" style="left:32pt;top:147.2pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">elements; each row sums to 1. The target is Young's modulus in GPa. [...]</p>
+<p class="small" style="left:32pt;top:160.39999999999998pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">The network will be used as the prior mean of a Gaussian process that is then</p>
+<p class="small" style="left:32pt;top:173.6pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">given a few measured alloys, so getting the trends and the rough scale right</p>
+<p class="small" style="left:32pt;top:186.8pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">matters more than exact values.</p>
+<p class="small" style="left:32pt;top:200.0pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;"># Architecture</p>
+<p class="small" style="left:32pt;top:213.2pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">Input x has 15 entries. h0 = x.</p>
+<p class="small" style="left:32pt;top:226.39999999999998pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 15 ...)</p>
+<p class="small" style="left:32pt;top:239.6pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16 ...)</p>
+<p class="small" style="left:32pt;top:252.79999999999998pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;"># Weights</p>
+<p class="small" style="left:32pt;top:266.0pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">## net.0.weight shape=(16, 15)</p>
+<p class="small" style="left:32pt;top:279.2pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0      [16 rows of zeros, then biases and output layer]</p>
+<p class="small" style="left:32pt;top:292.4pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;"># Reply format</p>
+<p class="small" style="left:32pt;top:305.6pt;width:506pt;font-family:'Courier New',monospace;font-size:10.5pt;line-height:13.2pt;color:#1F1F1F;white-space:nowrap;">Reply with the complete weights in exactly the format shown above [...]</p>
+<div class="sbox" style="left:554pt;top:62pt;width:142pt;height:99pt;"></div>
+<p class="sboxt" style="left:563pt;top:69pt;width:124pt;font-size:12.5pt;line-height:17pt;">2,021 characters</p>
+<p class="sboxt" style="left:563pt;top:86pt;width:124pt;font-size:12.5pt;line-height:17pt;">no data rows</p>
+<p class="sboxt" style="left:563pt;top:103pt;width:124pt;font-size:12.5pt;line-height:17pt;">inputs named</p>
+<p class="sboxt" style="left:563pt;top:120pt;width:124pt;font-size:12.5pt;line-height:17pt;">zero network</p>
+<p class="sboxt" style="left:563pt;top:137pt;width:124pt;font-size:12.5pt;line-height:17pt;">same for 4 models</p>
+<p class="small" style="left:24pt;top:336pt;width:672pt;">Excerpt of the prompt as sent; [...] marks text left out here. The other four tasks differ only in the inputs, target and data source.</p>
+<!--NOTES
+This is the prompt for the titanium modulus task, shortened where the brackets show. It names the fifteen inputs in order, states the target and its unit, and names the data set and its size. It tells the model what the network is for: a prior mean for a Gaussian process, so trends and rough scale matter more than exact values. Then it gives the architecture as two lines of algebra and the network itself with every weight at zero, and asks for the complete weights back in the same format with no other text. The full prompt is 2,021 characters. No alloy and no measured value appears in it.
+-->
+</body>
+</html>

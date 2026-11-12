@@ -1,1 +1,1 @@
-{"build": ["TCNI12", "Al", "Cr", "Mo", "Ni"], "allow": 400.0}
+{"export": "ni_superalloy", "allow": 400.0}

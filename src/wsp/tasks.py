@@ -49,9 +49,8 @@ def _random_split(n: int, n_train: int) -> Callable[[int], tuple[np.ndarray, np.
     return split
 
 
-def _closed_loop(folder: str, seed_file: str, name: str, target: str, unit: str, what: str) -> Task:
-    """Surrogate memory of the published closed loop: train on the warm-start
-    pool, test on what the generators later proposed and the oracle scored."""
+def _closed_loop_table(folder: str, seed_file: str):
+    """Rows of every run of one closed loop, in the order the task uses."""
     import pandas as pd
 
     # Each run fitted its own PCA basis, so the same structure has different
@@ -62,9 +61,29 @@ def _closed_loop(folder: str, seed_file: str, name: str, target: str, unit: str,
         frame = pd.read_parquet(path).drop_duplicates("structure_id")
         frame = frame[np.isfinite(frame["y_cp"]) & (frame["y_cp"] > 0)]  # 0 marks a failed oracle call
         frames.append(frame.assign(run=run, pool=frame["oracle_source"] == "warm_start"))
-    table = pd.concat(frames, ignore_index=True)
+    return pd.concat(frames, ignore_index=True), len(frames)
+
+
+_CLOSED_LOOPS = {"loop_bulk_modulus": ("closed_loop_bm", "ltm_bm_seed_pool.parquet"),
+                 "loop_heat_capacity": ("closed_loop_cp", "ltm_seed_pool_v3.parquet")}
+
+
+def closed_loop_atoms(task_name: str) -> list:
+    """The crystal behind each row of a closed-loop task (ase Atoms), in row order.
+
+    The task's inputs are embedding coordinates with no physical meaning; this
+    gives access to the structure so that named descriptors can be computed."""
+    from ase.io.jsonio import decode
+
+    table, _ = _closed_loop_table(*_CLOSED_LOOPS[task_name])
+    return [decode(text) for text in table["atoms_json"]]
+
+
+def _closed_loop(folder: str, seed_file: str, name: str, target: str, unit: str, what: str) -> Task:
+    """Surrogate memory of the published closed loop: train on the warm-start
+    pool, test on what the generators later proposed and the oracle scored."""
+    table, n_runs = _closed_loop_table(folder, seed_file)
     run_of, in_pool = table["run"].to_numpy(), table["pool"].to_numpy()
-    n_runs = len(frames)
     n_pool = int(in_pool[run_of == 0].sum())
     n_test = [int((~in_pool[run_of == r]).sum()) for r in range(n_runs)]
 

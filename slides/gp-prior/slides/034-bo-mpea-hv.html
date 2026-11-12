@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">BO regret: MPEA hardness</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">34</p>
+<img src="../figures/deck/bo_regret_mpea_hardness.png" style="left:24.0pt;top:60.0pt;width:467.9pt;height:322.0pt;">
+<div class="sbox" style="left:506pt;top:110pt;width:190pt;height:116pt;"></div>
+<p class="sboxt" style="left:515pt;top:117pt;width:172pt;font-size:12.5pt;line-height:17pt;">Regret, HV</p>
+<p class="sboxt" style="left:515pt;top:134pt;width:172pt;font-size:12.5pt;line-height:17pt;">after 5 steps:</p>
+<p class="sboxt" style="left:515pt;top:151pt;width:172pt;font-size:12.5pt;line-height:17pt;">GP 296, Opus 178, Fable 118</p>
+<p class="sboxt" style="left:515pt;top:168pt;width:172pt;font-size:12.5pt;line-height:17pt;">after 25 steps:</p>
+<p class="sboxt" style="left:515pt;top:185pt;width:172pt;font-size:12.5pt;line-height:17pt;">GP 112, Opus 94, Fable 99</p>
+<p class="sboxt" style="left:515pt;top:202pt;width:172pt;font-size:12.5pt;line-height:17pt;">Sonnet 147, Haiku 140</p>
+<!--NOTES
+The same plot for hardness of multi-principal-element alloys, with the same line styles. The Fable 5.2 and Opus 5.5 arms drop fast: after five steps the regret is 118 and 178 Vickers units against 296 for the plain Gaussian process. They then stay near 99 for the rest of the run, and the plain Gaussian process reaches 112 only at the end. Neither arm closes the remaining gap of about 100 units within 25 steps. The Sonnet 5.5 and Haiku 5.5 arms end at 147 and 140, above the Gaussian process. Random search ends at 251.
+-->
+</body>
+</html>

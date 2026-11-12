@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Cost of a written network</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">42</p>
+<img src="../figures/deck/cost_per_reply.png" style="left:24.0pt;top:81.9pt;width:470.0pt;height:278.2pt;">
+<div class="sbox" style="left:500pt;top:110pt;width:196pt;height:116pt;"></div>
+<p class="sboxt" style="left:509pt;top:117pt;width:178pt;font-size:12.5pt;line-height:17pt;">Median per reply</p>
+<p class="sboxt" style="left:509pt;top:134pt;width:178pt;font-size:12.5pt;line-height:17pt;">Opus 5.5: 73 k tokens, 229 s</p>
+<p class="sboxt" style="left:509pt;top:151pt;width:178pt;font-size:12.5pt;line-height:17pt;">Fable 5.2: 9.4 k tokens, 47 s</p>
+<p class="sboxt" style="left:509pt;top:168pt;width:178pt;font-size:12.5pt;line-height:17pt;">Sonnet 5.5: 5.8 k tokens, 16 s</p>
+<p class="sboxt" style="left:509pt;top:185pt;width:178pt;font-size:12.5pt;line-height:17pt;">Haiku 5.5: 12 k tokens, 21 s</p>
+<p class="sboxt" style="left:509pt;top:202pt;width:178pt;font-size:12.5pt;line-height:17pt;">0 forward passes, 0 labels</p>
+<!--NOTES
+The left panel is output tokens per reply in thousands and the right panel is wall-clock seconds per reply. Each bar is the median of a model's 15 write runs and the whisker runs from the smallest to the largest. Output tokens include the model's reasoning. Opus 5.5 used a median of 73 thousand output tokens and 229 seconds, with a maximum of 119 thousand and 373 seconds. Fable 5.2 used 9.4 thousand tokens and 47 seconds; Sonnet 5.5 and Haiku 5.5 took 16 and 21 seconds. Prompt and reply tokens were not counted separately with the model's tokenizer. A prior is written once per task, before any measurement.
+-->
+</body>
+</html>

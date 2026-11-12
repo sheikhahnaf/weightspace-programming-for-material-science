@@ -121,16 +121,16 @@ SYSTEMS = {
         "database": "TCHEA8", "elements": ("Al", "Co", "Cr", "Fe", "Mn", "Ni"), "T": 1273.0, "size": 400,
         "sampling": HEA, "targets": HEA_TARGETS, "alloys": "Al-Co-Cr-Fe-Mn-Ni high-entropy alloys"},
     "refractory": {
-        "database": "TCHEA8", "elements": ("Mo", "Nb", "Ta", "Ti", "V", "W", "Zr"), "T": 1473.0, "size": 250,
+        "database": "TCHEA8", "elements": ("Mo", "Nb", "Ta", "Ti", "V", "W", "Zr"), "T": 1473.0, "size": 200,
         "sampling": HEA, "targets": HEA_TARGETS, "alloys": "Mo-Nb-Ta-Ti-V-W-Zr refractory high-entropy alloys"},
     "hf_refractory": {
-        "database": "TCHEA8", "elements": ("Hf", "Mo", "Nb", "Ta", "Ti", "Zr"), "T": 1273.0, "size": 250,
+        "database": "TCHEA8", "elements": ("Hf", "Mo", "Nb", "Ta", "Ti", "Zr"), "T": 1273.0, "size": 200,
         "sampling": HEA, "targets": HEA_TARGETS, "alloys": "Hf-Mo-Nb-Ta-Ti-Zr refractory high-entropy alloys"},
     "al_refractory": {
-        "database": "TCHEA8", "elements": ("Al", "Cr", "Mo", "Nb", "Ti"), "T": 1273.0, "size": 250,
+        "database": "TCHEA8", "elements": ("Al", "Cr", "Mo", "Nb", "Ti"), "T": 1273.0, "size": 200,
         "sampling": HEA, "targets": HEA_TARGETS, "alloys": "Al-Cr-Mo-Nb-Ti refractory high-entropy alloys"},
     "cu_ti_3d": {
-        "database": "TCHEA8", "elements": ("Co", "Cr", "Cu", "Fe", "Ni", "Ti"), "T": 1173.0, "size": 250,
+        "database": "TCHEA8", "elements": ("Co", "Cr", "Cu", "Fe", "Ni", "Ti"), "T": 1173.0, "size": 200,
         "sampling": HEA, "targets": HEA_TARGETS, "alloys": "Co-Cr-Cu-Fe-Ni-Ti high-entropy alloys"},
     "ni_superalloy": {
         "database": "TCNI12", "elements": ("Ni", "Al", "Co", "Cr", "Mo", "Ti", "W"), "T": 1173.0, "size": 250,
@@ -148,7 +148,7 @@ SYSTEMS = {
              "sigma, mu, P, R, Laves, eta, B2 and bcc",
              "mole fraction between 0 and 1", -1.0))},
     "ti_alloy": {
-        "database": "TCTI6", "elements": ("Ti", "Al", "Mo", "Nb", "Sn", "V", "Zr"), "T": 973.0, "size": 250,
+        "database": "TCTI6", "elements": ("Ti", "Al", "Mo", "Nb", "Sn", "V", "Zr"), "T": 973.0, "size": 200,
         "sampling": {"kind": "balance", "base": "Ti", "base_min": 0.60, "min_present": 4,
                      "solutes": {"Al": (0.12, 0.03), "Mo": (0.09, 0.03), "Nb": (0.12, 0.03), "Sn": (0.04, 0.02),
                                  "V": (0.12, 0.03), "Zr": (0.08, 0.04)}},
@@ -165,7 +165,7 @@ SYSTEMS = {
              "equilibrium mole fraction, at {T} K, of all phases other than the disordered bcc (beta) and hcp "
              "(alpha) solid solutions, for example Ti3Al", "mole fraction between 0 and 1", -1.0))},
     "steel": {
-        "database": "TCFE10", "elements": ("Fe", "Al", "C", "Cr", "Mn", "Mo", "Ni"), "T": 1173.0, "size": 250,
+        "database": "TCFE10", "elements": ("Fe", "Al", "C", "Cr", "Mn", "Mo", "Ni"), "T": 1173.0, "size": 200,
         "sampling": {"kind": "balance", "base": "Fe", "base_min": 0.50, "min_present": 4,
                      "solutes": {"Al": (0.06, 0.03), "C": (0.02, 0.01), "Cr": (0.24, 0.04), "Mn": (0.20, 0.05),
                                  "Mo": (0.04, 0.02), "Ni": (0.20, 0.04)}},
@@ -178,7 +178,7 @@ SYSTEMS = {
              "equilibrium mole fraction, at {T} K, of all phases other than austenite (fcc) and ferrite (bcc): "
              "carbides, sigma, Laves and other intermetallic phases", "mole fraction between 0 and 1", -1.0))},
     "al_alloy": {
-        "database": "TCAL9", "elements": ("Al", "Cu", "Mg", "Mn", "Si", "Zn"), "T": 673.0, "size": 250,
+        "database": "TCAL9", "elements": ("Al", "Cu", "Mg", "Mn", "Si", "Zn"), "T": 673.0, "size": 200,
         "sampling": {"kind": "balance", "base": "Al", "base_min": 0.85, "min_present": 4,
                      "solutes": {"Cu": (0.04, 0.01), "Mg": (0.04, 0.01), "Mn": (0.01, 0.005), "Si": (0.04, 0.01),
                                  "Zn": (0.04, 0.01)}},
@@ -258,7 +258,7 @@ def fact_compositions(system: str) -> list[dict[str, float]]:
 
     High-entropy systems: every pure element; every binary at 25, 50 and 75 at.%; every equimolar ternary.
     Balance systems: the pure base element; base + one solute at half and at the whole of that solute's
-    range; base + two solutes, each at half its range.
+    range; base + two solutes, both at half and both at the whole of their ranges.
     """
     spec = SYSTEMS[system]
     elements, sampling = spec["elements"], spec["sampling"]
@@ -274,7 +274,7 @@ def fact_compositions(system: str) -> list[dict[str, float]]:
         for el, (top, _) in solutes.items():
             points += [{base: round(1 - c, 4), el: round(c, 4)} for c in (top / 2, top)]
         for (a, (ta, _)), (b, (tb, _)) in itertools.combinations(solutes.items(), 2):
-            points.append({base: round(1 - ta / 2 - tb / 2, 4), a: round(ta / 2, 4), b: round(tb / 2, 4)})
+            points += [{base: round(1 - f * (ta + tb), 4), a: round(f * ta, 4), b: round(f * tb, 4)} for f in (0.5, 1.0)]
     return points
 
 
@@ -636,10 +636,11 @@ def run_points(engine: Engine, system: str, what: str, points: list[tuple[str, d
               f"{record['equilibria']} equilibria {record['seconds']} s {result['failed'] or ''}", flush=True)
 
 
-def stage_system(engine: Engine, system: str, limit: int | None) -> None:
+def stage_system(engine: Engine, system: str, limit: int | None, pool: bool = True) -> None:
     check_no_leak(system)
     run_points(engine, system, "facts", [(label(x), x) for x in fact_compositions(system)], limit)
-    run_points(engine, system, "pool", [(f"{system}-{i:03d}", x) for i, x in enumerate(pool_compositions(system))], limit)
+    if pool:
+        run_points(engine, system, "pool",     [(f"{system}-{i:03d}", x) for i, x in enumerate(pool_compositions(system))], limit)
 
 
 # --------------------------------------------------------------------- export
@@ -865,7 +866,7 @@ def write_readme(registry: dict, summary: dict, info: dict) -> None:
         "references, is computed only for pure elements, binaries and ternaries: for the high-entropy systems every "
         "pure element, every binary at 25, 50 and 75 at.%, and every equimolar ternary; for the balance systems the "
         "pure base element, the base with one solute at half and the whole of its range, and the base with two "
-        "solutes each at half its range. Every pool composition has at least four elements, so no fact can be a "
+        "solutes, both at half and both at the whole of their ranges. Every pool composition has at least four elements, so no fact can be a "
         "pool composition; `check_no_leak` stops the build otherwise and `tests/test_calphad.py` checks the files.",
         "",
         "## What was built",
@@ -926,7 +927,7 @@ def run_stages(stage: str, systems: tuple[str, ...], limit: int | None) -> None:
         if stage == "all":
             stage_anchors(engine)
         for system in systems:
-            stage_system(engine, system, limit)
+            stage_system(engine, system, limit, pool=stage == "all")
             beat({"export": system}, BUILD_LIMIT)
             stage_export(getattr(tc_python, "__version__", None))
 
@@ -966,7 +967,8 @@ def supervise(argv: list[str]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    parser.add_argument("--stage", choices=("all", "export"), default="all")
+    parser.add_argument("--stage", choices=("all", "facts", "export"), default="all",
+                        help="facts: only the sub-system facts of the chosen systems")
     parser.add_argument("--system", nargs="+", choices=ORDER, default=list(ORDER))
     parser.add_argument("--limit", type=int, default=None, help="stop each stage of a system after this many compositions")
     parser.add_argument("--worker", action="store_true", help="internal: run the calculations in this process")

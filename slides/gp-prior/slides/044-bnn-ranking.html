@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">BNN extension: prior mean, start or weight prior</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">44</p>
+<img src="../figures/deck/bnn_ranking.png" style="left:24.0pt;top:70.8pt;width:474.0pt;height:300.4pt;">
+<div class="sbox" style="left:506pt;top:110pt;width:190pt;height:116pt;"></div>
+<p class="sboxt" style="left:515pt;top:117pt;width:172pt;font-size:12.5pt;line-height:17pt;">ρ at 10 or 20 labels</p>
+<p class="sboxt" style="left:515pt;top:134pt;width:172pt;font-size:12.5pt;line-height:17pt;">GP: 0.53 → 0.69 (prior mean)</p>
+<p class="sboxt" style="left:515pt;top:151pt;width:172pt;font-size:12.5pt;line-height:17pt;">MC dropout: 0.54 → 0.65</p>
+<p class="sboxt" style="left:515pt;top:168pt;width:172pt;font-size:12.5pt;line-height:17pt;">ensemble start: 0.50 → 0.57</p>
+<p class="sboxt" style="left:515pt;top:185pt;width:172pt;font-size:12.5pt;line-height:17pt;">HMC start: 0.45 → 0.40</p>
+<p class="sboxt" style="left:515pt;top:202pt;width:172pt;font-size:12.5pt;line-height:17pt;">HMC weight prior: 0.21</p>
+<!--NOTES
+Each bar is the mean Spearman correlation over model and task cells: the Opus 5.5 and Fable 5.2 networks on six tasks, the five alloy tasks and Matbench bulk modulus. The left panel is 10 or 20 labels and the right panel 50 or 200. Pale bars are each family's baseline and dark bars use the written network. As a prior mean the network helps at few labels: the Gaussian process goes from 0.53 to 0.69 and MC dropout from 0.54 to 0.65. As a starting point it does not improve MC dropout, gives a deep ensemble 0.50 to 0.57, and gives Hamiltonian Monte Carlo nothing. Centring the weight prior on it is the worst arm, at 0.21.
+-->
+</body>
+</html>

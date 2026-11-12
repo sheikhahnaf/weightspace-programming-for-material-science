@@ -1,0 +1,48 @@
+/* Shared look for every slide: the qualifying-exam template on a 16:9 page. */
+@font-face { font-family: Calibri; src: url('file:///Applications/Microsoft%20PowerPoint.app/Contents/Resources/DFonts/Calibri.ttf'); font-weight: normal; }
+@font-face { font-family: Calibri; src: url('file:///Applications/Microsoft%20PowerPoint.app/Contents/Resources/DFonts/Calibrib.ttf'); font-weight: bold; }
+@font-face { font-family: Calibri; src: url('file:///Applications/Microsoft%20PowerPoint.app/Contents/Resources/DFonts/Calibrii.ttf'); font-style: italic; }
+
+html { background: #ffffff; }
+body { width: 720pt; height: 405pt; margin: 0; padding: 0; position: relative; overflow: hidden;
+  background: #ffffff; background-size: 720pt 405pt; background-repeat: no-repeat;
+  font-family: Calibri, Arial, sans-serif; color: #2B2B2B; }
+p, h1, h2 { margin: 0; }
+img { display: block; position: absolute; }
+
+/* title, rule and wordmark of a content slide */
+h1.t { position: absolute; left: 24pt; top: 13pt; width: 494pt; white-space: nowrap; overflow: hidden; font-size: 28pt; line-height: 32pt; font-weight: bold; color: #500000; }
+.rule { position: absolute; left: 24pt; top: 50pt; width: 672pt; height: 1.5pt; background: #500000; }
+.wm { position: absolute; left: 528pt; top: 12pt; width: 170pt; }
+.wm p { font-size: 11pt; line-height: 13pt; color: #500000; text-align: right; }
+.wm p.b { font-weight: bold; }
+.wmline { position: absolute; left: 522pt; top: 13pt; width: 1pt; height: 26pt; background: #500000; }
+
+/* footer bar with the department at left and the slide number in a white block */
+.foot { position: absolute; left: 0; top: 388pt; width: 720pt; height: 17pt; background: #3C0A1E; }
+.foottxt { position: absolute; left: 40pt; top: 390pt; width: 400pt; font-size: 11pt; line-height: 13pt; color: #FFFFFF; }
+.numblk { position: absolute; left: 648pt; top: 389pt; width: 56pt; height: 15pt; background: #FFFFFF; }
+.num { position: absolute; left: 648pt; top: 390pt; width: 56pt; font-size: 11pt; line-height: 13pt; color: #3C0A1E; text-align: center; font-weight: bold; }
+
+/* labels, captions and the small red-bordered summary box */
+.lab { position: absolute; font-size: 14pt; line-height: 17pt; color: #500000; font-weight: bold; }
+.cap { position: absolute; font-size: 14pt; line-height: 18pt; color: #444444; }
+.small { position: absolute; font-size: 11pt; line-height: 13pt; color: #555555; }
+.cite { position: absolute; left: 400pt; top: 372pt; width: 296pt; font-size: 10pt; line-height: 12pt; color: #555555; text-align: right; }
+.sbox { position: absolute; background: #FFFFFF; border: 2pt solid #7A1E1E; }
+.sboxt { position: absolute; font-size: 14pt; line-height: 18pt; color: #2B2B2B; }
+
+/* recap: the blurred previous slide with one centered box */
+.rbox { position: absolute; left: 100pt; width: 520pt; background: #FFFFFF; border: 4pt solid #7A1E1E; }
+.rtxt { position: absolute; left: 118pt; width: 484pt; font-size: 18pt; line-height: 25pt; color: #1F1F1F; }
+
+/* dark slides: title, outline, dividers */
+.dk h1 { color: #FFFFFF; }
+.oh { position: absolute; left: 30pt; top: 18pt; font-size: 30pt; line-height: 36pt; font-weight: bold; color: #FFFFFF; }
+.oi { position: absolute; left: 44pt; width: 420pt; font-size: 20pt; line-height: 24pt; color: #FFFFFF; }
+.oi.on { color: #FFD400; font-weight: bold; }
+
+/* boxed nodes */
+.node { position: absolute; background: #FFFFFF; border: 1.5pt solid #1F3A5F; }
+.nodet { position: absolute; font-size: 14pt; line-height: 17pt; color: #1F1F1F; text-align: center; }
+.panel { position: absolute; background: #FFFFFF; border: 2.5pt solid #D9822B; }

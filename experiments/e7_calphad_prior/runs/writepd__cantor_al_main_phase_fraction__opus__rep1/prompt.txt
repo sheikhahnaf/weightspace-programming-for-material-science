@@ -1,0 +1,90 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. Inputs are atomic fractions of Al, Co, Cr, Fe, Mn, Ni in Al-Co-Cr-Fe-Mn-Ni high-entropy alloys; each row sums to 1. Composition range: every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present. The target is the equilibrium mole fraction, at 1273 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases) in mole fraction between 0 and 1, calculated at 1 atm with the CALPHAD method (Thermo-Calc, TCHEA8 database). 397 alloys.
+
+Input order: x[0] = x_Al, x[1] = x_Co, x[2] = x_Cr, x[3] = x_Fe, x[4] = x_Mn, x[5] = x_Ni.
+
+The output y must be your best estimate of the equilibrium mole fraction, at 1273 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases) in mole fraction between 0 and 1. The network will be used as the prior mean of a Gaussian process that is then given a few measured alloys, so getting the trends and the rough scale right matters more than exact values.
+
+# Phase-diagram facts for sub-systems (computed with CALPHAD)
+These facts cover only sub-systems with at most three elements: the 6 pure elements, the 15 binary systems at 25, 50 and 75 at.% of the second element, and the 20 equimolar ternaries. Nothing here was calculated for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, TCHEA8 database, 1 atm, the same database as the target.
+
+Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable phases at 1273 K with their mole fractions, where bcc, fcc and hcp are the disordered solid solutions, B2 and L12 are ordered, and the same phase listed twice is a miscibility gap.
+
+Al: melts 934; 1273 K: liquid
+Co: melts 1768; 1273 K: fcc
+Cr: melts 2180; 1273 K: bcc
+Fe: melts 1811; 1273 K: fcc
+Mn: melts 1519; 1273 K: CUB A13
+Ni: melts 1728; 1273 K: fcc
+
+Al-Co at 25 | 50 | 75 at.% Co: s/l 1417/1586; 1273 K: AL3CO1 | s/l 1910/1912; 1273 K: B2 | s/l 1673/1742; 1273 K: B2 0.63 + fcc 0.37. Lowest liquidus 934 at 0 at.% Co.
+Al-Cr at 25 | 50 | 75 at.% Cr: s/l 1298/1499; 1273 K: AL4CR 0.54 + AL9CR4 LT 0.46 | s/l 1600/1794; 1273 K: bcc 0.53 + AL8CR5 LT D810 0.47 | s/l 1968/2077; 1273 K: bcc. Lowest liquidus 934 at 0 at.% Cr.
+Al-Fe at 25 | 50 | 75 at.% Fe: s/l 1424/1428; 1273 K: AL13FE4 0.92 + AL5FE2 0.08 | s/l 1520/1591; 1273 K: B2 | s/l 1763/1774; 1273 K: bcc. Lowest liquidus 934 at 0 at.% Fe.
+Al-Mn at 25 | 50 | 75 at.% Mn: s/l 1195/1305; 1273 K: liquid 0.53 + AL11MN4 HT 0.47 | s/l 1441/1483; 1273 K: bcc | s/l 1571/1573; 1273 K: CUB A13. Lowest liquidus 934 at 0 at.% Mn.
+Al-Ni at 25 | 50 | 75 at.% Ni: s/l 1143/1426; 1273 K: liquid 0.74 + AL3NI2 D519 0.26 | s/l 1954/1963; 1273 K: B2 | s/l 1642/1642; 1273 K: L12. Lowest liquidus 934 at 0 at.% Ni.
+Co-Cr at 25 | 50 | 75 at.% Cr: s/l 1720/1724; 1273 K: fcc | s/l 1670/1694; 1273 K: sigma 0.76 + fcc 0.24 | s/l 1817/1903; 1273 K: sigma 0.53 + bcc 0.47. Lowest liquidus 1668 at 45 at.% Cr.
+Co-Fe at 25 | 50 | 75 at.% Fe: s/l 1752/1752; 1273 K: fcc | s/l 1750/1750; 1273 K: fcc | s/l 1768/1769; 1273 K: fcc. Lowest liquidus 1748 at 40 at.% Fe.
+Co-Mn at 25 | 50 | 75 at.% Mn: s/l 1573/1598; 1273 K: fcc | s/l 1458/1469; 1273 K: fcc | s/l 1437/1437; 1273 K: CUB A13. Lowest liquidus 1434 at 65 at.% Mn.
+Co-Ni at 25 | 50 | 75 at.% Ni: s/l 1753/1754; 1273 K: fcc | s/l 1742/1742; 1273 K: fcc | s/l 1733/1733; 1273 K: fcc. Lowest liquidus 1728 at 100 at.% Ni.
+Cr-Fe at 25 | 50 | 75 at.% Fe: s/l 2033/2061; 1273 K: bcc | s/l 1865/1894; 1273 K: bcc | s/l 1790/1790; 1273 K: bcc. Lowest liquidus 1789 at 80 at.% Fe.
+Cr-Mn at 25 | 50 | 75 at.% Mn: s/l 1900/2020; 1273 K: bcc | s/l 1708/1860; 1273 K: bcc | s/l 1585/1651; 1273 K: sigma. Lowest liquidus 1519 at 100 at.% Mn.
+Cr-Ni at 25 | 50 | 75 at.% Ni: s/l 1686/1871; 1273 K: bcc 0.61 + fcc 0.39 | s/l 1618/1630; 1273 K: fcc 0.90 + bcc 0.10 | s/l 1686/1689; 1273 K: fcc. Lowest liquidus 1628 at 45 at.% Ni.
+Fe-Mn at 25 | 50 | 75 at.% Mn: s/l 1675/1698; 1273 K: fcc | s/l 1582/1601; 1273 K: fcc | s/l 1522/1527; 1273 K: CUB A13. Lowest liquidus 1508 at 90 at.% Mn.
+Fe-Ni at 25 | 50 | 75 at.% Ni: s/l 1744/1747; 1273 K: fcc | s/l 1717/1717; 1273 K: fcc | s/l 1721/1721; 1273 K: fcc. Lowest liquidus 1716 at 55 at.% Ni.
+Mn-Ni at 25 | 50 | 75 at.% Ni: s/l 1321/1332; 1273 K: fcc | s/l 1317/1326; 1273 K: fcc | s/l 1476/1517; 1273 K: fcc. Lowest liquidus 1297 at 40 at.% Ni.
+
+Al-Co-Cr equimolar: s/l 1728/1743; 1273 K: B2 0.70 + bcc 0.30
+Al-Co-Fe equimolar: s/l 1704/1738; 1273 K: B2
+Al-Co-Mn equimolar: s/l 1558/1696; 1273 K: B2
+Al-Co-Ni equimolar: s/l 1795/1870; 1273 K: B2
+Al-Cr-Fe equimolar: s/l 1664/1755; 1273 K: B2
+Al-Cr-Mn equimolar: s/l 1625/1737; 1273 K: bcc
+Al-Cr-Ni equimolar: s/l 1695/1726; 1273 K: B2 0.67 + bcc 0.33
+Al-Fe-Mn equimolar: s/l 1783/2087; 1273 K: hcp
+Al-Fe-Ni equimolar: s/l 1776/1799; 1273 K: B2
+Al-Mn-Ni equimolar: s/l 1538/1674; 1273 K: B2
+Co-Cr-Fe equimolar: s/l 1671/1682; 1273 K: fcc 0.85 + sigma 0.15
+Co-Cr-Mn equimolar: s/l 1487/1563; 1273 K: sigma
+Co-Cr-Ni equimolar: s/l 1707/1713; 1273 K: fcc
+Co-Fe-Mn equimolar: s/l 1556/1585; 1273 K: fcc
+Co-Fe-Ni equimolar: s/l 1732/1732; 1273 K: fcc
+Co-Mn-Ni equimolar: s/l 1456/1492; 1273 K: fcc
+Cr-Fe-Mn equimolar: s/l 1692/1755; 1273 K: bcc
+Cr-Fe-Ni equimolar: s/l 1663/1669; 1273 K: fcc
+Cr-Mn-Ni equimolar: s/l 1388/1626; 1273 K: fcc 0.72 + bcc 0.28
+Fe-Mn-Ni equimolar: s/l 1488/1536; 1273 K: fcc
+
+# Architecture
+Input x has 6 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 6, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 6)
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

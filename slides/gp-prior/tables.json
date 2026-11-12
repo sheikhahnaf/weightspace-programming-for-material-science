@@ -1,0 +1,472 @@
+{
+ "gp-baseline-table.html": {
+  "rows": [
+   [
+    "Task",
+    "Train / test",
+    "R²",
+    "Spearman ρ",
+    "95% coverage",
+    "Top-decile bias"
+   ],
+   [
+    "Closed-loop bulk modulus (ORB embeddings)",
+    "500 / 82",
+    "0.81 ± 0.07",
+    "0.88 ± 0.07",
+    "0.79 ± 0.09",
+    "−27.4 ± 5.7 GPa"
+   ],
+   [
+    "Closed-loop heat capacity (ORB embeddings)",
+    "445 / 35",
+    "0.74 ± 0.16",
+    "0.83 ± 0.05",
+    "0.85 ± 0.06",
+    "−0.120 ± 0.094 J/g/K"
+   ],
+   [
+    "MPEA yield strength (atomic fractions)",
+    "200 / 522",
+    "0.55 ± 0.06",
+    "0.78 ± 0.02",
+    "0.91 ± 0.01",
+    "−547 ± 58 MPa"
+   ],
+   [
+    "Ti alloy Young's modulus (atomic fractions)",
+    "120 / 117",
+    "0.59 ± 0.07",
+    "0.75 ± 0.08",
+    "0.89 ± 0.03",
+    "−16.6 ± 6.8 GPa"
+   ],
+   [
+    "Matbench log bulk modulus (PCA)",
+    "500 / 10,487",
+    "0.57 ± 0.02",
+    "0.79 ± 0.01",
+    "0.93 ± 0.01",
+    "−0.134 ± 0.012"
+   ]
+  ],
+  "colW": [
+   3.13,
+   1.1,
+   1.05,
+   1.15,
+   1.2,
+   1.7
+  ],
+  "fontSize": 11.5
+ },
+ "tasks-table.html": {
+  "rows": [
+   [
+    "Task",
+    "Data source",
+    "Alloys",
+    "Inputs (atomic)",
+    "Target and goal",
+    "Best in pool",
+    "Weights"
+   ],
+   [
+    "Ti alloy Young's modulus",
+    "Salvador et al., Sci. Data (2022)",
+    "237",
+    "15 fractions",
+    "Young's modulus, minimise",
+    "45 GPa",
+    "273"
+   ],
+   [
+    "Ti alloy yield strength",
+    "Salvador et al. (2022)",
+    "271",
+    "15 fractions",
+    "yield strength, maximise",
+    "1,880 MPa",
+    "273"
+   ],
+   [
+    "Ti alloy hardness",
+    "Salvador et al. (2022)",
+    "152",
+    "15 fractions",
+    "Vickers hardness, maximise",
+    "560 HV",
+    "273"
+   ],
+   [
+    "MPEA hardness",
+    "Borg et al., Sci. Data (2020)",
+    "530",
+    "22 fractions",
+    "Vickers hardness, maximise",
+    "1,183 HV",
+    "385"
+   ],
+   [
+    "MPEA yield strength",
+    "Borg et al. (2020)",
+    "722",
+    "24 fractions",
+    "yield strength at room T, maximise",
+    "3,416 MPa",
+    "417"
+   ]
+  ],
+  "colW": [
+   1.75,
+   2.1,
+   0.6,
+   1.15,
+   2.2,
+   0.85,
+   0.68
+  ],
+  "fontSize": 11.5
+ },
+ "bo-settings.html": {
+  "rows": [
+   [
+    "Setting",
+    "Value"
+   ],
+   [
+    "Search",
+    "pool-based: every alloy of the data set is a candidate; a step labels one alloy"
+   ],
+   [
+    "Initial labels",
+    "5 alloys drawn at random; the same 5 for every arm of a seed"
+   ],
+   [
+    "Steps and acquisition",
+    "25 steps; expected improvement on the GP posterior, target signed so that higher is better"
+   ],
+   [
+    "Surrogate",
+    "exact GP (BoTorch SingleTaskGP), refitted at every step, with or without the selected prior mean"
+   ],
+   [
+    "Seeds",
+    "20 per task and arm"
+   ],
+   [
+    "Regret",
+    "best value in the pool minus best value found so far"
+   ],
+   [
+    "Area under regret",
+    "mean regret over steps 1 to 25, one number per seed"
+   ],
+   [
+    "Test",
+    "paired Wilcoxon signed-rank against the plain GP over the 20 seeds, on the area"
+   ],
+   [
+    "Correction",
+    "Holm, across the six non-random arms of a task"
+   ]
+  ],
+  "colW": [
+   2.1,
+   7.23
+  ],
+  "fontSize": 12
+ },
+ "controls-table.html": {
+  "rows": [
+   [
+    "Arm",
+    "Prior mean",
+    "Language model",
+    "Candidates per task"
+   ],
+   [
+    "Random search",
+    "none; the next alloy is drawn at random",
+    "no",
+    "none"
+   ],
+   [
+    "Plain GP",
+    "constant; expected improvement",
+    "no",
+    "none"
+   ],
+   [
+    "Handbook rule of mixtures",
+    "x · elemental table from pymatgen: Young's modulus for the modulus task, Vickers hardness for strength and hardness tasks",
+    "no",
+    "1"
+   ],
+   [
+    "Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5 (one arm each)",
+    "that model's valid replies, selected by the labels",
+    "yes",
+    "2 or 3"
+   ],
+   [
+    "All replies",
+    "every valid reply of every model, selected by the labels",
+    "yes",
+    "11 or 12"
+   ],
+   [
+    "Written network alone",
+    "no GP: alloys taken in the order of m(x); 8 seeds, two tasks, Fable 5.2 replies",
+    "yes",
+    "1"
+   ]
+  ],
+  "colW": [
+   2.5,
+   4.4,
+   1.2,
+   1.23
+  ],
+  "fontSize": 11.5
+ },
+ "auc-table.html": {
+  "rows": [
+   [
+    "Task (unit)",
+    "Plain GP",
+    "Handbook",
+    "Opus 5.5",
+    "Fable 5.2",
+    "Sonnet 5.5",
+    "Haiku 5.5",
+    "All replies"
+   ],
+   [
+    "Ti Young's modulus (GPa)",
+    "7.68",
+    "7.02",
+    "5.55 * (0.004)",
+    "6.92",
+    "7.34",
+    "7.61",
+    "5.41 * (0.004)"
+   ],
+   [
+    "Ti yield strength (MPa)",
+    "314",
+    "327",
+    "153 * (0.047)",
+    "148 * (0.026)",
+    "216 * (0.043)",
+    "255",
+    "139 * (0.026)"
+   ],
+   [
+    "Ti hardness (HV)",
+    "40.1",
+    "40.1",
+    "5.95 * (0.003)",
+    "10.0 * (0.003)",
+    "11.3 * (0.003)",
+    "27.2",
+    "6.13 * (0.003)"
+   ],
+   [
+    "MPEA hardness (HV)",
+    "226",
+    "216",
+    "137 * (0.006)",
+    "120 * (0.006)",
+    "247",
+    "259",
+    "144 * (0.010)"
+   ],
+   [
+    "MPEA yield strength (MPa)",
+    "772",
+    "676",
+    "900",
+    "966",
+    "735",
+    "641",
+    "935"
+   ]
+  ],
+  "colW": [
+   1.93,
+   0.8,
+   0.85,
+   1.2,
+   1.2,
+   1.2,
+   0.95,
+   1.2
+  ],
+  "fontSize": 11.5
+ },
+ "limits.html": {
+  "rows": [
+   [
+    "Kind",
+    "Limit"
+   ],
+   [
+    "Scope",
+    "one pool per task; pool-based BO on existing measurements, no real closed loop"
+   ],
+   [
+    "Scope",
+    "four models from one vendor; three replies per model and task"
+   ],
+   [
+    "Scope",
+    "inputs are named element fractions; no structure-based surrogate, where inputs have no names"
+   ],
+   [
+    "Known fault",
+    "MPEA yield strength: Opus 5.5 and Fable 5.2 priors worse than the plain GP in 14 of 20 seeds; cause not diagnosed"
+   ],
+   [
+    "Known fault",
+    "intervals overconfident with the prior mean at few labels (coverage 0.66 against 0.71); slope and offset uncertainty not propagated"
+   ],
+   [
+    "Known fault",
+    "fitted slope unstable on 5 to 10 labels; weak priors (Haiku 5.5, Ti hardness) lower ranking"
+   ],
+   [
+    "Not run",
+    "a mean network of the same shape fitted by gradient descent on the first labels"
+   ],
+   [
+    "Not run",
+    "prompt and reply tokens from the model's tokenizer; tool use limited by instruction and audit, not by a sandbox"
+   ],
+   [
+    "Not run",
+    "for the BNNs: SGHMC, linearised Laplace, a tuned HMC"
+   ]
+  ],
+  "colW": [
+   1.3,
+   8.03
+  ],
+  "fontSize": 11.5
+ },
+ "b-regret-steps.html": {
+  "rows": [
+   [
+    "Task (unit)",
+    "Plain GP: 5 / 10 / 25",
+    "Opus 5.5: 5 / 10 / 25",
+    "Fable 5.2: 5 / 10 / 25",
+    "All replies: 5 / 10 / 25"
+   ],
+   [
+    "Ti Young's modulus (GPa)",
+    "8.9 / 8.1 / 5.6",
+    "9.1 / 6.4 / 1.6",
+    "9.7 / 7.5 / 3.5",
+    "8.9 / 6.4 / 1.5"
+   ],
+   [
+    "Ti yield strength (MPa)",
+    "479 / 324 / 114",
+    "331 / 114 / 17",
+    "317 / 164 / 0",
+    "335 / 124 / 9"
+   ],
+   [
+    "Ti hardness (HV)",
+    "81.8 / 41.0 / 1.6",
+    "2.0 / 2.0 / 2.0",
+    "13.0 / 2.0 / 2.0",
+    "7.5 / 2.0 / 1.9"
+   ],
+   [
+    "MPEA hardness (HV)",
+    "296 / 227 / 112",
+    "178 / 99 / 94",
+    "118 / 109 / 99",
+    "203 / 124 / 99"
+   ],
+   [
+    "MPEA yield strength (MPa)",
+    "1,138 / 753 / 522",
+    "1,118 / 988 / 499",
+    "1,181 / 1,024 / 698",
+    "1,173 / 1,067 / 588"
+   ]
+  ],
+  "colW": [
+   2.13,
+   1.8,
+   1.8,
+   1.8,
+   1.8
+  ],
+  "fontSize": 12
+ },
+ "b-written-alone.html": {
+  "rows": [
+   [
+    "Task",
+    "Arm",
+    "Regret after 10",
+    "Regret after 25",
+    "Seeds reaching the top 5%"
+   ],
+   [
+    "MPEA yield strength (MPa)",
+    "random search",
+    "960",
+    "740",
+    "7 of 8"
+   ],
+   [
+    "",
+    "plain GP",
+    "393",
+    "351",
+    "8 of 8"
+   ],
+   [
+    "",
+    "written network alone, replies 1 / 2 / 3",
+    "1,070 / 1,083 / 1,086",
+    "584 / 753 / 773",
+    "8 / 8 / 8"
+   ],
+   [
+    "Ti Young's modulus (GPa)",
+    "random search",
+    "10.4",
+    "7.5",
+    "4 of 8"
+   ],
+   [
+    "",
+    "plain GP",
+    "8.4",
+    "6.0",
+    "7 of 8"
+   ],
+   [
+    "",
+    "written network alone, replies 1 / 2 / 3",
+    "13.4 / 0.0 / 13.0",
+    "7.0 / 0.0 / 10.0",
+    "8 / 8 / 0"
+   ]
+  ],
+  "colW": [
+   2.2,
+   2.9,
+   1.6,
+   1.4,
+   1.23
+  ],
+  "fontSize": 11.5
+ }
+}

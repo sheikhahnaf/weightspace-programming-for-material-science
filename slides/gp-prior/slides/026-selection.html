@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Selection of a prior from the first labels</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">26</p>
+<div class="node" style="left:30pt;top:96pt;width:150pt;height:136pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:36pt;top:102pt;width:138pt;text-align:center;color:#8A8F98;">Per arm</p>
+<p class="nodet" style="left:36pt;top:118pt;width:138pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Candidates</b></p>
+<p class="nodet" style="left:36pt;top:154pt;width:138pt;font-size:10.5pt;line-height:13pt;">The valid replies of one model (2 or 3), or of all models (11 or 12).</p>
+<div class="node" style="left:198pt;top:96pt;width:150pt;height:136pt;border:2pt solid #2A8C8C;background:#FFFFFF;"></div>
+<p class="small" style="left:204pt;top:102pt;width:138pt;text-align:center;color:#8A8F98;">Each BO step</p>
+<p class="nodet" style="left:204pt;top:118pt;width:138pt;font-size:13pt;line-height:16pt;color:#2A8C8C;"><b>Correlation</b></p>
+<p class="nodet" style="left:204pt;top:154pt;width:138pt;font-size:10.5pt;line-height:13pt;">Pearson r between each candidate's output and the labels so far.</p>
+<div style="position:absolute;left:180pt;top:164pt;width:18pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:366pt;top:96pt;width:150pt;height:136pt;border:2pt solid #C47F17;background:#FFFFFF;"></div>
+<p class="small" style="left:372pt;top:102pt;width:138pt;text-align:center;color:#8A8F98;">Threshold 0.3</p>
+<p class="nodet" style="left:372pt;top:118pt;width:138pt;font-size:13pt;line-height:16pt;color:#C47F17;"><b>Choice</b></p>
+<p class="nodet" style="left:372pt;top:154pt;width:138pt;font-size:10.5pt;line-height:13pt;">Highest r is used; if none exceeds 0.3, the plain GP is used.</p>
+<div style="position:absolute;left:348pt;top:164pt;width:18pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:534pt;top:96pt;width:150pt;height:136pt;border:2pt solid #500000;background:#FFFFFF;"></div>
+<p class="small" style="left:540pt;top:102pt;width:138pt;text-align:center;color:#8A8F98;">Slope fitted</p>
+<p class="nodet" style="left:540pt;top:118pt;width:138pt;font-size:13pt;line-height:16pt;color:#500000;"><b>Use</b></p>
+<p class="nodet" style="left:540pt;top:154pt;width:138pt;font-size:10.5pt;line-height:13pt;">The chosen reply enters as a·m(x) + b with a, b fitted on the labels.</p>
+<div style="position:absolute;left:516pt;top:164pt;width:18pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="sbox" style="left:150pt;top:262pt;width:420pt;height:86pt;"></div>
+<p class="sboxt" style="left:159pt;top:269pt;width:402pt;font-size:13pt;line-height:18pt;">rule fixed and committed before the run</p>
+<p class="sboxt" style="left:159pt;top:287pt;width:402pt;font-size:13pt;line-height:18pt;">re-evaluated at every one of the 25 steps</p>
+<p class="sboxt" style="left:159pt;top:305pt;width:402pt;font-size:13pt;line-height:18pt;">Opus 5.5 arm: a prior used on 89 to 100% of steps</p>
+<p class="sboxt" style="left:159pt;top:323pt;width:402pt;font-size:13pt;line-height:18pt;">handbook rule on Ti hardness: used on 0% of steps</p>
+<!--NOTES
+Replies to the same prompt differ, so the method needs a way to choose among them that uses only the labels already measured. An arm holds its candidates: the valid replies of one model, or all valid replies pooled. At each step I compute the Pearson correlation of each candidate's output with the labels so far, in the direction of improvement, and use the one with the highest value. If none exceeds 0.3, that step uses the plain Gaussian process. The rule was fixed before any result of this run was seen. For the Opus 5.5 arm a prior was in use on 89 to 100 percent of steps, depending on the task.
+-->
+</body>
+</html>

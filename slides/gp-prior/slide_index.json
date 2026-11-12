@@ -1,0 +1,434 @@
+[
+ {
+  "file": "001-title.html",
+  "title": "Title",
+  "kind": "title",
+  "section": 0,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "002-outline-1.html",
+  "title": "Outline: Problem: GP surrogates with few labels",
+  "kind": "outline",
+  "section": 1,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "003-gp-few-labels.html",
+  "title": "GP surrogates with few labels",
+  "kind": "content",
+  "section": 1,
+  "source": "experiments/e1_surrogate_head/results/write_arm/summary.json (gp at n5, n10, n20, n50)",
+  "replaces": ""
+ },
+ {
+  "file": "004-gp-baseline-table.html",
+  "title": "Baseline GP: coverage and top-decile bias",
+  "kind": "content",
+  "section": 1,
+  "source": "experiments/e1_surrogate_head/results/baseline_table.md; docs/results/2026-11-11-e1-pilot.md, Sec. 2",
+  "replaces": ""
+ },
+ {
+  "file": "005-recap-problem.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 1,
+  "source": "experiments/e1_surrogate_head/results/write_arm/summary.json",
+  "replaces": ""
+ },
+ {
+  "file": "006-outline-2.html",
+  "title": "Outline: Weight-space programming",
+  "kind": "outline",
+  "section": 2,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "007-wsp-1.html",
+  "title": "Weight-space programming",
+  "kind": "build",
+  "section": 2,
+  "source": "docs/research-runs/2026-11-11-where-wsp-fits.md, Sec. 1 and 2; src/wsp/tasks.py",
+  "replaces": ""
+ },
+ {
+  "file": "008-wsp-2.html",
+  "title": "Weight-space programming",
+  "kind": "build",
+  "section": 2,
+  "source": "docs/research-runs/2026-11-11-where-wsp-fits.md, Sec. 1 and 2; src/wsp/tasks.py",
+  "replaces": ""
+ },
+ {
+  "file": "009-wsp-3.html",
+  "title": "Weight-space programming",
+  "kind": "build",
+  "section": 2,
+  "source": "docs/research-runs/2026-11-11-where-wsp-fits.md, Sec. 1 and 2; src/wsp/tasks.py",
+  "replaces": ""
+ },
+ {
+  "file": "010-outline-3.html",
+  "title": "Outline: Method",
+  "kind": "outline",
+  "section": 3,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "011-tasks-table.html",
+  "title": "The five alloy tasks",
+  "kind": "content",
+  "section": 3,
+  "source": "src/wsp/tasks.py; experiments/e1_surrogate_head/run_bo_select.py (GOALS)",
+  "replaces": ""
+ },
+ {
+  "file": "012-pipeline-1.html",
+  "title": "Method: from prompt to BO loop",
+  "kind": "build",
+  "section": 3,
+  "source": "src/wsp/arms.py; experiments/e1_surrogate_head/run_bo_select.py; experiments/e1_surrogate_head/WRAPPER.md",
+  "replaces": ""
+ },
+ {
+  "file": "013-pipeline-2.html",
+  "title": "Method: from prompt to BO loop",
+  "kind": "build",
+  "section": 3,
+  "source": "src/wsp/arms.py; experiments/e1_surrogate_head/run_bo_select.py; experiments/e1_surrogate_head/WRAPPER.md",
+  "replaces": ""
+ },
+ {
+  "file": "014-pipeline-3.html",
+  "title": "Method: from prompt to BO loop",
+  "kind": "build",
+  "section": 3,
+  "source": "src/wsp/arms.py; experiments/e1_surrogate_head/run_bo_select.py; experiments/e1_surrogate_head/WRAPPER.md",
+  "replaces": ""
+ },
+ {
+  "file": "015-pipeline-4.html",
+  "title": "Method: from prompt to BO loop",
+  "kind": "build",
+  "section": 3,
+  "source": "src/wsp/arms.py; experiments/e1_surrogate_head/run_bo_select.py; experiments/e1_surrogate_head/WRAPPER.md",
+  "replaces": ""
+ },
+ {
+  "file": "016-pipeline-5.html",
+  "title": "Method: from prompt to BO loop",
+  "kind": "build",
+  "section": 3,
+  "source": "src/wsp/arms.py; experiments/e1_surrogate_head/run_bo_select.py; experiments/e1_surrogate_head/WRAPPER.md",
+  "replaces": ""
+ },
+ {
+  "file": "017-recap-pipeline.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 3,
+  "source": "src/wsp/arms.py; experiments/e1_surrogate_head/run_bo_select.py",
+  "replaces": ""
+ },
+ {
+  "file": "018-architecture.html",
+  "title": "Architecture of the written network",
+  "kind": "content",
+  "section": 3,
+  "source": "src/wsp/heads.py (MLPHead); src/wsp/arms.py (WRITE_HIDDEN, write_prompt); src/wsp/tasks.py; experiments/e1_surrogate_head/runs/write__ti_alloy_youngs_modulus__opus__rep1/ (reply.txt, self_report.txt)",
+  "replaces": ""
+ },
+ {
+  "file": "019-surrogate-chain.html",
+  "title": "The written network inside the surrogate",
+  "kind": "content",
+  "section": 3,
+  "source": "src/wsp/arms.py (gp_with_prior); experiments/e1_surrogate_head/run_bo_select.py (trace, expected_improvement)",
+  "replaces": ""
+ },
+ {
+  "file": "020-prompt.html",
+  "title": "The prompt: Ti alloy Young's modulus",
+  "kind": "content",
+  "section": 3,
+  "source": "experiments/e1_surrogate_head/runs/write__ti_alloy_youngs_modulus__opus__rep1/prompt.txt; meta.json; src/wsp/arms.py (write_prompt)",
+  "replaces": ""
+ },
+ {
+  "file": "021-run-protocol.html",
+  "title": "Run protocol for a model",
+  "kind": "content",
+  "section": 3,
+  "source": "experiments/e1_surrogate_head/WRAPPER.md; experiments/runs_audit.json; experiments/e1_surrogate_head/results/write_arm/per_run.json",
+  "replaces": ""
+ },
+ {
+  "file": "022-reply-text.html",
+  "title": "A written network: the reply of Opus 5.5",
+  "kind": "content",
+  "section": 3,
+  "source": "experiments/e1_surrogate_head/runs/write__ti_alloy_youngs_modulus__opus__rep1/ (reply.txt, self_report.txt, score.json, meta.json)",
+  "replaces": ""
+ },
+ {
+  "file": "023-reply-weights.html",
+  "title": "A written network: first-layer weights",
+  "kind": "content",
+  "section": 3,
+  "source": "experiments/e1_surrogate_head/runs/write__ti_alloy_youngs_modulus__opus__rep1/reply.txt",
+  "replaces": ""
+ },
+ {
+  "file": "024-gp-mean-1.html",
+  "title": "GP prior mean a·m(x) + b and the two slope rules",
+  "kind": "build",
+  "section": 3,
+  "source": "src/wsp/arms.py (gp_with_prior); src/wsp/baselines.py (fit_gp)",
+  "replaces": ""
+ },
+ {
+  "file": "025-gp-mean-2.html",
+  "title": "GP prior mean a·m(x) + b and the two slope rules",
+  "kind": "build",
+  "section": 3,
+  "source": "src/wsp/arms.py (gp_with_prior); src/wsp/baselines.py (fit_gp)",
+  "replaces": ""
+ },
+ {
+  "file": "026-selection.html",
+  "title": "Selection of a prior from the first labels",
+  "kind": "content",
+  "section": 3,
+  "source": "experiments/e1_surrogate_head/run_bo_select.py (trace, THRESHOLD); experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json (share_of_steps_with_a_prior)",
+  "replaces": ""
+ },
+ {
+  "file": "027-bo-settings.html",
+  "title": "BO loop, acquisition, seeds and statistics",
+  "kind": "content",
+  "section": 3,
+  "source": "experiments/e1_surrogate_head/run_bo_select.py",
+  "replaces": ""
+ },
+ {
+  "file": "028-outline-4.html",
+  "title": "Outline: Controls and baselines",
+  "kind": "outline",
+  "section": 4,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "029-controls-table.html",
+  "title": "Arms, baselines and controls",
+  "kind": "content",
+  "section": 4,
+  "source": "experiments/e1_surrogate_head/run_bo_select.py (ARMS, candidates); src/wsp/arms.py (handbook_prior); experiments/e1_surrogate_head/results/bo/",
+  "replaces": ""
+ },
+ {
+  "file": "030-outline-5.html",
+  "title": "Outline: Results",
+  "kind": "outline",
+  "section": 5,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "031-rho-alone.html",
+  "title": "Ranking with no data, by model and task",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/write_arm/summary.json (alone_spearman)",
+  "replaces": ""
+ },
+ {
+  "file": "032-rho-labels.html",
+  "title": "GP ranking against labels, with and without the prior",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/write_arm/summary.json (n5 to n50: gp, prior_fitted)",
+  "replaces": ""
+ },
+ {
+  "file": "033-bo-ti.html",
+  "title": "BO regret: titanium alloy tasks",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/bo_select/init5_steps25/ti_alloy_*/; experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json",
+  "replaces": ""
+ },
+ {
+  "file": "034-bo-mpea-hv.html",
+  "title": "BO regret: MPEA hardness",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/bo_select/init5_steps25/mpea_hardness/; experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json",
+  "replaces": ""
+ },
+ {
+  "file": "035-auc-ratio.html",
+  "title": "Area under regret relative to the plain GP",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json (auc_mean, wilcoxon_p_holm)",
+  "replaces": ""
+ },
+ {
+  "file": "036-auc-table.html",
+  "title": "Area under regret: five tasks, four models",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.md",
+  "replaces": ""
+ },
+ {
+  "file": "037-recap-bo.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.md",
+  "replaces": ""
+ },
+ {
+  "file": "038-mpea-ys-regret.html",
+  "title": "MPEA yield strength: BO regret",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/bo_select/init5_steps25/mpea_yield_strength/; experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json",
+  "replaces": ""
+ },
+ {
+  "file": "039-mpea-ys-seeds.html",
+  "title": "MPEA yield strength: differences by seed",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json (seeds_better_than_gp, seeds_worse_than_gp, wilcoxon_p, wilcoxon_p_holm); docs/results/2026-11-11-round3.md, Sec. 2",
+  "replaces": ""
+ },
+ {
+  "file": "040-recap-mpea-ys.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 5,
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2",
+  "replaces": ""
+ },
+ {
+  "file": "041-replicates.html",
+  "title": "Agreement across replicate replies",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/e1_surrogate_head/results/write_arm/summary.json (alone_spearman_per_reply); experiments/e1_surrogate_head/results/write_arm/per_run.json (invalid)",
+  "replaces": ""
+ },
+ {
+  "file": "042-cost.html",
+  "title": "Cost of a written network",
+  "kind": "content",
+  "section": 5,
+  "source": "experiments/runs_audit.json (write__ runs: output_tokens, duration_ms)",
+  "replaces": ""
+ },
+ {
+  "file": "043-outline-6.html",
+  "title": "Outline: Extension to Bayesian neural networks",
+  "kind": "outline",
+  "section": 6,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "044-bnn-ranking.html",
+  "title": "BNN extension: prior mean, start or weight prior",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e5_bnn_start/results/bnn_summary.json (spearman); docs/results/2026-11-11-round4.md, Sec. 3",
+  "replaces": ""
+ },
+ {
+  "file": "045-bnn-coverage.html",
+  "title": "BNN extension: 95% interval coverage",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e5_bnn_start/results/bnn_summary.json (coverage95); docs/results/2026-11-11-round4.md, Sec. 3",
+  "replaces": ""
+ },
+ {
+  "file": "046-recap-bnn.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 6,
+  "source": "docs/results/2026-11-11-round4.md, Sec. 3",
+  "replaces": ""
+ },
+ {
+  "file": "047-outline-7.html",
+  "title": "Outline: Limits and conclusions",
+  "kind": "outline",
+  "section": 7,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "048-limits.html",
+  "title": "Limits and what is not yet run",
+  "kind": "content",
+  "section": 7,
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5",
+  "replaces": ""
+ },
+ {
+  "file": "049-conclusions.html",
+  "title": "Conclusions",
+  "kind": "content",
+  "section": 7,
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6",
+  "replaces": ""
+ },
+ {
+  "file": "050-backup-divider.html",
+  "title": "Dark",
+  "kind": "dark",
+  "section": 99,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "051-b-rho-labels-one.html",
+  "title": "GP ranking against labels: slope fixed at one",
+  "kind": "backup",
+  "section": 99,
+  "source": "experiments/e1_surrogate_head/results/write_arm/summary.json (n5 to n50: gp, prior_one)",
+  "replaces": ""
+ },
+ {
+  "file": "052-b-slope-rules.html",
+  "title": "The two slope rules at 5 labels",
+  "kind": "backup",
+  "section": 99,
+  "source": "experiments/e1_surrogate_head/results/write_arm/summary.json (n5: gp, prior_fitted, prior_one)",
+  "replaces": ""
+ },
+ {
+  "file": "053-b-regret-steps.html",
+  "title": "Regret after 5, 10 and 25 steps",
+  "kind": "backup",
+  "section": 99,
+  "source": "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.md",
+  "replaces": ""
+ },
+ {
+  "file": "054-b-written-alone.html",
+  "title": "The written network with no GP (8 seeds)",
+  "kind": "backup",
+  "section": 99,
+  "source": "experiments/e1_surrogate_head/results/bo/mpea_yield_strength.json; results/bo/ti_alloy_youngs_modulus.json; docs/results/2026-11-11-round2.md, Sec. 3",
+  "replaces": ""
+ }
+]

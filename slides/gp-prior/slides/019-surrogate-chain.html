@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">The written network inside the surrogate</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">19</p>
+<div class="node" style="left:28pt;top:72pt;width:122pt;height:146pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:34pt;top:78pt;width:110pt;text-align:center;color:#8A8F98;">Input</p>
+<p class="nodet" style="left:34pt;top:94pt;width:110pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Alloy x</b></p>
+<p class="nodet" style="left:34pt;top:130pt;width:110pt;font-size:10.5pt;line-height:13pt;">15 to 24 atomic fractions of a candidate in the pool</p>
+<div class="node" style="left:162pt;top:72pt;width:122pt;height:146pt;border:2pt solid #500000;background:#FFFFFF;"></div>
+<p class="small" style="left:168pt;top:78pt;width:110pt;text-align:center;color:#8A8F98;">m(x)</p>
+<p class="nodet" style="left:168pt;top:94pt;width:110pt;font-size:13pt;line-height:16pt;color:#500000;"><b>Written network</b></p>
+<p class="nodet" style="left:168pt;top:130pt;width:110pt;font-size:10.5pt;line-height:13pt;">d → 16 → 1 ReLU network; weights fixed as written, never trained</p>
+<div style="position:absolute;left:150pt;top:144pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:296pt;top:72pt;width:122pt;height:146pt;border:2pt solid #2A8C8C;background:#FFFFFF;"></div>
+<p class="small" style="left:302pt;top:78pt;width:110pt;text-align:center;color:#8A8F98;">a·m(x) + b</p>
+<p class="nodet" style="left:302pt;top:94pt;width:110pt;font-size:13pt;line-height:16pt;color:#2A8C8C;"><b>GP mean</b></p>
+<p class="nodet" style="left:302pt;top:130pt;width:110pt;font-size:10.5pt;line-height:13pt;">a and b from least squares on the labelled alloys</p>
+<div style="position:absolute;left:284pt;top:144pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:430pt;top:72pt;width:122pt;height:146pt;border:2pt solid #C47F17;background:#FFFFFF;"></div>
+<p class="small" style="left:436pt;top:78pt;width:110pt;text-align:center;color:#8A8F98;">mean and std</p>
+<p class="nodet" style="left:436pt;top:94pt;width:110pt;font-size:13pt;line-height:16pt;color:#C47F17;"><b>GP posterior</b></p>
+<p class="nodet" style="left:436pt;top:130pt;width:110pt;font-size:10.5pt;line-height:13pt;">exact GP on the residual y − (a·m(x) + b); mean adds a·m(x) + b back</p>
+<div style="position:absolute;left:418pt;top:144pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:564pt;top:72pt;width:122pt;height:146pt;border:2pt solid #6B4C9A;background:#FFFFFF;"></div>
+<p class="small" style="left:570pt;top:78pt;width:110pt;text-align:center;color:#8A8F98;">Acquisition</p>
+<p class="nodet" style="left:570pt;top:94pt;width:110pt;font-size:13pt;line-height:16pt;color:#6B4C9A;"><b>Expected improvement</b></p>
+<p class="nodet" style="left:570pt;top:130pt;width:110pt;font-size:10.5pt;line-height:13pt;">computed for every unlabelled alloy; the highest is labelled next</p>
+<div style="position:absolute;left:552pt;top:144pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div style="position:absolute;left:89pt;top:218pt;width:1.5pt;height:22pt;background:#8A8F98;"></div>
+<div style="position:absolute;left:89pt;top:240pt;width:537pt;height:1.5pt;background:#8A8F98;"></div>
+<div style="position:absolute;left:625pt;top:218pt;width:1.5pt;height:22pt;background:#8A8F98;"></div>
+<p class="small" style="left:150pt;top:245pt;width:420pt;text-align:center;font-size:12pt;line-height:15pt;">the new label joins the labelled set; a, b and the GP are refitted at every step</p>
+<div class="sbox" style="left:150pt;top:274pt;width:420pt;height:68pt;"></div>
+<p class="sboxt" style="left:159pt;top:281pt;width:402pt;font-size:13pt;line-height:18pt;">the written weights are never updated by the labels</p>
+<p class="sboxt" style="left:159pt;top:299pt;width:402pt;font-size:13pt;line-height:18pt;">the labels enter through a, b and the GP on the residual</p>
+<p class="sboxt" style="left:159pt;top:317pt;width:402pt;font-size:13pt;line-height:18pt;">uncertainty comes from the GP alone</p>
+<!--NOTES
+This slide places that network inside the surrogate. A candidate alloy enters as its vector of atomic fractions. The written network maps it to m of x, a property estimate in physical units, and its weights stay exactly as the model wrote them. The Gaussian process takes a times m of x plus b as its mean, with a and b fitted on the labelled alloys, and models the residual. Its posterior mean and standard deviation go into expected improvement, which is evaluated for every unlabelled alloy in the pool, and the highest one is labelled next. Then the slope, the offset and the Gaussian process are refitted with the new label. The labels never change the written weights.
+-->
+</body>
+</html>

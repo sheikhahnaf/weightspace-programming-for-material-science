@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Area under regret: five tasks, four models</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">36</p>
+<div id="t1" class="placeholder" style="position:absolute;left:24pt;top:74pt;width:672pt;height:150pt;"><table style="border-collapse:collapse;font-size:11.5pt;line-height:13.5pt;width:100%;table-layout:fixed;"><colgroup><col style="width:138.96pt"><col style="width:57.6pt"><col style="width:61.199999999999996pt"><col style="width:86.39999999999999pt"><col style="width:86.39999999999999pt"><col style="width:86.39999999999999pt"><col style="width:68.39999999999999pt"><col style="width:86.39999999999999pt"></colgroup><tr style="background:#500000;color:#fff;font-weight:bold;"><th>Task (unit)</th><th>Plain GP</th><th>Handbook</th><th>Opus 5.5</th><th>Fable 5.2</th><th>Sonnet 5.5</th><th>Haiku 5.5</th><th>All replies</th></tr><tr><td>Ti Young's modulus (GPa)</td><td>7.68</td><td>7.02</td><td>5.55 * (0.004)</td><td>6.92</td><td>7.34</td><td>7.61</td><td>5.41 * (0.004)</td></tr><tr><td>Ti yield strength (MPa)</td><td>314</td><td>327</td><td>153 * (0.047)</td><td>148 * (0.026)</td><td>216 * (0.043)</td><td>255</td><td>139 * (0.026)</td></tr><tr><td>Ti hardness (HV)</td><td>40.1</td><td>40.1</td><td>5.95 * (0.003)</td><td>10.0 * (0.003)</td><td>11.3 * (0.003)</td><td>27.2</td><td>6.13 * (0.003)</td></tr><tr><td>MPEA hardness (HV)</td><td>226</td><td>216</td><td>137 * (0.006)</td><td>120 * (0.006)</td><td>247</td><td>259</td><td>144 * (0.010)</td></tr><tr><td>MPEA yield strength (MPa)</td><td>772</td><td>676</td><td>900</td><td>966</td><td>735</td><td>641</td><td>935</td></tr></table><style>td,th{border:0.75pt solid #D6D3D1;padding:2pt 3pt;vertical-align:middle;text-align:left;}</style></div>
+<p class="small" style="left:24pt;top:230pt;width:672pt;">Star: lower than the plain GP, Holm-corrected p < 0.05 (in brackets); paired Wilcoxon over 20 seeds. Random search: 8.37, 392, 66.9, 338 and 1,010 in the same row order.</p>
+<!--NOTES
+The same result as numbers. Each cell is the mean area under the regret curve over 20 seeds, in the unit of the task; lower is better. A star marks an arm below the plain Gaussian process with a Holm-corrected p under 0.05, and the p value is in brackets. Opus 5.5 is significant on four of five tasks, with corrected p values from 0.003 to 0.047. Fable 5.2 is significant on three, Sonnet 5.5 on two, Haiku 5.5 on none. The pooled arm, where the labels choose among every model's replies, matches the best single model on four tasks. The bottom row is the exception: there the Opus, Fable and pooled arms are above the plain Gaussian process.
+-->
+</body>
+</html>

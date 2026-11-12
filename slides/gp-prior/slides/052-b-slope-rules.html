@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">The two slope rules at 5 labels</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">52</p>
+<img src="../figures/deck/slope_rules_5_labels.png" style="left:24.0pt;top:63.5pt;width:474.0pt;height:315.0pt;">
+<div class="sbox" style="left:506pt;top:110pt;width:190pt;height:116pt;"></div>
+<p class="sboxt" style="left:515pt;top:117pt;width:172pt;font-size:12.5pt;line-height:17pt;">MPEA hardness, 5 labels</p>
+<p class="sboxt" style="left:515pt;top:134pt;width:172pt;font-size:12.5pt;line-height:17pt;">plain GP: 0.06</p>
+<p class="sboxt" style="left:515pt;top:151pt;width:172pt;font-size:12.5pt;line-height:17pt;">Opus: 0.66 fitted, 0.78 one</p>
+<p class="sboxt" style="left:515pt;top:168pt;width:172pt;font-size:12.5pt;line-height:17pt;">Fable: 0.55 fitted, 0.76 one</p>
+<p class="sboxt" style="left:515pt;top:185pt;width:172pt;font-size:12.5pt;line-height:17pt;">Ti hardness, Haiku</p>
+<p class="sboxt" style="left:515pt;top:202pt;width:172pt;font-size:12.5pt;line-height:17pt;">0.34 fitted, 0.52 one</p>
+<!--NOTES
+This figure compares the two slope rules where they differ most, at 5 labels. Each panel is one model, each group one task. The light grey bar is the plain Gaussian process, the solid bar the prior with a fitted slope, and the hatched bar the prior with the slope fixed at one. Fixing the slope is at least as good as fitting it in most cells, and clearly better on alloy hardness: 0.78 against 0.66 for Opus 5.5 and 0.76 against 0.55 for Fable 5.2. For weak priors the fixed slope limits the damage on titanium hardness, 0.52 against 0.34 for Haiku 5.5, but still falls below the plain Gaussian process at 0.63.
+-->
+</body>
+</html>

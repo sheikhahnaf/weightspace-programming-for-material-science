@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Run protocol for a model</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">21</p>
+<div class="node" style="left:28pt;top:96pt;width:122pt;height:124pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:34pt;top:102pt;width:110pt;text-align:center;color:#8A8F98;">1</p>
+<p class="nodet" style="left:34pt;top:118pt;width:110pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Read</b></p>
+<p class="nodet" style="left:34pt;top:154pt;width:110pt;font-size:10.5pt;line-height:13pt;">The model reads prompt.txt once.</p>
+<div class="node" style="left:162pt;top:96pt;width:122pt;height:124pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:168pt;top:102pt;width:110pt;text-align:center;color:#8A8F98;">2</p>
+<p class="nodet" style="left:168pt;top:118pt;width:110pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Think</b></p>
+<p class="nodet" style="left:168pt;top:154pt;width:110pt;font-size:10.5pt;line-height:13pt;">No code, no calculator, no web, no other file.</p>
+<div style="position:absolute;left:150pt;top:158pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:296pt;top:96pt;width:122pt;height:124pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:302pt;top:102pt;width:110pt;text-align:center;color:#8A8F98;">3</p>
+<p class="nodet" style="left:302pt;top:118pt;width:110pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Reply</b></p>
+<p class="nodet" style="left:302pt;top:154pt;width:110pt;font-size:10.5pt;line-height:13pt;">It writes reply.txt: weights only, in the given format.</p>
+<div style="position:absolute;left:284pt;top:158pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:430pt;top:96pt;width:122pt;height:124pt;border:2pt solid #1F3A5F;background:#FFFFFF;"></div>
+<p class="small" style="left:436pt;top:102pt;width:110pt;text-align:center;color:#8A8F98;">4</p>
+<p class="nodet" style="left:436pt;top:118pt;width:110pt;font-size:13pt;line-height:16pt;color:#1F3A5F;"><b>Self-report</b></p>
+<p class="nodet" style="left:436pt;top:154pt;width:110pt;font-size:10.5pt;line-height:13pt;">Two to four sentences on how it arrived at the reply.</p>
+<div style="position:absolute;left:418pt;top:158pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="node" style="left:564pt;top:96pt;width:122pt;height:124pt;border:2pt solid #C0282D;background:#FFFFFF;"></div>
+<p class="small" style="left:570pt;top:102pt;width:110pt;text-align:center;color:#8A8F98;">After</p>
+<p class="nodet" style="left:570pt;top:118pt;width:110pt;font-size:13pt;line-height:16pt;color:#C0282D;"><b>Audit</b></p>
+<p class="nodet" style="left:570pt;top:154pt;width:110pt;font-size:10.5pt;line-height:13pt;">Tool calls checked from the session transcript.</p>
+<div style="position:absolute;left:552pt;top:158pt;width:12pt;height:1.5pt;background:#8A8F98;"></div>
+<div class="sbox" style="left:170pt;top:250pt;width:380pt;height:86pt;"></div>
+<p class="sboxt" style="left:179pt;top:257pt;width:362pt;font-size:13pt;line-height:18pt;">60 write runs: 15 per model, each a fresh session</p>
+<p class="sboxt" style="left:179pt;top:275pt;width:362pt;font-size:13pt;line-height:18pt;">0 forward passes, 0 training rows</p>
+<p class="sboxt" style="left:179pt;top:293pt;width:362pt;font-size:13pt;line-height:18pt;">all 60 passed the tool-call audit</p>
+<p class="sboxt" style="left:179pt;top:311pt;width:362pt;font-size:13pt;line-height:18pt;">3 replies invalid: wrong row length, rejected</p>
+<!--NOTES
+Each run is a fresh session of one model with no memory of other runs. The model reads the prompt file once, does the task by reasoning alone, writes the reply file, and writes a short self-report of how it arrived at the reply. It is told not to run code, use a calculator, search the web or open any other file. After the run the tool calls are read from the session transcript and checked against that rule. The restriction is by instruction and audit; it is not a sandbox. All 60 write runs passed. Three replies had rows of the wrong length and were rejected by the parser: two from Sonnet 5.5 and one from Haiku 5.5.
+-->
+</body>
+</html>

@@ -1,0 +1,8 @@
+54 slides {'title': 1, 'outline': 7, 'content': 26, 'recap': 5, 'build': 10, 'dark': 1, 'backup': 4}
+image check: 36 references in 54 slides, all existing 8-bit RGB PNG or JPEG with matching extensions
+ok  053-b-regret-steps.html  notes 108 words
+ok  054-b-written-alone.html  notes 118 words
+wrote /Volumes/SSD1_SMAAA/weighspace-programming/slides/gp-prior/gp-prior-weight-space-programming.pptx with 54 slides
+gp-prior-weight-space-programming.pptx: fade added to 54 slides; 54 of 54 slides carry the medium fade
+no banned words, no em-dashes, all notes within 60 to 120 words
+every slide has a title and notes; no empty text boxes

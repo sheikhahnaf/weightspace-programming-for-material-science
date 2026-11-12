@@ -289,7 +289,7 @@ def phase_diagram_facts(task: Task) -> str:
                   f"of the second element, and the {len(by_size[3])} equimolar ternaries")
     else:
         covers = (f"pure {base}, {base} with one solute at half and at the whole of that solute's range, and {base} "
-                  f"with two solutes each at half its range")
+                  f"with two solutes, both at half and both at the whole of their ranges")
     lines = [
         f"These facts cover only sub-systems with at most three elements: {covers}. Nothing here was calculated "
         f"for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, "
@@ -352,8 +352,8 @@ def subsystem_extrapolation_prior(task: Task):
     the equimolar ternary.
 
     Balance systems: the base element's value, plus for each solute a x + q x^2 through
-    its two binary points, plus for each pair of solutes b x_i x_j fitted exactly to
-    their ternary point.
+    its two binary points, plus for each pair of solutes x_i x_j [b0 + b1 (x_i + x_j)]
+    fitted exactly to their two ternary points.
 
     A fact that failed to compute contributes nothing.
     """
@@ -410,12 +410,16 @@ def subsystem_extrapolation_prior(task: Task):
                                            np.array([e for _, e in rows]), rcond=None)[0]
             terms.append(lambda U, i=i, c=coefficients: sum(ck * U[:, i] ** (k + 1) for k, ck in enumerate(c)))
         lower = list(terms)
+        couples: dict[tuple, list] = {}
         for p, y in points:
             if p["n_elements"] == 3:
                 x = vector(p)
                 i, j = (index[el] for el in p["x"] if el != base)
-                b = (y - sum(term(x[None])[0] for term in lower)) / (x[i] * x[j])
-                terms.append(lambda U, i=i, j=j, b=b: b * U[:, i] * U[:, j])
+                couples.setdefault((i, j), []).append((x[i] + x[j], (y - sum(term(x[None])[0] for term in lower)) / (x[i] * x[j])))
+        for (i, j), rows in couples.items():
+            # excess / (x_i x_j) = b0 + b1 (x_i + x_j) through the available points
+            coefficients = np.polyfit([t for t, _ in rows], [e for _, e in rows], len(rows) - 1)
+            terms.append(lambda U, i=i, j=j, c=coefficients: U[:, i] * U[:, j] * np.polyval(c, U[:, i] + U[:, j]))
     return model
 
 

@@ -1,0 +1,20 @@
+{
+  "output": "gp-prior-weight-space-programming.pptx",
+  "author": "Sk Md Ahnaf Akif Alvi",
+  "title": "Weight-space programming for materials science: the GP prior case",
+  "subject": "A network written by a language model from materials knowledge, used as the prior mean of a Gaussian-process surrogate in Bayesian optimisation of alloys",
+  "wordmark": ["MATERIALS SCIENCE & ENGINEERING", "TEXAS A&M UNIVERSITY"],
+  "footer": "Department of Materials Science and Engineering",
+  "sections": [
+    "Problem: GP surrogates with few labels",
+    "Weight-space programming",
+    "Method",
+    "Controls and baselines",
+    "Results",
+    "Extension to Bayesian neural networks",
+    "Limits and conclusions"
+  ],
+  "notes_words": [60, 120],
+  "extra_banned_words": [],
+  "allowed_phrases": []
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Architecture of the written network</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">18</p>
+<img src="../figures/deck/network_architecture.png" style="left:61.4pt;top:60.0pt;width:597.1pt;height:282.0pt;">
+<div class="sbox" style="left:24pt;top:346pt;width:672pt;height:28pt;"></div>
+<p class="sboxt" style="left:32pt;top:352pt;width:656pt;font-size:12pt;line-height:16pt;">h1 = relu(net.0.weight · x + net.0.bias);   y = net.2.weight · h1 + net.2.bias;   15 → 16 → 1,  273 weights  (MPEA tasks: 385 and 417)</p>
+<!--NOTES
+This is the network the model writes, drawn for the titanium modulus task. On the left are the 15 inputs with the names the prompt gives them: the atomic fractions of fourteen elements and one input for all other elements. In the middle is one hidden layer of 16 ReLU units, and on the right a single linear output in gigapascals. The four tensors carry the names used in the prompt: a 16 by 15 weight matrix, 16 biases, 16 output weights and one output bias, 273 numbers in total. Colour shows what one reply of Opus 5.5 filled in: unit zero as a rule of mixtures and units one to four as hinges on a beta-stability index.
+-->
+</body>
+</html>

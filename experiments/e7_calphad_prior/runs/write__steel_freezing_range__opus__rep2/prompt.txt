@@ -1,0 +1,41 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. Inputs are atomic fractions of Fe, Al, C, Cr, Mn, Mo, Ni in high-alloy steels Fe-Al-C-Cr-Mn-Mo-Ni; each row sums to 1. Composition range: Fe is the balance and at least 50 at.%; solutes in at.%: Al 0 to 6 (step 3), C 0 to 2 (step 1), Cr 0 to 24 (step 4), Mn 0 to 20 (step 5), Mo 0 to 4 (step 2), Ni 0 to 20 (step 4); at least 4 elements present. The target is the equilibrium freezing range (liquidus temperature minus solidus temperature) in K, calculated at 1 atm with the CALPHAD method (Thermo-Calc, TCFE10 database). 200 alloys.
+
+Input order: x[0] = x_Fe, x[1] = x_Al, x[2] = x_C, x[3] = x_Cr, x[4] = x_Mn, x[5] = x_Mo, x[6] = x_Ni.
+
+The output y must be your best estimate of the equilibrium freezing range (liquidus temperature minus solidus temperature) in K. The network will be used as the prior mean of a Gaussian process that is then given a few measured alloys, so getting the trends and the rough scale right matters more than exact values.
+
+# Architecture
+Input x has 7 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 7, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 7)
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

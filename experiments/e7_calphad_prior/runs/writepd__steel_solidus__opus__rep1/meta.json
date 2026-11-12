@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "steel_solidus",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 4606,
+  "prompt_tokens_estimate": 1536,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

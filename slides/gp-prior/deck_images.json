@@ -1,0 +1,18 @@
+{
+ "deck/gp_rho_vs_labels.png": "gp_rho_vs_labels.png",
+ "deck/network_architecture.png": "network_architecture.png",
+ "deck/written_network_weights.png": "written_network_weights.png",
+ "deck/rho_alone_bars.png": "rho_alone_bars.png",
+ "deck/rho_vs_labels_slope_fitted.png": "rho_vs_labels_slope_fitted.png",
+ "deck/bo_regret_ti.png": "bo_regret_ti.png",
+ "deck/bo_regret_mpea_hardness.png": "bo_regret_mpea_hardness.png",
+ "deck/auc_relative_to_gp.png": "auc_relative_to_gp.png",
+ "deck/bo_regret_mpea_yield_strength.png": "bo_regret_mpea_yield_strength.png",
+ "deck/auc_seed_differences_mpea_yield_strength.png": "auc_seed_differences_mpea_yield_strength.png",
+ "deck/replicate_replies.png": "replicate_replies.png",
+ "deck/cost_per_reply.png": "cost_per_reply.png",
+ "deck/bnn_ranking.png": "bnn_ranking.png",
+ "deck/bnn_coverage.png": "bnn_coverage.png",
+ "deck/rho_vs_labels_slope_one.png": "rho_vs_labels_slope_one.png",
+ "deck/slope_rules_5_labels.png": "slope_rules_5_labels.png"
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">BO regret: titanium alloy tasks</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">33</p>
+<img src="../figures/deck/bo_regret_ti.png" style="left:24.0pt;top:73.5pt;width:470.0pt;height:295.0pt;">
+<div class="sbox" style="left:500pt;top:110pt;width:196pt;height:116pt;"></div>
+<p class="sboxt" style="left:509pt;top:117pt;width:178pt;font-size:12.5pt;line-height:17pt;">Regret after 25 steps</p>
+<p class="sboxt" style="left:509pt;top:134pt;width:178pt;font-size:12.5pt;line-height:17pt;">Ti modulus, GPa:</p>
+<p class="sboxt" style="left:509pt;top:151pt;width:178pt;font-size:12.5pt;line-height:17pt;">GP 5.6, Opus 1.6, Fable 3.5</p>
+<p class="sboxt" style="left:509pt;top:168pt;width:178pt;font-size:12.5pt;line-height:17pt;">Ti yield strength, MPa:</p>
+<p class="sboxt" style="left:509pt;top:185pt;width:178pt;font-size:12.5pt;line-height:17pt;">GP 114, Opus 17, Fable 0</p>
+<p class="sboxt" style="left:509pt;top:202pt;width:178pt;font-size:12.5pt;line-height:17pt;">Ti hardness: 2 HV by step 5 (Opus)</p>
+<!--NOTES
+Three panels, one per titanium task: optimisation step on the horizontal axis, regret averaged over 20 seeds on the vertical. The dotted line is random search, the dashed black line the plain Gaussian process, the dash-dotted grey line the handbook rule, and the solid lines the four models. Bands are one standard error. On modulus the Opus arm ends at 1.6 gigapascals against 5.6. On yield strength it ends at 17 megapascals against 114, and Fable reaches zero. On hardness the Opus arm is within 2 units of the best alloy after five steps; the handbook arm coincides with the Gaussian process because its prior never passes the threshold.
+-->
+</body>
+</html>

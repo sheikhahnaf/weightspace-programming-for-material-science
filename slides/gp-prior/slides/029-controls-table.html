@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Arms, baselines and controls</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">29</p>
+<div id="t1" class="placeholder" style="position:absolute;left:24pt;top:70pt;width:672pt;height:214pt;"><table style="border-collapse:collapse;font-size:11.5pt;line-height:13.5pt;width:100%;table-layout:fixed;"><colgroup><col style="width:180.0pt"><col style="width:316.8pt"><col style="width:86.39999999999999pt"><col style="width:88.56pt"></colgroup><tr style="background:#500000;color:#fff;font-weight:bold;"><th>Arm</th><th>Prior mean</th><th>Language model</th><th>Candidates per task</th></tr><tr><td>Random search</td><td>none; the next alloy is drawn at random</td><td>no</td><td>none</td></tr><tr><td>Plain GP</td><td>constant; expected improvement</td><td>no</td><td>none</td></tr><tr><td>Handbook rule of mixtures</td><td>x · elemental table from pymatgen: Young's modulus for the modulus task, Vickers hardness for strength and hardness tasks</td><td>no</td><td>1</td></tr><tr><td>Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5 (one arm each)</td><td>that model's valid replies, selected by the labels</td><td>yes</td><td>2 or 3</td></tr><tr><td>All replies</td><td>every valid reply of every model, selected by the labels</td><td>yes</td><td>11 or 12</td></tr><tr><td>Written network alone</td><td>no GP: alloys taken in the order of m(x); 8 seeds, two tasks, Fable 5.2 replies</td><td>yes</td><td>1</td></tr></table><style>td,th{border:0.75pt solid #D6D3D1;padding:2pt 3pt;vertical-align:middle;text-align:left;}</style></div>
+<!--NOTES
+Random search and the plain Gaussian process bound the comparison from below. The handbook arm is the control for the language model: a rule of mixtures from pymatgen's elemental tables, Young's modulus for the modulus task and Vickers hardness of the elements for the strength and hardness tasks entering the Gaussian process exactly as a written network does. Then one arm per model, and one arm that pools all valid replies. The last row uses the written network with no Gaussian process at all, in a smaller run of 8 seeds on two tasks. A control with shuffled weights does not apply to this arm, because the model is given a network of zeros and no weights to read.
+-->
+</body>
+</html>

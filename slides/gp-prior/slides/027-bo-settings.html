@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">BO loop, acquisition, seeds and statistics</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">27</p>
+<div id="t1" class="placeholder" style="position:absolute;left:24pt;top:68pt;width:672pt;height:236pt;"><table style="border-collapse:collapse;font-size:12pt;line-height:14pt;width:100%;table-layout:fixed;"><colgroup><col style="width:151.20000000000002pt"><col style="width:520.5600000000001pt"></colgroup><tr style="background:#500000;color:#fff;font-weight:bold;"><th>Setting</th><th>Value</th></tr><tr><td>Search</td><td>pool-based: every alloy of the data set is a candidate; a step labels one alloy</td></tr><tr><td>Initial labels</td><td>5 alloys drawn at random; the same 5 for every arm of a seed</td></tr><tr><td>Steps and acquisition</td><td>25 steps; expected improvement on the GP posterior, target signed so that higher is better</td></tr><tr><td>Surrogate</td><td>exact GP (BoTorch SingleTaskGP), refitted at every step, with or without the selected prior mean</td></tr><tr><td>Seeds</td><td>20 per task and arm</td></tr><tr><td>Regret</td><td>best value in the pool minus best value found so far</td></tr><tr><td>Area under regret</td><td>mean regret over steps 1 to 25, one number per seed</td></tr><tr><td>Test</td><td>paired Wilcoxon signed-rank against the plain GP over the 20 seeds, on the area</td></tr><tr><td>Correction</td><td>Holm, across the six non-random arms of a task</td></tr></table><style>td,th{border:0.75pt solid #D6D3D1;padding:2pt 3pt;vertical-align:middle;text-align:left;}</style></div>
+<!--NOTES
+These are the settings of the optimisation. It is pool-based: the data set is the pool, and each step reveals the measured value of one alloy. A run starts from 5 random alloys, identical across the arms of a seed, so that differences between arms are paired. Twenty-five steps follow, each choosing the alloy with the highest expected improvement under a Gaussian process refitted at that step. There are 20 seeds per task and arm. The summary number is the area under the regret curve, the mean regret over the 25 steps. Each arm is tested against the plain Gaussian process with a paired Wilcoxon signed-rank test over seeds, Holm-corrected across the six arms within a task.
+-->
+</body>
+</html>

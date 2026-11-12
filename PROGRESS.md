@@ -170,3 +170,12 @@ rsync -avz faster:$W/task_vectors/task_vectors_adit.json experiments/e3_generato
 ```
 
 Then update the E3 README Status line. Uncommitted: all edits of this section (no git was run by this agent).
+
+Update at the pause (from the watcher, 2026-11-11 23:52 CST): ADiT prep 3260080 reached `SMOKE_DONE` — the unpickling fix works, 11 ADiT variants are built in `wsp/variants_adit/` (task vector covers 132 of 348 base tensors, the denoiser; single-seed change 0.27% of the tensors RL touched), 4 crystals sampled and 2 scored. Its task-vector statistics step was still running. The ADiT sampling array is still NOT submitted: the `sbatch --export=ALL,BACKBONE=adit array.slurm` line above is the next step. CrystalFlow array 3260069 was 21 min in, about 4 crystals scored per variant.
+
+## 2026-11-12: restructuring plan (user decision; NOT started, do after all GP-prior runs finish)
+
+- Paper and website become entirely about one case: an LLM writes a network that is used as a GP prior mean.
+- Everything else (MLIP readout edits, generator task vectors, table reader, earlier rounds, archive) moves to the supplement, at its end.
+- In the repo, MLIP and generative-model material moves into a folder named `supplementary/`.
+- Open: whether the Thermo-Calc data tables (`data/calphad/`) may be in a public repo. They are committed in the private repo's history now. Decide before any public release (licence check; fallback is to ship only `make_tc_data.py` and scores, from a fresh history).

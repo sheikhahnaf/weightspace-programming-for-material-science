@@ -44,7 +44,7 @@
 <p class="sboxt" style="left:179pt;top:293pt;width:362pt;font-size:13pt;line-height:18pt;">all 60 passed the tool-call audit</p>
 <p class="sboxt" style="left:179pt;top:311pt;width:362pt;font-size:13pt;line-height:18pt;">3 replies invalid: wrong row length, rejected</p>
 <!--NOTES
-Each run is a fresh session of one model with no memory of other runs. The model reads the prompt file once, does the task by reasoning alone, writes the reply file, and writes a short self-report of how it arrived at the reply. It is told not to run code, use a calculator, search the web or open any other file. After the run the tool calls are read from the session transcript and checked against that rule. The restriction is by instruction and audit; it is not a sandbox. All 60 write runs passed. Three replies had rows of the wrong length and were rejected by the parser: two from Sonnet 5.5 and one from Haiku 5.5.
+Each run is a fresh session of one model. The session has no code execution, calculator or web access: it only reads the prompt file and writes its reply and a short account of how it arrived at it. After the run the tool calls are read from the session transcript and checked against that rule; the restriction is by instruction and audit, not a sandbox. All 60 write runs passed. Two runs were started again from a fresh session after a usage limit cut the first one off before any reply was written. Three replies had rows of the wrong length and were rejected by the parser: two from Sonnet 5.5 and one from Haiku 5.5.
 -->
 </body>
 </html>

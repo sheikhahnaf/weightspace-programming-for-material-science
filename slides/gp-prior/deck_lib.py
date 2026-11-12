@@ -207,7 +207,9 @@ def conclusions(slug, title_, section, columns, notes, **meta):
         x = 24 + j * 228
         out.append(p("lab", x, 58, 216, hd, "font-size:18pt;line-height:22pt;text-align:center;text-decoration:underline;color:#1F1F1F;"))
         out.append(panel(x, 84, 216, 288))
-        for k, f in enumerate(figs[:2]):
+        if len(figs) == 1:   # one larger figure per panel
+            out.append(img(figs[0], x + 6, 92, 204, 194, valign="middle"))
+        for k, f in enumerate(figs[:2] if len(figs) > 1 else []):
             out.append(img(f, x + 10, 94 + 98 * k, 196, 92, valign="middle"))
         for k, t in enumerate(lines_):
             out.append(p("nodet", x + 8, 294 + k * 18, 200, t))

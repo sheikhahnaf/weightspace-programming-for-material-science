@@ -11,6 +11,7 @@ R3 = "docs/results/2026-11-11-round3.md"
 WSUM = "experiments/e1_surrogate_head/results/write_arm/summary.json"
 BOSUM = "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json"
 BNN = "experiments/e5_bnn_start/results/bnn_summary.json"
+DIAG = "experiments/e1_surrogate_head/results/bo_failure/diagnosis.md; docs/results/2026-11-11-round6.md, Sec. 3"
 
 
 def fig(name, box=None, bx=510, by=110, bw=186, x=24, y=60, w=478, h=322):
@@ -29,11 +30,11 @@ def mono(x, y, w, lines, size=10.5, lh=13.2):
 # ------------------------------------------------------------------ title
 title("Weight-Space Programming for Materials Science: The GP Prior Case", "Group meeting, Arróyave group",
       "Sk Md Ahnaf Akif Alvi", "November 2026", ["Sk Md Ahnaf Akif Alvi, Raymundo Arróyave"], """
-This talk covers one case of a larger project on weight-space programming for materials science. A language model writes every weight of a small neural network from what it knows about alloys, with no data, and I use that network as the prior mean of a Gaussian-process surrogate in Bayesian optimisation. I will set out the problem, define the idea, go through the method, list the controls, and then show the results on five measured alloy tasks with four models, including the task where it makes things worse. I then repeat the test on 35 targets computed with Thermo-Calc and on crystal structures, and close with an extension to Bayesian neural networks and with what has not been run.
+This talk covers one case of a larger project on weight-space programming for materials science. A language model writes every weight of a small neural network from what it knows about alloys, with no data, and I use that network as the prior mean of a Gaussian-process surrogate in Bayesian optimisation. I will set out the problem, define the idea, go through the method, list the controls, and then show the results on five measured alloy tasks with four models, including the task where it does not help. I then repeat the test on 35 targets computed with Thermo-Calc and on crystal structures, and close with an extension to Bayesian neural networks and with what has not been run.
 """)
 
 # ------------------------------------------------------------------ 1. problem
-outline(1, """The first section states the problem. A Gaussian process is the usual surrogate in Bayesian optimisation of materials, and a campaign starts with a handful of labelled alloys. I will show how well the plain Gaussian process ranks unseen alloys at 5, 10, 20 and 50 labels on the five tasks used in this talk, and what it gets wrong even with its full training set: it underpredicts the best candidates and its intervals are too narrow in places.""")
+outline(1, """The first section states the problem. A Gaussian process is the usual surrogate in Bayesian optimisation of materials, and a campaign starts with a handful of labelled alloys. I will show how well the plain Gaussian process ranks unseen alloys at 5, 10, 20 and 50 labels on the five alloy tasks of this talk, and what it gets wrong even with its full training set on a wider set of five tasks: it underpredicts the best candidates and its intervals are too narrow in places.""")
 
 content("gp-few-labels", "GP surrogates with few labels", 1,
         fig("gp_rho_vs_labels.png", ["Plain GP, ρ on held-out alloys", "5 labels: 0.06 to 0.63", "10 labels: 0.26 to 0.58", "50 labels: 0.65 to 0.78", "mean of 5 data seeds"]), """
@@ -52,7 +53,7 @@ This table gives the plain Gaussian process with its full training set on five t
 """, cap="Top-decile bias: mean of (predicted − true) over the test rows whose true value is in the top tenth. Five seeds, mean ± standard deviation.",
             source="experiments/e1_surrogate_head/results/baseline_table.md; docs/results/2026-11-11-e1-pilot.md, Sec. 2")
 
-recap("recap-problem", 1, "With 5 labels the plain GP ranks held-out alloys at ρ 0.06 to 0.63, and with its full training set it still underpredicts the top tenth on every task.", """
+recap("recap-problem", 1, "With 5 labels the plain GP ranks held-out alloys at ρ 0.06 to 0.63, and with its full training set it still underpredicts the top tenth on every task of the baseline table.", """
 The problem in one sentence: at the start of a campaign the surrogate has almost no ranking information, and the constant prior mean carries none. Anything that supplies a trend before the first measurement could help exactly where the Gaussian process is weakest. The question for the rest of the talk is whether a language model can supply that trend as a network, written directly as weights, and whether the gain in ranking carries into the optimisation loop.
 """, source=WSUM)
 
@@ -64,7 +65,7 @@ WSP = [("Definition", "Narrow sense", MAROON,
        ("Reported sizes", "Blog post, 2 Nov 2026", NAVY,
         "Edited as raw text, no tools: 171,664 weights. Written from zero in one reply, no tools: about 20,500 weights."),
        ("This work", "GP prior mean", TEAL,
-        "A d → 16 → 1 network on element fractions: 273 to 417 weights, written with no data and no tools.")]
+        "A d → 16 → 1 network on element fractions: 273 to 417 weights, written with no data and with no code execution, calculator or web access.")]
 
 
 def wsp(step):
@@ -83,7 +84,7 @@ def wsp(step):
 
 WSP_NOTES = ["""Weight-space programming, in the narrow sense I use throughout, means that a language model reads, writes or edits the weights of a network directly. The weights are given and returned as numbers in text, and no gradient descent is involved. The term was introduced by Takehi, Teoh, Zhang and Khattab at MIT CSAIL in a blog post of 2 November 2026. I keep this apart from the broad family of weight-space learning, such as hypernetworks, task vectors and model merging, which this talk does not cover. There are preprints on the idea and no peer-reviewed paper.""",
              """The sizes reported by the authors set the envelope. Editing raw weights as text with no tools was shown on a policy network of 171,664 weights, with 3.5 percent of them changed. Writing a network from zero in a single reply with no tools was shown at about 20,500 weights, on small game-playing policies. With a Python sandbox and up to 50 forward passes the reported sizes are larger. These numbers come from the blog post, and I have not reproduced them. They tell us that a network of a few hundred weights is well inside what has been claimed.""",
-             """Our object is small. The prior mean of the surrogate is a network with one hidden layer of 16 units on element atomic fractions. For the titanium tasks it has 15 inputs and 273 weights; for the multi-principal-element tasks it has 22 or 24 inputs and 385 or 417 weights. The model writes all of them from materials knowledge, with no data and no tools. What is new relative to the published targets is the setting: a regressor that feeds an uncertainty-aware surrogate. Every earlier target was a classifier, a policy or a language model."""]
+             """Our object is small. The prior mean of the surrogate is a network with one hidden layer of 16 units on element atomic fractions. For the titanium tasks it has 15 inputs and 273 weights; for the multi-principal-element tasks it has 22 or 24 inputs and 385 or 417 weights. The model writes all of them from materials knowledge, with no data and with no code execution, calculator or web access. What is new relative to the published targets is the setting: a regressor that feeds an uncertainty-aware surrogate. Every earlier target was a classifier, a policy or a language model."""]
 for j in range(1, 4):
     content(f"wsp-{j}", "Weight-space programming", 2, wsp(j), WSP_NOTES[j - 1], kind="build",
             source="docs/research-runs/2026-11-11-where-wsp-fits.md, Sec. 1 and 2; src/wsp/tasks.py")
@@ -170,7 +171,7 @@ PROMPT = ["You are given a small neural network as its raw weights.",
           "y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16 ...)",
           "# Weights",
           "## net.0.weight shape=(16, 15)",
-          "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0      [16 rows of zeros, then biases and output layer]",
+          "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   [16 rows of zeros, biases, output layer]",
           "# Reply format",
           "Reply with the complete weights in exactly the format shown above [...]"]
 content("prompt", "The prompt: Ti alloy Young's modulus", 3,
@@ -189,7 +190,7 @@ content("run-protocol", "Run protocol for a model", 3,
         "\n".join(labelled_node(28 + k * 134, 96, 122, 124, h, b, c, kk) + ("\n" + line(16 + k * 134, 158, 12, 1.5) if k else "")
                   for k, (h, kk, c, b) in enumerate(RUNP)) + "\n" +
         sbox(170, 250, 380, ["60 write runs: 15 per model, each a fresh session", "0 forward passes, 0 training rows", "all 60 passed the tool-call audit", "3 replies invalid: wrong row length, rejected"], size=13, lh=18), """
-Each run is a fresh session of one model with no memory of other runs. The model reads the prompt file once, does the task by reasoning alone, writes the reply file, and writes a short self-report of how it arrived at the reply. It is told not to run code, use a calculator, search the web or open any other file. After the run the tool calls are read from the session transcript and checked against that rule. The restriction is by instruction and audit; it is not a sandbox. All 60 write runs passed. Three replies had rows of the wrong length and were rejected by the parser: two from Sonnet 5.5 and one from Haiku 5.5.
+Each run is a fresh session of one model. The session has no code execution, calculator or web access: it only reads the prompt file and writes its reply and a short account of how it arrived at it. After the run the tool calls are read from the session transcript and checked against that rule; the restriction is by instruction and audit, not a sandbox. All 60 write runs passed. Two runs were started again from a fresh session after a usage limit cut the first one off before any reply was written. Three replies had rows of the wrong length and were rejected by the parser: two from Sonnet 5.5 and one from Haiku 5.5.
 """, source="experiments/e1_surrogate_head/WRAPPER.md; experiments/runs_audit.json; experiments/e1_surrogate_head/results/write_arm/per_run.json")
 
 REPLY = ["## net.0.weight shape=(16, 15)",
@@ -219,7 +220,7 @@ This is the reply of Opus 5.5 to that prompt, first of three, with the eleven al
 content("reply-weights", "A written network: first-layer weights", 3,
         img("written_network_weights.png", 24, 62, 672, 262, halign="center", valign="middle") + "\n" +
         sbox(24, 332, 672, ["Opus 5.5, Ti Young's modulus, reply 1: units 1 to 4 share one row (Fe 34, Mo 20, Mn 19.5, Cr 17.3, Al −5.6) and differ only in bias"], size=12, lh=16, pad=6), """
-The same reply drawn as a matrix. Columns are the fifteen element fractions, rows are the five hidden units the model used, and the two narrow columns on the right are each unit's bias and its output weight. Red is positive and blue is negative. Units one to four carry the identical row of weights: iron 34, molybdenum 20, manganese 19.5, chromium 17.3, and aluminium minus 5.6, which is the sign an alpha stabiliser should have. They differ only in bias, 0, minus 0.5, minus 1.2 and minus 1.6, so they switch on at successive values of the index. The output weights of minus 50, then plus 20, 30 and 20, make the curve fall and then turn up.
+The same reply drawn as a matrix. Columns are the fifteen element fractions, rows are the five hidden units the model used, and the two narrow columns on the right are each unit's bias and its output weight. Blue is positive and red is negative. Units one to four carry the identical row of weights: iron 34, molybdenum 20, manganese 19.5, chromium 17.3, and aluminium minus 5.6, which is the sign an alpha stabiliser should have. They differ only in bias, 0, minus 0.5, minus 1.2 and minus 1.6, so they switch on at successive values of the index. The output weights of minus 50, then plus 20, 30 and 20, make the curve fall and then turn up.
 """, source="experiments/e1_surrogate_head/runs/write__ti_alloy_youngs_modulus__opus__rep1/reply.txt")
 
 GPM = [(24, 70, 672, 62, "Prior mean", MAROON, "μ(x) = a · m(x) + b,   where m(x) is the written network's output in physical units"),
@@ -274,7 +275,7 @@ These are the settings of the optimisation. It is pool-based: the data set is th
 """, source="experiments/e1_surrogate_head/run_bo_select.py")
 
 # ------------------------------------------------------------------ 4. controls
-outline(4, """The fourth section is short: the controls and baselines. There are two questions a control has to answer here. Does the prior help relative to a Gaussian process with no prior and to random search? And does the language model contribute anything beyond a rule of mixtures that a person could type in from a table of elemental properties? I also say which controls the sources do not contain.""")
+outline(4, """The fourth section is short: the controls and baselines. There are two questions a control has to answer here. Does the prior help relative to a Gaussian process with no prior and to random search? And does the language model contribute anything beyond a rule of mixtures that a person could type in from a table of elemental properties? I also say which controls were not run.""")
 
 table_slide("controls-table", "Arms, baselines and controls", 4,
             [["Arm", "Prior mean", "Language model", "Candidates per task"],
@@ -282,14 +283,14 @@ table_slide("controls-table", "Arms, baselines and controls", 4,
              ["Plain GP", "constant; expected improvement", "no", "none"],
              ["Handbook rule of mixtures", "x · elemental table from pymatgen: Young's modulus for the modulus task, Vickers hardness for strength and hardness tasks", "no", "1"],
              ["Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5 (one arm each)", "that model's valid replies, selected by the labels", "yes", "2 or 3"],
-             ["All replies", "every valid reply of every model, selected by the labels", "yes", "11 or 12"],
-             ["Written network alone", "no GP: alloys taken in the order of m(x); 8 seeds, two tasks, Fable 5.2 replies", "yes", "1"]],
+             ["Any model (all replies pooled)", "every valid reply of every model, selected by the labels", "yes", "11 or 12"],
+             ["Written network alone", "no GP: alloys taken in the order of m(x); 8 seeds, two tasks, Fable 5.2 replies", "yes", "3, each run alone"]],
             [2.5, 4.4, 1.2, 1.23], 11.5, 24, 70, 672, 214, """
 Random search and the plain Gaussian process bound the comparison from below. The handbook arm is the control for the language model: a rule of mixtures from pymatgen's elemental tables, Young's modulus for the modulus task and Vickers hardness of the elements for the strength and hardness tasks entering the Gaussian process exactly as a written network does. Then one arm per model, and one arm that pools all valid replies. The last row uses the written network with no Gaussian process at all, in a smaller run of 8 seeds on two tasks. A control with shuffled weights does not apply to this arm, because the model is given a network of zeros and no weights to read.
 """, source="experiments/e1_surrogate_head/run_bo_select.py (ARMS, candidates); src/wsp/arms.py (handbook_prior); experiments/e1_surrogate_head/results/bo/")
 
 # ------------------------------------------------------------------ 5. results
-outline(5, """The fifth section is the results, in the order of the method. First, how well the written networks rank alloys with no data at all. Second, how a Gaussian process ranks with and without the prior as labels are added, under both slope rules. Third, the optimisation: regret curves and the area under them for all five tasks and four models, with the tests. Then the task where the prior hurts, the agreement between replicate replies, and the cost.""")
+outline(5, """The fifth section is the results, in the order of the method. First, how well the written networks rank alloys with no data at all. Second, how a Gaussian process ranks with and without the prior as labels are added, under both slope rules. Third, the optimisation: regret curves and the area under them for all five tasks and four models, with the tests. Then the task where the prior does not help, the agreement between replicate replies, and the cost.""")
 
 content("rho-alone", "Ranking with no data, by model and task", 5,
         fig("rho_alone_bars.png", ["ρ of the prior alone", "Opus 5.5: 0.64 to 0.79", "Fable 5.2: 0.53 to 0.76", "Sonnet 5.5: 0.46 to 0.67", "Haiku 5.5: 0.00 to 0.59", "handbook: −0.75 to 0.27"]), """
@@ -313,18 +314,18 @@ The same plot for hardness of multi-principal-element alloys, with the same line
 
 content("auc-ratio", "Area under regret relative to the plain GP", 5,
         fig("auc_relative_to_gp.png", ["Area ÷ plain GP's", "Opus: 0.72, 0.49, 0.15, 0.61", "and 1.17 on MPEA yield", "Fable: 0.90, 0.47, 0.25, 0.53", "and 1.25 on MPEA yield", "Haiku: no significant task"], bx=506, bw=190, w=474), """
-This figure puts all five tasks on one scale. Each bar is an arm's mean area under the regret curve divided by the plain Gaussian process's, so one is no change and lower is better. A star marks a Holm-corrected p below 0.05. The Opus 5.5 arm is at 0.72, 0.49, 0.15 and 0.61 on the first four tasks, all with a star, and at 1.17 on yield strength of multi-principal-element alloys. Fable 5.2 has stars on three tasks and is at 1.25 on that last one. Sonnet 5.5 has two stars and Haiku 5.5 none. The handbook rule stays between 0.88 and 1.04 with no star anywhere.
+Each bar is an arm's mean area under the regret curve divided by the plain Gaussian process's, so lower is better. A star marks a Holm-corrected p below 0.05. The Opus 5.5 arm is at 0.72, 0.49, 0.15 and 0.61 on the first four tasks, all with a star, and at 1.17 on yield strength of multi-principal-element alloys. Fable 5.2 has three stars, Sonnet 5.5 two, Haiku 5.5 and the handbook rule none. In the purple arm every valid reply of all four models is a candidate: at each step the one whose output correlates best with the labels so far is used, or none below 0.3. It has a star on the same four tasks.
 """, source=BOSUM + " (auc_mean, wilcoxon_p_holm)")
 
 table_slide("auc-table", "Area under regret: five tasks, four models", 5,
-            [["Task (unit)", "Plain GP", "Handbook", "Opus 5.5", "Fable 5.2", "Sonnet 5.5", "Haiku 5.5", "All replies"],
+            [["Task (unit)", "Plain GP", "Handbook", "Opus 5.5", "Fable 5.2", "Sonnet 5.5", "Haiku 5.5", "Any model (pooled)"],
              ["Ti Young's modulus (GPa)", "7.68", "7.02", "5.55 * (0.004)", "6.92", "7.34", "7.61", "5.41 * (0.004)"],
              ["Ti yield strength (MPa)", "314", "327", "153 * (0.047)", "148 * (0.026)", "216 * (0.043)", "255", "139 * (0.026)"],
              ["Ti hardness (HV)", "40.1", "40.1", "5.95 * (0.003)", "10.0 * (0.003)", "11.3 * (0.003)", "27.2", "6.13 * (0.003)"],
              ["MPEA hardness (HV)", "226", "216", "137 * (0.006)", "120 * (0.006)", "247", "259", "144 * (0.010)"],
              ["MPEA yield strength (MPa)", "772", "676", "900", "966", "735", "641", "935"]],
-            [1.93, 0.8, 0.85, 1.2, 1.2, 1.2, 0.95, 1.2], 11.5, 24, 74, 672, 150, """
-The same result as numbers. Each cell is the mean area under the regret curve over 20 seeds, in the unit of the task; lower is better. A star marks an arm below the plain Gaussian process with a Holm-corrected p under 0.05, and the p value is in brackets. Opus 5.5 is significant on four of five tasks, with corrected p values from 0.003 to 0.047. Fable 5.2 is significant on three, Sonnet 5.5 on two, Haiku 5.5 on none. The pooled arm, where the labels choose among every model's replies, matches the best single model on four tasks. The bottom row is the exception: there the Opus, Fable and pooled arms are above the plain Gaussian process.
+            [1.93, 0.75, 0.85, 1.15, 1.15, 1.15, 0.85, 1.5], 11.5, 24, 74, 672, 150, """
+Each cell is the mean area under the regret curve over 20 seeds, in the unit of the task; lower is better. A star marks an arm below the plain Gaussian process with a Holm-corrected p under 0.05, given in brackets. Opus 5.5 is significant on four of five tasks, with corrected p values from 0.003 to 0.047. Fable 5.2 is significant on three, Sonnet 5.5 on two, Haiku 5.5 on none. The pooled arm is level with or ahead of the best single model on three tasks and 20 percent above it on hardness of multi-principal-element alloys. The bottom row is the exception: there the Opus, Fable and pooled arms are above the plain Gaussian process.
 """, cap="Star: lower than the plain GP, Holm-corrected p < 0.05 (in brackets); paired Wilcoxon over 20 seeds. Random search: 8.37, 392, 66.9, 338 and 1,010 in the same row order.",
             source="experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.md")
 
@@ -334,17 +335,17 @@ On the four tasks where it works, the benefit is consistent across seeds: the Op
 
 content("mpea-ys-regret", "MPEA yield strength: BO regret", 5,
         fig("bo_regret_mpea_yield_strength.png", ["Area under regret, MPa", "plain GP: 772", "Opus 5.5: 900", "Fable 5.2: 966", "Haiku 5.5: 641", "handbook: 676"], bx=506, bw=190, w=474), """
-This is the task where the prior fails. Same axes and line styles as before, for yield strength of multi-principal-element alloys, where the best alloy in the pool is at 3,416 megapascals. From about step 10 the plain Gaussian process, the dashed black line, moves ahead of the Opus 5.5 and Fable 5.2 arms and stays ahead until the last steps. The area under the curve is 772 megapascals for the plain Gaussian process, 900 with Opus priors and 966 with Fable priors. The arms that do better here are the weak ones: Haiku 5.5 at 641 and the handbook rule at 676, neither significant. Random search is at 1,010.
+This is the task where the prior does not help. Same axes and line styles as before, for yield strength of multi-principal-element alloys, where the best alloy in the pool is at 3,416 megapascals. From about step 10 the plain Gaussian process, the dashed black line, moves ahead of the Opus 5.5 and Fable 5.2 arms and stays ahead until the last steps. The area under the curve is 772 megapascals for the plain Gaussian process, 900 with Opus priors and 966 with Fable priors. The arms that do better here are the weak ones: Haiku 5.5 at 641 and the handbook rule at 676, neither significant. Random search is at 1,010.
 """, source="experiments/e1_surrogate_head/results/bo_select/init5_steps25/mpea_yield_strength/; " + BOSUM)
 
 content("mpea-ys-seeds", "MPEA yield strength: differences by seed", 5,
         fig("auc_seed_differences_mpea_yield_strength.png", ["Opus: 4 better, 14 worse", "p 0.033, Holm 0.149", "Fable: 4 better, 14 worse", "p 0.018, Holm 0.106", "ρ at 5 labels still rose:", "0.40 → 0.66 with Opus"], bx=506, bw=190, w=474), """
-Each dot is one seed: an arm's area under regret minus the plain Gaussian process's for the same initial labels, so a dot above zero is a seed where the prior hurt. The black bar is the mean. For both the Opus 5.5 and the Fable 5.2 arm, 4 seeds are better and 14 are worse. The uncorrected p values are 0.033 and 0.018; after Holm correction they are 0.149 and 0.106, so the harm is not significant. The same networks improved static ranking on this task, from 0.40 to 0.66 at 5 labels. The cause is not diagnosed. One candidate: the best alloys in this pool are outliers that a smooth written trend ranks low.
-""", source=BOSUM + " (seeds_better_than_gp, seeds_worse_than_gp, wilcoxon_p, wilcoxon_p_holm); " + R3 + ", Sec. 2")
+Each dot is one seed: an arm's area under regret minus the plain Gaussian process's for the same initial labels, so a dot above zero is a seed where the prior hurt. For both the Opus 5.5 and the Fable 5.2 arm, 4 seeds are better and 14 are worse. The uncorrected p values are 0.033 and 0.018; after Holm correction they are 0.149 and 0.106, so the harm is not significant. The same networks improved static ranking on this task, from 0.40 to 0.66 at 5 labels. Inside the best tenth of the pool they carry no ranking, with correlations of 0.02 and 0.00, and they underpredict it by 1.3 to 1.5 standard deviations.
+""", source=BOSUM + " (seeds_better_than_gp, seeds_worse_than_gp, wilcoxon_p, wilcoxon_p_holm); " + R3 + ", Sec. 2; " + DIAG)
 
-recap("recap-mpea-ys", 5, "On MPEA yield strength the Opus 5.5 and Fable 5.2 arms are worse than the plain GP in 14 of 20 seeds (Holm p 0.149 and 0.106), although the same networks raise static ranking. The cause is not diagnosed.", """
-I take two things from this. A gain in rank correlation on held-out alloys did not predict a gain in the optimisation here, so ranking alone is not a sufficient test of a prior. And the selection rule did not protect this task: it checks correlation with the labels so far, and these priors do correlate with them. Until the cause is found, a written prior should be run beside a plain Gaussian process, not in place of it.
-""", source=R3 + ", Sec. 2")
+recap("recap-mpea-ys", 5, "On MPEA yield strength the Opus 5.5 and Fable 5.2 arms have a higher regret area than the plain GP in 14 of 20 seeds (Holm p 0.149 and 0.106, not significant). Inside the best tenth of the pool the priors carry no ranking (ρ 0.02 and 0.00) and underpredict by 1.3 to 1.5 SD.", """
+I take three things from this. A gain in rank correlation on held-out alloys did not predict a gain in the optimisation here, so ranking alone is not a sufficient test of a prior. The selection rule did not protect this task: it checks correlation with the labels so far, and these priors do correlate with them. And the diagnosis is partial: titanium modulus has almost as few of its best alloys in the prior's top tenth and still gains. A selection rule that looks at the top of the labels is not tested, so a written prior should be run beside a plain Gaussian process, not in place of it.
+""", source=R3 + ", Sec. 2; " + DIAG)
 
 content("replicates", "Agreement across replicate replies", 5,
         fig("replicate_replies.png", ["Range of ρ over a model's replies", "Opus: ≤ 0.05 on 4 tasks,", "0.57 to 0.72 on Ti hardness", "Haiku, Ti hardness: −0.15 to 0.10", "3 of 60 replies invalid", "(Sonnet 2, Haiku 1)"], bx=500, bw=196, w=470), """
@@ -425,7 +426,7 @@ TCF = [(24, 66, 672, 104, "Sub-system facts", MAROON,
         "Every coefficient is set exactly by the facts;<br>nothing is fitted to a multicomponent alloy."),
        (366, 182, 330, 180, "Written network with facts", TEAL,
         "The write prompt, unchanged, with one added section:<br>the same facts as text, one line each.<br>"
-        "The model again returns every weight of the<br>d → 16 → 1 network, with no tools and no pool data.<br>"
+        "The model again returns every weight of the<br>d → 16 → 1 network, with no code execution<br>and no pool data.<br>"
         "Arms: Opus 5.5 + facts, Fable 5.2 + facts.<br>"
         "The extrapolation and the model with facts<br>start from identical information.")]
 
@@ -475,7 +476,7 @@ Each group of bars is one kind of target, and the height is the mean Spearman co
 """, source=ALONE + "; experiments/e1_surrogate_head/results/standalone/summary.json (rho)")
 
 recap("recap-tc-alone", 6, "With no labels the written networks rank the 35 targets at ρ 0.67 (Opus 5.5) and 0.64 (Fable 5.2), against 0.70 for the extrapolation from computed binaries and ternaries; with the same facts in the prompt they reach 0.73 and 0.71.", """
-Two points sit behind these means. The networks written without facts use no computed data at all, and they come within 0.03 to 0.06 of a reference that uses 31 to 105 calculations per system. And the two kinds of predictor fail in different places: the extrapolation is weakest on phase fractions, at 0.63, where the written networks reach 0.69, and the written networks are weakest on the freezing range. The next question is what remains of these differences once a Gaussian process has a few labels.
+Two points sit behind these means. The networks written without facts use no computed data at all, and they come within 0.04 to 0.06 of a reference that uses 31 to 105 calculations per system. And the two kinds of predictor fail in different places: the extrapolation is weakest on phase fractions, at 0.63, where the written networks reach 0.69, and the written networks are weakest on the freezing range. The next question is what remains of these differences once a Gaussian process has a few labels.
 """, source=ALONE + "; " + TC)
 
 content("tc-rho-labels", "Thermo-Calc: GP ranking against labels", 6,
@@ -485,11 +486,11 @@ The horizontal axis is the number of labelled alloys given to the Gaussian proce
 
 content("tc-coverage", "Thermo-Calc: 95% interval coverage at 5 labels", 6,
         fig("tc_coverage_5_labels.png", ["Coverage at 5 labels", "plain GP: 0.86", "two-stage fit: 0.71 to 0.75", "a, b learned: 0.86 to 0.89", "a, b integrated out: 0.87 to 0.90", "nominal: 0.95"], bx=500, bw=196, w=470), """
-This figure is about the intervals. Each group is one source of the prior mean, and the height is the share of held-out values inside the 95 percent interval at 5 labels, averaged over the 35 targets. The dashed line is the plain Gaussian process at 0.86 and the dotted line is the nominal 0.95. Amber is the two-stage fit used so far: slope and offset by least squares, then the Gaussian process on the residual. It covers 0.71 to 0.75. Teal learns the slope and offset together with the kernel, and navy integrates them out with a linear kernel term on the network output. Both joint fits cover 0.86 to 0.90, at the same ranking.
+Each group is one source of the prior mean, and the height is the share of held-out values inside the 95 percent interval at 5 labels, averaged over the 35 targets. The dashed line is the plain Gaussian process at 0.86 and the dotted line is the nominal 0.95. Amber is the two-stage fit used on the alloy tasks, least squares and then the Gaussian process on the residual, at 0.71 to 0.75. Teal learns the slope and offset together with the kernel, and navy integrates them out. Both joint fits cover 0.86 to 0.90, at the same ranking. At 10 labels all fits are at 0.73 to 0.78, with the plain Gaussian process at 0.78.
 """, source=TC + " (95% coverage at 5 / 10); src/wsp/joint_mean.py (map, marginal)")
 
-recap("recap-tc-gp", 6, "At 5 labels every prior raises the GP's mean ρ from 0.37 to between 0.62 and 0.69, and by 50 labels all are at 0.82 to 0.83. A joint fit of the slope and offset keeps 95% coverage at 0.86 to 0.90, against 0.71 to 0.75 for the two-stage fit.", """
-The ranking result repeats what the measured alloys showed: the prior matters at 5 to 20 labels and the plain Gaussian process catches up by 50. The coverage result is new in this section. On these targets the loss of calibration comes from the two-stage fit, and fitting the slope and offset inside the Gaussian process removes it without a cost in ranking. The optimisation results that follow are for the two-stage fit, the one used on the alloy tasks; with either joint fit the count of improved targets differs by at most two.
+recap("recap-tc-gp", 6, "At 5 labels every prior raises the GP's mean ρ from 0.37 to between 0.62 and 0.69, and by 50 labels all are at 0.82 to 0.83. A joint fit of the slope and offset keeps 95% coverage at 0.86 to 0.90 at 5 labels, against 0.71 to 0.75 for the two-stage fit; at 10 labels all fits are at 0.73 to 0.78.", """
+The ranking result repeats what the measured alloys showed: the prior matters at 5 to 20 labels and the plain Gaussian process catches up by 50. The coverage result is new in this section. At 5 labels the loss of calibration comes from the two-stage fit, and fitting the slope and offset inside the Gaussian process removes it without a cost in ranking; at 10 labels the fits no longer differ, and the plain Gaussian process is at 0.78. The optimisation results that follow are for the two-stage fit, the one used on the alloy tasks; with either joint fit the count of improved targets differs by at most two.
 """, source=TC)
 
 content("tc-bo-solidus", "Thermo-Calc BO: solidus and freezing range", 6,
@@ -523,13 +524,13 @@ table_slide("tc-findings", "Thermo-Calc case: findings and limits", 6,
              ["Found", "with no data, written networks rank the 35 targets at ρ 0.67 (Opus 5.5) and 0.64 (Fable 5.2); the extrapolation from computed binaries and ternaries reaches 0.70"],
              ["Found", "on the 16 phase fractions the written networks are ahead of the extrapolation: 0.69 and 0.67 against 0.63"],
              ["Found", "with the sub-system facts in the prompt the networks match the extrapolation: ρ 0.73 and 0.71; BO better on 18 and 16 of 33 targets"],
-             ["Found", "a joint fit of slope and offset keeps 95% coverage at 0.86 to 0.90 at 5 labels; the two-stage fit gives 0.71 to 0.75"],
+             ["Found", "a joint fit of slope and offset keeps 95% coverage at 0.86 to 0.90 at 5 labels; the two-stage fit gives 0.71 to 0.75; at 10 labels all fits are at 0.73 to 0.78, plain GP 0.78"],
              ["Limit", "Ti α transus: no predictor ranks it (ρ at most 0.30) and no prior changes BO on it"],
              ["Limit", "phase fractions: 2 or 3 of 15 targets improve in BO; on several the plain GP's regret is near zero, and two targets are left out for that reason"],
              ["Limit", "one loss: Fable 5.2 without facts on the Ni γ′ fraction, 1.82 times the plain GP's regret area"],
              ["Limit", "labels are computed, not measured; two models, two replies per target and prompt; the facts come from the database that produced the targets"]],
             [1.0, 8.33], 11.5, 24, 66, 672, 250, """
-This slide collects the Thermo-Calc case. Networks written with no data come close to an extrapolation that uses computed binary and ternary data, and they are ahead of it on phase fractions. With the same facts in the prompt they match it, alone and in the optimisation. A joint fit of the slope and offset restores the coverage that the two-stage fit loses. The limits: no predictor ranks the titanium alpha transus; most phase-fraction targets leave the optimisation little to gain; one arm is worse on one target; and the labels are calculations, with facts drawn from the database that produced the targets, so this tests composition trends inside one thermodynamic description.
+This slide collects the Thermo-Calc case. Networks written with no data come close to an extrapolation that uses computed binary and ternary data, and they are ahead of it on phase fractions. With the same facts in the prompt they match it, alone and in the optimisation. A joint fit of the slope and offset restores the coverage that the two-stage fit loses at 5 labels. The limits: no predictor ranks the titanium alpha transus; most phase-fraction targets leave the optimisation little to gain; one arm is worse on one target; and the labels are calculations, with facts drawn from the database that produced the targets, so this tests composition trends inside one thermodynamic description.
 """, source=TC + "; " + ALONE + "; docs/results/2026-11-12-round7.md, Sec. 4")
 
 # ------------------------------------------------------------------ 7. structure-embedding surrogates
@@ -588,41 +589,41 @@ This diagram is drawn from the weights that Opus 5.5 wrote for the bulk modulus.
 """, source=E3 + "runs/filter_K__opus__rep1/ (reply.txt, self_report.txt); " + SP + " (Prior alone)")
 
 content("st-rho-labels-k", "Crystal bulk modulus: GP ranking against labels", 7,
-        fig("st_rho_vs_labels_bulk_modulus.png", ["ρ at 5 / 10 / 20 / 50 labels", "plain GP: 0.15 / 0.57 / 0.82 / 0.85", "+ descriptors: 0.30 / 0.37 / 0.52 / 0.49", "rule: 0.77 / 0.89 / 0.93 / 0.93", "Opus: 0.95 / 0.94 / 0.90 / 0.90", "Fable: 0.93 / 0.92 / 0.90 / 0.90"], bx=466, bw=230, w=436), """
-The horizontal axis is the number of labelled crystals from the starting pool, and the vertical axis is the Spearman correlation on the crystals the generator proposed, averaged over six runs and three draws. The dashed line is the plain Gaussian process on the embedding: 0.15 at 5 labels and 0.82 at 20. With an Opus 5.5 or Fable 5.2 network as the mean it is at 0.95 and 0.93 from 5 labels, better in all 18 cells. The grey line is the volume rule, which overtakes the networks from 20 labels. The purple line gives the Gaussian process the 15 raw descriptors as extra inputs, which is worse than the embedding alone from 10 labels on.
+        fig("st_rho_vs_labels_bulk_modulus.png", ["ρ at 5 / 10 / 20 / 50 labels", "plain GP: 0.15 / 0.57 / 0.82 / 0.85", "+ descriptors: 0.30 / 0.37 / 0.52 / 0.49", "rule (2-stage): 0.77 / 0.89 / 0.93 / 0.93", "Opus (joint): 0.95 / 0.94 / 0.90 / 0.90", "Fable (joint): 0.93 / 0.92 / 0.90 / 0.90"], bx=456, bw=240, w=426), """
+The horizontal axis is the number of labelled crystals from the starting pool, and the vertical axis is the Spearman correlation on the crystals the generator proposed, averaged over six runs. The dashed line is the plain Gaussian process on the embedding: 0.15 at 5 labels and 0.82 at 20. With an Opus 5.5 or Fable 5.2 network as the mean it is at 0.95 and 0.93 from 5 labels, better in all 18 cells. The grey line is the volume rule with its two-stage fit, which is above the networks from 20 labels. The purple line gives the Gaussian process the 15 descriptors as extra inputs, which is worse than the embedding alone from 10 labels on.
 """, source=SP + " (loop_bulk_modulus); experiments/e1_surrogate_head/results/structure_prior/summary.json")
 
-recap("recap-st-gp", 7, "With 5 labels the embedding GP ranks the generated crystals at ρ 0.15; with an Opus 5.5 or Fable 5.2 network as its mean, at 0.95 and 0.93 (18 of 18 cells better, p = 8e-6). The same 15 descriptors as raw GP inputs give 0.30.", """
-The comparison with the raw descriptors separates two explanations. If the gain came from the extra columns, adding them to the inputs would give it too, and on this target it does not. The gain comes from what the network does with them. On calibration, the joint fit of slope and offset covers 0.97 to 0.98 of the generated crystals at 5 labels, against 0.86 for the plain Gaussian process and 0.69 to 0.73 for the two-stage fit. The rule is shown with the two-stage fit; under the joint fits it stays at 0.18 at 5 labels.
+recap("recap-st-gp", 7, "With 5 labels the embedding GP ranks the generated crystals at ρ 0.15; with an Opus 5.5 or Fable 5.2 network as its mean, at 0.95 and 0.93 (18 of 18 cells better, p = 8e-6). The same 15 descriptors added to the embedding as GP inputs give 0.30.", """
+If the gain came from the extra columns, adding the descriptors to the inputs would give it too, and on this target it does not. The networks are shown with the joint fit, which covers 0.97 to 0.98 of the generated crystals at 5 labels against 0.86 for the plain Gaussian process. The rule is shown with the two-stage fit. Its raw scale, about 0.06 per cubic angstrom, is far from the target's, and a learned slope that starts at one leaves it at 0.17 to 0.18 at 5 labels. With the two-stage fit for all three, the values at 20 labels are 0.93 for the rule, 0.91 for Opus and 0.89 for Fable.
 """, source=SP + " (loop_bulk_modulus: ρ, 95% coverage, ρ better / worse than plain GP)")
 
-content("st-hidden", "Crystal bulk modulus: the written hidden layer as GP inputs", 7,
+content("st-hidden", "Crystal bulk modulus: written hidden layer as GP inputs", 7,
         fig("st_hidden_units_as_inputs.png", ["ρ at 5 / 20 / 500 labels", "embedding only: 0.15 / 0.82 / 0.88", "hidden units only: 0.43 / 0.76 / 0.94", "hidden + mean: 0.92 / 0.93 / 0.94", "all three: 0.94 / 0.92 / 0.90"], bx=478, bw=218, w=448), """
 A written network also has a hidden layer, and its 16 units can be the inputs of the Gaussian process. The axes are as before, with the whole pool of 500 added, and each line is the mean over the Opus 5.5 and Fable 5.2 networks. The teal line uses only the hidden units, with a constant mean: it needs labels like any features, 0.43 at 5 labels, but with the whole pool it reaches 0.94, above the 0.88 of the 50 embedding coordinates. The maroon line adds the network output as the mean and stays at 0.92 to 0.94 at every label count. The navy line adds the embedding as well, and falls to 0.90 with the whole pool.
 """, source=SPF + " (loop_bulk_modulus); experiments/e1_surrogate_head/run_structure_features.py (arms); " + SP + " (gp)")
 
 content("st-rho-labels-cp", "Crystal heat capacity: GP ranking against labels", 7,
-        fig("st_rho_vs_labels_heat_capacity.png", ["ρ at 5 / 10 / 20 / 50 labels", "plain GP: 0.15 / 0.31 / 0.46 / 0.67", "+ descriptors: 0.38 / 0.66 / 0.87 / 0.98", "rule: 1.00 / 0.99 / 0.99 / 0.99", "Opus: 1.00 / 0.99 / 0.99 / 0.97", "Fable: 1.00 / 0.99 / 0.99 / 0.96"], bx=456, bw=240, w=426), """
-The same plot for the heat capacity per gram at 300 kelvin. The plain Gaussian process on the embedding is at 0.15 with 5 labels and 0.67 with 50. The grey line is the Dulong-Petit rule, three times the gas constant divided by the mean atomic mass, used as the mean: it ranks the generated crystals at 1.00 from the first labels. The Opus 5.5 and Fable 5.2 networks do the same, and they add nothing over the rule. This target is decided by one of the 15 descriptors, and here the raw descriptors as inputs do help, reaching 0.98 at 50 labels. It belongs with the cases where a rule already works.
+        fig("st_rho_vs_labels_heat_capacity.png", ["ρ at 5 / 10 / 20 / 50 labels", "plain GP: 0.15 / 0.31 / 0.46 / 0.67", "+ descriptors: 0.38 / 0.66 / 0.87 / 0.98", "rule (2-stage): 1.00 / 0.99 / 0.99 / 0.99", "Opus (joint): 1.00 / 0.99 / 0.99 / 0.97", "Fable (joint): 1.00 / 0.99 / 0.99 / 0.96"], bx=456, bw=240, w=426), """
+The same plot for the heat capacity per gram at 300 kelvin. The plain Gaussian process on the embedding is at 0.15 with 5 labels and 0.67 with 50. The grey line is the Dulong-Petit rule, three times the gas constant divided by the mean atomic mass, used as the mean with the two-stage fit: it ranks the generated crystals at 1.00 from the first labels. The Opus 5.5 and Fable 5.2 networks do the same, and they add nothing over the rule. This target is decided by one of the 15 descriptors, and here the descriptors as extra inputs do help, reaching 0.98 at 50 labels. It belongs with the cases where a rule already works.
 """, source=SP + " (loop_heat_capacity); " + R7 + " (Heat capacity)")
 
 content("st-filter", "Screening filter in front of two generators", 7,
         fig("st_filter_two_generators.png", ["Bulk modulus, base samples", "ρ, MatterGen / CrystalFlow", "rule 0.82 / 0.77, MLP 0.29 / 0.12", "Opus 0.92 / 0.88, Fable 0.88 / 0.88", "Above 150 GPa, kept quarter", "all 0.09 / 0.16; Opus 0.36 / 0.52"], bx=500, bw=196, w=470), """
-The networks were first written to score crystals sampled from a generator before any costly calculation, keeping the top quarter. The left panel is the Spearman correlation between the score and the computed bulk modulus on 128 base samples of MatterGen and of CrystalFlow. The Opus 5.5 networks reach 0.92 and 0.88, the volume rule 0.82 and 0.77, and a network of the same size trained on 400 Materials Project structures 0.29 and 0.12. The right panel is the share of crystals above 150 gigapascals in the kept quarter; the dashed line is the share among all samples. On CrystalFlow the written networks raise it from 0.16 to above 0.5, against 0.38 for the rule. On MatterGen they equal it.
+The networks were first written to score crystals sampled from a generator, keeping the top quarter. The left panel is the Spearman correlation between the score and the computed bulk modulus on 128 base samples per generator. The Opus 5.5 networks reach 0.92 and 0.88, the volume rule 0.82 and 0.77, and a same-size network trained on 400 Materials Project structures 0.29 and 0.12. The right panel is the share of crystals above 150 gigapascals in the kept quarter; the dashed line is the share among all samples. On CrystalFlow the written networks raise it from 0.16 to above 0.5, against 0.38 for the rule. On MatterGen Fable equals the rule at 0.38 and Opus is at 0.36.
 """, source=E3 + "results/filter_arm/summary.md (MatterGen); " + E3 + "results/filter_arm_cf/summary.md (CrystalFlow); per_run.json (base_128)")
 
 table_slide("st-findings", "Structure-embedding case: findings and limits", 7,
             [["Kind", "Statement"],
              ["Found", "bulk modulus at 5 labels: ρ 0.15 for the embedding GP, 0.95 and 0.93 with an Opus 5.5 or Fable 5.2 network as its mean; the largest gain of the three cases"],
-             ["Found", "the gain is not the extra columns: the 15 raw descriptors as GP inputs give 0.30 to 0.52, below the embedding alone from 10 labels on"],
+             ["Found", "the gain is not the extra columns: the 15 descriptors added to the embedding as GP inputs give 0.30 to 0.52 at 5 to 20 labels, below the embedding alone from 10 labels on"],
              ["Found", "the 16 written hidden units as GP inputs reach 0.94 with the whole pool, against 0.88 for the 50 embedding coordinates"],
-             ["Found", "as a screening filter the networks rank generator samples at ρ 0.88 to 0.92; the volume rule at 0.77 and 0.82"],
-             ["Limit", "from 20 labels the rule 1 / volume is as good or better (0.93 against 0.90); with the whole pool no mean differs from the plain GP (0.88 to 0.92)"],
+             ["Found", "as a screening filter the Opus 5.5 and Fable 5.2 networks rank generator samples at ρ 0.88 to 0.92; the volume rule at 0.77 and 0.82"],
+             ["Limit", "from 20 labels the rule 1 / volume is as good or better (two-stage fit: 0.93 against 0.91 and 0.89; under the joint fit the rule is at 0.82); with the whole pool no mean differs from the plain GP (0.88 to 0.92)"],
              ["Limit", "heat capacity: the Dulong-Petit rule ranks at 1.00 and the networks only match it"],
              ["Limit", "the targets come from a machine-learned potential, not from DFT or experiment"],
              ["Limit", "ranking only: no optimisation loop was run with a written mean on these tasks; the networks were written for the filter and reused here"]],
             [1.0, 8.33], 11.5, 24, 66, 672, 250, """
-This slide collects the structure case. With 5 labels the written mean lifts the ranking of generated crystals from 0.15 to 0.95, the largest gain of the three cases in this talk, and the control with raw descriptors shows that it comes from the network. The written hidden layer is a useful set of inputs once there are labels. The limits: from 20 labels the one-line volume rule is as good or better, and with the whole pool no mean differs from the plain Gaussian process; the heat capacity is solved by a rule; the targets are computed with a machine-learned potential; and I show ranking only, with no optimisation loop on these tasks.
+This slide collects the structure case. With 5 labels the written mean lifts the ranking of generated crystals from 0.15 to 0.95, the largest gain of the three cases in this talk, and the control with the descriptors as extra inputs shows that it comes from the network. The written hidden layer is a useful set of inputs once there are labels. The limits: from 20 labels the one-line volume rule is as good or better, and with the whole pool no mean differs from the plain Gaussian process; the heat capacity is solved by a rule; the targets are computed with a machine-learned potential; and I show ranking only, with no optimisation loop on these tasks.
 """, source=SP + "; " + SPF + "; " + E3 + "results/filter_arm/summary.md; " + E3 + "results/filter_arm_cf/summary.md; " + R7)
 
 # ------------------------------------------------------------------ 8. BNN
@@ -639,7 +640,7 @@ The same arms, now with the share of held-out values that fall inside the 95 per
 """, source=BNN + " (coverage95); docs/results/2026-11-11-round4.md, Sec. 3")
 
 recap("recap-bnn", 8, "As a prior mean the written network raises ranking at 10 to 20 labels (GP 0.53 → 0.69, MC dropout 0.54 → 0.65) but the intervals are overconfident (coverage 0.66 and 0.39); as a weight-space prior for HMC it is the worst arm (ρ 0.21).", """
-The written networks use three to seven hidden units with large weights. A unit-variance prior centred on them pins the rest of the network at zero, and the chain cannot use the data, which explains the weight-prior result. The Hamiltonian Monte Carlo here follows the study of Li, Rudner and Wilson and is a small implementation: fixed noise level, one chain, 200 kept samples. The useful place for the written network is the function-space mean, and its calibration needs work.
+Most written networks use fewer than ten of the 16 hidden units, with large weights, and leave the rest at zero. A unit-variance prior centred on them pins those units near zero, and the chain cannot use the data, which explains the weight-prior result. The Hamiltonian Monte Carlo here follows the study of Li, Rudner and Wilson and is a small implementation: fixed noise level, one chain, 200 kept samples. The useful place for the written network is the function-space mean, and its calibration needs work.
 """, source="docs/results/2026-11-11-round4.md, Sec. 3")
 
 # ------------------------------------------------------------------ 9. limits
@@ -650,29 +651,29 @@ table_slide("limits", "Limits and what is not yet run", 9,
              ["Scope", "one pool per task; pool-based BO on existing measurements and on computed Thermo-Calc pools, no real closed loop"],
              ["Scope", "four models from one vendor; three replies per model and alloy task, two per Thermo-Calc target and prompt"],
              ["Scope", "the written network needs named inputs: element fractions, or 15 named descriptors of a crystal next to its embedding; the crystal case has ranking only, no BO"],
-             ["Known fault", "MPEA yield strength: Opus 5.5 and Fable 5.2 priors worse than the plain GP in 14 of 20 seeds; cause not diagnosed"],
-             ["Known fault", "two-stage fit: intervals overconfident at few labels (alloy tasks 0.66 against 0.71; Thermo-Calc 0.71 to 0.75 against 0.86); a joint fit of slope and offset gives 0.86 to 0.90 there"],
+             ["Known fault", "MPEA yield strength: Opus 5.5 and Fable 5.2 priors above the plain GP's regret area in 14 of 20 seeds (not significant after Holm); partly diagnosed: no ranking inside the best tenth (ρ 0.02, 0.00); a tail-aware selection rule is not tested"],
+             ["Known fault", "two-stage fit: intervals overconfident at 5 labels (alloy tasks 0.63 against 0.76 for the plain GP; Thermo-Calc 0.71 to 0.75 against 0.86); a joint fit gives 0.75 to 0.79 and 0.86 to 0.90; at 10 labels all fits are within 0.07"],
              ["Known fault", "fitted slope unstable on 5 to 10 labels; weak priors (Haiku 5.5, Ti hardness) lower ranking"],
              ["Not run", "a mean network of the same shape fitted by gradient descent on the first labels"],
              ["Not run", "prompt and reply tokens from the model's tokenizer; tool use limited by instruction and audit, not by a sandbox"],
              ["Not run", "for the BNNs: SGHMC, linearised Laplace, a tuned HMC"]],
             [1.3, 8.03], 11.5, 24, 64, 672, 282, """
-On scope: each task has one pool, of existing measurements or of Thermo-Calc calculations, so this is a retrospective benchmark and not a closed loop; the four models come from one vendor; and the written network always needs named inputs, element fractions or descriptors of a crystal, with ranking only for the crystal case. On faults: the yield strength failure is unexplained, the two-stage fit gives overconfident intervals at few labels where a joint fit does not, and the fitted slope is unstable on five to ten points. On what is missing: a gradient-fitted mean network on the same first labels, token counts from the model's own tokenizer, a sandbox in place of an audit, and tuned network baselines.
-""", source=R3 + ", Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; " + TC)
+On scope: each task has one pool, of existing measurements or of Thermo-Calc calculations, so this is a retrospective benchmark; the four models come from one vendor; and the written network always needs named inputs, element fractions or descriptors of a crystal, with ranking only for the crystal case. On faults: the yield strength loss is only partly explained, the two-stage fit gives overconfident intervals at 5 labels where a joint fit does not, and the fitted slope is unstable on five to ten points. On what is missing: a gradient-fitted mean network on the same first labels, token counts from the model's own tokenizer, a sandbox in place of an audit, and tuned network baselines.
+""", source=R3 + ", Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; " + TC + "; experiments/e1_surrogate_head/results/joint_mean/static_summary.md; " + DIAG)
 
 conclusions("conclusions", "Conclusions", 9,
-            [("Done", ["written_network_weights.png", "tc_net_steel_austenite_fraction.png"],
-              ["written with no data, as GP mean", "5 measured alloy tasks: 60", "35 Thermo-Calc targets: 280", "2 crystal tasks: 18"]),
-             ("Found", ["auc_relative_to_gp.png", "tc_bo_solidus_freezing_range.png"],
-              ["Opus 5.5: BO better on 4 of 5", "worse on MPEA yield strength", "Thermo-Calc: better on 16 of 33", "crystals, 5 labels: ρ 0.15 → 0.95"]),
-             ("Next", ["tc_bo_phase_fractions.png", "st_rho_vs_labels_bulk_modulus.png"],
-              ["diagnose MPEA yield strength", "phase fractions; Ti α transus", "BO on the crystal tasks", "second pool; a real closed loop"])], """
-To close. Four models wrote small networks from materials knowledge with no data, used as the prior mean of a Gaussian process. Over 20 seeds the Opus priors lower the area under regret on four of five tasks and make yield strength of multi-principal-element alloys worse. On 33 Thermo-Calc targets the Opus priors are better on 16 with no data and on 18 with sub-system facts, level with an extrapolation from computed binaries and ternaries. On crystal bulk modulus a written mean lifts the ranking at 5 labels from 0.15 to 0.95. Next come the diagnosis of that failure, optimisation on the crystal tasks, and a real closed loop. Thank you; I welcome questions.
+            [("Done", ["tc_net_ni_superalloy_solidus.png"],
+              ["written with no data, as GP mean", "5 alloy tasks: 60 replies, 57 valid", "35 Thermo-Calc targets: 280", "2 crystal tasks: 18"]),
+             ("Found", ["auc_relative_to_gp.png"],
+              ["Opus 5.5: BO better on 4 of 5", "MPEA yield: higher, not significant", "Thermo-Calc: better on 16 of 33", "crystals, 5 labels: ρ 0.15 → 0.95"]),
+             ("Next", ["st_rho_vs_labels_bulk_modulus.png"],
+              ["tail-aware selection rule", "phase fractions; Ti α transus", "BO on the crystal tasks", "second pool; a real closed loop"])], """
+Four models wrote small networks from materials knowledge with no data, used as the prior mean of a Gaussian process. Over 20 seeds the Opus priors lower the area under regret on four of five tasks and give a higher area on yield strength of multi-principal-element alloys, which is not significant after correction. On 33 Thermo-Calc targets the Opus priors are better on 16 with no data and on 18 with sub-system facts, level with the sub-system extrapolation. On crystal bulk modulus a written mean lifts the ranking at 5 labels from 0.15 to 0.95. Next come a tail-aware selection rule for that task, optimisation on the crystal tasks, and a real closed loop. Thank you; I welcome questions.
 """, source=R3 + ", Sec. 2 and 6; " + TC + "; " + SP)
 
 # ------------------------------------------------------------------ backup
 dark("backup-divider", "Backup", ["The two slope rules; regret by step; the written network with no GP"], """
-The slides after this divider are kept for questions. They use the same figures and tables as the main deck and come in the order of the talk: the ranking against labels with the slope fixed at one, the two slope rules side by side at 5 labels, the regret after 5, 10 and 25 steps for the plain Gaussian process and the two stronger models, and the smaller run in which the written network is used with no Gaussian process at all. Each carries its source in the notes, like the main slides.
+The slides after this divider are kept for questions. They come in the order of the talk: the ranking against labels with the slope fixed at one, the two slope rules side by side at 5 labels, the regret after 5, 10 and 25 steps for the plain Gaussian process and the two stronger models, and the smaller run in which the written network is used with no Gaussian process at all.
 """)
 
 content("b-rho-labels-one", "GP ranking against labels: slope fixed at one", 99,
@@ -686,13 +687,13 @@ This figure compares the two slope rules where they differ most, at 5 labels. Ea
 """, kind="backup", source=WSUM + " (n5: gp, prior_fitted, prior_one)")
 
 table_slide("b-regret-steps", "Regret after 5, 10 and 25 steps", 99,
-            [["Task (unit)", "Plain GP: 5 / 10 / 25", "Opus 5.5: 5 / 10 / 25", "Fable 5.2: 5 / 10 / 25", "All replies: 5 / 10 / 25"],
+            [["Task (unit)", "Plain GP: 5 / 10 / 25", "Opus 5.5: 5 / 10 / 25", "Fable 5.2: 5 / 10 / 25", "Any model (pooled): 5 / 10 / 25"],
              ["Ti Young's modulus (GPa)", "8.9 / 8.1 / 5.6", "9.1 / 6.4 / 1.6", "9.7 / 7.5 / 3.5", "8.9 / 6.4 / 1.5"],
              ["Ti yield strength (MPa)", "479 / 324 / 114", "331 / 114 / 17", "317 / 164 / 0", "335 / 124 / 9"],
              ["Ti hardness (HV)", "81.8 / 41.0 / 1.6", "2.0 / 2.0 / 2.0", "13.0 / 2.0 / 2.0", "7.5 / 2.0 / 1.9"],
              ["MPEA hardness (HV)", "296 / 227 / 112", "178 / 99 / 94", "118 / 109 / 99", "203 / 124 / 99"],
              ["MPEA yield strength (MPa)", "1,138 / 753 / 522", "1,118 / 988 / 499", "1,181 / 1,024 / 698", "1,173 / 1,067 / 588"]],
-            [2.13, 1.8, 1.8, 1.8, 1.8], 12, 24, 78, 672, 150, """
+            [2.0, 1.65, 1.65, 1.65, 2.38], 12, 24, 78, 672, 150, """
 This table gives the mean regret over 20 seeds after 5, 10 and 25 steps for the plain Gaussian process, the Opus 5.5 arm, the Fable 5.2 arm and the pooled arm. On titanium modulus the arms are level at step 5 and separate later. On titanium yield strength and both hardness tasks the priors are ahead from step 5. On yield strength of multi-principal-element alloys the Opus arm is behind at step 10, 988 against 753 megapascals, and level at step 25, 499 against 522, while the Fable arm is behind throughout. On titanium hardness the Gaussian process also reaches a regret near 2 by the end.
 """, kind="backup", cap="Mean over 20 seeds; 5 initial labels are given before step 1.", cap_gap=14,
             source="experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.md")

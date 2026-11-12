@@ -160,13 +160,13 @@ def fig_coverage():
         x = np.arange(len(SOURCES)) + (k - 1) * wd
         ax.bar(x, y, wd, color=col, edgecolor="white", lw=0.4, label=lab, zorder=2)
         for xi, yi in zip(x, y):
-            ax.text(xi, yi + 0.008, f"{yi:.2f}", ha="center", va="bottom", fontsize=8.5)
+            ax.text(xi, yi - 0.012, f"{yi:.2f}", ha="center", va="top", fontsize=8.5, color="white")
     ax.axhline(gp, color="#111", ls="--", lw=1.2, label=f"Plain GP: {gp:.2f}", zorder=1)
     ax.axhline(0.95, color="#111", ls=":", lw=1.2, label="Nominal: 0.95", zorder=1)
     ax.set_xticks(range(len(SOURCES)), ["Sub-system\nextrapolation", "Opus 5.5", "Opus 5.5\n+ facts", "Fable 5.2", "Fable 5.2\n+ facts"])
     ax.set_ylabel("Share of held-out values inside the 95% interval")
-    ax.set_ylim(0.5, 1.22)
-    ax.set_yticks([0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+    ax.set_ylim(0, 1.3)
+    ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
     ax.legend(ncol=2, loc="upper center", fontsize=8.5, columnspacing=1.0, handlelength=1.6,
               title="5 labels; mean of 35 targets", title_fontsize=8.5)
     ax.grid(axis="y", color="#E5E5E5", lw=0.6)

@@ -12,9 +12,9 @@
 <div class="numblk"></div>
 <p class="num">67</p>
 <div class="rbox" style="top:134pt;height:122pt;"></div>
-<p class="rtxt" style="top:148pt;">With 5 labels the embedding GP ranks the generated crystals at ρ 0.15; with an Opus 5.5 or Fable 5.2 network as its mean, at 0.95 and 0.93 (18 of 18 cells better, p = 8e-6). The same 15 descriptors as raw GP inputs give 0.30.</p>
+<p class="rtxt" style="top:148pt;">With 5 labels the embedding GP ranks the generated crystals at ρ 0.15; with an Opus 5.5 or Fable 5.2 network as its mean, at 0.95 and 0.93 (18 of 18 cells better, p = 8e-6). The same 15 descriptors added to the embedding as GP inputs give 0.30.</p>
 <!--NOTES
-The comparison with the raw descriptors separates two explanations. If the gain came from the extra columns, adding them to the inputs would give it too, and on this target it does not. The gain comes from what the network does with them. On calibration, the joint fit of slope and offset covers 0.97 to 0.98 of the generated crystals at 5 labels, against 0.86 for the plain Gaussian process and 0.69 to 0.73 for the two-stage fit. The rule is shown with the two-stage fit; under the joint fits it stays at 0.18 at 5 labels.
+If the gain came from the extra columns, adding the descriptors to the inputs would give it too, and on this target it does not. The networks are shown with the joint fit, which covers 0.97 to 0.98 of the generated crystals at 5 labels against 0.86 for the plain Gaussian process. The rule is shown with the two-stage fit. Its raw scale, about 0.06 per cubic angstrom, is far from the target's, and a learned slope that starts at one leaves it at 0.17 to 0.18 at 5 labels. With the two-stage fit for all three, the values at 20 labels are 0.93 for the rule, 0.91 for Opus and 0.89 for Fable.
 -->
 </body>
 </html>

@@ -16,30 +16,27 @@
 <p class="num">78</p>
 <p class="lab" style="left:24pt;top:58pt;width:216pt;font-size:18pt;line-height:22pt;text-align:center;text-decoration:underline;color:#1F1F1F;">Done</p>
 <div class="panel" style="left:24pt;top:84pt;width:216pt;height:288pt;"></div>
-<img src="../figures/deck/written_network_weights.png" style="left:52.3pt;top:94.0pt;width:159.4pt;height:92.0pt;">
-<img src="../figures/deck/tc_net_steel_austenite_fraction.png" style="left:34.0pt;top:211.6pt;width:196.0pt;height:52.7pt;">
+<img src="../figures/deck/tc_net_ni_superalloy_solidus.png" style="left:30.0pt;top:161.6pt;width:204.0pt;height:54.9pt;">
 <p class="nodet" style="left:32pt;top:294pt;width:200pt;">written with no data, as GP mean</p>
-<p class="nodet" style="left:32pt;top:312pt;width:200pt;">5 measured alloy tasks: 60</p>
+<p class="nodet" style="left:32pt;top:312pt;width:200pt;">5 alloy tasks: 60 replies, 57 valid</p>
 <p class="nodet" style="left:32pt;top:330pt;width:200pt;">35 Thermo-Calc targets: 280</p>
 <p class="nodet" style="left:32pt;top:348pt;width:200pt;">2 crystal tasks: 18</p>
 <p class="lab" style="left:252pt;top:58pt;width:216pt;font-size:18pt;line-height:22pt;text-align:center;text-decoration:underline;color:#1F1F1F;">Found</p>
 <div class="panel" style="left:252pt;top:84pt;width:216pt;height:288pt;"></div>
-<img src="../figures/deck/auc_relative_to_gp.png" style="left:288.2pt;top:94.0pt;width:143.6pt;height:92.0pt;">
-<img src="../figures/deck/tc_bo_solidus_freezing_range.png" style="left:297.1pt;top:192.0pt;width:125.7pt;height:92.0pt;">
+<img src="../figures/deck/auc_relative_to_gp.png" style="left:258.0pt;top:123.6pt;width:204.0pt;height:130.7pt;">
 <p class="nodet" style="left:260pt;top:294pt;width:200pt;">Opus 5.5: BO better on 4 of 5</p>
-<p class="nodet" style="left:260pt;top:312pt;width:200pt;">worse on MPEA yield strength</p>
+<p class="nodet" style="left:260pt;top:312pt;width:200pt;">MPEA yield: higher, not significant</p>
 <p class="nodet" style="left:260pt;top:330pt;width:200pt;">Thermo-Calc: better on 16 of 33</p>
 <p class="nodet" style="left:260pt;top:348pt;width:200pt;">crystals, 5 labels: ρ 0.15 → 0.95</p>
 <p class="lab" style="left:480pt;top:58pt;width:216pt;font-size:18pt;line-height:22pt;text-align:center;text-decoration:underline;color:#1F1F1F;">Next</p>
 <div class="panel" style="left:480pt;top:84pt;width:216pt;height:288pt;"></div>
-<img src="../figures/deck/tc_bo_phase_fractions.png" style="left:525.0pt;top:94.0pt;width:125.9pt;height:92.0pt;">
-<img src="../figures/deck/st_rho_vs_labels_bulk_modulus.png" style="left:527.6pt;top:192.0pt;width:120.8pt;height:92.0pt;">
-<p class="nodet" style="left:488pt;top:294pt;width:200pt;">diagnose MPEA yield strength</p>
+<img src="../figures/deck/st_rho_vs_labels_bulk_modulus.png" style="left:486.0pt;top:111.3pt;width:204.0pt;height:155.4pt;">
+<p class="nodet" style="left:488pt;top:294pt;width:200pt;">tail-aware selection rule</p>
 <p class="nodet" style="left:488pt;top:312pt;width:200pt;">phase fractions; Ti α transus</p>
 <p class="nodet" style="left:488pt;top:330pt;width:200pt;">BO on the crystal tasks</p>
 <p class="nodet" style="left:488pt;top:348pt;width:200pt;">second pool; a real closed loop</p>
 <!--NOTES
-To close. Four models wrote small networks from materials knowledge with no data, used as the prior mean of a Gaussian process. Over 20 seeds the Opus priors lower the area under regret on four of five tasks and make yield strength of multi-principal-element alloys worse. On 33 Thermo-Calc targets the Opus priors are better on 16 with no data and on 18 with sub-system facts, level with an extrapolation from computed binaries and ternaries. On crystal bulk modulus a written mean lifts the ranking at 5 labels from 0.15 to 0.95. Next come the diagnosis of that failure, optimisation on the crystal tasks, and a real closed loop. Thank you; I welcome questions.
+Four models wrote small networks from materials knowledge with no data, used as the prior mean of a Gaussian process. Over 20 seeds the Opus priors lower the area under regret on four of five tasks and give a higher area on yield strength of multi-principal-element alloys, which is not significant after correction. On 33 Thermo-Calc targets the Opus priors are better on 16 with no data and on 18 with sub-system facts, level with the sub-system extrapolation. On crystal bulk modulus a written mean lifts the ranking at 5 labels from 0.15 to 0.95. Next come a tail-aware selection rule for that task, optimisation on the crystal tasks, and a real closed loop. Thank you; I welcome questions.
 -->
 </body>
 </html>

@@ -19,11 +19,11 @@
 <p class="sboxt" style="left:465pt;top:117pt;width:222pt;font-size:12.5pt;line-height:17pt;">ρ at 5 / 10 / 20 / 50 labels</p>
 <p class="sboxt" style="left:465pt;top:134pt;width:222pt;font-size:12.5pt;line-height:17pt;">plain GP: 0.15 / 0.31 / 0.46 / 0.67</p>
 <p class="sboxt" style="left:465pt;top:151pt;width:222pt;font-size:12.5pt;line-height:17pt;">+ descriptors: 0.38 / 0.66 / 0.87 / 0.98</p>
-<p class="sboxt" style="left:465pt;top:168pt;width:222pt;font-size:12.5pt;line-height:17pt;">rule: 1.00 / 0.99 / 0.99 / 0.99</p>
-<p class="sboxt" style="left:465pt;top:185pt;width:222pt;font-size:12.5pt;line-height:17pt;">Opus: 1.00 / 0.99 / 0.99 / 0.97</p>
-<p class="sboxt" style="left:465pt;top:202pt;width:222pt;font-size:12.5pt;line-height:17pt;">Fable: 1.00 / 0.99 / 0.99 / 0.96</p>
+<p class="sboxt" style="left:465pt;top:168pt;width:222pt;font-size:12.5pt;line-height:17pt;">rule (2-stage): 1.00 / 0.99 / 0.99 / 0.99</p>
+<p class="sboxt" style="left:465pt;top:185pt;width:222pt;font-size:12.5pt;line-height:17pt;">Opus (joint): 1.00 / 0.99 / 0.99 / 0.97</p>
+<p class="sboxt" style="left:465pt;top:202pt;width:222pt;font-size:12.5pt;line-height:17pt;">Fable (joint): 1.00 / 0.99 / 0.99 / 0.96</p>
 <!--NOTES
-The same plot for the heat capacity per gram at 300 kelvin. The plain Gaussian process on the embedding is at 0.15 with 5 labels and 0.67 with 50. The grey line is the Dulong-Petit rule, three times the gas constant divided by the mean atomic mass, used as the mean: it ranks the generated crystals at 1.00 from the first labels. The Opus 5.5 and Fable 5.2 networks do the same, and they add nothing over the rule. This target is decided by one of the 15 descriptors, and here the raw descriptors as inputs do help, reaching 0.98 at 50 labels. It belongs with the cases where a rule already works.
+The same plot for the heat capacity per gram at 300 kelvin. The plain Gaussian process on the embedding is at 0.15 with 5 labels and 0.67 with 50. The grey line is the Dulong-Petit rule, three times the gas constant divided by the mean atomic mass, used as the mean with the two-stage fit: it ranks the generated crystals at 1.00 from the first labels. The Opus 5.5 and Fable 5.2 networks do the same, and they add nothing over the rule. This target is decided by one of the 15 descriptors, and here the descriptors as extra inputs do help, reaching 0.98 at 50 labels. It belongs with the cases where a rule already works.
 -->
 </body>
 </html>

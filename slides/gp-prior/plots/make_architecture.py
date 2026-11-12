@@ -84,7 +84,7 @@ ax.text(lx + 0.25, 2.72, "grey: weight left at zero", fontsize=9, color="#666", 
 ty = -0.42
 for x, name, shp, n in ((0.5 * (xi + xh), "net.0.weight", f"{H} × {d}", W1.size), (xh, "net.0.bias", f"{H}", b1.size),
                         (0.5 * (xh + xo) + 0.25, "net.2.weight", f"1 × {H}", w2.size), (xo + 0.9, "net.2.bias", "1", b2.size)):
-    ax.text(x, ty, f"{name}\n{shp} = {n}", ha="center", va="center", fontsize=9.5, family="Helvetica",
+    ax.text(x, ty, f"{name}\n{shp} = {n}" if "×" in shp else f"{name}\n{shp}", ha="center", va="center", fontsize=9.5, family="Helvetica",
             bbox=dict(boxstyle="round,pad=0.3", facecolor="#F6F2EC", edgecolor="#999", lw=0.7))
 ax.text(8.55, ty, f"total {total} weights", ha="center", va="center", fontsize=10.5, fontweight="bold")
 fig.savefig(HERE.parent / "figures" / "network_architecture.png", dpi=300, bbox_inches="tight", facecolor="white")

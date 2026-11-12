@@ -308,7 +308,7 @@
   "title": "MPEA yield strength: differences by seed",
   "kind": "content",
   "section": 5,
-  "source": "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json (seeds_better_than_gp, seeds_worse_than_gp, wilcoxon_p, wilcoxon_p_holm); docs/results/2026-11-11-round3.md, Sec. 2",
+  "source": "experiments/e1_surrogate_head/results/bo_select/summary_init5_steps25_seeds20.json (seeds_better_than_gp, seeds_worse_than_gp, wilcoxon_p, wilcoxon_p_holm); docs/results/2026-11-11-round3.md, Sec. 2; experiments/e1_surrogate_head/results/bo_failure/diagnosis.md; docs/results/2026-11-11-round6.md, Sec. 3",
   "replaces": ""
  },
  {
@@ -316,7 +316,7 @@
   "title": "Recap",
   "kind": "recap",
   "section": 5,
-  "source": "docs/results/2026-11-11-round3.md, Sec. 2",
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2; experiments/e1_surrogate_head/results/bo_failure/diagnosis.md; docs/results/2026-11-11-round6.md, Sec. 3",
   "replaces": ""
  },
  {
@@ -537,7 +537,7 @@
  },
  {
   "file": "068-st-hidden.html",
-  "title": "Crystal bulk modulus: the written hidden layer as GP inputs",
+  "title": "Crystal bulk modulus: written hidden layer as GP inputs",
   "kind": "content",
   "section": 7,
   "source": "experiments/e1_surrogate_head/results/structure_prior/features/summary.md (loop_bulk_modulus); experiments/e1_surrogate_head/run_structure_features.py (arms); experiments/e1_surrogate_head/results/structure_prior/summary.md (gp)",
@@ -612,7 +612,7 @@
   "title": "Limits and what is not yet run",
   "kind": "content",
   "section": 9,
-  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; experiments/e7_calphad_prior/results/overview.md",
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; experiments/e7_calphad_prior/results/overview.md; experiments/e1_surrogate_head/results/joint_mean/static_summary.md; experiments/e1_surrogate_head/results/bo_failure/diagnosis.md; docs/results/2026-11-11-round6.md, Sec. 3",
   "replaces": ""
  },
  {

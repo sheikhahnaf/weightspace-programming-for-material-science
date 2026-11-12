@@ -210,7 +210,7 @@
     "2 or 3"
    ],
    [
-    "All replies",
+    "Any model (all replies pooled)",
     "every valid reply of every model, selected by the labels",
     "yes",
     "11 or 12"
@@ -219,7 +219,7 @@
     "Written network alone",
     "no GP: alloys taken in the order of m(x); 8 seeds, two tasks, Fable 5.2 replies",
     "yes",
-    "1"
+    "3, each run alone"
    ]
   ],
   "colW": [
@@ -240,7 +240,7 @@
     "Fable 5.2",
     "Sonnet 5.5",
     "Haiku 5.5",
-    "All replies"
+    "Any model (pooled)"
    ],
    [
     "Ti Young's modulus (GPa)",
@@ -295,13 +295,13 @@
   ],
   "colW": [
    1.93,
-   0.8,
+   0.75,
    0.85,
-   1.2,
-   1.2,
-   1.2,
-   0.95,
-   1.2
+   1.15,
+   1.15,
+   1.15,
+   0.85,
+   1.5
   ],
   "fontSize": 11.5
  },
@@ -472,7 +472,7 @@
    ],
    [
     "Found",
-    "a joint fit of slope and offset keeps 95% coverage at 0.86 to 0.90 at 5 labels; the two-stage fit gives 0.71 to 0.75"
+    "a joint fit of slope and offset keeps 95% coverage at 0.86 to 0.90 at 5 labels; the two-stage fit gives 0.71 to 0.75; at 10 labels all fits are at 0.73 to 0.78, plain GP 0.78"
    ],
    [
     "Limit",
@@ -550,7 +550,7 @@
    ],
    [
     "Found",
-    "the gain is not the extra columns: the 15 raw descriptors as GP inputs give 0.30 to 0.52, below the embedding alone from 10 labels on"
+    "the gain is not the extra columns: the 15 descriptors added to the embedding as GP inputs give 0.30 to 0.52 at 5 to 20 labels, below the embedding alone from 10 labels on"
    ],
    [
     "Found",
@@ -558,11 +558,11 @@
    ],
    [
     "Found",
-    "as a screening filter the networks rank generator samples at ρ 0.88 to 0.92; the volume rule at 0.77 and 0.82"
+    "as a screening filter the Opus 5.5 and Fable 5.2 networks rank generator samples at ρ 0.88 to 0.92; the volume rule at 0.77 and 0.82"
    ],
    [
     "Limit",
-    "from 20 labels the rule 1 / volume is as good or better (0.93 against 0.90); with the whole pool no mean differs from the plain GP (0.88 to 0.92)"
+    "from 20 labels the rule 1 / volume is as good or better (two-stage fit: 0.93 against 0.91 and 0.89; under the joint fit the rule is at 0.82); with the whole pool no mean differs from the plain GP (0.88 to 0.92)"
    ],
    [
     "Limit",
@@ -603,11 +603,11 @@
    ],
    [
     "Known fault",
-    "MPEA yield strength: Opus 5.5 and Fable 5.2 priors worse than the plain GP in 14 of 20 seeds; cause not diagnosed"
+    "MPEA yield strength: Opus 5.5 and Fable 5.2 priors above the plain GP's regret area in 14 of 20 seeds (not significant after Holm); partly diagnosed: no ranking inside the best tenth (ρ 0.02, 0.00); a tail-aware selection rule is not tested"
    ],
    [
     "Known fault",
-    "two-stage fit: intervals overconfident at few labels (alloy tasks 0.66 against 0.71; Thermo-Calc 0.71 to 0.75 against 0.86); a joint fit of slope and offset gives 0.86 to 0.90 there"
+    "two-stage fit: intervals overconfident at 5 labels (alloy tasks 0.63 against 0.76 for the plain GP; Thermo-Calc 0.71 to 0.75 against 0.86); a joint fit gives 0.75 to 0.79 and 0.86 to 0.90; at 10 labels all fits are within 0.07"
    ],
    [
     "Known fault",
@@ -639,7 +639,7 @@
     "Plain GP: 5 / 10 / 25",
     "Opus 5.5: 5 / 10 / 25",
     "Fable 5.2: 5 / 10 / 25",
-    "All replies: 5 / 10 / 25"
+    "Any model (pooled): 5 / 10 / 25"
    ],
    [
     "Ti Young's modulus (GPa)",
@@ -678,11 +678,11 @@
    ]
   ],
   "colW": [
-   2.13,
-   1.8,
-   1.8,
-   1.8,
-   1.8
+   2.0,
+   1.65,
+   1.65,
+   1.65,
+   2.38
   ],
   "fontSize": 12
  },

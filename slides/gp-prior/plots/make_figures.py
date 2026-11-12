@@ -43,7 +43,7 @@ UNIT = {"ti_alloy_youngs_modulus": "GPa", "ti_alloy_yield_strength": "MPa", "ti_
 MODELS = ["opus", "fable", "sonnet", "haiku"]
 MNAME = {"opus": "Opus 5.5", "fable": "Fable 5.2", "sonnet": "Sonnet 5.5", "haiku": "Haiku 5.5",
          "handbook (no LLM)": "Handbook rule", "handbook": "Handbook rule", "gp": "Plain GP", "random": "Random search",
-         "select_all": "All replies"}
+         "select_all": "Any model (all replies pooled)"}
 COL = {"opus": "#500000", "fable": "#1F3A5F", "sonnet": "#2A8C8C", "haiku": "#C47F17", "handbook (no LLM)": "#8A8F98",
        "handbook": "#8A8F98", "gp": "#111111", "random": "#BBBBBB", "select_all": "#6B4C9A"}
 NUM = {}
@@ -105,7 +105,7 @@ def fig_written_network():
     ax, axb, axo = (fig.add_subplot(g) for g in gs)
     M = W1[used]
     vmax = np.abs(M).max()
-    ax.imshow(M, cmap="RdBu_r", vmin=-vmax, vmax=vmax, aspect="auto")
+    ax.imshow(M, cmap="RdBu", vmin=-vmax, vmax=vmax, aspect="auto")
     for i in range(M.shape[0]):
         for j in range(M.shape[1]):
             v = M[i, j]
@@ -117,7 +117,7 @@ def fig_written_network():
     ax.set_title("First layer: weight on each atomic fraction", pad=22)
     for a, vals, ttl in ((axb, b1[used], "bias"), (axo, w2[used], "output\nweight")):
         vm = max(1e-9, np.abs(vals).max())
-        a.imshow(vals[:, None], cmap="RdBu_r", vmin=-vm, vmax=vm, aspect="auto")
+        a.imshow(vals[:, None], cmap="RdBu", vmin=-vm, vmax=vm, aspect="auto")
         for i, v in enumerate(vals):
             a.text(0, i, f"{v:g}", ha="center", va="center", fontsize=8.5, color="white" if abs(v) > 0.55 * vm else "#111")
         a.set_xticks([0], [ttl])
@@ -129,7 +129,7 @@ def fig_written_network():
             s.set_visible(True)
             s.set_linewidth(0.6)
     fig.text(0.5, 0.02, f"y = output weights · relu(W x + bias) + ({b2:g});  hidden units 5 to 15 are all zero;  "
-             "red positive, blue negative", ha="center", fontsize=9.5)
+             "blue positive, red negative", ha="center", fontsize=9.5)
     save(fig, "written_network_weights.png")
 
 
@@ -304,7 +304,7 @@ def fig_seed_diff():
         ax.text(i, 1380, f"{b} better\n{w} worse", ha="center", va="top", fontsize=8.5)
     ax.axhline(0, color="#333", lw=0.8)
     ax.set_xticks(range(len(arms)))
-    ax.set_xticklabels(["Handbook\nrule", "Opus 5.5", "Fable 5.2", "Sonnet 5.5", "Haiku 5.5", "All\nreplies"])
+    ax.set_xticklabels(["Handbook\nrule", "Opus 5.5", "Fable 5.2", "Sonnet 5.5", "Haiku 5.5", "Any model\n(pooled)"])
     ax.set_ylabel("Area under regret − plain GP's (MPa)")
     ax.set_ylim(-1150, 1400)
     ax.text(0.99, 0.02, "dot: one of 20 seeds; bar: mean; below zero is better than the plain GP",
@@ -428,8 +428,12 @@ def fig_bnn(metric, name, xlabel, xlim, ref=None):
         for (a, fam, lab), yy in zip(BNN_ARMS, ypos):
             v = mm[(metric, part)][a]
             ax.barh(yy, v, 0.78, color=FAMCOL[fam], alpha=0.4 if a in base else 1.0)
-            ax.text(v + 0.012, yy, f"{v:.2f}", va="center", fontsize=8.5,
-                    bbox=dict(facecolor="white", edgecolor="none", pad=0.6))
+            if ref and v + 0.12 > ref:   # a label outside the bar would sit on the reference line
+                ax.text(v - 0.012, yy, f"{v:.2f}", va="center", ha="right", fontsize=8.5,
+                        color="#111" if a in base else "white")
+            else:
+                ax.text(v + 0.012, yy, f"{v:.2f}", va="center", fontsize=8.5,
+                        bbox=dict(facecolor="white", edgecolor="none", pad=0.6))
         if ref:
             ax.axvline(ref, color="#111", ls="--", lw=1, zorder=0)
         ax.set_title(ttl, fontsize=10)

@@ -11,10 +11,10 @@
 <p class="foottxt">Department of Materials Science and Engineering</p>
 <div class="numblk"></div>
 <p class="num">40</p>
-<div class="rbox" style="top:134pt;height:122pt;"></div>
-<p class="rtxt" style="top:148pt;">On MPEA yield strength the Opus 5.5 and Fable 5.2 arms are worse than the plain GP in 14 of 20 seeds (Holm p 0.149 and 0.106), although the same networks raise static ranking. The cause is not diagnosed.</p>
+<div class="rbox" style="top:121pt;height:147pt;"></div>
+<p class="rtxt" style="top:135pt;">On MPEA yield strength the Opus 5.5 and Fable 5.2 arms have a higher regret area than the plain GP in 14 of 20 seeds (Holm p 0.149 and 0.106, not significant). Inside the best tenth of the pool the priors carry no ranking (ρ 0.02 and 0.00) and underpredict by 1.3 to 1.5 SD.</p>
 <!--NOTES
-I take two things from this. A gain in rank correlation on held-out alloys did not predict a gain in the optimisation here, so ranking alone is not a sufficient test of a prior. And the selection rule did not protect this task: it checks correlation with the labels so far, and these priors do correlate with them. Until the cause is found, a written prior should be run beside a plain Gaussian process, not in place of it.
+I take three things from this. A gain in rank correlation on held-out alloys did not predict a gain in the optimisation here, so ranking alone is not a sufficient test of a prior. The selection rule did not protect this task: it checks correlation with the labels so far, and these priors do correlate with them. And the diagnosis is partial: titanium modulus has almost as few of its best alloys in the prior's top tenth and still gains. A selection rule that looks at the top of the labels is not tested, so a written prior should be run beside a plain Gaussian process, not in place of it.
 -->
 </body>
 </html>

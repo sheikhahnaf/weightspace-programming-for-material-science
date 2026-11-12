@@ -3,7 +3,7 @@
 For each Thermo-Calc task, each model and each replicate, two run folders:
 
   runs/write__<task>__<model>__rep<k>      the E1 write prompt, unchanged
-  runs/writepd__<task>__<model>__rep<k>    the same prompt plus binary phase-diagram facts
+  runs/writepd__<task>__<model>__rep<k>    the same prompt plus phase-diagram facts for sub-systems
 
 The prompt text does not depend on the model or the replicate; one folder per
 reply keeps each reply with the prompt it answered. The folders are made with
@@ -42,6 +42,9 @@ def main() -> None:
                     folder = HERE / "runs" / f"{prefix}__{task_name}__{tag}"
                     if (folder / "reply.txt").exists() and (folder / "prompt.txt").read_text() != text:
                         raise SystemExit(f"{folder.name} has a reply to a different prompt; not overwriting it")
+                    if (folder / "prompt.txt").exists() and (folder / "prompt.txt").read_text() == text:
+                        names.append(folder.name)  # already written
+                        continue
                     names.append(write_run(arm, task_name, HERE / "runs", tag=tag).name)
     print(f"\n{len(names)} runs; awaiting a reply:")
     for name in names:

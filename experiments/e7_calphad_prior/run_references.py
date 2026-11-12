@@ -1,11 +1,12 @@
 """E7: how good are the two no-LLM references that get the phase-diagram facts?
 
-  rom                   rule of mixtures of the pure-element values
-  binary_extrapolation  rule of mixtures plus pairwise terms read off the binaries at 50 at.%
+  rom                      rule of mixtures of the pure-element values
+  subsystem_extrapolation  extrapolation of the binary and ternary facts (wsp.arms)
 
 Each is scored alone (Spearman and Pearson correlation with the target over the
 whole pool) and as the prior mean of a GP given 5, 10, 20 or 50 labels, exactly
-as a written network is scored (`wsp.arms.score_prior`, five seeds).
+as a written network is scored in E1 (`wsp.arms.score_prior`, five seeds; two-stage
+mean with fitted slope / slope one). The joint mean arms are in run_priors.py.
 
     python experiments/e7_calphad_prior/run_references.py
     # -> results/references/summary.json, summary.md

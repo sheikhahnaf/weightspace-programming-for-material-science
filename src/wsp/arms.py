@@ -6,12 +6,13 @@ Arm E  "write"  an all-zero network on named inputs plus a description of the
                 task; the LLM returns every weight. The network is scored on its
                 own and as the prior mean of a GP.
 
-Arm E' "write_pd" (experiment E7)  arm E plus phase-diagram facts for the
-                constituent binaries, computed with CALPHAD; same reply, same scoring.
+Arm E' "write_pd" (experiment E7)  arm E plus phase-diagram facts for sub-systems
+                (pure elements, binaries, ternaries), computed with CALPHAD; same
+                reply, same scoring.
 
 The reference methods that get the same information are here too: affine
 recalibration for arm C, a constant-mean GP at the same training size for arm E,
-and for E7 the rule of mixtures and a pairwise extrapolation of the binary facts.
+and for E7 the rule of mixtures and an extrapolation of the sub-system facts.
 """
 
 from __future__ import annotations
@@ -27,7 +28,7 @@ from .edit import apply_edits, diff, parse_edits
 from .heads import MLPHead, zero_
 from .prompts import build_prompt
 from .serialize import load_weights
-from .tasks import CALPHAD_GOALS, Task, calphad_binary_facts, calphad_system
+from .tasks import CALPHAD_GOALS, Task, calphad_facts, calphad_system
 
 EDIT_HIDDEN = (32, 32)
 WRITE_HIDDEN = (16,)
@@ -240,110 +241,188 @@ def handbook_prior(task: Task):
 # ------------------------------------ experiment E7: phase-diagram context
 
 
-_PHASE_WORDS = {"LIQUID": "liquid", "HCP_A3": "hcp", "SIGMA": "sigma", "MU_PHASE": "mu"}
+_PHASE_WORDS = {"LIQUID": "liquid", "HCP_A3": "hcp", "SIGMA": "sigma", "MU_PHASE": "mu", "BCC_A2": "bcc",
+                "FCC_A1": "fcc", "SIGMA_D8B": "sigma", "DIAMOND_A4": "Si(diamond)"}
 
 
 def _phase_word(phase: dict) -> str:
     """A database phase name in the words of a phase diagram."""
     family = phase["phase"].split("#")[0]
     ordered = phase["kind"] == "intermetallic"
-    if family == "BCC_B2":
+    if family in ("BCC_B2", "B2_BCC"):
         return "B2" if ordered else "bcc"
-    if family == "FCC_L12":
+    if family in ("FCC_L12", "L12_FCC"):
         return "L12" if ordered else "fcc"
     return _PHASE_WORDS.get(family, family.replace("_LAVES", " Laves").replace("_", " "))
 
 
-def phase_diagram_facts(task: Task) -> str:
-    """The binary facts of the task's system as compact text: one line per binary."""
-    system, _ = calphad_system(task.name)
-    facts = calphad_binary_facts(system)
-    T = int(facts["fixed_temperature_K"])
-    elements = [name[2:] for name in task.feature_names]
-
+def _point_text(point: dict, elements: list[str], base: str | None, T: int, transus: bool) -> str:
+    """One sub-system calculation on one line."""
     def number(value) -> str:
         return "?" if value is None else f"{value:.0f}"
 
+    shown = [el for el in elements if el in point["x"] and el != base]
+    if not shown:
+        name = base
+    elif base is None and len({round(point["x"][el], 3) for el in shown}) == 1:
+        name = "-".join(shown) + (" equimolar" if len(shown) > 1 else "")
+    else:
+        name = (f"{base} + " if base else "") + ", ".join(f"{100 * point['x'][el]:g} {el}" for el in shown)
+    melt = (f"melts {number(point['solidus_K'])}" if point["n_elements"] == 1
+            else f"s/l {number(point['solidus_K'])}/{number(point['liquidus_K'])}")
+    extra = f"; alpha gone above {number(point.get('transus_K'))}" if transus else ""
+    phases = " + ".join(f"{_phase_word(q)} {q['fraction']:.2f}" if len(point["phases"]) > 1 else _phase_word(q)
+                        for q in point["phases"]) or "?"
+    return f"{name}: {melt}{extra}; {T} K: {phases}"
+
+
+def phase_diagram_facts(task: Task) -> str:
+    """The sub-system calculations of the task's system as compact text, one line each."""
+    system, _ = calphad_system(task.name)
+    facts = calphad_facts(system)
+    T = int(facts["fixed_temperature_K"])
+    elements, base = facts["elements"], facts["base"]
+    transus = any("transus_K" in p for p in facts["points"])
+    by_size = {n: [p for p in facts["points"] if p["n_elements"] == n] for n in (1, 2, 3)}
+    if base is None:
+        covers = (f"the {len(by_size[1])} pure elements, the {len(by_size[2]) // 3} binary systems at 25, 50 and 75 at.% "
+                  f"of the second element, and the {len(by_size[3])} equimolar ternaries")
+    else:
+        covers = (f"pure {base}, {base} with one solute at half and at the whole of that solute's range, and {base} "
+                  f"with two solutes each at half its range")
     lines = [
-        f"These facts are for the pure elements and the {len(facts['binaries'])} binary systems only; nothing "
-        f"here was calculated for a ternary or higher alloy. Source: Thermo-Calc, TCHEA8 database, 1 atm, the "
-        f"same database as the target.",
+        f"These facts cover only sub-systems with at most three elements: {covers}. Nothing here was calculated "
+        f"for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, "
+        f"{facts['database']} database, 1 atm, the same database as the target.",
         "",
-        "Melting points in K: " + ", ".join(f"{el} {facts['melting_point_K'][el]:.0f}" for el in elements) + ".",
-        "",
-        f"One line per binary A-B. s/l = solidus/liquidus in K at 25, 50 and 75 at.% B. min = lowest liquidus "
-        f"along the binary on a 5 at.% grid and the at.% B where it lies (0 or 100 means the lower-melting "
-        f"element). Then the stable phases at {T} K at 25 | 50 | 75 at.% B, where bcc, fcc, hcp are the "
-        f"disordered solid solutions, B2 and L12 are ordered, and 'bcc + bcc' is a miscibility gap.",
+        f"Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable phases at {T} K with their "
+        f"mole fractions, where bcc, fcc and hcp are the disordered solid solutions, B2 and L12 are ordered, and "
+        f"the same phase listed twice is a miscibility gap.",
     ]
-    for key, binary in facts["binaries"].items():
-        points = [binary["points"][pct] for pct in ("25", "50", "75")]
-        melt = " ".join(f"{number(p['solidus_K'])}/{number(p['liquidus_K'])}" for p in points)
-        phases = " | ".join(" + ".join(_phase_word(q) for q in p["phases"]) or "?" for p in points)
-        lines.append(f"{key}: s/l {melt}; min {binary['liquidus_min_K']:.0f} at {binary['liquidus_min_at_pct_second']}; "
-                     f"{T} K: {phases}")
+    if base is None:  # binaries: the three compositions of a pair on one line
+        lines += [""] + [_point_text(p, elements, base, T, transus) for p in by_size[1]] + [""]
+        pairs: dict[tuple, list] = {}
+        for p in by_size[2]:
+            pairs.setdefault(tuple(p["x"]), []).append(p)
+        lowest = facts.get("binary_liquidus_minimum", {})
+        for (a, b), points in pairs.items():
+            points = sorted(points, key=lambda p: p["x"][b])
+            parts = [_point_text(p, elements, base, T, transus).split(": ", 1)[1] for p in points]
+            low = lowest.get(f"{a}-{b}")
+            low = f" Lowest liquidus {low['K']:.0f} at {low['at_pct_second']} at.% {b}." if low else ""
+            lines.append(f"{a}-{b} at 25 | 50 | 75 at.% {b}: " + " | ".join(parts) + "." + low)
+        lines += [""] + [_point_text(p, elements, base, T, transus) for p in by_size[3]]
+    else:
+        lines += [""] + [_point_text(p, elements, base, T, transus) for n in (1, 2, 3) for p in by_size[n]]
     return "\n".join(lines)
 
 
-PD_HEADING = "# Phase-diagram facts for the constituent binaries (computed with CALPHAD)"
+PD_HEADING = "# Phase-diagram facts for sub-systems (computed with CALPHAD)"
 
 
 def write_pd_prompt(task: Task) -> str:
-    """The write prompt, unchanged, with the binary facts inserted after the task."""
+    """The write prompt, unchanged, with the sub-system facts inserted after the task."""
     head, architecture = write_prompt(task).split("\n\n# Architecture\n", 1)
     return f"{head}\n\n{PD_HEADING}\n{phase_diagram_facts(task)}\n\n# Architecture\n{architecture}"
 
 
-def _pair_values(task: Task, value) -> np.ndarray:
-    """Symmetric matrix over the task's elements of `value(binary's 50 at.% point, i, j)`; 0 where missing."""
-    facts = calphad_binary_facts(calphad_system(task.name)[0])
-    elements = [name[2:] for name in task.feature_names]
-    table = np.zeros((len(elements), len(elements)))
-    for binary in facts["binaries"].values():
-        i, j = (elements.index(el) for el in binary["elements"])
-        v = value(binary["points"]["50"], *binary["elements"])
-        table[i, j] = table[j, i] = 0.0 if v is None else v
-    return table
-
-
 def rom_prior(task: Task):
-    """Rule of mixtures of the pure-element values in the binary facts, no LLM, no data:
-    the melting points for the solidus, and zero for a freezing range or an
-    intermetallic fraction (a pure element has neither)."""
+    """Rule of mixtures of the pure-element values, no LLM, no data.
+
+    High-entropy systems: the target of each pure element from the facts (its melting
+    point for the solidus, zero for a freezing range, its own phase fraction).
+    Balance systems (one base element): only the base element is among the facts, so
+    the rule is the base element's value for every alloy, a constant.
+    """
     system, target = calphad_system(task.name)
-    tm = calphad_binary_facts(system)["melting_point_K"]
-    table = np.array([tm[name[2:]] if target == "solidus" else 0.0 for name in task.feature_names])
+    facts = calphad_facts(system)
+    pure = {next(iter(p["x"])): p["targets"][target] for p in facts["points"] if p["n_elements"] == 1}
+    fallback = pure.get(facts["base"], 0.0) or 0.0
+    table = np.array([pure.get(name[2:], fallback) or 0.0 for name in task.feature_names])
     return lambda U: U @ table
 
 
-def binary_extrapolation_prior(task: Task):
-    """Pairwise extrapolation of the binary facts, no LLM, no fit to multicomponent data.
+def subsystem_extrapolation_prior(task: Task):
+    """Extrapolation of the sub-system facts to the multicomponent alloy, no LLM, no
+    fit to multicomponent data. The same facts the phase-diagram prompt carries.
 
-    y(x) = rule of mixtures + sum over pairs of 4 x_i x_j W_ij (Muggianu form), with
-    W_ij read at 50 at.% of binary i-j:
-      solidus                 binary solidus minus the mean of the two melting points
-      freezing range          binary liquidus minus binary solidus
-      intermetallic fraction  1 if the binary has an intermetallic or ordered phase
-                              at the system's temperature, else 0
+    High-entropy systems (Redlich-Kister-Muggianu form): rule of mixtures, plus for
+    each binary x_i x_j [L0 + L1 (x_i - x_j) + L2 (x_i - x_j)^2] fitted exactly to that
+    binary's three points, plus for each ternary x_i x_j x_k L_ijk fitted exactly to
+    the equimolar ternary.
+
+    Balance systems: the base element's value, plus for each solute a x + q x^2 through
+    its two binary points, plus for each pair of solutes b x_i x_j fitted exactly to
+    their ternary point.
+
+    A fact that failed to compute contributes nothing.
     """
     system, target = calphad_system(task.name)
-    tm = calphad_binary_facts(system)["melting_point_K"]
+    facts = calphad_facts(system)
+    names = [name[2:] for name in task.feature_names]
+    index = {el: i for i, el in enumerate(names)}
+    base = facts["base"]
+    points = [(p, p["targets"][target]) for p in facts["points"] if p["targets"][target] is not None]
 
-    def value(point, a, b):
-        if target == "solidus":
-            return None if point["solidus_K"] is None else point["solidus_K"] - 0.5 * (tm[a] + tm[b])
-        if target == "freezing_range":
-            return None if point["solidus_K"] is None else point["liquidus_K"] - point["solidus_K"]
-        return float(any(q["kind"] == "intermetallic" for q in point["phases"]))
+    def vector(point: dict) -> np.ndarray:
+        x = np.zeros(len(names))
+        for el, value in point["x"].items():
+            x[index[el]] = value
+        return x
 
-    pairs, base = _pair_values(task, value), rom_prior(task)
-    return lambda U: base(U) + 2.0 * np.einsum("ni,ij,nj->n", U, pairs, U)  # 2 x'Wx = 4 sum_{i<j} x_i x_j W_ij
+    terms: list = []  # callables U -> contribution, built up level by level
+
+    def model(U: np.ndarray) -> np.ndarray:
+        return sum((term(U) for term in terms), np.zeros(len(U)))
+
+    if base is None:
+        rom = rom_prior(task)
+        terms.append(rom)
+        pairs: dict[tuple, list] = {}
+        for p, y in points:
+            if p["n_elements"] == 2:
+                pairs.setdefault(tuple(index[el] for el in p["x"]), []).append((vector(p), y))
+        for (i, j), rows in pairs.items():
+            # excess / (x_i x_j) = L0 + L1 d + L2 d^2, d = x_i - x_j: a polynomial through the available points
+            d = np.array([x[i] - x[j] for x, _ in rows])
+            e = np.array([(y - rom(x[None])[0]) / (x[i] * x[j]) for x, y in rows])
+            coefficients = np.polyfit(d, e, len(rows) - 1)
+            terms.append(lambda U, i=i, j=j, c=coefficients: U[:, i] * U[:, j] * np.polyval(c, U[:, i] - U[:, j]))
+        lower = list(terms)
+        for p, y in points:
+            if p["n_elements"] == 3:
+                x = vector(p)
+                i, j, k = (index[el] for el in p["x"])
+                L = (y - sum(term(x[None])[0] for term in lower)) / (x[i] * x[j] * x[k])
+                terms.append(lambda U, i=i, j=j, k=k, L=L: L * U[:, i] * U[:, j] * U[:, k])
+    else:
+        y_base = next((y for p, y in points if p["n_elements"] == 1), 0.0)
+        terms.append(lambda U: np.full(len(U), y_base))
+        solutes: dict[int, list] = {}
+        for p, y in points:
+            if p["n_elements"] == 2:
+                i = next(index[el] for el in p["x"] if el != base)
+                solutes.setdefault(i, []).append((p["x"][names[i]], y - y_base))
+        for i, rows in solutes.items():
+            c = np.array([x for x, _ in rows])
+            # a x + q x^2 through the points (a x alone if only one computed)
+            coefficients = np.linalg.lstsq(np.stack([c ** k for k in range(1, len(rows) + 1)], axis=1),
+                                           np.array([e for _, e in rows]), rcond=None)[0]
+            terms.append(lambda U, i=i, c=coefficients: sum(ck * U[:, i] ** (k + 1) for k, ck in enumerate(c)))
+        lower = list(terms)
+        for p, y in points:
+            if p["n_elements"] == 3:
+                x = vector(p)
+                i, j = (index[el] for el in p["x"] if el != base)
+                b = (y - sum(term(x[None])[0] for term in lower)) / (x[i] * x[j])
+                terms.append(lambda U, i=i, j=j, b=b: b * U[:, i] * U[:, j])
+    return model
 
 
 def reference_priors(task: Task) -> dict:
     """The data-free, LLM-free predictors a written network is compared with."""
     if task.name in CALPHAD_GOALS:
-        return {"rom": rom_prior(task), "binary_extrapolation": binary_extrapolation_prior(task)}
+        return {"rom": rom_prior(task), "subsystem_extrapolation": subsystem_extrapolation_prior(task)}
     return {"handbook": handbook_prior(task)}
 
 

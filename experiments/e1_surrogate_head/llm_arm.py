@@ -39,7 +39,7 @@ def write_run(arm: str, task_name: str, runs: Path, seed: int = 0, shuffled: boo
         build = edit_prompt if arm == "edit" else repair_prompt
         text = build(task, seed, shuffled)
         run_id = f"{arm}__{task.name}__seed{seed}" + ("__shuffled" if shuffled else "")
-    elif arm == "write_pd":  # the write prompt plus binary phase-diagram facts (experiment E7)
+    elif arm == "write_pd":  # the write prompt plus sub-system phase-diagram facts (experiment E7)
         text = write_pd_prompt(task)
         run_id = f"writepd__{task.name}"
     else:

@@ -27,8 +27,8 @@ Resumable: each (task, arm, seed) trace is cached under results/bo_select/.
 
 Experiment E7 runs the same loop, with the same rule, on the Thermo-Calc tasks
 (`--tasks calphad`, runs and results in experiments/e7_calphad_prior). There the
-no-LLM arms are `rom` and `binary_extrapolation` in place of `handbook`, and
-`select_<model>_pd` takes the replies to the prompt that carried binary
+no-LLM arms are `rom` and `subsystem_extrapolation` in place of `handbook`, and
+`select_<model>_pd` takes the replies to the prompt that carried sub-system
 phase-diagram facts (run folders `writepd__*`). On those tasks an arm with no
 candidate, or whose only candidates are constant, is the plain GP by
 construction and is left out rather than run. A trace is cached with the
@@ -55,7 +55,7 @@ GOALS = {
 }
 MODELS = ("fable", "opus", "sonnet", "haiku")
 ARMS = ("random", "gp", "handbook", *[f"select_{m}" for m in MODELS], "select_all")
-CALPHAD_ARMS = ("random", "gp", "rom", "binary_extrapolation",
+CALPHAD_ARMS = ("random", "gp", "rom", "subsystem_extrapolation",
                 *[f"select_{m}{pd}" for m in ("opus", "fable") for pd in ("", "_pd")])
 RUN = re.compile(r"(?P<arm>write|writepd)__(?P<task>.+?)(?:__(?P<model>fable|opus|sonnet|haiku))?(?:__rep(?P<rep>\d+))?$")
 THRESHOLD = 0.3

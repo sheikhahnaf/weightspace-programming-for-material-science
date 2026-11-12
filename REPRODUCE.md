@@ -113,51 +113,24 @@ python scripts/harvest_run_usage.py
 
 ```bash
 E1=experiments/e1_surrogate_head; E7=experiments/e7_calphad_prior
-# data: needs Thermo-Calc 2025b with TC-Python and the TCHEA8 database (conda env tcpy). One process,
-# resumable; every equilibrium is cached in data/calphad/raw/. The CSVs and JSON it writes are in the repo.
-conda activate tcpy && python $E7/make_tc_data.py          # -> data/calphad/<system>.csv, <system>_binaries.json, README.md
-python $E7/make_tc_data.py --stage export                  # rebuild those files from the cache, no Thermo-Calc
-# everything below: matinvent env, PYTHONPATH=src
+# data: needs Thermo-Calc 2025b with TC-Python and the databases TCHEA8, TCNI12, TCTI6, TCFE10, TCAL9
+# (conda env tcpy). Resumable; every composition is cached in data/calphad/raw/. The CSVs and JSON are in the repo.
+conda activate tcpy && python $E7/make_tc_data.py          # nine systems, in turn: facts, pool, export
+#   two systems at a time:  E7_NAME=a python $E7/make_tc_data.py --system cantor_al ti_alloy ...  and  E7_NAME=b ... --system ni_superalloy ...
+python $E7/make_tc_data.py --stage export                  # rebuild data/calphad/*.csv, *_facts.json, systems.json, README.md from the cache
+# everything below: matinvent env, PYTHONPATH=src. A system's tasks exist once its pool is complete.
 conda activate matinvent
 python $E1/run_baseline.py --task calphad --out $E7/results/baseline     # GP, ridge, MLP -> baseline_table.md
-python $E7/run_references.py                               # rule of mixtures, binary extrapolation -> results/references/summary.md
-python $E1/run_bo_select.py --tasks calphad --runs $E7/runs --out $E7/results/bo_select --seeds 20 --steps 25 --jobs 4
-#   -> results/bo_select/summary_init5_steps25_seeds20.md ; LLM arms join the table once their replies exist
+python $E7/run_references.py                               # the two no-LLM references alone and as a two-stage prior
+python $E7/run_priors.py static --jobs 4                   # every source x {plain GP, two-stage, map, marginal}: rho, coverage, NLL
+python $E7/run_priors.py bo --seeds 20 --steps 25 --jobs 4 # BO, same arms -> results/bo/summary_init5_steps25_seeds20.md
 python $E7/make_prompts.py                                 # runs/write__* and runs/writepd__*, opus and fable, reps 1 to 3
-# after the replies are in ($E7/WRAPPER.md, launched as in section 4c):
+# after the replies are in ($E7/WRAPPER.md, launched as in section 4c), run the same three commands again:
 python $E1/score_write_all.py --runs $E7/runs --out $E7/results/write_arm
-python $E1/run_bo_select.py --tasks calphad --runs $E7/runs --out $E7/results/bo_select --seeds 20 --steps 25 --jobs 4
+python $E7/run_priors.py static --jobs 4 ; python $E7/run_priors.py bo --seeds 20 --steps 25 --jobs 4
 ```
 
-The Thermo-Calc numbers are deterministic for a given database; they were not re-run on a second machine. A BO trace is cached with the candidate priors that existed when it ran, so the LLM arms must be run only after all replies of that arm are on disk (or their cache folders removed first).
-
-## 4e. Round 5 (docs/results/2026-11-11-round5.md)
-
-```bash
-E2=experiments/e2_mlip_readout_edit
-# caches: MACE (round 3), ORB (4d); eSEN on FASTER: sbatch $E2/hprc/esen_cache.slurm ; GRACE (grace-mac env):
-python $E2/cache_energies_grace.py --set elastic && python $E2/cache_features_grace.py --set elastic   # shard with --shard i --of n
-for p in mace orb esen grace; do python $E2/head_arm.py baselines --potential $p; done
-# a feedback chain: repeat until five rounds have replies
-python $E2/head_arm.py next --potential orb --model opus --chain 1   # writes runs/head_orb__opus__c1__r<k>/prompt.txt
-python $E2/head_arm.py score                                         # -> results/head/chains.md
-python $E2/beyond_readout.py ; python $E2/risk_arm.py prompt --tag opus__rep1 ; python $E2/risk_arm.py score
-```
-
-## 4f. Round 6 (docs/results/2026-11-11-round6.md)
-
-```bash
-python experiments/e1_surrogate_head/run_joint_mean.py static --jobs 6
-python experiments/e1_surrogate_head/run_joint_mean.py bo --seeds 20 --steps 25 --jobs 6
-E6=experiments/e6_extraction_reader          # env/ocr-venv (python -m venv on the matfigret env + transformers>=5.17)
-git clone https://github.com/orchid-calphad/orchid-bench data/large/orchid_bench   # commit 584d34a
-env/ocr-venv/bin/python $E6/run_reader.py --rendering degraded_raster          # or sbatch $E6/hprc/reader.slurm unedited
-env/ocr-venv/bin/python $E6/opus_reader.py prepare --rendering degraded_raster ; env/ocr-venv/bin/python $E6/opus_reader.py score
-env/ocr-venv/bin/python $E6/edit_arm.py prompt --tag opus__rep1 ; env/ocr-venv/bin/python $E6/edit_arm.py export
-sbatch $E6/hprc/edits.slurm edits/counts.json edits/opus__rep1.json            # reads the ten test papers per edit
-env/ocr-venv/bin/python $E6/edit_arm.py score
-env/ocr-venv/bin/python $E6/build_real_set.py ; env/ocr-venv/bin/python $E6/read_real.py --split test --tag unedited
-```
+The Thermo-Calc numbers are deterministic for a given database; they were not re-run on a second machine. A BO trace is cached with the candidate priors that existed when it ran, so an LLM source must be run only after all its replies are on disk.
 
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 

@@ -14,8 +14,8 @@ Resumable: a run with a score.json newer than its reply is not rescored.
     python experiments/e1_surrogate_head/score_write_all.py
 
 Experiment E7 uses the same scoring on its own runs, where `writepd__*` folders
-hold the replies to the prompt with binary phase-diagram facts, and the no-LLM
-references are the rule of mixtures and the binary extrapolation:
+hold the replies to the prompt with sub-system phase-diagram facts, and the no-LLM
+references are the rule of mixtures and the sub-system extrapolation:
 
     python experiments/e1_surrogate_head/score_write_all.py \\
         --runs experiments/e7_calphad_prior/runs --out experiments/e7_calphad_prior/results/write_arm
@@ -38,7 +38,7 @@ from wsp.tasks import load_task
 HERE = Path(__file__).resolve().parent
 RUN = re.compile(r"(?P<arm>write|writepd)__(?P<task>.+?)(?:__(?P<model>fable|opus|sonnet|haiku))?(?:__rep(?P<rep>\d+))?$")
 REFERENCE_LABELS = {"handbook": "handbook (no LLM)", "rom": "rule of mixtures (no LLM)",
-                    "binary_extrapolation": "binary extrapolation (no LLM)"}
+                    "subsystem_extrapolation": "sub-system extrapolation (no LLM)"}
 SIZES = ("n5", "n10", "n20", "n50")
 
 

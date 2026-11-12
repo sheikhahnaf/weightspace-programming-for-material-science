@@ -1,0 +1,10 @@
+{
+ "doc_id": "syn-NiTi-04Tok-v0",
+ "table": "phases",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range / °C</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.%Ti</td><td>atT / °C</td></tr><tr><td>(Ni)</td><td>cF4</td><td>A1</td><td>Cu</td><td>&lt;27</td><td>1455.1</td><td>0.0-15.6</td><td>1297</td></tr><tr><td>Ni3Ti</td><td>hP16</td><td>D024</td><td>Ni3Ti</td><td>&lt;27</td><td>1376.2</td><td>20.4-25.0</td><td>1267</td></tr><tr><td>NiTi</td><td>cP2</td><td>B2</td><td>CsCl</td><td>&lt;27</td><td>1311.8</td><td>43.3-50.9</td><td>1117</td></tr></table>",
+  "<table border=\"1\"><tr><td></td><td colspan=\"3\">Structure</td><td colspan=\"2\">Stability range / °C</td><td colspan=\"2\">Homogeneity range</td></tr><tr><td>Phase</td><td>Pearson</td><td>Strukturb.</td><td>Prototype</td><td>from</td><td>to</td><td>at.%Ti</td><td>atT / °C</td></tr><tr><td>NiTi2</td><td>-</td><td>-</td><td>-</td><td>&lt;27</td><td>986.4</td><td>66.7</td><td>227</td></tr><tr><td>(βTi)</td><td>cl2</td><td>A2</td><td>W</td><td>767.6</td><td>1667.8</td><td>89.4-100.0</td><td>947</td></tr><tr><td>(αTi)</td><td>hP2</td><td>A3</td><td>Mg</td><td>&lt;27</td><td>881.8</td><td>99.8-100.0</td><td>767</td></tr></table>"
+ ]
+}

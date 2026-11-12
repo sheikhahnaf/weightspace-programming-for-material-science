@@ -25,7 +25,15 @@ Stages (each is cached and resumable; one Thermo-Calc process, one thread of wor
     python experiments/e7_calphad_prior/make_tc_data.py --stage pool --system cantor_al --limit 10
 
 Raw results are appended to data/calphad/raw/*.jsonl, one line per calculation
-target; a line with an error is retried on the next run.
+target; the last line of a key counts. A line with an error, or written by an
+earlier version of the melting procedure (`procedure` below), is redone on the
+next run.
+
+A single equilibrium close to an invariant reaction can take minutes or never
+return. The calculations therefore run in a worker process that reports what it
+is about to solve; when one solve exceeds its time limit the supervisor kills the
+worker and its Thermo-Calc engine, writes that point to raw/slow_points.jsonl,
+and starts a new worker, which steps around the points listed there.
 """
 
 from __future__ import annotations
@@ -34,6 +42,10 @@ import argparse
 import datetime
 import itertools
 import json
+import os
+import signal
+import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -58,8 +70,22 @@ ANCHORS = {  # name -> (elements, fractions); literature values are quoted in th
 POOL_SIZE, GRID, MAX_UNITS, MIN_PRESENT, SEED = 400, 20, 7, 4, 0  # 5 at.% grid, each element 0 to 35 at.%
 ORDER_THRESHOLD = 0.05  # a BCC_B2 or FCC_L12 composition set is "ordered" above this site-fraction difference
 SOLUTION_FAMILIES = ("BCC_B2", "FCC_L12", "HCP_A3")
-T_TOL = 0.5  # K, width at which a bisection stops
+COARSE = 4.0  # K, width at which a bisection on the liquid fraction stops
+WIDEST = 10.0  # K, a boundary known less well than this is recorded as failed
 EPS = 1e-6
+PROCEDURE = 2  # version of the melting procedure; 1 (trial) bisected to 0.5 K and stalled at invariant reactions
+HEARTBEAT, SLOW = RAW / "heartbeat.json", RAW / "slow_points.jsonl"
+CALC_LIMIT, BUILD_LIMIT = 45.0, 300.0  # seconds allowed for one equilibrium; for starting or building a system
+
+
+class Unsolved(Exception):
+    """An equilibrium that Thermo-Calc could not solve, or not within the time limit."""
+
+
+def beat(what: dict, allow: float) -> None:
+    """Tell the supervisor what is about to be calculated and how long it may take."""
+    HEARTBEAT.parent.mkdir(parents=True, exist_ok=True)
+    HEARTBEAT.write_text(json.dumps({**what, "allow": allow}))
 
 
 # ------------------------------------------------------------------ sampling
@@ -95,9 +121,11 @@ class Engine:
         self.session = session
         self._key, self._system = None, None
         self.calcs = 0
+        self.slow = {json.loads(line)["tag"] for line in SLOW.read_text().splitlines()} if SLOW.exists() else set()
 
     def system(self, elements: tuple[str, ...]):
         if elements != self._key:
+            beat({"build": list(elements)}, BUILD_LIMIT)
             builder = self.session.select_database_and_elements(DATABASE, list(elements)).deselect_phase("GAS")
             self._system, self._key = builder.get_system(), elements
         return self._system
@@ -113,6 +141,7 @@ class Alloy:
         self.engine = engine
         self.elements = tuple(sorted(el for el, x in composition.items() if x > 0))
         self.x = {el: float(composition[el]) for el in self.elements}
+        self.label = "".join(f"{el}{self.x[el]:.2f}" for el in self.elements)
         self.system = engine.system(self.elements)
         self.dependent = max(self.elements, key=lambda el: self.x[el])
         self.calc = self._new()
@@ -126,19 +155,25 @@ class Alloy:
         return calc
 
     def _solve(self, T: float):
-        """Result at T; a failed solve is retried on a fresh calculation at T ± 0.3 K."""
+        """Result at T. A solve that fails, or that timed out in an earlier worker, is
+        retried on a fresh calculation 0.4 K higher, then 0.4 K lower."""
         from tc_python.exceptions import CalculationException
 
         error = None
-        for shift in (0.0, 0.3, -0.3, 0.7):
+        for shift in (0.0, 0.4, -0.4):
+            tag = f"{self.label}|eq|{T + shift:.2f}"
+            if tag in self.engine.slow:
+                error = f"timed out at {T + shift:.2f} K"
+                continue
+            beat({"tag": tag}, CALC_LIMIT)
             try:
                 self.engine.calcs += 1
                 self.calc.set_condition(self.TQ.temperature(), T + shift)
                 return self.calc.calculate()
             except CalculationException as e:
-                error = e
+                error = str(e)[:200]
                 self.calc = self._new()
-        raise error
+        raise Unsolved(error)
 
     def liquid(self, T: float) -> float:
         r = self._solve(T)
@@ -168,72 +203,96 @@ class Alloy:
         """Temperature at which the liquid amount is `amount` (0 solidus, 1 liquidus),
         solved directly from a converged state at start_T. May be a metastable
         boundary; the caller checks it against global equilibria."""
-        calc = self._new()
-        self.engine.calcs += 2
-        calc.set_condition(self.TQ.temperature(), start_T)
-        calc.calculate()
-        calc.set_phase_to_fixed("LIQUID", amount)
-        calc.remove_condition(self.TQ.temperature())
-        return float(calc.calculate().get_value_of("T"))
+        from tc_python.exceptions import CalculationException
 
-    def _bisect(self, lo: float, hi: float, above) -> float:
-        """Boundary between `above(liquid fraction)` False at lo and True at hi."""
-        while hi - lo > T_TOL:
-            mid = 0.5 * (lo + hi)
-            if above(self.liquid(mid)):
+        tag = f"{self.label}|fixed{amount:.0f}|{start_T:.2f}"
+        if tag in self.engine.slow:
+            raise Unsolved(f"phase-boundary solve from {start_T:.2f} K timed out")
+        beat({"tag": tag}, CALC_LIMIT)
+        try:
+            calc = self._new()
+            self.engine.calcs += 2
+            calc.set_condition(self.TQ.temperature(), start_T)
+            calc.calculate()
+            calc.set_phase_to_fixed("LIQUID", amount)
+            calc.remove_condition(self.TQ.temperature())
+            return float(calc.calculate().get_value_of("T"))
+        except CalculationException as e:
+            raise Unsolved(str(e)[:200]) from None
+
+    def _bisect(self, lo: float, hi: float, above, width: float) -> tuple[float, float]:
+        """Narrow [lo, hi], where `above(liquid fraction)` is False at lo and True at hi,
+        to `width`. A temperature that cannot be solved is stepped around; if that
+        fails too the bracket is returned as wide as it is."""
+        while hi - lo > width:
+            fraction = None
+            for split in (0.5, 0.35, 0.65):
+                mid = lo + split * (hi - lo)
+                try:
+                    fraction = self.liquid(mid)
+                    break
+                except Unsolved:
+                    continue
+            if fraction is None:
+                break
+            if above(fraction):
                 hi = mid
             else:
                 lo = mid
-        return 0.5 * (lo + hi)
+        return lo, hi
+
+    def _boundary(self, amount: float, start: float, low, hi: float) -> tuple[float, str]:
+        """Liquidus (amount 1) or solidus (amount 0), and how it was obtained.
+
+        1. Solve the phase boundary directly from the state at `start`; accept it if
+           global equilibria 1 K below and 1 K above agree.
+        2. Otherwise bracket it by bisection on the liquid fraction of global
+           equilibria to 4 K (this assumes the fraction rises with temperature),
+           solve the phase boundary from the upper end of the bracket, and accept
+           it if it lies inside the bracket.
+        3. Otherwise report the middle of the bracket.
+        """
+        above = (lambda f: f >= 1 - EPS) if amount == 1.0 else (lambda f: f > EPS)
+        try:
+            T = self._fixed_liquid(start, amount)
+            if T <= hi + 0.01 and above(self.liquid(T + 1.0)) and not above(self.liquid(T - 1.0)):
+                return T, "phase boundary, checked 1 K either side"
+        except Unsolved:
+            pass
+        a, b = self._bisect(low(), hi, above, COARSE)
+        if b - a > WIDEST:
+            raise Unsolved(f"bracket {a:.1f} to {b:.1f} K could not be narrowed")
+        try:
+            T = self._fixed_liquid(b, amount)
+            if a - 0.01 <= T <= b + 0.01:
+                return T, f"phase boundary inside a {b - a:.1f} K bracket"
+        except Unsolved:
+            pass
+        return 0.5 * (a + b), f"middle of a {b - a:.1f} K bracket"
 
     def solidus_liquidus(self, T_guess_high: float, T_guess_low: float) -> dict:
-        """Solidus = highest temperature with no liquid; liquidus = lowest with only liquid.
-
-        Each is first solved directly as a phase boundary and accepted only if global
-        equilibria 1 K below and above agree; otherwise it is found by bisection on
-        the liquid fraction (0.5 K), which assumes that fraction rises with temperature.
-        """
-        from tc_python.exceptions import CalculationException
-
+        """Solidus = highest temperature with no liquid; liquidus = lowest with only liquid."""
         hi = T_guess_high
         while self.liquid(hi) < 1 - EPS:
             hi += 250.0
             if hi > 5000:
-                raise RuntimeError("no fully liquid state below 5000 K")
-        out = {}
+                raise Unsolved("no fully liquid state below 5000 K")
+        found = []
 
-        def bracket_low() -> float:
-            lo = T_guess_low
-            while self.liquid(lo) > EPS:
-                lo -= 150.0
-                if lo < 350:
-                    raise RuntimeError("liquid still present at 350 K")
-            return lo
+        def low() -> float:  # a temperature with no liquid, looked for only when a bisection needs it
+            if not found:
+                lo = T_guess_low
+                while self.liquid(lo) > EPS:
+                    lo -= 150.0
+                    if lo < 350:
+                        raise Unsolved("liquid still present at 350 K")
+                found.append(lo)
+            return found[0]
 
-        try:
-            liquidus = self._fixed_liquid(hi, 1.0)
-            ok = self.liquid(liquidus + 1.0) >= 1 - EPS and self.liquid(liquidus - 1.0) < 1 - EPS
-        except CalculationException:
-            ok = False
-        if ok:
-            out["liquidus_method"] = "phase boundary, checked ±1 K"
-        else:
-            liquidus = self._bisect(bracket_low(), hi, lambda f: f >= 1 - EPS)
-            out["liquidus_method"] = "bisection 0.5 K"
-        out["liquidus_K"] = liquidus
-
-        try:
-            solidus = self._fixed_liquid(liquidus - 0.5, 0.0)
-            ok = solidus <= liquidus + 0.01 and self.liquid(solidus - 1.0) <= EPS and self.liquid(solidus + 1.0) > EPS
-        except CalculationException:
-            ok = False
-        if ok:
-            out["solidus_method"] = "phase boundary, checked ±1 K"
-        else:
-            solidus = self._bisect(bracket_low(), liquidus + 1.0, lambda f: f > EPS)
-            out["solidus_method"] = "bisection 0.5 K"
-        out["solidus_K"] = min(solidus, liquidus)
-        return out
+        liquidus, liquidus_method = self._boundary(1.0, hi, low, hi)
+        solidus, solidus_method = self._boundary(0.0, liquidus - 0.5, low, liquidus + 1.0)
+        return {"liquidus_K": liquidus, "liquidus_method": liquidus_method,
+                "solidus_K": min(solidus, liquidus), "solidus_method": solidus_method}
 
 
 def kind(family: str, order: float | None) -> str:
@@ -255,25 +314,31 @@ def fractions_by_kind(phases: list[dict]) -> dict[str, float]:
 # -------------------------------------------------------------------- caching
 
 
-def read_cache(path: Path) -> dict[str, dict]:
-    """key -> last record; a record with an error does not count as done."""
-    done = {}
+def all_records(path: Path, melting: bool = True) -> dict[str, dict]:
+    """key -> last record of the current procedure, failed ones included."""
+    out = {}
     if path.exists():
         for line in path.read_text().splitlines():
             if line.strip():
                 record = json.loads(line)
-                done[record["key"]] = record
-    return {k: v for k, v in done.items() if not v.get("error")}
+                if not melting or record.get("procedure") == PROCEDURE:
+                    out[record["key"]] = record
+    return out
+
+
+def read_cache(path: Path, melting: bool = True) -> dict[str, dict]:
+    """The records that count as done: a record with an error does not."""
+    return {k: v for k, v in all_records(path, melting).items() if not v.get("error")}
 
 
 def append(path: Path, record: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a") as f:
-        f.write(json.dumps(record) + "\n")
+        f.write(json.dumps({**record, "procedure": PROCEDURE}) + "\n")
 
 
 def melting_points() -> dict[str, float]:
-    return {k: v["melting_point_K"] for k, v in read_cache(RAW / "elements.jsonl").items()}
+    return {k: v["melting_point_K"] for k, v in read_cache(RAW / "elements.jsonl", melting=False).items()}
 
 
 # --------------------------------------------------------------------- stages
@@ -281,7 +346,7 @@ def melting_points() -> dict[str, float]:
 
 def stage_elements(engine: Engine) -> None:
     path = RAW / "elements.jsonl"
-    done = read_cache(path)
+    done = read_cache(path, melting=False)
     for el in sorted({el for s in SYSTEMS.values() for el in s["elements"]}):
         if el in done:
             continue
@@ -299,29 +364,27 @@ def stage_elements(engine: Engine) -> None:
 
 def compute_alloy(engine: Engine, composition: dict[str, float], T_fixed: float, tm: dict[str, float]) -> dict:
     """Everything recorded for one composition. Each quantity fails on its own."""
-    from tc_python.exceptions import CalculationException
-
     alloy = Alloy(engine, composition)
     out, errors = {}, {}
     present = [tm[el] for el in alloy.elements]
     try:
         out.update(alloy.solidus_liquidus(max(present) + 250.0, min(min(present), T_fixed) - 100.0))
         out["freezing_range_K"] = out["liquidus_K"] - out["solidus_K"]
-    except (CalculationException, RuntimeError) as e:
-        errors["melting"] = f"{type(e).__name__}: {str(e)[:200]}"
+    except Unsolved as e:
+        errors["melting"] = str(e)
     try:
         state = alloy.state(T_fixed)
         out["phases"] = state["phases"]
         out["density_T_g_cm3"] = state["density_g_cm3"]
         out.update({f"{k.replace(' ', '_')}_fraction": v for k, v in fractions_by_kind(state["phases"]).items()})
-    except CalculationException as e:
-        errors["phases"] = f"{type(e).__name__}: {str(e)[:200]}"
+    except Unsolved as e:
+        errors["phases"] = str(e)
     try:
         cold = alloy.state(298.15)
         out["density_298K_g_cm3"] = cold["density_g_cm3"]
         out["phases_298K"] = [p["phase"] for p in cold["phases"]]
-    except CalculationException as e:
-        errors["density_298K"] = f"{type(e).__name__}: {str(e)[:200]}"
+    except Unsolved as e:
+        errors["density_298K"] = str(e)
     out["failed"] = errors
     return out
 
@@ -364,8 +427,6 @@ def stage_pool(engine: Engine, system: str, limit: int | None) -> None:
 
 
 def stage_binaries(engine: Engine, system: str) -> None:
-    from tc_python.exceptions import CalculationException
-
     spec, path, tm = SYSTEMS[system], RAW / f"{system}_binaries.jsonl", melting_points()
     done = read_cache(path)
     for a, b in itertools.combinations(spec["elements"], 2):
@@ -381,17 +442,18 @@ def stage_binaries(engine: Engine, system: str) -> None:
             try:
                 melt = alloy.solidus_liquidus(max(tm[a], tm[b]) + 250.0, min(tm[a], tm[b], spec["T"]) - 100.0)
                 record["liquidus_curve"].append([xb, round(melt["liquidus_K"], 1)])
-            except (CalculationException, RuntimeError) as e:
-                record["failed"][f"melting {label}"] = f"{type(e).__name__}: {str(e)[:200]}"
+            except Unsolved as e:
+                record["failed"][f"melting {label}"] = str(e)
                 melt = None
             if step in (5, 10, 15):
                 point = {"x": {a: 1 - xb, b: xb}}
                 if melt:
-                    point.update(solidus_K=round(melt["solidus_K"], 1), liquidus_K=round(melt["liquidus_K"], 1))
+                    point.update(solidus_K=round(melt["solidus_K"], 1), liquidus_K=round(melt["liquidus_K"], 1),
+                                 solidus_method=melt["solidus_method"], liquidus_method=melt["liquidus_method"])
                 try:
                     point["phases"] = alloy.state(spec["T"])["phases"]
-                except CalculationException as e:
-                    record["failed"][f"phases {label}"] = f"{type(e).__name__}: {str(e)[:200]}"
+                except Unsolved as e:
+                    record["failed"][f"phases {label}"] = str(e)
                 record["points"][label] = point
         curve = [[0.0, tm[a]], *record["liquidus_curve"], [1.0, tm[b]]]
         xmin, tmin = min(curve, key=lambda p: p[1])
@@ -406,17 +468,6 @@ def stage_binaries(engine: Engine, system: str) -> None:
 
 
 # --------------------------------------------------------------------- export
-
-
-def all_records(path: Path) -> dict[str, dict]:
-    """Last record per key, failed ones included."""
-    out = {}
-    if path.exists():
-        for line in path.read_text().splitlines():
-            if line.strip():
-                record = json.loads(line)
-                out[record["key"]] = record
-    return out
 
 
 def stage_export(tc_version: str | None) -> None:
@@ -462,7 +513,8 @@ def stage_export(tc_version: str | None) -> None:
         inter = table[f"intermetallic_fraction_{int(spec['T'])}K"]
         summary[system] = {
             "rows": len(table), "sampled": len(units), "failed": failed,
-            "bisection": int(table["melting_method"].str.contains("bisection").sum()),
+            "bisection": int(table["melting_method"].str.contains("bracket").sum()),
+            "midpoint": int(table["melting_method"].str.contains("middle").sum()),
             "liquid_at_T": int((table[f"liquid_fraction_{int(spec['T'])}K"] > 0).sum()),
             "intermetallic_zero": int((inter == 0).sum()), "intermetallic_finite": int(inter.notna().sum()),
             "equilibria": int(sum(r.get("equilibria", 0) for r in records.values())),
@@ -497,7 +549,7 @@ def stage_export(tc_version: str | None) -> None:
             (DATA / f"{system}_binaries.json").write_text(json.dumps(facts, indent=1) + "\n")
             summary[system]["binaries"] = len(binaries)
             summary[system]["binaries_failed"] = {k: b["failed"] for k, b in binaries.items() if b.get("failed")}
-    write_readme(summary, tm, all_records(RAW / "anchors.jsonl"), all_records(RAW / "elements.jsonl"), info)
+    write_readme(summary, tm, all_records(RAW / "anchors.jsonl"), all_records(RAW / "elements.jsonl", melting=False), info)
     for system, s in summary.items():
         print(system, {k: v for k, v in s.items() if k != "describe"})
         print(s["describe"])
@@ -608,31 +660,75 @@ ANCHOR_NOTES = """Literature values for comparison (not computed here):
 These literature numbers are quoted from memory of the papers and were not re-checked against the sources in this run."""
 
 
+def run_stages(stage: str, systems: tuple[str, ...], limit: int | None) -> None:
+    """The Thermo-Calc stages, in one session (the worker process)."""
+    from tc_python import LoggingPolicy, TCPython
+
+    beat({"start": "session"}, BUILD_LIMIT)
+    with TCPython(logging_policy=LoggingPolicy.NONE) as session:
+        engine = Engine(session)
+        if stage in ("all", "elements"):
+            stage_elements(engine)
+        if stage in ("all", "anchors"):
+            stage_anchors(engine)
+        if stage in ("all", "binaries"):
+            for system in systems:
+                stage_binaries(engine, system)
+        if stage in ("all", "pool"):
+            for system in systems:
+                stage_pool(engine, system, limit)
+
+
+def supervise(argv: list[str]) -> None:
+    """Run the worker; kill and restart it whenever one solve exceeds its time limit."""
+    stalls = 0
+    while True:
+        beat({"start": "worker"}, BUILD_LIMIT)
+        worker = subprocess.Popen([sys.executable, "-u", __file__, *argv, "--worker"], start_new_session=True)
+        while worker.poll() is None:
+            time.sleep(1.0)
+            try:
+                state = json.loads(HEARTBEAT.read_text())
+            except (OSError, ValueError):
+                continue  # caught mid-write
+            if time.time() - HEARTBEAT.stat().st_mtime <= state["allow"]:
+                continue
+            os.killpg(worker.pid, signal.SIGKILL)  # the worker and its Thermo-Calc engine
+            worker.wait()
+            if "tag" in state:
+                append(SLOW, {"tag": state["tag"], "limit_s": state["allow"], "date": datetime.date.today().isoformat()})
+                print(f"TIMEOUT {state['tag']}: worker restarted", flush=True)
+                stalls = 0
+            else:
+                stalls += 1
+                print(f"TIMEOUT while {state}: worker restarted ({stalls})", flush=True)
+            break
+        else:
+            if worker.returncode == 0:
+                return
+            stalls += 1
+            print(f"worker exited with code {worker.returncode} ({stalls})", flush=True)
+        if stalls >= 3:
+            raise SystemExit("the worker failed three times in a row without reaching a calculation")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--stage", choices=("all", "elements", "anchors", "pool", "binaries", "export"), default="all")
     parser.add_argument("--system", choices=(*SYSTEMS, "all"), default="all")
     parser.add_argument("--limit", type=int, default=None, help="pool stage: stop after this many compositions")
+    parser.add_argument("--worker", action="store_true", help="internal: run the calculations in this process")
     args = parser.parse_args()
     systems = tuple(SYSTEMS) if args.system == "all" else (args.system,)
+    if args.worker:
+        run_stages(args.stage, systems, args.limit)
+        return
     version = None
     if args.stage != "export":
         import tc_python
-        from tc_python import LoggingPolicy, TCPython
 
         version = getattr(tc_python, "__version__", None)
-        with TCPython(logging_policy=LoggingPolicy.NONE) as session:
-            engine = Engine(session)
-            if args.stage in ("all", "elements"):
-                stage_elements(engine)
-            if args.stage in ("all", "anchors"):
-                stage_anchors(engine)
-            if args.stage in ("all", "binaries"):
-                for system in systems:
-                    stage_binaries(engine, system)
-            if args.stage in ("all", "pool"):
-                for system in systems:
-                    stage_pool(engine, system, args.limit)
+        supervise(sys.argv[1:])
     if args.stage in ("all", "export"):
         stage_export(version)
 

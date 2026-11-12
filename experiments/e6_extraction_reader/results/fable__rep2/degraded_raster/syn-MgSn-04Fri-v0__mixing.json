@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-MgSn-04Fri-v0",
+ "table": "mixing",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td></td><td></td><td colspan=\"4\">Liquid at 1150 K</td></tr><tr><td>at.% Sn</td><td>ΔmixH / kJ mol-1</td><td>ΔmixG / kJ mol-1</td><td>a(Mg)</td><td>a(Sn)</td><td></td></tr><tr><td>10</td><td>-4.76</td><td>-8.01</td><td>0.8722</td><td>7.866E-4</td><td></td></tr><tr><td>30</td><td>-13.25</td><td>-17.78</td><td>0.3711</td><td>0.0205</td><td></td></tr><tr><td>50</td><td>-12.98</td><td>-18.82</td><td>0.0717</td><td>0.2722</td><td></td></tr><tr><td>70</td><td>-8.36</td><td>-14.13</td><td>0.0213</td><td>0.6296</td><td></td></tr><tr><td>90</td><td>-2.95</td><td>-6.05</td><td>0.0050</td><td>0.8925</td><td></td></tr></table>"
+ ]
+}

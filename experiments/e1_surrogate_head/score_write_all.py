@@ -12,10 +12,18 @@ A reply that does not parse is recorded as invalid and scored as nothing.
 Resumable: a run with a score.json newer than its reply is not rescored.
 
     python experiments/e1_surrogate_head/score_write_all.py
+
+Experiment E7 uses the same scoring on its own runs, where `writepd__*` folders
+hold the replies to the prompt with binary phase-diagram facts, and the no-LLM
+references are the rule of mixtures and the binary extrapolation:
+
+    python experiments/e1_surrogate_head/score_write_all.py \\
+        --runs experiments/e7_calphad_prior/runs --out experiments/e7_calphad_prior/results/write_arm
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import warnings
@@ -24,11 +32,13 @@ from pathlib import Path
 
 import numpy as np
 
-from wsp.arms import handbook_prior, score_prior, score_write
+from wsp.arms import reference_priors, score_prior, score_write
 from wsp.tasks import load_task
 
 HERE = Path(__file__).resolve().parent
-RUN = re.compile(r"write__(?P<task>.+?)(?:__(?P<model>fable|opus|sonnet|haiku))?(?:__rep(?P<rep>\d+))?$")
+RUN = re.compile(r"(?P<arm>write|writepd)__(?P<task>.+?)(?:__(?P<model>fable|opus|sonnet|haiku))?(?:__rep(?P<rep>\d+))?$")
+REFERENCE_LABELS = {"handbook": "handbook (no LLM)", "rom": "rule of mixtures (no LLM)",
+                    "binary_extrapolation": "binary extrapolation (no LLM)"}
 SIZES = ("n5", "n10", "n20", "n50")
 
 
@@ -46,14 +56,20 @@ def mean(rows, *path):
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument("--runs", type=Path, default=HERE / "runs")
+    parser.add_argument("--out", type=Path, default=HERE / "results" / "write_arm")
+    args = parser.parse_args()
     warnings.filterwarnings("ignore")
     per_run = []
-    for folder in sorted((HERE / "runs").glob("write__*")):
+    for folder in sorted(args.runs.glob("write*__*")):
         m = RUN.fullmatch(folder.name)
         reply = folder / "reply.txt"
         if not m or not reply.exists():
             continue
         task_name, model, rep = m["task"], m["model"] or "fable", int(m["rep"] or 1)
+        if m["arm"] == "writepd":
+            model += " + phase diagrams"
         score_file = folder / "score.json"
         meta = json.loads((folder / "meta.json").read_text()) if (folder / "meta.json").exists() else {}
         meta.setdefault("model_alias", model)
@@ -74,7 +90,7 @@ def main() -> None:
                         "invalid": result.get("invalid"), "per_seed": result.get("per_seed")})
         print(f"{folder.name}: {'INVALID ' + result['invalid'] if result.get('invalid') else 'ok'}", flush=True)
 
-    out = HERE / "results" / "write_arm"
+    out = args.out
     out.mkdir(parents=True, exist_ok=True)
     (out / "per_run.json").write_text(json.dumps(per_run, indent=1) + "\n")
 
@@ -87,7 +103,6 @@ def main() -> None:
         by_task[row["task"]][row["model"]].append(row)
     for task_name, models in by_task.items():
         task = load_task(task_name)
-        handbook = score_prior(task, handbook_prior(task))
         summary[task_name] = {}
 
         def entry(label, replies_seedrows, n_valid, n_total):
@@ -107,8 +122,9 @@ def main() -> None:
             summary[task_name][label] = item
             lines.append(f"| `{task_name}` | {label} | {n_total} ({n_valid}) | {item['alone_spearman']:.2f} | " + " | ".join(cells) + " |")
 
-        entry("handbook (no LLM)", [handbook], 1, 1)
-        for model in ("fable", "opus", "sonnet", "haiku"):
+        for name, prior in reference_priors(task).items():
+            entry(REFERENCE_LABELS[name], [score_prior(task, prior)], 1, 1)
+        for model in [m + pd for m in ("fable", "opus", "sonnet", "haiku") for pd in ("", " + phase diagrams")]:
             rows = models.get(model, [])
             valid = [r["per_seed"] for r in rows if not r["invalid"]]
             if rows:

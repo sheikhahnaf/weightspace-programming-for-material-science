@@ -24,6 +24,15 @@ seeds on that area, with Holm correction across the non-random arms of a task.
 Resumable: each (task, arm, seed) trace is cached under results/bo_select/.
 
     python experiments/e1_surrogate_head/run_bo_select.py --jobs 8
+
+Experiment E7 runs the same loop, with the same rule, on the Thermo-Calc tasks
+(`--tasks calphad`, runs and results in experiments/e7_calphad_prior). There the
+no-LLM arms are `rom` and `binary_extrapolation` in place of `handbook`, and
+`select_<model>_pd` takes the replies to the prompt that carried binary
+phase-diagram facts (run folders `writepd__*`). On those tasks an arm with no
+candidate, or whose only candidates are constant, is the plain GP by
+construction and is left out rather than run. A trace is cached with the
+candidates that existed when it ran: run an LLM arm only once all its replies are in.
 """
 
 from __future__ import annotations
@@ -46,20 +55,29 @@ GOALS = {
 }
 MODELS = ("fable", "opus", "sonnet", "haiku")
 ARMS = ("random", "gp", "handbook", *[f"select_{m}" for m in MODELS], "select_all")
-RUN = re.compile(r"write__(?P<task>.+?)(?:__(?P<model>fable|opus|sonnet|haiku))?(?:__rep(?P<rep>\d+))?$")
+CALPHAD_ARMS = ("random", "gp", "rom", "binary_extrapolation",
+                *[f"select_{m}{pd}" for m in ("opus", "fable") for pd in ("", "_pd")])
+RUN = re.compile(r"(?P<arm>write|writepd)__(?P<task>.+?)(?:__(?P<model>fable|opus|sonnet|haiku))?(?:__rep(?P<rep>\d+))?$")
 THRESHOLD = 0.3
 
 
-def candidates(task_name: str) -> dict[str, dict[str, np.ndarray]]:
+def goal(task_name: str) -> float:
+    """+1 if the task's target is to be maximised, -1 if minimised."""
+    from wsp.tasks import CALPHAD_GOALS
+
+    return GOALS[task_name] if task_name in GOALS else CALPHAD_GOALS[task_name]
+
+
+def candidates(task_name: str, runs: Path | None = None) -> dict[str, dict[str, np.ndarray]]:
     """arm -> {candidate name -> prior output on the whole pool, in the direction of improvement}."""
-    from wsp.arms import handbook_prior, written_head
+    from wsp.arms import reference_priors, written_head
     from wsp.baselines import predict
     from wsp.tasks import load_task
 
     task = load_task(task_name)
-    sign = GOALS[task_name]
-    by_model: dict[str, dict[str, np.ndarray]] = {m: {} for m in MODELS}
-    for folder in sorted((HERE / "runs").glob(f"write__{task_name}*")):
+    sign = goal(task_name)
+    by_model: dict[str, dict[str, np.ndarray]] = {f"{m}{pd}": {} for m in MODELS for pd in ("", "_pd")}
+    for folder in sorted((runs or HERE / "runs").glob(f"write*__{task_name}*")):
         m = RUN.fullmatch(folder.name)
         if not m or m["task"] != task_name or not (folder / "reply.txt").exists():
             continue
@@ -67,12 +85,31 @@ def candidates(task_name: str) -> dict[str, dict[str, np.ndarray]]:
             head = written_head(task, (folder / "reply.txt").read_text())
         except Exception:
             continue  # an invalid reply is not a candidate
-        by_model[m["model"] or "fable"][folder.name] = sign * predict(head, task.X)
-    out = {"handbook": {"handbook": sign * handbook_prior(task)(task.X)}}
+        key = (m["model"] or "fable") + ("_pd" if m["arm"] == "writepd" else "")
+        by_model[key][folder.name] = sign * predict(head, task.X)
+    out = {name: {name: sign * prior(task.X)} for name, prior in reference_priors(task).items()}
     for model, replies in by_model.items():
         out[f"select_{model}"] = replies
-    out["select_all"] = {k: v for replies in by_model.values() for k, v in replies.items()}
+    for pd in ("", "_pd"):
+        out[f"select_all{pd}"] = {k: v for model, replies in by_model.items() if model.endswith("_pd") == bool(pd)
+                                  for k, v in replies.items()}
     return out
+
+
+def arms_for(task_name: str, arms: tuple[str, ...] | None, runs: Path | None) -> tuple[str, ...]:
+    """The arms to run on a task. The E1 tasks keep the arms as given. On a Thermo-Calc
+    task an arm that could never use a prior is dropped, with a note."""
+    if task_name in GOALS:
+        return arms or ARMS
+    found, kept = candidates(task_name, runs), []
+    for arm in arms or CALPHAD_ARMS:
+        usable = [m for m in found.get(arm, {}).values() if np.ptp(m) > 0]
+        if arm in ("random", "gp") or usable:
+            kept.append(arm)
+        else:
+            why = "no valid reply yet" if not found.get(arm) else "its prior is constant"
+            print(f"{task_name}: arm {arm} left out ({why}); it would be the plain GP", flush=True)
+    return tuple(kept)
 
 
 def expected_improvement(mean, std, best):
@@ -80,8 +117,9 @@ def expected_improvement(mean, std, best):
     return (mean - best) * norm.cdf(z) + std * norm.pdf(z)
 
 
-def trace(task_name: str, arm: str, seed: int, n_init: int, steps: int) -> dict:
-    cache = OUT / f"init{n_init}_steps{steps}" / task_name / f"{arm}__seed{seed}.json"
+def trace(task_name: str, arm: str, seed: int, n_init: int, steps: int,
+          runs: Path | None = None, out: Path | None = None) -> dict:
+    cache = (out or OUT) / f"init{n_init}_steps{steps}" / task_name / f"{arm}__seed{seed}.json"
     if cache.exists():
         return json.loads(cache.read_text())
     import torch
@@ -93,8 +131,8 @@ def trace(task_name: str, arm: str, seed: int, n_init: int, steps: int) -> dict:
     warnings.filterwarnings("ignore")
     torch.set_num_threads(1)
     task = load_task(task_name)
-    X, y = task.X, GOALS[task_name] * task.y  # always maximise y
-    priors = {} if arm in ("random", "gp") else candidates(task_name)[arm]
+    X, y = task.X, goal(task_name) * task.y  # always maximise y
+    priors = {} if arm in ("random", "gp") else candidates(task_name, runs)[arm]
     rng = np.random.default_rng(seed)
     labelled = list(rng.permutation(len(y))[:n_init])
     best, chosen = [float(y[labelled].max())], []
@@ -135,34 +173,38 @@ def holm(pvalues: dict[str, float]) -> dict[str, float]:
     return adjusted
 
 
-def summarise(n_init: int, steps: int, seeds: int) -> None:
+def summarise(n_init: int, steps: int, seeds: int, arms_by_task: dict[str, tuple[str, ...]] | None = None,
+              runs: Path | None = None, out: Path | None = None) -> None:
     from wsp.tasks import load_task
+
+    arms_by_task = arms_by_task or {task_name: ARMS for task_name in GOALS}
+    out = out or OUT
 
     lines = [
         "| Task | Arm | Candidates | Regret after 5 | after 10 | after 25 | Area under regret | vs GP: seeds better / worse | Wilcoxon p (Holm) | Steps with a prior |",
         "|---|---|---|---|---|---|---|---|---|---|",
     ]
     summary = {}
-    for task_name in GOALS:
+    for task_name, arms in arms_by_task.items():
         task = load_task(task_name)
-        n_candidates = {arm: len(c) for arm, c in candidates(task_name).items()}
+        n_candidates = {arm: len(c) for arm, c in candidates(task_name, runs).items()}
         rows = {}
-        for arm in ARMS:
-            traces = [json.loads((OUT / f"init{n_init}_steps{steps}" / task_name / f"{arm}__seed{s}.json").read_text())
+        for arm in arms:
+            traces = [json.loads((out / f"init{n_init}_steps{steps}" / task_name / f"{arm}__seed{s}.json").read_text())
                       for s in range(seeds)]
             regret = np.array([t["optimum"] - np.array(t["best_so_far"]) for t in traces])
             used = [name is not None for t in traces for name in t["prior_used"]]
             rows[arm] = {"regret": regret, "auc": regret[:, 1:].mean(1),
                          "prior_share": float(np.mean(used)) if used else 0.0}
         pvals = {}
-        for arm in ARMS:
+        for arm in arms:
             if arm in ("random", "gp"):
                 continue
             delta = rows[arm]["auc"] - rows["gp"]["auc"]
             pvals[arm] = float(wilcoxon(delta).pvalue) if np.any(delta != 0) else 1.0
         adjusted = holm(pvals)
         summary[task_name] = {}
-        for arm in ARMS:
+        for arm in arms:
             r = rows[arm]
             better = int((r["auc"] < rows["gp"]["auc"]).sum())
             worse = int((r["auc"] > rows["gp"]["auc"]).sum())
@@ -184,9 +226,9 @@ def summarise(n_init: int, steps: int, seeds: int) -> None:
                 f"| {vs} | {p} | {item['share_of_steps_with_a_prior']:.2f} |"
             )
     tag = f"init{n_init}_steps{steps}_seeds{seeds}"
-    (OUT / f"summary_{tag}.json").write_text(json.dumps({"n_init": n_init, "steps": steps, "seeds": seeds,
+    (out / f"summary_{tag}.json").write_text(json.dumps({"n_init": n_init, "steps": steps, "seeds": seeds,
                                                   "threshold": THRESHOLD, "tasks": summary}, indent=1) + "\n")
-    (OUT / f"summary_{tag}.md").write_text("\n".join(lines) + "\n")
+    (out / f"summary_{tag}.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 
 
@@ -196,13 +238,23 @@ def main() -> None:
     parser.add_argument("--n-init", type=int, default=5)
     parser.add_argument("--steps", type=int, default=25)
     parser.add_argument("--jobs", type=int, default=8)
+    parser.add_argument("--tasks", nargs="+", default=None,
+                        help="default: the five E1 alloy tasks; 'calphad' = every Thermo-Calc task of E7")
+    parser.add_argument("--arms", nargs="+", default=None, help="default: every arm defined for the task")
+    parser.add_argument("--runs", type=Path, default=None, help="folder of run folders (default: this experiment's)")
+    parser.add_argument("--out", type=Path, default=None, help="results folder (default: results/bo_select here)")
     args = parser.parse_args()
 
     from joblib import Parallel, delayed
 
-    work = [(t, a, s) for t in GOALS for a in ARMS for s in range(args.seeds)]
-    Parallel(n_jobs=args.jobs, verbose=5)(delayed(trace)(t, a, s, args.n_init, args.steps) for t, a, s in work)
-    summarise(args.n_init, args.steps, args.seeds)
+    from wsp.tasks import CALPHAD_TASK_NAMES
+
+    tasks = [t for name in (args.tasks or GOALS) for t in (CALPHAD_TASK_NAMES if name == "calphad" else (name,))]
+    arms = {t: arms_for(t, tuple(args.arms) if args.arms else None, args.runs) for t in tasks}
+    work = [(t, a, s) for t in tasks for a in arms[t] for s in range(args.seeds)]
+    Parallel(n_jobs=args.jobs, verbose=5)(
+        delayed(trace)(t, a, s, args.n_init, args.steps, args.runs, args.out) for t, a, s in work)
+    summarise(args.n_init, args.steps, args.seeds, arms, args.runs, args.out)
 
 
 if __name__ == "__main__":

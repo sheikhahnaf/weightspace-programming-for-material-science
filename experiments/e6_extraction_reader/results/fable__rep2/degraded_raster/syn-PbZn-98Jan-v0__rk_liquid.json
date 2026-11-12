@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-PbZn-98Jan-v0",
+ "table": "rk_liquid",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td>ν</td><td>a / J mol-1</td><td>b / J mol-1 K-1</td><td>c / J mol-1 K-1</td></tr><tr><td>L0</td><td>32263.4</td><td>-13.10176</td><td>0.0</td></tr><tr><td>L1</td><td>-14909.2</td><td>10.92958</td><td>0.0</td></tr><tr><td>L2</td><td>2829.4</td><td>0.0</td><td>0.0</td></tr></table>"
+ ]
+}

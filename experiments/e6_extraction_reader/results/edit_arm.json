@@ -13,9 +13,9 @@
   },
   "fable__rep2": {
     "cells": 1342,
-    "cell_exact": 0.2421758569299553,
-    "cell_exact_normalised": 0.2690014903129657,
-    "numeric_exact": 0.2509505703422053
+    "cell_exact": 0.7690014903129657,
+    "cell_exact_normalised": 0.8204172876304023,
+    "numeric_exact": 0.8048162230671736
   },
   "opus__rep1": {
     "cells": 1342,

@@ -1,0 +1,9 @@
+{
+ "doc_id": "syn-PbSn-17Gie-v0",
+ "table": "invariants",
+ "rendering": "degraded_raster",
+ "edit": "fable__rep2",
+ "replies": [
+  "<table border=\"1\"><tr><td rowspan=\"2\">Reaction</td><td rowspan=\"2\">Type</td><td colspan=\"2\">T / K</td><td colspan=\"3\">Compositions (x(Sn))</td></tr><tr><td>this work</td><td>exp.</td><td>phase 1</td><td>phase 2</td><td>phase 3</td></tr><tr><td>L → (Pb) + (Sn)</td><td>eutectic</td><td>455.8</td><td>464.8[4]</td><td>0.745</td><td>0.306</td><td>0.975</td></tr></table>"
+ ]
+}

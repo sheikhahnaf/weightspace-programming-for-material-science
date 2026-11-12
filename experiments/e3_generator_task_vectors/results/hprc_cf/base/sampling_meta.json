@@ -1,0 +1,11 @@
+{
+  "backbone": "cf",
+  "variant": "base",
+  "seed": 0,
+  "n_requested": 128,
+  "n_returned": 128,
+  "aligned": true,
+  "batch": 64,
+  "sampler": "CrystalFlowSampler",
+  "model": "CrystalFlowModule"
+}

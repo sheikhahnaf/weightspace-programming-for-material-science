@@ -148,7 +148,8 @@ def main() -> None:
     p = sub.add_parser("prompt")
     p.add_argument("--target", choices=tuple(TARGETS), required=True)
     p.add_argument("--tag", required=True)
-    sub.add_parser("score")
+    p = sub.add_parser("score")
+    p.add_argument("--backbone", choices=("mg", "cf"), default="mg", help="whose samples to score: MatterGen or CrystalFlow")
     args = parser.parse_args()
     warnings.filterwarnings("ignore")
 
@@ -163,10 +164,13 @@ def main() -> None:
         print(folder / "prompt.txt", len(text), "characters")
         return
 
+    global HPRC
+    suffix = "" if args.backbone == "mg" else f"_{args.backbone}"
+    HPRC = HERE / "results" / f"hprc{suffix}"
     rows = crystals()
     X = np.array([r["x"] for r in rows])
     is_base = np.array([r["variant"] == "base" for r in rows])
-    out = HERE / "results" / "filter_arm"
+    out = HERE / "results" / f"filter_arm{suffix}"
     out.mkdir(parents=True, exist_ok=True)
     table, lines = [], []
     for target, (_, name, unit, threshold) in TARGETS.items():

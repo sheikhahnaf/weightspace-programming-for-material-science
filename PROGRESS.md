@@ -180,3 +180,16 @@ Update at the pause (from the watcher, 2026-11-11 23:52 CST): ADiT prep 3260080 
 - In the repo, MLIP and generative-model material moves into a folder named `supplementary/`.
 - Open: whether the Thermo-Calc data tables (`data/calphad/`) may be in a public repo. They are committed in the private repo's history now. Decide before any public release (licence check; fallback is to ship only `make_tc_data.py` and scores, from a fresh history).
 - Supplement requirement (user, 2026-11-12): the supplement OPENS with, for every Thermo-Calc task and every ordinary-dataset task, the prompt, the model's output and the network architecture drawn as in the slide deck (slides 18-19). MLIP, generator and archive material come after, at the end.
+
+## 2026-11-12: paper framing and placement decisions (agreed with the user; writing NOT started)
+
+Claim: a language model can write a small property-prediction network from knowledge alone, with no data; the paper shows what such a network is good for. The GP prior mean is one use, not the framing.
+
+Flow: (1) introduction; (2) method: prompt, architecture, controls; (3) the written networks as predictors on every task (experimental alloys, Thermo-Calc systems, crystals): ranking, scale, four models, against rules; (4) uses: GP prior mean and BO, GP inputs (hidden layer), BNN surrogates; (5) context: phase-diagram facts; (6) where it fails (MPEA yield strength, absolute scale, rules that already work).
+
+Placement:
+- BNN: one short main-text paragraph (the prior-mean benefit carries over to BNN surrogates; starting-point and weight-prior negatives in a sentence); tables in the supplement.
+- Generator filter: main text only if it holds on CrystalFlow as well as MatterGen (CrystalFlow sampling array 3260069 still running; scoring the existing written networks on its crystals needs no model runs). Otherwise supplement.
+- Error-risk predictor for a potential: supplement.
+- Supplement opens with prompt, output and architecture for every task; MLIP, generator, table reader and archive at the end.
+- To compute before writing: uniform standalone metrics for every written network on every task (rho, error after a two-point scale fix, best-tenth recall).

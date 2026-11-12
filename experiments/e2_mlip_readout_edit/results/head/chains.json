@@ -243,7 +243,7 @@
     "potential": "esen",
     "model": "opus",
     "chain": 1,
-    "rounds": 3,
+    "rounds": 5,
     "per_round": [
       {
         "round": 1,
@@ -301,16 +301,54 @@
           "spearman": 0.9657706442661067,
           "energy_change_meV_per_atom": 2.678409803086997
         }
+      },
+      {
+        "round": 4,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 6.904178911872432,
+          "bias_GPa": 1.0398593257369781,
+          "spearman": 0.987086177154429,
+          "energy_change_meV_per_atom": 2.6608713892552114
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 10.003238717958036,
+          "bias_GPa": 4.586459372696953,
+          "spearman": 0.9658066451661294,
+          "energy_change_meV_per_atom": 2.739945009825133
+        }
+      },
+      {
+        "round": 5,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 6.90705004798398,
+          "bias_GPa": 1.1878963588626577,
+          "spearman": 0.9870651766294158,
+          "energy_change_meV_per_atom": 2.3881667351965326
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 10.02886621346212,
+          "bias_GPa": 4.732433536444419,
+          "spearman": 0.9657556438910975,
+          "energy_change_meV_per_atom": 2.494982163039542
+        }
       }
     ],
-    "chosen_round": 3,
+    "chosen_round": 4,
     "final_test": {
       "n": 200,
       "failed_fits": 0,
-      "mae_GPa": 9.98709549029846,
-      "bias_GPa": 4.410924715695691,
-      "spearman": 0.9657706442661067,
-      "energy_change_meV_per_atom": 2.678409803086997
+      "mae_GPa": 10.003238717958036,
+      "bias_GPa": 4.586459372696953,
+      "spearman": 0.9658066451661294,
+      "energy_change_meV_per_atom": 2.739945009825133
     },
     "unedited_test": {
       "n": 200,
@@ -325,7 +363,7 @@
     "potential": "esen",
     "model": "opus",
     "chain": 2,
-    "rounds": 2,
+    "rounds": 5,
     "per_round": [
       {
         "round": 1,
@@ -364,16 +402,73 @@
           "spearman": 0.965836645916148,
           "energy_change_meV_per_atom": 2.9405500515999403
         }
+      },
+      {
+        "round": 3,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 7.284093039793472,
+          "bias_GPa": 0.948054275945105,
+          "spearman": 0.9847176179404487,
+          "energy_change_meV_per_atom": 1.7022683357245612
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 10.13388421536367,
+          "bias_GPa": 4.513828675554513,
+          "spearman": 0.9648976224405612,
+          "energy_change_meV_per_atom": 1.683489890559232
+        }
+      },
+      {
+        "round": 4,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 6.929478467705455,
+          "bias_GPa": 1.1223078405003386,
+          "spearman": 0.9867066676666919,
+          "energy_change_meV_per_atom": 3.2262649761338946
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 10.05277182071044,
+          "bias_GPa": 4.6732430061007735,
+          "spearman": 0.9659941498537465,
+          "energy_change_meV_per_atom": 3.555668348991794
+        }
+      },
+      {
+        "round": 5,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 6.89316664035093,
+          "bias_GPa": 0.9844004789392673,
+          "spearman": 0.9867846696167406,
+          "energy_change_meV_per_atom": 3.450794983613008
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 10.003063235027405,
+          "bias_GPa": 4.4957183220030545,
+          "spearman": 0.9658186454661368,
+          "energy_change_meV_per_atom": 3.4749839763081307
+        }
       }
     ],
-    "chosen_round": 2,
+    "chosen_round": 5,
     "final_test": {
       "n": 200,
       "failed_fits": 0,
-      "mae_GPa": 10.012921046288659,
-      "bias_GPa": 4.504267291767576,
-      "spearman": 0.965836645916148,
-      "energy_change_meV_per_atom": 2.9405500515999403
+      "mae_GPa": 10.003063235027405,
+      "bias_GPa": 4.4957183220030545,
+      "spearman": 0.9658186454661368,
+      "energy_change_meV_per_atom": 3.4749839763081307
     },
     "unedited_test": {
       "n": 200,
@@ -628,7 +723,7 @@
     "potential": "grace",
     "model": "opus",
     "chain": 1,
-    "rounds": 2,
+    "rounds": 4,
     "per_round": [
       {
         "round": 1,
@@ -667,6 +762,44 @@
           "spearman": 0.9656161404035103,
           "energy_change_meV_per_atom": 4.5369932704147296
         }
+      },
+      {
+        "round": 3,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 5.762046226405992,
+          "bias_GPa": 0.5693709243647522,
+          "spearman": 0.9911602790069753,
+          "energy_change_meV_per_atom": 8.949414104122939
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 8.530017243947611,
+          "bias_GPa": 1.866002913435056,
+          "spearman": 0.9655246381159531,
+          "energy_change_meV_per_atom": 8.610252460806588
+        }
+      },
+      {
+        "round": 4,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 5.7516034088714845,
+          "bias_GPa": 0.6518644043300167,
+          "spearman": 0.9911482787069678,
+          "energy_change_meV_per_atom": 4.7737939396345235
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 8.543157538471768,
+          "bias_GPa": 1.928834281647039,
+          "spearman": 0.9652951323783097,
+          "energy_change_meV_per_atom": 4.623200085789971
+        }
       }
     ],
     "chosen_round": 2,
@@ -691,7 +824,7 @@
     "potential": "grace",
     "model": "opus",
     "chain": 2,
-    "rounds": 2,
+    "rounds": 5,
     "per_round": [
       {
         "round": 1,
@@ -730,16 +863,73 @@
           "spearman": 0.9650026250656267,
           "energy_change_meV_per_atom": 7.437728904054202
         }
+      },
+      {
+        "round": 3,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 5.757862480334689,
+          "bias_GPa": 0.7853537375069962,
+          "spearman": 0.9911377784444613,
+          "energy_change_meV_per_atom": 2.9790938070745647
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 8.548701275525042,
+          "bias_GPa": 2.0675665679824946,
+          "spearman": 0.9649666241656043,
+          "energy_change_meV_per_atom": 2.872247842224938
+        }
+      },
+      {
+        "round": 4,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 5.780088889072174,
+          "bias_GPa": 0.6971143732184185,
+          "spearman": 0.9911617790444762,
+          "energy_change_meV_per_atom": 4.880732008779214
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 8.560794936004056,
+          "bias_GPa": 1.9843303742321077,
+          "spearman": 0.9650026250656267,
+          "energy_change_meV_per_atom": 4.683496937350761
+        }
+      },
+      {
+        "round": 5,
+        "train": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 5.724705220573784,
+          "bias_GPa": 0.7404526851558382,
+          "spearman": 0.9912337808445212,
+          "energy_change_meV_per_atom": 3.504757281024254
+        },
+        "test": {
+          "n": 200,
+          "failed_fits": 0,
+          "mae_GPa": 8.539808877445404,
+          "bias_GPa": 2.0106242423764935,
+          "spearman": 0.9650116252906323,
+          "energy_change_meV_per_atom": 3.436092980660053
+        }
       }
     ],
-    "chosen_round": null,
+    "chosen_round": 5,
     "final_test": {
       "n": 200,
       "failed_fits": 0,
-      "mae_GPa": 8.54945124274929,
-      "bias_GPa": 2.2548312311184278,
-      "spearman": 0.965166129153229,
-      "energy_change_meV_per_atom": 0.0
+      "mae_GPa": 8.539808877445404,
+      "bias_GPa": 2.0106242423764935,
+      "spearman": 0.9650116252906323,
+      "energy_change_meV_per_atom": 3.436092980660053
     },
     "unedited_test": {
       "n": 200,
@@ -1205,10 +1395,10 @@
         "test": {
           "n": 200,
           "failed_fits": 0,
-          "mae_GPa": 15.754400220955613,
-          "bias_GPa": 4.5238817033025915,
+          "mae_GPa": 15.754400398784542,
+          "bias_GPa": 4.523881233316352,
           "spearman": 0.948670216755419,
-          "energy_change_meV_per_atom": 5.16503910173774
+          "energy_change_meV_per_atom": 5.1650443782427145
         }
       }
     ],
@@ -1216,10 +1406,10 @@
     "final_test": {
       "n": 200,
       "failed_fits": 0,
-      "mae_GPa": 15.754400220955613,
-      "bias_GPa": 4.5238817033025915,
+      "mae_GPa": 15.754400398784542,
+      "bias_GPa": 4.523881233316352,
       "spearman": 0.948670216755419,
-      "energy_change_meV_per_atom": 5.16503910173774
+      "energy_change_meV_per_atom": 5.1650443782427145
     },
     "unedited_test": {
       "n": 200,

@@ -22,6 +22,6 @@ cd $WORK/cwd
 TAG=${1:-unedited}
 EDIT=${2:+--edit $E6/$2}
 for r in degraded_raster clean_raster; do
-  $WORK/ocr-venv/bin/python -u $E6/run_reader.py --rendering $r --tag $TAG $EDIT 2>&1 | grep -v "Warning\|Loading"
+  $WORK/ocr-venv2/bin/python -u $E6/run_reader.py --rendering $r --tag $TAG $EDIT 2>&1 | grep -v "Warning\|Loading"
 done
 echo "READER_DONE $(date)"

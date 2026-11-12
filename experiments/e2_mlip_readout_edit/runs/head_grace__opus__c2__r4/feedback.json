@@ -1,0 +1,18 @@
+{
+  "round": 4,
+  "valid": true,
+  "train": {
+    "n": 200,
+    "failed_fits": 0,
+    "mae_GPa": 5.780088889072174,
+    "bias_GPa": 0.6971143732184185,
+    "spearman": 0.9911617790444762,
+    "energy_change_meV_per_atom": 4.880732008779214
+  },
+  "bands": [
+    "DFT 10 to 70 GPa: mean error +2.4 GPa (+6.2%)",
+    "DFT 70 to 139 GPa: mean error +1.2 GPa (+1.3%)",
+    "DFT 139 to 201 GPa: mean error -0.3 GPa (-0.0%)",
+    "DFT 201 to 346 GPa: mean error -0.5 GPa (-0.3%)"
+  ]
+}

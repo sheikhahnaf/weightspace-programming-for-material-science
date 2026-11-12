@@ -1,0 +1,10 @@
+{
+  "arm": "head_edit_with_feedback",
+  "potential": "grace",
+  "model_alias": "opus",
+  "chain": 2,
+  "round": 4,
+  "forward_passes": 3,
+  "prompt_chars": 8406,
+  "prompt_tokens_estimate": 2802
+}

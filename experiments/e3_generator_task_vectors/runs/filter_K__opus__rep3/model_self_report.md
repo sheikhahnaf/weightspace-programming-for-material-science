@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a single-index model: ten hidden units share one linear score s ~ ln(B/GPa) = 5.0 - 0.07*V + 0.003*mass + 0.25*(Tm/1000) + per-class offsets (alkali -1.0, H -1.8, C/N/O +1.15, metalloids +0.55, S/Se/P +0.75, 4d/5d +0.4, 3d +0.25, and so on), and differ only in bias, giving knots at s = 1.5, 2.0, ..., 6.0. Their output weights make y a piecewise-linear interpolation of exp(s), with the slope reduced above s = 6 (about 400 GPa), so y is monotone in s and in GPa. I set the coefficients by hand-fitting remembered bulk moduli of about 80 elements and compounds (metals, oxides, nitrides, carbides, halides, chalcogenides, hydrides); the other six units are unused. I expect a rank correlation of roughly 0.7-0.8 with true bulk modulus, weakest for layered, framework and oxyanion compounds (quartz, carbonates, MoS2, which it overestimates) and for carbides (overestimated by about 1.4x). I also re-read WRAPPER.md by mistake, which added one extra tool call that read no other file.

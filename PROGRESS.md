@@ -80,3 +80,14 @@ Everything below is committed. Nothing is lost if the session ends here.
 
 1. Write `docs/results/2026-11-11-round3.md` from the files named above; add a `questions.md` row; update `README.md`.
 2. B4 (MLIP edits with a forward-pass budget) and CrystalFlow/ADiT task vectors (need their base checkpoints) are not started.
+
+## State on 2026-11-11, evening (round 4 in progress)
+
+- Remote is now `origin` = `sheikhahnaf/weightspace-programming-for-material-science` (private, history without Claude lines). `old-origin` still points at the first repo, which keeps the old history until Alvi deletes it or approves a force-push. Commit messages carry no Claude attribution.
+- Paper repo: `/Volumes/SSD1_SMAAA/weightspace-programming-for-material-science-paper` → `sheikhahnaf/weightspace-programming-for-material-science-paper` (private). First draft compiles.
+- Results page: `site/index.html`, published privately at https://claude.ai/artifact/KRqsGEtpS6w56rDnVBNBNg. Republish the same file to update.
+- Leak repair finished: Fable 6/11, Opus 5/11, Sonnet 1/11, Haiku 1/11; linear-gain statistic 6/11. `results/repair_arm/summary.md`.
+- Generator filter arm (E3, `filter_arm.py`): written scorers rank bulk modulus of base samples at rho 0.94 (Opus), 0.88 (Fable), 0.80 (Sonnet), 0.73 (Haiku) against 0.82 for the volume-per-atom rule. `results/filter_arm/summary.md`. Six of the 24 prompts (heat capacity replicates) were not launched; heat capacity is solved by the Dulong-Petit rule.
+- E5 BNN (`experiments/e5_bnn_start/run_bnn.py`): MC dropout, deep ensemble and HMC, each with and without the written network as start, anchor, weight-space prior or prior mean. Running locally in the background; cells cached under `results/cells/`; rerun the command to resume and print `bnn_summary.md`. IBNN was dropped at Alvi's request; HMC follows Li, Rudner and Wilson's bnn-bo study, re-implemented because that repo has no licence.
+- ORB-v3 readout (E2): `cache_features_orb.py --set elastic` running (resumable; needs `compile=False`, already set). Next: an ORB version of `mace_readout.py`, baselines, LLM edits. eSEN and GRACE on FASTER not started.
+- Not yet in `docs/results/`: filter arm, final leak counts, E5, ORB.

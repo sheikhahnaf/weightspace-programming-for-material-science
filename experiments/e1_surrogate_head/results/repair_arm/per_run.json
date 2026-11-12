@@ -399,6 +399,27 @@
   }
  },
  {
+  "run": "repair__loop_bulk_modulus__seed4__opus",
+  "model": "claude-opus-5-5",
+  "task": "loop_bulk_modulus",
+  "seed": 4,
+  "shuffled_control": false,
+  "invalid": null,
+  "leak_position": 37,
+  "inputs_silenced_by_llm": [
+   0
+  ],
+  "llm_found_the_leak": false,
+  "column_norm_found_the_leak": false,
+  "linear_gain_found_the_leak": false,
+  "r2": {
+   "unrepaired": 0.41002764803047065,
+   "llm_repair": -0.16144078623050429,
+   "linear_gain_repair": -0.16144078623050429,
+   "true_column_zeroed": 0.6519412980837495
+  }
+ },
+ {
   "run": "repair__loop_bulk_modulus__seed4__sonnet",
   "model": "claude-sonnet-5-5",
   "task": "loop_bulk_modulus",

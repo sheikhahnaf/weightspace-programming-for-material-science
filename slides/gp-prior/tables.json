@@ -305,6 +305,198 @@
   ],
   "fontSize": 11.5
  },
+ "tc-systems.html": {
+  "rows": [
+   [
+    "System",
+    "Database",
+    "Composition rule",
+    "Fixed T",
+    "Pool",
+    "Phase-fraction targets at the fixed T"
+   ],
+   [
+    "Al-Co-Cr-Fe-Mn-Ni",
+    "TCHEA8",
+    "0 to 35 at.% each, 5 at.% grid",
+    "1,273 K",
+    "400",
+    "intermetallic; main phase"
+   ],
+   [
+    "Mo-Nb-Ta-Ti-V-W-Zr",
+    "TCHEA8",
+    "0 to 35 at.% each, 5 at.% grid",
+    "1,473 K",
+    "200",
+    "intermetallic; main phase"
+   ],
+   [
+    "Hf-Mo-Nb-Ta-Ti-Zr",
+    "TCHEA8",
+    "0 to 35 at.% each, 5 at.% grid",
+    "1,273 K",
+    "200",
+    "main phase"
+   ],
+   [
+    "Al-Cr-Mo-Nb-Ti",
+    "TCHEA8",
+    "0 to 35 at.% each, 5 at.% grid",
+    "1,273 K",
+    "200",
+    "intermetallic; main phase"
+   ],
+   [
+    "Co-Cr-Cu-Fe-Ni-Ti",
+    "TCHEA8",
+    "0 to 35 at.% each, 5 at.% grid",
+    "1,173 K",
+    "200",
+    "intermetallic; main phase"
+   ],
+   [
+    "Ni-Al-Co-Cr-Mo-Ti-W",
+    "TCNI12",
+    "Ni balance, at least 50 at.%",
+    "1,173 K",
+    "250",
+    "γ′; phases other than γ and γ′"
+   ],
+   [
+    "Ti-Al-Mo-Nb-Sn-V-Zr",
+    "TCTI6",
+    "Ti balance, at least 60 at.%",
+    "973 K",
+    "200",
+    "α; intermetallic; and the α transus"
+   ],
+   [
+    "Fe-Al-C-Cr-Mn-Mo-Ni",
+    "TCFE10",
+    "Fe balance, at least 50 at.%",
+    "1,173 K",
+    "200",
+    "austenite; carbide + intermetallic"
+   ],
+   [
+    "Al-Cu-Mg-Mn-Si-Zn",
+    "TCAL9",
+    "Al balance, at least 85 at.%",
+    "673 K",
+    "200",
+    "second phase"
+   ]
+  ],
+  "colW": [
+   1.75,
+   0.85,
+   2.35,
+   0.75,
+   0.55,
+   3.08
+  ],
+  "fontSize": 12.5
+ },
+ "tc-bo-table.html": {
+  "rows": [
+   [
+    "Prior mean",
+    "Better / worse / no difference (of 33)",
+    "Solidus and freezing range: better (of 18)",
+    "Phase fractions and transus: better (of 15)",
+    "Median relative area"
+   ],
+   [
+    "Extrapolation (no LLM)",
+    "18 / 0 / 15",
+    "16",
+    "2",
+    "0.17"
+   ],
+   [
+    "Opus 5.5",
+    "16 / 0 / 17",
+    "14",
+    "2",
+    "0.43"
+   ],
+   [
+    "Opus 5.5 + facts",
+    "18 / 0 / 15",
+    "15",
+    "3",
+    "0.24"
+   ],
+   [
+    "Fable 5.2",
+    "15 / 1 / 17",
+    "12",
+    "3",
+    "0.35"
+   ],
+   [
+    "Fable 5.2 + facts",
+    "16 / 0 / 17",
+    "14",
+    "2",
+    "0.35"
+   ]
+  ],
+  "colW": [
+   2.4,
+   1.95,
+   1.95,
+   1.9,
+   1.13
+  ],
+  "fontSize": 12
+ },
+ "tc-findings.html": {
+  "rows": [
+   [
+    "Kind",
+    "Statement"
+   ],
+   [
+    "Found",
+    "with no data, written networks rank the 35 targets at ρ 0.67 (Opus 5.5) and 0.64 (Fable 5.2); the extrapolation from computed binaries and ternaries reaches 0.70"
+   ],
+   [
+    "Found",
+    "on the 16 phase fractions the written networks are ahead of the extrapolation: 0.69 and 0.67 against 0.63"
+   ],
+   [
+    "Found",
+    "with the sub-system facts in the prompt the networks match the extrapolation: ρ 0.73 and 0.71; BO better on 18 and 16 of 33 targets"
+   ],
+   [
+    "Found",
+    "a joint fit of slope and offset keeps 95% coverage at 0.86 to 0.90 at 5 labels; the two-stage fit gives 0.71 to 0.75"
+   ],
+   [
+    "Limit",
+    "Ti α transus: no predictor ranks it (ρ at most 0.30) and no prior changes BO on it"
+   ],
+   [
+    "Limit",
+    "phase fractions: 2 or 3 of 15 targets improve in BO; on several the plain GP's regret is near zero, and two targets are left out for that reason"
+   ],
+   [
+    "Limit",
+    "one loss: Fable 5.2 without facts on the Ni γ′ fraction, 1.82 times the plain GP's regret area"
+   ],
+   [
+    "Limit",
+    "labels are computed, not measured; two models, two replies per target and prompt; the facts come from the database that produced the targets"
+   ]
+  ],
+  "colW": [
+   1.0,
+   8.33
+  ],
+  "fontSize": 11.5
+ },
  "limits.html": {
   "rows": [
    [
@@ -313,11 +505,11 @@
    ],
    [
     "Scope",
-    "one pool per task; pool-based BO on existing measurements, no real closed loop"
+    "one pool per task; pool-based BO on existing measurements and on computed Thermo-Calc pools, no real closed loop"
    ],
    [
     "Scope",
-    "four models from one vendor; three replies per model and task"
+    "four models from one vendor; three replies per model and alloy task, two per Thermo-Calc target and prompt"
    ],
    [
     "Scope",
@@ -329,7 +521,7 @@
    ],
    [
     "Known fault",
-    "intervals overconfident with the prior mean at few labels (coverage 0.66 against 0.71); slope and offset uncertainty not propagated"
+    "two-stage fit: intervals overconfident at few labels (alloy tasks 0.66 against 0.71; Thermo-Calc 0.71 to 0.75 against 0.86); a joint fit of slope and offset gives 0.86 to 0.90 there"
    ],
    [
     "Known fault",

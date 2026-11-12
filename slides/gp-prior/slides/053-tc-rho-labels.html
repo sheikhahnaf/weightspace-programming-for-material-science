@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Thermo-Calc: GP ranking against labels</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">53</p>
+<img src="../figures/deck/tc_rho_vs_labels.png" style="left:24.0pt;top:69.4pt;width:448.0pt;height:303.3pt;">
+<div class="sbox" style="left:478pt;top:110pt;width:218pt;height:99pt;"></div>
+<p class="sboxt" style="left:487pt;top:117pt;width:200pt;font-size:12.5pt;line-height:17pt;">Mean ρ at 5 / 10 / 20 / 50 labels</p>
+<p class="sboxt" style="left:487pt;top:134pt;width:200pt;font-size:12.5pt;line-height:17pt;">plain GP: 0.37 / 0.56 / 0.69 / 0.82</p>
+<p class="sboxt" style="left:487pt;top:151pt;width:200pt;font-size:12.5pt;line-height:17pt;">Opus: 0.64 / 0.67 / 0.74 / 0.83</p>
+<p class="sboxt" style="left:487pt;top:168pt;width:200pt;font-size:12.5pt;line-height:17pt;">Opus + facts: 0.69 / 0.71 / 0.75 / 0.83</p>
+<p class="sboxt" style="left:487pt;top:185pt;width:200pt;font-size:12.5pt;line-height:17pt;">extrapolation: 0.68 / 0.71 / 0.75 / 0.83</p>
+<!--NOTES
+The horizontal axis is the number of labelled alloys given to the Gaussian process, and the vertical axis is the Spearman correlation on the held-out half of each pool, averaged over the 35 targets. The dashed black line is the plain Gaussian process. The other lines add a prior mean: grey for the extrapolation, maroon for Opus 5.5 and navy for Fable 5.2, dotted with open markers where the prompt carried the facts. At 5 labels the plain Gaussian process is at 0.37 and every prior lifts it to 0.62 to 0.69. At 20 labels the gain is 0.04 to 0.06, and at 50 labels all lines meet at 0.82 to 0.83. Here the slope and offset are integrated out.
+-->
+</body>
+</html>

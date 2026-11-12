@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Thermo-Calc: 95% interval coverage at 5 labels</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">54</p>
+<img src="../figures/deck/tc_coverage_5_labels.png" style="left:24.0pt;top:70.2pt;width:470.0pt;height:301.6pt;">
+<div class="sbox" style="left:500pt;top:110pt;width:196pt;height:116pt;"></div>
+<p class="sboxt" style="left:509pt;top:117pt;width:178pt;font-size:12.5pt;line-height:17pt;">Coverage at 5 labels</p>
+<p class="sboxt" style="left:509pt;top:134pt;width:178pt;font-size:12.5pt;line-height:17pt;">plain GP: 0.86</p>
+<p class="sboxt" style="left:509pt;top:151pt;width:178pt;font-size:12.5pt;line-height:17pt;">two-stage fit: 0.71 to 0.75</p>
+<p class="sboxt" style="left:509pt;top:168pt;width:178pt;font-size:12.5pt;line-height:17pt;">a, b learned: 0.86 to 0.89</p>
+<p class="sboxt" style="left:509pt;top:185pt;width:178pt;font-size:12.5pt;line-height:17pt;">a, b integrated out: 0.87 to 0.90</p>
+<p class="sboxt" style="left:509pt;top:202pt;width:178pt;font-size:12.5pt;line-height:17pt;">nominal: 0.95</p>
+<!--NOTES
+This figure is about the intervals. Each group is one source of the prior mean, and the height is the share of held-out values inside the 95 percent interval at 5 labels, averaged over the 35 targets. The dashed line is the plain Gaussian process at 0.86 and the dotted line is the nominal 0.95. Amber is the two-stage fit used so far: slope and offset by least squares, then the Gaussian process on the residual. It covers 0.71 to 0.75. Teal learns the slope and offset together with the kernel, and navy integrates them out with a linear kernel term on the network output. Both joint fits cover 0.86 to 0.90, at the same ranking.
+-->
+</body>
+</html>

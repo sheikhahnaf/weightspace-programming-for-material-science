@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Thermo-Calc: ranking with no data, by kind of target</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">51</p>
+<img src="../figures/deck/tc_rho_alone_by_kind.png" style="left:24.0pt;top:75.8pt;width:470.0pt;height:290.3pt;">
+<div class="sbox" style="left:500pt;top:110pt;width:196pt;height:116pt;"></div>
+<p class="sboxt" style="left:509pt;top:117pt;width:178pt;font-size:12.5pt;line-height:17pt;">Mean ρ over 35 targets</p>
+<p class="sboxt" style="left:509pt;top:134pt;width:178pt;font-size:12.5pt;line-height:17pt;">extrapolation: 0.70</p>
+<p class="sboxt" style="left:509pt;top:151pt;width:178pt;font-size:12.5pt;line-height:17pt;">Opus 5.5: 0.67, with facts 0.73</p>
+<p class="sboxt" style="left:509pt;top:168pt;width:178pt;font-size:12.5pt;line-height:17pt;">Fable 5.2: 0.64, with facts 0.71</p>
+<p class="sboxt" style="left:509pt;top:185pt;width:178pt;font-size:12.5pt;line-height:17pt;">Phase fractions:</p>
+<p class="sboxt" style="left:509pt;top:202pt;width:178pt;font-size:12.5pt;line-height:17pt;">0.63, Opus 0.69, Fable 0.67</p>
+<!--NOTES
+Each group of bars is one kind of target, and the height is the mean Spearman correlation between a predictor with no labels and the Thermo-Calc values over all alloys of a pool. Grey is the extrapolation from sub-systems, maroon is Opus 5.5 and navy is Fable 5.2; hatched bars had the facts in the prompt. Each dot is one target. On the solidus and the freezing range the extrapolation leads the networks written without facts, 0.84 against 0.73 and 0.76 against 0.60 for Opus. On the 16 phase fractions the written networks lead, 0.69 and 0.67 against 0.63. With the facts the networks reach 0.82 on the solidus. No predictor ranks the titanium alpha transus.
+-->
+</body>
+</html>

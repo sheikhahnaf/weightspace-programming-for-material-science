@@ -29,7 +29,7 @@ def mono(x, y, w, lines, size=10.5, lh=13.2):
 # ------------------------------------------------------------------ title
 title("Weight-Space Programming for Materials Science: The GP Prior Case", "Group meeting, Arróyave group",
       "Sk Md Ahnaf Akif Alvi", "November 2026", ["Sk Md Ahnaf Akif Alvi, Raymundo Arróyave"], """
-Good afternoon. This talk covers one case of a larger project on weight-space programming for materials science. A language model writes every weight of a small neural network from what it knows about alloys, with no training data, and I use that network as the prior mean of a Gaussian-process surrogate in Bayesian optimisation. I will set out the problem, define the idea, go through the method step by step, list the controls, and then show the results on five alloy tasks with four models, including the task where it makes things worse. I close with an extension to Bayesian neural networks and with what has not been run.
+This talk covers one case of a larger project on weight-space programming for materials science. A language model writes every weight of a small neural network from what it knows about alloys, with no training data, and I use that network as the prior mean of a Gaussian-process surrogate in Bayesian optimisation. I will set out the problem, define the idea, go through the method step by step, list the controls, and then show the results on five measured alloy tasks with four models, including the task where it makes things worse. I then repeat the test on 35 targets computed with Thermo-Calc, and close with an extension to Bayesian neural networks and with what has not been run.
 """)
 
 # ------------------------------------------------------------------ 1. problem
@@ -356,50 +356,226 @@ content("cost", "Cost of a written network", 5,
 The left panel is output tokens per reply in thousands and the right panel is wall-clock seconds per reply. Each bar is the median of a model's 15 write runs and the whisker runs from the smallest to the largest. Output tokens include the model's reasoning. Opus 5.5 used a median of 73 thousand output tokens and 229 seconds, with a maximum of 119 thousand and 373 seconds. Fable 5.2 used 9.4 thousand tokens and 47 seconds; Sonnet 5.5 and Haiku 5.5 took 16 and 21 seconds. Prompt and reply tokens were not counted separately with the model's tokenizer. A prior is written once per task, before any measurement.
 """, source="experiments/runs_audit.json (write__ runs: output_tokens, duration_ms)")
 
-# ------------------------------------------------------------------ 6. BNN
-outline(6, """The sixth section asks whether the same written network helps a Bayesian neural network. A written network can be used in three ways there: as a prior mean in function space, as it was for the Gaussian process; as the starting point of training or of a sampling chain; or as the centre of a prior over the weights. I compare the three on MC dropout, a deep ensemble and Hamiltonian Monte Carlo, with ranking and 95 percent coverage as the measures.""")
+# ------------------------------------------------------------------ 6. Thermo-Calc targets
+TC = "experiments/e7_calphad_prior/results/overview.md"
+TCDATA = "data/calphad/README.md"
+ALONE = "experiments/e1_surrogate_head/results/standalone/summary.md"
+TCBO = "experiments/e7_calphad_prior/results/bo/summary_init5_steps25_seeds20.json"
+TCRUN = "experiments/e7_calphad_prior/runs/"
 
-content("bnn-ranking", "BNN extension: prior mean, start or weight prior", 6,
+outline(6, """The sixth section repeats the test on targets that I computed for this study with Thermo-Calc. The five alloy tasks so far are published measurements, which a language model may have seen as tables. Here the labels are equilibrium calculations over composition pools that exist nowhere as a table. I show the nine alloy systems and their targets, two written networks, a reference that uses no language model, the networks alone, the Gaussian process with few labels, and the optimisation.""")
+
+table_slide("tc-systems", "Thermo-Calc targets: nine alloy systems", 6,
+            [["System", "Database", "Composition rule", "Fixed T", "Pool", "Phase-fraction targets at the fixed T"],
+             ["Al-Co-Cr-Fe-Mn-Ni", "TCHEA8", "0 to 35 at.% each, 5 at.% grid", "1,273 K", "400", "intermetallic; main phase"],
+             ["Mo-Nb-Ta-Ti-V-W-Zr", "TCHEA8", "0 to 35 at.% each, 5 at.% grid", "1,473 K", "200", "intermetallic; main phase"],
+             ["Hf-Mo-Nb-Ta-Ti-Zr", "TCHEA8", "0 to 35 at.% each, 5 at.% grid", "1,273 K", "200", "main phase"],
+             ["Al-Cr-Mo-Nb-Ti", "TCHEA8", "0 to 35 at.% each, 5 at.% grid", "1,273 K", "200", "intermetallic; main phase"],
+             ["Co-Cr-Cu-Fe-Ni-Ti", "TCHEA8", "0 to 35 at.% each, 5 at.% grid", "1,173 K", "200", "intermetallic; main phase"],
+             ["Ni-Al-Co-Cr-Mo-Ti-W", "TCNI12", "Ni balance, at least 50 at.%", "1,173 K", "250", "γ′; phases other than γ and γ′"],
+             ["Ti-Al-Mo-Nb-Sn-V-Zr", "TCTI6", "Ti balance, at least 60 at.%", "973 K", "200", "α; intermetallic; and the α transus"],
+             ["Fe-Al-C-Cr-Mn-Mo-Ni", "TCFE10", "Fe balance, at least 50 at.%", "1,173 K", "200", "austenite; carbide + intermetallic"],
+             ["Al-Cu-Mg-Mn-Si-Zn", "TCAL9", "Al balance, at least 85 at.%", "673 K", "200", "second phase"]],
+            [1.75, 0.85, 2.35, 0.75, 0.55, 3.08], 12.5, 24, 66, 672, 216, """
+Each row is one alloy system with its Thermo-Calc database, the rule that defines its compositions, the temperature at which phase fractions are taken, and the number of alloys in the pool. Five systems are high-entropy spaces on a 5 atomic percent grid, and four have a balance element: nickel, titanium, iron and aluminium. The pools hold 200 to 400 compositions, each with at least four elements. Every system has the solidus and the freezing range as targets, plus the phase fractions in the last column, and the titanium system has the alpha transus. That gives 35 targets: 9 solidus, 9 freezing range, 16 phase fractions and 1 transus.
+""", cap="Every system also has the solidus and the freezing range as targets: 35 targets in all. Thermo-Calc 2025b, 1 atm, equilibrium, gas phase removed. Every pool alloy has at least four elements.",
+            source=TCDATA + " (Systems, Targets); experiments/e7_calphad_prior/README.md (Question)")
+
+
+def net_slide(slug, ttl, image, account, box, notes, source):
+    content(slug, ttl, 6,
+            img(image, 24, 60, 672, 182, halign="center", valign="top") + "\n" +
+            p("lab", 24, 250, 470, "The model's own account (self-report)") + "\n" +
+            p("small", 24, 270, 470, account, "font-size:11.5pt;line-height:14.5pt;") + "\n" +
+            sbox(506, 252, 190, box, size=12.5, lh=17), notes, source=source)
+
+
+net_slide("tc-net-ni-solidus", "A written network: Ni superalloy solidus", "tc_net_ni_superalloy_solidus.png",
+          "Unit 0: a linear solidus that starts from pure Ni at 1,728 K, with a slope per at.% of solute "
+          "(Al −4.5 K, Co +0.2, Cr −2.7, Mo −5, Ti −10, W +1.5). Unit 1: a further drop once Al + 1.5 Ti exceeds 12 at.%, "
+          "toward the γ/γ′ eutectic. Unit 2: a further drop once the summed depression exceeds 100 K.",
+          ["Opus 5.5, reply 1 of 2", "145 weights, no data", "3 of 16 hidden units used", "ρ alone: 0.84 (2 replies)",
+           "extrapolation: 0.98"], """
+This diagram is drawn from the weights that Opus 5.5 wrote for the solidus of the nickel superalloy system. The seven inputs are the atomic fractions on the left, the sixteen hidden units are in the middle, and line width follows the size of a weight, blue for positive and red for negative. Three hidden units are used. By the model's account, the first is a linear solidus from pure nickel at 1,728 kelvin with a slope for each solute, and the other two switch on at high aluminium plus titanium and at high total depression. With no labels the two replies rank the 250 alloys at a correlation of 0.84. The extrapolation from binaries and ternaries reaches 0.98 here.
+""", TCRUN + "write__ni_superalloy_solidus__opus__rep1/ (prompt.txt, reply.txt, self_report.txt); " + ALONE)
+
+net_slide("tc-net-steel-austenite", "A written network: steel austenite fraction", "tc_net_steel_austenite_fraction.png",
+          "The fcc fraction is a clipped ramp, min(max(0.5 + A/7, 0), 1 − P). A is an austenite potential in at.%: "
+          "Ni +1, Mn +0.5, C +4.5, Cr −0.55, Mo −1.3, Al −1.6. P is a cap for carbides, sigma, Laves and B2. "
+          "Each ramp takes two ReLUs; Cr at 0, 20 and 24 at.% has its own ramps.",
+          ["Opus 5.5, reply 1 of 2", "145 weights, no data", "14 of 16 hidden units used", "ρ alone: 0.76 (2 replies)",
+           "extrapolation: 0.28"], """
+The same kind of diagram for a phase-fraction target: the mole fraction of austenite at 1,173 kelvin in the steel system. This network uses 14 of the 16 hidden units. By the model's account it encodes a clipped ramp in an austenite potential, with nickel, manganese and carbon as positive terms and chromium, molybdenum and aluminium as negative terms, and a cap for carbides and intermetallic phases. Each ramp is built from two ReLU units. With no labels the two replies rank the 200 alloys at 0.76. The extrapolation from binaries and ternaries reaches only 0.28 on this target, so this is a case where the written network carries ranking information that the sub-system data do not give.
+""", TCRUN + "write__steel_austenite_fraction__opus__rep1/ (prompt.txt, reply.txt, self_report.txt); " + ALONE)
+
+recap("recap-tc-networks", 6, "Opus 5.5 and Fable 5.2 wrote 280 networks for the 35 Thermo-Calc targets with no data: a linear solidus with hinges uses 3 hidden units, a clipped ramp for the austenite fraction uses 14.", """
+The count of 280 is 35 targets, two models, two prompts and two replies each, and no reply was malformed. The prompt is the one used for the measured alloys, with the composition rule of the system and the definition of the target in place of the data set. The networks have 113 to 145 weights, since the systems have five to seven elements. The second prompt adds computed facts about sub-systems, and the next slides define those facts and the reference built from them.
+""", source="experiments/e7_calphad_prior/README.md (Status); docs/results/2026-11-12-round7.md, Sec. 4")
+
+TCF = [(24, 66, 672, 104, "Sub-system facts", MAROON,
+        "Thermo-Calc results for sub-systems of at most three elements; no pool alloy, since every pool alloy has four or more.<br>"
+        "High-entropy systems: every pure element, every binary at 25, 50 and 75 at.%, every equimolar ternary.<br>"
+        "Balance systems: the pure base, each solute at half and at the whole of its range, each pair of solutes likewise.<br>"
+        "31 to 105 facts per system: solidus, liquidus and the stable phases with their fractions at the fixed temperature."),
+       (24, 182, 330, 180, "Sub-system extrapolation (no LLM)", NAVY,
+        "High-entropy systems, Redlich-Kister-Muggianu form:<br>rule of mixtures<br>"
+        "+ x_i x_j [L0 + L1 (x_i − x_j) + L2 (x_i − x_j)²] per binary<br>"
+        "+ x_i x_j x_k L_ijk per ternary.<br>"
+        "Balance systems: base value + a·x + q·x² per solute<br>+ x_i x_j [b0 + b1 (x_i + x_j)] per pair of solutes.<br>"
+        "Every coefficient is set exactly by the facts;<br>nothing is fitted to a multicomponent alloy."),
+       (366, 182, 330, 180, "Written network with facts", TEAL,
+        "The write prompt, unchanged, with one added section:<br>the same facts as text, one line each.<br>"
+        "The model again returns every weight of the<br>d → 16 → 1 network, with no tools and no pool data.<br>"
+        "Arms: Opus 5.5 + facts, Fable 5.2 + facts.<br>"
+        "The extrapolation and the model with facts<br>start from identical information.")]
+
+
+def tcf(step):
+    out = []
+    for (x, y, w, h, head, col, body) in TCF[:{1: 1, 2: 3}[step]]:
+        out.append(node(x, y, w, h, col, 2))
+        out.append(p("lab", x + 10, y + 6, w - 20, head, f"color:{col};"))
+        out.append(p("cap", x + 10, y + 26, w - 20, body, "font-size:12.5pt;line-height:17pt;color:#1F1F1F;"))
+    return "\n".join(out)
+
+
+TCF_NOTES = ["""A fair reference for these targets is what a thermodynamicist would do without a multicomponent database: compute the lower-order systems and extrapolate. I therefore computed, with the same databases, a set of sub-system facts for each system. For the high-entropy systems these are every pure element, every binary at three compositions and every equimolar ternary. For the systems with a balance element they are the pure base, each solute at half and at the whole of its range, and each pair of solutes likewise. No fact has more than three elements, and every pool alloy has at least four, so no fact is a pool alloy. There are 31 to 105 facts per system.""",
+             """The facts are used in two ways. The first uses no language model. For the high-entropy systems it is the Redlich-Kister-Muggianu form: a rule of mixtures, a binary term with three coefficients set by the three points of each binary, and a ternary term set by the equimolar ternary. For the balance systems it is a quadratic in each solute and a cross term for each pair. Nothing is fitted to a multicomponent alloy. The second way gives the same facts to the model as an added section of the prompt, and the model writes the network as before. Both start from identical information, which makes the comparison direct."""]
+for j in range(1, 3):
+    content(f"tc-facts-{j}", "Sub-system facts and the no-LLM reference", 6, tcf(j), TCF_NOTES[j - 1], kind="build",
+            source="src/wsp/arms.py (subsystem_extrapolation_prior, phase_diagram_facts, write_pd_prompt); " + TCDATA + " (Sub-system facts and the no-leak rule; What was built)")
+
+PDPROMPT = ["# Phase-diagram facts for sub-systems (computed with CALPHAD)",
+            "These facts cover only sub-systems with at most three elements: pure Ni, Ni",
+            "with one solute at half and at the whole of that solute's range, and Ni with",
+            "two solutes [...]. Nothing here was calculated for a composition of the kind",
+            "you are asked about (four or more elements). Source: Thermo-Calc, TCNI12 [...]",
+            "Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable",
+            "phases at 1173 K with their mole fractions [...]",
+            "Ni: melts 1728; 1173 K: fcc",
+            "Ni + 6 Al: s/l 1726/1726; 1173 K: fcc",
+            "Ni + 12 Al: s/l 1711/1715; 1173 K: fcc",
+            "Ni + 3 Ti: s/l 1697/1704; 1173 K: fcc",
+            "Ni + 6 Ti: s/l 1668/1676; 1173 K: fcc",
+            "Ni + 3 W: s/l 1752/1760; 1173 K: fcc",
+            "Ni + 6 W: s/l 1773/1779; 1173 K: fcc",
+            "Ni + 12 Al, 20 Cr: s/l 1630/1648; 1173 K: fcc 0.61 + L12 0.39",
+            "Ni + 12 Al, 6 Ti: s/l 1638/1656; 1173 K: L12 0.70 + fcc 0.30",
+            "Ni + 20 Cr, 6 Ti: s/l 1585/1625; 1173 K: fcc 0.87 + NI3TI D024 0.13"]
+content("tc-prompt-facts", "The prompt with facts: Ni superalloy solidus", 6,
+        node(24, 62, 520, 240, "#8A8F98", 1) + "\n" + mono(32, 68, 506, PDPROMPT) + "\n" +
+        sbox(554, 62, 142, ["43 facts, one per line", "at most 3 elements", "pool alloys: 4 or more", "4,521 characters", "1,890 without facts"], size=12.5, lh=17) + "\n" +
+        p("small", 24, 310, 672, "Excerpt of the added section as sent; [...] marks text left out here, and 10 of the 43 fact lines are shown. The task, the architecture, the all-zero network and the reply format are those of the prompt without facts."), """
+This is the section added to the prompt for the nickel superalloy solidus, shortened where the brackets show. It first states what the facts cover and that none was calculated for a composition of the kind asked about. Then each line gives one sub-system: the composition in atomic percent, the solidus and liquidus in kelvin, and the stable phases at 1,173 kelvin with their mole fractions. Pure nickel melts at 1,728 kelvin; 6 percent titanium lowers the solidus to 1,668 and 6 percent tungsten raises it to 1,773. There are 43 such lines for this system. The prompt grows from 1,890 to 4,521 characters, and everything else in it is unchanged.
+""", source=TCRUN + "writepd__ni_superalloy_solidus__opus__rep1/prompt.txt; " + TCRUN + "write__ni_superalloy_solidus__opus__rep1/meta.json (prompt_chars)")
+
+content("tc-rho-alone", "Thermo-Calc: ranking with no data, by kind of target", 6,
+        fig("tc_rho_alone_by_kind.png", ["Mean ρ over 35 targets", "extrapolation: 0.70", "Opus 5.5: 0.67, with facts 0.73", "Fable 5.2: 0.64, with facts 0.71", "Phase fractions:", "0.63, Opus 0.69, Fable 0.67"], bx=500, bw=196, w=470), """
+Each group of bars is one kind of target, and the height is the mean Spearman correlation between a predictor with no labels and the Thermo-Calc values over all alloys of a pool. Grey is the extrapolation from sub-systems, maroon is Opus 5.5 and navy is Fable 5.2; hatched bars had the facts in the prompt. Each dot is one target. On the solidus and the freezing range the extrapolation leads the networks written without facts, 0.84 against 0.73 and 0.76 against 0.60 for Opus. On the 16 phase fractions the written networks lead, 0.69 and 0.67 against 0.63. With the facts the networks reach 0.82 on the solidus. No predictor ranks the titanium alpha transus.
+""", source=ALONE + "; experiments/e1_surrogate_head/results/standalone/summary.json (rho)")
+
+recap("recap-tc-alone", 6, "With no labels the written networks rank the 35 targets at ρ 0.67 (Opus 5.5) and 0.64 (Fable 5.2), against 0.70 for the extrapolation from computed binaries and ternaries; with the same facts in the prompt they reach 0.73 and 0.71.", """
+Two points sit behind these means. The networks written without facts use no computed data at all, and they come within 0.03 to 0.06 of a reference that uses 31 to 105 calculations per system. And the two kinds of predictor fail in different places: the extrapolation is weakest on phase fractions, at 0.63, where the written networks reach 0.69, and the written networks are weakest on the freezing range. The next question is what remains of these differences once a Gaussian process has a few labels.
+""", source=ALONE + "; " + TC)
+
+content("tc-rho-labels", "Thermo-Calc: GP ranking against labels", 6,
+        fig("tc_rho_vs_labels.png", ["Mean ρ at 5 / 10 / 20 / 50 labels", "plain GP: 0.37 / 0.56 / 0.69 / 0.82", "Opus: 0.64 / 0.67 / 0.74 / 0.83", "Opus + facts: 0.69 / 0.71 / 0.75 / 0.83", "extrapolation: 0.68 / 0.71 / 0.75 / 0.83"], bx=478, bw=218, w=448), """
+The horizontal axis is the number of labelled alloys given to the Gaussian process, and the vertical axis is the Spearman correlation on the held-out half of each pool, averaged over the 35 targets. The dashed black line is the plain Gaussian process. The other lines add a prior mean: grey for the extrapolation, maroon for Opus 5.5 and navy for Fable 5.2, dotted with open markers where the prompt carried the facts. At 5 labels the plain Gaussian process is at 0.37 and every prior lifts it to 0.62 to 0.69. At 20 labels the gain is 0.04 to 0.06, and at 50 labels all lines meet at 0.82 to 0.83. Here the slope and offset are integrated out.
+""", source=TC + " (Ranking on the held-out half; a, b integrated out); experiments/e7_calphad_prior/results/static/summary.json")
+
+content("tc-coverage", "Thermo-Calc: 95% interval coverage at 5 labels", 6,
+        fig("tc_coverage_5_labels.png", ["Coverage at 5 labels", "plain GP: 0.86", "two-stage fit: 0.71 to 0.75", "a, b learned: 0.86 to 0.89", "a, b integrated out: 0.87 to 0.90", "nominal: 0.95"], bx=500, bw=196, w=470), """
+This figure is about the intervals. Each group is one source of the prior mean, and the height is the share of held-out values inside the 95 percent interval at 5 labels, averaged over the 35 targets. The dashed line is the plain Gaussian process at 0.86 and the dotted line is the nominal 0.95. Amber is the two-stage fit used so far: slope and offset by least squares, then the Gaussian process on the residual. It covers 0.71 to 0.75. Teal learns the slope and offset together with the kernel, and navy integrates them out with a linear kernel term on the network output. Both joint fits cover 0.86 to 0.90, at the same ranking.
+""", source=TC + " (95% coverage at 5 / 10); src/wsp/joint_mean.py (map, marginal)")
+
+recap("recap-tc-gp", 6, "At 5 labels every prior raises the GP's mean ρ from 0.37 to between 0.62 and 0.69, and by 50 labels all are at 0.82 to 0.83. A joint fit of the slope and offset keeps 95% coverage at 0.86 to 0.90, against 0.71 to 0.75 for the two-stage fit.", """
+The ranking result repeats what the measured alloys showed: the prior matters at 5 to 20 labels and the plain Gaussian process catches up by 50. The coverage result is new in this section. On these targets the loss of calibration comes from the two-stage fit, and fitting the slope and offset inside the Gaussian process removes it without a cost in ranking. The optimisation results that follow are for the two-stage fit, the one used on the alloy tasks; with either joint fit the count of improved targets differs by at most two.
+""", source=TC)
+
+content("tc-bo-solidus", "Thermo-Calc BO: solidus and freezing range", 6,
+        fig("tc_bo_solidus_freezing_range.png", ["Better than plain GP, of 18", "extrapolation: 16", "Opus 5.5: 14, with facts 15", "Fable 5.2: 12, with facts 14", "worse: none", "filled marker: Holm p < 0.05"], bx=500, bw=196, w=470), """
+Each row is one target: the solidus of the nine systems at the top and the freezing range below. The horizontal axis, on a log scale, is an arm's area under the regret curve divided by the plain Gaussian process's, so points left of the line at one are better. Squares are the extrapolation, circles and diamonds Opus 5.5 without and with facts, triangles Fable 5.2. A filled marker has a Holm-corrected p below 0.05 over 20 seeds. The settings are those of the alloy tasks: 5 initial labels and 25 steps of expected improvement. Of these 18 targets the extrapolation is better on 16, Opus on 14 and Fable on 12. No arm is worse on any of them.
+""", source=TC + " (BO: area under the regret curve relative to the plain GP); " + TCBO)
+
+content("tc-bo-fractions", "Thermo-Calc BO: phase fractions and α transus", 6,
+        fig("tc_bo_phase_fractions.png", ["Better than plain GP, of 15", "extrapolation: 2", "Opus 5.5: 2, with facts 3", "Fable 5.2: 3, with facts 2", "worse: Fable 5.2 on Ni γ′,", "1.82 × the plain GP's area"], bx=500, bw=196, w=470), """
+The same plot for the 14 phase-fraction targets and the titanium alpha transus. Most markers are open: only 2 or 3 of the 15 targets show a difference for any arm. On several of these targets the plain Gaussian process already has a regret area close to zero, so a ratio far from one reflects very small absolute numbers. The targets with a gain are the intermetallic fraction of Al-Cr-Mo-Nb-Ti, the main phase fraction of Co-Cr-Cu-Fe-Ni-Ti, and the second-phase fraction of the aluminium alloys, where only the written networks help. There is one loss: Fable 5.2 without facts on the gamma prime fraction of the nickel system, at 1.82 times the plain Gaussian process's area.
+""", source=TC + " (BO: area under the regret curve relative to the plain GP); " + TCBO)
+
+table_slide("tc-bo-table", "Thermo-Calc BO: arms against the plain GP", 6,
+            [["Prior mean", "Better / worse / no difference (of 33)", "Solidus and freezing range: better (of 18)", "Phase fractions and transus: better (of 15)", "Median relative area"],
+             ["Extrapolation (no LLM)", "18 / 0 / 15", "16", "2", "0.17"],
+             ["Opus 5.5", "16 / 0 / 17", "14", "2", "0.43"],
+             ["Opus 5.5 + facts", "18 / 0 / 15", "15", "3", "0.24"],
+             ["Fable 5.2", "15 / 1 / 17", "12", "3", "0.35"],
+             ["Fable 5.2 + facts", "16 / 0 / 17", "14", "2", "0.35"]],
+            [2.4, 1.95, 1.95, 1.9, 1.13], 12, 24, 78, 672, 172, """
+The second column gives, for each prior, the number of targets where the arm is better than the plain Gaussian process, worse, or not different at a Holm-corrected p of 0.05. The extrapolation and Opus 5.5 with facts are better on 18 of 33 targets, Opus 5.5 without facts on 16, and Fable 5.2 on 15 and 16. The next two columns split the wins by kind of target. The last column is the median over targets of the regret area relative to the plain Gaussian process: 0.17 for the extrapolation, 0.43 for Opus 5.5 without facts and 0.24 with them. Two of the 35 targets are left out because the plain Gaussian process has zero regret.
+""", cap="Better or worse: Holm-corrected p < 0.05, paired Wilcoxon over 20 seeds on the area under the regret curve; two-stage fit; 5 initial labels, 25 steps of expected improvement. Relative area: arm ÷ plain GP, median over the 33 targets.",
+            source=TC + " (BO: targets where an arm is significantly better / worse / not different); docs/results/2026-11-12-round7.md, Sec. 4; " + TCBO)
+
+recap("recap-tc-bo", 6, "On 33 Thermo-Calc targets the Opus 5.5 networks lower the regret area on 16 with no data and on 18 with the sub-system facts, the same count as the no-LLM extrapolation; the median relative area is 0.43, 0.24 and 0.17.", """
+The gain is concentrated on the solidus and the freezing range, where 12 to 16 of 18 targets improve for every arm. By median regret area the extrapolation is ahead of the networks written without facts, and the facts in the prompt close most of that gap. One arm is worse than the plain Gaussian process on one target, and none on the others. The next slide collects what this case establishes and where it stops.
+""", source=TC)
+
+table_slide("tc-findings", "Thermo-Calc case: findings and limits", 6,
+            [["Kind", "Statement"],
+             ["Found", "with no data, written networks rank the 35 targets at ρ 0.67 (Opus 5.5) and 0.64 (Fable 5.2); the extrapolation from computed binaries and ternaries reaches 0.70"],
+             ["Found", "on the 16 phase fractions the written networks are ahead of the extrapolation: 0.69 and 0.67 against 0.63"],
+             ["Found", "with the sub-system facts in the prompt the networks match the extrapolation: ρ 0.73 and 0.71; BO better on 18 and 16 of 33 targets"],
+             ["Found", "a joint fit of slope and offset keeps 95% coverage at 0.86 to 0.90 at 5 labels; the two-stage fit gives 0.71 to 0.75"],
+             ["Limit", "Ti α transus: no predictor ranks it (ρ at most 0.30) and no prior changes BO on it"],
+             ["Limit", "phase fractions: 2 or 3 of 15 targets improve in BO; on several the plain GP's regret is near zero, and two targets are left out for that reason"],
+             ["Limit", "one loss: Fable 5.2 without facts on the Ni γ′ fraction, 1.82 times the plain GP's regret area"],
+             ["Limit", "labels are computed, not measured; two models, two replies per target and prompt; the facts come from the database that produced the targets"]],
+            [1.0, 8.33], 11.5, 24, 66, 672, 250, """
+This slide collects the Thermo-Calc case. Networks written with no data come close to an extrapolation that uses computed binary and ternary data, and they are ahead of it on phase fractions. With the same facts in the prompt they match it, alone and in the optimisation. A joint fit of the slope and offset restores the coverage that the two-stage fit loses. The limits: no predictor ranks the titanium alpha transus; most phase-fraction targets leave the optimisation little to gain; one arm is worse on one target; and the labels are calculations, with facts drawn from the database that produced the targets, so this tests composition trends inside one thermodynamic description.
+""", source=TC + "; " + ALONE + "; docs/results/2026-11-12-round7.md, Sec. 4")
+
+# ------------------------------------------------------------------ 7. BNN
+outline(7, """The seventh section asks whether the same written network helps a Bayesian neural network. A written network can be used in three ways there: as a prior mean in function space, as it was for the Gaussian process; as the starting point of training or of a sampling chain; or as the centre of a prior over the weights. I compare the three on MC dropout, a deep ensemble and Hamiltonian Monte Carlo, with ranking and 95 percent coverage as the measures.""")
+
+content("bnn-ranking", "BNN extension: prior mean, start or weight prior", 7,
         fig("bnn_ranking.png", ["ρ at 10 or 20 labels", "GP: 0.53 → 0.69 (prior mean)", "MC dropout: 0.54 → 0.65", "ensemble start: 0.50 → 0.57", "HMC start: 0.45 → 0.40", "HMC weight prior: 0.21"], bx=506, bw=190, w=474), """
 Each bar is the mean Spearman correlation over model and task cells: the Opus 5.5 and Fable 5.2 networks on six tasks, the five alloy tasks and Matbench bulk modulus. The left panel is 10 or 20 labels and the right panel 50 or 200. Pale bars are each family's baseline and dark bars use the written network. As a prior mean the network helps at few labels: the Gaussian process goes from 0.53 to 0.69 and MC dropout from 0.54 to 0.65. As a starting point it does not improve MC dropout, gives a deep ensemble 0.50 to 0.57, and gives Hamiltonian Monte Carlo nothing. Centring the weight prior on it is the worst arm, at 0.21.
 """, source=BNN + " (spearman); docs/results/2026-11-11-round4.md, Sec. 3")
 
-content("bnn-coverage", "BNN extension: 95% interval coverage", 6,
+content("bnn-coverage", "BNN extension: 95% interval coverage", 7,
         fig("bnn_coverage.png", ["Coverage at 10 or 20 labels", "GP: 0.71 → 0.66 (prior mean)", "MC dropout: 0.45 → 0.39", "MC dropout, start: 0.88", "HMC: 0.90 to 0.94", "nominal: 0.95"], bx=506, bw=190, w=474), """
 The same arms, now with the share of held-out values that fall inside the 95 percent interval; the dashed line marks 0.95. This is the caveat on the prior mean. At 10 or 20 labels the plain Gaussian process already covers only 0.71, and with the written prior mean it covers 0.66. MC dropout goes from 0.45 to 0.39. The slope and offset of the prior are fitted on the same few labels, and that uncertainty is not propagated into the interval. Starting MC dropout at the written weights does the opposite: ranking does not improve but coverage rises from 0.45 to 0.88. Hamiltonian Monte Carlo is near nominal in every arm at few labels.
 """, source=BNN + " (coverage95); docs/results/2026-11-11-round4.md, Sec. 3")
 
-recap("recap-bnn", 6, "As a prior mean the written network raises ranking at 10 to 20 labels (GP 0.53 → 0.69, MC dropout 0.54 → 0.65) but the intervals are overconfident (coverage 0.66 and 0.39); as a weight-space prior for HMC it is the worst arm (ρ 0.21).", """
+recap("recap-bnn", 7, "As a prior mean the written network raises ranking at 10 to 20 labels (GP 0.53 → 0.69, MC dropout 0.54 → 0.65) but the intervals are overconfident (coverage 0.66 and 0.39); as a weight-space prior for HMC it is the worst arm (ρ 0.21).", """
 The written networks use three to seven hidden units with large weights. A unit-variance prior centred on them pins the rest of the network at zero, and the chain cannot use the data, which explains the weight-prior result. The Hamiltonian Monte Carlo here follows the study of Li, Rudner and Wilson and is a small implementation: fixed noise level, one chain, 200 kept samples. The useful place for the written network is the function-space mean, and its calibration needs work.
 """, source="docs/results/2026-11-11-round4.md, Sec. 3")
 
-# ------------------------------------------------------------------ 7. limits
-outline(7, """The last section states the limits of the evidence and what has not been run, and then closes. I separate three kinds of limit: the scope of what was tested, the known faults of the method as it stands, and the comparisons that are missing. The closing slide then summarises what was done, what was found and what comes next.""")
+# ------------------------------------------------------------------ 8. limits
+outline(8, """The last section states the limits of the evidence and what has not been run, and then closes. I separate three kinds of limit: the scope of what was tested, the known faults of the method as it stands, and the comparisons that are missing. The closing slide then summarises what was done, what was found and what comes next.""")
 
-table_slide("limits", "Limits and what is not yet run", 7,
+table_slide("limits", "Limits and what is not yet run", 8,
             [["Kind", "Limit"],
-             ["Scope", "one pool per task; pool-based BO on existing measurements, no real closed loop"],
-             ["Scope", "four models from one vendor; three replies per model and task"],
+             ["Scope", "one pool per task; pool-based BO on existing measurements and on computed Thermo-Calc pools, no real closed loop"],
+             ["Scope", "four models from one vendor; three replies per model and alloy task, two per Thermo-Calc target and prompt"],
              ["Scope", "inputs are named element fractions; no structure-based surrogate, where inputs have no names"],
              ["Known fault", "MPEA yield strength: Opus 5.5 and Fable 5.2 priors worse than the plain GP in 14 of 20 seeds; cause not diagnosed"],
-             ["Known fault", "intervals overconfident with the prior mean at few labels (coverage 0.66 against 0.71); slope and offset uncertainty not propagated"],
+             ["Known fault", "two-stage fit: intervals overconfident at few labels (alloy tasks 0.66 against 0.71; Thermo-Calc 0.71 to 0.75 against 0.86); a joint fit of slope and offset gives 0.86 to 0.90 there"],
              ["Known fault", "fitted slope unstable on 5 to 10 labels; weak priors (Haiku 5.5, Ti hardness) lower ranking"],
              ["Not run", "a mean network of the same shape fitted by gradient descent on the first labels"],
              ["Not run", "prompt and reply tokens from the model's tokenizer; tool use limited by instruction and audit, not by a sandbox"],
              ["Not run", "for the BNNs: SGHMC, linearised Laplace, a tuned HMC"]],
-            [1.3, 8.03], 11.5, 24, 66, 672, 262, """
-These are the limits. On scope: each task has one pool of existing measurements, so this is a retrospective benchmark and not a closed loop; the four models come from one vendor; and the inputs are named element fractions, which is the easy case for a model that reasons from names. On known faults: the yield strength failure is unexplained, the intervals with a prior mean are overconfident at few labels, and the fitted slope is unstable on five to ten points. On what is missing: a gradient-fitted mean network on the same first labels, token counts from the model's own tokenizer, a sandbox in place of an audit, and tuned Bayesian neural network baselines.
-""", source=R3 + ", Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5")
+            [1.3, 8.03], 11.5, 24, 64, 672, 270, """
+On scope: each task has one pool, of existing measurements or of Thermo-Calc calculations, so this is a retrospective benchmark and not a closed loop; the four models come from one vendor; and the inputs are named element fractions, which is the easy case for a model that reasons from names. On known faults: the yield strength failure is unexplained, the two-stage fit gives overconfident intervals at few labels where a joint fit does not, and the fitted slope is unstable on five to ten points. On what is missing: a gradient-fitted mean network on the same first labels, token counts from the model's own tokenizer, a sandbox in place of an audit, and tuned Bayesian neural network baselines.
+""", source=R3 + ", Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; " + TC)
 
-conclusions("conclusions", "Conclusions", 7,
-            [("Done", ["written_network_weights.png", "rho_alone_bars.png"],
-              ["60 networks written with no data", "4 models, 5 alloy tasks", "used as GP mean a·m(x) + b"]),
-             ("Found", ["auc_relative_to_gp.png", "bo_regret_mpea_yield_strength.png"],
-              ["Opus 5.5: better BO on 4 of 5 tasks", "worse on MPEA yield strength", "handbook rule: no gain"]),
-             ("Next", ["bnn_coverage.png", "auc_seed_differences_mpea_yield_strength.png"],
-              ["diagnose MPEA yield strength", "propagate slope uncertainty", "second pool; a real closed loop"])], """
-To close. Four models wrote 60 small networks from materials knowledge with no data, and I used them as the prior mean of a Gaussian process. With no labels the Opus 5.5 networks rank alloys at 0.64 to 0.79. In Bayesian optimisation over 20 seeds the Opus priors lower the area under regret on four of five tasks with corrected p values at or below 0.047, and make yield strength of multi-principal-element alloys worse. A handbook rule of mixtures gives no gain. Next come the diagnosis of that failure, intervals that carry the uncertainty of the slope, a second pool per task and a real closed loop. Thank you; I am glad to take questions.
-""", source=R3 + ", Sec. 2 and 6")
+conclusions("conclusions", "Conclusions", 8,
+            [("Done", ["written_network_weights.png", "tc_net_steel_austenite_fraction.png"],
+              ["networks written with no data", "5 measured alloy tasks: 60", "35 Thermo-Calc targets: 280", "used as GP mean a·m(x) + b"]),
+             ("Found", ["auc_relative_to_gp.png", "tc_bo_solidus_freezing_range.png"],
+              ["Opus 5.5: BO better on 4 of 5", "worse on MPEA yield strength", "Thermo-Calc: better on 16 of 33", "no-LLM extrapolation: 18 of 33"]),
+             ("Next", ["auc_seed_differences_mpea_yield_strength.png", "tc_bo_phase_fractions.png"],
+              ["diagnose MPEA yield strength", "phase fractions; Ti α transus", "gradient-fitted mean as a control", "second pool; a real closed loop"])], """
+To close. Four models wrote 60 small networks from materials knowledge with no data, and I used them as the prior mean of a Gaussian process. In Bayesian optimisation over 20 seeds the Opus priors lower the area under regret on four of five tasks with corrected p values at or below 0.047, and make yield strength of multi-principal-element alloys worse. A handbook rule of mixtures gives no gain. On 33 Thermo-Calc targets the Opus priors are better on 16 with no data and on 18 with sub-system facts, level with an extrapolation from computed binaries and ternaries. Next come the diagnosis of that failure, the phase-fraction targets, and a real closed loop. Thank you; I welcome questions.
+""", source=R3 + ", Sec. 2 and 6; " + TC)
 
 # ------------------------------------------------------------------ backup
 dark("backup-divider", "Backup", ["The two slope rules; regret by step; the written network with no GP"], """

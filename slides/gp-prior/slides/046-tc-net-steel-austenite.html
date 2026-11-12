@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">A written network: steel austenite fraction</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">46</p>
+<img src="../figures/deck/tc_net_steel_austenite_fraction.png" style="left:24.0pt;top:60.0pt;width:672.0pt;height:180.7pt;">
+<p class="lab" style="left:24pt;top:250pt;width:470pt;">The model's own account (self-report)</p>
+<p class="small" style="left:24pt;top:270pt;width:470pt;font-size:11.5pt;line-height:14.5pt;">The fcc fraction is a clipped ramp, min(max(0.5 + A/7, 0), 1 − P). A is an austenite potential in at.%: Ni +1, Mn +0.5, C +4.5, Cr −0.55, Mo −1.3, Al −1.6. P is a cap for carbides, sigma, Laves and B2. Each ramp takes two ReLUs; Cr at 0, 20 and 24 at.% has its own ramps.</p>
+<div class="sbox" style="left:506pt;top:252pt;width:190pt;height:99pt;"></div>
+<p class="sboxt" style="left:515pt;top:259pt;width:172pt;font-size:12.5pt;line-height:17pt;">Opus 5.5, reply 1 of 2</p>
+<p class="sboxt" style="left:515pt;top:276pt;width:172pt;font-size:12.5pt;line-height:17pt;">145 weights, no data</p>
+<p class="sboxt" style="left:515pt;top:293pt;width:172pt;font-size:12.5pt;line-height:17pt;">14 of 16 hidden units used</p>
+<p class="sboxt" style="left:515pt;top:310pt;width:172pt;font-size:12.5pt;line-height:17pt;">ρ alone: 0.76 (2 replies)</p>
+<p class="sboxt" style="left:515pt;top:327pt;width:172pt;font-size:12.5pt;line-height:17pt;">extrapolation: 0.28</p>
+<!--NOTES
+The same kind of diagram for a phase-fraction target: the mole fraction of austenite at 1,173 kelvin in the steel system. This network uses 14 of the 16 hidden units. By the model's account it encodes a clipped ramp in an austenite potential, with nickel, manganese and carbon as positive terms and chromium, molybdenum and aluminium as negative terms, and a cap for carbides and intermetallic phases. Each ramp is built from two ReLU units. With no labels the two replies rank the 200 alloys at 0.76. The extrapolation from binaries and ternaries reaches only 0.28 on this target, so this is a case where the written network carries ranking information that the sub-system data do not give.
+-->
+</body>
+</html>

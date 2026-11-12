@@ -14,3 +14,4 @@ env/ocr-venv/
 slides/*/node_modules/
 data/formation/log_*.txt
 experiments/e1_surrogate_head/results/structure_prior/run.log
+~$*

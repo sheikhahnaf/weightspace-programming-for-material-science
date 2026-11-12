@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Regret after 5, 10 and 25 steps</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">71</p>
+<div id="t1" class="placeholder" style="position:absolute;left:24pt;top:78pt;width:672pt;height:150pt;"><table style="border-collapse:collapse;font-size:12pt;line-height:14pt;width:100%;table-layout:fixed;"><colgroup><col style="width:153.35999999999999pt"><col style="width:129.6pt"><col style="width:129.6pt"><col style="width:129.6pt"><col style="width:129.6pt"></colgroup><tr style="background:#500000;color:#fff;font-weight:bold;"><th>Task (unit)</th><th>Plain GP: 5 / 10 / 25</th><th>Opus 5.5: 5 / 10 / 25</th><th>Fable 5.2: 5 / 10 / 25</th><th>All replies: 5 / 10 / 25</th></tr><tr><td>Ti Young's modulus (GPa)</td><td>8.9 / 8.1 / 5.6</td><td>9.1 / 6.4 / 1.6</td><td>9.7 / 7.5 / 3.5</td><td>8.9 / 6.4 / 1.5</td></tr><tr><td>Ti yield strength (MPa)</td><td>479 / 324 / 114</td><td>331 / 114 / 17</td><td>317 / 164 / 0</td><td>335 / 124 / 9</td></tr><tr><td>Ti hardness (HV)</td><td>81.8 / 41.0 / 1.6</td><td>2.0 / 2.0 / 2.0</td><td>13.0 / 2.0 / 2.0</td><td>7.5 / 2.0 / 1.9</td></tr><tr><td>MPEA hardness (HV)</td><td>296 / 227 / 112</td><td>178 / 99 / 94</td><td>118 / 109 / 99</td><td>203 / 124 / 99</td></tr><tr><td>MPEA yield strength (MPa)</td><td>1,138 / 753 / 522</td><td>1,118 / 988 / 499</td><td>1,181 / 1,024 / 698</td><td>1,173 / 1,067 / 588</td></tr></table><style>td,th{border:0.75pt solid #D6D3D1;padding:2pt 3pt;vertical-align:middle;text-align:left;}</style></div>
+<p class="small" style="left:24pt;top:234pt;width:672pt;">Mean over 20 seeds; 5 initial labels are given before step 1.</p>
+<!--NOTES
+This table gives the mean regret over 20 seeds after 5, 10 and 25 steps for the plain Gaussian process, the Opus 5.5 arm, the Fable 5.2 arm and the pooled arm. On titanium modulus the arms are level at step 5 and separate later. On titanium yield strength and both hardness tasks the priors are ahead from step 5. On yield strength of multi-principal-element alloys the Opus arm is behind at step 10, 988 against 753 megapascals, and level at step 25, 499 against 522, while the Fable arm is behind throughout. On titanium hardness the Gaussian process also reaches a regret near 2 by the end.
+-->
+</body>
+</html>

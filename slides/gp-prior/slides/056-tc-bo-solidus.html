@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<h1 class="t">Thermo-Calc BO: solidus and freezing range</h1>
+<script>(function(){var t=document.querySelector('h1.t');var z=28;while(t.scrollWidth>t.clientWidth&&z>20){z-=1;t.style.fontSize=z+'pt';}})();</script>
+<div class="rule"></div>
+<div class="wmline"></div>
+<div class="wm"><p class="b">MATERIALS SCIENCE &amp; ENGINEERING</p><p>TEXAS A&amp;M UNIVERSITY</p></div>
+<div class="foot"></div>
+<p class="foottxt">Department of Materials Science and Engineering</p>
+<div class="numblk"></div>
+<p class="num">56</p>
+<img src="../figures/deck/tc_bo_solidus_freezing_range.png" style="left:24.0pt;top:60.0pt;width:440.0pt;height:322.0pt;">
+<div class="sbox" style="left:500pt;top:110pt;width:196pt;height:116pt;"></div>
+<p class="sboxt" style="left:509pt;top:117pt;width:178pt;font-size:12.5pt;line-height:17pt;">Better than plain GP, of 18</p>
+<p class="sboxt" style="left:509pt;top:134pt;width:178pt;font-size:12.5pt;line-height:17pt;">extrapolation: 16</p>
+<p class="sboxt" style="left:509pt;top:151pt;width:178pt;font-size:12.5pt;line-height:17pt;">Opus 5.5: 14, with facts 15</p>
+<p class="sboxt" style="left:509pt;top:168pt;width:178pt;font-size:12.5pt;line-height:17pt;">Fable 5.2: 12, with facts 14</p>
+<p class="sboxt" style="left:509pt;top:185pt;width:178pt;font-size:12.5pt;line-height:17pt;">worse: none</p>
+<p class="sboxt" style="left:509pt;top:202pt;width:178pt;font-size:12.5pt;line-height:17pt;">filled marker: Holm p < 0.05</p>
+<!--NOTES
+Each row is one target: the solidus of the nine systems at the top and the freezing range below. The horizontal axis, on a log scale, is an arm's area under the regret curve divided by the plain Gaussian process's, so points left of the line at one are better. Squares are the extrapolation, circles and diamonds Opus 5.5 without and with facts, triangles Fable 5.2. A filled marker has a Holm-corrected p below 0.05 over 20 seeds. The settings are those of the alloy tasks: 5 initial labels and 25 steps of expected improvement. Of these 18 targets the extrapolation is better on 16, Opus on 14 and Fable on 12. No arm is worse on any of them.
+-->
+</body>
+</html>

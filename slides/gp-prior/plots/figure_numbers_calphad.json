@@ -1,0 +1,184 @@
+{
+ "alone": {
+  "targets": 35,
+  "per_kind": {
+   "solidus": 9,
+   "freezing range": 9,
+   "phase fraction": 16,
+   "transus": 1
+  },
+  "subsystem_extrapolation": {
+   "all": 0.7,
+   "solidus": 0.84,
+   "freezing range": 0.76,
+   "phase fraction": 0.63,
+   "transus": 0.2
+  },
+  "opus": {
+   "all": 0.67,
+   "solidus": 0.73,
+   "freezing range": 0.6,
+   "phase fraction": 0.69,
+   "transus": 0.3
+  },
+  "opus + facts": {
+   "all": 0.73,
+   "solidus": 0.82,
+   "freezing range": 0.74,
+   "phase fraction": 0.71,
+   "transus": 0.11
+  },
+  "fable": {
+   "all": 0.64,
+   "solidus": 0.7,
+   "freezing range": 0.57,
+   "phase fraction": 0.67,
+   "transus": 0.26
+  },
+  "fable + facts": {
+   "all": 0.71,
+   "solidus": 0.82,
+   "freezing range": 0.7,
+   "phase fraction": 0.68,
+   "transus": 0.24
+  }
+ },
+ "labels": {
+  "gp": [
+   0.37,
+   0.56,
+   0.69,
+   0.82
+  ],
+  "subsystem_extrapolation": [
+   0.68,
+   0.71,
+   0.75,
+   0.83
+  ],
+  "opus": [
+   0.64,
+   0.67,
+   0.74,
+   0.83
+  ],
+  "opus + facts": [
+   0.69,
+   0.71,
+   0.75,
+   0.83
+  ],
+  "fable": [
+   0.62,
+   0.65,
+   0.73,
+   0.83
+  ],
+  "fable + facts": [
+   0.68,
+   0.7,
+   0.74,
+   0.83
+  ]
+ },
+ "coverage5": {
+  "gp": 0.86,
+  "two_stage": [
+   0.75,
+   0.74,
+   0.71,
+   0.74,
+   0.75
+  ],
+  "map": [
+   0.89,
+   0.87,
+   0.87,
+   0.86,
+   0.88
+  ],
+  "marginal": [
+   0.9,
+   0.88,
+   0.89,
+   0.87,
+   0.89
+  ]
+ },
+ "bo_solidus_freezing": {
+  "rows": 18,
+  "wins": {
+   "subsystem_extrapolation": 16,
+   "opus": 14,
+   "opus + facts": 15,
+   "fable": 12,
+   "fable + facts": 14
+  },
+  "losses": {
+   "subsystem_extrapolation": [],
+   "opus": [],
+   "opus + facts": [],
+   "fable": [],
+   "fable + facts": []
+  }
+ },
+ "bo_phase_fractions": {
+  "rows": 15,
+  "wins": {
+   "subsystem_extrapolation": 2,
+   "opus": 2,
+   "opus + facts": 3,
+   "fable": 3,
+   "fable + facts": 2
+  },
+  "losses": {
+   "subsystem_extrapolation": [],
+   "opus": [],
+   "opus + facts": [],
+   "fable": [
+    [
+     "ni_superalloy_gamma_prime_fraction",
+     1.82
+    ]
+   ],
+   "fable + facts": []
+  }
+ },
+ "bo_summary": {
+  "targets": 33,
+  "left_out": [
+   "ti_alloy_alpha_fraction",
+   "refractory_intermetallic_fraction"
+  ],
+  "subsystem_extrapolation": {
+   "better": 18,
+   "worse": 0,
+   "median_relative_area": 0.17,
+   "no_difference": 15
+  },
+  "opus": {
+   "better": 16,
+   "worse": 0,
+   "median_relative_area": 0.43,
+   "no_difference": 17
+  },
+  "opus + facts": {
+   "better": 18,
+   "worse": 0,
+   "median_relative_area": 0.24,
+   "no_difference": 15
+  },
+  "fable": {
+   "better": 15,
+   "worse": 1,
+   "median_relative_area": 0.35,
+   "no_difference": 17
+  },
+  "fable + facts": {
+   "better": 16,
+   "worse": 0,
+   "median_relative_area": 0.35,
+   "no_difference": 17
+  }
+ }
+}

@@ -9,14 +9,14 @@
 | System | Database | Elements | Pool |
 |---|---|---|---|
 | `cantor_al` | TCHEA8 | Al-Co-Cr-Fe-Mn-Ni | 400 |
-| `refractory` | TCHEA8 | Mo-Nb-Ta-Ti-V-W-Zr | 250 |
-| `hf_refractory` | TCHEA8 | Hf-Mo-Nb-Ta-Ti-Zr | 250 |
-| `al_refractory` | TCHEA8 | Al-Cr-Mo-Nb-Ti | 250 |
-| `cu_ti_3d` | TCHEA8 | Co-Cr-Cu-Fe-Ni-Ti | 250 |
+| `refractory` | TCHEA8 | Mo-Nb-Ta-Ti-V-W-Zr | 200 |
+| `hf_refractory` | TCHEA8 | Hf-Mo-Nb-Ta-Ti-Zr | 200 |
+| `al_refractory` | TCHEA8 | Al-Cr-Mo-Nb-Ti | 200 |
+| `cu_ti_3d` | TCHEA8 | Co-Cr-Cu-Fe-Ni-Ti | 200 |
 | `ni_superalloy` | TCNI12 | Ni-Al-Co-Cr-Mo-Ti-W, Ni ≥ 50 at.% | 250 |
-| `ti_alloy` | TCTI6 | Ti-Al-Mo-Nb-Sn-V-Zr, Ti ≥ 60 at.% | 250 |
-| `steel` | TCFE10 | Fe-Al-C-Cr-Mn-Mo-Ni, Fe ≥ 50 at.% | 250 |
-| `al_alloy` | TCAL9 | Al-Cu-Mg-Mn-Si-Zn, Al ≥ 85 at.% | 250 |
+| `ti_alloy` | TCTI6 | Ti-Al-Mo-Nb-Sn-V-Zr, Ti ≥ 60 at.% | 200 |
+| `steel` | TCFE10 | Fe-Al-C-Cr-Mn-Mo-Ni, Fe ≥ 50 at.% | 200 |
+| `al_alloy` | TCAL9 | Al-Cu-Mg-Mn-Si-Zn, Al ≥ 85 at.% | 200 |
 
 Every pool composition has at least four elements. Targets per system: solidus, freezing range, and phase fractions at a fixed temperature (intermetallic fraction and largest-phase fraction for the high-entropy systems; gamma-prime fraction for the nickel space; alpha transus and alpha fraction for titanium; austenite and carbide/intermetallic fraction for steel; second-phase fraction for aluminium). A target is dropped when more than 80% of the pool shares one value; `data/calphad/README.md` lists what was kept.
 

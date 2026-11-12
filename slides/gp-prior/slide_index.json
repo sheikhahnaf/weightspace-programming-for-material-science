@@ -337,62 +337,206 @@
  },
  {
   "file": "043-outline-6.html",
-  "title": "Outline: Extension to Bayesian neural networks",
+  "title": "Outline: Thermo-Calc targets",
   "kind": "outline",
   "section": 6,
   "source": "",
   "replaces": ""
  },
  {
-  "file": "044-bnn-ranking.html",
-  "title": "BNN extension: prior mean, start or weight prior",
+  "file": "044-tc-systems.html",
+  "title": "Thermo-Calc targets: nine alloy systems",
   "kind": "content",
   "section": 6,
+  "source": "data/calphad/README.md (Systems, Targets); experiments/e7_calphad_prior/README.md (Question)",
+  "replaces": ""
+ },
+ {
+  "file": "045-tc-net-ni-solidus.html",
+  "title": "A written network: Ni superalloy solidus",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/runs/write__ni_superalloy_solidus__opus__rep1/ (prompt.txt, reply.txt, self_report.txt); experiments/e1_surrogate_head/results/standalone/summary.md",
+  "replaces": ""
+ },
+ {
+  "file": "046-tc-net-steel-austenite.html",
+  "title": "A written network: steel austenite fraction",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/runs/write__steel_austenite_fraction__opus__rep1/ (prompt.txt, reply.txt, self_report.txt); experiments/e1_surrogate_head/results/standalone/summary.md",
+  "replaces": ""
+ },
+ {
+  "file": "047-recap-tc-networks.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/README.md (Status); docs/results/2026-11-12-round7.md, Sec. 4",
+  "replaces": ""
+ },
+ {
+  "file": "048-tc-facts-1.html",
+  "title": "Sub-system facts and the no-LLM reference",
+  "kind": "build",
+  "section": 6,
+  "source": "src/wsp/arms.py (subsystem_extrapolation_prior, phase_diagram_facts, write_pd_prompt); data/calphad/README.md (Sub-system facts and the no-leak rule; What was built)",
+  "replaces": ""
+ },
+ {
+  "file": "049-tc-facts-2.html",
+  "title": "Sub-system facts and the no-LLM reference",
+  "kind": "build",
+  "section": 6,
+  "source": "src/wsp/arms.py (subsystem_extrapolation_prior, phase_diagram_facts, write_pd_prompt); data/calphad/README.md (Sub-system facts and the no-leak rule; What was built)",
+  "replaces": ""
+ },
+ {
+  "file": "050-tc-prompt-facts.html",
+  "title": "The prompt with facts: Ni superalloy solidus",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/runs/writepd__ni_superalloy_solidus__opus__rep1/prompt.txt; experiments/e7_calphad_prior/runs/write__ni_superalloy_solidus__opus__rep1/meta.json (prompt_chars)",
+  "replaces": ""
+ },
+ {
+  "file": "051-tc-rho-alone.html",
+  "title": "Thermo-Calc: ranking with no data, by kind of target",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e1_surrogate_head/results/standalone/summary.md; experiments/e1_surrogate_head/results/standalone/summary.json (rho)",
+  "replaces": ""
+ },
+ {
+  "file": "052-recap-tc-alone.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 6,
+  "source": "experiments/e1_surrogate_head/results/standalone/summary.md; experiments/e7_calphad_prior/results/overview.md",
+  "replaces": ""
+ },
+ {
+  "file": "053-tc-rho-labels.html",
+  "title": "Thermo-Calc: GP ranking against labels",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md (Ranking on the held-out half; a, b integrated out); experiments/e7_calphad_prior/results/static/summary.json",
+  "replaces": ""
+ },
+ {
+  "file": "054-tc-coverage.html",
+  "title": "Thermo-Calc: 95% interval coverage at 5 labels",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md (95% coverage at 5 / 10); src/wsp/joint_mean.py (map, marginal)",
+  "replaces": ""
+ },
+ {
+  "file": "055-recap-tc-gp.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md",
+  "replaces": ""
+ },
+ {
+  "file": "056-tc-bo-solidus.html",
+  "title": "Thermo-Calc BO: solidus and freezing range",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md (BO: area under the regret curve relative to the plain GP); experiments/e7_calphad_prior/results/bo/summary_init5_steps25_seeds20.json",
+  "replaces": ""
+ },
+ {
+  "file": "057-tc-bo-fractions.html",
+  "title": "Thermo-Calc BO: phase fractions and α transus",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md (BO: area under the regret curve relative to the plain GP); experiments/e7_calphad_prior/results/bo/summary_init5_steps25_seeds20.json",
+  "replaces": ""
+ },
+ {
+  "file": "058-tc-bo-table.html",
+  "title": "Thermo-Calc BO: arms against the plain GP",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md (BO: targets where an arm is significantly better / worse / not different); docs/results/2026-11-12-round7.md, Sec. 4; experiments/e7_calphad_prior/results/bo/summary_init5_steps25_seeds20.json",
+  "replaces": ""
+ },
+ {
+  "file": "059-recap-tc-bo.html",
+  "title": "Recap",
+  "kind": "recap",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md",
+  "replaces": ""
+ },
+ {
+  "file": "060-tc-findings.html",
+  "title": "Thermo-Calc case: findings and limits",
+  "kind": "content",
+  "section": 6,
+  "source": "experiments/e7_calphad_prior/results/overview.md; experiments/e1_surrogate_head/results/standalone/summary.md; docs/results/2026-11-12-round7.md, Sec. 4",
+  "replaces": ""
+ },
+ {
+  "file": "061-outline-7.html",
+  "title": "Outline: Extension to Bayesian neural networks",
+  "kind": "outline",
+  "section": 7,
+  "source": "",
+  "replaces": ""
+ },
+ {
+  "file": "062-bnn-ranking.html",
+  "title": "BNN extension: prior mean, start or weight prior",
+  "kind": "content",
+  "section": 7,
   "source": "experiments/e5_bnn_start/results/bnn_summary.json (spearman); docs/results/2026-11-11-round4.md, Sec. 3",
   "replaces": ""
  },
  {
-  "file": "045-bnn-coverage.html",
+  "file": "063-bnn-coverage.html",
   "title": "BNN extension: 95% interval coverage",
   "kind": "content",
-  "section": 6,
+  "section": 7,
   "source": "experiments/e5_bnn_start/results/bnn_summary.json (coverage95); docs/results/2026-11-11-round4.md, Sec. 3",
   "replaces": ""
  },
  {
-  "file": "046-recap-bnn.html",
+  "file": "064-recap-bnn.html",
   "title": "Recap",
   "kind": "recap",
-  "section": 6,
+  "section": 7,
   "source": "docs/results/2026-11-11-round4.md, Sec. 3",
   "replaces": ""
  },
  {
-  "file": "047-outline-7.html",
+  "file": "065-outline-8.html",
   "title": "Outline: Limits and conclusions",
   "kind": "outline",
-  "section": 7,
+  "section": 8,
   "source": "",
   "replaces": ""
  },
  {
-  "file": "048-limits.html",
+  "file": "066-limits.html",
   "title": "Limits and what is not yet run",
   "kind": "content",
-  "section": 7,
-  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5",
+  "section": 8,
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; docs/results/2026-11-11-round4.md, Sec. 3; docs/results/2026-11-11-e1-pilot.md, Sec. 5; experiments/e7_calphad_prior/results/overview.md",
   "replaces": ""
  },
  {
-  "file": "049-conclusions.html",
+  "file": "067-conclusions.html",
   "title": "Conclusions",
   "kind": "content",
-  "section": 7,
-  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6",
+  "section": 8,
+  "source": "docs/results/2026-11-11-round3.md, Sec. 2 and 6; experiments/e7_calphad_prior/results/overview.md",
   "replaces": ""
  },
  {
-  "file": "050-backup-divider.html",
+  "file": "068-backup-divider.html",
   "title": "Dark",
   "kind": "dark",
   "section": 99,
@@ -400,7 +544,7 @@
   "replaces": ""
  },
  {
-  "file": "051-b-rho-labels-one.html",
+  "file": "069-b-rho-labels-one.html",
   "title": "GP ranking against labels: slope fixed at one",
   "kind": "backup",
   "section": 99,
@@ -408,7 +552,7 @@
   "replaces": ""
  },
  {
-  "file": "052-b-slope-rules.html",
+  "file": "070-b-slope-rules.html",
   "title": "The two slope rules at 5 labels",
   "kind": "backup",
   "section": 99,
@@ -416,7 +560,7 @@
   "replaces": ""
  },
  {
-  "file": "053-b-regret-steps.html",
+  "file": "071-b-regret-steps.html",
   "title": "Regret after 5, 10 and 25 steps",
   "kind": "backup",
   "section": 99,
@@ -424,7 +568,7 @@
   "replaces": ""
  },
  {
-  "file": "054-b-written-alone.html",
+  "file": "072-b-written-alone.html",
   "title": "The written network with no GP (8 seeds)",
   "kind": "backup",
   "section": 99,

@@ -31,7 +31,8 @@ ROOT = HERE.parents[1]
 E3 = ROOT / "experiments" / "e3_crystal_filter"
 E7 = ROOT / "experiments" / "e7_calphad_prior"
 OUT = HERE / "results" / "standalone"
-RUN = re.compile(r"(?P<arm>write|writepd)__(?P<task>.+?)(?:__(?P<model>opus|fable|sonnet|haiku))?__rep(?P<rep>\d+)")
+# The first Fable replies of two tasks were stored without a replicate suffix; they count as replies too.
+RUN = re.compile(r"(?P<arm>write|writepd)__(?P<task>.+?)(?:__(?P<model>opus|fable|sonnet|haiku))?(?:__rep(?P<rep>\d+))?$")
 ORDER = ("rule", "rom", "subsystem_extrapolation", "handbook", "opus", "opus + facts", "fable", "fable + facts", "sonnet", "haiku")
 
 

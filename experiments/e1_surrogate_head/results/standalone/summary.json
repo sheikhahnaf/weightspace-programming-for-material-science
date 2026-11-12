@@ -875,11 +875,11 @@
   "replies": 3
  },
  "mpea_yield_strength|fable": {
-  "rho": 0.6289221474290003,
-  "recall": 0.14583333333333331,
-  "error_raw": 0.8906353994225525,
-  "error_fit": 0.8103193990584413,
-  "replies": 2
+  "rho": 0.6317817943756086,
+  "recall": 0.17129629629629628,
+  "error_raw": 0.8899960927534165,
+  "error_fit": 0.8060140512632922,
+  "replies": 3
  },
  "mpea_yield_strength|sonnet": {
   "rho": 0.6098921988252404,
@@ -1694,11 +1694,11 @@
   "replies": 3
  },
  "ti_alloy_youngs_modulus|fable": {
-  "rho": 0.5052060154771463,
-  "recall": 0.25,
-  "error_raw": 0.9797903882539156,
-  "error_fit": 0.8619781936262639,
-  "replies": 2
+  "rho": 0.5132232304547348,
+  "recall": 0.27777777777777773,
+  "error_raw": 0.9895840949507582,
+  "error_fit": 0.8652750338789071,
+  "replies": 3
  },
  "ti_alloy_youngs_modulus|sonnet": {
   "rho": 0.6498859974178649,

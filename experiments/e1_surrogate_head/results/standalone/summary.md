@@ -125,7 +125,7 @@
 | `mpea_hardness` | haiku | 3 | 0.50 | 0.05 | 1.12 | 0.94 |
 | `mpea_yield_strength` | handbook | 1 | 0.27 | 0.29 | 0.967 | 0.95 |
 | `mpea_yield_strength` | opus | 3 | 0.69 | 0.31 | 0.82 | 0.75 |
-| `mpea_yield_strength` | fable | 2 | 0.63 | 0.15 | 0.891 | 0.81 |
+| `mpea_yield_strength` | fable | 3 | 0.63 | 0.17 | 0.89 | 0.81 |
 | `mpea_yield_strength` | sonnet | 2 | 0.61 | 0.12 | 1.16 | 0.86 |
 | `mpea_yield_strength` | haiku | 3 | 0.60 | 0.11 | 1.15 | 0.87 |
 | `ni_superalloy_freezing_range` | rom | 1 | nan | nan | nan | 1.00 |
@@ -242,7 +242,7 @@
 | `ti_alloy_yield_strength` | haiku | 3 | 0.19 | 0.25 | 1.32 | 0.96 |
 | `ti_alloy_youngs_modulus` | handbook | 1 | 0.24 | 0.04 | 1.91 | 0.98 |
 | `ti_alloy_youngs_modulus` | opus | 3 | 0.64 | 0.32 | 0.896 | 0.81 |
-| `ti_alloy_youngs_modulus` | fable | 2 | 0.51 | 0.25 | 0.98 | 0.86 |
+| `ti_alloy_youngs_modulus` | fable | 3 | 0.51 | 0.28 | 0.99 | 0.87 |
 | `ti_alloy_youngs_modulus` | sonnet | 3 | 0.65 | 0.46 | 1.09 | 0.84 |
 | `ti_alloy_youngs_modulus` | haiku | 2 | 0.50 | 0.31 | 1.2 | 0.93 |
 

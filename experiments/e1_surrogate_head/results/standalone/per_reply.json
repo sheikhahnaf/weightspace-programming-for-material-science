@@ -110,6 +110,29 @@
     "error_fit": 0.9472624718878789
    }
   ],
+  "fable": [
+   {
+    "rho": 0.6375010882688249,
+    "recall": 0.2222222222222222,
+    "error_raw": 0.8887174794151443,
+    "error_fit": 0.797403355672994,
+    "run": "write__mpea_yield_strength"
+   },
+   {
+    "rho": 0.6272333505104412,
+    "recall": 0.125,
+    "error_raw": 0.8821672466242293,
+    "error_fit": 0.8089934255490785,
+    "run": "write__mpea_yield_strength__rep2"
+   },
+   {
+    "rho": 0.6306109443475596,
+    "recall": 0.16666666666666666,
+    "error_raw": 0.8991035522208758,
+    "error_fit": 0.8116453725678041,
+    "run": "write__mpea_yield_strength__rep3"
+   }
+  ],
   "haiku": [
    {
     "rho": 0.5915689641287264,
@@ -154,22 +177,6 @@
     "error_raw": 0.8175938875702932,
     "error_fit": 0.7471808262393307,
     "run": "write__mpea_yield_strength__opus__rep3"
-   }
-  ],
-  "fable": [
-   {
-    "rho": 0.6272333505104412,
-    "recall": 0.125,
-    "error_raw": 0.8821672466242293,
-    "error_fit": 0.8089934255490785,
-    "run": "write__mpea_yield_strength__rep2"
-   },
-   {
-    "rho": 0.6306109443475596,
-    "recall": 0.16666666666666666,
-    "error_raw": 0.8991035522208758,
-    "error_fit": 0.8116453725678041,
-    "run": "write__mpea_yield_strength__rep3"
    }
   ],
   "sonnet": [
@@ -395,6 +402,29 @@
     "error_fit": 0.9839860172757829
    }
   ],
+  "fable": [
+   {
+    "rho": 0.5292576604099121,
+    "recall": 0.3333333333333333,
+    "error_raw": 1.009171508344443,
+    "error_fit": 0.8718687143841934,
+    "run": "write__ti_alloy_youngs_modulus"
+   },
+   {
+    "rho": 0.5360067946087524,
+    "recall": 0.25,
+    "error_raw": 0.9311380545132211,
+    "error_fit": 0.8395482344514998,
+    "run": "write__ti_alloy_youngs_modulus__rep2"
+   },
+   {
+    "rho": 0.47440523634554005,
+    "recall": 0.25,
+    "error_raw": 1.0284427219946102,
+    "error_fit": 0.884408152801028,
+    "run": "write__ti_alloy_youngs_modulus__rep3"
+   }
+  ],
   "haiku": [
    {
     "rho": 0.5640918918455723,
@@ -432,22 +462,6 @@
     "error_raw": 0.8759764383027459,
     "error_fit": 0.8232143892406925,
     "run": "write__ti_alloy_youngs_modulus__opus__rep3"
-   }
-  ],
-  "fable": [
-   {
-    "rho": 0.5360067946087524,
-    "recall": 0.25,
-    "error_raw": 0.9311380545132211,
-    "error_fit": 0.8395482344514998,
-    "run": "write__ti_alloy_youngs_modulus__rep2"
-   },
-   {
-    "rho": 0.47440523634554005,
-    "recall": 0.25,
-    "error_raw": 1.0284427219946102,
-    "error_fit": 0.884408152801028,
-    "run": "write__ti_alloy_youngs_modulus__rep3"
    }
   ],
   "sonnet": [

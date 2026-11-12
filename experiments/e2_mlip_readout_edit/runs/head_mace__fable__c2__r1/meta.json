@@ -1,0 +1,10 @@
+{
+  "arm": "head_edit_with_feedback",
+  "potential": "mace",
+  "model_alias": "fable",
+  "chain": 2,
+  "round": 1,
+  "forward_passes": 0,
+  "prompt_chars": 9196,
+  "prompt_tokens_estimate": 3066
+}

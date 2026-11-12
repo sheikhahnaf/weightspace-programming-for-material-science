@@ -1,0 +1,7 @@
+{
+  "arm": "mlip_error_risk_write",
+  "tag": "opus__rep2",
+  "model_alias": "opus",
+  "forward_passes": 0,
+  "prompt_tokens_estimate": 1087
+}

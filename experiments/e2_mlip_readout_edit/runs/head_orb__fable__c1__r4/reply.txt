@@ -1,0 +1,12 @@
+[{"tensor": "w", "index": [188], "value": -0.032245},
+ {"tensor": "w", "index": [254], "value": -0.035126},
+ {"tensor": "w", "index": [161], "value": -0.054166},
+ {"tensor": "w", "index": [38], "value": -0.061241},
+ {"tensor": "w", "index": [77], "value": -0.089524},
+ {"tensor": "w", "index": [90], "value": -0.051338},
+ {"tensor": "w", "index": [49], "value": -0.050269},
+ {"tensor": "w", "index": [135], "value": 0.0070367},
+ {"tensor": "w", "index": [139], "value": -0.006709},
+ {"tensor": "w", "index": [84], "value": -0.024232},
+ {"tensor": "w", "index": [113], "value": -0.04966},
+ {"tensor": "b", "index": [0], "value": 0.02345412}]

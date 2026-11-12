@@ -47,6 +47,11 @@ def main() -> None:
 
     calc = OCPCalculator(model_name="eSEN-30M-OAM", local_cache=os.environ["FAIRCHEM_LOCAL_CACHE"],
                          cpu=not torch.cuda.is_available())
+    # The trainer keeps an averaged (EMA) copy of the weights and swaps it in for every
+    # prediction, which would undo any edit. Make the averaged weights the model's own.
+    if getattr(calc.trainer, "ema", None):
+        calc.trainer.ema.copy_to()
+        calc.trainer.ema = None
     model = calc.trainer.model
     blocks = [(n, m) for n, m in model.named_modules() if n.endswith("energy_block")]
     print("parameters in the model:", sum(p.numel() for p in model.parameters()), flush=True)
@@ -88,6 +93,7 @@ def main() -> None:
             with torch.no_grad():  # scale between summed head output and energy
                 last.bias += 0.01
             s2 = Atoms(symbols=symbols, scaled_positions=frac, cell=cell0 * (1.0 + STRAINS[-1]) ** (1.0 / 3.0), pbc=True)
+            calc.reset()  # same geometry as the last point: without this ASE returns its cached energy
             s2.calc = calc
             shifted = float(s2.get_potential_energy())
             with torch.no_grad():

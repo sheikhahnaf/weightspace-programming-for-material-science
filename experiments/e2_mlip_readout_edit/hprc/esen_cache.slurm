@@ -17,6 +17,6 @@ source /scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming/experime
 echo "host $(hostname)  $(date)"; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader || true
 E2=$REPO/experiments/e2_mlip_readout_edit
 for set in dft15 elastic; do
-  $PY -u $E2/cache_features_esen.py --set $set --reference $REPO/data/mlip_reference --out $WORK/mlip_cache_esen
+  $PY -u $E2/cache_features_esen.py --set $set --reference $REPO/data/mlip_reference --out $WORK/mlip_cache_esen_v3
 done
 echo "ESEN_DONE $(date)"

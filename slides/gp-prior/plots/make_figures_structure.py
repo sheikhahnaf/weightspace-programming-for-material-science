@@ -124,21 +124,28 @@ def fig_filter():
         assert len(a) == 1
         share_all.append(a.pop())
     fig, axes = plt.subplots(1, 2, figsize=(6.9, 3.9))
-    wd = 0.135
+    wd = 0.105
     x = np.arange(len(gens))
     NUM["filter"] = {"share_all": [round(v, 2) for v in share_all]}
+    # trained references added after the code review (robustness.py filter)
+    extra = json.loads((ROOT / "experiments/e1_surrogate_head/results/robustness/filter.json").read_text())
+    scorers = scorers[:2] + [("ridge on log K", "Ridge, 400 labels", "#B9BDC4"), ("random forest", "Forest, 400 labels", "#5F646C")] + scorers[2:]
     for i, (prefix, label, col) in enumerate(scorers):
-        pos = x + (i - 2.5) * wd
+        pos = x + (i - 3.5) * wd
         for ax, field in ((axes[0], "spearman"), (axes[1], "share_above_kept")):
-            vals = [np.array([r["base_128"][field] for r in runs if r["arm"].startswith(prefix)]) for runs in data]
+            if prefix in ("ridge on log K", "random forest"):
+                key = {"spearman": "rho", "share_above_kept": "share_above_150_in_top_quarter"}[field]
+                vals = [np.array([extra[g]["scorers"][prefix][key]]) for g, _ in gens]
+            else:
+                vals = [np.array([r["base_128"][field] for r in runs if r["arm"].startswith(prefix)]) for runs in data]
             assert all(len(v) for v in vals), prefix
             means = [float(v.mean()) for v in vals]
             NUM["filter"].setdefault(field, {})[label] = [round(m, 2) for m in means]
             ax.bar(pos, means, wd, color=col, edgecolor="white", lw=0.4, label=label, zorder=2)
             for p, m in zip(pos, means):
-                ax.text(p, m + 0.012, f"{m:.2f}", ha="center", va="bottom", rotation=90, fontsize=8)
+                ax.text(p, m + 0.012, f"{m:.2f}", ha="center", va="bottom", rotation=90, fontsize=7.5)
     for p, v in zip(x, share_all):
-        axes[1].plot([p - 3.3 * wd, p + 3.3 * wd], [v, v], color="#111", ls="--", lw=1.2, zorder=4)
+        axes[1].plot([p - 4.3 * wd, p + 4.3 * wd], [v, v], color="#111", ls="--", lw=1.2, zorder=4)
     for ax in axes:
         ax.set_xticks(x, [g for g, _ in gens])
         ax.grid(axis="y", color="#E5E5E5", lw=0.6)

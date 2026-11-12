@@ -73,7 +73,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 </div>
 
 <p>The idea comes from <a href="https://rikiyat.github.io/blog/weight-space-programming/">Takehi, Teoh, Zhang and Khattab</a>, who showed a frontier model interpreting, repairing and writing small policy networks and editing a language model. Every network in that work and its follow-ups is a classifier, a policy or a language model. Materials discovery runs on regressors with error bars, equivariant potentials and diffusion models, and labels cost a DFT calculation each. We asked where the idea fits there.</p>
-<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. We audited every transcript: all 249 runs used only the file operations they were allowed. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5.</p>
+<p>Each run below is one fresh model session that reads one prompt and writes one reply. No code execution, no calculator. We audited every transcript: all 250 weight-task runs used only the file operations they were allowed. Models: Claude Opus 5.5, Fable 5.2, Sonnet 5.5 and Haiku 5.5.</p>
 
 <h2>Can a language model write a useful surrogate from what it knows?</h2>
 
@@ -140,6 +140,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <tr><td>HMC, weight prior</td><td class="l">0.45 → 0.21</td><td>0</td><td>0.94 → 0.90</td></tr>
 </table></div>
 <p>The written network belongs in function space. As a prior mean it helps both surrogates it was tried with. As a starting point it helps an ensemble a little and only widens MC dropout's error bars. Centring HMC's weight prior on it is the worst option: the written networks use a few large units, and a tight prior around them pins everything else at zero. <b>Caveat:</b> the prior-mean versions are overconfident at this label count.</p>
+<p><b>Fix for the caveat.</b> The mean is a·m(x) + b, where m is the written network. Fitting a and b by least squares first and the GP second leaves their uncertainty out of the error bars. Putting the network inside one BoTorch model and integrating a and b out raises 95% coverage at 5 labels from 0.63 to 0.79, with ranking 0.68 against 0.64. Regret in the optimisation loop is unchanged (0.68 against 0.69 of the plain GP's).</p>
 
 <h2>Can a language model read weights that were trained?</h2>
 
@@ -187,6 +188,29 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <p><b>One reply is arithmetic on our table.</b> We permuted the weight values and left the table correct; the edits were just as good, and Opus remarked that the values looked shuffled. In an earlier MACE prompt our table was computed at fixed volume and had the wrong sign for many weights; every reply then made the error worse.</p>
 <p><b>Five measured replies are a good optimiser.</b> After each attempt we applied the edit, measured it on 200 crystals and showed the result. On ORB-v3 the chains land on the curve of a gradient fit that has exact gradients and no budget, and ahead of an evolution strategy with 100 times the evaluations. The first attempt usually broke the energy limit; the next ones scaled back and rebalanced.</p>
 <p><b>The layer sets the ceiling.</b> On eSEN and GRACE even the gradient fit moves the error by 0.1 to 0.3 GPa. And for bulk modulus there is a cheaper fix that touches no weight: refitting a slope and offset on ten DFT labels takes ORB from 13.0 to 11.4 GPa, and the plain mean of the four potentials reaches 7.9.</p>
+
+<h2>Can an edit bring an open model to a frontier model's level at reading tables?</h2>
+
+<p class="label">Experiment 5b</p>
+<h3>Can a model write a weight edit that makes a small open reader transcribe thermodynamic tables like Opus?</h3>
+<div class="setup"><ul>
+<li><b>Task:</b> transcribe tables from scanned CALPHAD papers, the job Opus 5.5 does in the ORCHID extraction pipeline.</li>
+<li><b>Test set:</b> ORCHID-Bench, 20 synthetic papers with exact answer keys, as degraded 150 dpi scans; 10 papers shown as errors, 10 held out.</li>
+<li><b>Open model:</b> GLM-OCR, 0.9 billion weights.</li>
+<li><b>Editable:</b> one bias per vocabulary entry on the output layer, all zero as shipped.</li>
+<li><b>The model gets:</b> the open reader's wrong cells with their token sequences. It cannot run the reader.</li>
+</ul></div>
+<div class="scroll wide"><table>
+<tr><th>Reader</th><th>Cells exactly right</th><th>Number values right</th></tr>
+<tr><td>Opus 5.5 reading the crops</td><td class="w">97.4%</td><td>100%</td></tr>
+<tr><td>GLM-OCR as shipped</td><td>71.4%</td><td>100%</td></tr>
+<tr><td>+ text clean-up rule, no weight edit</td><td>71.6%</td><td>100%</td></tr>
+<tr><td>+ bias from error counts, no language model</td><td>74.1%</td><td>100%</td></tr>
+<tr><td>+ bias written by Opus 5.5, two replies</td><td>73.3%, 74.7%</td><td>100%</td></tr>
+<tr><td>+ bias written by Fable 5.2, two replies</td><td>75.8%, 76.9%</td><td>100%</td></tr>
+</table></div>
+<p class="note">Held-out papers, 1,342 cells; the Opus row is over all 20 papers. Tesseract, the benchmark's own baseline, gets 16%.</p>
+<p>The open model already reads every number. What separates it from Opus is typography: dropped spaces, hyphens for en dashes, flattened superscripts in units. The written edits are sensible and safe. Both models pushed down merged tokens, raised their spaced counterparts, and left digits and hyphens alone to protect the numbers. <b>But they add only 2 to 5 points, about what a bias built from error counts adds,</b> and close at most a fifth of the gap. A bias cannot see context, so it cannot decide where a space belongs. Fine-tuning the open model on Opus's transcriptions is the route we expect to close it; that is ordinary training, not weight-space programming.</p>
 
 <h2>Can weights steer a crystal generator?</h2>
 

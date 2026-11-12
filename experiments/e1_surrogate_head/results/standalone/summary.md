@@ -2,27 +2,46 @@
 |---|---|---|---|---|---|---|
 | `al_alloy_freezing_range` | rom | 1 | nan | nan | nan | 1.00 |
 | `al_alloy_freezing_range` | subsystem_extrapolation | 1 | 0.76 | 0.85 | 1.13 | 0.59 |
-| `al_alloy_freezing_range` | fable | 1 | 0.53 | 0.45 | 1.08 | 0.85 |
+| `al_alloy_freezing_range` | opus | 2 | 0.80 | 0.70 | 0.722 | 0.57 |
+| `al_alloy_freezing_range` | opus + facts | 2 | 0.89 | 0.80 | 0.443 | 0.42 |
+| `al_alloy_freezing_range` | fable | 2 | 0.56 | 0.45 | 1.17 | 0.79 |
+| `al_alloy_freezing_range` | fable + facts | 2 | 0.78 | 0.57 | 0.652 | 0.58 |
 | `al_alloy_second_phase_fraction` | rom | 1 | nan | nan | nan | 1.00 |
 | `al_alloy_second_phase_fraction` | subsystem_extrapolation | 1 | 0.58 | 0.30 | 1.44 | 0.84 |
-| `al_alloy_second_phase_fraction` | fable | 1 | 0.98 | 0.75 | 0.258 | 0.19 |
+| `al_alloy_second_phase_fraction` | opus | 2 | 0.98 | 0.72 | 0.198 | 0.16 |
+| `al_alloy_second_phase_fraction` | opus + facts | 2 | 0.99 | 0.85 | 0.181 | 0.15 |
+| `al_alloy_second_phase_fraction` | fable | 2 | 0.98 | 0.78 | 0.24 | 0.18 |
+| `al_alloy_second_phase_fraction` | fable + facts | 2 | 0.98 | 0.85 | 0.201 | 0.17 |
 | `al_alloy_solidus` | rom | 1 | -0.04 | 0.05 | 5.38 | 0.99 |
 | `al_alloy_solidus` | subsystem_extrapolation | 1 | 0.86 | 0.90 | 1.03 | 0.45 |
-| `al_alloy_solidus` | fable | 1 | 0.50 | 0.80 | 0.829 | 0.69 |
+| `al_alloy_solidus` | opus | 2 | 0.85 | 0.80 | 0.485 | 0.43 |
+| `al_alloy_solidus` | opus + facts | 2 | 0.93 | 0.88 | 0.317 | 0.32 |
+| `al_alloy_solidus` | fable | 2 | 0.62 | 0.78 | 0.976 | 0.63 |
+| `al_alloy_solidus` | fable + facts | 2 | 0.93 | 0.88 | 0.325 | 0.31 |
 | `al_refractory_freezing_range` | rom | 1 | nan | nan | nan | 1.00 |
 | `al_refractory_freezing_range` | subsystem_extrapolation | 1 | 0.49 | 0.35 | 1.14 | 0.88 |
-| `al_refractory_freezing_range` | opus | 1 | 0.25 | 0.05 | 1.82 | 0.95 |
-| `al_refractory_freezing_range` | fable | 1 | 0.56 | 0.20 | 0.809 | 0.79 |
+| `al_refractory_freezing_range` | opus | 2 | 0.25 | 0.10 | 1.44 | 0.95 |
+| `al_refractory_freezing_range` | opus + facts | 2 | 0.54 | 0.35 | 0.903 | 0.82 |
+| `al_refractory_freezing_range` | fable | 2 | 0.47 | 0.15 | 0.93 | 0.85 |
+| `al_refractory_freezing_range` | fable + facts | 2 | 0.38 | 0.20 | 1.01 | 0.89 |
 | `al_refractory_intermetallic_fraction` | rom | 1 | nan | nan | nan | 1.00 |
 | `al_refractory_intermetallic_fraction` | subsystem_extrapolation | 1 | 0.80 | 0.50 | 0.604 | 0.60 |
-| `al_refractory_intermetallic_fraction` | opus | 1 | 0.77 | 0.60 | 0.519 | 0.50 |
-| `al_refractory_intermetallic_fraction` | fable | 1 | 0.60 | 0.80 | 0.948 | 0.69 |
+| `al_refractory_intermetallic_fraction` | opus | 2 | 0.76 | 0.60 | 0.568 | 0.53 |
+| `al_refractory_intermetallic_fraction` | opus + facts | 2 | 0.84 | 0.62 | 0.475 | 0.47 |
+| `al_refractory_intermetallic_fraction` | fable | 2 | 0.67 | 0.73 | 0.888 | 0.63 |
+| `al_refractory_intermetallic_fraction` | fable + facts | 2 | 0.69 | 0.73 | 0.669 | 0.62 |
 | `al_refractory_main_phase_fraction` | rom | 1 | 0.32 | 0.15 | 1.1 | 0.94 |
 | `al_refractory_main_phase_fraction` | subsystem_extrapolation | 1 | 0.35 | 0.40 | 1.02 | 0.93 |
-| `al_refractory_main_phase_fraction` | fable | 1 | 0.46 | 0.45 | 1.22 | 0.92 |
+| `al_refractory_main_phase_fraction` | opus | 2 | 0.57 | 0.60 | 0.822 | 0.79 |
+| `al_refractory_main_phase_fraction` | opus + facts | 2 | 0.58 | 0.48 | 0.864 | 0.80 |
+| `al_refractory_main_phase_fraction` | fable | 2 | 0.46 | 0.57 | 1.17 | 0.93 |
+| `al_refractory_main_phase_fraction` | fable + facts | 2 | 0.43 | 0.47 | 0.942 | 0.88 |
 | `al_refractory_solidus` | rom | 1 | 0.53 | 0.25 | 1.78 | 0.87 |
 | `al_refractory_solidus` | subsystem_extrapolation | 1 | 0.74 | 0.55 | 0.742 | 0.63 |
-| `al_refractory_solidus` | fable | 1 | 0.52 | 0.35 | 1.34 | 0.84 |
+| `al_refractory_solidus` | opus | 2 | 0.63 | 0.50 | 0.925 | 0.75 |
+| `al_refractory_solidus` | opus + facts | 2 | 0.75 | 0.70 | 0.625 | 0.59 |
+| `al_refractory_solidus` | fable | 2 | 0.55 | 0.32 | 1.41 | 0.83 |
+| `al_refractory_solidus` | fable + facts | 2 | 0.65 | 0.60 | 0.809 | 0.70 |
 | `cantor_al_freezing_range` | rom | 1 | nan | nan | nan | 1.00 |
 | `cantor_al_freezing_range` | subsystem_extrapolation | 1 | 0.71 | 0.53 | 0.787 | 0.71 |
 | `cantor_al_freezing_range` | opus | 2 | 0.46 | 0.40 | 1.25 | 0.93 |
@@ -49,26 +68,46 @@
 | `cantor_al_solidus` | fable + facts | 2 | 0.69 | 0.29 | 1.16 | 0.73 |
 | `cu_ti_3d_freezing_range` | rom | 1 | nan | nan | nan | 1.00 |
 | `cu_ti_3d_freezing_range` | subsystem_extrapolation | 1 | 0.21 | 0.15 | 1.64 | 0.98 |
-| `cu_ti_3d_freezing_range` | fable | 1 | 0.14 | 0.25 | 3.11 | 0.99 |
+| `cu_ti_3d_freezing_range` | opus | 2 | 0.20 | 0.12 | 1.96 | 0.97 |
+| `cu_ti_3d_freezing_range` | opus + facts | 2 | 0.10 | 0.17 | 2.28 | 0.99 |
+| `cu_ti_3d_freezing_range` | fable | 2 | 0.06 | 0.25 | 2.49 | 0.99 |
+| `cu_ti_3d_freezing_range` | fable + facts | 2 | 0.07 | 0.22 | 2.58 | 0.99 |
 | `cu_ti_3d_intermetallic_fraction` | rom | 1 | nan | nan | nan | 1.00 |
 | `cu_ti_3d_intermetallic_fraction` | subsystem_extrapolation | 1 | 0.87 | 0.80 | 0.459 | 0.46 |
-| `cu_ti_3d_intermetallic_fraction` | opus | 1 | 0.86 | 0.85 | 0.534 | 0.48 |
-| `cu_ti_3d_intermetallic_fraction` | fable | 1 | 0.87 | 0.80 | 0.565 | 0.49 |
+| `cu_ti_3d_intermetallic_fraction` | opus | 2 | 0.84 | 0.85 | 0.531 | 0.49 |
+| `cu_ti_3d_intermetallic_fraction` | opus + facts | 2 | 0.86 | 0.70 | 0.594 | 0.51 |
+| `cu_ti_3d_intermetallic_fraction` | fable | 2 | 0.85 | 0.80 | 0.589 | 0.52 |
+| `cu_ti_3d_intermetallic_fraction` | fable + facts | 2 | 0.86 | 0.82 | 0.635 | 0.51 |
 | `cu_ti_3d_main_phase_fraction` | rom | 1 | -0.06 | 0.05 | 2.68 | 1.00 |
 | `cu_ti_3d_main_phase_fraction` | subsystem_extrapolation | 1 | 0.46 | 0.45 | 1.02 | 0.87 |
-| `cu_ti_3d_main_phase_fraction` | fable | 1 | 0.43 | 0.70 | 0.945 | 0.86 |
+| `cu_ti_3d_main_phase_fraction` | opus | 2 | 0.57 | 0.65 | 0.926 | 0.79 |
+| `cu_ti_3d_main_phase_fraction` | opus + facts | 2 | 0.51 | 0.70 | 0.899 | 0.81 |
+| `cu_ti_3d_main_phase_fraction` | fable | 2 | 0.47 | 0.62 | 0.919 | 0.84 |
+| `cu_ti_3d_main_phase_fraction` | fable + facts | 2 | 0.58 | 0.55 | 0.993 | 0.81 |
 | `cu_ti_3d_solidus` | rom | 1 | 0.24 | 0.40 | 7.22 | 0.97 |
 | `cu_ti_3d_solidus` | subsystem_extrapolation | 1 | 0.56 | 0.55 | 1.63 | 0.79 |
-| `cu_ti_3d_solidus` | fable | 1 | 0.33 | 0.25 | 1.47 | 0.90 |
+| `cu_ti_3d_solidus` | opus | 2 | 0.54 | 0.30 | 1.53 | 0.85 |
+| `cu_ti_3d_solidus` | opus + facts | 2 | 0.50 | 0.35 | 1.77 | 0.83 |
+| `cu_ti_3d_solidus` | fable | 2 | 0.45 | 0.40 | 1.41 | 0.83 |
+| `cu_ti_3d_solidus` | fable + facts | 2 | 0.61 | 0.42 | 1.33 | 0.75 |
 | `hf_refractory_freezing_range` | rom | 1 | nan | nan | nan | 1.00 |
 | `hf_refractory_freezing_range` | subsystem_extrapolation | 1 | 0.95 | 0.85 | 0.325 | 0.29 |
-| `hf_refractory_freezing_range` | fable | 1 | 0.37 | 0.40 | 1.23 | 0.94 |
+| `hf_refractory_freezing_range` | opus | 2 | 0.37 | 0.38 | 0.949 | 0.93 |
+| `hf_refractory_freezing_range` | opus + facts | 2 | 0.88 | 0.82 | 0.476 | 0.46 |
+| `hf_refractory_freezing_range` | fable | 2 | 0.36 | 0.43 | 1.12 | 0.94 |
+| `hf_refractory_freezing_range` | fable + facts | 2 | 0.89 | 0.68 | 0.521 | 0.44 |
 | `hf_refractory_main_phase_fraction` | rom | 1 | -0.13 | 0.25 | 1.41 | 1.00 |
 | `hf_refractory_main_phase_fraction` | subsystem_extrapolation | 1 | 0.68 | 0.25 | 0.767 | 0.75 |
-| `hf_refractory_main_phase_fraction` | fable | 1 | 0.60 | 0.15 | 0.828 | 0.82 |
+| `hf_refractory_main_phase_fraction` | opus | 2 | 0.27 | 0.28 | 1.09 | 0.95 |
+| `hf_refractory_main_phase_fraction` | opus + facts | 2 | 0.73 | 0.30 | 0.731 | 0.71 |
+| `hf_refractory_main_phase_fraction` | fable | 2 | 0.65 | 0.25 | 0.785 | 0.78 |
+| `hf_refractory_main_phase_fraction` | fable + facts | 2 | 0.66 | 0.15 | 0.804 | 0.75 |
 | `hf_refractory_solidus` | rom | 1 | 0.76 | 0.50 | 3.26 | 0.68 |
 | `hf_refractory_solidus` | subsystem_extrapolation | 1 | 0.96 | 0.95 | 0.26 | 0.24 |
-| `hf_refractory_solidus` | fable | 1 | 0.86 | 0.70 | 0.859 | 0.54 |
+| `hf_refractory_solidus` | opus | 2 | 0.90 | 0.72 | 1.19 | 0.43 |
+| `hf_refractory_solidus` | opus + facts | 2 | 0.94 | 0.90 | 0.38 | 0.32 |
+| `hf_refractory_solidus` | fable | 2 | 0.85 | 0.65 | 0.931 | 0.55 |
+| `hf_refractory_solidus` | fable + facts | 2 | 0.90 | 0.82 | 0.603 | 0.43 |
 | `loop_bulk_modulus` | rule | 1 | 0.74 | 0.20 | 2.04 | 0.77 |
 | `loop_bulk_modulus` | opus | 3 | 0.93 | 0.51 | 0.6 | 0.52 |
 | `loop_bulk_modulus` | fable | 3 | 0.93 | 0.57 | 0.622 | 0.51 |
@@ -163,13 +202,22 @@
 | `steel_solidus` | fable + facts | 2 | 0.93 | 0.90 | 0.643 | 0.40 |
 | `ti_alloy_alpha_fraction` | rom | 1 | 0.12 | 0.10 | 4.77 | 1.00 |
 | `ti_alloy_alpha_fraction` | subsystem_extrapolation | 1 | 0.46 | 0.25 | 2.38 | 0.92 |
-| `ti_alloy_alpha_fraction` | fable | 1 | 0.27 | 0.10 | 1.19 | 0.92 |
+| `ti_alloy_alpha_fraction` | opus | 2 | 0.39 | 0.38 | 1.22 | 0.89 |
+| `ti_alloy_alpha_fraction` | opus + facts | 2 | 0.43 | 0.43 | 0.933 | 0.84 |
+| `ti_alloy_alpha_fraction` | fable | 2 | 0.32 | 0.22 | 1.4 | 0.91 |
+| `ti_alloy_alpha_fraction` | fable + facts | 2 | 0.46 | 0.25 | 0.982 | 0.83 |
 | `ti_alloy_alpha_transus` | rom | 1 | -0.04 | 0.05 | 2.36 | 1.00 |
 | `ti_alloy_alpha_transus` | subsystem_extrapolation | 1 | 0.20 | 0.11 | 1.64 | 0.99 |
-| `ti_alloy_alpha_transus` | fable | 1 | 0.30 | 0.16 | 1.4 | 0.94 |
+| `ti_alloy_alpha_transus` | opus | 2 | 0.30 | 0.13 | 1.29 | 0.94 |
+| `ti_alloy_alpha_transus` | opus + facts | 2 | 0.11 | 0.11 | 1.81 | 1.00 |
+| `ti_alloy_alpha_transus` | fable | 2 | 0.26 | 0.13 | 1.49 | 0.95 |
+| `ti_alloy_alpha_transus` | fable + facts | 2 | 0.24 | 0.21 | 1.49 | 0.97 |
 | `ti_alloy_freezing_range` | rom | 1 | nan | nan | nan | 1.00 |
 | `ti_alloy_freezing_range` | subsystem_extrapolation | 1 | 0.94 | 0.95 | 0.516 | 0.35 |
-| `ti_alloy_freezing_range` | fable | 1 | 0.75 | 0.50 | 1.58 | 0.65 |
+| `ti_alloy_freezing_range` | opus | 2 | 0.90 | 0.73 | 1.47 | 0.45 |
+| `ti_alloy_freezing_range` | opus + facts | 2 | 0.91 | 0.88 | 0.667 | 0.43 |
+| `ti_alloy_freezing_range` | fable | 2 | 0.77 | 0.53 | 1.52 | 0.63 |
+| `ti_alloy_freezing_range` | fable + facts | 2 | 0.93 | 0.85 | 0.563 | 0.39 |
 | `ti_alloy_hardness` | handbook | 1 | -0.72 | 0.00 | 7.41 | 0.75 |
 | `ti_alloy_hardness` | opus | 3 | 0.65 | 0.51 | 0.77 | 0.75 |
 | `ti_alloy_hardness` | fable | 3 | 0.61 | 0.51 | 0.844 | 0.78 |
@@ -177,10 +225,16 @@
 | `ti_alloy_hardness` | haiku | 3 | -0.01 | 0.38 | 1.22 | 0.96 |
 | `ti_alloy_intermetallic_fraction` | rom | 1 | nan | nan | nan | 1.00 |
 | `ti_alloy_intermetallic_fraction` | subsystem_extrapolation | 1 | 0.64 | 0.15 | 0.866 | 0.71 |
-| `ti_alloy_intermetallic_fraction` | fable | 1 | 0.77 | 0.65 | 0.675 | 0.64 |
+| `ti_alloy_intermetallic_fraction` | opus | 2 | 0.78 | 0.50 | 0.694 | 0.69 |
+| `ti_alloy_intermetallic_fraction` | opus + facts | 2 | 0.46 | 0.40 | 1.03 | 0.89 |
+| `ti_alloy_intermetallic_fraction` | fable | 2 | 0.77 | 0.62 | 0.636 | 0.60 |
+| `ti_alloy_intermetallic_fraction` | fable + facts | 2 | 0.70 | 0.33 | 0.816 | 0.68 |
 | `ti_alloy_solidus` | rom | 1 | -0.08 | 0.05 | 1.35 | 1.00 |
 | `ti_alloy_solidus` | subsystem_extrapolation | 1 | 0.91 | 0.75 | 0.493 | 0.39 |
-| `ti_alloy_solidus` | fable | 1 | 0.82 | 0.60 | 0.959 | 0.57 |
+| `ti_alloy_solidus` | opus | 2 | 0.76 | 0.60 | 1.08 | 0.63 |
+| `ti_alloy_solidus` | opus + facts | 2 | 0.90 | 0.70 | 0.54 | 0.41 |
+| `ti_alloy_solidus` | fable | 2 | 0.83 | 0.65 | 0.949 | 0.55 |
+| `ti_alloy_solidus` | fable + facts | 2 | 0.90 | 0.70 | 0.496 | 0.41 |
 | `ti_alloy_yield_strength` | handbook | 1 | -0.52 | 0.04 | 1.34 | 0.88 |
 | `ti_alloy_yield_strength` | opus | 3 | 0.69 | 0.52 | 0.761 | 0.74 |
 | `ti_alloy_yield_strength` | fable | 3 | 0.64 | 0.40 | 0.811 | 0.79 |

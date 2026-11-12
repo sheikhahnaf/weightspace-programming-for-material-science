@@ -13,12 +13,33 @@
   "error_fit": 0.5922629419444145,
   "replies": 1
  },
+ "al_alloy_freezing_range|opus": {
+  "rho": 0.8027147170691913,
+  "recall": 0.7,
+  "error_raw": 0.7216408172677432,
+  "error_fit": 0.570385500048473,
+  "replies": 2
+ },
+ "al_alloy_freezing_range|opus + facts": {
+  "rho": 0.8883306899705405,
+  "recall": 0.8,
+  "error_raw": 0.4426531434623532,
+  "error_fit": 0.42043599612149785,
+  "replies": 2
+ },
  "al_alloy_freezing_range|fable": {
-  "rho": 0.525375294866408,
+  "rho": 0.5616414887432987,
   "recall": 0.45,
-  "error_raw": 1.0779184046139803,
-  "error_fit": 0.8509873147019053,
-  "replies": 1
+  "error_raw": 1.1746621960736365,
+  "error_fit": 0.7928142758309833,
+  "replies": 2
+ },
+ "al_alloy_freezing_range|fable + facts": {
+  "rho": 0.7823620554324076,
+  "recall": 0.575,
+  "error_raw": 0.6524820757983785,
+  "error_fit": 0.5836410460626487,
+  "replies": 2
  },
  "al_alloy_second_phase_fraction|rom": {
   "rho": NaN,
@@ -34,12 +55,33 @@
   "error_fit": 0.8412084881411103,
   "replies": 1
  },
+ "al_alloy_second_phase_fraction|opus": {
+  "rho": 0.9833494888575327,
+  "recall": 0.725,
+  "error_raw": 0.1982241140172214,
+  "error_fit": 0.16351686371282875,
+  "replies": 2
+ },
+ "al_alloy_second_phase_fraction|opus + facts": {
+  "rho": 0.9856147148868566,
+  "recall": 0.8500000000000001,
+  "error_raw": 0.18065952235221414,
+  "error_fit": 0.15351162718582223,
+  "replies": 2
+ },
  "al_alloy_second_phase_fraction|fable": {
-  "rho": 0.9770002270197472,
-  "recall": 0.75,
-  "error_raw": 0.2584901057752416,
-  "error_fit": 0.18949156025501587,
-  "replies": 1
+  "rho": 0.9802723096008814,
+  "recall": 0.775,
+  "error_raw": 0.2398453330737514,
+  "error_fit": 0.17568134518249306,
+  "replies": 2
+ },
+ "al_alloy_second_phase_fraction|fable + facts": {
+  "rho": 0.9839859000159649,
+  "recall": 0.8500000000000001,
+  "error_raw": 0.20088467204987365,
+  "error_fit": 0.16775998234993175,
+  "replies": 2
  },
  "al_alloy_solidus|rom": {
   "rho": -0.04290216882608037,
@@ -55,12 +97,33 @@
   "error_fit": 0.4493841659872307,
   "replies": 1
  },
- "al_alloy_solidus|fable": {
-  "rho": 0.5049959804075523,
+ "al_alloy_solidus|opus": {
+  "rho": 0.8522966819096549,
   "recall": 0.8,
-  "error_raw": 0.8286716162269655,
-  "error_fit": 0.6889282232450298,
-  "replies": 1
+  "error_raw": 0.48507237744846704,
+  "error_fit": 0.43413943283135836,
+  "replies": 2
+ },
+ "al_alloy_solidus|opus + facts": {
+  "rho": 0.9278535972440156,
+  "recall": 0.875,
+  "error_raw": 0.3170365596381849,
+  "error_fit": 0.31574984878551393,
+  "replies": 2
+ },
+ "al_alloy_solidus|fable": {
+  "rho": 0.618782990691273,
+  "recall": 0.775,
+  "error_raw": 0.9762469576512791,
+  "error_fit": 0.6330702740281939,
+  "replies": 2
+ },
+ "al_alloy_solidus|fable + facts": {
+  "rho": 0.9325776435650821,
+  "recall": 0.875,
+  "error_raw": 0.32473259819785966,
+  "error_fit": 0.31249390398557875,
+  "replies": 2
  },
  "al_refractory_freezing_range|rom": {
   "rho": NaN,
@@ -77,18 +140,32 @@
   "replies": 1
  },
  "al_refractory_freezing_range|opus": {
-  "rho": 0.25139747348501296,
-  "recall": 0.05,
-  "error_raw": 1.8179036486563456,
-  "error_fit": 0.9451699111272833,
-  "replies": 1
+  "rho": 0.24786975764632913,
+  "recall": 0.1,
+  "error_raw": 1.4447322836729803,
+  "error_fit": 0.9485818542087777,
+  "replies": 2
+ },
+ "al_refractory_freezing_range|opus + facts": {
+  "rho": 0.5392953663746352,
+  "recall": 0.35,
+  "error_raw": 0.9029367911184057,
+  "error_fit": 0.8248483998284437,
+  "replies": 2
  },
  "al_refractory_freezing_range|fable": {
-  "rho": 0.5610616055482495,
+  "rho": 0.471575424965084,
+  "recall": 0.15000000000000002,
+  "error_raw": 0.9304323658518472,
+  "error_fit": 0.8506442523899816,
+  "replies": 2
+ },
+ "al_refractory_freezing_range|fable + facts": {
+  "rho": 0.3832276181112742,
   "recall": 0.2,
-  "error_raw": 0.8093299949643836,
-  "error_fit": 0.7892973594736541,
-  "replies": 1
+  "error_raw": 1.0085881729334685,
+  "error_fit": 0.8910273428586898,
+  "replies": 2
  },
  "al_refractory_intermetallic_fraction|rom": {
   "rho": NaN,
@@ -105,18 +182,32 @@
   "replies": 1
  },
  "al_refractory_intermetallic_fraction|opus": {
-  "rho": 0.7659400453972103,
+  "rho": 0.7601667541158859,
   "recall": 0.6,
-  "error_raw": 0.5186332854142305,
-  "error_fit": 0.5033531342301706,
-  "replies": 1
+  "error_raw": 0.5677902723272701,
+  "error_fit": 0.5284507837859465,
+  "replies": 2
+ },
+ "al_refractory_intermetallic_fraction|opus + facts": {
+  "rho": 0.8416740208175677,
+  "recall": 0.625,
+  "error_raw": 0.4745942997656818,
+  "error_fit": 0.4655798504329728,
+  "replies": 2
  },
  "al_refractory_intermetallic_fraction|fable": {
-  "rho": 0.6034233994835183,
-  "recall": 0.8,
-  "error_raw": 0.9481003372349869,
-  "error_fit": 0.687773914974705,
-  "replies": 1
+  "rho": 0.6728689491624322,
+  "recall": 0.7250000000000001,
+  "error_raw": 0.8878125455143258,
+  "error_fit": 0.6290710418127853,
+  "replies": 2
+ },
+ "al_refractory_intermetallic_fraction|fable + facts": {
+  "rho": 0.6905906491804354,
+  "recall": 0.7250000000000001,
+  "error_raw": 0.668647482016437,
+  "error_fit": 0.6150593327771411,
+  "replies": 2
  },
  "al_refractory_main_phase_fraction|rom": {
   "rho": 0.31593843795835486,
@@ -132,12 +223,33 @@
   "error_fit": 0.9275605880619128,
   "replies": 1
  },
+ "al_refractory_main_phase_fraction|opus": {
+  "rho": 0.5704315808154898,
+  "recall": 0.6000000000000001,
+  "error_raw": 0.8216204046466372,
+  "error_fit": 0.7866927243104622,
+  "replies": 2
+ },
+ "al_refractory_main_phase_fraction|opus + facts": {
+  "rho": 0.5797876667831837,
+  "recall": 0.47500000000000003,
+  "error_raw": 0.8642046245091786,
+  "error_fit": 0.7956541819826776,
+  "replies": 2
+ },
  "al_refractory_main_phase_fraction|fable": {
-  "rho": 0.4629976090124405,
-  "recall": 0.45,
-  "error_raw": 1.2220314925990736,
-  "error_fit": 0.9202388268883096,
-  "replies": 1
+  "rho": 0.45760549842404485,
+  "recall": 0.575,
+  "error_raw": 1.167059911168614,
+  "error_fit": 0.9283259089229976,
+  "replies": 2
+ },
+ "al_refractory_main_phase_fraction|fable + facts": {
+  "rho": 0.4341288696890848,
+  "recall": 0.475,
+  "error_raw": 0.9415845897262873,
+  "error_fit": 0.8792127525770526,
+  "replies": 2
  },
  "al_refractory_solidus|rom": {
   "rho": 0.5272928277904639,
@@ -153,12 +265,33 @@
   "error_fit": 0.6322513877549253,
   "replies": 1
  },
+ "al_refractory_solidus|opus": {
+  "rho": 0.6320140165244108,
+  "recall": 0.5,
+  "error_raw": 0.9252679321246859,
+  "error_fit": 0.7481842682479365,
+  "replies": 2
+ },
+ "al_refractory_solidus|opus + facts": {
+  "rho": 0.7526328039206088,
+  "recall": 0.7,
+  "error_raw": 0.625110417073016,
+  "error_fit": 0.5923692573807615,
+  "replies": 2
+ },
  "al_refractory_solidus|fable": {
-  "rho": 0.5150016976248478,
-  "recall": 0.35,
-  "error_raw": 1.337189914490884,
-  "error_fit": 0.8404444135462884,
-  "replies": 1
+  "rho": 0.5480260313654322,
+  "recall": 0.32499999999999996,
+  "error_raw": 1.4146237243461321,
+  "error_fit": 0.8308857637579785,
+  "replies": 2
+ },
+ "al_refractory_solidus|fable + facts": {
+  "rho": 0.6541877364022594,
+  "recall": 0.6,
+  "error_raw": 0.8087209396989192,
+  "error_fit": 0.7029395564646885,
+  "replies": 2
  },
  "cantor_al_freezing_range|rom": {
   "rho": NaN,
@@ -342,12 +475,33 @@
   "error_fit": 0.975171869236816,
   "replies": 1
  },
+ "cu_ti_3d_freezing_range|opus": {
+  "rho": 0.1960281120066294,
+  "recall": 0.125,
+  "error_raw": 1.9587460785388973,
+  "error_fit": 0.9724126927222185,
+  "replies": 2
+ },
+ "cu_ti_3d_freezing_range|opus + facts": {
+  "rho": 0.09622927387676736,
+  "recall": 0.175,
+  "error_raw": 2.2783599843086417,
+  "error_fit": 0.9923519260923751,
+  "replies": 2
+ },
  "cu_ti_3d_freezing_range|fable": {
-  "rho": 0.1351628962266962,
+  "rho": 0.06342158641878132,
   "recall": 0.25,
-  "error_raw": 3.108874065391313,
-  "error_fit": 0.9866453580338282,
-  "replies": 1
+  "error_raw": 2.4928327599151605,
+  "error_fit": 0.9920712818099144,
+  "replies": 2
+ },
+ "cu_ti_3d_freezing_range|fable + facts": {
+  "rho": 0.0728072057934061,
+  "recall": 0.22499999999999998,
+  "error_raw": 2.5782004214474066,
+  "error_fit": 0.9946499989076345,
+  "replies": 2
  },
  "cu_ti_3d_intermetallic_fraction|rom": {
   "rho": NaN,
@@ -364,18 +518,32 @@
   "replies": 1
  },
  "cu_ti_3d_intermetallic_fraction|opus": {
-  "rho": 0.860559436956626,
+  "rho": 0.8447218637896994,
   "recall": 0.85,
-  "error_raw": 0.5340942285479475,
-  "error_fit": 0.48024603060678733,
-  "replies": 1
+  "error_raw": 0.530993137661987,
+  "error_fit": 0.4857002256720266,
+  "replies": 2
+ },
+ "cu_ti_3d_intermetallic_fraction|opus + facts": {
+  "rho": 0.863937665841662,
+  "recall": 0.7,
+  "error_raw": 0.5942804781391882,
+  "error_fit": 0.5050243311230702,
+  "replies": 2
  },
  "cu_ti_3d_intermetallic_fraction|fable": {
-  "rho": 0.8668301646405774,
+  "rho": 0.8533770488691207,
   "recall": 0.8,
-  "error_raw": 0.5648130687951414,
-  "error_fit": 0.4933824190239619,
-  "replies": 1
+  "error_raw": 0.5885894227208328,
+  "error_fit": 0.5151162015537462,
+  "replies": 2
+ },
+ "cu_ti_3d_intermetallic_fraction|fable + facts": {
+  "rho": 0.862525877346622,
+  "recall": 0.825,
+  "error_raw": 0.6354296207536738,
+  "error_fit": 0.5124308963786074,
+  "replies": 2
  },
  "cu_ti_3d_main_phase_fraction|rom": {
   "rho": -0.056932404429059516,
@@ -391,12 +559,33 @@
   "error_fit": 0.8680159833405737,
   "replies": 1
  },
- "cu_ti_3d_main_phase_fraction|fable": {
-  "rho": 0.4282333309424878,
+ "cu_ti_3d_main_phase_fraction|opus": {
+  "rho": 0.5675150052753213,
+  "recall": 0.6499999999999999,
+  "error_raw": 0.9259186689825336,
+  "error_fit": 0.7897291759777907,
+  "replies": 2
+ },
+ "cu_ti_3d_main_phase_fraction|opus + facts": {
+  "rho": 0.5130205795204752,
   "recall": 0.7,
-  "error_raw": 0.9452147016695821,
-  "error_fit": 0.856102854652876,
-  "replies": 1
+  "error_raw": 0.8986561583735015,
+  "error_fit": 0.8079818443494142,
+  "replies": 2
+ },
+ "cu_ti_3d_main_phase_fraction|fable": {
+  "rho": 0.47354639160544587,
+  "recall": 0.625,
+  "error_raw": 0.9185650635118516,
+  "error_fit": 0.8444132370375654,
+  "replies": 2
+ },
+ "cu_ti_3d_main_phase_fraction|fable + facts": {
+  "rho": 0.5772224206471205,
+  "recall": 0.55,
+  "error_raw": 0.9929615970624106,
+  "error_fit": 0.8121098118635376,
+  "replies": 2
  },
  "cu_ti_3d_solidus|rom": {
   "rho": 0.24178574536143843,
@@ -412,12 +601,33 @@
   "error_fit": 0.7874599925322879,
   "replies": 1
  },
+ "cu_ti_3d_solidus|opus": {
+  "rho": 0.5403929020207872,
+  "recall": 0.3,
+  "error_raw": 1.526935781521546,
+  "error_fit": 0.8481094337749808,
+  "replies": 2
+ },
+ "cu_ti_3d_solidus|opus + facts": {
+  "rho": 0.4981153137215759,
+  "recall": 0.35,
+  "error_raw": 1.7693111019098273,
+  "error_fit": 0.8348882413049984,
+  "replies": 2
+ },
  "cu_ti_3d_solidus|fable": {
-  "rho": 0.32935494783735486,
-  "recall": 0.25,
-  "error_raw": 1.4727809573001052,
-  "error_fit": 0.8965728558828293,
-  "replies": 1
+  "rho": 0.4490565488278379,
+  "recall": 0.4,
+  "error_raw": 1.4130514654357416,
+  "error_fit": 0.8333147423933072,
+  "replies": 2
+ },
+ "cu_ti_3d_solidus|fable + facts": {
+  "rho": 0.6092213680658478,
+  "recall": 0.425,
+  "error_raw": 1.3258873083550857,
+  "error_fit": 0.7503949033836164,
+  "replies": 2
  },
  "hf_refractory_freezing_range|rom": {
   "rho": NaN,
@@ -433,12 +643,33 @@
   "error_fit": 0.28912836245348383,
   "replies": 1
  },
+ "hf_refractory_freezing_range|opus": {
+  "rho": 0.37003634080262227,
+  "recall": 0.375,
+  "error_raw": 0.949466214289502,
+  "error_fit": 0.9336724294031757,
+  "replies": 2
+ },
+ "hf_refractory_freezing_range|opus + facts": {
+  "rho": 0.8835277140853315,
+  "recall": 0.825,
+  "error_raw": 0.4756448079929354,
+  "error_fit": 0.4581764809595862,
+  "replies": 2
+ },
  "hf_refractory_freezing_range|fable": {
-  "rho": 0.3671246325826344,
-  "recall": 0.4,
-  "error_raw": 1.2342092543668286,
-  "error_fit": 0.939405143079948,
-  "replies": 1
+  "rho": 0.36369608802369574,
+  "recall": 0.42500000000000004,
+  "error_raw": 1.1151033143623028,
+  "error_fit": 0.9360453522136407,
+  "replies": 2
+ },
+ "hf_refractory_freezing_range|fable + facts": {
+  "rho": 0.890658824057263,
+  "recall": 0.675,
+  "error_raw": 0.5213443597407563,
+  "error_fit": 0.44055371187445524,
+  "replies": 2
  },
  "hf_refractory_main_phase_fraction|rom": {
   "rho": -0.1330126099722301,
@@ -454,12 +685,33 @@
   "error_fit": 0.7494907918035012,
   "replies": 1
  },
+ "hf_refractory_main_phase_fraction|opus": {
+  "rho": 0.26630751327485935,
+  "recall": 0.275,
+  "error_raw": 1.0940224700677978,
+  "error_fit": 0.9497869266582453,
+  "replies": 2
+ },
+ "hf_refractory_main_phase_fraction|opus + facts": {
+  "rho": 0.7291580048260182,
+  "recall": 0.3,
+  "error_raw": 0.7307007168403141,
+  "error_fit": 0.7110889598209331,
+  "replies": 2
+ },
  "hf_refractory_main_phase_fraction|fable": {
-  "rho": 0.5979876602504685,
+  "rho": 0.6510957360949507,
+  "recall": 0.25,
+  "error_raw": 0.7852451424121771,
+  "error_fit": 0.7784860634814345,
+  "replies": 2
+ },
+ "hf_refractory_main_phase_fraction|fable + facts": {
+  "rho": 0.6629122639616623,
   "recall": 0.15,
-  "error_raw": 0.8279605997880622,
-  "error_fit": 0.8165351935482944,
-  "replies": 1
+  "error_raw": 0.8042094872780134,
+  "error_fit": 0.752310111943062,
+  "replies": 2
  },
  "hf_refractory_solidus|rom": {
   "rho": 0.7586950709092077,
@@ -475,12 +727,33 @@
   "error_fit": 0.2408600338264625,
   "replies": 1
  },
+ "hf_refractory_solidus|opus": {
+  "rho": 0.8955241455688696,
+  "recall": 0.725,
+  "error_raw": 1.1855571490418075,
+  "error_fit": 0.43382913603140727,
+  "replies": 2
+ },
+ "hf_refractory_solidus|opus + facts": {
+  "rho": 0.9377359983535504,
+  "recall": 0.9,
+  "error_raw": 0.380179205251807,
+  "error_fit": 0.31556930718656057,
+  "replies": 2
+ },
  "hf_refractory_solidus|fable": {
-  "rho": 0.8588648875013679,
-  "recall": 0.7,
-  "error_raw": 0.8591619690835526,
-  "error_fit": 0.5431208182061192,
-  "replies": 1
+  "rho": 0.8498240514817019,
+  "recall": 0.6499999999999999,
+  "error_raw": 0.9314552738888605,
+  "error_fit": 0.5472899614222915,
+  "replies": 2
+ },
+ "hf_refractory_solidus|fable + facts": {
+  "rho": 0.8996332601402612,
+  "recall": 0.825,
+  "error_raw": 0.6034827577585575,
+  "error_fit": 0.426853990418272,
+  "replies": 2
  },
  "loop_bulk_modulus|rule": {
   "rho": 0.7381410265169832,
@@ -1140,12 +1413,33 @@
   "error_fit": 0.922435733623629,
   "replies": 1
  },
+ "ti_alloy_alpha_fraction|opus": {
+  "rho": 0.39477104975674726,
+  "recall": 0.375,
+  "error_raw": 1.2185492717311142,
+  "error_fit": 0.8932596304646716,
+  "replies": 2
+ },
+ "ti_alloy_alpha_fraction|opus + facts": {
+  "rho": 0.4279398122650945,
+  "recall": 0.42500000000000004,
+  "error_raw": 0.9325609650565665,
+  "error_fit": 0.8369211255663689,
+  "replies": 2
+ },
  "ti_alloy_alpha_fraction|fable": {
-  "rho": 0.26506034003926715,
-  "recall": 0.1,
-  "error_raw": 1.1895643636018287,
-  "error_fit": 0.9212259728192452,
-  "replies": 1
+  "rho": 0.32049881960460636,
+  "recall": 0.22499999999999998,
+  "error_raw": 1.3997225024270366,
+  "error_fit": 0.9144968967122697,
+  "replies": 2
+ },
+ "ti_alloy_alpha_fraction|fable + facts": {
+  "rho": 0.4553919918106649,
+  "recall": 0.25,
+  "error_raw": 0.9817116365033842,
+  "error_fit": 0.8323968988709054,
+  "replies": 2
  },
  "ti_alloy_alpha_transus|rom": {
   "rho": -0.03726695831180709,
@@ -1161,12 +1455,33 @@
   "error_fit": 0.9905175371842161,
   "replies": 1
  },
+ "ti_alloy_alpha_transus|opus": {
+  "rho": 0.30388190989112107,
+  "recall": 0.13157894736842105,
+  "error_raw": 1.2938971958795844,
+  "error_fit": 0.9372461201413189,
+  "replies": 2
+ },
+ "ti_alloy_alpha_transus|opus + facts": {
+  "rho": 0.1069212390347053,
+  "recall": 0.10526315789473684,
+  "error_raw": 1.8147495629168233,
+  "error_fit": 0.9982593159671329,
+  "replies": 2
+ },
  "ti_alloy_alpha_transus|fable": {
-  "rho": 0.3017515642738953,
-  "recall": 0.15789473684210525,
-  "error_raw": 1.4015671480836085,
-  "error_fit": 0.9395488149574633,
-  "replies": 1
+  "rho": 0.25847659507559184,
+  "recall": 0.13157894736842105,
+  "error_raw": 1.4865705925704562,
+  "error_fit": 0.9512955468519705,
+  "replies": 2
+ },
+ "ti_alloy_alpha_transus|fable + facts": {
+  "rho": 0.24137360513367048,
+  "recall": 0.21052631578947367,
+  "error_raw": 1.4863620913020354,
+  "error_fit": 0.9744701479997935,
+  "replies": 2
  },
  "ti_alloy_freezing_range|rom": {
   "rho": NaN,
@@ -1182,12 +1497,33 @@
   "error_fit": 0.35241523386130774,
   "replies": 1
  },
+ "ti_alloy_freezing_range|opus": {
+  "rho": 0.8952963481836571,
+  "recall": 0.7250000000000001,
+  "error_raw": 1.4689900360562151,
+  "error_fit": 0.45216238964806155,
+  "replies": 2
+ },
+ "ti_alloy_freezing_range|opus + facts": {
+  "rho": 0.9097835519267181,
+  "recall": 0.875,
+  "error_raw": 0.6673885456900159,
+  "error_fit": 0.4317165486024342,
+  "replies": 2
+ },
  "ti_alloy_freezing_range|fable": {
-  "rho": 0.7479845779577438,
-  "recall": 0.5,
-  "error_raw": 1.5810781752459206,
-  "error_fit": 0.653794391776646,
-  "replies": 1
+  "rho": 0.7722232870620065,
+  "recall": 0.525,
+  "error_raw": 1.5247683828917125,
+  "error_fit": 0.6279886247144051,
+  "replies": 2
+ },
+ "ti_alloy_freezing_range|fable + facts": {
+  "rho": 0.9262326004897231,
+  "recall": 0.85,
+  "error_raw": 0.5627099155082245,
+  "error_fit": 0.388668053714639,
+  "replies": 2
  },
  "ti_alloy_hardness|handbook": {
   "rho": -0.7185156646352744,
@@ -1238,12 +1574,33 @@
   "error_fit": 0.7083923257278817,
   "replies": 1
  },
+ "ti_alloy_intermetallic_fraction|opus": {
+  "rho": 0.7780679596536092,
+  "recall": 0.5,
+  "error_raw": 0.6939634511757563,
+  "error_fit": 0.6864527631029553,
+  "replies": 2
+ },
+ "ti_alloy_intermetallic_fraction|opus + facts": {
+  "rho": 0.4607689094459705,
+  "recall": 0.4,
+  "error_raw": 1.0301843505249253,
+  "error_fit": 0.8890295518522177,
+  "replies": 2
+ },
  "ti_alloy_intermetallic_fraction|fable": {
-  "rho": 0.7729273201488878,
-  "recall": 0.65,
-  "error_raw": 0.6747114156357095,
-  "error_fit": 0.6368500128274543,
-  "replies": 1
+  "rho": 0.7744818915520866,
+  "recall": 0.625,
+  "error_raw": 0.6357616434099487,
+  "error_fit": 0.6006140184822469,
+  "replies": 2
+ },
+ "ti_alloy_intermetallic_fraction|fable + facts": {
+  "rho": 0.7015260137409511,
+  "recall": 0.325,
+  "error_raw": 0.8164529666763087,
+  "error_fit": 0.6847401108414217,
+  "replies": 2
  },
  "ti_alloy_solidus|rom": {
   "rho": -0.07854545109532445,
@@ -1259,12 +1616,33 @@
   "error_fit": 0.39202635422260973,
   "replies": 1
  },
- "ti_alloy_solidus|fable": {
-  "rho": 0.8216307172555815,
+ "ti_alloy_solidus|opus": {
+  "rho": 0.7623499494575126,
   "recall": 0.6,
-  "error_raw": 0.9593451274492885,
-  "error_fit": 0.565355927689133,
-  "replies": 1
+  "error_raw": 1.0776852257457743,
+  "error_fit": 0.6300562504132707,
+  "replies": 2
+ },
+ "ti_alloy_solidus|opus + facts": {
+  "rho": 0.900929294376857,
+  "recall": 0.7,
+  "error_raw": 0.540488599018156,
+  "error_fit": 0.40805570567909555,
+  "replies": 2
+ },
+ "ti_alloy_solidus|fable": {
+  "rho": 0.8299858070302903,
+  "recall": 0.6499999999999999,
+  "error_raw": 0.9490581266676967,
+  "error_fit": 0.5525269494473424,
+  "replies": 2
+ },
+ "ti_alloy_solidus|fable + facts": {
+  "rho": 0.8962280000430094,
+  "recall": 0.7,
+  "error_raw": 0.49565778815632056,
+  "error_fit": 0.40636876106522124,
+  "replies": 2
  },
  "ti_alloy_yield_strength|handbook": {
   "rho": -0.5159703967138001,

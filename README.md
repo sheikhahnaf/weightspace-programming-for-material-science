@@ -1,4 +1,6 @@
-# Written networks for materials: a language model writes a property predictor from knowledge alone
+# Weight-space programming for materials science
+
+A language model writes property-prediction networks from knowledge alone.
 
 A language model is given a task in words, the names of the inputs and an empty 16-unit network, and writes every weight. No data, no training run, no tools. This repository tests what such a network is good for in materials discovery, and records every prompt, reply and score.
 

@@ -132,6 +132,18 @@ python $E7/run_priors.py static --jobs 4 ; python $E7/run_priors.py bo --seeds 2
 
 The Thermo-Calc numbers are deterministic for a given database; they were not re-run on a second machine. A BO trace is cached with the candidate priors that existed when it ran, so an LLM source must be run only after all its replies are on disk.
 
+## 4g. Written networks on crystal structures (docs/results/2026-11-12-round7.md, section 2)
+
+```bash
+E1=experiments/e1_surrogate_head
+python $E1/run_structure_prior.py --jobs 6      # prior mean: rule and every written K / Cp network -> results/structure_prior/summary.md
+python $E1/run_structure_features.py --jobs 6   # hidden layer as GP inputs -> results/structure_prior/features/summary.md
+python experiments/e7_calphad_prior/summarise.py  # Thermo-Calc overview table -> experiments/e7_calphad_prior/results/overview.md
+# on FASTER (48 cores): sbatch $E1/hprc_structure.slurm ; sbatch experiments/e7_calphad_prior/hprc/priors.slurm
+```
+
+No new model runs: the networks are the replies in `experiments/e3_generator_task_vectors/runs/filter_{K,Cp}__*`. Cells are cached one file each, so an interrupted run resumes.
+
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 
 ```bash

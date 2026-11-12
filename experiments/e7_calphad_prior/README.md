@@ -60,4 +60,4 @@ python $E7/run_priors.py static --jobs 4 ; python $E7/run_priors.py bo --seeds 2
 
 Filled in by the commands above: `results/baseline/baseline_table.md`, `results/references/summary.md`, `results/static/summary.md`, `results/bo/summary_init5_steps25_seeds20.md`.
 
-**Status (2026-11-12).** STATUS_PLACEHOLDER
+**Status (2026-11-12).** Pools computed for nine systems (200 to 400 compositions each). Written networks (Opus 5.5, Fable 5.2, with and without sub-system facts) scored statically and in 20-seed BO for four systems, 16 targets: `results/overview.md`, `docs/results/2026-11-12-round7.md`. Replies for the other five systems (19 targets) are being collected; their GP fits have not been run.

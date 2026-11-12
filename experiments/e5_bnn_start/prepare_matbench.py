@@ -10,7 +10,7 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "experiments" / "e3_generator_task_vectors"))
+sys.path.insert(0, str(ROOT / "experiments" / "e3_crystal_filter"))
 from filter_arm import FEATURES, describe  # noqa: E402
 
 from matminer.datasets import load_dataset

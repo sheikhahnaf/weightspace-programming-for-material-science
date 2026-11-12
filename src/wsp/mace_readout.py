@@ -12,7 +12,7 @@ w2 (16), scale and shift are the 2,283 numbers this experiment edits. The
 formulas were checked against the model to 1e-15 (r0) and 5e-7 (r1, limited by
 the printed precision of ACT).
 
-The features come from experiments/e2_mlip_readout_edit/cache_features.py. The
+The features come from supplementary/e2_mlip_readout_edit/cache_features.py. The
 summed pair term is recovered from MACE's own cached energies, so the unedited
 weights reproduce those energies exactly.
 """

@@ -36,7 +36,7 @@ from scipy.stats import wilcoxon
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-E3 = ROOT / "experiments" / "e3_generator_task_vectors"
+E3 = ROOT / "experiments" / "e3_crystal_filter"
 sys.path.insert(0, str(E3))
 
 OUT = HERE / "results" / "structure_prior"

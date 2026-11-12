@@ -100,9 +100,9 @@ The one narrow-sense entry point is small networks around the generator: an LLM-
 | Experiment | Target | Sense | First step costs | Folder |
 |---|---|---|---|---|
 | E1 readout head and prior mean on frozen ORB embeddings | BO surrogate | narrow | CPU, plus LLM calls | `experiments/e1_surrogate_head/` |
-| E2 scalar readout edit of MACE | MLIP | narrow, with forward passes | one GPU, hours | `experiments/e2_mlip_readout_edit/` |
-| E3 task vectors of the fine-tuned generators | generative | broad | download plus linear algebra | `experiments/e3_generator_task_vectors/` |
-| E4 learning from the zoo of fitted surrogates | BO surrogate | broad | CPU | `experiments/e4_surrogate_zoo/` |
+| E2 scalar readout edit of MACE | MLIP | narrow, with forward passes | one GPU, hours | `supplementary/e2_mlip_readout_edit/` |
+| E3 task vectors of the fine-tuned generators | generative | broad | download plus linear algebra | `supplementary/e3_generator_task_vectors/` |
+| E4 learning from the zoo of fitted surrogates | BO surrogate | broad | CPU | `supplementary/e4_surrogate_zoo/` |
 
 How this differs from the research report's ranking: its first three ideas (readout editor, prior mean, audit) are folded into E1 as arms; its MACE readout idea is E2 with softening as the target instead of a change of functional, because DFT references for that already exist in the sibling repo; its MatterGen adapter-arithmetic idea needs new adapter training, so E3 uses the checkpoints already made; E4 is not in the report and comes from the 8.3 GB parameter zoo found in `autoresearch-bo`. The report's refractory-alloy ideas (Nb-Ti-Hf LoRA arithmetic) were not taken up: that chemistry focus is not in the three repos and appears to come from the account's other work.
 

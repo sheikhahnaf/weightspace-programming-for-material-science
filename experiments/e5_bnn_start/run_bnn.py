@@ -78,7 +78,7 @@ def replies(task: str) -> dict[str, list[dict]]:
     from wsp import load_weights
 
     if task == "matbench_kvrh":
-        folder, pattern = ROOT / "experiments/e3_generator_task_vectors/runs", r"filter_K__(opus|fable)__rep\d+"
+        folder, pattern = ROOT / "experiments/e3_crystal_filter/runs", r"filter_K__(opus|fable)__rep\d+"
     else:  # the three earliest Fable replies of two tasks carry no model tag in their folder name
         folder, pattern = ROOT / "experiments/e1_surrogate_head/runs", rf"write__{task}(?:__(opus|fable))?(?:__rep\d+)?"
     out: dict[str, list[dict]] = {m: [] for m in MODELS}

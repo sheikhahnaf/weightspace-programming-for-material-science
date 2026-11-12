@@ -11,7 +11,7 @@ reference energies, pair repulsion). W1 (256 x 256), b1 (256), w2 (256) and b2 (
 are the 66,049 numbers of the head.
 
 x, A and the model's own energies come from
-experiments/e2_mlip_readout_edit/cache_features_orb.py. C is recovered per geometry
+supplementary/e2_mlip_readout_edit/cache_features_orb.py. C is recovered per geometry
 from those energies, so the unedited head reproduces them exactly.
 """
 

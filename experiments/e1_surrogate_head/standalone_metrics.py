@@ -28,7 +28,7 @@ from scipy.stats import pearsonr, spearmanr
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-E3 = ROOT / "experiments" / "e3_generator_task_vectors"
+E3 = ROOT / "experiments" / "e3_crystal_filter"
 E7 = ROOT / "experiments" / "e7_calphad_prior"
 OUT = HERE / "results" / "standalone"
 RUN = re.compile(r"(?P<arm>write|writepd)__(?P<task>.+?)(?:__(?P<model>opus|fable|sonnet|haiku))?__rep(?P<rep>\d+)")

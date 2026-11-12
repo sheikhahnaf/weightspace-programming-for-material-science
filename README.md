@@ -41,9 +41,9 @@ Rounds 1 and 2 used one model and a handful of runs; round 3 is the benchmarked 
 | Experiment | Application | Data in this repo | State |
 |---|---|---|---|
 | [E1](experiments/e1_surrogate_head/) readout head and prior mean | BO surrogate: closed-loop bulk modulus and heat capacity, alloy strength, titanium alloys, composition screening | `data/closed_loop_bm`, `data/closed_loop_cp`, `data/alloys` | baselines, edit, repair and write arms run; BO loop run |
-| [E2](experiments/e2_mlip_readout_edit/) scalar readout edit of MACE | MLIP | `data/causal_replay/esen_vs_dft_bm.csv`, `data/dft_validation` | specified |
-| [E3](experiments/e3_generator_task_vectors/) task vectors of fine-tuned generators | generative model | checkpoints on Hugging Face, not downloaded | specified |
-| [E4](experiments/e4_surrogate_zoo/) learning from fitted surrogates | BO surrogate, broad sense | `data/surrogate_zoo` (30,360 fitted surrogates) | step 2 run |
+| [E2](supplementary/e2_mlip_readout_edit/) scalar readout edit of MACE | MLIP | `data/causal_replay/esen_vs_dft_bm.csv`, `data/dft_validation` | specified |
+| [E3](supplementary/e3_generator_task_vectors/) task vectors of fine-tuned generators | generative model | checkpoints on Hugging Face, not downloaded | specified |
+| [E4](supplementary/e4_surrogate_zoo/) learning from fitted surrogates | BO surrogate, broad sense | `data/surrogate_zoo` (30,360 fitted surrogates) | step 2 run |
 
 ## Layout
 

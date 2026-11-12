@@ -64,13 +64,13 @@ python scripts/record_run.py experiments/e1_surrogate_head/runs/<id> --model ...
 # section 3: BO with the written priors (about 20 minutes on a laptop CPU)
 python experiments/e1_surrogate_head/run_bo.py --seeds 8 --steps 25
 # section 4: surrogate zoo (needs data/large; see section 1 above)
-python experiments/e4_surrogate_zoo/run_zoo.py
+python supplementary/e4_surrogate_zoo/run_zoo.py
 ```
 
 ## 4c. Round 3 (docs/results/2026-11-11-round3.md)
 
 ```bash
-E1=experiments/e1_surrogate_head; E2=experiments/e2_mlip_readout_edit; E3=experiments/e3_generator_task_vectors
+E1=experiments/e1_surrogate_head; E2=supplementary/e2_mlip_readout_edit; E3=supplementary/e3_generator_task_vectors
 # section 1: write arm, all models (prompts: llm_arm.py prompt write --task <t> --tag <model>__rep<k>)
 python $E1/score_write_all.py                       # -> results/write_arm/summary.md
 # section 2: BO with first-label selection (about 25 minutes on 8 cores)
@@ -93,9 +93,11 @@ How an LLM run is launched: a fresh Claude Code subagent with the model alias an
 ## 4d. Round 4 (docs/results/2026-11-11-round4.md)
 
 ```bash
-E1=experiments/e1_surrogate_head; E2=experiments/e2_mlip_readout_edit; E3=experiments/e3_generator_task_vectors; E5=experiments/e5_bnn_start
+E1=experiments/e1_surrogate_head; E2=supplementary/e2_mlip_readout_edit; E3=supplementary/e3_generator_task_vectors; E5=experiments/e5_bnn_start
 # section 1: written filter in front of the generator (needs results/hprc from round 3)
-python $E3/filter_arm.py prompt --target K --tag <model>__rep<k> ; python $E3/filter_arm.py score
+F=experiments/e3_crystal_filter
+python $F/filter_arm.py prompt --target K --tag <model>__rep<k> ; python $F/filter_arm.py score   # MatterGen samples
+python $F/filter_arm.py score --backbone cf                                                            # CrystalFlow samples
 # section 2: leak repair, all models
 python $E1/llm_arm.py prompt repair --task <task> --seed <s> --tag <model> ; python $E1/score_repair_all.py
 # section 3: BNN start, prior and prior mean (about 40 minutes on 8 cores; cells are cached, so it resumes)
@@ -142,7 +144,7 @@ python experiments/e7_calphad_prior/summarise.py  # Thermo-Calc overview table -
 # on FASTER (48 cores): sbatch $E1/hprc_structure.slurm ; sbatch experiments/e7_calphad_prior/hprc/priors.slurm
 ```
 
-No new model runs: the networks are the replies in `experiments/e3_generator_task_vectors/runs/filter_{K,Cp}__*`. Cells are cached one file each, so an interrupted run resumes.
+No new model runs: the networks are the replies in `experiments/e3_crystal_filter/runs/filter_{K,Cp}__*`. Cells are cached one file each, so an interrupted run resumes.
 
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 
@@ -169,7 +171,7 @@ The brief, the Claude.ai Research report (266 sources), its source list, the Con
 ## 7. Generator task vectors on CrystalFlow and ADiT (E3, added 2026-11-11)
 
 ```bash
-E3=experiments/e3_generator_task_vectors
+E3=supplementary/e3_generator_task_vectors
 # CrystalFlow statistics on the laptop: copy the base (226 MB, untracked), then
 rsync -a faster:/scratch/user/ahnafalvi/checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20/ data/large/base_checkpoints/crystalflow/DNG-mp-20/
 python $E3/download_checkpoints.py --backbone cf && python $E3/task_vectors.py --backbone cf    # -> results/task_vectors_cf.json

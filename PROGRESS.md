@@ -13,7 +13,7 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 | E1 baselines, 5 tasks × 5 seeds | `experiments/e1_surrogate_head/results/`, `docs/results/2026-11-11-e1-pilot.md` | 98f2fa2 |
 | E1 pilot: edit arm (3 runs), write arm (2 runs) | same page; `experiments/e1_surrogate_head/runs/` | 98f2fa2 |
 | E1 round 2: repair arm (4 + control), write replicates (3 per task), BO loop | `docs/results/2026-11-11-round2.md` | 41f57da |
-| E4 step 2: surrogate zoo, leave one benchmark out | same page; `experiments/e4_surrogate_zoo/results/` | 41f57da |
+| E4 step 2: surrogate zoo, leave one benchmark out | same page; `supplementary/e4_surrogate_zoo/results/` | 41f57da |
 
 ## Round 3 plan (in order; tick as done)
 
@@ -33,17 +33,17 @@ Instruction in force (Alvi, 2026-11-11): keep going without stopping; cover all 
 
 ### C. Generative model (E3)
 - [x] C1 (MatterGen and CrystalFlow done; ADiT not downloaded). Download the fine-tuned checkpoints (Hugging Face `SheikhAhnaf/apu-synthesizability-checkpoints`, `finetuned_diffusion/`, about 15 GB) to `data/large/finetuned_diffusion/` (untracked). MatterGen first (base checkpoint is in the local HF cache).
-- [x] C2, C3 for MatterGen (`task_vectors.py --backbone mg`, results in `experiments/e3_generator_task_vectors/results/task_vectors_mg.json`): relative norm of the change 0.4 to 0.6%; rank for 90% energy is 32% of full rank (median) against 48% for the base weights; cosine between seeds of the same target and policy 0.21 mean, between targets 0.11 to 0.17. CrystalFlow needs its base checkpoint (not found locally yet).
+- [x] C2, C3 for MatterGen (`task_vectors.py --backbone mg`, results in `supplementary/e3_generator_task_vectors/results/task_vectors_mg.json`): relative norm of the change 0.4 to 0.6%; rank for 90% energy is 32% of full rank (median) against 48% for the base weights; cosine between seeds of the same target and policy 0.21 mean, between targets 0.11 to 0.17. CrystalFlow needs its base checkpoint (not found locally yet).
 - [ ] C4. On FASTER: 11 MatterGen variants (base, single-seed, seed-mean, sums, rank-8 and rank-32 truncations, negation, 3x scaling), 128 crystals each from the same noise seed, scored with the loop's eSEN bulk-modulus and heat-capacity oracles. See HPRC jobs below. After the array finishes: rsync results (command in the hprc README), then write `analyze_variants.py`.
 
 ## Running now
 
-- Local background: `experiments/e2_mlip_readout_edit/run_baselines.py` (B2). Rerun if no `results/baselines_elastic.json`.
+- Local background: `supplementary/e2_mlip_readout_edit/run_baselines.py` (B2). Rerun if no `results/baselines_elastic.json`.
 - Subagents: write arm A3 (see `scripts/pending_runs.py`).
 
 ## HPRC jobs
 
-Cluster FASTER, billing account `142705330300` (Arroyave, FY2027, 150,000 SU; no default account is set on FASTER, so jobs name it). Working folder `/scratch/group/arroyave_lab/ahnafalvi/wsp/` (user scratch and home are over quota). Scripts and exact commands: `experiments/e3_generator_task_vectors/hprc/README.md`.
+Cluster FASTER, billing account `142705330300` (Arroyave, FY2027, 150,000 SU; no default account is set on FASTER, so jobs name it). Working folder `/scratch/group/arroyave_lab/ahnafalvi/wsp/` (user scratch and home are over quota). Scripts and exact commands: `supplementary/e3_generator_task_vectors/hprc/README.md`.
 
 | Job id | Script | What | State when last checked | When it finishes |
 |---|---|---|---|---|
@@ -72,7 +72,7 @@ Everything below is committed. Nothing is lost if the session ends here.
 | What | Where | How to pick up |
 |---|---|---|
 | BO with first-label prior selection, 20 seeds (A4) | local background process, cache `experiments/e1_surrogate_head/results/bo_select/init5_steps25/` | rerun `python experiments/e1_surrogate_head/run_bo_select.py --seeds 20 --steps 25 --jobs 8`; finished traces are reused; it prints and writes `summary_init5_steps25_seeds20.md` |
-| FASTER array **3257271** (11 variants × 128 crystals, tasks 0 to 10, all running on T4 nodes when last seen) | `/scratch/group/arroyave_lab/ahnafalvi/wsp/results/<variant>/scores.csv` | `ssh faster "squeue -u \$USER"`; if tasks hit the 12 h limit, `sbatch hprc/array.slurm` again (resumes); then the rsync in `hprc/README.md` and `python experiments/e3_generator_task_vectors/analyze_variants.py` (written, not yet run on data) |
+| FASTER array **3257271** (11 variants × 128 crystals, tasks 0 to 10, all running on T4 nodes when last seen) | `/scratch/group/arroyave_lab/ahnafalvi/wsp/results/<variant>/scores.csv` | `ssh faster "squeue -u \$USER"`; if tasks hit the 12 h limit, `sbatch hprc/array.slurm` again (resumes); then the rsync in `hprc/README.md` and `python supplementary/e3_generator_task_vectors/analyze_variants.py` (written, not yet run on data) |
 | MLIP run `edit_v2__sonnet__rep3` | subagent, may or may not have written `reply.txt` | `llm_arm.py score-all` picks it up if present |
 | Leak-repair arm at scale (A5): 40 prompts generated, **no agent launched** | `python scripts/pending_runs.py` lists them (`repair__*__{opus,sonnet,haiku,fable}`) | launch each with `Agent(model=<alias>, prompt="Read .../e1_surrogate_head/WRAPPER.md and follow it exactly... RUN = <name>")`, then `harvest_run_usage.py` and `llm_arm.py score` per run |
 
@@ -96,7 +96,7 @@ Everything below is committed. Nothing is lost if the session ends here.
 
 Committed and pushed unless marked. Paper repo also pushed (second draft, 10 pages, tag `pristine-pre-restyle-2026-11-11`).
 
-**Finished and written up** (`docs/results/2026-11-11-round5.md`): four potentials (MACE, ORB, eSEN, GRACE) through `src/wsp/linear_head.py`; single-shot ORB edits with permuted-value control; five-attempt feedback chains (`experiments/e2_mlip_readout_edit/head_arm.py`, all 16 chains complete, `results/head/chains.md`); budgeted optimiser baselines; outside-the-readout references (`beyond_readout.py`, `risk_arm.py`).
+**Finished and written up** (`docs/results/2026-11-11-round5.md`): four potentials (MACE, ORB, eSEN, GRACE) through `src/wsp/linear_head.py`; single-shot ORB edits with permuted-value control; five-attempt feedback chains (`supplementary/e2_mlip_readout_edit/head_arm.py`, all 16 chains complete, `results/head/chains.md`); budgeted optimiser baselines; outside-the-readout references (`beyond_readout.py`, `risk_arm.py`).
 
 **Slide deck:** `slides/gp-prior/gp-prior-weight-space-programming.pptx` (54 slides, architecture slides 18–19). NOT yet committed (`git add slides` after checking size; `slides/*/node_modules/` is ignored). Never rebuild while it is open in PowerPoint. One cosmetic fault on slide 54 (caption touches table).
 
@@ -104,11 +104,11 @@ Committed and pushed unless marked. Paper repo also pushed (second draft, 10 pag
 
 | What | State | Resume |
 |---|---|---|
-| E6 table reader, synthetic ORCHID-Bench (`experiments/e6_extraction_reader/`) | Unedited GLM-OCR read on FASTER, both renderings (degraded: 72.2% cells exact, 81.3% ignoring spaces, numbers 100% by the bench scorer; Opus baseline 97.4% / 100%). Edits (`edits/*.json`: counts, opus rep1–2, fable rep1–2) being read by FASTER job 3259965; first scores on the 10 test papers, exact cells: unedited 0.714, counts 0.741, opus 0.733 / 0.747, fable rep1 0.758, fable rep2 incomplete | `rsync` `results/` back from `faster:/scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming/experiments/e6_extraction_reader/results/`, then `env/ocr-venv/bin/python experiments/e6_extraction_reader/edit_arm.py score`. If the job died: `sbatch experiments/e6_extraction_reader/hprc/edits.slurm edits/<tag>.json ...` (cached per crop). Model load on FASTER takes 6 minutes; that is normal |
+| E6 table reader, synthetic ORCHID-Bench (`supplementary/e6_extraction_reader/`) | Unedited GLM-OCR read on FASTER, both renderings (degraded: 72.2% cells exact, 81.3% ignoring spaces, numbers 100% by the bench scorer; Opus baseline 97.4% / 100%). Edits (`edits/*.json`: counts, opus rep1–2, fable rep1–2) being read by FASTER job 3259965; first scores on the 10 test papers, exact cells: unedited 0.714, counts 0.741, opus 0.733 / 0.747, fable rep1 0.758, fable rep2 incomplete | `rsync` `results/` back from `faster:/scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming/supplementary/e6_extraction_reader/results/`, then `env/ocr-venv/bin/python supplementary/e6_extraction_reader/edit_arm.py score`. If the job died: `sbatch supplementary/e6_extraction_reader/hprc/edits.slurm edits/<tag>.json ...` (cached per crop). Model load on FASTER takes 6 minutes; that is normal |
 | E6 real papers | 400 crops in `data/large/orchid_real/` (untracked, publisher material, never commit); code `build_real_set.py`, `read_real.py`, `score_real.py`; manifest `results/real_set_manifest.json`. Open model NOT yet run on them | copy `data/large/orchid_real/{crops,index.jsonl}` to FASTER group scratch (private), run `read_real.py --tag unedited` with `ocr-venv2`, then with each edit; Opus baseline on a subset through `opus_reader.py`-style runs |
 | Joint BoTorch mean (`src/wsp/joint_mean.py`, `experiments/e1_surrogate_head/run_joint_mean.py`) | static done (`results/joint_mean/static_summary.md`: at 5 labels ρ / coverage: two-stage 0.64 / 0.63, learned 0.66 / 0.75, integrated 0.68 / 0.79); BO part running locally (cached per trace) | `python experiments/e1_surrogate_head/run_joint_mean.py bo --seeds 20 --steps 25 --jobs 6` prints the table |
 | E7 Thermo-Calc tasks (`experiments/e7_calphad_prior/`, `data/calphad/`) | agent `tc-tasks` building ≥ 8 alloy systems with TC-Python (env `tcpy`), tasks, references, prompts for `write` and `write_pd`; all four mean arms required | read `experiments/e7_calphad_prior/README.md`; rerun `make_tc_data.py` (resumable); then launch the listed run names as subagents (`WRAPPER.md` there), score, run BO |
-| E3 more backbones | agent `gen-backbones`; FASTER prep jobs 3259982 (CrystalFlow), 3259983 (ADiT) | see the entry that agent appends below and `experiments/e3_generator_task_vectors/hprc/README.md` |
+| E3 more backbones | agent `gen-backbones`; FASTER prep jobs 3259982 (CrystalFlow), 3259983 (ADiT) | see the entry that agent appends below and `supplementary/e3_generator_task_vectors/hprc/README.md` |
 
 **Not done yet:** round-6 results page (E6, joint mean, E7, backbones); README, questions.md and REPRODUCE sections for rounds 4–5 additions (`REPRODUCE.md` has 4d; add 4e for round 5); webpage `site/index.html` is updated locally with round 5 but NOT republished (republish the same path to https://claude.ai/artifact/S9fPA66YFMW3oux1sPqLkh); paper lacks E6, joint mean, E7, backbones.
 
@@ -118,7 +118,7 @@ Committed and pushed unless marked. Paper repo also pushed (second draft, 10 pag
 
 Inventory of RL fine-tunes (HF `finetuned_diffusion/`, 59 runs): MatterGen 20, CrystalFlow 20, ADiT 19 (no `hcap`/`accel` seed 99); each 2 targets x 2 policies x seeds 7, 17, 23, 99, 113. No other backbone has fine-tunes. Base checkpoints and samplers, all on FASTER user scratch (read only): CrystalFlow `checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20/` + the loop's `CrystalFlowSuite`; ADiT `checkpoints/adit/{ldm,vae}.ckpt` + the loop's `ADiTSuite`. The CrystalFlow base (226 MB) is also copied to `data/large/base_checkpoints/crystalflow/DNG-mp-20/` (untracked).
 
-Code: `task_vectors.py`, `hprc/{env.sh,prep.slurm,array.slurm,make_variants.py,sample_and_score.py}` and `analyze_variants.py` take a backbone (`--backbone`, or `BACKBONE=` for the slurm scripts); MatterGen output re-checked identical. Commands: `experiments/e3_generator_task_vectors/hprc/README.md`, section "CrystalFlow and ADiT".
+Code: `task_vectors.py`, `hprc/{env.sh,prep.slurm,array.slurm,make_variants.py,sample_and_score.py}` and `analyze_variants.py` take a backbone (`--backbone`, or `BACKBONE=` for the slurm scripts); MatterGen output re-checked identical. Commands: `supplementary/e3_generator_task_vectors/hprc/README.md`, section "CrystalFlow and ADiT".
 
 | Job | What | State when last checked |
 |---|---|---|
@@ -140,7 +140,7 @@ To resume:
 User decision: Claude usage goes only to the GP-prior case. Jobs that need no Claude usage keep running.
 
 Paused, with what is on disk:
-- **E8 formation enthalpy** (`experiments/e8_formation_enthalpy/`): 800 compounds and 78 elemental references in `data/formation/`; MACE energies done, ORB energies computing locally; MACE as shipped 0.195 eV/atom MAE on the 400 held-out compounds (`results/correction.md`); prompts written under `runs/correct__mace__*`; **no model runs launched**. To resume: `correction_arm.py prompt` (adds ORB), launch the runs with `WRAPPER.md`, then `correction_arm.py score`. The least-squares reference needs its ridge strength chosen properly before it is used as a baseline.
+- **E8 formation enthalpy** (`supplementary/e8_formation_enthalpy/`): 800 compounds and 78 elemental references in `data/formation/`; MACE energies done, ORB energies computing locally; MACE as shipped 0.195 eV/atom MAE on the 400 held-out compounds (`results/correction.md`); prompts written under `runs/correct__mace__*`; **no model runs launched**. To resume: `correction_arm.py prompt` (adds ORB), launch the runs with `WRAPPER.md`, then `correction_arm.py score`. The least-squares reference needs its ridge strength chosen properly before it is used as a baseline.
 - **E6 real-paper tables**: FASTER job 3260081 and continuations 3260491, 3260492 keep reading; replies in `orchid_real_private/replies/` on scratch. Not yet fetched or scored.
 - **E3 backbones**: CrystalFlow sampling array 3260069 running; ADiT not started. See the E3 section.
 - **E2**: nothing running.
@@ -157,15 +157,15 @@ Work stopped at the user's request; nothing was cancelled. State when last check
 To pick up, from the repo root with an open `ssh faster` connection:
 
 ```bash
-W=/scratch/group/arroyave_lab/ahnafalvi/wsp; H=$W/weighspace-programming/experiments/e3_generator_task_vectors/hprc
+W=/scratch/group/arroyave_lab/ahnafalvi/wsp; H=$W/weighspace-programming/supplementary/e3_generator_task_vectors/hprc
 ssh faster "sacct -j 3260069,3260080 -X -n --format=JobID%14,State,Elapsed; wc -l $W/results_cf/*/scores.csv; tail -5 $W/logs/prep_3260080.out; tail -20 $W/logs/prep_3260080.err"
 # CrystalFlow: every scores.csv should have 129 lines; if tasks timed out: ssh faster "cd $H && sbatch --export=ALL,BACKBONE=cf array.slurm"
 rsync -avz --include='*/' --include='scores.csv' --include='generated_crystals.extxyz' --exclude='*' \
-      faster:$W/results_cf/ experiments/e3_generator_task_vectors/results/hprc_cf/
-python experiments/e3_generator_task_vectors/analyze_variants.py --backbone cf     # matinvent env -> results/variants_summary_cf.{md,json}
+      faster:$W/results_cf/ supplementary/e3_generator_task_vectors/results/hprc_cf/
+python supplementary/e3_generator_task_vectors/analyze_variants.py --backbone cf     # matinvent env -> results/variants_summary_cf.{md,json}
 # ADiT, only if prep_3260080.out shows SMOKE_DONE (otherwise stop on ADiT and report the error in the .err file):
 ssh faster "cd $H && sbatch --export=ALL,BACKBONE=adit array.slurm"
-rsync -avz faster:$W/task_vectors/task_vectors_adit.json experiments/e3_generator_task_vectors/results/   # after PREP_DONE
+rsync -avz faster:$W/task_vectors/task_vectors_adit.json supplementary/e3_generator_task_vectors/results/   # after PREP_DONE
 # after the ADiT array: same rsync with results_adit/ -> results/hprc_adit/, then analyze_variants.py --backbone adit
 ```
 

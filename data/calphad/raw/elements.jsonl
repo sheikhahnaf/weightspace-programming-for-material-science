@@ -16,3 +16,4 @@
 {"key": "TCTI6:Ti", "melting_point_K": 1941.03, "phase_298K": "HCP_A3#1", "density_298K_g_cm3": 4.50230233234953, "procedure": 2}
 {"key": "Cu", "melting_point_K": 1357.77, "phase_298K": "FCC_L12#1", "density_298K_g_cm3": 8.935383848987513, "procedure": 2}
 {"key": "Hf", "melting_point_K": 2506.02, "phase_298K": "HCP_A3#1", "density_298K_g_cm3": 13.283549110692878, "procedure": 2}
+{"key": "TCAL9:Al", "melting_point_K": 933.48, "phase_298K": "FCC_A1#1", "density_298K_g_cm3": 2.6992880597603284, "procedure": 2}

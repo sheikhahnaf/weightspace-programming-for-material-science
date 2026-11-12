@@ -16,11 +16,11 @@ This file is rewritten by `--stage export`; it describes what is on disk now.
 |---|---|---|---|---|---|---|
 | `cantor_al` | TCHEA8 | Al-Co-Cr-Fe-Mn-Ni | 1273 | every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present | 400 | complete |
 | `ni_superalloy` | TCNI12 | Ni-Al-Co-Cr-Mo-Ti-W | 1173 | Ni is the balance and at least 50 at.%; solutes in at.%: Al 0 to 12 (step 2), Co 0 to 20 (step 5), Cr 0 to 20 (step 5), Mo 0 to 6 (step 2), Ti 0 to 6 (step 2), W 0 to 6 (step 2); at least 4 elements present | 250 | complete |
-| `ti_alloy` | TCTI6 | Ti-Al-Mo-Nb-Sn-V-Zr | 973 | Ti is the balance and at least 60 at.%; solutes in at.%: Al 0 to 12 (step 3), Mo 0 to 9 (step 3), Nb 0 to 12 (step 3), Sn 0 to 4 (step 2), V 0 to 12 (step 3), Zr 0 to 8 (step 4); at least 4 elements present | 200 | **in progress**: 178 of 200 rows, facts 43 of 43 |
+| `ti_alloy` | TCTI6 | Ti-Al-Mo-Nb-Sn-V-Zr | 973 | Ti is the balance and at least 60 at.%; solutes in at.%: Al 0 to 12 (step 3), Mo 0 to 9 (step 3), Nb 0 to 12 (step 3), Sn 0 to 4 (step 2), V 0 to 12 (step 3), Zr 0 to 8 (step 4); at least 4 elements present | 200 | complete |
 | `refractory` | TCHEA8 | Mo-Nb-Ta-Ti-V-W-Zr | 1473 | every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present | 200 | complete |
 | `steel` | TCFE10 | Fe-Al-C-Cr-Mn-Mo-Ni | 1173 | Fe is the balance and at least 50 at.%; solutes in at.%: Al 0 to 6 (step 3), C 0 to 2 (step 1), Cr 0 to 24 (step 4), Mn 0 to 20 (step 5), Mo 0 to 4 (step 2), Ni 0 to 20 (step 4); at least 4 elements present | 200 | complete |
 | `hf_refractory` | TCHEA8 | Hf-Mo-Nb-Ta-Ti-Zr | 1273 | every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present | 200 | complete |
-| `cu_ti_3d` | TCHEA8 | Co-Cr-Cu-Fe-Ni-Ti | 1173 | every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present | 200 | **in progress**: 125 of 200 rows, facts 71 of 71 |
+| `cu_ti_3d` | TCHEA8 | Co-Cr-Cu-Fe-Ni-Ti | 1173 | every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present | 200 | **in progress**: 150 of 200 rows, facts 71 of 71 |
 
 Not started yet: `al_alloy`, `al_refractory`.
 
@@ -38,11 +38,11 @@ A target is dropped (not registered as a task) when more than 80% of the pool ha
 | `ni_superalloy` | `freezing_range`: equilibrium freezing range (liquidus temperature minus solidus temperature) | K | minimise | 250 | 0.2 | 42.4 | 518.9 | 0.01 |  |
 | `ni_superalloy` | `gamma_prime_fraction`: equilibrium mole fraction of the ordered L12 phase (gamma prime) at 1173 K | mole | maximise | 249 | 0 | 0.2766 | 1 | 0.33 |  |
 | `ni_superalloy` | `other_phase_fraction`: equilibrium mole fraction, at 1173 K, of all phases other than gamma (fcc) and gamma prime (L12): sigma, mu, P, R, Laves, eta, B2 and bcc | mole | minimise | 249 | 0 | 0 | 0.3648 | 0.58 |  |
-| `ti_alloy` | `solidus`: equilibrium solidus temperature | K | maximise | 178 | 1586 | 1882 | 2091 | 0.01 |  |
-| `ti_alloy` | `freezing_range`: equilibrium freezing range (liquidus temperature minus solidus temperature) | K | minimise | 178 | 10.8 | 172.6 | 494.4 | 0.01 |  |
-| `ti_alloy` | `alpha_transus`: temperature above which no hcp alpha phase is stable at equilibrium (the beta transus when no other phase is present); reported as 773 K when no alpha is stable at 773 K | K | minimise | 169 | 773 | 956.2 | 1219 | 0.05 |  |
-| `ti_alloy` | `alpha_fraction`: equilibrium mole fraction of the hcp alpha phase at 973 K | mole | minimise | 176 | 0 | 0 | 0.8094 | 0.57 |  |
-| `ti_alloy` | `intermetallic_fraction`: equilibrium mole fraction, at 973 K, of all phases other than the disordered bcc (beta) and hcp (alpha) solid solutions, for example Ti3Al | mole | minimise | 176 | 0 | 0.02835 | 1 | 0.41 |  |
+| `ti_alloy` | `solidus`: equilibrium solidus temperature | K | maximise | 200 | 1586 | 1872 | 2091 | 0.01 |  |
+| `ti_alloy` | `freezing_range`: equilibrium freezing range (liquidus temperature minus solidus temperature) | K | minimise | 200 | 10.8 | 194.2 | 494.4 | 0.01 |  |
+| `ti_alloy` | `alpha_transus`: temperature above which no hcp alpha phase is stable at equilibrium (the beta transus when no other phase is present); reported as 773 K when no alpha is stable at 773 K | K | minimise | 191 | 773 | 951.1 | 1219 | 0.06 |  |
+| `ti_alloy` | `alpha_fraction`: equilibrium mole fraction of the hcp alpha phase at 973 K | mole | minimise | 198 | 0 | 0 | 0.8094 | 0.60 |  |
+| `ti_alloy` | `intermetallic_fraction`: equilibrium mole fraction, at 973 K, of all phases other than the disordered bcc (beta) and hcp (alpha) solid solutions, for example Ti3Al | mole | minimise | 198 | 0 | 0.046 | 1 | 0.37 |  |
 | `refractory` | `solidus`: equilibrium solidus temperature | K | maximise | 200 | 1665 | 1948 | 2883 | 0.01 |  |
 | `refractory` | `freezing_range`: equilibrium freezing range (liquidus temperature minus solidus temperature) | K | minimise | 200 | 115 | 547.7 | 1174 | 0.01 |  |
 | `refractory` | `intermetallic_fraction`: equilibrium mole fraction, at 1473 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) | mole | minimise | 200 | 0 | 0 | 0.8956 | 0.69 |  |
@@ -55,10 +55,10 @@ A target is dropped (not registered as a task) when more than 80% of the pool ha
 | `hf_refractory` | `freezing_range`: equilibrium freezing range (liquidus temperature minus solidus temperature) | K | minimise | 200 | 28.7 | 234.1 | 594.6 | 0.01 |  |
 | `hf_refractory` | `intermetallic_fraction`: equilibrium mole fraction, at 1273 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) | mole | minimise | 199 | 0 | 0 | 0.3784 | 0.93 | 93% of the pool has the same value (0) |
 | `hf_refractory` | `main_phase_fraction`: equilibrium mole fraction, at 1273 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases) | mole | maximise | 199 | 0.3849 | 0.8496 | 1 | 0.37 |  |
-| `cu_ti_3d` | `solidus`: equilibrium solidus temperature | K | maximise | 125 | 1194 | 1357 | 1695 | 0.02 |  |
-| `cu_ti_3d` | `freezing_range`: equilibrium freezing range (liquidus temperature minus solidus temperature) | K | minimise | 125 | 9.1 | 181.5 | 397.5 | 0.02 |  |
-| `cu_ti_3d` | `intermetallic_fraction`: equilibrium mole fraction, at 1173 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) | mole | minimise | 124 | 0 | 0.6028 | 1 | 0.18 |  |
-| `cu_ti_3d` | `main_phase_fraction`: equilibrium mole fraction, at 1173 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases) | mole | maximise | 124 | 0.2971 | 0.583 | 1 | 0.02 |  |
+| `cu_ti_3d` | `solidus`: equilibrium solidus temperature | K | maximise | 150 | 1194 | 1351 | 1695 | 0.02 |  |
+| `cu_ti_3d` | `freezing_range`: equilibrium freezing range (liquidus temperature minus solidus temperature) | K | minimise | 150 | 9.1 | 178.9 | 406.2 | 0.01 |  |
+| `cu_ti_3d` | `intermetallic_fraction`: equilibrium mole fraction, at 1173 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) | mole | minimise | 149 | 0 | 0.6208 | 1 | 0.15 |  |
+| `cu_ti_3d` | `main_phase_fraction`: equilibrium mole fraction, at 1173 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases) | mole | maximise | 149 | 0.248 | 0.5638 | 1 | 0.01 |  |
 
 ## Files
 
@@ -79,11 +79,11 @@ A target is dropped (not registered as a task) when more than 80% of the pool ha
 |---|---|---|---|---|---|---|---|---|
 | `cantor_al` | 400 of 400 | {'phases': 3, 'density_298K': 1} | 29 | 0 | 71 of 71 | none | 4,741 | 2.03 |
 | `ni_superalloy` | 250 of 250 | {'phases': 1} | 27 | 0 | 43 of 43 | none | 3,041 | 1.41 |
-| `ti_alloy` | 178 of 200 | {'phases': 2, 'transus': 9} | 160 | 0 | 43 of 43 | none | 3,985 | 2.82 |
+| `ti_alloy` | 200 of 200 | {'phases': 2, 'transus': 9} | 180 | 0 | 43 of 43 | none | 4,478 | 3.09 |
 | `refractory` | 200 of 200 | {'density_298K': 1} | 26 | 0 | 105 of 105 | 1 | 2,462 | 1.31 |
 | `steel` | 200 of 200 | none | 61 | 0 | 43 of 43 | none | 2,771 | 0.75 |
 | `hf_refractory` | 200 of 200 | {'density_298K': 1, 'phases': 1} | 0 | 0 | 71 of 71 | none | 2,206 | 1.79 |
-| `cu_ti_3d` | 125 of 200 | {'phases': 1} | 80 | 0 | 71 of 71 | none | 2,456 | 2.32 |
+| `cu_ti_3d` | 150 of 200 | {'phases': 1} | 103 | 0 | 71 of 71 | none | 3,022 | 2.58 |
 
 A failed quantity is left empty in the CSV; the row is kept for the quantities that did compute.
 

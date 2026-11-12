@@ -163,7 +163,7 @@
   "kind": "balance",
   "base": "Ti",
   "pool_size": 200,
-  "rows": 120,
+  "rows": 175,
   "complete": false,
   "targets": [
    {
@@ -172,10 +172,10 @@
     "wording": "equilibrium solidus temperature",
     "unit": "K",
     "goal": 1.0,
-    "rows": 120,
-    "share_at_most_common_value": 0.017,
+    "rows": 175,
+    "share_at_most_common_value": 0.011,
     "min": 1586.3,
-    "median": 1902.3000000000002,
+    "median": 1881.5,
     "max": 2090.8,
     "dropped": null
    },
@@ -185,11 +185,11 @@
     "wording": "equilibrium freezing range (liquidus temperature minus solidus temperature)",
     "unit": "K",
     "goal": -1.0,
-    "rows": 120,
-    "share_at_most_common_value": 0.017,
+    "rows": 175,
+    "share_at_most_common_value": 0.011,
     "min": 10.8,
-    "median": 152.0,
-    "max": 453.0,
+    "median": 173.4,
+    "max": 494.4,
     "dropped": null
    },
    {
@@ -198,10 +198,10 @@
     "wording": "temperature above which no hcp alpha phase is stable at equilibrium (the beta transus when no other phase is present); reported as 773 K when no alpha is stable at 773 K",
     "unit": "K",
     "goal": -1.0,
-    "rows": 115,
-    "share_at_most_common_value": 0.07,
+    "rows": 166,
+    "share_at_most_common_value": 0.054,
     "min": 773.0,
-    "median": 969.7,
+    "median": 953.95,
     "max": 1219.0,
     "dropped": null
    },
@@ -211,10 +211,10 @@
     "wording": "equilibrium mole fraction of the hcp alpha phase at 973 K",
     "unit": "mole fraction between 0 and 1",
     "goal": -1.0,
-    "rows": 118,
-    "share_at_most_common_value": 0.492,
+    "rows": 173,
+    "share_at_most_common_value": 0.578,
     "min": 0.0,
-    "median": 0.0055,
+    "median": 0.0,
     "max": 0.8094,
     "dropped": null
    },
@@ -224,11 +224,11 @@
     "wording": "equilibrium mole fraction, at 973 K, of all phases other than the disordered bcc (beta) and hcp (alpha) solid solutions, for example Ti3Al",
     "unit": "mole fraction between 0 and 1",
     "goal": -1.0,
-    "rows": 118,
-    "share_at_most_common_value": 0.517,
+    "rows": 173,
+    "share_at_most_common_value": 0.422,
     "min": 0.0,
-    "median": 0.0,
-    "max": 0.9905,
+    "median": 0.028,
+    "max": 1.0,
     "dropped": null
    }
   ]
@@ -381,6 +381,79 @@
    }
   ]
  },
+ "hf_refractory": {
+  "database": "TCHEA8",
+  "elements": [
+   "Hf",
+   "Mo",
+   "Nb",
+   "Ta",
+   "Ti",
+   "Zr"
+  ],
+  "fixed_temperature_K": 1273.0,
+  "alloys": "Hf-Mo-Nb-Ta-Ti-Zr refractory high-entropy alloys",
+  "sampling": "every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present",
+  "kind": "hea",
+  "base": null,
+  "pool_size": 200,
+  "rows": 123,
+  "complete": false,
+  "targets": [
+   {
+    "name": "solidus",
+    "column": "solidus_K",
+    "wording": "equilibrium solidus temperature",
+    "unit": "K",
+    "goal": 1.0,
+    "rows": 123,
+    "share_at_most_common_value": 0.016,
+    "min": 1845.3,
+    "median": 2143.9,
+    "max": 2560.2,
+    "dropped": null
+   },
+   {
+    "name": "freezing_range",
+    "column": "freezing_range_K",
+    "wording": "equilibrium freezing range (liquidus temperature minus solidus temperature)",
+    "unit": "K",
+    "goal": -1.0,
+    "rows": 123,
+    "share_at_most_common_value": 0.016,
+    "min": 28.7,
+    "median": 220.1,
+    "max": 594.6,
+    "dropped": null
+   },
+   {
+    "name": "intermetallic_fraction",
+    "column": "intermetallic_fraction",
+    "wording": "equilibrium mole fraction, at 1273 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12)",
+    "unit": "mole fraction between 0 and 1",
+    "goal": -1.0,
+    "rows": 123,
+    "share_at_most_common_value": 0.902,
+    "min": 0.0,
+    "median": 0.0,
+    "max": 0.3784,
+    "dropped": "90% of the pool has the same value (0)"
+   },
+   {
+    "name": "main_phase_fraction",
+    "column": "main_phase_fraction",
+    "wording": "equilibrium mole fraction, at 1273 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases)",
+    "unit": "mole fraction between 0 and 1",
+    "goal": 1.0,
+    "rows": 123,
+    "share_at_most_common_value": 0.447,
+    "min": 0.3849,
+    "median": 0.9177,
+    "max": 1.0,
+    "dropped": null
+   }
+  ]
+ },
  "cu_ti_3d": {
   "database": "TCHEA8",
   "elements": [
@@ -397,7 +470,7 @@
   "kind": "hea",
   "base": null,
   "pool_size": 200,
-  "rows": 19,
+  "rows": 102,
   "complete": false,
   "targets": [
    {
@@ -406,10 +479,10 @@
     "wording": "equilibrium solidus temperature",
     "unit": "K",
     "goal": 1.0,
-    "rows": 19,
-    "share_at_most_common_value": 0.053,
+    "rows": 102,
+    "share_at_most_common_value": 0.029,
     "min": 1193.7,
-    "median": 1388.8,
+    "median": 1365.3,
     "max": 1695.0,
     "dropped": null
    },
@@ -419,10 +492,10 @@
     "wording": "equilibrium freezing range (liquidus temperature minus solidus temperature)",
     "unit": "K",
     "goal": -1.0,
-    "rows": 19,
-    "share_at_most_common_value": 0.053,
+    "rows": 102,
+    "share_at_most_common_value": 0.02,
     "min": 9.1,
-    "median": 173.5,
+    "median": 182.4,
     "max": 397.5,
     "dropped": null
    },
@@ -432,10 +505,10 @@
     "wording": "equilibrium mole fraction, at 1173 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12)",
     "unit": "mole fraction between 0 and 1",
     "goal": -1.0,
-    "rows": 18,
-    "share_at_most_common_value": 0.222,
+    "rows": 101,
+    "share_at_most_common_value": 0.218,
     "min": 0.0,
-    "median": 0.76745,
+    "median": 0.5999,
     "max": 1.0,
     "dropped": null
    },
@@ -445,10 +518,10 @@
     "wording": "equilibrium mole fraction, at 1173 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases)",
     "unit": "mole fraction between 0 and 1",
     "goal": 1.0,
-    "rows": 18,
-    "share_at_most_common_value": 0.056,
-    "min": 0.3444,
-    "median": 0.6421,
+    "rows": 101,
+    "share_at_most_common_value": 0.01,
+    "min": 0.2971,
+    "median": 0.6012,
     "max": 1.0,
     "dropped": null
    }

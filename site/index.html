@@ -76,7 +76,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <div class="teaser wide">
 <div><b class="works">Measured alloys</b><span>"Write the weights of a network that estimates Vickers hardness from element fractions. No data."</span><span class="big works">ρ = 0.79</span><span>ranking of 530 measured alloys by networks Opus 5.5 wrote. A rule of mixtures gets −0.24.</span></div>
 <div><b class="works">Computed phase equilibria</b><span>35 Thermo-Calc targets in nine alloy systems, Bayesian optimisation from five labels.</span><span class="big works">16 of 33</span><span>targets with significantly lower regret than the plain GP, none higher (Opus 5.5).</span></div>
-<div><b class="works">Generated crystals</b><span>A Gaussian process on a learned embedding, five labels, with the written network as its mean.</span><span class="big works">0.15 → 0.95</span><span>ranking of the crystals a generator proposed, by bulk modulus.</span></div>
+<div><b class="works">Structure-embedding surrogate</b><span>A Gaussian process on a learned embedding, five labels, with the written network as its mean.</span><span class="big works">0.15 → 0.95</span><span>ranking of the crystals a generator proposed, by bulk modulus.</span></div>
 </div>
 
 <p>Writing weights directly is one of the three verbs of weight-space programming, introduced by <a href="https://rikiyat.github.io/blog/weight-space-programming/">Takehi, Teoh, Zhang and Khattab</a>. Their networks and those of the follow-up work are classifiers, policies and language models. Materials discovery needs regressors that rank candidates from a handful of labels and report error bars, so we asked what a written network is worth there.</p>
@@ -224,7 +224,7 @@ table.reg th,table.reg td{padding:.35rem .28rem}
 <img src="figures/fig_bo_calphad.png" alt="Bayesian optimisation on the Thermo-Calc targets: area under the regret curve relative to the plain GP (left of the line is better), 20 seeds" loading="lazy">
 <figcaption>Bayesian optimisation on the Thermo-Calc targets: area under the regret curve relative to the plain GP (left of the line is better), 20 seeds. Filled markers: Holm-corrected p &lt; 0.05.</figcaption>
 </figure>
-<h2>Crystals: what if the surrogate's inputs have no names?</h2>
+<h2>Structure-embedding surrogates: what if the inputs have no names?</h2>
 
 <p class="label">Experiment 5</p>
 <h3>Can a network written on named descriptors help a GP that sees only an embedding?</h3>

@@ -1,7 +1,7 @@
 """Write a clean copy of the repository for a public release. It publishes nothing.
 
-    python scripts/make_release.py --out release_build
-    python scripts/make_release.py --out release_build --without-thermocalc
+    python scripts/make_release.py --out release_build                     # the default: no Thermo-Calc values
+    python scripts/make_release.py --out release_build --with-thermocalc   # only with written permission
 
 The copy has no git history (a release must start from a fresh history: this repository's
 history holds files that are left out here). The script only copies and rewrites text; it
@@ -11,10 +11,16 @@ Left out always:
   working notes (PROGRESS.md, questions.md, CLAUDE.md, research/), slides/, site/,
   the page crops of the table-reader experiment (images of third-party benchmark pages).
 
-Left out with --without-thermocalc (values computed with Thermo-Calc and its databases):
+Left out unless --with-thermocalc is given (values computed with Thermo-Calc and its
+databases; its licence needs written permission to publish systematic results or models
+built on them, see research/2026-11-12-thermocalc-licence/notes.md):
   data/calphad/, every per-cell result of experiments/e7_calphad_prior/results/ (the
-  summaries and the overview stay), and the sub-system facts inside the prompts of the
-  `writepd__*` runs (the rest of each prompt stays, with a marker where the facts were).
+  summaries and the overview stay), the sub-system facts inside the prompts of the
+  `writepd__*` runs, and the replies, self-reports and scores of those runs (networks
+  written from Thermo-Calc values). Networks written with no facts stay.
+
+Also left out: vendor/ (code copied from the authors' other repositories; nothing in the
+main case imports it).
 
 Rewritten in every text file: the absolute paths of the machine the work was done on.
 After copying, the script searches the copy for anything that still looks machine- or
@@ -32,12 +38,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-ALWAYS_OUT = ("PROGRESS.md", "questions.md", "CLAUDE.md", "research/", "slides/", "site/", ".superpowers/")
+ALWAYS_OUT = ("PROGRESS.md", "questions.md", "CLAUDE.md", "research/", "slides/", "site/", ".superpowers/", "vendor/")
 CROPS = re.compile(r"supplementary/e6_extraction_reader/.*\.(png|jpg|jpeg)$")
 TC_DATA = "data/calphad/"
 TC_RESULTS = "experiments/e7_calphad_prior/results/"
 TC_RESULTS_KEEP = re.compile(r"(overview\.md|summary[^/]*\.(md|json)|baseline_table\.md)$")
 TC_FACTS_PROMPT = re.compile(r"experiments/e7_calphad_prior/runs/writepd__[^/]+/prompt\.txt$")
+TC_FACTS_OUTPUT = re.compile(r"experiments/e7_calphad_prior/runs/writepd__[^/]+/(reply\.txt|self_report\.txt|model_self_report\.md|score\.json)$")
 FACTS_BLOCK = re.compile(r"(\n# Phase-diagram facts[^\n]*\n)(.*?)(\n# Architecture\n)", re.S)
 
 REWRITE = [
@@ -55,8 +62,9 @@ LEFTOVER = {
     "token-like string": re.compile(r"\b(sk-[A-Za-z0-9]{20,}|hf_[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,})\b|API_KEY\s*=\s*['\"][^'\"]+['\"]"),
 }
 THIRD_PARTY = [
-    ("vendor/", "algorithms copied unmodified from the authors' other repositories; each keeps its own licence"),
-    ("data/alloys/", "experimental alloy sets from the literature (see data/PROVENANCE.md)"),
+    ("data/alloys/MPEA_dataset.csv", "Borg et al., Sci. Data 7:430 (2020), CC-BY-4.0: attribution required"),
+    ("data/alloys/ti_alloy_dax-ti-static.csv", "Salvador et al., Sci. Data 9:188 (2022), Zenodo 6089749, CC-BY-4.0: attribution required"),
+    ("data/alloys/perovskite_*, data/alloys/matbench_bulk_shear_features.npz", "not used by the main case; check their licences or leave out"),
     ("data/closed_loop_bm/, data/closed_loop_cp/, data/causal_replay/, data/dft_validation/", "from the authors' closed-loop study"),
     ("data/mlip_reference/, data/formation/", "structures and DFT values from the Materials Project"),
     ("data/bnn/, data/surrogate_zoo/, data/phonon/, data/synthesizability/", "see data/PROVENANCE.md"),
@@ -76,8 +84,9 @@ def is_text(data: bytes) -> bool:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--without-thermocalc", action="store_true")
+    parser.add_argument("--with-thermocalc", action="store_true", help="include Thermo-Calc values (needs written permission)")
     args = parser.parse_args()
+    args.without_thermocalc = not args.with_thermocalc
     out = args.out if args.out.is_absolute() else ROOT / args.out
     if out.exists() and any(out.iterdir()):
         raise SystemExit(f"{out} already has files; choose an empty or new folder (this script never deletes)")
@@ -95,7 +104,7 @@ def main() -> None:
         if not source.is_file():
             continue
         if name.startswith(ALWAYS_OUT):
-            skip("working notes, slides, site")
+            skip("working notes, slides, site, vendor")
             continue
         if CROPS.search(name):
             skip("page crops of the table-reader experiment")
@@ -106,6 +115,9 @@ def main() -> None:
                 continue
             if name.startswith(TC_RESULTS) and not TC_RESULTS_KEEP.search(name):
                 skip("Thermo-Calc per-cell results")
+                continue
+            if TC_FACTS_OUTPUT.search(name):
+                skip("networks written from Thermo-Calc sub-system values (writepd replies)")
                 continue
         target = out / name
         target.parent.mkdir(parents=True, exist_ok=True)

@@ -179,3 +179,4 @@ Update at the pause (from the watcher, 2026-11-11 23:52 CST): ADiT prep 3260080 
 - Everything else (MLIP readout edits, generator task vectors, table reader, earlier rounds, archive) moves to the supplement, at its end.
 - In the repo, MLIP and generative-model material moves into a folder named `supplementary/`.
 - Open: whether the Thermo-Calc data tables (`data/calphad/`) may be in a public repo. They are committed in the private repo's history now. Decide before any public release (licence check; fallback is to ship only `make_tc_data.py` and scores, from a fresh history).
+- Supplement requirement (user, 2026-11-12): the supplement OPENS with, for every Thermo-Calc task and every ordinary-dataset task, the prompt, the model's output and the network architecture drawn as in the slide deck (slides 18-19). MLIP, generator and archive material come after, at the end.

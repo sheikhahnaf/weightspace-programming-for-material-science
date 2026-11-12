@@ -1,0 +1,2491 @@
+{
+ "mpea_hardness": {
+  "handbook": [
+   {
+    "rho": -0.2438925486335726,
+    "recall": 0.0,
+    "error_raw": 3.8794497256947715,
+    "error_fit": 0.9949565811119411
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.7813684403179149,
+    "recall": 0.2641509433962264,
+    "error_raw": 0.7367520515057272,
+    "error_fit": 0.6626624725034502,
+    "run": "write__mpea_hardness__fable__rep1"
+   },
+   {
+    "rho": 0.7318887719405291,
+    "recall": 0.2830188679245283,
+    "error_raw": 0.7356712452930187,
+    "error_fit": 0.6955112698665894,
+    "run": "write__mpea_hardness__fable__rep2"
+   },
+   {
+    "rho": 0.7626110329684144,
+    "recall": 0.6415094339622641,
+    "error_raw": 0.7206342822127884,
+    "error_fit": 0.6559243320973737,
+    "run": "write__mpea_hardness__fable__rep3"
+   }
+  ],
+  "haiku": [
+   {
+    "rho": 0.5131893949019081,
+    "recall": 0.07547169811320754,
+    "error_raw": 0.907827272585324,
+    "error_fit": 0.898346053283395,
+    "run": "write__mpea_hardness__haiku__rep1"
+   },
+   {
+    "rho": 0.490112976793998,
+    "recall": 0.0,
+    "error_raw": 1.1055243902498162,
+    "error_fit": 0.9455417969214907,
+    "run": "write__mpea_hardness__haiku__rep2"
+   },
+   {
+    "rho": 0.4949761518991183,
+    "recall": 0.07547169811320754,
+    "error_raw": 1.3449286690015414,
+    "error_fit": 0.975348029407339,
+    "run": "write__mpea_hardness__haiku__rep3"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.7803391755559654,
+    "recall": 0.18867924528301888,
+    "error_raw": 0.7738041536763164,
+    "error_fit": 0.6833416456945424,
+    "run": "write__mpea_hardness__opus__rep1"
+   },
+   {
+    "rho": 0.7850080682074128,
+    "recall": 0.1509433962264151,
+    "error_raw": 0.7282264768108332,
+    "error_fit": 0.6766419589119211,
+    "run": "write__mpea_hardness__opus__rep2"
+   },
+   {
+    "rho": 0.8022521591877724,
+    "recall": 0.11320754716981132,
+    "error_raw": 0.7243761584148086,
+    "error_fit": 0.6611849784229235,
+    "run": "write__mpea_hardness__opus__rep3"
+   }
+  ],
+  "sonnet": [
+   {
+    "rho": 0.48931723617301637,
+    "recall": 0.0,
+    "error_raw": 1.6770693792756963,
+    "error_fit": 0.9531953951526939,
+    "run": "write__mpea_hardness__sonnet__rep1"
+   },
+   {
+    "rho": 0.4581964975674536,
+    "recall": 0.0,
+    "error_raw": 1.0917588523853932,
+    "error_fit": 0.9559793613061448,
+    "run": "write__mpea_hardness__sonnet__rep2"
+   },
+   {
+    "rho": 0.4943491408385171,
+    "recall": 0.0,
+    "error_raw": 1.3671695254846885,
+    "error_fit": 0.9471573801323477,
+    "run": "write__mpea_hardness__sonnet__rep3"
+   }
+  ]
+ },
+ "mpea_yield_strength": {
+  "handbook": [
+   {
+    "rho": 0.2745993777114611,
+    "recall": 0.2916666666666667,
+    "error_raw": 0.9673437352069024,
+    "error_fit": 0.9472624718878789
+   }
+  ],
+  "haiku": [
+   {
+    "rho": 0.5915689641287264,
+    "recall": 0.06944444444444445,
+    "error_raw": 1.2916611955025694,
+    "error_fit": 0.8800951221614252,
+    "run": "write__mpea_yield_strength__haiku__rep1"
+   },
+   {
+    "rho": 0.5845581160459762,
+    "recall": 0.08333333333333333,
+    "error_raw": 1.1624266942888206,
+    "error_fit": 0.8762123134839983,
+    "run": "write__mpea_yield_strength__haiku__rep2"
+   },
+   {
+    "rho": 0.6173866097323217,
+    "recall": 0.18055555555555555,
+    "error_raw": 0.9827434872464496,
+    "error_fit": 0.8603359292434031,
+    "run": "write__mpea_yield_strength__haiku__rep3"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.6824852957954247,
+    "recall": 0.3333333333333333,
+    "error_raw": 0.808504183525685,
+    "error_fit": 0.7475234319112606,
+    "run": "write__mpea_yield_strength__opus__rep1"
+   },
+   {
+    "rho": 0.6889158469389164,
+    "recall": 0.2638888888888889,
+    "error_raw": 0.8344236363690003,
+    "error_fit": 0.7549349143041351,
+    "run": "write__mpea_yield_strength__opus__rep2"
+   },
+   {
+    "rho": 0.7057325531001944,
+    "recall": 0.3333333333333333,
+    "error_raw": 0.8175938875702932,
+    "error_fit": 0.7471808262393307,
+    "run": "write__mpea_yield_strength__opus__rep3"
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.6272333505104412,
+    "recall": 0.125,
+    "error_raw": 0.8821672466242293,
+    "error_fit": 0.8089934255490785,
+    "run": "write__mpea_yield_strength__rep2"
+   },
+   {
+    "rho": 0.6306109443475596,
+    "recall": 0.16666666666666666,
+    "error_raw": 0.8991035522208758,
+    "error_fit": 0.8116453725678041,
+    "run": "write__mpea_yield_strength__rep3"
+   }
+  ],
+  "sonnet": [
+   {
+    "rho": 0.6137404036185038,
+    "recall": 0.1388888888888889,
+    "error_raw": 1.033210422939237,
+    "error_fit": 0.8513108099307292,
+    "run": "write__mpea_yield_strength__sonnet__rep1"
+   },
+   {
+    "rho": 0.6060439940319771,
+    "recall": 0.1111111111111111,
+    "error_raw": 1.2952064298438108,
+    "error_fit": 0.8767924186274817,
+    "run": "write__mpea_yield_strength__sonnet__rep2"
+   }
+  ]
+ },
+ "ti_alloy_hardness": {
+  "handbook": [
+   {
+    "rho": -0.7185156646352744,
+    "recall": 0.0,
+    "error_raw": 7.410987987405952,
+    "error_fit": 0.75116366707936
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5592517158234825,
+    "recall": 0.5333333333333333,
+    "error_raw": 0.9060680837903387,
+    "error_fit": 0.8145599823298958,
+    "run": "write__ti_alloy_hardness__fable__rep1"
+   },
+   {
+    "rho": 0.6212100503252713,
+    "recall": 0.5333333333333333,
+    "error_raw": 0.813156540145903,
+    "error_fit": 0.7959366486941511,
+    "run": "write__ti_alloy_hardness__fable__rep2"
+   },
+   {
+    "rho": 0.6615151443028691,
+    "recall": 0.4666666666666667,
+    "error_raw": 0.8140911823960219,
+    "error_fit": 0.7326041757818362,
+    "run": "write__ti_alloy_hardness__fable__rep3"
+   }
+  ],
+  "haiku": [
+   {
+    "rho": 0.07239522107478737,
+    "recall": 0.5333333333333333,
+    "error_raw": 1.0552996714884748,
+    "error_fit": 0.9417967834707396,
+    "run": "write__ti_alloy_hardness__haiku__rep1"
+   },
+   {
+    "rho": -0.15325473772361686,
+    "recall": 0.06666666666666667,
+    "error_raw": 1.4339188700730308,
+    "error_fit": 0.9980890626155854,
+    "run": "write__ti_alloy_hardness__haiku__rep2"
+   },
+   {
+    "rho": 0.037842289777466495,
+    "recall": 0.5333333333333333,
+    "error_raw": 1.1813028626268258,
+    "error_fit": 0.9535771059318411,
+    "run": "write__ti_alloy_hardness__haiku__rep3"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.7012706075438818,
+    "recall": 0.5333333333333333,
+    "error_raw": 0.726481061938546,
+    "error_fit": 0.7038636074289092,
+    "run": "write__ti_alloy_hardness__opus__rep1"
+   },
+   {
+    "rho": 0.7054535640485806,
+    "recall": 0.5333333333333333,
+    "error_raw": 0.7316211874012795,
+    "error_fit": 0.7171954619486628,
+    "run": "write__ti_alloy_hardness__opus__rep2"
+   },
+   {
+    "rho": 0.5517128252602754,
+    "recall": 0.4666666666666667,
+    "error_raw": 0.8515381112085705,
+    "error_fit": 0.828824796501388,
+    "run": "write__ti_alloy_hardness__opus__rep3"
+   }
+  ],
+  "sonnet": [
+   {
+    "rho": 0.5169535476734595,
+    "recall": 0.5333333333333333,
+    "error_raw": 1.0507049894745755,
+    "error_fit": 0.8279911313177463,
+    "run": "write__ti_alloy_hardness__sonnet__rep1"
+   },
+   {
+    "rho": 0.5510395879796989,
+    "recall": 0.5333333333333333,
+    "error_raw": 0.8633948814318165,
+    "error_fit": 0.8132803572400495,
+    "run": "write__ti_alloy_hardness__sonnet__rep3"
+   }
+  ]
+ },
+ "ti_alloy_yield_strength": {
+  "handbook": [
+   {
+    "rho": -0.5159703967138001,
+    "recall": 0.037037037037037035,
+    "error_raw": 1.3390612928344083,
+    "error_fit": 0.8757884248263175
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5907412842406947,
+    "recall": 0.37037037037037035,
+    "error_raw": 0.8835227375441085,
+    "error_fit": 0.8580691821885106,
+    "run": "write__ti_alloy_yield_strength__fable__rep1"
+   },
+   {
+    "rho": 0.6410535455824629,
+    "recall": 0.3333333333333333,
+    "error_raw": 0.8234482279752652,
+    "error_fit": 0.8154618086516576,
+    "run": "write__ti_alloy_yield_strength__fable__rep2"
+   },
+   {
+    "rho": 0.7002259878868479,
+    "recall": 0.48148148148148145,
+    "error_raw": 0.7245406229359264,
+    "error_fit": 0.7038674066834938,
+    "run": "write__ti_alloy_yield_strength__fable__rep3"
+   }
+  ],
+  "haiku": [
+   {
+    "rho": 0.20167684932917324,
+    "recall": 0.25925925925925924,
+    "error_raw": 1.0836340838102547,
+    "error_fit": 0.9587033195627342,
+    "run": "write__ti_alloy_yield_strength__haiku__rep1"
+   },
+   {
+    "rho": 0.169598197883067,
+    "recall": 0.18518518518518517,
+    "error_raw": 1.7711443257646102,
+    "error_fit": 0.9690516453691638,
+    "run": "write__ti_alloy_yield_strength__haiku__rep2"
+   },
+   {
+    "rho": 0.19865453500214228,
+    "recall": 0.2962962962962963,
+    "error_raw": 1.0993010572673656,
+    "error_fit": 0.957027041644644,
+    "run": "write__ti_alloy_yield_strength__haiku__rep3"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.693245798269352,
+    "recall": 0.5925925925925926,
+    "error_raw": 0.7598541536817227,
+    "error_fit": 0.7243615279525673,
+    "run": "write__ti_alloy_yield_strength__opus__rep1"
+   },
+   {
+    "rho": 0.7064067024541234,
+    "recall": 0.37037037037037035,
+    "error_raw": 0.7479418032680754,
+    "error_fit": 0.7417204800071456,
+    "run": "write__ti_alloy_yield_strength__opus__rep2"
+   },
+   {
+    "rho": 0.6629755195306152,
+    "recall": 0.5925925925925926,
+    "error_raw": 0.7755600194874123,
+    "error_fit": 0.7426302979620732,
+    "run": "write__ti_alloy_yield_strength__opus__rep3"
+   }
+  ],
+  "sonnet": [
+   {
+    "rho": 0.3687333056061246,
+    "recall": 0.4074074074074074,
+    "error_raw": 0.9198922254347066,
+    "error_fit": 0.8943567749489936,
+    "run": "write__ti_alloy_yield_strength__sonnet__rep1"
+   },
+   {
+    "rho": 0.4613651927486278,
+    "recall": 0.4444444444444444,
+    "error_raw": 0.955890608662275,
+    "error_fit": 0.8766168314601438,
+    "run": "write__ti_alloy_yield_strength__sonnet__rep2"
+   },
+   {
+    "rho": 0.5330223484395237,
+    "recall": 0.5555555555555556,
+    "error_raw": 1.1370554609497716,
+    "error_fit": 0.8182806246674996,
+    "run": "write__ti_alloy_yield_strength__sonnet__rep3"
+   }
+  ]
+ },
+ "ti_alloy_youngs_modulus": {
+  "handbook": [
+   {
+    "rho": 0.23898626598405445,
+    "recall": 0.041666666666666664,
+    "error_raw": 1.9091744097948793,
+    "error_fit": 0.9839860172757829
+   }
+  ],
+  "haiku": [
+   {
+    "rho": 0.5640918918455723,
+    "recall": 0.3333333333333333,
+    "error_raw": 1.29900561745368,
+    "error_fit": 0.8868795811232888,
+    "run": "write__ti_alloy_youngs_modulus__haiku__rep2"
+   },
+   {
+    "rho": 0.4453588033545463,
+    "recall": 0.2916666666666667,
+    "error_raw": 1.1096578697982529,
+    "error_fit": 0.9682662143152467,
+    "run": "write__ti_alloy_youngs_modulus__haiku__rep3"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.6646724263730245,
+    "recall": 0.25,
+    "error_raw": 0.9578702813396064,
+    "error_fit": 0.8162836164923782,
+    "run": "write__ti_alloy_youngs_modulus__opus__rep1"
+   },
+   {
+    "rho": 0.6538020793504996,
+    "recall": 0.4166666666666667,
+    "error_raw": 0.8551545142149993,
+    "error_fit": 0.7957237720757462,
+    "run": "write__ti_alloy_youngs_modulus__opus__rep2"
+   },
+   {
+    "rho": 0.6136988210861655,
+    "recall": 0.2916666666666667,
+    "error_raw": 0.8759764383027459,
+    "error_fit": 0.8232143892406925,
+    "run": "write__ti_alloy_youngs_modulus__opus__rep3"
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5360067946087524,
+    "recall": 0.25,
+    "error_raw": 0.9311380545132211,
+    "error_fit": 0.8395482344514998,
+    "run": "write__ti_alloy_youngs_modulus__rep2"
+   },
+   {
+    "rho": 0.47440523634554005,
+    "recall": 0.25,
+    "error_raw": 1.0284427219946102,
+    "error_fit": 0.884408152801028,
+    "run": "write__ti_alloy_youngs_modulus__rep3"
+   }
+  ],
+  "sonnet": [
+   {
+    "rho": 0.6475150090281381,
+    "recall": 0.4166666666666667,
+    "error_raw": 0.9796828669244022,
+    "error_fit": 0.8345233701287176,
+    "run": "write__ti_alloy_youngs_modulus__sonnet__rep1"
+   },
+   {
+    "rho": 0.6688236761085283,
+    "recall": 0.4583333333333333,
+    "error_raw": 0.9489923042412248,
+    "error_fit": 0.8206104392326892,
+    "run": "write__ti_alloy_youngs_modulus__sonnet__rep2"
+   },
+   {
+    "rho": 0.6333193071169283,
+    "recall": 0.5,
+    "error_raw": 1.3281062769579919,
+    "error_fit": 0.8600821860908988,
+    "run": "write__ti_alloy_youngs_modulus__sonnet__rep3"
+   }
+  ]
+ },
+ "al_alloy_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.7631006954545522,
+    "recall": 0.85,
+    "error_raw": 1.1321762831863964,
+    "error_fit": 0.5922629419444145
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.525375294866408,
+    "recall": 0.45,
+    "error_raw": 1.0779184046139803,
+    "error_fit": 0.8509873147019053,
+    "run": "write__al_alloy_freezing_range__fable__rep1"
+   }
+  ]
+ },
+ "al_alloy_second_phase_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.5752844366293804,
+    "recall": 0.3,
+    "error_raw": 1.4407483518078699,
+    "error_fit": 0.8412084881411103
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.9770002270197472,
+    "recall": 0.75,
+    "error_raw": 0.2584901057752416,
+    "error_fit": 0.18949156025501587,
+    "run": "write__al_alloy_second_phase_fraction__fable__rep1"
+   }
+  ]
+ },
+ "al_alloy_solidus": {
+  "rom": [
+   {
+    "rho": -0.04290216882608037,
+    "recall": 0.05,
+    "error_raw": 5.382809576332544,
+    "error_fit": 0.993039294871605
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.8577854303419591,
+    "recall": 0.9,
+    "error_raw": 1.0274345912934433,
+    "error_fit": 0.4493841659872307
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5049959804075523,
+    "recall": 0.8,
+    "error_raw": 0.8286716162269655,
+    "error_fit": 0.6889282232450298,
+    "run": "write__al_alloy_solidus__fable__rep1"
+   }
+  ]
+ },
+ "al_refractory_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.4918596653865221,
+    "recall": 0.35,
+    "error_raw": 1.1441469016024162,
+    "error_fit": 0.8796274565712356
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5610616055482495,
+    "recall": 0.2,
+    "error_raw": 0.8093299949643836,
+    "error_fit": 0.7892973594736541,
+    "run": "write__al_refractory_freezing_range__fable__rep1"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.25139747348501296,
+    "recall": 0.05,
+    "error_raw": 1.8179036486563456,
+    "error_fit": 0.9451699111272833,
+    "run": "write__al_refractory_freezing_range__opus__rep1"
+   }
+  ]
+ },
+ "al_refractory_intermetallic_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.7982428383303696,
+    "recall": 0.5,
+    "error_raw": 0.6038263571254574,
+    "error_fit": 0.5974828199955198
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.6034233994835183,
+    "recall": 0.8,
+    "error_raw": 0.9481003372349869,
+    "error_fit": 0.687773914974705,
+    "run": "write__al_refractory_intermetallic_fraction__fable__rep1"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.7659400453972103,
+    "recall": 0.6,
+    "error_raw": 0.5186332854142305,
+    "error_fit": 0.5033531342301706,
+    "run": "write__al_refractory_intermetallic_fraction__opus__rep1"
+   }
+  ]
+ },
+ "al_refractory_main_phase_fraction": {
+  "rom": [
+   {
+    "rho": 0.31593843795835486,
+    "recall": 0.15,
+    "error_raw": 1.103682236947091,
+    "error_fit": 0.937651251288824
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.34525117428346863,
+    "recall": 0.4,
+    "error_raw": 1.016682557536221,
+    "error_fit": 0.9275605880619128
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.4629976090124405,
+    "recall": 0.45,
+    "error_raw": 1.2220314925990736,
+    "error_fit": 0.9202388268883096,
+    "run": "write__al_refractory_main_phase_fraction__fable__rep1"
+   }
+  ]
+ },
+ "al_refractory_solidus": {
+  "rom": [
+   {
+    "rho": 0.5272928277904639,
+    "recall": 0.25,
+    "error_raw": 1.780414457285983,
+    "error_fit": 0.8708125147100245
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.7388305248862237,
+    "recall": 0.55,
+    "error_raw": 0.7419268891349098,
+    "error_fit": 0.6322513877549253
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5150016976248478,
+    "recall": 0.35,
+    "error_raw": 1.337189914490884,
+    "error_fit": 0.8404444135462884,
+    "run": "write__al_refractory_solidus__fable__rep1"
+   }
+  ]
+ },
+ "cantor_al_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.7095634002581276,
+    "recall": 0.525,
+    "error_raw": 0.7868900807335216,
+    "error_fit": 0.713418280426678
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5769131049567696,
+    "recall": 0.475,
+    "error_raw": 0.9410913587657765,
+    "error_fit": 0.8697227439207533,
+    "run": "write__cantor_al_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.6102189488337371,
+    "recall": 0.5,
+    "error_raw": 0.8666278968864854,
+    "error_fit": 0.8542704626613914,
+    "run": "write__cantor_al_freezing_range__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.4482230786376508,
+    "recall": 0.35,
+    "error_raw": 1.2679892084094637,
+    "error_fit": 0.931880307177808,
+    "run": "write__cantor_al_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.48085135747702185,
+    "recall": 0.45,
+    "error_raw": 1.2241079860990771,
+    "error_fit": 0.9243979180134003,
+    "run": "write__cantor_al_freezing_range__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.6024663703840086,
+    "recall": 0.475,
+    "error_raw": 0.8845989486455071,
+    "error_fit": 0.8470404913807505,
+    "run": "writepd__cantor_al_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.5608252317085942,
+    "recall": 0.3,
+    "error_raw": 1.5364224680091567,
+    "error_fit": 0.8762399556000228,
+    "run": "writepd__cantor_al_freezing_range__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.6546969532084875,
+    "recall": 0.55,
+    "error_raw": 0.8061605672790417,
+    "error_fit": 0.7869529537213484,
+    "run": "writepd__cantor_al_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.6812186742902713,
+    "recall": 0.55,
+    "error_raw": 0.7680906687871647,
+    "error_fit": 0.7453048382728061,
+    "run": "writepd__cantor_al_freezing_range__opus__rep2"
+   }
+  ]
+ },
+ "cantor_al_intermetallic_fraction": {
+  "rom": [
+   {
+    "rho": -0.08764599951783843,
+    "recall": 0.15,
+    "error_raw": 1.5739161906678885,
+    "error_fit": 0.9959185487858885
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.7939574664238964,
+    "recall": 0.5,
+    "error_raw": 0.5937736751009421,
+    "error_fit": 0.5919304547863461
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.6921309229210926,
+    "recall": 0.725,
+    "error_raw": 0.7590025452190213,
+    "error_fit": 0.6963593115731699,
+    "run": "write__cantor_al_intermetallic_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.698741680549549,
+    "recall": 0.7,
+    "error_raw": 0.8483649271850668,
+    "error_fit": 0.7279859077616363,
+    "run": "write__cantor_al_intermetallic_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.7624261467569973,
+    "recall": 0.525,
+    "error_raw": 0.7739027243499842,
+    "error_fit": 0.6487478953941811,
+    "run": "write__cantor_al_intermetallic_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.7871811893704878,
+    "recall": 0.7,
+    "error_raw": 0.738555214702775,
+    "error_fit": 0.6036282735179712,
+    "run": "write__cantor_al_intermetallic_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.7765280764612379,
+    "recall": 0.65,
+    "error_raw": 0.696250616768128,
+    "error_fit": 0.6304390908337041,
+    "run": "writepd__cantor_al_intermetallic_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.7701957429780467,
+    "recall": 0.575,
+    "error_raw": 0.8639481976762354,
+    "error_fit": 0.6555044904727432,
+    "run": "writepd__cantor_al_intermetallic_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.7764714509789019,
+    "recall": 0.45,
+    "error_raw": 0.7994254936557906,
+    "error_fit": 0.6444859021202292,
+    "run": "writepd__cantor_al_intermetallic_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.7863109215883576,
+    "recall": 0.675,
+    "error_raw": 0.7841371102554152,
+    "error_fit": 0.6126152309336049,
+    "run": "writepd__cantor_al_intermetallic_fraction__opus__rep2"
+   }
+  ]
+ },
+ "cantor_al_main_phase_fraction": {
+  "rom": [
+   {
+    "rho": -0.016234825674377926,
+    "recall": 0.275,
+    "error_raw": 1.1996749017271446,
+    "error_fit": 0.9999996119104118
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.6041147041831361,
+    "recall": 0.25,
+    "error_raw": 1.203157547353189,
+    "error_fit": 0.8522761865716879
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.3265953629106704,
+    "recall": 0.325,
+    "error_raw": 1.1156921547994967,
+    "error_fit": 0.9430543891718672,
+    "run": "write__cantor_al_main_phase_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.3868340371112946,
+    "recall": 0.325,
+    "error_raw": 1.1185824637645154,
+    "error_fit": 0.9181572442437067,
+    "run": "write__cantor_al_main_phase_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.3862026451760428,
+    "recall": 0.3,
+    "error_raw": 1.0652273400849919,
+    "error_fit": 0.9339589971185543,
+    "run": "write__cantor_al_main_phase_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.39051008479325716,
+    "recall": 0.275,
+    "error_raw": 1.110177410771281,
+    "error_fit": 0.931863518693079,
+    "run": "write__cantor_al_main_phase_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.4606834025415673,
+    "recall": 0.35,
+    "error_raw": 1.047579151544328,
+    "error_fit": 0.8824955661794911,
+    "run": "writepd__cantor_al_main_phase_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.27037131028353356,
+    "recall": 0.375,
+    "error_raw": 1.2331028420871124,
+    "error_fit": 0.9583368262070711,
+    "run": "writepd__cantor_al_main_phase_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.47822276011339443,
+    "recall": 0.375,
+    "error_raw": 0.9451712242287474,
+    "error_fit": 0.876559685964137,
+    "run": "writepd__cantor_al_main_phase_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.3401251518984536,
+    "recall": 0.275,
+    "error_raw": 1.0841932965305856,
+    "error_fit": 0.9487572004689231,
+    "run": "writepd__cantor_al_main_phase_fraction__opus__rep2"
+   }
+  ]
+ },
+ "cantor_al_solidus": {
+  "rom": [
+   {
+    "rho": -0.21598908590773233,
+    "recall": 0.025,
+    "error_raw": 2.1515693679234293,
+    "error_fit": 0.9789713316685612
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.8179773519667887,
+    "recall": 0.45,
+    "error_raw": 0.560379244373815,
+    "error_fit": 0.5530949779106157
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5489327480921775,
+    "recall": 0.075,
+    "error_raw": 1.5388345637801426,
+    "error_fit": 0.8477573972584098,
+    "run": "write__cantor_al_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.5757394674950012,
+    "recall": 0.1,
+    "error_raw": 1.4131251787701014,
+    "error_fit": 0.8249038929934651,
+    "run": "write__cantor_al_solidus__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.5293422950191201,
+    "recall": 0.125,
+    "error_raw": 1.25640901579579,
+    "error_fit": 0.8461794754380895,
+    "run": "write__cantor_al_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.2797568915791272,
+    "recall": 0.075,
+    "error_raw": 1.7346270222593865,
+    "error_fit": 0.9498367261051696,
+    "run": "write__cantor_al_solidus__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.6746682380567012,
+    "recall": 0.25,
+    "error_raw": 1.0682884924329425,
+    "error_fit": 0.7464054603195228,
+    "run": "writepd__cantor_al_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.7115859843253186,
+    "recall": 0.325,
+    "error_raw": 1.2474195360397047,
+    "error_fit": 0.722224135052962,
+    "run": "writepd__cantor_al_solidus__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.6075222264403372,
+    "recall": 0.375,
+    "error_raw": 0.8950853731204733,
+    "error_fit": 0.7812726098335874,
+    "run": "writepd__cantor_al_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.7370089175302946,
+    "recall": 0.25,
+    "error_raw": 0.716351486246395,
+    "error_fit": 0.6876267098930549,
+    "run": "writepd__cantor_al_solidus__opus__rep2"
+   }
+  ]
+ },
+ "cu_ti_3d_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.2106056600274835,
+    "recall": 0.15,
+    "error_raw": 1.640075285458796,
+    "error_fit": 0.975171869236816
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.1351628962266962,
+    "recall": 0.25,
+    "error_raw": 3.108874065391313,
+    "error_fit": 0.9866453580338282,
+    "run": "write__cu_ti_3d_freezing_range__fable__rep1"
+   }
+  ]
+ },
+ "cu_ti_3d_intermetallic_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.8707265928741736,
+    "recall": 0.8,
+    "error_raw": 0.4592355642980514,
+    "error_fit": 0.457915663880931
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8668301646405774,
+    "recall": 0.8,
+    "error_raw": 0.5648130687951414,
+    "error_fit": 0.4933824190239619,
+    "run": "write__cu_ti_3d_intermetallic_fraction__fable__rep1"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.860559436956626,
+    "recall": 0.85,
+    "error_raw": 0.5340942285479475,
+    "error_fit": 0.48024603060678733,
+    "run": "write__cu_ti_3d_intermetallic_fraction__opus__rep1"
+   }
+  ]
+ },
+ "cu_ti_3d_main_phase_fraction": {
+  "rom": [
+   {
+    "rho": -0.056932404429059516,
+    "recall": 0.05,
+    "error_raw": 2.6787678965684454,
+    "error_fit": 0.9976253380266348
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.460716225883001,
+    "recall": 0.45,
+    "error_raw": 1.0191176341283947,
+    "error_fit": 0.8680159833405737
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.4282333309424878,
+    "recall": 0.7,
+    "error_raw": 0.9452147016695821,
+    "error_fit": 0.856102854652876,
+    "run": "write__cu_ti_3d_main_phase_fraction__fable__rep1"
+   }
+  ]
+ },
+ "cu_ti_3d_solidus": {
+  "rom": [
+   {
+    "rho": 0.24178574536143843,
+    "recall": 0.4,
+    "error_raw": 7.219433447512477,
+    "error_fit": 0.9689090754544594
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.5569895578140202,
+    "recall": 0.55,
+    "error_raw": 1.6347229627546942,
+    "error_fit": 0.7874599925322879
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.32935494783735486,
+    "recall": 0.25,
+    "error_raw": 1.4727809573001052,
+    "error_fit": 0.8965728558828293,
+    "run": "write__cu_ti_3d_solidus__fable__rep1"
+   }
+  ]
+ },
+ "hf_refractory_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9524130247250011,
+    "recall": 0.85,
+    "error_raw": 0.3252848771768155,
+    "error_fit": 0.28912836245348383
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.3671246325826344,
+    "recall": 0.4,
+    "error_raw": 1.2342092543668286,
+    "error_fit": 0.939405143079948,
+    "run": "write__hf_refractory_freezing_range__fable__rep1"
+   }
+  ]
+ },
+ "hf_refractory_main_phase_fraction": {
+  "rom": [
+   {
+    "rho": -0.1330126099722301,
+    "recall": 0.25,
+    "error_raw": 1.4147209346271754,
+    "error_fit": 0.9974013846192816
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.6830590789019003,
+    "recall": 0.25,
+    "error_raw": 0.7668913179419722,
+    "error_fit": 0.7494907918035012
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.5979876602504685,
+    "recall": 0.15,
+    "error_raw": 0.8279605997880622,
+    "error_fit": 0.8165351935482944,
+    "run": "write__hf_refractory_main_phase_fraction__fable__rep1"
+   }
+  ]
+ },
+ "hf_refractory_solidus": {
+  "rom": [
+   {
+    "rho": 0.7586950709092077,
+    "recall": 0.5,
+    "error_raw": 3.2579515347452848,
+    "error_fit": 0.6797521732091731
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9568607479876466,
+    "recall": 0.95,
+    "error_raw": 0.2603693185863328,
+    "error_fit": 0.2408600338264625
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8588648875013679,
+    "recall": 0.7,
+    "error_raw": 0.8591619690835526,
+    "error_fit": 0.5431208182061192,
+    "run": "write__hf_refractory_solidus__fable__rep1"
+   }
+  ]
+ },
+ "ni_superalloy_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9526119611707891,
+    "recall": 0.76,
+    "error_raw": 0.7373150629769978,
+    "error_fit": 0.5591143410628201
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8028025495379395,
+    "recall": 0.8,
+    "error_raw": 0.7999629964748854,
+    "error_fit": 0.7495877447947431,
+    "run": "write__ni_superalloy_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.8331167051719703,
+    "recall": 0.84,
+    "error_raw": 0.8993325717611999,
+    "error_fit": 0.7287818930854306,
+    "run": "write__ni_superalloy_freezing_range__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.8696499167688514,
+    "recall": 0.76,
+    "error_raw": 0.8295697835612703,
+    "error_fit": 0.6799311994610611,
+    "run": "write__ni_superalloy_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.8512920060369087,
+    "recall": 0.72,
+    "error_raw": 0.8177892605143627,
+    "error_fit": 0.7156154122372194,
+    "run": "write__ni_superalloy_freezing_range__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.95805872690501,
+    "recall": 0.68,
+    "error_raw": 0.7391744701620789,
+    "error_fit": 0.6328605407757313,
+    "run": "writepd__ni_superalloy_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.9442380609924251,
+    "recall": 0.8,
+    "error_raw": 0.7344786050002575,
+    "error_fit": 0.587975487514007,
+    "run": "writepd__ni_superalloy_freezing_range__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.9617484555329866,
+    "recall": 0.84,
+    "error_raw": 0.6518818476685744,
+    "error_fit": 0.5346724565231893,
+    "run": "writepd__ni_superalloy_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.9531524446621201,
+    "recall": 0.8,
+    "error_raw": 0.7010774193622674,
+    "error_fit": 0.5878285946626787,
+    "run": "writepd__ni_superalloy_freezing_range__opus__rep2"
+   }
+  ]
+ },
+ "ni_superalloy_gamma_prime_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.8534346553535129,
+    "recall": 0.44,
+    "error_raw": 0.7897402708937893,
+    "error_fit": 0.6437672641923811
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8602263715928233,
+    "recall": 0.24,
+    "error_raw": 0.5921988934070372,
+    "error_fit": 0.5766343157485698,
+    "run": "write__ni_superalloy_gamma_prime_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.8620457652118945,
+    "recall": 0.24,
+    "error_raw": 0.5645296013903814,
+    "error_fit": 0.5628415909498861,
+    "run": "write__ni_superalloy_gamma_prime_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.8296797935079889,
+    "recall": 0.2,
+    "error_raw": 0.7082891479502381,
+    "error_fit": 0.6577930825683249,
+    "run": "write__ni_superalloy_gamma_prime_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.8567599691522882,
+    "recall": 0.28,
+    "error_raw": 0.6401030118445156,
+    "error_fit": 0.6032492323769159,
+    "run": "write__ni_superalloy_gamma_prime_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.857996022608215,
+    "recall": 0.12,
+    "error_raw": 0.6495729747629342,
+    "error_fit": 0.5464997931604072,
+    "run": "writepd__ni_superalloy_gamma_prime_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.9172956724389891,
+    "recall": 0.48,
+    "error_raw": 0.4294401646762438,
+    "error_fit": 0.42668877808155875,
+    "run": "writepd__ni_superalloy_gamma_prime_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.9272624322097027,
+    "recall": 0.44,
+    "error_raw": 0.4274494709164929,
+    "error_fit": 0.42078733514126804,
+    "run": "writepd__ni_superalloy_gamma_prime_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.9199186551532393,
+    "recall": 0.4,
+    "error_raw": 0.4732210872887864,
+    "error_fit": 0.46952079820517006,
+    "run": "writepd__ni_superalloy_gamma_prime_fraction__opus__rep2"
+   }
+  ]
+ },
+ "ni_superalloy_other_phase_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.4797508710983086,
+    "recall": 0.16,
+    "error_raw": 0.9190852474725858,
+    "error_fit": 0.8108125357442231
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.812939930571698,
+    "recall": 0.12,
+    "error_raw": 0.5649359227553038,
+    "error_fit": 0.49084303240348587,
+    "run": "write__ni_superalloy_other_phase_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.7875331833031655,
+    "recall": 0.36,
+    "error_raw": 0.6159933328013916,
+    "error_fit": 0.5819927392081877,
+    "run": "write__ni_superalloy_other_phase_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.8116673689979991,
+    "recall": 0.04,
+    "error_raw": 0.5281006398475224,
+    "error_fit": 0.49480529909698295,
+    "run": "write__ni_superalloy_other_phase_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.856221336724949,
+    "recall": 0.36,
+    "error_raw": 0.5191592625417593,
+    "error_fit": 0.42938431632704344,
+    "run": "write__ni_superalloy_other_phase_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.7449260047770471,
+    "recall": 0.64,
+    "error_raw": 0.6294759262172868,
+    "error_fit": 0.6138903818829443,
+    "run": "writepd__ni_superalloy_other_phase_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.8169662952657109,
+    "recall": 0.68,
+    "error_raw": 0.7131745808859841,
+    "error_fit": 0.5634709075201726,
+    "run": "writepd__ni_superalloy_other_phase_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.8492329021390933,
+    "recall": 0.24,
+    "error_raw": 0.5066095793180243,
+    "error_fit": 0.42363702013831994,
+    "run": "writepd__ni_superalloy_other_phase_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.8812681756833861,
+    "recall": 0.56,
+    "error_raw": 0.4753958469165549,
+    "error_fit": 0.4538972306430941,
+    "run": "writepd__ni_superalloy_other_phase_fraction__opus__rep2"
+   }
+  ]
+ },
+ "ni_superalloy_solidus": {
+  "rom": [
+   {
+    "rho": -0.3617809088931916,
+    "recall": 0.0,
+    "error_raw": 1.8101168522711688,
+    "error_fit": 0.9965171115657643
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9779447440690328,
+    "recall": 0.92,
+    "error_raw": 0.3889335422468865,
+    "error_fit": 0.3122611388558231
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.7839261234396604,
+    "recall": 0.72,
+    "error_raw": 0.6384296588525484,
+    "error_fit": 0.6341525089614847,
+    "run": "write__ni_superalloy_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.8590272691228251,
+    "recall": 0.76,
+    "error_raw": 0.5758245689013431,
+    "error_fit": 0.5648711479237951,
+    "run": "write__ni_superalloy_solidus__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.8437143831468974,
+    "recall": 0.76,
+    "error_raw": 0.6013707599533306,
+    "error_fit": 0.5640608250076289,
+    "run": "write__ni_superalloy_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.8382846942555113,
+    "recall": 0.68,
+    "error_raw": 0.6285957636996379,
+    "error_fit": 0.5606948724905859,
+    "run": "write__ni_superalloy_solidus__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.9830764132351654,
+    "recall": 0.88,
+    "error_raw": 0.2793709219818197,
+    "error_fit": 0.2709840312750993,
+    "run": "writepd__ni_superalloy_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.9640306238068564,
+    "recall": 0.84,
+    "error_raw": 0.3209130918291075,
+    "error_fit": 0.31024707719461575,
+    "run": "writepd__ni_superalloy_solidus__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.9790591326807678,
+    "recall": 0.84,
+    "error_raw": 0.3838811024847416,
+    "error_fit": 0.2725708207129826,
+    "run": "writepd__ni_superalloy_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.9816060562565846,
+    "recall": 0.84,
+    "error_raw": 0.2657975112040511,
+    "error_fit": 0.26346217887065615,
+    "run": "writepd__ni_superalloy_solidus__opus__rep2"
+   }
+  ]
+ },
+ "refractory_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9001590039750994,
+    "recall": 0.65,
+    "error_raw": 0.843747514538981,
+    "error_fit": 0.4910987075583491
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.6314822342799188,
+    "recall": 0.25,
+    "error_raw": 1.2007304021788971,
+    "error_fit": 0.7732907854356271,
+    "run": "write__refractory_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.7031518029042014,
+    "recall": 0.4,
+    "error_raw": 1.6321642618280618,
+    "error_fit": 0.7504466189731122,
+    "run": "write__refractory_freezing_range__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.63251181279532,
+    "recall": 0.4,
+    "error_raw": 1.6292591428435264,
+    "error_fit": 0.8353374713332944,
+    "run": "write__refractory_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.7892252306307658,
+    "recall": 0.55,
+    "error_raw": 1.3546367593346895,
+    "error_fit": 0.6838576919948364,
+    "run": "write__refractory_freezing_range__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.803097577439436,
+    "recall": 0.5,
+    "error_raw": 1.0112642893085921,
+    "error_fit": 0.6512944258563074,
+    "run": "writepd__refractory_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.8083387084677118,
+    "recall": 0.45,
+    "error_raw": 1.0095978455169319,
+    "error_fit": 0.653416843597197,
+    "run": "writepd__refractory_freezing_range__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.7869826745668643,
+    "recall": 0.5,
+    "error_raw": 1.0472579825588622,
+    "error_fit": 0.668414016494951,
+    "run": "writepd__refractory_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.810903772594315,
+    "recall": 0.4,
+    "error_raw": 1.1339760597999249,
+    "error_fit": 0.6518300154445711,
+    "run": "writepd__refractory_freezing_range__opus__rep2"
+   }
+  ]
+ },
+ "refractory_intermetallic_fraction": {
+  "rom": [
+   {
+    "rho": 0.29325273307914235,
+    "recall": 0.1,
+    "error_raw": 0.9889835490619829,
+    "error_fit": 0.9177356024471666
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.7372114592797797,
+    "recall": 0.1,
+    "error_raw": 0.8526424452690032,
+    "error_fit": 0.555486147047581
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.41351884397160377,
+    "recall": 0.35,
+    "error_raw": 0.8847922260052569,
+    "error_fit": 0.8046192799818365,
+    "run": "write__refractory_intermetallic_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.4024271948323271,
+    "recall": 0.35,
+    "error_raw": 0.8369662068834525,
+    "error_fit": 0.8181587923015804,
+    "run": "write__refractory_intermetallic_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.7313630907660251,
+    "recall": 0.15,
+    "error_raw": 0.7871325143470899,
+    "error_fit": 0.5644018397170341,
+    "run": "write__refractory_intermetallic_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.6348150326858948,
+    "recall": 0.1,
+    "error_raw": 0.8460643500098718,
+    "error_fit": 0.7055710868323595,
+    "run": "write__refractory_intermetallic_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.4192063347967348,
+    "recall": 0.75,
+    "error_raw": 0.6928919057776383,
+    "error_fit": 0.6631121635602586,
+    "run": "writepd__refractory_intermetallic_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.7799160309617205,
+    "recall": 0.05,
+    "error_raw": 0.648597908047133,
+    "error_fit": 0.5906084272014874,
+    "run": "writepd__refractory_intermetallic_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.7610975335363095,
+    "recall": 0.1,
+    "error_raw": 0.7523398421634391,
+    "error_fit": 0.5424755245636205,
+    "run": "writepd__refractory_intermetallic_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.3384258153095862,
+    "recall": 0.7,
+    "error_raw": 0.7613604995718214,
+    "error_fit": 0.6949025286078273,
+    "run": "writepd__refractory_intermetallic_fraction__opus__rep2"
+   }
+  ]
+ },
+ "refractory_main_phase_fraction": {
+  "rom": [
+   {
+    "rho": -0.01834695576716846,
+    "recall": 0.05,
+    "error_raw": 1.377994715351788,
+    "error_fit": 0.9995051519907913
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.6590307559521849,
+    "recall": 0.3,
+    "error_raw": 0.795852611731773,
+    "error_fit": 0.7890210583118997
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.791275939244846,
+    "recall": 0.25,
+    "error_raw": 0.6566785311917722,
+    "error_fit": 0.655652969934623,
+    "run": "write__refractory_main_phase_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.8253313580222355,
+    "recall": 0.45,
+    "error_raw": 0.6788637769232111,
+    "error_fit": 0.6127892154972002,
+    "run": "write__refractory_main_phase_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.8507163449984411,
+    "recall": 0.25,
+    "error_raw": 0.6903836344935937,
+    "error_fit": 0.56735495094488,
+    "run": "write__refractory_main_phase_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.7988153145393151,
+    "recall": 0.3,
+    "error_raw": 0.8256364605943424,
+    "error_fit": 0.6578622553314838,
+    "run": "write__refractory_main_phase_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.7897255898131392,
+    "recall": 0.05,
+    "error_raw": 0.7267611879351589,
+    "error_fit": 0.6454748976921555,
+    "run": "writepd__refractory_main_phase_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.7258254033857864,
+    "recall": 0.0,
+    "error_raw": 0.8421022898585231,
+    "error_fit": 0.7339687761253967,
+    "run": "writepd__refractory_main_phase_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.6620763458481059,
+    "recall": 0.0,
+    "error_raw": 0.9759030272748052,
+    "error_fit": 0.7769069060068008,
+    "run": "writepd__refractory_main_phase_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.7940616913400429,
+    "recall": 0.0,
+    "error_raw": 0.7712064970843323,
+    "error_fit": 0.7114383022223127,
+    "run": "writepd__refractory_main_phase_fraction__opus__rep2"
+   }
+  ]
+ },
+ "refractory_solidus": {
+  "rom": [
+   {
+    "rho": 0.42241312713814266,
+    "recall": 0.4,
+    "error_raw": 2.508125041117802,
+    "error_fit": 0.8993633476546672
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.8330404507918422,
+    "recall": 0.7,
+    "error_raw": 0.776632614561495,
+    "error_fit": 0.5297661978217455
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.7046064497263026,
+    "recall": 0.5,
+    "error_raw": 1.2308993369968042,
+    "error_fit": 0.7223223174185628,
+    "run": "write__refractory_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.7497516462948915,
+    "recall": 0.7,
+    "error_raw": 1.3606989534444596,
+    "error_fit": 0.6646969791314238,
+    "run": "write__refractory_solidus__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.7203282984538879,
+    "recall": 0.45,
+    "error_raw": 1.1910649789882548,
+    "error_fit": 0.7042319760970484,
+    "run": "write__refractory_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.7957187156841603,
+    "recall": 0.75,
+    "error_raw": 0.9085722891645043,
+    "error_fit": 0.604405433501318,
+    "run": "write__refractory_solidus__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.8233217005340204,
+    "recall": 0.8,
+    "error_raw": 0.7726887441387371,
+    "error_fit": 0.5394310646659501,
+    "run": "writepd__refractory_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.7396600462463989,
+    "recall": 0.65,
+    "error_raw": 0.9446294725511316,
+    "error_fit": 0.6497438957598328,
+    "run": "writepd__refractory_solidus__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.81766430485608,
+    "recall": 0.75,
+    "error_raw": 0.712530438929332,
+    "error_fit": 0.5502279272032403,
+    "run": "writepd__refractory_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.7847707078459478,
+    "recall": 0.6,
+    "error_raw": 0.9190336033515928,
+    "error_fit": 0.6153577028793384,
+    "run": "writepd__refractory_solidus__opus__rep2"
+   }
+  ]
+ },
+ "steel_austenite_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.28253883016188475,
+    "recall": 0.25,
+    "error_raw": 7.810123939691372,
+    "error_fit": 0.9995085722858283
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.6533526421393168,
+    "recall": 0.1,
+    "error_raw": 0.7225060292670489,
+    "error_fit": 0.5677535526010851,
+    "run": "write__steel_austenite_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.7571753225803014,
+    "recall": 0.35,
+    "error_raw": 0.6207342405245135,
+    "error_fit": 0.5411453659108104,
+    "run": "write__steel_austenite_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.8535632303118745,
+    "recall": 0.6,
+    "error_raw": 0.45983391547940206,
+    "error_fit": 0.41308862147792197,
+    "run": "write__steel_austenite_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.6596783596372071,
+    "recall": 0.1,
+    "error_raw": 0.5835589809618826,
+    "error_fit": 0.5374979145155836,
+    "run": "write__steel_austenite_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.3610784980924685,
+    "recall": 0.1,
+    "error_raw": 0.7828535893314628,
+    "error_fit": 0.6987543158741676,
+    "run": "writepd__steel_austenite_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.8014340073081382,
+    "recall": 0.35,
+    "error_raw": 0.867118798500135,
+    "error_fit": 0.5679080083591855,
+    "run": "writepd__steel_austenite_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.8853718684660896,
+    "recall": 0.65,
+    "error_raw": 0.5014328323471956,
+    "error_fit": 0.43669891576149267,
+    "run": "writepd__steel_austenite_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.7916830737786906,
+    "recall": 0.35,
+    "error_raw": 0.4005888010066484,
+    "error_fit": 0.3362599258641151,
+    "run": "writepd__steel_austenite_fraction__opus__rep2"
+   }
+  ]
+ },
+ "steel_carbide_intermetallic_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.797158832854655,
+    "recall": 0.15,
+    "error_raw": 1.1968773550706546,
+    "error_fit": 0.7386624688814636
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8367829748687086,
+    "recall": 0.2,
+    "error_raw": 0.6528537596545103,
+    "error_fit": 0.6522545824462642,
+    "run": "write__steel_carbide_intermetallic_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.8482664336034269,
+    "recall": 0.1,
+    "error_raw": 0.681606747662095,
+    "error_fit": 0.6436483511397603,
+    "run": "write__steel_carbide_intermetallic_fraction__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.7508019363396223,
+    "recall": 0.1,
+    "error_raw": 0.6614064272748728,
+    "error_fit": 0.6520862941462447,
+    "run": "write__steel_carbide_intermetallic_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.7508483978811752,
+    "recall": 0.3,
+    "error_raw": 0.9327835013406669,
+    "error_fit": 0.6975250471769203,
+    "run": "write__steel_carbide_intermetallic_fraction__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.7840439028887983,
+    "recall": 0.5,
+    "error_raw": 1.0502226839900397,
+    "error_fit": 0.72338375504121,
+    "run": "writepd__steel_carbide_intermetallic_fraction__fable__rep1"
+   },
+   {
+    "rho": 0.8224488473378494,
+    "recall": 0.4,
+    "error_raw": 0.856599484738603,
+    "error_fit": 0.7086427738410189,
+    "run": "writepd__steel_carbide_intermetallic_fraction__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.8140498995745533,
+    "recall": 0.3,
+    "error_raw": 0.7791361516091058,
+    "error_fit": 0.6859450448677464,
+    "run": "writepd__steel_carbide_intermetallic_fraction__opus__rep1"
+   },
+   {
+    "rho": 0.7884663430988842,
+    "recall": 0.3,
+    "error_raw": 0.7321582518393269,
+    "error_fit": 0.6547856247300614,
+    "run": "writepd__steel_carbide_intermetallic_fraction__opus__rep2"
+   }
+  ]
+ },
+ "steel_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.8854477925421759,
+    "recall": 0.75,
+    "error_raw": 1.0262216044594594,
+    "error_fit": 0.6030952151108423
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8489525558150522,
+    "recall": 0.55,
+    "error_raw": 0.7468193620418655,
+    "error_fit": 0.640973595986496,
+    "run": "write__steel_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.8712360776871244,
+    "recall": 0.5,
+    "error_raw": 0.6674881369379903,
+    "error_fit": 0.5872577730475579,
+    "run": "write__steel_freezing_range__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.88821599202074,
+    "recall": 0.55,
+    "error_raw": 0.6583849500811557,
+    "error_fit": 0.5102510973343918,
+    "run": "write__steel_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.8670617777336784,
+    "recall": 0.65,
+    "error_raw": 0.6143735367096039,
+    "error_fit": 0.5975471327252663,
+    "run": "write__steel_freezing_range__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.8935877704615942,
+    "recall": 0.7,
+    "error_raw": 0.926007541787386,
+    "error_fit": 0.5945868990587744,
+    "run": "writepd__steel_freezing_range__fable__rep1"
+   },
+   {
+    "rho": 0.8926468288568443,
+    "recall": 0.7,
+    "error_raw": 0.8855404787816736,
+    "error_fit": 0.5799877543675924,
+    "run": "writepd__steel_freezing_range__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.9110735599754456,
+    "recall": 0.75,
+    "error_raw": 0.684220237200221,
+    "error_fit": 0.5203586137986814,
+    "run": "writepd__steel_freezing_range__opus__rep1"
+   },
+   {
+    "rho": 0.9004290123363838,
+    "recall": 0.65,
+    "error_raw": 0.7320934473915446,
+    "error_fit": 0.5431250827733827,
+    "run": "writepd__steel_freezing_range__opus__rep2"
+   }
+  ]
+ },
+ "steel_solidus": {
+  "rom": [
+   {
+    "rho": -0.06957794812257896,
+    "recall": 0.1,
+    "error_raw": 2.7516681169589634,
+    "error_fit": 0.9976952230043298
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9179086398798508,
+    "recall": 0.95,
+    "error_raw": 0.7592986803085033,
+    "error_fit": 0.4241211233182998
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8721048928898674,
+    "recall": 0.8,
+    "error_raw": 0.602509862805672,
+    "error_fit": 0.4659362651623027,
+    "run": "write__steel_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.9253006220042108,
+    "recall": 0.8,
+    "error_raw": 0.6840934596359354,
+    "error_fit": 0.40484608666945954,
+    "run": "write__steel_solidus__fable__rep2"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.8881914857587795,
+    "recall": 0.8,
+    "error_raw": 0.4710578146175482,
+    "error_fit": 0.4341033721945795,
+    "run": "write__steel_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.8836546751475077,
+    "recall": 0.8,
+    "error_raw": 0.5988207700553789,
+    "error_fit": 0.4442544353978419,
+    "run": "write__steel_solidus__opus__rep2"
+   }
+  ],
+  "fable + facts": [
+   {
+    "rho": 0.9206360635305938,
+    "recall": 0.95,
+    "error_raw": 0.5786341799344111,
+    "error_fit": 0.40105149715932126,
+    "run": "writepd__steel_solidus__fable__rep1"
+   },
+   {
+    "rho": 0.9297364799303354,
+    "recall": 0.85,
+    "error_raw": 0.7066846861479693,
+    "error_fit": 0.4074607662421002,
+    "run": "writepd__steel_solidus__fable__rep2"
+   }
+  ],
+  "opus + facts": [
+   {
+    "rho": 0.920185705345499,
+    "recall": 0.9,
+    "error_raw": 0.4619478312044408,
+    "error_fit": 0.38851556402599247,
+    "run": "writepd__steel_solidus__opus__rep1"
+   },
+   {
+    "rho": 0.9297870800540021,
+    "recall": 0.9,
+    "error_raw": 0.6178110904808873,
+    "error_fit": 0.3844973172107008,
+    "run": "writepd__steel_solidus__opus__rep2"
+   }
+  ]
+ },
+ "ti_alloy_alpha_fraction": {
+  "rom": [
+   {
+    "rho": 0.12042054600637848,
+    "recall": 0.1,
+    "error_raw": 4.769136008006171,
+    "error_fit": 0.9979163752884926
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.46355377274883885,
+    "recall": 0.25,
+    "error_raw": 2.375798289115624,
+    "error_fit": 0.922435733623629
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.26506034003926715,
+    "recall": 0.1,
+    "error_raw": 1.1895643636018287,
+    "error_fit": 0.9212259728192452,
+    "run": "write__ti_alloy_alpha_fraction__fable__rep1"
+   }
+  ]
+ },
+ "ti_alloy_alpha_transus": {
+  "rom": [
+   {
+    "rho": -0.03726695831180709,
+    "recall": 0.05263157894736842,
+    "error_raw": 2.362055323819194,
+    "error_fit": 0.9990720909638819
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.19784923364842777,
+    "recall": 0.10526315789473684,
+    "error_raw": 1.6391100914210504,
+    "error_fit": 0.9905175371842161
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.3017515642738953,
+    "recall": 0.15789473684210525,
+    "error_raw": 1.4015671480836085,
+    "error_fit": 0.9395488149574633,
+    "run": "write__ti_alloy_alpha_transus__fable__rep1"
+   }
+  ]
+ },
+ "ti_alloy_freezing_range": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9373703872877364,
+    "recall": 0.95,
+    "error_raw": 0.5164817613907943,
+    "error_fit": 0.35241523386130774
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.7479845779577438,
+    "recall": 0.5,
+    "error_raw": 1.5810781752459206,
+    "error_fit": 0.653794391776646,
+    "run": "write__ti_alloy_freezing_range__fable__rep1"
+   }
+  ]
+ },
+ "ti_alloy_intermetallic_fraction": {
+  "rom": [
+   {
+    "rho": NaN,
+    "recall": NaN,
+    "error_raw": NaN,
+    "error_fit": 1.0
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.6388450457420841,
+    "recall": 0.15,
+    "error_raw": 0.8657753099176514,
+    "error_fit": 0.7083923257278817
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.7729273201488878,
+    "recall": 0.65,
+    "error_raw": 0.6747114156357095,
+    "error_fit": 0.6368500128274543,
+    "run": "write__ti_alloy_intermetallic_fraction__fable__rep1"
+   }
+  ]
+ },
+ "ti_alloy_solidus": {
+  "rom": [
+   {
+    "rho": -0.07854545109532445,
+    "recall": 0.05,
+    "error_raw": 1.3512785361599813,
+    "error_fit": 0.9965738295197627
+   }
+  ],
+  "subsystem_extrapolation": [
+   {
+    "rho": 0.9098273266099784,
+    "recall": 0.75,
+    "error_raw": 0.4931116423541486,
+    "error_fit": 0.39202635422260973
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.8216307172555815,
+    "recall": 0.6,
+    "error_raw": 0.9593451274492885,
+    "error_fit": 0.565355927689133,
+    "run": "write__ti_alloy_solidus__fable__rep1"
+   }
+  ]
+ },
+ "loop_bulk_modulus": {
+  "rule": [
+   {
+    "rho": 0.7381410265169832,
+    "recall": 0.20402298850574713,
+    "error_raw": 2.0447305319461844,
+    "error_fit": 0.7728451971034908
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.9372789395441954,
+    "recall": 0.6149425287356322,
+    "error_raw": 0.6683133746944414,
+    "error_fit": 0.48745398573233645,
+    "run": "filter_K__fable__rep1"
+   },
+   {
+    "rho": 0.9096072466978252,
+    "recall": 0.5344827586206896,
+    "error_raw": 0.5276943087559137,
+    "error_fit": 0.47680157936925316,
+    "run": "filter_K__fable__rep2"
+   },
+   {
+    "rho": 0.9428746088188629,
+    "recall": 0.5517241379310345,
+    "error_raw": 0.6691649923154069,
+    "error_fit": 0.5670092280822298,
+    "run": "filter_K__fable__rep3"
+   }
+  ],
+  "haiku": [
+   {
+    "rho": 0.9333690953093065,
+    "recall": 0.6781609195402298,
+    "error_raw": 0.8233027891381757,
+    "error_fit": 0.5215330842437931,
+    "run": "filter_K__haiku__rep1"
+   },
+   {
+    "rho": 0.8090621844348935,
+    "recall": 0.5632183908045977,
+    "error_raw": 0.8750457368981264,
+    "error_fit": 0.6047036563090917,
+    "run": "filter_K__haiku__rep2"
+   },
+   {
+    "rho": 0.7750018559362902,
+    "recall": 0.5316091954022989,
+    "error_raw": 2.9336252083988166,
+    "error_fit": 0.6377123906772313,
+    "run": "filter_K__haiku__rep3"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.9301692115831612,
+    "recall": 0.5086206896551724,
+    "error_raw": 0.5936303060886725,
+    "error_fit": 0.5203492827267217,
+    "run": "filter_K__opus__rep1"
+   },
+   {
+    "rho": 0.9142221916968921,
+    "recall": 0.5402298850574713,
+    "error_raw": 0.6790854457390684,
+    "error_fit": 0.5375198356718671,
+    "run": "filter_K__opus__rep2"
+   },
+   {
+    "rho": 0.9317283112930413,
+    "recall": 0.49137931034482757,
+    "error_raw": 0.5267229015219672,
+    "error_fit": 0.5063900992011586,
+    "run": "filter_K__opus__rep3"
+   }
+  ],
+  "sonnet": [
+   {
+    "rho": 0.8841741564008446,
+    "recall": 0.632183908045977,
+    "error_raw": 0.9875598102910809,
+    "error_fit": 0.561722423728839,
+    "run": "filter_K__sonnet__rep1"
+   },
+   {
+    "rho": 0.8988566079105471,
+    "recall": 0.5948275862068966,
+    "error_raw": 0.744805623814445,
+    "error_fit": 0.5285007226303672,
+    "run": "filter_K__sonnet__rep2"
+   },
+   {
+    "rho": 0.8749228982006458,
+    "recall": 0.5977011494252874,
+    "error_raw": 0.9294414531012319,
+    "error_fit": 0.5939536177690913,
+    "run": "filter_K__sonnet__rep3"
+   }
+  ]
+ },
+ "loop_heat_capacity": {
+  "rule": [
+   {
+    "rho": 0.9970510429106961,
+    "recall": 0.930327868852459,
+    "error_raw": 0.2404847804212844,
+    "error_fit": 0.13409550889045027
+   }
+  ],
+  "fable": [
+   {
+    "rho": 0.9978488019918413,
+    "recall": 0.9385245901639344,
+    "error_raw": 0.156602947194331,
+    "error_fit": 0.11288692542081798,
+    "run": "filter_Cp__fable__rep1"
+   },
+   {
+    "rho": 0.9976315348529097,
+    "recall": 0.9385245901639344,
+    "error_raw": 0.22795205274427935,
+    "error_fit": 0.13567096493403905,
+    "run": "filter_Cp__fable__rep2"
+   }
+  ],
+  "haiku": [
+   {
+    "rho": 0.9563093129313532,
+    "recall": 0.75,
+    "error_raw": 1.4680051888341388,
+    "error_fit": 0.3037979510058182,
+    "run": "filter_Cp__haiku__rep1"
+   }
+  ],
+  "opus": [
+   {
+    "rho": 0.9974719487995636,
+    "recall": 0.9426229508196722,
+    "error_raw": 0.17495023504909038,
+    "error_fit": 0.12641032586438844,
+    "run": "filter_Cp__opus__rep1"
+   },
+   {
+    "rho": 0.9970335616764974,
+    "recall": 0.930327868852459,
+    "error_raw": 0.1510625174055844,
+    "error_fit": 0.1349788121878903,
+    "run": "filter_Cp__opus__rep2"
+   }
+  ],
+  "sonnet": [
+   {
+    "rho": 0.9970511807423922,
+    "recall": 0.930327868852459,
+    "error_raw": 0.3581896833337757,
+    "error_fit": 0.17805675081659428,
+    "run": "filter_Cp__sonnet__rep1"
+   }
+  ]
+ }
+}

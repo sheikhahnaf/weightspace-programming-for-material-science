@@ -11,7 +11,7 @@ authors:
     affiliation: "Department of Materials Science and Engineering, Texas A&M University"
 preferred-citation:
   type: article
-  title: "Weight-Space Programming for Materials Science: A Language Model Writes Property-Prediction Networks from Knowledge Alone"
+  title: "Weight-Space Programming for Materials Science"
   authors:
     - family-names: Alvi
       given-names: Sk Md Ahnaf Akif

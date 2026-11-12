@@ -25,7 +25,7 @@ in both state dicts; anything else keeps its base value.
   bm_seed17_neg      the single-seed vector subtracted           (negation)
   bm_mean5_x3        three times the mean vector                 (scaling)
 
-Runs wherever the checkpoints are (FASTER or a laptop). Existing variants are kept.
+Runs wherever the checkpoints are (a cluster or a laptop). Existing variants are kept.
 
     python make_variants.py --base-dir <mattergen_base> --finetuned <finetuned_diffusion> --out <variants>
     python make_variants.py --backbone cf   --base-dir <.../DNG-mp-20>       --finetuned <...> --out <variants_cf>

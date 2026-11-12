@@ -1,16 +1,16 @@
-# E3 on FASTER: sample from merged MatterGen checkpoints and score them
+# E3 on a Slurm cluster: sample from merged MatterGen checkpoints and score them
 
 Everything is written under `$WSP_WORK/` (user scratch and
 home are over quota). The conda env `matinvent-hcap-bo`, the base MatterGen model and the
 cached eSEN-30M-OAM weights are read from user scratch, as the published loop's jobs do.
 
 ```bash
-# from the repo root on the laptop, with an open `ssh faster` master connection
+# from the repo root on the laptop, with SSH access to the cluster (written `<cluster>` below)
 W=$WSP_WORK/weighspace-programming
 rsync -avz --relative supplementary/e3_generator_task_vectors/ vendor/matgen_bo/closed_loop/calculators/ <cluster>:$W/
-ssh faster "sbatch $W/supplementary/e3_generator_task_vectors/hprc/prep.slurm"      # download, variants, smoke test
-ssh faster "sbatch $W/supplementary/e3_generator_task_vectors/hprc/array.slurm"     # 11 variants x 128 crystals
-ssh faster "squeue -u \$USER"
+ssh <cluster> "sbatch $W/supplementary/e3_generator_task_vectors/hprc/prep.slurm"      # download, variants, smoke test
+ssh <cluster> "sbatch $W/supplementary/e3_generator_task_vectors/hprc/array.slurm"     # 11 variants x 128 crystals
+ssh <cluster> "squeue -u \$USER"
 
 # results back (small text files only)
 rsync -avz --include='*/' --include='scores.csv' --include='sampling_seconds.txt' --include='generated_crystals.extxyz' \
@@ -47,11 +47,11 @@ copied to the laptop).
 W=$WSP_WORK/weighspace-programming
 H=$W/supplementary/e3_generator_task_vectors/hprc
 rsync -avz --relative --exclude results --exclude runs --exclude __pycache__ supplementary/e3_generator_task_vectors/ <cluster>:$W/
-ssh faster "cd $H && sbatch --export=ALL,BACKBONE=cf prep.slurm"
-ssh faster "cd $H && sbatch --export=ALL,BACKBONE=adit --time=04:00:00 --mem=64G prep.slurm"
+ssh <cluster> "cd $H && sbatch --export=ALL,BACKBONE=cf prep.slurm"
+ssh <cluster> "cd $H && sbatch --export=ALL,BACKBONE=adit --time=04:00:00 --mem=64G prep.slurm"
 # when logs/prep_<job>.out shows SMOKE_DONE (variants built, 2 crystals scored):
-ssh faster "cd $H && sbatch --export=ALL,BACKBONE=cf array.slurm"
-ssh faster "cd $H && sbatch --export=ALL,BACKBONE=adit array.slurm"
+ssh <cluster> "cd $H && sbatch --export=ALL,BACKBONE=cf array.slurm"
+ssh <cluster> "cd $H && sbatch --export=ALL,BACKBONE=adit array.slurm"
 
 # results back, per backbone (scores and structures only), then the table
 for bb in cf adit; do

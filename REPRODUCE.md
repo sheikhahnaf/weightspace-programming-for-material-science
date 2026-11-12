@@ -82,7 +82,7 @@ conda activate matinvent && python $E2/run_baselines.py && python $E2/run_fronti
 python $E2/llm_arm.py prompt --tag <model>__rep<k> --version 2 ; python $E2/llm_arm.py score-all
 # section 5: generator
 python $E3/download_checkpoints.py --backbone mg && python $E3/task_vectors.py --backbone mg
-#   sampling and scoring on FASTER: $E3/hprc/README.md ; then
+#   sampling and scoring on a Slurm cluster: $E3/hprc/README.md ; then
 python $E3/analyze_variants.py
 # model ids, tokens, durations and the tool-call audit for every LLM run
 python scripts/harvest_run_usage.py
@@ -141,7 +141,7 @@ E1=experiments/e1_surrogate_head
 python $E1/run_structure_prior.py --jobs 6      # prior mean: rule and every written K / Cp network -> results/structure_prior/summary.md
 python $E1/run_structure_features.py --jobs 6   # hidden layer as GP inputs -> results/structure_prior/features/summary.md
 python experiments/e7_calphad_prior/summarise.py  # Thermo-Calc overview table -> experiments/e7_calphad_prior/results/overview.md
-# on FASTER (48 cores): sbatch $E1/hprc_structure.slurm ; sbatch experiments/e7_calphad_prior/hprc/priors.slurm
+# on a Slurm cluster (48 cores): sbatch $E1/hprc_structure.slurm ; sbatch experiments/e7_calphad_prior/hprc/priors.slurm
 ```
 
 No new model runs: the networks are the replies in `experiments/e3_crystal_filter/runs/filter_{K,Cp}__*`. Cells are cached one file each, so an interrupted run resumes.
@@ -185,7 +185,7 @@ E3=supplementary/e3_generator_task_vectors
 # CrystalFlow statistics on the laptop: copy the base (226 MB, untracked), then
 rsync -a <cluster>:$WSP_USER_SCRATCH/checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20/ data/large/base_checkpoints/crystalflow/DNG-mp-20/
 python $E3/download_checkpoints.py --backbone cf && python $E3/task_vectors.py --backbone cf    # -> results/task_vectors_cf.json
-# variants, sampling and scoring on FASTER, and the ADiT statistics: $E3/hprc/README.md, section "CrystalFlow and ADiT"
+# variants, sampling and scoring on a Slurm cluster, and the ADiT statistics: $E3/hprc/README.md, section "CrystalFlow and ADiT"
 #   sbatch --export=ALL,BACKBONE=<cf|adit> prep.slurm ; then array.slurm ; rsync results_<bb>/ -> results/hprc_<bb>/
 python $E3/analyze_variants.py --backbone cf        # -> results/variants_summary_cf.{md,json}
 python $E3/analyze_variants.py --backbone adit      # -> results/variants_summary_adit.{md,json}

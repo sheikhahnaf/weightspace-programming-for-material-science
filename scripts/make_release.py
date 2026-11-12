@@ -8,7 +8,7 @@ history holds files that are left out here). The script only copies and rewrites
 never deletes, never runs git, and refuses to write into a folder that already has files.
 
 Left out always:
-  working notes (PROGRESS.md, questions.md, CLAUDE.md, research/), slides/, site/,
+  working notes (PROGRESS.md, questions.md, CLAUDE.md, research/, docs/), slides/, site/,
   the page crops of the table-reader experiment (images of third-party benchmark pages).
 
 Left out unless --with-thermocalc is given (values computed with Thermo-Calc and its
@@ -39,7 +39,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 ALWAYS_OUT = ("PROGRESS.md", "questions.md", "CLAUDE.md", "research/", "slides/", "site/", ".superpowers/", "vendor/",
-              "supplementary/e6_extraction_reader/", "data/alloys/perovskite_")
+              "supplementary/e6_extraction_reader/", "data/alloys/perovskite_", "docs/")
 CROPS = re.compile(r"supplementary/e6_extraction_reader/.*\.(png|jpg|jpeg)$")
 TC_DATA = "data/calphad/"
 TC_RESULTS = "experiments/e7_calphad_prior/results/"
@@ -128,6 +128,8 @@ def main() -> None:
             new = text
             for pattern, replacement in REWRITE:
                 new = pattern.sub(replacement, new)
+            if name == "README.md":  # docs/ is left out (dated working pages), so drop the lines that point there
+                new = "".join(line for line in new.splitlines(keepends=True) if "docs/" not in line)
             if args.without_thermocalc and TC_FACTS_PROMPT.search(name):
                 new, n = FACTS_BLOCK.subn(r"\1[The sub-system values computed with Thermo-Calc are not redistributed. "
                                           r"They can be regenerated with experiments/e7_calphad_prior/make_tc_data.py "

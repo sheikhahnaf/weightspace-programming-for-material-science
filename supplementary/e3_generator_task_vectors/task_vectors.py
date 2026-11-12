@@ -12,8 +12,8 @@ tau = fine-tuned weights - base weights. This script reports
 Checkpoints are read from data/large/finetuned_diffusion/ (download_checkpoints.py).
 
     python supplementary/e3_generator_task_vectors/task_vectors.py --backbone mg
-    python supplementary/e3_generator_task_vectors/task_vectors.py --backbone cf     # base copied from FASTER, see README
-    python task_vectors.py --backbone adit --base <ldm.ckpt> --finetuned <dir> --out <dir>   # on FASTER
+    python supplementary/e3_generator_task_vectors/task_vectors.py --backbone cf     # base copied from the cluster, see README
+    python task_vectors.py --backbone adit --base <ldm.ckpt> --finetuned <dir> --out <dir>   # on a Slurm cluster
 
 Only tensors present in both the base and the fine-tuned state dict are compared (the ADiT
 fine-tunes hold the denoiser only; the frozen autoencoder is not in them). CrystalFlow and

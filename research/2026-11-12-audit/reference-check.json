@@ -1,0 +1,1130 @@
+[
+  {
+    "key": "takehi2026sparks",
+    "verdict": "CHECK",
+    "route": "crossref-title(->openalex)",
+    "note": "title_sim=0.31",
+    "rec": {
+      "title": "Figure 5: Maximum read and write weights for DNC external memory buffer.",
+      "surnames": [],
+      "authors": "",
+      "venue": "",
+      "year": null,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "crossref-title"
+    },
+    "expected": {
+      "author1": [
+        "takehi"
+      ],
+      "year": 2026,
+      "title": "Sparks of Weight-Space Programming: LLMs can natively read \\& write neural network weights"
+    }
+  },
+  {
+    "key": "hu2026exploring",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations",
+      "surnames": [
+        "hu",
+        "tang",
+        "li",
+        "zhu",
+        "feng",
+        "zhang",
+        "chen",
+        "hu"
+      ],
+      "authors": "Junru Hu; Cheng Tang; Wei Li; Hongze Zhu; Chun-Mei Feng; Qi Zhang; Yirong Chen; Ming Hu",
+      "venue": "arXiv:2611.09382",
+      "year": 2026,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "hu"
+      ],
+      "year": 2026,
+      "title": "Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations"
+    }
+  },
+  {
+    "key": "ahmed2026memorization",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring \"Weight-Space Programming\"",
+      "surnames": [
+        "ahmed"
+      ],
+      "authors": "Nazmus Sakib Ahmed",
+      "venue": "arXiv:2611.08070",
+      "year": 2026,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "ahmed"
+      ],
+      "year": 2026,
+      "title": "Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring ``Weight-Space Programming''"
+    }
+  },
+  {
+    "key": "nusrat2026auditing",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Weight-space programming for auditing clinical decision networks",
+      "surnames": [
+        "nusrat",
+        "nusrat"
+      ],
+      "authors": "Humza Nusrat; Omar Nusrat",
+      "venue": "arXiv:2611.05341",
+      "year": 2026,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "nusrat"
+      ],
+      "year": 2026,
+      "title": "Weight-space programming for auditing clinical decision networks"
+    }
+  },
+  {
+    "key": "li2026weightloop",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "WeightLoop: Weight-Space Programming with Experimental Feedback",
+      "surnames": [
+        "li",
+        "li",
+        "zhao",
+        "zhang",
+        "zhang",
+        "xu",
+        "zang",
+        "leung",
+        "li"
+      ],
+      "authors": "Mengran Li; Bo Li; Weijing Zhao; Chengyang Zhang; Boyu Zhang; Jinfeng Xu; Zelin Zang; Victor C. M. Leung; Stan Z. Li",
+      "venue": "arXiv:2611.07319",
+      "year": 2026,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "li"
+      ],
+      "year": 2026,
+      "title": "WeightLoop: Weight-Space Programming with Experimental Feedback"
+    }
+  },
+  {
+    "key": "butkeraites2026write",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Can a Language Model Write the Weights? An Empirical Study of LLM-Written Scoring Networks for Column Generation and MILP Branching, with a Bus-Driver Scheduling Application",
+      "surnames": [
+        "butkeraites"
+      ],
+      "authors": "Renan Butkeraites",
+      "venue": "arXiv:2611.09559",
+      "year": 2026,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "butkeraites"
+      ],
+      "year": 2026,
+      "title": "Can a Language Model Write the Weights? An Empirical Study of LLM-Written Scoring Networks for Column Generation and MILP Branching, with a Bus-Driver Scheduling Application"
+    }
+  },
+  {
+    "key": "verma2026gffmerge",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "GFFMERGE: Efficient Merging of Graph Neural Force Fields and Beyond",
+      "surnames": [
+        "verma",
+        "singh",
+        "garg",
+        "thakre",
+        "krishnan",
+        "ranu"
+      ],
+      "authors": "Parth Verma; Parv P. Singh; Vipul Garg; Ishita Thakre; N. M. Anoop Krishnan; Sayan Ranu",
+      "venue": "arXiv:2606.03232",
+      "year": 2026,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "verma"
+      ],
+      "year": 2026,
+      "title": "GFFMERGE: Efficient Merging of Graph Neural Force Fields and Beyond"
+    }
+  },
+  {
+    "key": "batatia2022mace",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "MACE: Higher Order Equivariant Message Passing Neural Networks for Fast and Accurate Force Fields",
+      "surnames": [
+        "batatia",
+        "kovacs",
+        "simm",
+        "ortner",
+        "csanyi"
+      ],
+      "authors": "Batatia, Ilyes; Kovacs, David P; Simm, Gregor; Ortner, Christoph; Csanyi, Gabor",
+      "venue": "Advances in Neural Information Processing Systems 35",
+      "year": 2022,
+      "volume": null,
+      "issue": null,
+      "page": "11423-11436",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "batatia"
+      ],
+      "year": 2022,
+      "title": "MACE: Higher Order Equivariant Message Passing Neural Networks for Fast and Accurate Force Fields"
+    }
+  },
+  {
+    "key": "batatia2023foundation",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "A foundation model for atomistic materials chemistry",
+      "surnames": [
+        "batatia",
+        "benner",
+        "chiang",
+        "elena",
+        "kovcs",
+        "riebesell",
+        "advincula",
+        "asta",
+        "avaylon",
+        "baldwin",
+        "berger",
+        "bernstein",
+        "bhowmik",
+        "bigi",
+        "blau",
+        "crare",
+        "ceriotti",
+        "chong",
+        "darby",
+        "de",
+        "della pia",
+        "deringer",
+        "elijoius",
+        "elmachachi",
+        "fako",
+        "falcioni",
+        "ferrari",
+        "gardner",
+        "gawkowski",
+        "genreithschriever",
+        "george",
+        "goodall",
+        "grandel",
+        "grey",
+        "grigorev",
+        "han",
+        "handley",
+        "heenen",
+        "hermansson",
+        "ho",
+        "hofmann",
+        "holm",
+        "jaafar",
+        "jakob",
+        "jung",
+        "kapil",
+        "kaplan",
+        "karimitari",
+        "kermode",
+        "kourtis",
+        "kroupa",
+        "kullgren",
+        "kuner",
+        "kuryla",
+        "liepuoniute",
+        "lin",
+        "margraf",
+        "magdu",
+        "michaelides",
+        "moore",
+        "naik",
+        "niblett",
+        "norwood",
+        "oneill",
+        "ortner",
+        "persson",
+        "reuter",
+        "rosen",
+        "rosset",
+        "schaaf",
+        "schran",
+        "shi",
+        "sivonxay",
+        "stenczel",
+        "sutton",
+        "svahn",
+        "swinburne",
+        "tilly",
+        "van der oord",
+        "vargas",
+        "vargaumbrich",
+        "vegge",
+        "vondrk",
+        "wang",
+        "witt",
+        "wolf",
+        "zills",
+        "csnyi"
+      ],
+      "authors": "Batatia, Ilyes; Benner, Philipp; Chiang, Yuan; Elena, Alin M.; Kov\u00e1cs, D\u00e1vid P.; Riebesell, Janosh; Advincula, Xavier R.; Asta, Mark; Avaylon, Matthew; Baldwin, William J.; Berger, Fabian; Bernstein, Noam; Bhowmik, Arghya; Bigi, Filippo; Blau, Samuel M.; C\u0103rare, Vlad; Ceriotti, Michele; Chong, Sanggyu; Darby, James P.; De, Sandip; Della Pia, Flaviano; Deringer, Volker L.; Elijo\u0161ius, Rokas; El-Machachi, Zakariya; Fako, Edvin; Falcioni, Fabio; Ferrari, Andrea C.; Gardner, John L. A.; Gawkowski, Miko\u0142aj J.; Genreith-Schriever, Annalena; George, Janine; Goodall, Rhys E. A.; Grandel, Jonas; Grey, Clare P.; Grigorev, Petr; Han, Shuang; Handley, Will; Heenen, Hendrik H.; Hermansson, Kersti; Ho, Cheuk Hin; Hofmann, Stephan; Holm, Christian; Jaafar, Jad; Jakob, Konstantin S.; Jung, Hyunwook; Kapil, Venkat; Kaplan, Aaron D.; Karimitari, Nima; Kermode, James R.; Kourtis, Panagiotis; Kroupa, Namu; Kullgren, Jolla; Kuner, Matthew C.; Kuryla, Domantas; Liepuoniute, Guoda; Lin, Chen; Margraf, Johannes T.; Magd\u0103u, Ioan-Bogdan; Michaelides, Angelos; Moore, J. Harry; Naik, Aakash A.; Niblett, Samuel P.; Norwood, Sam Walton; O\u2019Neill, Niamh; Ortner, Christoph; Persson, Kristin A.; Reuter, Karsten; Rosen, Andrew S.; Rosset, Louise A. M.; Schaaf, Lars L.; Schran, Christoph; Shi, Benjamin X.; Sivonxay, Eric; Stenczel, Tam\u00e1s K.; Sutton, Christopher; Svahn, Viktor; Swinburne, Thomas D.; Tilly, Jules; van der Oord, Cas; Vargas, Santiago; Varga-Umbrich, Eszter; Vegge, Tejs; Vondr\u00e1k, Martin; Wang, Yangshuai; Witt, William C.; Wolf, Thomas; Zills, Fabian; Cs\u00e1nyi, G\u00e1bor",
+      "venue": "The Journal of Chemical Physics",
+      "year": 2025,
+      "volume": "163",
+      "issue": "18",
+      "page": "184110",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "batatia"
+      ],
+      "year": 2025,
+      "title": "A foundation model for atomistic materials chemistry"
+    }
+  },
+  {
+    "key": "rhodes2025orbv3",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Orb-v3: atomistic simulation at scale",
+      "surnames": [
+        "rhodes",
+        "vandenhaute",
+        "imkus",
+        "gin",
+        "godwin",
+        "duignan",
+        "neumann"
+      ],
+      "authors": "Benjamin Rhodes; Sander Vandenhaute; Vaidotas \u0160imkus; James Gin; Jonathan Godwin; Tim Duignan; Mark Neumann",
+      "venue": "arXiv:2504.06231",
+      "year": 2025,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "rhodes"
+      ],
+      "year": 2025,
+      "title": "Orb-v3: atomistic simulation at scale"
+    }
+  },
+  {
+    "key": "fu2025esen",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Learning Smooth and Expressive Interatomic Potentials for Physical Property Prediction",
+      "surnames": [
+        "fu",
+        "wood",
+        "barrosoluque",
+        "levine",
+        "gao",
+        "dzamba",
+        "zitnick"
+      ],
+      "authors": "Xiang Fu; Brandon M. Wood; Luis Barroso-Luque; Daniel S. Levine; Meng Gao; Misko Dzamba; C. Lawrence Zitnick",
+      "venue": "arXiv:2502.12147",
+      "year": 2025,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "fu"
+      ],
+      "year": 2025,
+      "title": "Learning Smooth and Expressive Interatomic Potentials for Physical Property Prediction"
+    }
+  },
+  {
+    "key": "bochkarev2024grace",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Graph Atomic Cluster Expansion for Semilocal Interactions beyond Equivariant Message Passing",
+      "surnames": [
+        "bochkarev",
+        "lysogorskiy",
+        "drautz"
+      ],
+      "authors": "Bochkarev, Anton; Lysogorskiy, Yury; Drautz, Ralf",
+      "venue": "Physical Review X",
+      "year": 2024,
+      "volume": "14",
+      "issue": "2",
+      "page": "021036",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "bochkarev"
+      ],
+      "year": 2024,
+      "title": "Graph Atomic Cluster Expansion for Semilocal Interactions beyond Equivariant Message Passing"
+    }
+  },
+  {
+    "key": "barroso2024omat",
+    "verdict": "CHECK",
+    "route": "crossref-doi",
+    "note": "first-author 'barrosoluque' not in record",
+    "rec": {
+      "title": "The Open Materials 2024 (OMat24) inorganic materials dataset and models",
+      "surnames": [
+        "barrosluque",
+        "shuaibi",
+        "fu",
+        "wood",
+        "dzamba",
+        "gao",
+        "rizvi",
+        "uyttendaele",
+        "zitnick",
+        "ulissi"
+      ],
+      "authors": "Barros-Luque, Luis; Shuaibi, Muhammed; Fu, Xiang; Wood, Brandon M.; Dzamba, Misko; Gao, Meng; Rizvi, Ammar; Uyttendaele, Matt; Zitnick, C. Lawrence; Ulissi, Zachary W.",
+      "venue": "Nature Computational Science",
+      "year": 2026,
+      "volume": "6",
+      "issue": "6",
+      "page": "642-652",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "barrosoluque"
+      ],
+      "year": 2026,
+      "title": "The Open Materials 2024 (OMat24) inorganic materials dataset and models"
+    }
+  },
+  {
+    "key": "zeni2025mattergen",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "A generative model for inorganic materials design",
+      "surnames": [
+        "zeni",
+        "pinsler",
+        "zgner",
+        "fowler",
+        "horton",
+        "fu",
+        "wang",
+        "shysheya",
+        "crabb",
+        "ueda",
+        "sordillo",
+        "sun",
+        "smith",
+        "nguyen",
+        "schulz",
+        "lewis",
+        "huang",
+        "lu",
+        "zhou",
+        "yang",
+        "hao",
+        "li",
+        "yang",
+        "li",
+        "tomioka",
+        "xie"
+      ],
+      "authors": "Zeni, Claudio; Pinsler, Robert; Z\u00fcgner, Daniel; Fowler, Andrew; Horton, Matthew; Fu, Xiang; Wang, Zilong; Shysheya, Aliaksandra; Crabb\u00e9, Jonathan; Ueda, Shoko; Sordillo, Roberto; Sun, Lixin; Smith, Jake; Nguyen, Bichlien; Schulz, Hannes; Lewis, Sarah; Huang, Chin-Wei; Lu, Ziheng; Zhou, Yichi; Yang, Han; Hao, Hongxia; Li, Jielan; Yang, Chunlei; Li, Wenjie; Tomioka, Ryota; Xie, Tian",
+      "venue": "Nature",
+      "year": 2025,
+      "volume": "639",
+      "issue": "8055",
+      "page": "624-632",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "zeni"
+      ],
+      "year": 2025,
+      "title": "A generative model for inorganic materials design"
+    }
+  },
+  {
+    "key": "ilharco2023task",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Editing Models with Task Arithmetic",
+      "surnames": [
+        "ilharco",
+        "ribeiro",
+        "wortsman",
+        "gururangan",
+        "schmidt",
+        "hajishirzi",
+        "farhadi"
+      ],
+      "authors": "Gabriel Ilharco; Marco Tulio Ribeiro; Mitchell Wortsman; Suchin Gururangan; Ludwig Schmidt; Hannaneh Hajishirzi; Ali Farhadi",
+      "venue": "arXiv:2212.04089",
+      "year": 2022,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "ilharco"
+      ],
+      "year": 2023,
+      "title": "Editing Models with Task Arithmetic"
+    }
+  },
+  {
+    "key": "balandat2020botorch",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "BoTorch: A Framework for Efficient Monte-Carlo Bayesian Optimization",
+      "surnames": [
+        "balandat",
+        "karrer",
+        "jiang",
+        "daulton",
+        "letham",
+        "wilson",
+        "bakshy"
+      ],
+      "authors": "Maximilian Balandat; Brian Karrer; Daniel R. Jiang; Samuel Daulton; Benjamin Letham; Andrew Gordon Wilson; Eytan Bakshy",
+      "venue": "arXiv:1910.06403",
+      "year": 2019,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "balandat"
+      ],
+      "year": 2020,
+      "title": "BoTorch: A Framework for Efficient Monte-Carlo Bayesian Optimization"
+    }
+  },
+  {
+    "key": "jones1998ego",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Efficient Global Optimization of Expensive Black-Box Functions",
+      "surnames": [
+        "jones",
+        "schonlau",
+        "welch"
+      ],
+      "authors": "Jones, Donald R.; Schonlau, Matthias; Welch, William J.",
+      "venue": "Journal of Global Optimization",
+      "year": 1998,
+      "volume": "13",
+      "issue": "4",
+      "page": "455-492",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "jones"
+      ],
+      "year": 1998,
+      "title": "Efficient Global Optimization of Expensive Black-Box Functions"
+    }
+  },
+  {
+    "key": "gal2016dropout",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning",
+      "surnames": [
+        "gal",
+        "ghahramani"
+      ],
+      "authors": "Yarin Gal; Zoubin Ghahramani",
+      "venue": "arXiv:1506.02142",
+      "year": 2015,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "gal"
+      ],
+      "year": 2016,
+      "title": "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning"
+    }
+  },
+  {
+    "key": "lakshminarayanan2017ensembles",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles",
+      "surnames": [
+        "lakshminarayanan",
+        "pritzel",
+        "blundell"
+      ],
+      "authors": "Balaji Lakshminarayanan; Alexander Pritzel; Charles Blundell",
+      "venue": "arXiv:1612.01474",
+      "year": 2016,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "lakshminarayanan"
+      ],
+      "year": 2017,
+      "title": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles"
+    }
+  },
+  {
+    "key": "li2024bnnbo",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "A Study of Bayesian Neural Network Surrogates for Bayesian Optimization",
+      "surnames": [
+        "li",
+        "rudner",
+        "wilson"
+      ],
+      "authors": "Yucen Lily Li; Tim G. J. Rudner; Andrew Gordon Wilson",
+      "venue": "arXiv:2305.20028",
+      "year": 2023,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "li"
+      ],
+      "year": 2024,
+      "title": "A Study of Bayesian Neural Network Surrogates for Bayesian Optimization"
+    }
+  },
+  {
+    "key": "dejong2015elastic",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Charting the complete elastic properties of inorganic crystalline compounds",
+      "surnames": [
+        "de jong",
+        "chen",
+        "angsten",
+        "jain",
+        "notestine",
+        "gamst",
+        "sluiter",
+        "krishna ande",
+        "van der zwaag",
+        "plata",
+        "toher",
+        "curtarolo",
+        "ceder",
+        "persson",
+        "asta"
+      ],
+      "authors": "de Jong, Maarten; Chen, Wei; Angsten, Thomas; Jain, Anubhav; Notestine, Randy; Gamst, Anthony; Sluiter, Marcel; Krishna Ande, Chaitanya; van der Zwaag, Sybrand; Plata, Jose J; Toher, Cormac; Curtarolo, Stefano; Ceder, Gerbrand; Persson, Kristin A.; Asta, Mark",
+      "venue": "Scientific Data",
+      "year": 2015,
+      "volume": "2",
+      "issue": "1",
+      "page": "150009",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "de jong"
+      ],
+      "year": 2015,
+      "title": "Charting the complete elastic properties of inorganic crystalline compounds"
+    }
+  },
+  {
+    "key": "ward2018matminer",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Matminer: An open source toolkit for materials data mining",
+      "surnames": [
+        "ward",
+        "dunn",
+        "faghaninia",
+        "zimmermann",
+        "bajaj",
+        "wang",
+        "montoya",
+        "chen",
+        "bystrom",
+        "dylla",
+        "chard",
+        "asta",
+        "persson",
+        "snyder",
+        "foster",
+        "jain"
+      ],
+      "authors": "Ward, Logan; Dunn, Alexander; Faghaninia, Alireza; Zimmermann, Nils E.R.; Bajaj, Saurabh; Wang, Qi; Montoya, Joseph; Chen, Jiming; Bystrom, Kyle; Dylla, Maxwell; Chard, Kyle; Asta, Mark; Persson, Kristin A.; Snyder, G. Jeffrey; Foster, Ian; Jain, Anubhav",
+      "venue": "Computational Materials Science",
+      "year": 2018,
+      "volume": "152",
+      "issue": null,
+      "page": "60-69",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "ward"
+      ],
+      "year": 2018,
+      "title": "Matminer: An open source toolkit for materials data mining"
+    }
+  },
+  {
+    "key": "dunn2020matbench",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Benchmarking materials property prediction methods: the Matbench test set and Automatminer reference algorithm",
+      "surnames": [
+        "dunn",
+        "wang",
+        "ganose",
+        "dopp",
+        "jain"
+      ],
+      "authors": "Dunn, Alexander; Wang, Qi; Ganose, Alex; Dopp, Daniel; Jain, Anubhav",
+      "venue": "npj Computational Materials",
+      "year": 2020,
+      "volume": "6",
+      "issue": "1",
+      "page": "138",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "dunn"
+      ],
+      "year": 2020,
+      "title": "Benchmarking materials property prediction methods: the Matbench test set and Automatminer reference algorithm"
+    }
+  },
+  {
+    "key": "borg2020mpea",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Expanded dataset of mechanical properties and observed phases of multi-principal element alloys",
+      "surnames": [
+        "borg",
+        "frey",
+        "moh",
+        "pollock",
+        "gorsse",
+        "miracle",
+        "senkov",
+        "meredig",
+        "saal"
+      ],
+      "authors": "Borg, Christopher K. H.; Frey, Carolina; Moh, Jasper; Pollock, Tresa M.; Gorsse, St\u00e9phane; Miracle, Daniel B.; Senkov, Oleg N.; Meredig, Bryce; Saal, James E.",
+      "venue": "Scientific Data",
+      "year": 2020,
+      "volume": "7",
+      "issue": "1",
+      "page": "430",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "borg"
+      ],
+      "year": 2020,
+      "title": "Expanded dataset of mechanical properties and observed phases of multi-principal element alloys"
+    }
+  },
+  {
+    "key": "jain2013materials",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Commentary: The Materials Project: A materials genome approach to accelerating materials innovation",
+      "surnames": [
+        "jain",
+        "ong",
+        "hautier",
+        "chen",
+        "richards",
+        "dacek",
+        "cholia",
+        "gunter",
+        "skinner",
+        "ceder",
+        "persson"
+      ],
+      "authors": "Jain, Anubhav; Ong, Shyue Ping; Hautier, Geoffroy; Chen, Wei; Richards, William Davidson; Dacek, Stephen; Cholia, Shreyas; Gunter, Dan; Skinner, David; Ceder, Gerbrand; Persson, Kristin A.",
+      "venue": "APL Materials",
+      "year": 2013,
+      "volume": "1",
+      "issue": "1",
+      "page": "011002",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "jain"
+      ],
+      "year": 2013,
+      "title": "Commentary: The Materials Project: A materials genome approach to accelerating materials innovation"
+    }
+  },
+  {
+    "key": "hallstedt2025sgte",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "The SGTE collection of binary datasets",
+      "surnames": [
+        "hallstedt"
+      ],
+      "authors": "Hallstedt, Bengt",
+      "venue": "Calphad",
+      "year": 2025,
+      "volume": "89",
+      "issue": null,
+      "page": "102833",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "hallstedt"
+      ],
+      "year": 2025,
+      "title": "The SGTE collection of binary datasets"
+    }
+  },
+  {
+    "key": "glmocr2026",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "GLM-OCR Technical Report",
+      "surnames": [
+        "duan",
+        "xue",
+        "wang",
+        "su",
+        "liu",
+        "yang",
+        "gan",
+        "wang",
+        "wang",
+        "yan",
+        "jin",
+        "zhang",
+        "wen",
+        "wang",
+        "zhang",
+        "zhang",
+        "hong",
+        "cen",
+        "yin",
+        "chen",
+        "yu",
+        "gu",
+        "tang"
+      ],
+      "authors": "Shuaiqi Duan; Yadong Xue; Weihan Wang; Zhe Su; Huan Liu; Sheng Yang; Guobing Gan; Guo Wang; Zihan Wang; Shengdong Yan; Dexin Jin; Yuxuan Zhang; Guohong Wen; Yanfeng Wang; Yutao Zhang; Xiaohan Zhang; Wenyi Hong; Yukuo Cen; Da Yin; Bin Chen; Wenmeng Yu; Xiaotao Gu; Jie Tang",
+      "venue": "arXiv:2603.10910",
+      "year": 2026,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "duan"
+      ],
+      "year": 2026,
+      "title": "GLM-OCR Technical Report"
+    }
+  },
+  {
+    "key": "spall1992spsa",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Multivariate stochastic approximation using a simultaneous perturbation gradient approximation",
+      "surnames": [
+        "spall"
+      ],
+      "authors": "Spall, J.C.",
+      "venue": "IEEE Transactions on Automatic Control",
+      "year": 1992,
+      "volume": "37",
+      "issue": "3",
+      "page": "332-341",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "spall"
+      ],
+      "year": 1992,
+      "title": "Multivariate stochastic approximation using a simultaneous perturbation gradient approximation"
+    }
+  },
+  {
+    "key": "chen2025matinvent",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "Accelerating inverse materials design using generative diffusion models with reinforcement learning",
+      "surnames": [
+        "chen",
+        "guo",
+        "fako",
+        "schwaller"
+      ],
+      "authors": "Junwu Chen; Jeff Guo; Edvin Fako; Philippe Schwaller",
+      "venue": "arXiv:2511.03112",
+      "year": 2025,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "chen"
+      ],
+      "year": 2025,
+      "title": "Accelerating inverse materials design using generative diffusion models with reinforcement learning"
+    }
+  },
+  {
+    "key": "ha2017hypernetworks",
+    "verdict": "PASS",
+    "route": "arxiv",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "HyperNetworks",
+      "surnames": [
+        "ha",
+        "dai",
+        "le"
+      ],
+      "authors": "David Ha; Andrew Dai; Quoc V. Le",
+      "venue": "arXiv:1609.09106",
+      "year": 2016,
+      "volume": null,
+      "issue": null,
+      "page": null,
+      "src": "arxiv"
+    },
+    "expected": {
+      "author1": [
+        "ha"
+      ],
+      "year": 2017,
+      "title": "HyperNetworks"
+    }
+  },
+  {
+    "key": "andersson2002thermocalc",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=0.98",
+    "rec": {
+      "title": "Thermo-Calc &amp; DICTRA, computational tools for materials science",
+      "surnames": [
+        "andersson",
+        "helander",
+        "hglund",
+        "shi",
+        "sundman"
+      ],
+      "authors": "Andersson, J-O; Helander, Thomas; H\u00f6glund, Lars; Shi, Pingfang; Sundman, Bo",
+      "venue": "Calphad",
+      "year": 2002,
+      "volume": "26",
+      "issue": "2",
+      "page": "273-312",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "andersson"
+      ],
+      "year": 2002,
+      "title": "Thermo-Calc \\& DICTRA, computational tools for materials science"
+    }
+  },
+  {
+    "key": "luo2025crystalflow",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "CrystalFlow: a flow-based generative model for crystalline materials",
+      "surnames": [
+        "luo",
+        "wang",
+        "wang",
+        "shao",
+        "lv",
+        "wang",
+        "wang",
+        "ma"
+      ],
+      "authors": "Luo, Xiaoshan; Wang, Zhenyu; Wang, Qingchang; Shao, Xuechen; Lv, Jian; Wang, Lei; Wang, Yanchao; Ma, Yanming",
+      "venue": "Nature Communications",
+      "year": 2025,
+      "volume": "16",
+      "issue": "1",
+      "page": "9267",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "luo"
+      ],
+      "year": 2025,
+      "title": "CrystalFlow: a flow-based generative model for crystalline materials"
+    }
+  },
+  {
+    "key": "salvador2022tialloys",
+    "verdict": "PASS",
+    "route": "crossref-doi",
+    "note": "title_sim=1.00",
+    "rec": {
+      "title": "A compilation of experimental data on the mechanical properties and microstructural features of Ti-alloys",
+      "surnames": [
+        "salvador",
+        "maia",
+        "costa",
+        "escobar",
+        "oliveira"
+      ],
+      "authors": "Salvador, Camilo A. F.; Maia, Eloa L.; Costa, Fernando H.; Escobar, Julian D.; Oliveira, Jo\u00e3o P.",
+      "venue": "Scientific Data",
+      "year": 2022,
+      "volume": "9",
+      "issue": "1",
+      "page": "188",
+      "src": "crossref-doi"
+    },
+    "expected": {
+      "author1": [
+        "salvador"
+      ],
+      "year": 2022,
+      "title": "A compilation of experimental data on the mechanical properties and microstructural features of Ti-alloys"
+    }
+  }
+]

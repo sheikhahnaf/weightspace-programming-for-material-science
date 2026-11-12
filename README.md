@@ -1,66 +1,65 @@
-# Weight-space programming for materials science
+# Written networks for materials: a language model writes a property predictor from knowledge alone
 
-Where weight-space programming fits in Bayesian materials discovery, and a campaign to test it across applications.
+A language model is given a task in words, the names of the inputs and an empty 16-unit network, and writes every weight. No data, no training run, no tools. This repository tests what such a network is good for in materials discovery, and records every prompt, reply and score.
 
-**Weight-space programming** (WSP): an LLM reads, writes or edits a network's weights directly, with no gradient descent. Introduced in a blog post of 2 November 2026 (Takehi, Teoh, Zhang, Khattab, MIT CSAIL). Preprints only; no peer-reviewed paper.
+This is **weight-space programming** (WSP) in the narrow sense: a language model acting on weights directly, with no gradient descent (Takehi, Teoh, Zhang, Khattab, MIT CSAIL, 2 November 2026). Methods that treat weights as data without a language model (task vectors, merging, learning on weight zoos) are **weight-space learning** and are kept apart, under `supplementary/`.
 
-## What the research found
+## What a written network is good for
 
-| Target | Fit | Why |
+| Use | Result | Where |
 |---|---|---|
-| BO surrogate | fits now | The readout head or prior mean on frozen embeddings is 300 to 2,700 weights; WSP has been shown from raw weights up to about 172,000. |
-| MLIP | readout only | MACE-MPA-0 medium has 9,063,204 weights; its readouts, reference energies and scale and shift are 2,283 (measured here). |
-| Generative model | not the narrow sense | MatterGen's base checkpoint holds 53.7 million values. The useful work is on the 59 fine-tuned checkpoints that already exist (task vectors, merging). |
+| Predictor with no labels | Opus 5.5 ranks experimental alloys at Spearman ρ 0.64 to 0.79 (rule of mixtures: −0.72 to 0.28) and crystal bulk modulus at 0.93 (1/volume rule: 0.74). | `experiments/e1_surrogate_head/results/standalone/summary.md` |
+| Prior mean of a Gaussian process, few labels | At 5 labels ρ rises from 0.35 to 0.69 on alloys and from 0.15 to 0.95 on crystal bulk modulus. The plain GP catches up near 50 labels (alloys) or 20 (crystals). | `docs/results/2026-11-11-round6.md`, `docs/results/2026-11-12-round7.md` |
+| Bayesian optimization | Lower regret on 4 of 5 experimental alloy tasks (20 seeds, Holm p ≤ 0.047), higher on one. THERMOCALC_BO_LINE | `docs/results/2026-11-11-round3.md`, `experiments/e7_calphad_prior/results/overview.md` |
+| Hidden layer as GP inputs | With 500 labels a GP on the 16 written hidden units ranks crystal bulk modulus at 0.94, against 0.89 for the GP on a 50-dimensional learned embedding. | `docs/results/2026-11-12-round7.md` |
+| Mean of a Bayesian neural network | MC dropout 0.54 to 0.65 at 10 to 20 labels. As starting weights or as a weight-space prior it does not help. | `docs/results/2026-11-11-round4.md` |
+| Screening filter for crystal generators | ρ 0.92 (MatterGen samples) and 0.88 (CrystalFlow samples) with the oracle, against 0.82 and 0.77 for the volume rule; the share of CrystalFlow samples above 150 GPa in the kept quarter rises from 0.16 to 0.52. | `experiments/e3_crystal_filter/results/` |
 
-Full account with sources, checks and corrections: [`docs/research-runs/2026-11-11-where-wsp-fits.md`](docs/research-runs/2026-11-11-where-wsp-fits.md).
+THERMOCALC_PARAGRAPH
 
-## What has been run
+Where it fails or adds nothing:
 
-Baselines on five tasks and a first pilot of two LLM arms: [`docs/results/2026-11-11-e1-pilot.md`](docs/results/2026-11-11-e1-pilot.md).
+- Yield strength of multi-principal-element alloys: the networks rank the pool well (ρ 0.69) and still make BO worse in 14 of 20 seeds.
+- Heat capacity per gram: the Dulong–Petit rule ranks perfectly and the network only matches it.
+- With the two-stage fit of the slope and offset the error bars are too narrow at 5 labels; a joint fit restores coverage and should be the default.
+- With hundreds of labels the plain GP catches up.
+- All language-model results use one vendor's models (Claude Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5).
 
-- The GP underpredicts the best tenth of candidates on all five tasks, and its 95% intervals cover only 79% and 85% of the generated structures in the two closed-loop tasks.
-- Asked to edit a trained head, the model rescaled the output layer, and did the same on a network with shuffled weights. No evidence of weight reading in that arm.
-- Asked to write a network from materials knowledge with no data, the model produced networks that rank alloys at Spearman 0.54 and 0.63. As a GP prior they raised ranking at 10 to 20 labels.
+## Experiments
 
-Round 2, same day: [`docs/results/2026-11-11-round2.md`](docs/results/2026-11-11-round2.md).
+| Folder | What it holds |
+|---|---|
+| [`experiments/e1_surrogate_head/`](experiments/e1_surrogate_head/) | Experimental alloy tasks and crystal tasks: write arm, GP prior mean (two-stage and joint), BO, hidden layer as inputs, standalone metrics |
+| [`experiments/e7_calphad_prior/`](experiments/e7_calphad_prior/) | Thermo-Calc targets for nine alloy systems: data builder, write arm with and without phase-diagram facts, no-LLM sub-system extrapolation, GP and BO |
+| [`experiments/e3_crystal_filter/`](experiments/e3_crystal_filter/) | Written networks on crystal descriptors as a screening filter for MatterGen and CrystalFlow samples |
+| [`experiments/e5_bnn_start/`](experiments/e5_bnn_start/) | Written networks in Bayesian neural networks: mean, start, weight prior |
+| [`supplementary/`](supplementary/) | Other weight-space experiments: readout edits of interatomic potentials, formation-enthalpy correction, generator task vectors, learning from fitted surrogates, editing an open table reader |
 
-- Asked to find a planted leak input from weights alone (chance 1 in 51), the model found it in 2 of 4 runs: the same two that a one-line weight-norm statistic finds. One wrong repair, made at a stated 85% confidence, left the surrogate worse than untouched.
-- Three independent replies for the write arm agree with each other and all raise GP ranking at 10 labels. Inside a BO loop that did not carry over: worse early on alloy strength, and on titanium alloys a clear win for one reply of three.
-- Fitted GP parameters predict a surrogate's ranking quality on an unseen benchmark a little (R² 0.15 → 0.23 over 22 benchmarks).
+Every model run has a folder `experiments/<experiment>/runs/<arm>__<task>__<model>__rep<k>/` with the prompt, the raw reply, the model's own account and the score.
 
-Round 3, four models, with significance tests: [`docs/results/2026-11-11-round3.md`](docs/results/2026-11-11-round3.md).
+## Records
 
-- **BO surrogate.** Networks written by Opus 5.5 from materials knowledge, used as GP prior means chosen by the first labels, beat the plain GP in BO on 4 of 5 alloy tasks (20 seeds, Holm p ≤ 0.047) and are worse on one.
-- **MLIP.** MACE's bulk-modulus error cannot be fixed in its readout without moving energies. LLM edits respect the energy limit only for the strongest models and only when given a correct sensitivity table; a gradient fit does better.
-- **Generative model.** The weight changes of RL-fine-tuned MatterGen runs can be averaged, scaled and cut to rank 8: three times the five-seed mean raises mean bulk modulus of sampled crystals from 72 to 172 GPa.
-
-Rounds 1 and 2 used one model and a handful of runs; round 3 is the benchmarked version.
-
-## Campaign
-
-| Experiment | Application | Data in this repo | State |
-|---|---|---|---|
-| [E1](experiments/e1_surrogate_head/) readout head and prior mean | BO surrogate: closed-loop bulk modulus and heat capacity, alloy strength, titanium alloys, composition screening | `data/closed_loop_bm`, `data/closed_loop_cp`, `data/alloys` | baselines, edit, repair and write arms run; BO loop run |
-| [E2](supplementary/e2_mlip_readout_edit/) scalar readout edit of MACE | MLIP | `data/causal_replay/esen_vs_dft_bm.csv`, `data/dft_validation` | specified |
-| [E3](supplementary/e3_generator_task_vectors/) task vectors of fine-tuned generators | generative model | checkpoints on Hugging Face, not downloaded | specified |
-| [E4](supplementary/e4_surrogate_zoo/) learning from fitted surrogates | BO surrogate, broad sense | `data/surrogate_zoo` (30,360 fitted surrogates) | step 2 run |
+- Results pages, in order: [`docs/results/`](docs/results/). Literature and fit analysis: [`docs/research-runs/2026-11-11-where-wsp-fits.md`](docs/research-runs/2026-11-11-where-wsp-fits.md).
+- The command behind every number: [`REPRODUCE.md`](REPRODUCE.md). Environment: `env/`.
+- Every question asked of this project, with status: [`questions.md`](questions.md). Work log: [`PROGRESS.md`](PROGRESS.md).
+- The paper is in a separate repository.
 
 ## Layout
 
 ```
-src/wsp/            harness: weights <-> text, edits, heads, prompts, tasks, baselines, LLM arms
-tests/              36 tests
-experiments/        one folder per experiment; E1 holds results/ and runs/<id>/ (prompt, reply, meta, score)
-data/               copied datasets, with PROVENANCE.md (source path, size, checksum per file)
+src/wsp/            harness: weights <-> text, heads, prompts, tasks, baselines, GP arms
+tests/              212 tests
+experiments/        the main case: written networks (see the table above)
+supplementary/      other weight-space experiments
+data/               datasets, with PROVENANCE.md; data/calphad/ holds the Thermo-Calc pools
 vendor/             algorithms copied unmodified from the sibling repos
 scripts/            copy_from_siblings.py
-docs/research-runs/ the literature and fit analysis
-docs/results/       results pages
-research/           brief, research reports, source lists, repo surveys
-env/                exact environment
-questions.md        every question asked of this project, with status
-REPRODUCE.md        the command behind every number
+docs/               results pages and the research run
+research/           brief, research reports, source lists
+slides/             slide deck on the GP-prior case
 ```
+
+The tables in `data/calphad/` were computed with Thermo-Calc 2025b and its commercial databases. Whether they may be redistributed has not been checked; this repository is private, and that must be settled before any public release.
 
 ## Run
 

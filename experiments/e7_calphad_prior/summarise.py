@@ -29,15 +29,15 @@ def main() -> None:
              "## Ranking on the held-out half, mean Spearman ρ over targets", "",
              "| Prior | Mean arm | Prior alone | " + " | ".join(f"{n} labels" for n in sizes) + " | 95% coverage at 5 / 10 |",
              "|---|---|---|" + "---|" * (len(sizes) + 1)]
-    gp = [float(np.mean([next(iter(t.values()))["gp"]["spearman"][i] for t in tasks.values()])) for i in range(len(sizes))]
-    gp_cov = [float(np.mean([next(iter(t.values()))["gp"]["coverage95"][i] for t in tasks.values()])) for i in (0, 1)]
+    gp = [float(np.nanmean([next(iter(t.values()))["gp"]["spearman"][i] for t in tasks.values()])) for i in range(len(sizes))]
+    gp_cov = [float(np.nanmean([next(iter(t.values()))["gp"]["coverage95"][i] for t in tasks.values()])) for i in (0, 1)]
     lines.append("| none | plain GP | | " + " | ".join(f"{v:.2f}" for v in gp) + f" | {gp_cov[0]:.2f} / {gp_cov[1]:.2f} |")
     for key, label in SOURCES.items():
         have = [t[key] for t in tasks.values() if key in t]
-        alone = float(np.mean([h["alone_spearman"] for h in have]))
+        alone = float(np.nanmean([h["alone_spearman"] for h in have]))
         for arm, arm_label in (("two_stage", "two-stage"), ("map", "learned a, b"), ("marginal", "a, b integrated out")):
-            rho = [float(np.mean([h[arm]["spearman"][i] for h in have])) for i in range(len(sizes))]
-            cov = [float(np.mean([h[arm]["coverage95"][i] for h in have])) for i in (0, 1)]
+            rho = [float(np.nanmean([h[arm]["spearman"][i] for h in have])) for i in range(len(sizes))]
+            cov = [float(np.nanmean([h[arm]["coverage95"][i] for h in have])) for i in (0, 1)]
             lines.append(f"| {label} | {arm_label} | {alone:.2f} | " + " | ".join(f"{v:.2f}" for v in rho) + f" | {cov[0]:.2f} / {cov[1]:.2f} |")
     lines += ["", f"## BO: area under the regret curve relative to the plain GP ({bo['seeds']} seeds, {bo['n_init']} initial labels, {bo['steps']} steps; two-stage arm)",
               "", "Below 1 is better than the plain GP. * marks Holm-corrected p < 0.05 within the target.", "",

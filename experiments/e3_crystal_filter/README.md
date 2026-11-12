@@ -9,4 +9,4 @@ A language model writes a 15 → 16 → 1 network on named descriptors of a crys
 
 Controls: a one-line rule with no LLM (small volume per atom for bulk modulus; Dulong–Petit for heat capacity) and an MLP of the same size trained on 400 Materials Project structures.
 
-**Status (2026-11-12).** 12 replies per target requested from four models (Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5); scored on MatterGen and CrystalFlow samples. Bulk modulus: ρ with the oracle 0.94 (MatterGen) and 0.88 (CrystalFlow) for Opus, Fable and Sonnet, against 0.77 for the volume rule on CrystalFlow. Heat capacity: the Dulong–Petit rule already ranks perfectly and the networks match it.
+**Status (2026-11-12).** 18 replies from four models (Opus 5.5, Fable 5.2, Sonnet 5.5, Haiku 5.5): three per model for bulk modulus, and two (Opus, Fable) or one (Sonnet, Haiku) for heat capacity; all valid; scored on MatterGen and CrystalFlow samples. Bulk modulus: ρ with the oracle 0.94 (MatterGen) and 0.88 (CrystalFlow) for Opus, Fable and Sonnet, against 0.77 for the volume rule on CrystalFlow. Heat capacity: the Dulong–Petit rule already ranks perfectly and the networks match it.

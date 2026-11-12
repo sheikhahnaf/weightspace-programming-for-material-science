@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> From the binary and equimolar-ternary freezing ranges I fitted, by hand, pairwise interaction coefficients. Mn dominates: Al-Mn about 1000 K, Cr-Mn about 600 K, Mn-Ni 300 K, Fe-Mn 185 K. Al adds a roughly linear widening that grows faster above 20 at.%, and the Co-Cr-Fe-Ni pairs contribute almost nothing. The network encodes this as one always-on linear unit (Al, Cr, Mn terms plus a 5 K base), two ReLU units forming a McCormick-midpoint approximation of x_Mn times a weighted sum of its partner elements, an Al hinge at 20 at.%, and two hinge units for the Al-Fe-Mn and Cr-Mn-Ni ternary excesses. Sanity checks give about 10 K for CoCrFeNi, about 50 K for Cantor, about 40 K for AlCoCrFeNi, about 85 K for equimolar AlCoCrFeMnNi, and 200-250 K for Al-Mn-Fe-rich or Cr-Mn-Ni-rich corners. I expect the trends to be right and the scale to be within a factor of about 2, but individual values are uncertain because CALPHAD freezing ranges can jump when the primary phase changes.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a lever-rule style model by hand: a linear score g = 1.15 + 0.02 Al - 0.128 Mo - 0.096 Nb - 0.096 V - 0.045 Zr - 0.015 Sn (per at.%), fitted mentally to the binary and ternary 973 K facts, and clipped to [0, 1] with two ReLU units (relu(g) - relu(g - 1)). Four further units add guarded corrections: restoring full alpha when only Al/Sn/Zr are present, the strong Al-V alpha stabilisation (Al12-V12 = 0.75), the loss of hcp to Ti3Al at high Al + Sn, and the Nb-Sn anomaly; each carries Mo/Nb/V penalties so it vanishes in deep-beta alloys. I left out the Mo-Nb sub-additivity because it could not be guarded in a one-hidden-layer network, so alloys with both Mo and Nb and little V are probably under-predicted. Nothing was to be found, so no confidence figure applies; I expect the trends and the many zero-alpha alloys to be right and the mid-range values to be off by roughly 0.1 to 0.2.

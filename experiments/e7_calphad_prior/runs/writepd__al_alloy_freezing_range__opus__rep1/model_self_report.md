@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the freezing range as liquidus minus solidus. The liquidus is linear in the solutes, with slopes fitted to the binary facts. It has one ReLU "Mn bump" for the primary Al6Mn / Al15Si2Mn4 liquidus, which rises with Mg and Si when Mn is 0.5 or 1 at.%. The solidus is max(solid-solution solidus, eutectic floor). The floor drops gradually with Cu up to 2 at.%, steps down when Mg is present, and falls linearly with Zn and Mn. ReLU units supply the Cu and Mg saturation, and three gated units handle the solid-solution regime separately for Cu-free and Cu-bearing alloys. I checked the network by hand against the given ternary s/l facts; most fall within about 5-10 K, and the Cu-without-Mg cases are off by up to about 20 K. The task asked for weights rather than for finding something, so no find-confidence applies. I expect the trends to be roughly right, about 60% confident, with the size of the Mn bump in four- and five-element alloys the least certain part.

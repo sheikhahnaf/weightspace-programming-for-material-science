@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network from three hidden units by hand. The first is an Al-driven B2/L12 ramp: it starts near 8-10 at.% Al, reaches about 0.6 at equimolar AlCoCrFeNi, gets a small boost from Ni and Co and a penalty from Mn. The second unit subtracts the excess above a cap of 1 - 0.9*x_Cr. That gives min(B2 ramp, 1 - 0.9 x_Cr), which stands for the Cr-rich disordered A2 that coexists with B2 at high Al (calibrated on Al-Co-Cr and Al-Cr-Ni, about 0.7 B2). The third is a sigma unit fitted so that the equimolar ternaries come out right (Co-Cr-Mn about 1.0, Co-Cr-Fe 0.15, Cr-Fe-Mn, Co-Cr-Ni and the Cantor alloy 0); Cr, Co and Mn push it up and Ni and Al push it down. There is no "find" component; I expect the trends to be right and the absolute values to be off by about 0.2 in many alloys, the largest errors being in Al-Cr-Mn-rich alloys with little Ni or Co, where the B2 is overestimated.

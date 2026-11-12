@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote a lever-rule model of the gamma prime fraction at 900 C. A driving term z = (Al + 1.25 Ti + 0.33 Cr + 0.4 Mo + 0.35 W - 0.07 Co - 12.8 at.%) / 12.5 at.% says that Cr, Mo and W lower the Al solubility in gamma, that Co raises it, and that the binary Ni-Al solvus sits near 12.8 at.% Al. Four staggered ReLUs give a softened ramp, max(0, z). Two pairs of negative ReLUs put soft caps on it: one from the Ni+Co that is available (gamma prime is about 72% Ni+Co), and one at about 12 x Al, standing for eta Ni3Ti taking over in Ti-rich, Al-poor alloys. I checked the coefficients by hand against remembered fractions for IN738, Udimet 720Li, Waspaloy, IN713C and Ni-Al-Cr model alloys. I expect the trends and the rough scale to be right, with errors of about 0.1 to 0.15 in mole fraction, and larger ones where TCP phases, beta or eta compete.

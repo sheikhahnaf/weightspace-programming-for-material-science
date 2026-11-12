@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a four-unit piecewise-linear model by hand from the sub-system facts: the output starts at 1 (single bcc), falls steeply once Al exceeds about 8 at.% (A15/sigma/aluminide formation splitting the alloy), and recovers above about 19 at.% Al where an intermetallic becomes the dominant phase. A third unit subtracts a Laves-phase amount driven by Cr plus some Nb and reduced by Mo, Ti and Al, with its coefficients fitted roughly to the Cr-Nb, Cr-Ti and Cr-containing ternary facts, and a fourth unit acts as a floor so Al-rich, Cr-rich alloys do not fall below about 0.5. No task asked me to find something; I expect the trends to be roughly right but the absolute values to be off by 0.1-0.2 in many alloys.

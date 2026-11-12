@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I started from the pure-Ti hcp/bcc transition at 1155 K and used per-at.% slopes taken from binary phase diagrams and empirical beta-transus rules: Al about +14 K, Sn about +2 K, Zr about -6 K, and the beta stabilisers Mo, V and Nb at -24, -16 and -13 K initially. I then checked these slopes by hand against known transus values for Ti-6Al-4V, Ti-6242, Ti-6246, Ti-811, Ti-13Nb-13Zr, Beta III and Timetal 21S, after converting each alloy to at.%. Unit 0 is the linear transus with the beta-stabiliser slopes flattened to 75% beyond a 60 K drop, and its ReLU together with the 773 K output bias gives the reporting floor exactly. Unit 1 adds back the steeper initial slope for lean alloys, so the curve is convex in beta-stabiliser content. This was a writing task, not a search, but I expect the trends to be right and most alloys to fall within about 40 K of the CALPHAD values.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from five ReLU units. The main term is an aluminium ramp, 4.5*relu(x_Al - 0.06), capped at 1 by a second unit; it reflects the binaries and ternaries, which become fully intermetallic (A15, sigma, D019, Laves) at 25-33 at.% Al. A Laves term, 1.5*relu(Cr - 0.4Mo - 0.2Ti + 0.4Nb - 0.8Al - 0.093), was calibrated on Cr-Nb-Ti (0.46), Cr-Mo-Nb (0.35) and Cr-Mo-Ti (0). A penalty for compositions rich in Al+Cr+Mo comes from the Al-Cr-Mo ternary, where Cr-Mo bcc dissolves most of the Al (0.39 intermetallic), and a final unit stops Al plus Laves from adding up to more than 1. For trends I estimate about 60% confidence. For absolute values in quaternaries and quinaries it is lower, about 35%: whether TCHEA8 orders the matrix as B2 at moderate Al could move many alloys toward 1.

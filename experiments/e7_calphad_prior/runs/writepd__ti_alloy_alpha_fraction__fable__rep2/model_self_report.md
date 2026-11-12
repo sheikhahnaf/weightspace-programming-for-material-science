@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a clipped linear "beta-stabiliser score": units 0 and 1 together compute clip(L, 0, 1) with L = 1.15 + 0.025 Al - 0.144 Mo - 0.085 Nb - 0.087 V - 0.045 Zr - 0.01 Sn (per at.%), with the coefficients fitted by hand to the binary and ternary hcp fractions listed in the prompt (e.g. Mo 4.5 -> 0.50, Nb 6 -> 0.64, V 6 -> 0.63, Zr penalty from the Mo/Nb/V + Zr ternaries, Al bonus from the Al + Mo/Nb/V ternaries). Unit 2 adds an Al-V bonus to match the high hcp fraction of Ti-12Al-12V, and unit 3 subtracts hcp when Al + 2 Sn is high to mimic Ti3Al (D019) formation seen in Ti-12Al-4Sn; the other 12 units are left at zero. All arithmetic was done mentally; I did not model the sub-additive Mo-Nb case or the Nb-Sn anomaly, so I expect the trends and scale to be right but individual values to be off by 0.1-0.3 in places.

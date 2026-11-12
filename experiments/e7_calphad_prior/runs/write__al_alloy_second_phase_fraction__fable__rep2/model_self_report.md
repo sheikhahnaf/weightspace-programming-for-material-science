@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from a stoichiometric picture of Al alloys at 673 K: Mn is nearly insoluble and forms Al6Mn-type dispersoids (about 7 atoms per Mn), Mg is bound as Mg2Si/S-type compounds at 1.5 x min(Mg, 2Si + Cu), leftover Si beyond about 0.1 at.% precipitates as diamond Si, Cu beyond about 0.6 at.% solubility forms Al2Cu (3 atoms per Cu), and Zn only contributes through a T/MgZn2 term when free Mg plus Zn exceeds about 4.5 at.%. Each of these is one ReLU unit (six used, ten left at zero) with a small negative output bias for Mg2Si solubility. No task of finding something was posed; I expect the trends and the scale (roughly 0.02 to 0.15) to be about right, with perhaps 60% confidence that the rank correlation with CALPHAD exceeds 0.8.

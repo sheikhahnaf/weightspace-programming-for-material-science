@@ -5,9 +5,38 @@
   "shuffled": false,
   "prompt_chars": 2158,
   "prompt_tokens_estimate": 720,
-  "model": null,
+  "model": [
+    "<synthetic>",
+    "claude-opus-5-5"
+  ],
   "tools_allowed": null,
-  "forward_passes": null,
+  "forward_passes": 0,
   "prompt_tokens": null,
-  "reply_tokens": null
+  "reply_tokens": null,
+  "harness": "Claude Code subagent, fresh context",
+  "date": "2026-11-12",
+  "started_utc": "2026-11-12T07:26:15.921000+00:00",
+  "duration_ms": 315221,
+  "output_tokens": 67239,
+  "context_tokens_last_turn": 54080,
+  "tool_calls": [
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/WRAPPER.md"
+    },
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__ni_superalloy_other_phase_fraction__opus__rep1/prompt.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__ni_superalloy_other_phase_fraction__opus__rep1/reply.txt"
+    }
+  ],
+  "tool_calls_observed": 3,
+  "attempts": 1,
+  "audit_ok": true,
+  "audit_problems": [],
+  "transcript": "agent-a2010fd9ba013cf3b.jsonl",
+  "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
 }

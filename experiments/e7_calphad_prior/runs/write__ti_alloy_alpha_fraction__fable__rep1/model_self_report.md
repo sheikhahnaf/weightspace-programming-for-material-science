@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a lever-rule model from remembered binary Ti-X phase diagrams at about 700 C: a beta-stabiliser score s = 17*x_Mo + 7.5*x_V + 5*x_Nb + 1.2*x_Zr - 3*x_Al (beta-boundary compositions of roughly 6 at.% Mo, 13 at.% V, 20 at.% Nb; Al widens the alpha field; Sn taken as neutral). The output is 1 - relu(s) + 0.3*relu(s - 0.7) + 0.7*relu(s - 1.1), so alpha fraction is 1 for s <= 0, falls linearly, softens near the bottom and stays at 0 above s = 1.1; only three hidden units are used and the rest are zero. Alpha2 (Ti3Al) formation at high Al + Sn is ignored. No search was asked for; I would put about 60% confidence on the trends and rough scale being right, less on the exact coefficients.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network as a sum of one term that is linear in composition and three corrections. The linear term is a rule of mixtures using effective solidus values slightly below each element's melting point (W 3600, Ta 3200, Mo 2850, Nb 2700, V 2100, Ti 1900, Zr 1600 K). The three corrections are penalties of the form min(a, b) = a - relu(a - b), so each one is zero when either of its two element groups is absent. They model three effects: a strong Zr eutectic/Laves penalty that needs Mo, W or V to be present (beta = 2350 K, applied to min(x_Zr, 0.5*(x_Mo + x_W + 0.6*x_V))); a sag of about 400 K for mixing the low melters (Ti, V) with the high melters (Mo, Ta, W); and a small dip of 250 K for the Ti-V minimum. I chose the coefficients by hand so the network gives my guessed TCHEA anchors: about 3090 K for MoNbTaW, 2810 K for MoNbTaVW, 2310 K for NbTaTiV, 2080 K for the equiatomic seven-element alloy, and 1600-1850 K for alloys rich in Ti, V and Zr. I expect the trends to be right but the absolute values could be off by about 150-250 K.

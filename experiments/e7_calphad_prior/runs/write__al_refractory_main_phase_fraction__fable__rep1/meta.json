@@ -5,9 +5,39 @@
   "shuffled": false,
   "prompt_chars": 1982,
   "prompt_tokens_estimate": 661,
-  "model": null,
+  "model": "claude-fable-5-2",
   "tools_allowed": null,
-  "forward_passes": null,
+  "forward_passes": 0,
   "prompt_tokens": null,
-  "reply_tokens": null
+  "reply_tokens": null,
+  "harness": "Claude Code subagent, fresh context",
+  "date": "2026-11-12",
+  "started_utc": "2026-11-12T11:01:48.704000+00:00",
+  "duration_ms": 39655,
+  "output_tokens": 8142,
+  "context_tokens_last_turn": 56774,
+  "tool_calls": [
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/WRAPPER.md"
+    },
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__al_refractory_main_phase_fraction__fable__rep1/prompt.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__al_refractory_main_phase_fraction__fable__rep1/reply.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__al_refractory_main_phase_fraction__fable__rep1/self_report.txt"
+    }
+  ],
+  "tool_calls_observed": 4,
+  "attempts": 1,
+  "audit_ok": true,
+  "audit_problems": [],
+  "transcript": "agent-a052dca885d323a66.jsonl",
+  "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
 }

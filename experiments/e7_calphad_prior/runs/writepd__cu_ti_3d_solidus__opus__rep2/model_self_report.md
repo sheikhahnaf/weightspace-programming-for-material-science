@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand as a linear base (Co, Ni high; Fe lower; Cr lowest, fitted to the Co-Cr-Fe-Ni and X-Cu-Ti ternaries) plus hinge units: a Cu penalty that drops the solidus steeply up to about 10 at.% Cu and then flattens near the Cu-rich-liquid plateau (~1350-1400 K), a Ti penalty, and a sub-additive Cu+Ti hinge so that alloys with both elements bottom out near 1200-1300 K. One unit adds back solidus in proportion to min(Ni, Cu) (Ni dissolving Cu, as in the Cu-Ni-X ternaries). Four units are gated to fire only when Cu = 0 (using the 5 at.% grid), adding min(Cr, Ti) and subtracting min(Ni, Ti) to reproduce the Ti-only ternaries where Cr-Ti Laves raise and Ni-Ti eutectics lower the solidus. I checked by hand against the given binaries and ternaries; I expect the trends to be right but the absolute level in the Cu+Ti region could be off by around 100 K.

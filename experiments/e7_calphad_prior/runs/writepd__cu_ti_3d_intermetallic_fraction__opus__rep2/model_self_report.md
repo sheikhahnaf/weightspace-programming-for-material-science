@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the prior from three ReLU units. The first is a Ti hinge: intermetallic fraction is about 3.8*(x_Ti - 0.025), because Laves, Ni3Ti, L12 and B2 hold 25-50% Ti and the binary and ternary facts give 0.7-1.0 at 25-33% Ti. Cu and Cr lower it slightly, since Cu-Ti and Cr-Ni-Ti ternaries keep some fcc or bcc. The second unit flattens the slope above 25% Ti so the output stays below about 0.95. The third is a sigma hinge on Cr, which is promoted by Co and Cu (Cu splits off into its own fcc and enriches the rest) and suppressed by Ni. I fitted it by hand to the Co-Cr, Co-Cr-Fe (0.27) and Co-Cr-Cu (0.47) facts and to the single-phase fcc results for CoCrNi and CrFeNi. I expect the trends to be right, with absolute errors of about 0.1-0.2 on individual alloys.

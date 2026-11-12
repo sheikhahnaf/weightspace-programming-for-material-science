@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from the sub-system facts, using five ReLU units and leaving the other eleven at zero. Units 0 and 1 give a Laves term, min(1.5*Cr - 0.12, 3*Nb + 1.5*Al + 0.9*Ti - 0.1), scaled to the Cr-Nb, Cr-Mo-Nb and Cr-Nb-Ti Laves fractions; unit 2 gives an Al term relu(3.5*Al - 0.25) for the A15, sigma, D0_22 and B2 phases that fill the Al-containing ternaries; unit 3 caps the sum near 1; unit 4 subtracts a little for Ti above 20 at.% as a bcc stabiliser. No code or calculation tools were used, only mental arithmetic on the listed facts. The task did not ask me to find anything; I expect the trends (rising with Al and with Cr when Nb is present) to be right, and the absolute scale to be uncertain, roughly 50% confidence that the mean error is under 0.2.

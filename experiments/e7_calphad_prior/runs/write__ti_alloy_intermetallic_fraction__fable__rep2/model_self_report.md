@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I assumed the non-alpha/beta phase at 973 K is essentially Ti3Al (alpha2, which also dissolves Sn), so I built an "aluminium equivalent" Al + Sn + 0.2 Zr + 0.2 Mo + 0.1 Nb + 0.1 V (the beta stabilisers enrich Al in the remaining alpha) and passed it through two ReLU hinges. The hinges start at about 9 and 11.5 at.% equivalent, with a combined slope of about 6.5, taken from a lever-rule estimate between an alpha solvus near 11 at.% and Ti3Al near 22-23 at.% in Ti-Al at 700 C. The result is zero for low-Al alloys and roughly 0.1 to 0.35 for Al = 12 at.% or Al = 9 with Sn = 4; only two of the sixteen hidden units are used. No search was asked for; I am about 60% confident the trend (which alloys are nonzero) is right and less sure of the scale.

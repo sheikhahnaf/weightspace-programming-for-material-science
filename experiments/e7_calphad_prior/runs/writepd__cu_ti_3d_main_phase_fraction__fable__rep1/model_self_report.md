@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network by hand as a base of 0.97 (near single-phase fcc) minus piecewise-linear penalties: a Cu-rich fcc separation term (Cu minus 0.3 Ni, saturating), a Ti intermetallic term of about 3 times the Ti fraction that saturates above 13 at.% Ti (Laves / Ni3Ti / B2 take roughly three to four atoms per Ti), a Cr term above 18 at.% (sigma / bcc), and a bcc-versus-fcc term for Fe+Cr exceeding Co+Ni, plus one unit that lifts the output when Cu, Ti and Cr are all high so it does not fall below about 0.4. The coefficients came from the binary and ternary facts in the prompt and general knowledge of these alloys, checked by mental arithmetic on a few compositions (e.g. CoCrCuFeNi about 0.84, the six-element equimolar alloy about 0.50). Nothing was run; nine hidden units are unused. I am moderately confident in the trends (about 60%) and less in the absolute values at high Ti.

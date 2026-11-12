@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from steel phase-equilibrium knowledge at 1173 K, using five hidden units and leaving the rest at zero. Units 0 and 1 form a difference of ReLUs giving carbide fraction of about 4.5 times the carbon in excess of an austenite solubility limit (0.025 atomic fraction) that Cr, Mo and slightly Mn reduce, reflecting M23C6/M7C3/M6C stoichiometry. Unit 2 is a sigma-phase term that switches on at high Cr + 2.5 Mo + 0.3 Mn (suppressed by Al and C), unit 3 a small Mo-rich Laves/chi term, and unit 4 a small NiAl-type term for high Al with Ni. No code or calculation tools were used; I expect the trends and scale to be roughly right but the thresholds are estimates (no specific item to find, so no confidence percentage applies).

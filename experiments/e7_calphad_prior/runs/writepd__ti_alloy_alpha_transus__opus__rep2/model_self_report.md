@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I fitted, by hand, a piecewise-linear model to the given unary and binary CALPHAD facts. It has an always-on linear unit: pure Ti at 1155 K, Al raising the transus, Mo/Nb/V/Sn/Zr lowering it. Hinge units on a beta-stabiliser drop index model the saturation of the transus decrease, which flattens toward the ~800-970 K monotectoid-like plateau and the 773 K floor. Further hinge/min-type units cover concave Al, Mo-Nb synergy, the reduced Al effect with Mo/Nb, Al-Sn and Al-V synergy (alpha2 / threshold-like), and Nb-Sn. Checked mentally, the network reproduces almost all of the 42 given sub-system points within about 25 K (Ti+12Nb+4Sn is matched exactly; Mo9+Nb12 is off by about 15 K). The multicomponent extrapolation assumes pairwise-additive synergies plus saturation set by total beta-stabiliser content, so expect errors of order 50-100 K on the 4+ element alloys, especially Al-Sn-V-rich ones.

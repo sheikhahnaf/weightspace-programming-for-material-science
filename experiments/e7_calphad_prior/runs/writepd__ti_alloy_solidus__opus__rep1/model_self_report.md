@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I fitted a model by hand to the given CALPHAD unary and binary-pair facts: a linear unit holds 1941 K plus per-solute slopes (Mo +5.7, Nb +4.0, Sn -1.7, V -3.3, Zr -7.15 K/at.%). The dominant nonlinearity is Al with V, Sn and Zr, which is strongly negative. I built it as an exact bilinear term -a*D on the Al grid, where D = 1.2V + 2.3Sn + 1.6Zr - 0.2Mo - 0.2Nb: four Al-gated ReLUs plus three Al hinges, which also give the saturating Al unary shape. Corner hinges add the Al-V superlinearity, the Al-Zr sublinearity and the smaller Mo-Nb, Mo-V, Sn-(Mo,Nb), Mo-Zr and Sn-V pair effects. By hand evaluation the network reproduces nearly all of the 42 given sub-system solidus values to within about 10 K. For the four- to seven-element targets it assumes pairwise additivity, which predicts roughly 1430 to 2140 K; I am about 60% confident the trends and scale are right, with the largest uncertainty in the heavily alloyed Al+V+Zr+Sn corner.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> From the sub-system facts I took two sources of non-alpha/beta phases at 973 K: D019 Ti3Al, which needs high Al plus Sn (Ti-12Al-4Sn gives 0.57, while Ti-12Al, Ti-6Al-2Sn and Ti-12Al-8Zr give none), and ordered B2, which needs high Al together with Nb (Ti-12Al-12Nb gives 0.73, while Ti-12Al with V or Mo stays disordered). I gave each one ReLU unit. The Ti3Al unit is (Al + 2Sn - 14)/10.5 in at.%, with penalties for the beta stabilisers Mo > Nb > V because they shrink the alpha-region. The B2 unit is 0.12*(Al + Nb + 0.3Mo + 0.2V + 0.2Zr - 0.5Sn - 18), which fires only when Al and Nb are both high. The output is the sum of the two units, so most alloys get zero. The thresholds and slopes are hand-fitted to single anchor points and the effects of the extra solutes on these two phases are guesses, so I expect the trends to be roughly right and the values to be rough, especially where both phases coexist.

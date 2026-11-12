@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the prior from binary Ni-X phase-diagram solidus slopes, starting from pure Ni at 1728 K. Per at.% the slopes are about: Al -4.5 K, Co +0.2 K, Cr -2.7 K, Mo -5 K, Ti -10 K, W +1.5 K. Because the fractions sum to 1, hidden unit 0 encodes this as an always-positive linear term, with weight 1728 + 100*slope for each element. Two ReLU units add extra depression. One fires when Al + 1.5Ti exceeds 12 at.% (approaching the gamma/gamma-prime eutectic). The other fires when the summed solute depression exceeds 100 K (concave solidus at high alloying). I sanity-checked the scale against Waspaloy-, IN-738- and CMSX-4-like compositions, which come out around 1590-1630 K. I expect the trends to be right but absolute values could be off by about 30-50 K.

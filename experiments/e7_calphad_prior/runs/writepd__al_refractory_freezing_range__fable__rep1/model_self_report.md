@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the freezing range as a pairwise quadratic form, sum of a_ij x_i x_j, with a_ij taken as about four times the 50/50 binary freezing range (adjusted for Cr-Nb and Cr-Ti using the 25/75 at.% points) and checked against the equimolar ternaries. I split a_ij into per-element terms c_i x_i (1 - x_i) plus three explicit pair corrections (Al-Ti strongly negative, Mo-Nb strongly negative, Al-Mo positive), then encoded the squares as piecewise-linear ReLU interpolants: a linear unit plus a kink at 0.175 per element, and two kinks (0.25, 0.45) on each pair sum, with one unit left at zero. The network gives about 220 K for the equimolar quinary alloy and stays positive over the stated range; all arithmetic was done by hand, so small slips are possible. Nothing was to be found, so no confidence percentage applies; I expect the scale and main trends to be right but individual values could be off by 100 K or more.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote y = 0.98 minus three non-negative penalties built from five ReLU units, using what I know of the binaries: a bcc miscibility gap / second-phase term that is on only when both the Ta/Mo/(Nb) group A = Ta + 0.5Mo + 0.2Nb and the Zr/Hf group B = Zr + 0.6Hf are present (units 0-2 form relu(A+B-T) - relu(|A-B|-T), with T = 0.28 + 0.5Ti so Ti suppresses it), a Laves (Mo2Zr/Mo2Hf) term in Mo with Zr+Hf, and a small hcp term for Hf-rich alloys poor in Nb/Mo/Ta. Coefficients were set by hand so a near-equimolar six-component alloy gives about 0.8 and the worst Ta+Zr-rich corners about 0.45-0.5; the remaining 11 units are left at zero. No code or calculation tool was used; the magnitudes are rough guesses and I am not confident in the exact scale, only in the sign of the trends.

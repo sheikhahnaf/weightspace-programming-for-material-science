@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote y = 1 minus three second-phase penalties, each built from ReLU units using min(a,b) = a - relu(a-b): 0.8*min(Zr, Ta+Mo) for the Zr-driven bcc miscibility gap, 0.5*min(Mo, Zr+0.7Hf) for C15 Laves formation, and 1.2*relu(Hf - Ti - 0.7Mo - 0.15) for hcp precipitation. The coefficients were set by hand so that the equimolar ternary facts (e.g. Ta-Ti-Zr 0.69, Mo-Ti-Zr 0.45/0.55, Hf-Nb-Ta 0.78) are roughly reproduced; the remaining 11 hidden units are left at zero. No tools other than the prescribed reads and writes were used; the task did not ask me to find anything, so no confidence figure applies beyond expecting the trends to be right and the scale approximate.

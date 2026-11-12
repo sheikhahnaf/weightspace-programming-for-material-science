@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the austenite fraction as clip(0.5 + S/W, 0, 1), where S is a nickel-equivalent score (Ni 1, Mn, C positive; Al, Mo negative), and gave each of the seven grid Cr levels (0 to 24 at.%) its own intercept, width and Mn/C/Al/Mo coefficients. This captures the Fe-Cr gamma loop (Cr up to about 12 at.% is neutral or slightly austenitizing at 1173 K, above that strongly ferritizing) and the loss of Mn and C effectiveness at high Cr, which the facts Fe-24Cr-20Mn bcc versus Fe-24Cr-20Ni fcc point to. Each Cr level uses a pair of ReLUs that a large Cr term switches on or off; this is exact only on the 4 at.% Cr grid, and a modified last pair cancels the constant those switches leave behind. The last two units subtract a small carbide/intermetallic amount (from C and Mo) only when a linear austenite proxy is positive. I checked the coefficients by hand against the listed binary and ternary facts (most matched within about 0.1). Rough confidence that the trends and scale are right: about 60%.

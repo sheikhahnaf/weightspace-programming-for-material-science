@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I reasoned from the melting points and binary phase diagrams: Mo (strong partitioning to the solid, raises the liquidus) and Al and Cr (depress the solidus, Cr via Laves/eutectic-type minima with Nb and Ti) widen the freezing range, while Nb and Ti (narrow isomorphous lenses) narrow it. Five hidden units pass the fractions through as a linear term, six more are ReLU hinges that add extra range when Mo+Al, Mo+Cr, Cr+Nb, Cr+Ti, or Mo or Al alone are high; the bias sets the equimolar alloy at about 150 K, with the range spanning roughly 80 to 450 K. No task of finding something was asked; my confidence that the signs of the main trends are right is about 60%, and that the scale is within a factor of two about 55%.

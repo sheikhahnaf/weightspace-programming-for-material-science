@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network as a baseline of 0.97 (near single-phase bcc) minus three second-phase penalties built from the given binary and ternary facts: C15 Laves (Mo together with Zr/Hf, suppressed by Nb and Ta), a bcc miscibility gap (Zr together with Ta, Mo and some Nb, suppressed by Ti), and hcp (Hf, helped by Ta, suppressed by Ti, Mo and Nb). The Laves and gap terms each use a pair of ReLU units, relu(a+b-c) - relu(b-c), so the penalty is zero when the first partner (Mo or Zr) is absent and is bounded by its amount; the hcp term is a single thresholded unit. Thresholds and slopes were set by hand-checking a few compositions (equimolar quinary and senary near 1, Mo-Zr-rich or Ta-Zr-rich alloys down to about 0.6); the other 11 hidden units are left at zero. Nothing was asked to be found, so no confidence figure applies; I expect the trends to be right in sign but the magnitudes to be rough.

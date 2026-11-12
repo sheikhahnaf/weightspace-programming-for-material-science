@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network as a rule of mixtures: seven hidden units pass each atomic fraction through unchanged (fractions are non-negative, so ReLU is the identity) and the output weights are effective per-element solidus contributions in K, set near the pure melting points for Mo, Nb, Ta, W and well below them for Ti, V and Zr, since low-melting elements pull the solidus down more than a linear average of melting points. I chose those values by checking against solidus values I recall for MoNbTaW (about 3075 K), MoNbTaVW (about 2780 K) and TiZrNbTa (about 2100 K). Three more units add small corrections: a penalty when Zr coexists with Mo, V or W (eutectic/Laves tendency), and a partial recovery of the Zr and Ti depression above 15 at.% so the first additions hurt most. No finding was asked for; I expect the scale and element ranking to be right, with errors of perhaps 100-200 K on individual alloys.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network by hand from known solidification trends. One always-active hidden unit carries a linear per-element contribution: small for Co and Fe, moderate for Ni and Cr, larger for Mn, and largest for Al, which partitions strongly and pulls the solidus down. This gives roughly 45-50 K for equiatomic CoCrFeMnNi and about 25-30 K for Co/Fe/Ni-rich alloys. Three ReLU hinge units add more widening above 15 at.% Al, for Al+Mn-rich alloys, and above 20 at.% Mn, so Al-Mn-rich corners reach roughly 250-300 K. I am moderately confident in the direction of the trends (Al and Mn widen the range) and less confident in the absolute scale, about 50% that it is within a factor of two.

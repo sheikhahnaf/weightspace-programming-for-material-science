@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I started from the melting point of pure Al (933 K) as the output bias and subtracted per-solute solidus depressions taken from the binary phase diagrams as I remember them (about -40 K/at.% Cu saturating near 2 at.%, -50 K/at.% Si saturating near 1.5 at.%, -12 K/at.% Mg, -6 K/at.% Zn, -2 K/at.% Mn), using pairs of ReLU units to make the Cu and Si terms flatten once the solubility limit is passed. I then added hinge units for pair effects (Cu+Mg and Mg+Zn lowering the solidus further, Mg+Si raising it slightly through Mg2Si) and one unit that gives back 0.6 of the total depression above 120 K so that heavily alloyed compositions bottom out near the known low multicomponent eutectics (about 730 to 780 K). All of it was done by mental arithmetic on a few corner compositions; nothing was run, so the trends and scale should be about right but individual values may be off by 20 to 40 K.

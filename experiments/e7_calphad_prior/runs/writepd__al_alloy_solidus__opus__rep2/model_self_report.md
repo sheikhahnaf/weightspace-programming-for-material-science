@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the solidus as max(eutectic floor, linear solid-solution solidus), with the solid-solution line taken from the binary slopes (about -52 K/at% Cu, -18 Mg, -58 Si, -10 Zn, -4 Mn) and the floor set by the Cu level: about 782 - 8*Zn K for Cu >= 2 at% (Al-theta-S/Q eutectics), about 802 - 5*Zn for Cu = 1, and about 832 - 5*Zn for Cu-free Mg-Si alloys. Each branch is built from ReLU hinges, and large negative weights on x_Cu or x_Mg gate a branch on or off at the 0/1/2 at% grid levels. On top of that I added an +18 K floor bump for Mg-free alloys (Al-Si and Al-theta-Si eutectics) and +20 K for Cu >= 3 alloys with no Mg or Si. I checked a dozen grid compositions by hand against the intended piecewise formula. I would put the trends (Cu presence and Zn lowering the solidus, lean Cu-free alloys higher) at about 70% likely right, and the absolute levels within about 25 K for most alloys at about 50%.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the solidus as rule-of-mixtures melting points minus pairwise sag terms, with effective pair interactions taken from the binary values at 50 at.% and from what the equimolar ternaries imply. I wrote them as squared distances in a 3-axis embedding: a melting-point axis, a Zr axis with Ti and Nb pulled partly toward Zr, and a V axis that also separates V from Nb and Ta. The quadratic then becomes a linear term plus squares of three linear forms. Unit 0 carries the linear term. Units 1-7 are ReLU hinges that fit those squares piecewise-linearly over each form's range in the allowed composition domain. Unit 8 adds a saturating extra Zr penalty, so the drop is steep at low Zr, as the Zr-poor binaries show. Unit 9 is a soft Ti-AND-Zr bump, because Ti-Zr ternaries sat above the quadratic estimate. Hand checks on the 35 ternaries gave roughly 70 K RMS error for the Zr-free ones and about 125 K for those with Zr, so I expect the trends and scale to be right but individual 4-7 element alloys to be off by 100-200 K.

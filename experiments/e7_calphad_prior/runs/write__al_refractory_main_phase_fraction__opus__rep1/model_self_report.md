@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network as 1 minus two penalties, using five hidden units. The first penalty is for the Laves phase. It is about 2 x relu(Cr - 0.03 - 0.3Mo - 0.2Ti + 0.1Al), because Mo and Ti raise how much Cr the BCC phase can dissolve. A second unit caps it at about 2.2 x (Nb + 0.15Ti), so the Nb supply limits how much NbCr2-type Laves can form. The second penalty is for Al-driven phases (A15 (Nb,Mo)3Al, sigma, or a B2/A2 miscibility gap). It is 2 x relu(Al - 0.13 + 0.15Mo + 0.1Nb + 0.05Cr - 0.35Ti), capped at 0.45; Ti lowers it because it stabilises a single B2 phase. A last unit raises the output back toward about 0.5 when both penalties are large and Nb is high, because there the main-phase fraction flattens or a Laves phase becomes the majority. I checked about 15 compositions by hand, for example the equiatomic alloy at about 0.70 and Cr- and Nb-rich alloys at about 0.5 to 0.6. I trust the trends (Cr x Nb drives Laves, Mo and Ti stabilise BCC, high Al lowers the fraction) at about 60%, and the absolute values against TCHEA8 at about 35%.

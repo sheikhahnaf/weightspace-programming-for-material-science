@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the solidus as roughly max(single-phase fcc solidus, eutectic floor). The floor is a linear "eutectic" term, 850 K minus 28 K/at% Cu, 9 K/at% Mg, 7 K/at% Zn and 2 K/at% Mn, with Cu and Mg saturating at 2 at%. A ReLU adds back the dilute fcc-solidus excess (binary slopes of about 45 K/at% Cu, 15 K/at% Mg, 56 K/at% Si and 9 K/at% Zn, with the Cu-Mg interaction folded in). Two small ReLUs correct the Cu-free, Si-free Mg-Zn interaction and the higher Al-Cu binary eutectic when Mg and Si are both absent. I tuned the coefficients by hand against the given binary and ternary CALPHAD points (most come out within about 10 K) and the known quaternary eutectics: Al-Cu-Mg-Si near 780 K and Al-Cu-Mg-Zn near 750 K. The prior should put most of the 200 alloys at 750-815 K, and I expect it to be off by about 20-30 K for unusual cases, such as Mg-rich, Si-poor, Cu-free alloys.

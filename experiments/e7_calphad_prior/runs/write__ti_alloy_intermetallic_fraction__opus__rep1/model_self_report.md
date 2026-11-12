@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I took the non-alpha/beta phase at 973 K to be essentially Ti3Al (alpha2), and modelled it with a lever rule on an Al-equivalent A = Al + Sn + 0.3 Zr against an alpha2 solvus near 12.5 at.% (averaged over solvus values from 11 to 14 at.% to soften the onset), with an alpha2 composition about 10 at.% higher. Beta stabilisers, B = V + 2.5 Mo + 0.7 Nb, enter twice: a small positive term (0.125 B) because they pull Ti into beta and enrich the remaining alpha in Al, and a cap of 1 - 2.5 B because the alpha2 fraction cannot exceed the non-beta fraction. Each ReLU pair computes clip(T, 0, cap), so the output is never negative on this composition range. I am fairly confident about the direction (rising with Al and Sn, near zero below about 9 at.% Al-equivalent). I am much less sure of the solvus position, the strength of the beta partitioning effect and the scale, perhaps 50% that the rough magnitudes are within a factor of two.

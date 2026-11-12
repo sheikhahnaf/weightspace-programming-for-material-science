@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> From the sub-system facts, every two-phase case involves Zr (Laves with Mo/V/W, bcc miscibility gap with Ta/Nb/Mo/W), while Ti and to a lesser degree Nb keep Zr in solution. I hand-built three ReLU units: the secondary-phase amount u = 3*xZr - 1.0*xTi - 0.3*xNb - 0.1 is subtracted from 1, a second unit caps that loss at 0.4 (main-phase floor 0.6), and a third unit raises the output again when Zr plus Mo/V/W is high enough for Laves to become the dominant phase. All reasoning was mental, with spot checks on the equimolar 7-element alloy, Zr-free alloys and the listed ternaries; the remaining 13 hidden units are zero. No quantity was asked to be found; I expect the trend with Zr and Ti to be right but the scale to be only rough (about 60% confident it beats a constant prior).

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from what I know about how these elements melt and how they spread between solid and liquid. Five hidden units just pass one element's fraction through, so they act as linear terms. Al and Mn widen the freezing range most, Cr widens it a little, and Ni and Co narrow it slightly. The other units are ReLU hinges that add nonlinear widening when Al is high (above 15 and 25 at.%), when Mn is high, and when Al+Mn, Al+Cr, Cr+Mn or Al+Ni+Co are high (B2 forms first at a high liquidus while Mn and Cr stay in the late liquid). I tuned the scale so CoCrFeNi comes out near 25 K, Cantor near 37 K and AlCoCrFeNi near 64 K, rising to about 300 K for the most Al-Mn-rich alloys. My confidence that the trends are right is about 50%, and lower for the absolute scale.

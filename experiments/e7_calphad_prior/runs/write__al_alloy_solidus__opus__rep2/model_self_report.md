@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network as max(T_alpha, F) plus corrections. T_alpha is a linear alpha-Al solidus from 933 K, using binary slopes per at.%: Cu -45, Mg -19, Si -50, Zn -7, Mn -3. F is a eutectic floor near 873 K that drops with Cu and Si. Two units make the max: an always-on unit for F and a relu(T_alpha - F) unit. ReLU saturation terms make the floor flat once Cu exceeds 2 at.% (Al-Cu at 821 K), Si exceeds 1 at.% (Al-Si at 850 K, Al-Cu-Si at 798 K) and Mg exceeds 2 at.% (Mg2Si / S / Q eutectics at about 780-828 K). A four-unit gated bump raises the Mg-rich, Cu-free Al-Mg2Si quasi-binary case toward 868 K, and a two-unit term adds extra S-phase depression for Cu-saturated, Si-free alloys with Mg. The values come from remembered phase-diagram invariants, not TCAL9 numbers. I expect the right scale (about 750-905 K) and the main trends, with typical errors of about 15-25 K.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the prior by hand from a physical picture: a CoCrFeNi FCC matrix with a solidus near 1700 K. Any Cu above its solubility forms a Cu-rich liquid near 1380 K, so the network has a near-step Cu term that saturates, using the 5 at.% grid so that relu(1-20x_Cu) works as an exact Cu-absent indicator. Ti lowers the solidus through Laves/eta/Cu-Ti eutectics, by about 12 K per at.% without Cu and about 7.5 K per at.% when the Cu-rich liquid controls (relu(20x_Ti-140x_Cu) gates the steeper slope to Cu-free alloys), with small linear matrix terms (Cr up, Ni down). I checked it at a few points (CoCrFeNi about 1715 K, CoCrFeNiTi about 1474 K, CoCrCuFeNi about 1392 K, a near-equiatomic 6-element alloy about 1284 K, a Cu/Ti-rich floor about 1105 K); I am about 60% confident that the trends are right and the scale is within about 100 K for most alloys.

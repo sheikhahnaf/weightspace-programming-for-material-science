@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I read the freezing ranges off the given binary and ternary data and modelled the multicomponent freezing range as the sum of the binary terms plus the ternary excesses taken pair by pair. The large excesses are Ti x (W, Cr, Mo, Al, Co) and Al x (W, Mo, Cr, Co), plus a small Cr x (Mo, W) term. I built the products exactly on the composition grid with gated ReLU units: relu(partner sum + M*(Ti - level)), with the extra M*Ti part cancelled by Ti hinge units, and the same for Al. Super-linear gate weights and two top-level amplifier units account for the observed super-quadratic growth. I checked by hand that the network reproduces most of the given ternary freezing ranges to within about 2 K. It predicts roughly 40-60 K for typical mid-alloyed compositions and up to about 170 K for the most heavily alloyed Ti+W+Cr+Al ones; I am moderately confident (about 50%) that the multicomponent scale is right to within a factor of 1.5.

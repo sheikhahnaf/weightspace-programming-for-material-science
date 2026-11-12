@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I computed the freezing range (liquidus minus solidus) for every binary and equimolar ternary fact, and fitted by hand a pairwise-interaction model FR = sum a_ij x_i x_j (pure elements give zero), taking a_ij from the binaries and then nudging them toward the ternaries (a in K: AlCr 500, AlMo 1800, AlNb 1100, AlTi -300, CrMo 800, CrNb 900, CrTi 300, MoNb 400, MoTi 640, NbTi 450). I encoded it in the network through x_i x_j = 0.5[(x_i+x_j)^2 - x_i^2 - x_j^2], approximating each square by a line plus one ReLU hinge (pair sums knotted at 0.4, single fractions at 0.175): unit 0 carries all the linear parts, units 1-10 the ten pair hinges, units 11-15 the five single-element hinges. The equimolar quinary comes out near 250 K; nothing was run or checked numerically beyond mental arithmetic, and I would put about 55% confidence on the trends (Al and Mo widening the range, Ti narrowing it) being right in sign and the scale being within a factor of two.

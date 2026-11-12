@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the output from two mechanisms read off the sub-system facts: a Ti3Al (D019) term driven by an aluminium equivalent (Al + 1.5 Sn + 0.15 Zr in at.%, threshold 12.8, slope 1/9, fitted so Ti-12Al gives 0 and Ti-12Al-4Sn gives about 0.57), and a B2-ordering term that switches on when Al + Nb (with small Mo and V contributions, reduced by Sn) exceeds 20 at.% and is capped at 0.7 by a second, offsetting ReLU (matching Ti-12Al-12Nb B2 0.73 and zero for Ti-6Al-6Nb, Ti-12Al-9Mo, Ti-12Al-12V). The remaining 13 hidden units are left at zero. The coefficients away from the listed anchor points (Sn and Zr strength, the B2 onset in Al/Nb, the Mo/V contribution) are guesses from general titanium metallurgy, and nothing was computed with a tool; I am roughly 50% confident the prior gets the trends and scale right enough to beat a constant mean.

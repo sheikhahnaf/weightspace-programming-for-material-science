@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I fitted by hand a quadratic model to the given unary and binary solidus facts: 1941 K plus per-at.% slopes (Al +3.4 saturating above 6 at.%, Mo +5.7, Nb +3.9, Sn -1.7, V -3.4, Zr -7.3) plus pair terms, the dominant ones being Al with V, Zr and Sn (strongly negative) and smaller ones for Al-Mo, Al-Nb, Mo-Nb, Mo-V, Mo-Zr, Mo-Sn, Nb-Sn and Sn-V. One always-active ReLU unit carries the linear part, one hinge the Al saturation, and the remaining 14 hinges encode three grouped products (Al x P, Mo x Q, Sn x T) through the identity ab = ((a+b)^2 - (a-b)^2)/4 with symmetric piecewise-linear squares, chosen so that the interaction terms vanish exactly on single-solute axes. Mental checks reproduce the listed binaries to within roughly 5 to 20 K; the extrapolation to four or more elements assumes pairwise additivity and is untested, so I am about 65% confident the prior is within about 40 K RMSE on the 200 alloys with the right trends.

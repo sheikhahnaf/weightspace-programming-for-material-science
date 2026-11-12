@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the fcc fraction as a clipped ramp, min(max(0.5 + A/7, 0), 1 - P), where A is a linear "austenite potential" in at.%: Ni +1, Mn +0.5, C +4.5, Cr -0.55, Mo -1.3, Al -1.6, offset +5.4. I calibrated A against 304, 410, 430 and nitrogen-free 2205 at 900 C. P is a linear cap for carbides, sigma/Laves and B2 (C, Mo, Al, Cr). Each ramp takes two ReLUs, relu(s) - relu(s - cap). The Cr = 0, 20 and 24 at.% levels get their own ramps, gated by large Cr weights (+-250) that switch a ramp pair on only at that grid level. Cr = 0 uses stronger Mn and C and a lower offset, for the gamma-loop and dilute regime. Cr = 20 and 24 use weaker Mn and C (Mn saturation, carbides) and, at 24, a sigma-raised cap. I expect the signs and rough scale to be right, about 75% confident in the trends. Absolute values near the two-phase boundary may be off by 0.2 to 0.3, especially for high-Cr, high-Mn and Al-rich alloys.

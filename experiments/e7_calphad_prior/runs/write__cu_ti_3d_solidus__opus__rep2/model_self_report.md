@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand as a piecewise-linear solidus model. One always-active unit carries a linear base of about 1710 K for CoCrFeNi, with Cr raising it and Ni lowering it. Three ReLU kinks in x_Cu make a Cu drop that saturates near 1350-1380 K, the temperature at which a Cu-rich liquid forms. Four kinks in x_Ti make a concave Ti drop that reaches about 350 K at 35 at.% Ti. One unit, -600*relu(x_Ti - 2.5*x_Cu), adds back part of the drop when both Cu and Ti are present, so that alloys rich in both bottom out near 1180-1250 K (Cu-Ti(-Ni) eutectic liquid) and their drops do not simply add. The binary and ternary eutectic values are from memory, and the Cu-Ti floor in TCHEA8 could plausibly be 100 K off in either direction. Unused units are zero.

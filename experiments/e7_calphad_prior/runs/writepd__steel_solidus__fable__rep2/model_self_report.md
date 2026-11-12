@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand as an additive solidus model: unit 0 carries 1811 K plus per-element linear slopes read from the Fe-X binary facts, units 1-5 are kinks at half range for C, Cr, Mn, Ni and Mo that reproduce the binary curvature, and units 6-15 are pairwise interaction hinges (relu of the two range-normalised fractions minus a threshold) scaled to the deviation of each ternary fact from additivity (C-Cr, C-Mo, Al-Ni, Cr-Ni, Mo-Ni, Cr-Mn, Cr-Mo, C-Mn, C-Ni, Mn-Ni). The C-Cr and C-Mo hinges use a 0.75 threshold so they fit both the half-range and full-range ternaries, with their single-element spill cancelled inside the kink units; the other hinges use threshold 1 and so miss the half-half deviations. All arithmetic was done mentally, with no code or tools, and I checked a few of the listed binaries and the Fe-2C-24Cr point by hand. The extrapolation to four or more elements assumes pairwise effects add, which is likely to be too weak or too strong for carbide-rich, high-solute alloys.

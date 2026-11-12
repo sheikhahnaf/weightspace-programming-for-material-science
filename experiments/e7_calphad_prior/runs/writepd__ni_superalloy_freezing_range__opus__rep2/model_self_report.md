@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the freezing range as a linear term per solute (fitted to the binary facts: Ti and W strongest, Al, Cr and Mo weak, Co zero) plus pairwise synergy terms whose full-range sizes come from the ternary facts (Ti-W about 52 K, Cr-Ti 27 K, Al-W 18 K, Al-Mo 15 K, Al-Cr 14 K, and smaller ones, with Co-W negative). Each pair product was built in normalised solute fractions u = c/c_max, either as min(u_i,u_j) = u_i - relu(u_i - u_j) or as the hinge relu(u_i + u_j - 1), or as a blend of the two when the half-range ternary point called for it. The first hidden unit carries all the linear parts and stays positive. Checked by hand, the network reproduces nearly all the given binary and ternary freezing ranges to within about 2 K. It predicts about 50 K for a mid-range alloy and up to about 165 K for the most heavily alloyed ones. The multicomponent scale is an extrapolation of a second-order pair model, so I would trust the trends more than the absolute values.

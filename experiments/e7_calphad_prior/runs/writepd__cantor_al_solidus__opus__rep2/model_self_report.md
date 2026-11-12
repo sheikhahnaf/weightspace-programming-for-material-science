@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I fitted, in my head, a quadratic model y = sum a_i x_i + sum b_ij x_i x_j: the pure-element melting points set the linear terms for the transition metals, the 50/50 binary solidus values set the pair terms, and the Al terms came from a least-squares fit to the nine Al ternaries, leaving out the anomalous Al-Fe-Mn point. I then built that model as a ReLU network. Unit 0 is always-on and carries the linear part. Eleven units of the form relu(x_i - x_j) turn the strong pair interactions into scaled min(x_i, x_j) terms (Mn-Ni, Cr-Ni, Co-Cr, Al-Cr and the like); the weak pairs were folded into the linear part. Five per-element hinges, relu(x - 0.19) for Cr, Mn, Ni, Co and Al, restore the extra lowering when one element is rich. My hand checks give about 1565 K for CoCrFeMnNi, 1660 K for CoCrFeNi, 1700 K for AlCoCrFeNi, about 1430 K for Mn-Ni-rich alloys and about 1750 K for Al-Ni-rich (B2) alloys. I am about 65% confident that the trends are right and that the absolute values fall within about 60 K of TCHEA8 for typical alloys.

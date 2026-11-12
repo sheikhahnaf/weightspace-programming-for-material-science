@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I converted the binary liquidus-solidus gaps (at 25 and 50 at.%) into pairwise interaction coefficients c_ij (gap ~ sum c_ij x_i x_j), checked them against the equimolar ternaries, and found the large terms are almost rank-1: a high-melting group A = W + 0.55 Ta + 0.4 Mo + 0.3 Nb times a low-melting group B = Zr + 0.5 Ti + 0.4 V, with gap ~ 3800*A*B. I encoded A*B = ((A+B)^2 - (A-B)^2)/4 with piecewise-linear ReLU approximations of the two squares (units 0-11), and used the always-active first unit to carry linear terms so that the remaining units add min()-type corrections for W-Ti, W-(Mo,Nb), Ta-V and a saturating bonus for small Zr additions. All arithmetic was done by hand; the equimolar septenary comes out near 475 K and Zr-free, W-free alloys near 150 K. Nothing was to be found, so no confidence percentage applies; I expect the trends (Zr and W+Ti/V widen the range) to be right and the scale to be within roughly a factor of 1.5.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a piecewise-linear additive model by hand: a base range of 25 K for Cu- and Ti-free 3d alloys, a steep rise with Cu up to 15 at.% (Cu-rich liquid persists down to near the Cu melting point, about 225 K of range) then a gentle slope, a smaller saturating rise with Ti up to 10 at.% (low-melting Ti eutectics, about 80 K), a modest Cr term with an extra kink above 25 at.% for primary BCC/sigma raising the liquidus, a mild saturation when Cu + Ti exceeds 30 at.%, and a small Ni reduction. The numbers come from recalled phase-diagram knowledge, not from any calculation or data; eight hidden units are used and eight are left at zero. No search was asked for; I expect the trends (Cu dominant, Ti second) to be right and the absolute scale to be within roughly a factor of 1.5.

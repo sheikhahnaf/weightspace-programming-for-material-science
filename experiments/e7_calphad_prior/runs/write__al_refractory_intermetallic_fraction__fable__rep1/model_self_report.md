@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from six ReLU units encoding metallurgical expectations: a Cr2Nb Laves term written as min(1.5*x_Cr - 0.1, 3*x_Nb) using two units, an Al-driven term (A15/sigma/B2 ordering) that switches on above about 7 at.% Al and flattens above 25 at.%, a saturation unit that damps the sum when both Al and Cr are high, and a small negative Ti term because Ti stabilises disordered bcc. The remaining ten units are left at zero and the output bias is 0.03. The magnitudes are rough guesses from memory of the binary phase diagrams, not from any calculation; the least certain part is how much ordered B2 the TCHEA8 database predicts at 1273 K, which could make the true scale much higher than my estimate.

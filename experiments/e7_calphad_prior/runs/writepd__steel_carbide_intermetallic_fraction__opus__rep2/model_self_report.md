@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built five hand-designed ReLU units in composition units scaled to each solute's range. The first is a Cr-carbide unit (M23C6/M7C3) that turns on when C and Cr together pass a threshold. The second is a Mo-carbide unit (M6C) of the same kind. The third is a negative cap so the two carbide units do not count the same carbon twice. The fourth is a sigma/chi/R unit, relu(11.25 Mo + 1.5 Cr + 1.0 Mn - 0.56), slightly reduced by Ni, Al and C; I solved its coefficients by hand so it reproduces the ternary facts: chi 0.25 at 24Cr-4Mo, R 0.09 at 20Mn-4Mo, and zero for 24Cr-20Mn, 12Cr-2Mo and Mo alone. The fifth is a small, speculative B2 NiAl unit for Al+Ni in Cr-ferritized alloys. Mn and Ni enter the carbide units as weak negatives because they stabilize austenite, which dissolves carbon. I am fairly confident in the trends (C with Cr/Mo makes carbides, Mo with Cr or Mn makes intermetallics) and much less confident in the magnitudes for four- and five-component alloys.

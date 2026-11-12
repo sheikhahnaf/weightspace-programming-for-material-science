@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from remembered binary and ternary Al phase-diagram facts: pure Al melts at 933 K, Si depresses the solidus by about 40 K per at.% until it saturates near 1.25 at.% (eutectic limit), and Cu, Mg, Zn and Mn depress it by about 45, 20, 8 and 2 K per at.% until a shared floor of 125 K of depression is reached (multicomponent eutectics near 760 to 810 K). A fourth unit adds a small extra Mg+Zn depression above 4 at.% combined; the remaining 12 hidden units are zero. In at.% the function is T = 808 - 40 Si + 40 relu(Si - 1.25) + relu(125 - 45 Cu - 20 Mg - 8 Zn - 2 Mn) - 3 relu(Mg + Zn - 4), giving a range of about 746 to 900 K. No code or tools were used beyond reading the prompt; I expect trends and scale to be roughly right but individual values could be off by 20 to 40 K.

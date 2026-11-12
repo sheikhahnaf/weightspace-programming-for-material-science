@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from five ReLU units and left the other eleven at zero. The main unit makes the intermetallic fraction rise at about 3.3 times the Ti content above a 3 at.% solubility limit (Laves A2Ti, Ni3Ti and B2 stoichiometry), with a second unit flattening it above 25 at.% Ti; a third unit adds sigma phase when Cr is high, helped by Co and Fe and suppressed by Ni and Cu; two small negative units stop the total exceeding about 1 when Ti is high together with Cu or Cr. The numbers are estimates from general phase-diagram knowledge with no calculation against data, so I expect the Ti trend to be right and the sigma term and absolute scale to be rough.

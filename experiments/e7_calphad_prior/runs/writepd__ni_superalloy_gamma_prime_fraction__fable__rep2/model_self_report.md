@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a lever-rule model with two hidden units: y = clip(m, 0, cap), where m = (Al + 1.25 Ti + 0.22 Cr + 0.68 Mo + 1.03 W - 0.02 Co - 12.5 at.%)/10 and cap = (0.55 Al + 0.25 Ti)/10. The solute coefficients and the 12.5 at.% threshold were fitted by hand to the given ternary facts at 12 Al (0.39 with 20 Cr, 0.36 with 6 Mo, 0.70 with 6 Ti, 0.57 with 6 W, zero for binary Ni-12Al and with Co), and all half-range facts come out as zero. The cap (second unit, output weight -1) limits gamma prime by the available Al and Ti so that Cr, Mo and W cannot create L12 without formers and Ti-only alloys (eta-prone) stay low; I checked it mentally against remembered values for Waspaloy, Udimet 720 and IN738 at about 900 C. Nothing was asked to be found; I expect the trend and scale to be right but individual values could be off by 0.1 to 0.2, especially where TCP or eta phases compete.

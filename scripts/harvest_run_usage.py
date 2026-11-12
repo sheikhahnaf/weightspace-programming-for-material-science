@@ -29,6 +29,16 @@ DEFAULT = Path.home() / ".claude/projects/-Volumes-SSD1-SMAAA-weighspace-program
 RUN_PATH = re.compile(r"experiments/(e\d_[a-z_]+)/runs/([A-Za-z0-9_]+)/prompt\.txt")
 RUN_VAR = re.compile(r"experiments/(e\d_[a-z_]+)/WRAPPER\.md.*?RUN\s*=\s*([A-Za-z0-9_]+)", re.S)
 RUN_VAR_OLD = re.compile(r"RUN=\S*experiments/(e\d_[a-z_]+)/runs/([A-Za-z0-9_]+)")
+RUN_NAME = re.compile(r"experiments/(e\d_[a-z_]+)/WRAPPER\.md.*?run name is:\s*([A-Za-z0-9_]+)", re.S)
+
+
+def home(experiment: str) -> Path:
+    """Where an experiment's run folders are now. Transcripts keep the path used at run time,
+    which is experiments/<name>; some experiments have since moved."""
+    if experiment == "e3_generator_task_vectors":
+        return ROOT / "experiments" / "e3_crystal_filter"
+    here = ROOT / "experiments" / experiment
+    return here if here.exists() else ROOT / "supplementary" / experiment
 
 
 def text_of(message) -> str:
@@ -46,7 +56,7 @@ def parse(path: Path) -> dict | None:
     if first is None:
         return None
     prompt = text_of(first.get("message", {}))
-    match = RUN_VAR.search(prompt) or RUN_VAR_OLD.search(prompt) or RUN_PATH.search(prompt)
+    match = RUN_VAR.search(prompt) or RUN_VAR_OLD.search(prompt) or RUN_NAME.search(prompt) or RUN_PATH.search(prompt)
     if not match:
         return None
     experiment, run = match.group(1), match.group(2)
@@ -100,7 +110,7 @@ def main() -> None:
 
     audit, failed = [], []
     for (experiment, run), records in sorted(by_run.items()):
-        folder = ROOT / "experiments" / experiment / "runs" / run
+        folder = home(experiment) / "runs" / run
         if not (folder / "meta.json").exists():
             continue
         records.sort(key=lambda r: r["started_utc"] or "")
@@ -131,7 +141,12 @@ def main() -> None:
                      | {"tool_calls": len(final["tool_calls"]), "attempts": len(records)})
         if not final["audit_ok"]:
             failed.append((experiment, run, final["audit_problems"]))
-    (ROOT / "experiments" / "runs_audit.json").write_text(json.dumps(audit, indent=1) + "\n")
+    out = ROOT / "experiments" / "runs_audit.json"
+    seen = {(a["experiment"], a["run"]) for a in audit}
+    if out.exists():  # keep earlier entries whose transcripts are not among those read this time
+        audit += [a for a in json.loads(out.read_text()) if (a["experiment"], a["run"]) not in seen]
+        audit.sort(key=lambda a: (a["experiment"], a["run"]))
+    out.write_text(json.dumps(audit, indent=1) + "\n")
 
     models: dict[str, list] = {}
     for a in audit:

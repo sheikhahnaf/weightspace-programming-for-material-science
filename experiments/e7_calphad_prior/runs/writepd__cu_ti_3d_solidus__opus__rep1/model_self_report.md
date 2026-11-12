@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand as a piecewise-linear solidus model fitted mentally to the given binary and ternary CALPHAD facts. Unit 0 is a linear rule of mixtures (Co 1780, Cr 1640, Cu 1250, Fe 1690, Ni 1720, Ti 1150 K), which gives about 1700 K for CoCrFeNi. Units 1 and 2 together form an exact min(): once Cu exceeds an assumed solubility of 0.05 + 0.6*x_Ni, the solidus is clamped to the melting of a Cu-rich liquid, 1365 + 150*x_Ni - 450*x_Ti K (about 1315 K for the equimolar six-element alloy). Units 3 and 4 add the Ti penalty that applies when Ti exceeds Cr, and the partial give-back when Ti exceeds Ni; both are gated off by Cu, and they reproduce the Ti-containing ternaries to within about 100 K. I am roughly 50% confident about the scale for typical Cu+Ti alloys (+-100 K); the trends (Cu and Ti lower the solidus, Ni dissolves Cu, Cr offsets Ti) I hold with about 75% confidence.

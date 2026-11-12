@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I took the intermetallic at 1473 K in this system to be mainly the C15 Laves phase Zr(Mo,W,V)2, with a minor V2Ta term. I modelled the Laves phase with a solubility-product picture: Laves forms when x_Zr * B^2 is above roughly 0.02, where B = x_Mo + 1.3 x_W + 0.9 x_V and Nb, Ta and Ti act only as diluents. The amount of Laves then follows a lever rule up to a cap of about 3(x_Zr - 0.025). I wrote the weights as a clamp, min(relu(l), 3 x_Zr - 0.075), where l is a linear onset term 2.6 B + 2.16 x_Zr - 1.38. Two extra units, which only matter on the 5 at.% grid, force the output to exactly zero when there is no Zr, and one further unit adds a small Ta+V Laves term. Trends (zero without Zr, rising with Zr and with Mo/W/V, falling with Nb/Ta/Ti dilution) I give about 70% confidence; the absolute scale and the onset boundary are uncertain to roughly a factor of two.

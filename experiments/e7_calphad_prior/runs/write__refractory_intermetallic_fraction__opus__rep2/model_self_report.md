@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I treated the non-solid-solution phase fraction as almost entirely C15 Laves Zr(W,Mo,V)2. W2Zr is the strongest former, then Mo2Zr, with V2Zr weak at 1473 K. Nb, Ta and Ti act mainly as diluents that keep Zr and the B elements dissolved in bcc, and I expect no sigma, B2 or TaV2 in four-plus-component alloys at this temperature. From an ideal solubility-product model (x_Zr * S^2 > 1, with S = 16 x_W + 10 x_Mo + 5 x_V) I derived a linear driving force D, active in one ReLU, whose onset threshold falls as Zr rises. Three more ReLUs subtract shifted copies of D so the output saturates smoothly at a Zr-limited cap of about 2.2 x_Zr, which keeps it non-negative and zero without Zr. The trends (Laves rises with Zr, W, Mo and V and falls with Nb, Ti and Ta dilution) I hold with about 70% confidence, and the absolute scale (about 0.2-0.35 for near-equimolar Zr+W/Mo alloys) with about 40%.

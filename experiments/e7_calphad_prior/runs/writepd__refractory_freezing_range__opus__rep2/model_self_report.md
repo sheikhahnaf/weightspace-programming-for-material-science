@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I took the ideal-solution result that the freezing range grows with the composition-weighted variance of the pure-element melting points. I fitted the scale to the given binaries and ternaries, which gave about 650 K per kK^2 of variance. I added a Zr term, 2000 * x_Zr * (Tbar - 2150 K), which fits the solidus depression from the Zr miscibility gap and Laves phases in the 25 at.% Zr binaries and the Zr ternaries. Both terms are quadratic forms, so I encoded them as one always-on linear unit plus piecewise-linear ReLU approximations of the squares along three directions: mean Tm, x_Zr + 0.5*(Tbar - 2.15), and x_Zr. Nine units are active and seven are zero. Hand checks against the sub-system data agree to within about 10-20 K of the intended formula. Pair-specific effects are not modelled (Ti-W and Ta-V excess, Laves in Mo-W-Zr, Ti closing the Zr gap), so I expect errors of 100-250 K on some alloys.

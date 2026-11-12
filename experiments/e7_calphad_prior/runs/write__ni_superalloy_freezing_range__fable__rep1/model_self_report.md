@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand as a linear model plus three convex hinge terms: six units pass each solute fraction through unchanged (inputs are non-negative, so relu is the identity) with output weights in K per unit atomic fraction set from recalled binary Ni-X liquidus/solidus gaps (Ti 700 > Mo 350 > W 200 > Al 100 > Cr 60 > Co 10), and three hinge units add extra widening when total solute exceeds 30 at.%, when Al+Ti exceeds 10 at.%, and when Cr+Mo+W exceeds 20 at.%. The bias of 3 K and these slopes give roughly 50 K for a mid-range alloy and up to about 200 K at the richest corner, which matches my memory that superalloy equilibrium freezing ranges are a few tens of K to somewhat over 100 K. No code, calculation tool or other file was used; the coefficients are recalled estimates, not fitted values, so I trust the ordering of the element effects (Ti and Mo strongest, Co weakest) more than the absolute scale.

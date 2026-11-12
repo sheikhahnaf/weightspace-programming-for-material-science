@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built an additive mass-balance model from the given binary and ternary facts, using nine ReLU units: Al2Cu as 3*(Cu - 0.67 at.% solubility), an S-phase bonus of about min(Cu, Mg) above 0.8 at.%, Mn dispersoids at 7 atoms per Mn reduced by 2.5*min(Mn, Si) for the Al15Si2Mn4 case, Si plus Mg2Si as Si + min(Mg, 2 Si), and a small T-phase term 1.5*relu(Mg - 2Si + Zn - 6 at.%). I checked the coefficients by hand against the listed sub-system fractions (they match within about 0.01), with Zn otherwise treated as dissolved. Competition for Mg between Si, Cu and Zn in the quaternary and higher alloys (for example Q phase) is only crudely handled, so I expect the trends and scale to be right but errors of 0.01 to 0.03 on individual alloys; confidence that the prior beats a constant-mean baseline is about 85%.

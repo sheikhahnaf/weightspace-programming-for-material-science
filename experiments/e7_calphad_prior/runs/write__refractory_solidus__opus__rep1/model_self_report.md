@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I started from the rule of mixtures of the pure-element melting points and subtracted a regular-solution-style quadratic solidus depression, 4*D_ij*x_i*x_j. I estimated each binary D_ij from what I recall of the binary phase diagrams: about 15-120 K among Mo/Nb/Ta/W, and large values for the Zr-W, Zr-V and Zr-Mo eutectic systems, for V with Ta/Nb/W, and for Ti with W/Ta. Hidden unit 0 is an always-positive linear unit that carries the effective per-element coefficients. Six more units encode the three dominant product terms (Zr x {W,V,Mo,Ta,Nb}, V x {Ta,Nb,W,Mo}, Ti x {W,Ta,Mo}) using the approximation xy ~ 0.5*min(x,y) + 0.5*relu(x+y-1), and the remaining nine units are left inactive. I checked the network by hand on several alloys (MoNbTaW ~3070 K, MoNbTaVW ~2720 K, TiZrNbMoV ~1980 K). I am fairly confident in the trends (Zr/V/Ti lower the solidus and W/Ta raise it), but the absolute level could be off by roughly 100-200 K.

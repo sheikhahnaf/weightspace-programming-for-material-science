@@ -5,9 +5,39 @@
   "shuffled": false,
   "prompt_chars": 2157,
   "prompt_tokens_estimate": 719,
-  "model": null,
+  "model": "claude-fable-5-2",
   "tools_allowed": null,
-  "forward_passes": null,
+  "forward_passes": 0,
   "prompt_tokens": null,
-  "reply_tokens": null
+  "reply_tokens": null,
+  "harness": "Claude Code subagent, fresh context",
+  "date": "2026-11-12",
+  "started_utc": "2026-11-12T11:03:52.828000+00:00",
+  "duration_ms": 44832,
+  "output_tokens": 8384,
+  "context_tokens_last_turn": 57017,
+  "tool_calls": [
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/WRAPPER.md"
+    },
+    {
+      "tool": "Read",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__ti_alloy_alpha_transus__fable__rep1/prompt.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__ti_alloy_alpha_transus__fable__rep1/reply.txt"
+    },
+    {
+      "tool": "Write",
+      "file": "/Volumes/SSD1_SMAAA/weighspace-programming/experiments/e7_calphad_prior/runs/write__ti_alloy_alpha_transus__fable__rep1/self_report.txt"
+    }
+  ],
+  "tool_calls_observed": 4,
+  "attempts": 1,
+  "audit_ok": true,
+  "audit_problems": [],
+  "transcript": "agent-a5eee2f4a3f8a84a6.jsonl",
+  "token_note": "output_tokens and context size are read from the harness transcript; output tokens include the model's reasoning"
 }

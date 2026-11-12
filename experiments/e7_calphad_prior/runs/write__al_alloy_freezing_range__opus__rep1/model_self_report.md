@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the freezing range as liquidus minus solidus. Unit 0 holds the single-phase range, the sum over solutes of m_i*c_i*(1/k_i - 1), using binary liquidus slopes and partition coefficients for Cu, Mg, Si and Zn, with Mn taken as about zero. Six ReLU units with staggered offsets cap the solidus at a linear multicomponent eutectic temperature, about 560 C and falling with Cu and Zn, so concentrated alloys saturate at roughly 80 to 130 K. Four more units raise the liquidus when the primary Al6Mn or alpha-AlMnSi liquidus, estimated at about 550 + 11000*x_Mn + 500*x_Si C, exceeds the alpha-Al liquidus. That term mainly adds 30 to 60 K at Mn = 1 at.%. No search task was involved; I expect the trends to be right but the absolute scale could be off by about 30 to 50 K.

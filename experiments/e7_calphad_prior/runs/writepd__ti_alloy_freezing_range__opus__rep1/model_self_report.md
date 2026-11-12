@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I fitted, by hand, a pairwise quadratic model of the freezing range (in at.%) to the given binary and ternary CALPHAD facts: small linear terms per solute, and the dominant products Al x (0.8 Mo + 0.28 Nb + 1.15 Sn + 0.8 V + 0.78 Zr), 1.25 Mo x Nb plus smaller Mo-x and Nb-x terms, then extrapolated additively to the 4+ element alloys (predictions roughly 20 to 400 K, typically 100 to 200 K). The products are encoded exactly on the composition grid using the fact that Al and Mo take discrete steps: hinge units relu(Z + M(a - 3j)) act as indicators times the partner sum, and one or two pure-Al or pure-Mo hinges placed between grid points cancel the leftover terms; the Nb products use a coarser two-step approximation. I checked the network by hand against the full-range ternary facts (for example Al12Mo9 108 vs 108, Mo9Nb12 172 vs 161, Al12V12 119 vs 137). My confidence that trends and rough scale are right is about 60%, mainly because the pairwise extrapolation to many-solute alloys is untested.

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the solidus as the rule-of-mixtures of elemental melting points (Hf 2506, Mo 2896, Nb 2750, Ta 3290, Ti 1941, Zr 2128 K) minus a pairwise depression term, combining a small ideal-solution sag (scaling with the squared melting-point difference) with larger non-ideal terms guessed from binary diagrams (Zr and Hf against Mo/Nb/Ta, Ti-Zr minimum, Mo-Zr/Hf-Mo eutectics). I factored the dominant depression as 2100*u*v with u = x_Zr + 0.62 x_Hf + 0.2 x_Ti and v = x_Mo + 0.714 x_Nb + x_Ta, plus 808*x_Ti*(x_Zr + 0.34 x_Hf), and wrote each product as a difference of squares with the squares approximated piecewise-linearly by ReLU units, the linear parts folded into one always-active unit. Hand checks give about 2210 K for HfNbTaTiZr, 2270 K for HfMoNbTaTiZr, 2640 K for MoNbTaTi, 2925 K for Ta35Mo35Nb25Ti5 and about 1980 K for Mo35Zr35Ti25Nb5. I am fairly confident in the trends but only about 50% confident that the absolute level is within 150 K of TCHEA8.

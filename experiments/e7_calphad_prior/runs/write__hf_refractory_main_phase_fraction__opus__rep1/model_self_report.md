@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network as 1 minus three non-negative penalties, each built by hand from ReLU units. The first is a C15 Laves term, (Hf,Zr)Mo2. Two pairs of units of the form relu(Mo + 0.1(Hf+Zr) - s) - relu(Mo - 1.5(Hf+Zr) - s) approximate 1.5 x min(Mo, 1.5(Hf+Zr)) above a Mo solubility of about 0.06 to 0.14, and the term is exactly zero when there is no Hf or Zr. The second is a bcc miscibility-gap term, two units relu(Ta + 0.4(Hf+Zr) - t), so Ta-rich and Zr/Hf-rich alloys split into two bcc phases. The third is a small hcp term for Hf-rich alloys with few Mo/Nb/Ta, and all the ReLU breakpoints were placed so that HfNbTaTiZr and Mo-Nb-Ta-Ti alloys come out near 1. The trends come from binary phase diagrams and general knowledge of RHEAs, not from recalled TCHEA8 numbers; I put about 60% on the trend direction and only about 30% on the absolute scale of the Laves and gap penalties.

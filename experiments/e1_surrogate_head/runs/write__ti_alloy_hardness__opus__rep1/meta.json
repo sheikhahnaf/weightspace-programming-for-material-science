@@ -31,7 +31,7 @@
     }
   ],
   "tool_calls_observed": 3,
-  "attempts": 1,
+  "attempts": 2,
   "audit_ok": true,
   "audit_problems": [],
   "transcript": "agent-a88605c1cce06d2db.jsonl",

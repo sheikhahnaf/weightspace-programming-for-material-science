@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a lever-rule style estimate: alpha fraction z = 1.03 + 3*Al - 9*Mo - 4.5*Nb + 1*Sn - 6*V - 1*Zr (atomic fractions), with coefficients set from remembered binary Ti-X beta-phase boundaries near 700 C (Mo about 9-11 at.%, V about 14-16, Nb about 20) and Al as an alpha stabiliser that raises the transus. Two ReLU units implement clip(z, 0, 1) as relu(z) - relu(z - 1); the other 14 hidden units are left at zero. No code or tools were used; the coefficients are from memory, so the trend signs and ranking (Mo > V > Nb > Zr as beta stabilisers, Al and Sn alpha stabilisers) are more reliable than the exact scale.

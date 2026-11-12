@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the prior from three pieces. First, a linear term with effective coefficients of Al 1625, Cr 1505, Mo 2360, Nb 2275 and Ti 2065 K; these blend a binary Redlich-Kister linearization at the equimolar centre with a least-squares fit to the ten ternary solidi, and give about 1966 K at the centre. Second, a hinge that raises the solidus by up to about 225 K when Al+Cr is below 25 at.%, the single-phase bcc Mo-Nb-Ti corner. Third, local corner hinges on sums of three elements: they lower the solidus near Al-Mo-Nb, Cr-Mo-Nb, Cr-Nb-Ti and Al-Cr-Mo, and raise it near Al-Cr-Nb (C14 Laves), Al-Mo-Ti and Al-Nb-Ti, matching the ternary deviations from the linear term. The task was to write weights rather than find something, but I expect the trend and scale (about 1700 to 2400 K) to be roughly right, with errors of perhaps 100 to 200 K in the interior and larger errors near the Al-Cr-Nb corner.

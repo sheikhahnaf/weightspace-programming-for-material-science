@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the freezing range as min(30 K + solidus depression, T_liquidus - 1360 K): Cu (about 20 K/at.%) and Ti (about 6 K/at.%) push the solidus down until a Cu-rich last liquid pins it near 1360 K. The liquidus is linear in composition, with Cr raising it and Cu, Ti and Ni lowering it. On top of that I added +900*min(Cu,Ti) for the low-melting Cu-Ti eutectic liquid, -200*min(Cu,Ni) because Ni raises Cu solubility, and a small Cr term. All of this uses four ReLU units: the min is built as one linear unit minus a ReLU, and the min(Cu,Ti) and min(Cu,Ni) terms are each a linear part plus one ReLU. The predicted values run from about 50 K (Co-Cr-Fe-Ni only) to about 350-390 K (Cu+Ti-rich), and I would put roughly 50% confidence on the trends and about 30% on the absolute scale being within a factor of 1.5.

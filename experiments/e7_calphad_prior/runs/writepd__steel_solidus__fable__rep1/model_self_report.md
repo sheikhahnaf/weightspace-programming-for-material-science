@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from the sub-system facts: unit 0 is an always-positive linear unit (in units of 1000 K) carrying 1811 K plus per-element solidus slopes fitted to the Fe + one solute lines (Al +1.2, C -48, Cr -1.1, Mn -5.9, Mo -5, Ni -3.05 K per at.%). Units 1-14 encode the pairwise interaction residuals of the Fe + two solute lines (C-Cr, Al-Ni, C-Mo, Cr-Ni, Mo-Ni, C-Mn, C-Ni, Cr-Mn, Cr-Mo, Mn-Ni) as K1*min(u,v) (written as u - relu(u-v), with the u part folded into unit 0) and/or K2*relu(u+v-1) on range-normalised fractions, chosen so the half-range and full-range ternary points are reproduced to within about 10 K. Unit 15 is a guessed damping term (+60 K per unit of normalised C+Cr+Mo+Ni above 2.5) so that the summed negative pair terms do not overshoot in alloys with four or more elements; this one is not supported by any given fact. All arithmetic was done mentally and only spot-checked on three compositions (Fe-2C, Fe-2C-24Cr, Fe-6Al-20Ni).

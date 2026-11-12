@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a mass-balance model of the second-phase atom fraction at 400 C and wrote it as ReLU units. Each Cu atom above about 0.5 at.% solubility contributes about 3 atoms (Al2Cu, with 2 Al per Cu). Each Mn atom contributes about 6.5 (Al6Mn or alpha-AlMnSi). Si above about 0.3 at.% contributes 1 per atom (Si or Mg2Si). Mg precipitates up to min(Mg, 2Si + Cu), as Mg2Si plus S-Al2CuMg, through relu(Mg) - relu(Mg - Cu - 2Si). A weak eta/T term, 1.5*relu(free Mg + Zn - 5.5 at.%), lets Zn precipitate only together with leftover Mg. The trends (dominated by Cu and Mn, Si and Mg adding through their compounds, Zn nearly inert) I trust at about 70%. The absolute scale is less certain, at about +/-40%, mainly because I am unsure of the Mn phase that TCAL picks (Al6Mn, Al12Mn or alpha), of the Cu solvus, and of the Zn-Mg solvus at 673 K.

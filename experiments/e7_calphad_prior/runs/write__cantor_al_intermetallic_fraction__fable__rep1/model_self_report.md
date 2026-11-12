@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from two physical pieces: a B2 term from a lever rule in Al (onset near 7 at.% Al, B2 holding about 33 at.% Al, saturating above 30 at.% Al, reduced when Al exceeds Ni+Co), and a sigma term that turns on with Cr, Mn, Co, Fe and Al and is suppressed by Ni, with its threshold set so equimolar CoCrFeMnNi and AlCoCrFeNi give zero sigma. A fifth unit subtracts the overshoot when both terms are large so the sum stays near or below 1; the other eleven units are left at zero. Nothing was computed with tools; the coefficients are rough recollections of 1273 K phase equilibria, so I expect the trends in Al and Cr to be right but the scale to be off by perhaps 0.1 to 0.2 for individual alloys. No search was asked for, so no confidence percentage applies.

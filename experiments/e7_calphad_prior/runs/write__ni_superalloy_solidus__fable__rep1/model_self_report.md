@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand as the melting point of pure Ni (1728 K, output bias) plus a linear term per solute, using six pass-through hidden units with slopes estimated from the Ni-X binary phase diagrams (per at.%: Al -4.5 K, Co +0.3 K, Cr -2 K, Mo -5 K, Ti -11 K, W +2 K). Three further ReLU units add curvature: extra depression above 6 at.% Al, above 10 at.% Cr, and a joint Al+Ti+0.3Cr+0.5Mo term above 0.12 for the gamma-prime-former synergy; the remaining seven units are zero. The slopes were recalled from memory, not computed, and I checked two compositions mentally (a typical alloy near 1656 K, the most solute-rich corner near 1454 K). Nothing was to be found; I expect the signs and ranking of the trends to be right with roughly 80% confidence, and absolute values to be off by some tens of kelvin.

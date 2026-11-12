@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I hand-built a piecewise-linear model starting from a near-single-phase fcc baseline (0.97) and subtracting penalties for the known second-phase formers: Ti (Ni3Ti/Laves intermetallics, about 2.2 per unit Ti, saturating above 15 at.%), Cu (Cu-rich fcc separation above about 5 at.% solubility), and Cr (sigma/bcc above 15 at.%, worse when Fe+Cr outweigh Ni+Co), with a small bonus for Ni above 20 at.% as an fcc stabiliser. Six hidden units carry these terms and the other ten are left at zero. No code or tools were used; the magnitudes are rough estimates from metallurgical knowledge, so I expect the trends (Ti and Cu lower the main-phase fraction most) to be right but absolute values to be off by 0.1-0.2.

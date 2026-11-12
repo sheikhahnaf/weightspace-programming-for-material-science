@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I computed the freezing ranges (liquidus minus solidus) of all the given binaries and ternaries by hand and saw that the range behaves like min(cap, demand): a "cap" that is linear in composition (refractory Mo/Nb/Ta raise it, Hf/Ti/Zr lower it, clamped at zero for low-melter-rich alloys) and a "demand" that is additive in the low-melting solutes (1900 Zr + 650 Hf + 400 Ti + 150 Ta), which binds only when the alloy is refractory-rich. I encoded this exactly as relu(c) - relu(c - D), added a Mo-Zr synergy term 350*min(Mo, Zr) with two more units (Mo and relu(Mo - Zr)), plus a 30 K floor, and tuned the coefficients mentally against the ternaries and 50/50 binaries; the other 12 hidden units are left at zero. The equimolar six-element alloy comes out near 320 K; I expect the trends (Zr, Ta, Mo widen the range, Hf and Ti narrow it) to be right but individual values off by roughly 50-100 K. Nothing was to be found, so no confidence percentage applies beyond that; no code or tools other than the allowed reads and writes were used.

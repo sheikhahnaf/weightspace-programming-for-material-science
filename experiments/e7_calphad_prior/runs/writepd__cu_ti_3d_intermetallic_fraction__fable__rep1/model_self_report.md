@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I used three hidden units and left the other thirteen at zero. Unit 0 makes the intermetallic fraction rise with Ti as relu(3.2*x_Ti - 0.10), because the sub-system facts show Ti is bound as Laves (AB2, about 3x Ti), B2 (2x) or Ni3Ti/L12 (4x) after a few at.% solubility in the solid solutions. Unit 1 subtracts the excess above a cap of about 0.95 - 0.5*x_Cu, since Cu mostly separates as a Cu-rich fcc phase; unit 2 adds a sigma term that turns on at high Cr with Co and Fe and is suppressed by Ni and Ti, scaled to give about 0.27 for equimolar Co-Cr-Fe and zero for Co-Cr-Ni and Cr-Fe-Ni. Nothing was computed with tools; the task did not ask me to find anything, so I give no confidence figure, but I expect the Ti trend to be right and the absolute scale to be rough.

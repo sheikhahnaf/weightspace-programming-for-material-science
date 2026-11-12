@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a V-shaped function of Al content by a lever rule: fcc dissolves about 7 at.% Al (slightly more with Ni) and B2 holds about 38 at.%, so the main-phase fraction falls from 1 as B2 appears, reaches about 0.5 near 22 at.% Al, and rises again as B2 becomes the majority phase. Three further ReLU units subtract for Cr-driven second phases (sigma or disordered bcc): Cr above 20 at.%, Cr plus Al above 40 at.%, and Cr plus half of Mn above 35 at.%. All of it was reasoned by hand from the given sub-system facts and general knowledge of Al-Co-Cr-Fe-Mn-Ni alloys; nothing was computed with tools. The task did not ask me to find anything, so no confidence figure applies; I expect the trend with Al to be right and the absolute values to be rough.

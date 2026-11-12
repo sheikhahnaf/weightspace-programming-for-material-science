@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand from four interpretable hidden units. Two units form a carbide term, relu(z) - relu(z - 4.6*x_C). Here z is a carbon-excess potential: carbon raises it, Cr, Mo, Al and Ni push it up, and Mn pulls it down. The second unit caps the carbide at the M23C6 stoichiometric limit, so the term is exactly zero when C = 0. It was fitted to the Fe-C-Cr and Fe-C-Mo sub-system facts (0.01, 0.09, 0.02, 0.07). A Cr-Mo unit for sigma/chi was fitted to Fe-24Cr-4Mo = 0.25 chi, staying zero for Fe-24Cr, Fe-12Cr-2Mo and Fe-24Cr-20Mn; Mn raises it and C lowers it. A Mn-Mo unit for the R phase was fitted to Fe-20Mn-4Mo = 0.09. I checked every given ternary fact by hand: all are reproduced except Fe-2C-4Mo, which is slightly over at 0.09 against 0.07, and Fe-1C-2Mo, which is slightly under. The quaternary interactions (the duplex-type sigma boost from Ni, B2/kappa phases, which I left out) are guesses. I am moderately confident in the trends and the scale, and less so in the high-Cr-Mo-Ni corner.

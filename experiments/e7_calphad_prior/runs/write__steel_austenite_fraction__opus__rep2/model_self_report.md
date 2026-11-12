@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I modelled the fcc fraction at 900 C as a clipped linear ramp, 0.5 + S/8, where S is a Ni-equivalent balance in at.% (Ni 1; Mn, C and the offset favour austenite; Al and Mo favour ferrite). The coefficients change with the Cr level: at Cr 0-8 they follow the A3 picture, with strong Mn, gamma-loop help from Cr and a small offset because pure Fe is just below A3. At Cr 12-24 they follow a Schaeffler/Fe-Cr-Ni 900 C picture, with weak Mn and a Ni requirement for 50% austenite of about 0.5, 3, 5.3 and 7.6 at Cr 12, 16, 20 and 24. Each Cr grid level gets its own pair of ReLUs, gated by a steep Cr weight; one linear unit cancels the saturated levels, so on the grid the output is exactly the ramp for that alloy's Cr level, bounded between 0 and 1. The coefficients are rough estimates from empirical Ac3 formulas, binary phase diagrams and known steels (304, 2205, CA6NM, medium-Mn and delta-TRIP steels). I would expect the trends to be right and individual values to be off by about +/-0.3.

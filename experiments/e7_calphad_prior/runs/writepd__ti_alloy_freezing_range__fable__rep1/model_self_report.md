@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> From the listed solidus/liquidus pairs I computed the freezing range of each unary and binary-solute alloy, fitted per-at.% linear coefficients (Mo 2.2, Nb 1.2, Zr 1.4, Sn 1.0, V 0.33, Al 0.05 K per at.%) and pairwise excess coefficients, which are dominated by Al x (Mo, Nb, Sn, V, Zr) and Mo x (Nb, Sn, V, Zr). I encoded the model as one always-active linear unit plus two product terms, Al*v and Mo*w, each built as (u+v)^2 - u^2 - v^2 with the squares approximated by piecewise-linear ReLU kinks (exact on the Al and Mo composition grids); pure Ti gives 0 K. Hand checks reproduce Ti-12Al-12V (about 127 vs 137 K) and Ti-9Mo-12Nb (about 161 vs 161 K); the extrapolation to four or more elements assumes pair effects add without saturation, so I expect the trends and scale to be right but values at high total solute to be possibly overestimated. No search task was asked; confidence that the prior correlates well (rank correlation above 0.7) with the target is about 70%.

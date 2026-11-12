@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network as a soft maximum of three regimes on top of a 0.35 floor (output bias). The first regime is a solid-solution (fcc/bcc) matrix plane that is softly capped at 1. It falls by about 3.2 per unit Ti above roughly 3% Ti, and by 1.0 per unit Cu because Cu splits off as a separate Cu-rich fcc phase. Ni and Co raise it a little, and a correction unit makes Ti-free alloys come out at 1 minus the Cu loss. The second regime is an intermetallic plane (Laves/B2) that rises with Ti, rises with Fe+Cr and falls with Cu; it takes over above about 20-25% Ti and is trimmed above 30% Ti. Smaller units add a sigma penalty when Cr and Co are high and Ni, Fe and Ti are low, and a bonus for the Cu-Ni-Ti ternary C11b phase. Every coefficient was set by hand against the given binary and ternary facts and my own rough phase-fraction estimates for typical 5- and 6-element alloys. I expect the trends to be right and the absolute values to be off by about 0.1-0.15 for most alloys.

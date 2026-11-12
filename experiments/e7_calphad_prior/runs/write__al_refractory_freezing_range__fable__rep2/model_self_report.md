@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network by hand as a linear composition model plus three ReLU kinks: five identity units carry per-element coefficients (Al 600, Cr 250, Mo 250, Nb 0, Ti 50 K per unit fraction), reflecting that the freezing range widens when low-melting Al (and Cr) is mixed with high-melting Mo, while Nb and Ti form near-ideal bcc solutions. Extra units add width when Al+Mo exceeds 40 at.% (large melting-point spread), when Cr+Nb exceeds 40 at.% (Laves/eutectic depression of the solidus), and subtract width when Al falls below 10 at.%. Predictions run from about 80 K to about 430 K with roughly 230 K at equiatomic; no data or computation was used, only mental arithmetic. I am about 55% confident the sign of the main trends is right and about 40% confident the overall scale is within a factor of 1.5.

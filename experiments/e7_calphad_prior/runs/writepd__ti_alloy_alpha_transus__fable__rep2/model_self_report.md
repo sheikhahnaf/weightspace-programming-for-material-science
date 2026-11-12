@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I fitted per-element linear slopes (K per atomic fraction) to the unary facts around pure Ti at 1155 K (Al +1300, Mo -2100, Nb -1500, Sn -1100, V -1500, Zr -750) and put that linear score through two ReLU units that give a 773 K floor with a softer slope below about 1000 K, which reproduces the saturation of the beta stabilisers. The remaining units encode pair interactions read off the binary-solute facts by mental arithmetic: Al losing about half its effect when Mo or Nb is present (min-type term), strong positive Al-V and Al-Sn terms, positive Mo-Nb and Nb-Sn terms, and Zr becoming more depressing alongside beta stabilisers. No code or tools were used beyond reading the prompt and writing the two files; the extrapolation to four or more elements is a guess, so I expect the trends and scale to be right but errors of several tens of kelvin, more for Al-rich alloys with V or Sn.

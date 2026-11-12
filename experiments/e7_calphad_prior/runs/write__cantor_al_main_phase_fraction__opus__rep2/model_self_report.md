@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a piecewise-linear model on a BCC-tendency index t = Al + 0.3 Cr - 0.1 Ni + 0.02. Three ReLU units on t give single-phase FCC (y = 1) below t = 0.15, a fall to about 0.55 near t = 0.22 as FCC and B2/BCC reach similar fractions, and a partial recovery toward about 0.75-0.8 at high Al where B2/BCC dominates. A fourth unit, relu(Cr + 0.5 Al - 0.3), subtracts a penalty for a Cr-rich A2 or sigma second phase in Cr-rich and Al-plus-Cr-rich alloys. The thresholds were set from memory of how the AlxCoCrFeNi series behaves at around 1000 C. The task was to write weights rather than find something, so I give no confidence percentage.

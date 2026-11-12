@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the prior from three parts added at the output. The first is a B2 term, min(3.6*(x_Al - 0.07), partner capacity), where the partner capacity is mainly Ni+Co with a small share from Fe and Mn; it is made from two ReLUs as relu(A) - relu(A - B). The second is an extra Fe-Al B2 term that switches on only at high Al (above about 28%) in Fe-rich alloys that are poor in Ni and Co, and Mn suppresses it. The third is a sigma term capped at 1 with relu(L) - relu(L - 1); it is driven by Cr together with Co and Mn, Fe, Ni and Al lower it, and I tuned it so the equimolar CoCrMn, CoCrFe, CoCrNi, CrFeMn, CrMnNi, Cantor and AlCoCr cases come out roughly as in the given facts. The rough scale is set from my recollection of AlxCoCrFeNi behaviour at 1273 K (about 0.47 intermetallic for AlCoCrFeNi, near 1 at 35% Al); the exact values for Ni-poor, Al-rich and Cr-Mn-rich corners are uncertain.

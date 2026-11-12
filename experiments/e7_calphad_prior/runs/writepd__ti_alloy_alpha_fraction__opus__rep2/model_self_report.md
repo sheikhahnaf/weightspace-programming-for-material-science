@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I fitted a lever-rule model to the binary and ternary facts by hand. In it, alpha fraction = clamp(1.23*(1 - u)), where u is a beta-stabiliser index (Mo 0.13, Nb 0.08 and V 0.08 per at.% at 0 Al, plus small Zr and Sn terms), and Al shrinks every coefficient through a fan that widens with Al. I built this as a 3-step staircase of clamped ReLU pairs. Because the Ti-Mo-Nb facts show Mo strongly cancelling Nb's effect, the main path weights Nb at 35% strength. A Mo=0 gate (weight -200 on Mo) swaps in full-strength Nb when no Mo is present. One extra unit subtracts an Ti3Al (D019) penalty driven by Al+1.65Sn above 14 at.%, which fades as beta content rises. The task asked me to write the weights, not to find something, so no confidence figure applies; I expect the trends to be right, with errors of about 0.1-0.2 in absolute fraction where the Mo-Nb, Nb-Sn and Al-V interactions are strongest.

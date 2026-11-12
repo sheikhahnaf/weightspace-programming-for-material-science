@@ -1,0 +1,15 @@
+{
+  "arm": "write_size",
+  "task": "steel_austenite_fraction",
+  "hidden": [
+    32,
+    32
+  ],
+  "prompt_chars": 4540,
+  "prompt_tokens_estimate": 1514,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": 0,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

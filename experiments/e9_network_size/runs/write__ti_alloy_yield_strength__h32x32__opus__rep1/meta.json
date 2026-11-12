@@ -1,0 +1,15 @@
+{
+  "arm": "write_size",
+  "task": "ti_alloy_yield_strength",
+  "hidden": [
+    32,
+    32
+  ],
+  "prompt_chars": 4829,
+  "prompt_tokens_estimate": 1610,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": 0,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

@@ -131,10 +131,10 @@ def score_edit(task: Task, seed: int, reply: str, shuffled: bool = False) -> dic
 # --------------------------------------------------------------- arm E: write
 
 
-def write_prompt(task: Task) -> str:
+def write_prompt(task: Task, hidden: tuple[int, ...] = WRITE_HIDDEN) -> str:
     if not task.named_features:
         raise ValueError(f"{task.name}: arm E needs inputs with a physical meaning")
-    head = zero_(MLPHead(task.X.shape[1], WRITE_HIDDEN, 1))
+    head = zero_(MLPHead(task.X.shape[1], hidden, 1))
     names = ", ".join(f"x[{i}] = {n}" for i, n in enumerate(task.feature_names))
     job = (
         f"Write the weights of this network from what you know about materials. No training "
@@ -196,8 +196,8 @@ def score_prior(task: Task, m, seeds: int = 5, sizes: tuple[int, ...] = (5, 10, 
     return rows
 
 
-def written_head(task: Task, reply: str) -> MLPHead:
-    head = MLPHead(task.X.shape[1], WRITE_HIDDEN, 1)
+def written_head(task: Task, reply: str, hidden: tuple[int, ...] = WRITE_HIDDEN) -> MLPHead:
+    head = MLPHead(task.X.shape[1], hidden, 1)
     head.load_state_dict(load_weights(reply))
     return head.eval()
 

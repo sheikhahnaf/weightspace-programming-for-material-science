@@ -1,0 +1,14 @@
+{
+  "arm": "write_size",
+  "task": "mpea_hardness",
+  "hidden": [
+    64
+  ],
+  "prompt_chars": 4680,
+  "prompt_tokens_estimate": 1560,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": 0,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

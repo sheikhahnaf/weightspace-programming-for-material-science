@@ -1,0 +1,15 @@
+{
+  "arm": "write_size",
+  "task": "ni_superalloy_solidus",
+  "hidden": [
+    32,
+    32
+  ],
+  "prompt_chars": 4444,
+  "prompt_tokens_estimate": 1482,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": 0,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

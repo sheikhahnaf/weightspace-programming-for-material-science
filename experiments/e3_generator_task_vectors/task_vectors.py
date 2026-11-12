@@ -19,7 +19,8 @@ Only tensors present in both the base and the fine-tuned state dict are compared
 fine-tunes hold the denoiser only; the frozen autoencoder is not in them). CrystalFlow and
 ADiT keep large fixed buffers in the state dict, so besides the norm relative to all
 floating tensors (the MatterGen number) the norm relative to the tensors that changed in at
-least one run is reported, and ranks are taken only over matrices that changed.
+least one run is reported, and the rank statistic is given twice: over all matrices, as
+first reported for MatterGen, and over the matrices that some run changed.
 """
 
 from __future__ import annotations
@@ -53,6 +54,26 @@ def state(path: str) -> dict[str, torch.Tensor]:
     return {k: v.float() for k, v in sd.items() if torch.is_tensor(v) and v.is_floating_point()}
 
 
+def alias_adit_package() -> None:
+    """The released ADiT checkpoint was pickled when its package was called `src`; the copy on
+    the cluster is called `adit`. Make the old names resolve, as the loop's ADiTSuite does."""
+    import importlib
+    import os
+    import sys
+
+    repo = os.environ.get("ADIT_REPO")
+    if repo and repo not in sys.path:
+        sys.path.insert(0, repo)
+    import adit
+
+    sys.modules.setdefault("src", adit)
+    for tail in ("models", "data", "utils", "tools", "eval"):
+        try:
+            sys.modules.setdefault(f"src.{tail}", importlib.import_module(f"adit.{tail}"))
+        except ImportError:
+            pass
+
+
 def rank90(matrix: torch.Tensor) -> int:
     s = torch.linalg.svdvals(matrix.reshape(matrix.shape[0], -1).double())
     energy = torch.cumsum(s**2, 0) / (s**2).sum().clamp_min(1e-300)
@@ -71,6 +92,8 @@ def main() -> None:
     if not found:
         raise SystemExit(f"no base checkpoint for {args.backbone}: {args.base or BASES[args.backbone]}")
     base_path = found[0]
+    if args.backbone == "adit":
+        alias_adit_package()
     base = state(base_path)
     runs = []
     for folder in sorted(args.finetuned.iterdir()):
@@ -106,10 +129,8 @@ def main() -> None:
             module_energy[i][".".join(k.split(".")[MODULE_PARTS[args.backbone]])] += energy
             rel_by_key[k].append(np.sqrt(energy / max(float((base[k] ** 2).sum()), 1e-30)))
         for k in matrices:
-            if float(tau[k].abs().max()) > 0:  # an untouched buffer has no spectrum
-                rank_tau[k].append(rank90(tau[k]))
+            rank_tau[k].append(rank90(tau[k]))
         print(f"  [{i + 1}/{n}] {run['name']} relative norm {run['rel_norm']:.5f}", flush=True)
-    matrices = [k for k in matrices if rank_tau[k]]
     for k in matrices:
         rank_base[k] = rank90(base[k])
     changed = [k for k in keys if max(rel_by_key[k]) > 0]
@@ -134,6 +155,7 @@ def main() -> None:
     full = np.array([min(base[k].shape[0], base[k][0].numel()) for k in matrices])
     rt = np.array([np.mean(rank_tau[k]) for k in matrices])
     rb = np.array([rank_base[k] for k in matrices])
+    moved = np.array([max(rel_by_key[k]) > 0 for k in matrices])
     totals = defaultdict(float)
     for me in module_energy:
         total = sum(me.values())
@@ -159,6 +181,16 @@ def main() -> None:
             "task_vector_rank_over_full_rank": {"mean": float((rt / full).mean()), "median": float(np.median(rt / full))},
             "base_weight_rank_over_full_rank": {"mean": float((rb / full).mean()), "median": float(np.median(rb / full))},
             "matrices_where_change_is_lower_rank_than_base": int((rt < rb).sum()),
+        },
+        # The block above counts a matrix no run changed as full rank + 1 (a zero matrix has no
+        # spectrum). It is kept as first reported; this block leaves those matrices out.
+        "rank_for_90pct_energy_changed_matrices": {
+            "matrices": int(moved.sum()),
+            "task_vector_rank_over_full_rank": {"mean": float((rt / full)[moved].mean()),
+                                                "median": float(np.median((rt / full)[moved]))},
+            "base_weight_rank_over_full_rank": {"mean": float((rb / full)[moved].mean()),
+                                                "median": float(np.median((rb / full)[moved]))},
+            "matrices_where_change_is_lower_rank_than_base": int((rt < rb)[moved].sum()),
         },
         "cosine_between_runs": {g: {"n": len(v), "mean": float(np.mean(v)), "min": float(np.min(v)),
                                     "max": float(np.max(v))} for g, v in sorted(groups.items())},

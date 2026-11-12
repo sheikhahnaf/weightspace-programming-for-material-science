@@ -214,6 +214,18 @@
     "latticedecompnn.biass": 0.0
   },
   "rank_for_90pct_energy": {
+    "matrices": 37,
+    "task_vector_rank_over_full_rank": {
+      "mean": 0.376610008445946,
+      "median": 0.10830078125
+    },
+    "base_weight_rank_over_full_rank": {
+      "mean": 0.43296030405405406,
+      "median": 0.44140625
+    },
+    "matrices_where_change_is_lower_rank_than_base": 25
+  },
+  "rank_for_90pct_energy_changed_matrices": {
     "matrices": 25,
     "task_vector_rank_over_full_rank": {
       "mean": 0.07644531249999999,

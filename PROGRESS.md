@@ -85,7 +85,7 @@ Everything below is committed. Nothing is lost if the session ends here.
 
 - Remote is now `origin` = `sheikhahnaf/weightspace-programming-for-material-science` (private, history without Claude lines). `old-origin` still points at the first repo, which keeps the old history until Alvi deletes it or approves a force-push. Commit messages carry no Claude attribution.
 - Paper repo: `/Volumes/SSD1_SMAAA/weightspace-programming-for-material-science-paper` → `sheikhahnaf/weightspace-programming-for-material-science-paper` (private). First draft compiles.
-- Results page: `site/index.html`, published privately at https://claude.ai/artifact/KRqsGEtpS6w56rDnVBNBNg. Republish the same file to update.
+- Results page: `site/index.html`, published privately at https://claude.ai/artifact/S9fPA66YFMW3oux1sPqLkh. Republish the same file to update.
 - Leak repair finished: Fable 6/11, Opus 5/11, Sonnet 1/11, Haiku 1/11; linear-gain statistic 6/11. `results/repair_arm/summary.md`.
 - Generator filter arm (E3, `filter_arm.py`): written scorers rank bulk modulus of base samples at rho 0.94 (Opus), 0.88 (Fable), 0.80 (Sonnet), 0.73 (Haiku) against 0.82 for the volume-per-atom rule. `results/filter_arm/summary.md`. Six of the 24 prompts (heat capacity replicates) were not launched; heat capacity is solved by the Dulong-Petit rule.
 - E5 BNN (`experiments/e5_bnn_start/run_bnn.py`): MC dropout, deep ensemble and HMC, each with and without the written network as start, anchor, weight-space prior or prior mean. Running locally in the background; cells cached under `results/cells/`; rerun the command to resume and print `bnn_summary.md`. IBNN was dropped at Alvi's request; HMC follows Li, Rudner and Wilson's bnn-bo study, re-implemented because that repo has no licence.
@@ -110,6 +110,27 @@ Committed and pushed unless marked. Paper repo also pushed (second draft, 10 pag
 | E7 Thermo-Calc tasks (`experiments/e7_calphad_prior/`, `data/calphad/`) | agent `tc-tasks` building ≥ 8 alloy systems with TC-Python (env `tcpy`), tasks, references, prompts for `write` and `write_pd`; all four mean arms required | read `experiments/e7_calphad_prior/README.md`; rerun `make_tc_data.py` (resumable); then launch the listed run names as subagents (`WRAPPER.md` there), score, run BO |
 | E3 more backbones | agent `gen-backbones`; FASTER prep jobs 3259982 (CrystalFlow), 3259983 (ADiT) | see the entry that agent appends below and `experiments/e3_generator_task_vectors/hprc/README.md` |
 
-**Not done yet:** round-6 results page (E6, joint mean, E7, backbones); README, questions.md and REPRODUCE sections for rounds 4–5 additions (`REPRODUCE.md` has 4d; add 4e for round 5); webpage `site/index.html` is updated locally with round 5 but NOT republished (republish the same path to https://claude.ai/artifact/KRqsGEtpS6w56rDnVBNBNg); paper lacks E6, joint mean, E7, backbones.
+**Not done yet:** round-6 results page (E6, joint mean, E7, backbones); README, questions.md and REPRODUCE sections for rounds 4–5 additions (`REPRODUCE.md` has 4d; add 4e for round 5); webpage `site/index.html` is updated locally with round 5 but NOT republished (republish the same path to https://claude.ai/artifact/S9fPA66YFMW3oux1sPqLkh); paper lacks E6, joint mean, E7, backbones.
 
 **User decisions on record (2026-11-11):** authors Alvi then Arróyave; figures in the figures4papers style; table crops from publisher PDFs never go to GitHub, code and results do; force-push to the old repo was approved and done; phase-diagram context must never contain the target; test on many alloy systems.
+
+## E3 more backbones (agent `gen-backbones`, 2026-11-11 night)
+
+Inventory of RL fine-tunes (HF `finetuned_diffusion/`, 59 runs): MatterGen 20, CrystalFlow 20, ADiT 19 (no `hcap`/`accel` seed 99); each 2 targets x 2 policies x seeds 7, 17, 23, 99, 113. No other backbone has fine-tunes. Base checkpoints and samplers, all on FASTER user scratch (read only): CrystalFlow `checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20/` + the loop's `CrystalFlowSuite`; ADiT `checkpoints/adit/{ldm,vae}.ckpt` + the loop's `ADiTSuite`. The CrystalFlow base (226 MB) is also copied to `data/large/base_checkpoints/crystalflow/DNG-mp-20/` (untracked).
+
+Code: `task_vectors.py`, `hprc/{env.sh,prep.slurm,array.slurm,make_variants.py,sample_and_score.py}` and `analyze_variants.py` take a backbone (`--backbone`, or `BACKBONE=` for the slurm scripts); MatterGen output re-checked identical. Commands: `experiments/e3_generator_task_vectors/hprc/README.md`, section "CrystalFlow and ADiT".
+
+| Job | What | State when last checked |
+|---|---|---|
+| 3259982 | CrystalFlow prep: variants, smoke test (4 sampled, 2 scored), task-vector statistics | COMPLETED, 30 min |
+| 3259983 | ADiT prep | FAILED after 5 min: base `ldm.ckpt` pickles classes under the package name `src`; fixed with `alias_adit_package()` |
+| 3260069 | CrystalFlow array, 11 variants x 128 crystals, tasks 0 to 10 | all 11 running on fc101 to fc104 (MatterGen took 3 to 4 h per task) |
+| 3260080 | ADiT prep, resubmitted with the fix (`--time=04:00:00 --mem=64G`) | pending |
+
+Done: `results/task_vectors_cf.json` (change is 0.04 to 0.07% of the norm of the tensors RL touched, against 0.4 to 0.6% for MatterGen; 90% of the energy at a median 1.4% of full rank over the 25 changed matrices; cosine between seeds of the same target and policy 0.28, between targets 0.02 to 0.08). Side finding: the MatterGen rank figure "32% of full rank (median)" counts 70 matrices that no run changed as full rank; over the 139 changed matrices it is 25% (base 45%). `results/task_vectors_mg.json` was left as it was; rerun `task_vectors.py --backbone mg` to add the new block.
+
+To resume:
+1. `ssh faster "squeue -u \$USER; sacct -j 3260069,3260080 -X -n --format=JobID%14,State,Elapsed"`. If array tasks timed out, `sbatch --export=ALL,BACKBONE=cf array.slurm` again (it continues).
+2. CrystalFlow results: the `rsync` loop and `analyze_variants.py --backbone cf` in the hprc README -> `results/hprc_cf/`, `results/variants_summary_cf.{md,json}`.
+3. ADiT: when `logs/prep_3260080.out` shows `SMOKE_DONE`, `sbatch --export=ALL,BACKBONE=adit array.slurm`; when it shows `PREP_DONE`, fetch `wsp/task_vectors/task_vectors_adit.json`. If the prep fails again, read `logs/prep_3260080.err` and stop on ADiT with the exact error.
+4. Then update the Status line of the E3 README and this table.

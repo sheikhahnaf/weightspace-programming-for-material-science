@@ -180,3 +180,16 @@ EOF
 ## 6. Literature
 
 The brief, the Claude.ai Research report (266 sources), its source list, the Consensus results, the primary-source notes and the repo surveys are in `research/2026-11-11-wsp-fit/`. They are records of what was returned on 2026-11-11, not something to regenerate.
+
+## 7. Generator task vectors on CrystalFlow and ADiT (E3, added 2026-11-11)
+
+```bash
+E3=experiments/e3_generator_task_vectors
+# CrystalFlow statistics on the laptop: copy the base (226 MB, untracked), then
+rsync -a faster:/scratch/user/ahnafalvi/checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20/ data/large/base_checkpoints/crystalflow/DNG-mp-20/
+python $E3/download_checkpoints.py --backbone cf && python $E3/task_vectors.py --backbone cf    # -> results/task_vectors_cf.json
+# variants, sampling and scoring on FASTER, and the ADiT statistics: $E3/hprc/README.md, section "CrystalFlow and ADiT"
+#   sbatch --export=ALL,BACKBONE=<cf|adit> prep.slurm ; then array.slurm ; rsync results_<bb>/ -> results/hprc_<bb>/
+python $E3/analyze_variants.py --backbone cf        # -> results/variants_summary_cf.{md,json}
+python $E3/analyze_variants.py --backbone adit      # -> results/variants_summary_adit.{md,json}
+```

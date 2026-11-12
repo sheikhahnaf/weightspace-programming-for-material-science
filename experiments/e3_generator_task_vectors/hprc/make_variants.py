@@ -47,6 +47,26 @@ FINETUNED_FILE = {"mg": "last.ckpt", "cf": "last.ckpt", "adit": "ldm_finetuned.c
 DROP = ("optimizer_states", "lr_schedulers")  # not needed to sample, and half the file
 
 
+def alias_adit_package() -> None:
+    """The released ADiT checkpoint was pickled when its package was called `src`; the copy on
+    the cluster is called `adit`. Make the old names resolve, as the loop's ADiTSuite does."""
+    import importlib
+    import os
+    import sys
+
+    repo = os.environ.get("ADIT_REPO")
+    if repo and repo not in sys.path:
+        sys.path.insert(0, repo)
+    import adit
+
+    sys.modules.setdefault("src", adit)
+    for tail in ("models", "data", "utils", "tools", "eval"):
+        try:
+            sys.modules.setdefault(f"src.{tail}", importlib.import_module(f"adit.{tail}"))
+        except ImportError:
+            pass
+
+
 def base_checkpoint(backbone: str, base_dir: Path) -> Path:
     if backbone == "mg":
         return base_dir / "checkpoints" / "last.ckpt"
@@ -108,6 +128,8 @@ def main() -> None:
     run_name = re.compile(RUN.format(backbone=args.backbone))
     ft_file = FINETUNED_FILE[args.backbone]
     base_file = base_checkpoint(args.backbone, args.base_dir)
+    if args.backbone == "adit":
+        alias_adit_package()
     base_ckpt = torch.load(base_file, map_location="cpu", weights_only=False)
     base = base_ckpt["state_dict"]
     base_f = floats(base)

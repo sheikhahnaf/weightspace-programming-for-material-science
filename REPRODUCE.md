@@ -19,7 +19,7 @@ python scripts/copy_from_siblings.py --check  # exits non-zero if any copy diffe
 ## 2. Tests
 
 ```bash
-python -m pytest -q -W ignore                 # 36 tests
+python -m pytest -q -W ignore                 # 43 tests; the MACE and ORB tests skip without data/large
 ```
 
 ## 3. Baselines (docs/results/2026-11-11-e1-pilot.md, section 2)
@@ -89,6 +89,25 @@ python scripts/harvest_run_usage.py
 ```
 
 How an LLM run is launched: a fresh Claude Code subagent with the model alias and the one-line prompt "Read <experiment>/WRAPPER.md and follow it exactly, including writing both files. RUN = <run folder>".
+
+## 4d. Round 4 (docs/results/2026-11-11-round4.md)
+
+```bash
+E1=experiments/e1_surrogate_head; E2=experiments/e2_mlip_readout_edit; E3=experiments/e3_generator_task_vectors; E5=experiments/e5_bnn_start
+# section 1: written filter in front of the generator (needs results/hprc from round 3)
+python $E3/filter_arm.py prompt --target K --tag <model>__rep<k> ; python $E3/filter_arm.py score
+# section 2: leak repair, all models
+python $E1/llm_arm.py prompt repair --task <task> --seed <s> --tag <model> ; python $E1/score_repair_all.py
+# section 3: BNN start, prior and prior mean (about 40 minutes on 8 cores; cells are cached, so it resumes)
+python $E5/prepare_matbench.py
+python $E5/run_bnn.py --seeds 5 --jobs 8            # -> results/bnn_summary.md
+# section 4: ORB-v3 energy head
+python $E2/cache_features_orb.py --set dft15 && python $E2/cache_features_orb.py --set elastic   # about 40 minutes
+python $E2/orb_arm.py baselines                     # -> results/orb/frontier_seed0.json
+python $E2/orb_arm.py prompt --tag <model>__rep<k> ; python $E2/orb_arm.py prompt --tag <model>__ctrl1 --control
+python $E2/orb_arm.py score-all                     # -> results/orb/llm_edits.md
+python scripts/harvest_run_usage.py
+```
 
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 

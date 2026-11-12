@@ -1,0 +1,9 @@
+{
+  "arm": "orb_head_edit",
+  "control": true,
+  "tag": "opus__ctrl1",
+  "model_alias": "opus",
+  "forward_passes": 0,
+  "prompt_chars": 17340,
+  "prompt_tokens_estimate": 5780
+}

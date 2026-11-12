@@ -1,0 +1,1 @@
+[{"tensor": "w2", "index": [131], "value": 0.264188}, {"tensor": "w2", "index": [182], "value": 0.154253}, {"tensor": "w2", "index": [229], "value": 0.154255}]

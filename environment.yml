@@ -1,0 +1,26 @@
+# Environment for the main case (written networks: alloys, Thermo-Calc targets, crystals, BNN, size).
+#   conda env create -f environment.yml && conda activate wsp && pip install -e .
+# The supplementary experiments need more (interatomic potentials, crystal generators, a GPU);
+# their READMEs say what. The Thermo-Calc pools need Thermo-Calc 2025b with TC-Python and are
+# not part of this environment. The full list of the environment the results were produced in
+# is in env/.
+name: wsp
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - numpy==1.26.4
+      - scipy==1.15.3
+      - pandas==2.3.3
+      - pyarrow==24.0.0
+      - torch==2.4.1
+      - gpytorch==1.15.1
+      - botorch==0.16.1
+      - scikit-learn==1.7.2
+      - joblib==1.5.3
+      - pymatgen==2024.10.29
+      - ase==3.25.0
+      - matplotlib==3.8.4
+      - pytest==9.0.2

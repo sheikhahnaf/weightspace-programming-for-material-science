@@ -39,9 +39,12 @@ REFERENCE = {"mpea_hardness": "e1_surrogate_head", "ti_alloy_yield_strength": "e
 def prompts() -> None:
     from wsp import estimate_tokens
     from wsp.arms import write_prompt
-    from wsp.tasks import load_task
+    from wsp.tasks import TASK_NAMES, load_task
 
     for task_name in TASKS:
+        if task_name not in TASK_NAMES:
+            print(f"{task_name}: data not in this copy; no prompt written")
+            continue
         for size, hidden in SIZES.items():
             text = write_prompt(load_task(task_name), hidden)
             for rep in REPS:
@@ -92,11 +95,14 @@ def one(task, reply: str, hidden: tuple[int, ...]) -> dict:
 
 
 def score() -> None:
-    from wsp.tasks import load_task
+    from wsp.tasks import TASK_NAMES, load_task
 
     warnings.filterwarnings("ignore")
     rows = []
     for task_name in TASKS:
+        if task_name not in TASK_NAMES:
+            print(f"{task_name}: data not in this copy (a Thermo-Calc pool); skipped")
+            continue
         task = load_task(task_name)
         folders = sorted((ROOT / "experiments" / REFERENCE[task_name] / "runs").glob(f"write__{task_name}__opus__rep*"))
         runs = [(f, "h16", (16,)) for f in folders]

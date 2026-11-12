@@ -68,11 +68,15 @@ The tables in `data/calphad/` were computed with Thermo-Calc 2025b and its comme
 
 ## Run
 
+Install: `conda env create -f environment.yml && conda activate wsp && pip install -e .`
+
 ```bash
-conda activate matinvent
-export PYTHONPATH=src
-python -m pytest -q -W ignore
-python experiments/e1_surrogate_head/run_baseline.py
+python -m pytest -q -W ignore                                  # tests (those that need Thermo-Calc data are skipped without it)
+python experiments/e1_surrogate_head/standalone_metrics.py      # every written network as a predictor, no labels
+python experiments/e3_crystal_filter/filter_arm.py score        # screening filter on MatterGen samples (--backbone cf: CrystalFlow)
+python experiments/e1_surrogate_head/run_bo_select.py --help    # Bayesian optimisation with written prior means
 ```
+
+Every command behind a number is in `REPRODUCE.md`. Results are cached per cell, so tables regenerate quickly; a full recomputation of the GP and BO arms takes hours on a multi-core machine. The Thermo-Calc case needs Thermo-Calc 2025b with TC-Python and the databases TCHEA8, TCNI12, TCTI6, TCFE10 and TCAL9 to rebuild its pools (`experiments/e7_calphad_prior/make_tc_data.py`).
 
 Data and algorithms come from `matgen-BO`, `matinvent-bo` and `autoresearch-bo`, which this project only reads. Third-party datasets keep their own licences (see the headers in `vendor/bo_zoo/benchmarks/`).

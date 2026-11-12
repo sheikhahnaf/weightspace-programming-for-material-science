@@ -51,15 +51,19 @@ def metrics(y: np.ndarray, m: np.ndarray, goal: float = 1.0) -> dict:
 def composition_tasks() -> dict:
     from wsp.arms import reference_priors, written_head
     from wsp.baselines import predict, prepare
-    from wsp.tasks import CALPHAD_GOALS, load_task
+    from wsp.tasks import CALPHAD_GOALS, TASK_NAMES, load_task
 
     rows = defaultdict(dict)
+    skipped: set[str] = set()
     for runs in (HERE / "runs", E7 / "runs"):
         for folder in sorted(runs.glob("write*__*")):
             match, reply = RUN.fullmatch(folder.name), folder / "reply.txt"
             if not match or not reply.exists():
                 continue
             name = match["task"]
+            if name not in TASK_NAMES:  # e.g. Thermo-Calc targets when data/calphad/ is absent
+                skipped.add(name)
+                continue
             task = load_task(name)
             data = prepare(task, 0)
             U, y = np.vstack([data.U_train, data.U_test]), np.concatenate([data.y_train, data.y_test])
@@ -76,6 +80,8 @@ def composition_tasks() -> dict:
             except Exception:
                 continue  # an invalid reply was rejected when it was first scored
             rows[name].setdefault(source, []).append(value | {"run": folder.name})
+    if skipped:
+        print(f"skipped {len(skipped)} tasks whose data is not in this copy (Thermo-Calc pools): rerun after make_tc_data.py")
     return rows
 
 

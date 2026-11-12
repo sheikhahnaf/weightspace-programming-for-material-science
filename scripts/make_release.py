@@ -39,7 +39,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 ALWAYS_OUT = ("PROGRESS.md", "questions.md", "CLAUDE.md", "research/", "slides/", "site/", ".superpowers/", "vendor/",
-              "supplementary/e6_extraction_reader/")
+              "supplementary/e6_extraction_reader/", "data/alloys/perovskite_")
 CROPS = re.compile(r"supplementary/e6_extraction_reader/.*\.(png|jpg|jpeg)$")
 TC_DATA = "data/calphad/"
 TC_RESULTS = "experiments/e7_calphad_prior/results/"
@@ -65,7 +65,7 @@ LEFTOVER = {
 THIRD_PARTY = [
     ("data/alloys/MPEA_dataset.csv", "Borg et al., Sci. Data 7:430 (2020), CC-BY-4.0: attribution required"),
     ("data/alloys/ti_alloy_dax-ti-static.csv", "Salvador et al., Sci. Data 9:188 (2022), Zenodo 6089749, CC-BY-4.0: attribution required"),
-    ("data/alloys/perovskite_*, data/alloys/matbench_bulk_shear_features.npz", "not used by the main case; check their licences or leave out"),
+    ("data/alloys/matbench_bulk_shear_features.npz, data/bnn/", "features of Matbench crystals (Dunn et al. 2020; Materials Project data, CC-BY-4.0)"),
     ("data/closed_loop_bm/, data/closed_loop_cp/, data/causal_replay/, data/dft_validation/", "from the authors' closed-loop study"),
     ("data/mlip_reference/, data/formation/", "structures and DFT values from the Materials Project"),
     ("data/bnn/, data/surrogate_zoo/, data/phonon/, data/synthesizability/", "see data/PROVENANCE.md"),

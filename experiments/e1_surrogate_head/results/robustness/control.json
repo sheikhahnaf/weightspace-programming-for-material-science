@@ -1,0 +1,32 @@
+{
+ "5": {
+  "embedding": 0.14930565112342536,
+  "embedding + descriptors, as first run": 0.30218441025996423,
+  "embedding + descriptors, constant column dropped": 0.225752405551537,
+  "descriptors only": 0.21533365523390838
+ },
+ "10": {
+  "embedding": 0.570785841003588,
+  "embedding + descriptors, as first run": 0.36793869326435413,
+  "embedding + descriptors, constant column dropped": 0.384600953704885,
+  "descriptors only": 0.3648646579878454
+ },
+ "20": {
+  "embedding": 0.8155799506870226,
+  "embedding + descriptors, as first run": 0.517189215245126,
+  "embedding + descriptors, constant column dropped": 0.5980409316948765,
+  "descriptors only": 0.3600040676213494
+ },
+ "50": {
+  "embedding": 0.8495521544857563,
+  "embedding + descriptors, as first run": 0.48297373201437416,
+  "embedding + descriptors, constant column dropped": 0.6242625694437621,
+  "descriptors only": 0.5683048550044695
+ },
+ "all 500": {
+  "embedding": 0.8941678886589769,
+  "embedding + descriptors, as first run": 0.6331137146182684,
+  "embedding + descriptors, constant column dropped": 0.8045485066308938,
+  "descriptors only": 0.8108089223171978
+ }
+}

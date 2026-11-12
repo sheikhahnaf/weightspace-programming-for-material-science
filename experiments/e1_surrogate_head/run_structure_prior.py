@@ -87,6 +87,47 @@ def top_recall(y, mean, share=0.1):
     return float(len(set(np.argsort(-y)[:k]) & set(np.argsort(-mean)[:k])) / k)
 
 
+def with_descriptors(task_name, task, run, data, U, train, test):
+    """Inputs of the gp_desc control: embedding plus z-scored descriptors.
+
+    Descriptors that are constant on the run's pool are dropped. The first version divided
+    them by (0 + 1e-8), which sent a test crystal with a non-zero value to about 1e7 and
+    broke the control on bulk modulus (one composition-group fraction is zero in the whole
+    starting set); `--refit-control` recomputed the cached cells, keeping the old value."""
+    pool = task.split(run)[0]
+    D = descriptors(task_name)
+    keep = D[pool].std(0) > 1e-6
+    Dz = (D[:, keep] - D[pool][:, keep].mean(0)) / D[pool][:, keep].std(0)
+    return replace(data, U_train=np.hstack([U[train], Dz[train]]), U_test=np.hstack([U[test], Dz[test]]))
+
+
+def refit_control(task_name: str, run: int, n: int, draw: int) -> None:
+    """Recompute only the gp_desc arm of a cached cell with the corrected z-scoring."""
+    import torch
+
+    from wsp.baselines import fit_gp, prepare, score
+    from wsp.tasks import load_task
+
+    cache = OUT / "cells" / task_name / f"run{run}__n{n}__draw{draw}.json"
+    out = json.loads(cache.read_text())
+    if "gp_desc_first_version" in out:
+        return
+    warnings.filterwarnings("ignore")
+    torch.set_num_threads(1)
+    task = load_task(task_name)
+    train, test = task.split(run)
+    if n:
+        train = train[np.random.default_rng(1000 * run + draw).permutation(len(train))[:n]]
+    U = (task.X - task.X[task.split(run)[0]].mean(0)) / (task.X[task.split(run)[0]].std(0) + 1e-8)
+    y = task.y
+    data = replace(prepare(task, run), U_train=U[train], y_train=y[train], U_test=U[test], y_test=y[test],
+                   y_mean=float(y[train].mean()), y_std=float(y[train].std() + 1e-8))
+    mean, std = fit_gp(with_descriptors(task_name, task, run, data, U, train, test))
+    out["gp_desc_first_version"] = out["gp_desc"]
+    out["gp_desc"] = score(data.y_test, mean, std) | {"nll": nll(data.y_test, mean, std), "top_recall": top_recall(data.y_test, mean)}
+    cache.write_text(json.dumps(out) + "\n")
+
+
 def cell(task_name: str, run: int, n: int, draw: int) -> dict:
     cache = OUT / "cells" / task_name / f"run{run}__n{n}__draw{draw}.json"
     if cache.exists():
@@ -110,9 +151,7 @@ def cell(task_name: str, run: int, n: int, draw: int) -> dict:
     y = task.y
     data = replace(full, U_train=U[train], y_train=y[train], U_test=U[test], y_test=y[test],
                    y_mean=float(y[train].mean()), y_std=float(y[train].std() + 1e-8))
-    D = descriptors(task_name)
-    Dz = (D - D[task.split(run)[0]].mean(0)) / (D[task.split(run)[0]].std(0) + 1e-8)
-    both = replace(data, U_train=np.hstack([U[train], Dz[train]]), U_test=np.hstack([U[test], Dz[test]]))
+    both = with_descriptors(task_name, task, run, data, U, train, test)
 
     def measure(mean, std):
         return score(data.y_test, mean, std) | {"nll": nll(data.y_test, mean, std), "top_recall": top_recall(data.y_test, mean)}
@@ -146,12 +185,15 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--jobs", type=int, default=6)
+    parser.add_argument("--refit-control", action="store_true", help="recompute the gp_desc arm of cached cells (corrected z-scoring)")
     args = parser.parse_args()
     work = []
     for task_name in TASKS:
         descriptors(task_name)
         n_runs = _closed_loop_table(*_CLOSED_LOOPS[task_name])[1]
         work += [(task_name, r, n, d) for r in range(n_runs) for n in SIZES for d in range(DRAWS if n else 1)]
+    if args.refit_control:
+        Parallel(n_jobs=args.jobs)(delayed(refit_control)(*w) for w in work)
     cells = Parallel(n_jobs=args.jobs)(delayed(cell)(*w) for w in work)
 
     metrics = ("spearman", "top_recall", "top_decile_bias", "coverage95", "nll")

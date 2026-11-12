@@ -1,0 +1,62 @@
+{
+ "ti_alloy_youngs_modulus": {
+  "rule of mixtures, melting point": -0.5821174578176911,
+  "rule of mixtures, shear modulus": 0.4705141364995421,
+  "rule of mixtures, Young's modulus": 0.23898626598405445,
+  "valence electron concentration (low = stronger)": 0.06436164206999027,
+  "atomic size mismatch": 0.16400363246768776,
+  "rule of mixtures used in the paper": 0.23898626598405445,
+  "opus": 0.6440577756032299,
+  "fable": 0.5132232304547348,
+  "sonnet": 0.6498859974178649,
+  "haiku": 0.5047253476000593
+ },
+ "ti_alloy_yield_strength": {
+  "rule of mixtures, melting point": -0.38704542090393823,
+  "rule of mixtures, shear modulus": 0.2623228969832757,
+  "rule of mixtures, Young's modulus": 0.22621108792116107,
+  "valence electron concentration (low = stronger)": -0.2032455531290254,
+  "atomic size mismatch": 0.6195391281071239,
+  "rule of mixtures used in the paper": -0.5159703967138001,
+  "opus": 0.6875426734180302,
+  "fable": 0.6440069392366685,
+  "sonnet": 0.454373615598092,
+  "haiku": 0.18997652740479418
+ },
+ "ti_alloy_hardness": {
+  "rule of mixtures, melting point": -0.5698201741492841,
+  "rule of mixtures, shear modulus": 0.4455655584441056,
+  "rule of mixtures, Young's modulus": 0.47173086934853425,
+  "valence electron concentration (low = stronger)": -0.04746692959848421,
+  "atomic size mismatch": 0.613828362375803,
+  "rule of mixtures used in the paper": -0.7185156646352744,
+  "opus": 0.652812332284246,
+  "fable": 0.6139923034838743,
+  "sonnet": 0.5339965678265792,
+  "haiku": -0.014339075623787667
+ },
+ "mpea_hardness": {
+  "rule of mixtures, melting point": -0.11234154223521378,
+  "rule of mixtures, shear modulus": -0.30690454713099957,
+  "rule of mixtures, Young's modulus": -0.1519440735732087,
+  "valence electron concentration (low = stronger)": 0.45193553470958603,
+  "atomic size mismatch": 0.6172133349217026,
+  "rule of mixtures used in the paper": -0.2438925486335726,
+  "opus": 0.7891998009837168,
+  "fable": 0.7586227484089528,
+  "sonnet": 0.48062095819299566,
+  "haiku": 0.4994261745316748
+ },
+ "mpea_yield_strength": {
+  "rule of mixtures, melting point": 0.35333422395450126,
+  "rule of mixtures, shear modulus": -0.46076941110892766,
+  "rule of mixtures, Young's modulus": -0.3334273959028432,
+  "valence electron concentration (low = stronger)": 0.5430947262576983,
+  "atomic size mismatch": 0.567824545115738,
+  "rule of mixtures used in the paper": 0.2745993777114611,
+  "opus": 0.6923778986115119,
+  "fable": 0.6317817943756086,
+  "sonnet": 0.6098921988252404,
+  "haiku": 0.5978378966356748
+ }
+}

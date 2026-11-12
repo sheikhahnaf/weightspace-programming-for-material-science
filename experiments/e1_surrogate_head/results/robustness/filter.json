@@ -1,0 +1,233 @@
+{
+ "train": {
+  "crystals": 400,
+  "volume_per_atom_range": [
+   8.386743257894944,
+   55.32649425667362
+  ]
+ },
+ "MatterGen": {
+  "samples": 128,
+  "share_above_150": 0.09375,
+  "mean_K": 71.60340768374337,
+  "mean_K_of_best_quarter": 146.85705610528754,
+  "volume_per_atom_range": [
+   7.15581923253752,
+   90.57642181499321
+  ],
+  "scorers": {
+   "volume rule": {
+    "rho": 0.8234869987181834,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 133.28716506609643
+   },
+   "trained MLP (as in the paper)": {
+    "rho": 0.28992826598983357,
+    "share_above_150_in_top_quarter": 0.0,
+    "mean_K_of_top_quarter": 51.23400762759228
+   },
+   "ridge on log K": {
+    "rho": 0.928510117194653,
+    "share_above_150_in_top_quarter": 0.34375,
+    "mean_K_of_top_quarter": 139.0184907478406
+   },
+   "random forest": {
+    "rho": 0.9183986449368248,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 142.9570292530163
+   },
+   "written, opus rep1": {
+    "rho": 0.9433482878593664,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 144.024319373553
+   },
+   "written, opus rep2": {
+    "rho": 0.8776821977471296,
+    "share_above_150_in_top_quarter": 0.34375,
+    "mean_K_of_top_quarter": 142.6528068465359
+   },
+   "written, opus rep3": {
+    "rho": 0.9395471003876528,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 144.89643357415272
+   },
+   "written, fable rep1": {
+    "rho": 0.8700444057864859,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 143.03502246252657
+   },
+   "written, fable rep2": {
+    "rho": 0.8185371268998352,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 140.54144495499565
+   },
+   "written, fable rep3": {
+    "rho": 0.9648530488921443,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 146.13306722680392
+   },
+   "written, sonnet rep1": {
+    "rho": 0.8101881523530489,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 143.85245238759066
+   },
+   "written, sonnet rep2": {
+    "rho": 0.8077504120124518,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 143.33256283248477
+   },
+   "written, sonnet rep3": {
+    "rho": 0.7693016388939753,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 142.65896188597688
+   },
+   "written, haiku rep1": {
+    "rho": 0.9257805347006042,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 141.93614916894498
+   },
+   "written, haiku rep2": {
+    "rho": 0.6851137612158945,
+    "share_above_150_in_top_quarter": 0.25,
+    "mean_K_of_top_quarter": 124.92723532741533
+   },
+   "written, haiku rep3": {
+    "rho": 0.5852064640175791,
+    "share_above_150_in_top_quarter": 0.25,
+    "mean_K_of_top_quarter": 120.59292075120675
+   },
+   "written, opus (mean)": {
+    "rho": 0.9201925286647162,
+    "share_above_150_in_top_quarter": 0.3645833333333333,
+    "mean_K_of_top_quarter": 143.8578532647472
+   },
+   "written, fable (mean)": {
+    "rho": 0.8844781938594884,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 143.23651154810872
+   },
+   "written, sonnet (mean)": {
+    "rho": 0.7957467344198254,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 143.28132570201743
+   },
+   "written, haiku (mean)": {
+    "rho": 0.7320335866446926,
+    "share_above_150_in_top_quarter": 0.2916666666666667,
+    "mean_K_of_top_quarter": 129.15210174918903
+   }
+  }
+ },
+ "CrystalFlow": {
+  "samples": 128,
+  "share_above_150": 0.1640625,
+  "mean_K": 90.07768078111688,
+  "mean_K_of_best_quarter": 167.9454415922038,
+  "volume_per_atom_range": [
+   9.17140027066819,
+   58.15172878043058
+  ],
+  "scorers": {
+   "volume rule": {
+    "rho": 0.7677279802234022,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 135.53653221406975
+   },
+   "trained MLP (as in the paper)": {
+    "rho": 0.12266147066527704,
+    "share_above_150_in_top_quarter": 0.0625,
+    "mean_K_of_top_quarter": 70.5275864015095
+   },
+   "ridge on log K": {
+    "rho": 0.891114264786669,
+    "share_above_150_in_top_quarter": 0.5,
+    "mean_K_of_top_quarter": 151.31398559866446
+   },
+   "random forest": {
+    "rho": 0.9035719190624427,
+    "share_above_150_in_top_quarter": 0.59375,
+    "mean_K_of_top_quarter": 159.63050297407761
+   },
+   "written, opus rep1": {
+    "rho": 0.8799384270280168,
+    "share_above_150_in_top_quarter": 0.5,
+    "mean_K_of_top_quarter": 148.5815096871647
+   },
+   "written, opus rep2": {
+    "rho": 0.8811286852224867,
+    "share_above_150_in_top_quarter": 0.5625,
+    "mean_K_of_top_quarter": 151.99451565844754
+   },
+   "written, opus rep3": {
+    "rho": 0.8853689800402856,
+    "share_above_150_in_top_quarter": 0.5,
+    "mean_K_of_top_quarter": 151.73286607514882
+   },
+   "written, fable rep1": {
+    "rho": 0.8723562534334369,
+    "share_above_150_in_top_quarter": 0.53125,
+    "mean_K_of_top_quarter": 153.3788577981554
+   },
+   "written, fable rep2": {
+    "rho": 0.8666853598242078,
+    "share_above_150_in_top_quarter": 0.53125,
+    "mean_K_of_top_quarter": 151.22843872754513
+   },
+   "written, fable rep3": {
+    "rho": 0.9075661508881158,
+    "share_above_150_in_top_quarter": 0.5625,
+    "mean_K_of_top_quarter": 155.26864055060082
+   },
+   "written, sonnet rep1": {
+    "rho": 0.9000469236403588,
+    "share_above_150_in_top_quarter": 0.59375,
+    "mean_K_of_top_quarter": 161.77936989527024
+   },
+   "written, sonnet rep2": {
+    "rho": 0.8717439571507047,
+    "share_above_150_in_top_quarter": 0.53125,
+    "mean_K_of_top_quarter": 150.81985973363712
+   },
+   "written, sonnet rep3": {
+    "rho": 0.8582562717451016,
+    "share_above_150_in_top_quarter": 0.5625,
+    "mean_K_of_top_quarter": 156.6563747713538
+   },
+   "written, haiku rep1": {
+    "rho": 0.9215459622779711,
+    "share_above_150_in_top_quarter": 0.5625,
+    "mean_K_of_top_quarter": 158.6210136891491
+   },
+   "written, haiku rep2": {
+    "rho": 0.5864367789782091,
+    "share_above_150_in_top_quarter": 0.40625,
+    "mean_K_of_top_quarter": 133.21807019918748
+   },
+   "written, haiku rep3": {
+    "rho": 0.4378147317341146,
+    "share_above_150_in_top_quarter": 0.40625,
+    "mean_K_of_top_quarter": 132.19753869869
+   },
+   "written, opus (mean)": {
+    "rho": 0.8821453640969298,
+    "share_above_150_in_top_quarter": 0.5208333333333334,
+    "mean_K_of_top_quarter": 150.76963047358703
+   },
+   "written, fable (mean)": {
+    "rho": 0.8822025880485868,
+    "share_above_150_in_top_quarter": 0.5416666666666666,
+    "mean_K_of_top_quarter": 153.2919790254338
+   },
+   "written, sonnet (mean)": {
+    "rho": 0.8766823841787216,
+    "share_above_150_in_top_quarter": 0.5625,
+    "mean_K_of_top_quarter": 156.41853480008703
+   },
+   "written, haiku (mean)": {
+    "rho": 0.6485991576634316,
+    "share_above_150_in_top_quarter": 0.4583333333333333,
+    "mean_K_of_top_quarter": 141.3455408623422
+   }
+  }
+ }
+}

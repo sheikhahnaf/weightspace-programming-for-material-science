@@ -4,7 +4,10 @@
 
 For each task, every valid reply (alloy tasks: this folder's runs; Thermo-Calc tasks:
 experiments/e7_calphad_prior/runs; crystal tasks: the filter networks of E3) and every
-no-LLM rule is evaluated on all rows of the task:
+no-LLM rule is evaluated on all rows of the task. For the crystal tasks the rows are the
+crystals added during the loops, each counted once: every run starts from the same set of
+Materials Project crystals with DFT labels, and scoring "all rows" would count that set
+once per run (robustness.py crystals gives every split):
 
   rho          Spearman rank correlation with the target
   recall       share of the best tenth of the rows found in the predictor's best tenth
@@ -89,12 +92,15 @@ def crystal_tasks() -> dict:
     sys.path.insert(0, str(E3))
     import filter_arm
 
+    from wsp import tasks
     from wsp.tasks import load_task
 
     rows = defaultdict(dict)
     for name, key in {"loop_bulk_modulus": "K", "loop_heat_capacity": "Cp"}.items():
-        D = np.load(HERE / "results" / "structure_prior" / f"descriptors__{name}.npy")
-        y = load_task(name).y
+        table, _ = tasks._closed_loop_table(*tasks._CLOSED_LOOPS[name])
+        added = (~table["structure_id"].duplicated() & (table["oracle_source"] != "warm_start")).to_numpy()
+        D = np.load(HERE / "results" / "structure_prior" / f"descriptors__{name}.npy")[added]
+        y = load_task(name).y[added]
         rows[name]["rule"] = [metrics(y, 1.0 / D[:, 0] if key == "K" else 3 * 8.314462618 / D[:, 1])]
         for folder in sorted((E3 / "runs").glob(f"filter_{key}__*")):
             reply = folder / "reply.txt"
@@ -121,7 +127,7 @@ def main() -> None:
             summary[f"{name}|{source}"] = mean | {"replies": len(values)}
             lines.append(f"| `{name}` | {source} | {len(values)} | {mean['rho']:.2f} | {mean['recall']:.2f} | {mean['error_raw']:.3g} | {mean['error_fit']:.2f} |")
     (OUT / "summary.json").write_text(json.dumps(summary, indent=1) + "\n")
-    (OUT / "summary.md").write_text("\n".join(lines) + "\n\nAll rows of each task; no labels used. A rule that is constant on a task has no ρ.\n")
+    (OUT / "summary.md").write_text("\n".join(lines) + "\n\nAll rows of each task (crystal tasks: the crystals added during the loops, each once); no labels used. A rule that is constant on a task has no ρ.\n")
     print("\n".join(lines))
 
 

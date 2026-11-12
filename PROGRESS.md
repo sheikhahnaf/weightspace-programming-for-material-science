@@ -215,3 +215,15 @@ Open:
 - `scripts/make_release.py --out <new folder> [--without-thermocalc]` writes a clean copy with no history: leaves out working notes, slides, site, the table-reader page crops and (optionally) the Thermo-Calc tables, per-cell results and the facts inside the `writepd` prompts; rewrites machine paths; lists leftovers and open decisions in `RELEASE_MANIFEST.md`. A test build is in `release_build/` (git-ignored). The script never runs git and never changes the repository.
 - `CITATION.cff` and an MIT `LICENSE` added (the user chose MIT on 2026-11-12).
 - Stopped tracking, with the user's approval (files stay on disk): `slides/gp-prior/.check/`, `slides/gp-prior/build.log`, `experiments/e1_surrogate_head/results/structure_prior/features/run.log`.
+
+## 2026-11-12: critical code review and corrections
+
+A read-only Opus 5.5 review of the whole code base, plus my own checks, looked for anything that would invalidate a finding. Full list: `research/2026-11-12-code-review/findings.md`. Checks are in `experiments/e1_surrogate_head/robustness.py` (results in `results/robustness/`).
+
+- Filter: ridge and random forest on the same 400 crystals match the written networks. The claim is now "as well as", not "better than".
+- Crystals: each counted once, scored on the crystals added during the loops: Opus 0.95, volume rule 0.89 (was 0.93 against 0.74 with the shared starting set counted per run). The bulk-modulus starting set has DFT labels. Runs are paired comparisons (6 of 6, p = 0.031), not 18 independent cells.
+- Alloys: atomic size mismatch added as a second label-free reference (ρ 0.16 to 0.62; BO equal to Opus on Ti hardness, behind on three tasks).
+- Thermo-Calc BO: 16 / 15 / 13 targets for Opus under Holm within target / across targets / across all tests. Phase-fraction lead not significant (p = 0.50).
+- `gp_desc` control: z-scoring bug fixed in `run_structure_prior.py`, cached cells refitted (`--refit-control`); 0.60 at 20 labels, 0.80 at 500.
+- `standalone_metrics.py` now scores crystal tasks on the added crystals, each once.
+- Paper (67 pages), webpage file, README and slides corrected. Nothing released.

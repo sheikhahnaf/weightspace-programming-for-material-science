@@ -156,6 +156,15 @@ python $E9/size_arm.py score      # -> $E9/results/summary.md
 python experiments/e1_surrogate_head/reply_agreement.py   # agreement within and across models -> results/standalone/agreement.json
 ```
 
+## 4i. Checks added after the critical code review (research/2026-11-12-code-review/findings.md)
+
+```bash
+PYTHONPATH=src python experiments/e1_surrogate_head/robustness.py all        # about 15 minutes on 8 cores (bo_rule is the slow part)
+PYTHONPATH=src python experiments/e1_surrogate_head/run_structure_prior.py --refit-control   # only needed once: recomputes the gp_desc arm of cells cached before the z-scoring fix
+```
+
+Writes `experiments/e1_surrogate_head/results/robustness/{crystals,filter,rules,bo_rule,control,stats}.json` and `summary.md`. The paper's supplementary section "Checks added after a critical review of the code" and the size-mismatch bars and ridge and random-forest bars of its figures are built from these files.
+
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 
 ```bash

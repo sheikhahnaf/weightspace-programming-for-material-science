@@ -108,16 +108,16 @@
 | `hf_refractory_solidus` | opus + facts | 2 | 0.94 | 0.90 | 0.38 | 0.32 |
 | `hf_refractory_solidus` | fable | 2 | 0.85 | 0.65 | 0.931 | 0.55 |
 | `hf_refractory_solidus` | fable + facts | 2 | 0.90 | 0.82 | 0.603 | 0.43 |
-| `loop_bulk_modulus` | rule | 1 | 0.74 | 0.20 | 2.04 | 0.77 |
-| `loop_bulk_modulus` | opus | 3 | 0.93 | 0.51 | 0.6 | 0.52 |
-| `loop_bulk_modulus` | fable | 3 | 0.93 | 0.57 | 0.622 | 0.51 |
-| `loop_bulk_modulus` | sonnet | 3 | 0.89 | 0.61 | 0.887 | 0.56 |
-| `loop_bulk_modulus` | haiku | 3 | 0.84 | 0.59 | 1.54 | 0.59 |
-| `loop_heat_capacity` | rule | 1 | 1.00 | 0.93 | 0.24 | 0.13 |
-| `loop_heat_capacity` | opus | 2 | 1.00 | 0.94 | 0.163 | 0.13 |
-| `loop_heat_capacity` | fable | 2 | 1.00 | 0.94 | 0.192 | 0.12 |
-| `loop_heat_capacity` | sonnet | 1 | 1.00 | 0.93 | 0.358 | 0.18 |
-| `loop_heat_capacity` | haiku | 1 | 0.96 | 0.75 | 1.47 | 0.30 |
+| `loop_bulk_modulus` | rule | 1 | 0.89 | 0.35 | 1.77 | 0.64 |
+| `loop_bulk_modulus` | opus | 3 | 0.95 | 0.64 | 0.448 | 0.41 |
+| `loop_bulk_modulus` | fable | 3 | 0.94 | 0.72 | 0.481 | 0.41 |
+| `loop_bulk_modulus` | sonnet | 3 | 0.89 | 0.67 | 0.848 | 0.53 |
+| `loop_bulk_modulus` | haiku | 3 | 0.69 | 0.63 | 1.33 | 0.69 |
+| `loop_heat_capacity` | rule | 1 | 1.00 | 0.90 | 0.258 | 0.16 |
+| `loop_heat_capacity` | opus | 2 | 1.00 | 0.90 | 0.173 | 0.15 |
+| `loop_heat_capacity` | fable | 2 | 1.00 | 0.88 | 0.19 | 0.15 |
+| `loop_heat_capacity` | sonnet | 1 | 1.00 | 0.90 | 0.343 | 0.20 |
+| `loop_heat_capacity` | haiku | 1 | 0.98 | 0.71 | 1.32 | 0.27 |
 | `mpea_hardness` | handbook | 1 | -0.24 | 0.00 | 3.88 | 0.99 |
 | `mpea_hardness` | opus | 3 | 0.79 | 0.15 | 0.742 | 0.67 |
 | `mpea_hardness` | fable | 3 | 0.76 | 0.40 | 0.731 | 0.67 |
@@ -246,4 +246,4 @@
 | `ti_alloy_youngs_modulus` | sonnet | 3 | 0.65 | 0.46 | 1.09 | 0.84 |
 | `ti_alloy_youngs_modulus` | haiku | 2 | 0.50 | 0.31 | 1.2 | 0.93 |
 
-All rows of each task; no labels used. A rule that is constant on a task has no ρ.
+All rows of each task (crystal tasks: the crystals added during the loops, each once); no labels used. A rule that is constant on a task has no ρ.

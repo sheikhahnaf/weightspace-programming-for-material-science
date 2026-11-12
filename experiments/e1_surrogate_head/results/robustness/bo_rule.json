@@ -1,0 +1,122 @@
+{
+ "ti_alloy_youngs_modulus": {
+  "size mismatch": {
+   "auc": 6.9462,
+   "seeds_better": 7,
+   "seeds_worse": 7,
+   "wilcoxon_p": 0.6377666989276032
+  },
+  "gp": {
+   "auc": 7.683
+  },
+  "handbook": {
+   "auc": 7.021599999999999
+  },
+  "select_opus": {
+   "auc": 5.552600000000001,
+   "vs_size_mismatch_p": 0.04862480166721014,
+   "seeds_better_than_size_mismatch": 14
+  },
+  "select_fable": {
+   "auc": 6.918800000000002,
+   "vs_size_mismatch_p": 0.5861803873075235,
+   "seeds_better_than_size_mismatch": 9
+  }
+ },
+ "ti_alloy_yield_strength": {
+  "size mismatch": {
+   "auc": 225.836,
+   "seeds_better": 11,
+   "seeds_worse": 7,
+   "wilcoxon_p": 0.10243990540645079
+  },
+  "gp": {
+   "auc": 313.738
+  },
+  "handbook": {
+   "auc": 327.12399999999997
+  },
+  "select_opus": {
+   "auc": 152.57,
+   "vs_size_mismatch_p": 0.017582795345746867,
+   "seeds_better_than_size_mismatch": 13
+  },
+  "select_fable": {
+   "auc": 148.076,
+   "vs_size_mismatch_p": 0.006210256590449748,
+   "seeds_better_than_size_mismatch": 15
+  }
+ },
+ "ti_alloy_hardness": {
+  "size mismatch": {
+   "auc": 5.698,
+   "seeds_better": 18,
+   "seeds_worse": 0,
+   "wilcoxon_p": 0.00019643672621231134
+  },
+  "gp": {
+   "auc": 40.098
+  },
+  "handbook": {
+   "auc": 40.098
+  },
+  "select_opus": {
+   "auc": 5.9540000000000015,
+   "vs_size_mismatch_p": 0.005177398963897174,
+   "seeds_better_than_size_mismatch": 3
+  },
+  "select_fable": {
+   "auc": 10.01,
+   "vs_size_mismatch_p": 0.0007209788636044599,
+   "seeds_better_than_size_mismatch": 1
+  }
+ },
+ "mpea_hardness": {
+  "size mismatch": {
+   "auc": 243.19280000000003,
+   "seeds_better": 5,
+   "seeds_worse": 10,
+   "wilcoxon_p": 0.5321298884166212
+  },
+  "gp": {
+   "auc": 226.02520000000004
+  },
+  "handbook": {
+   "auc": 215.62120000000004
+  },
+  "select_opus": {
+   "auc": 137.4274,
+   "vs_size_mismatch_p": 0.0006248650064105988,
+   "seeds_better_than_size_mismatch": 17
+  },
+  "select_fable": {
+   "auc": 120.2968,
+   "vs_size_mismatch_p": 0.000133514404296875,
+   "seeds_better_than_size_mismatch": 18
+  }
+ },
+ "mpea_yield_strength": {
+  "size mismatch": {
+   "auc": 890.2951599999999,
+   "seeds_better": 4,
+   "seeds_worse": 12,
+   "wilcoxon_p": 0.1337298928645181
+  },
+  "gp": {
+   "auc": 771.8697000000001
+  },
+  "handbook": {
+   "auc": 675.818
+  },
+  "select_opus": {
+   "auc": 899.9011999999999,
+   "vs_size_mismatch_p": 0.6191537066890378,
+   "seeds_better_than_size_mismatch": 7
+  },
+  "select_fable": {
+   "auc": 965.6975999999999,
+   "vs_size_mismatch_p": 0.40743445607773554,
+   "seeds_better_than_size_mismatch": 8
+  }
+ }
+}

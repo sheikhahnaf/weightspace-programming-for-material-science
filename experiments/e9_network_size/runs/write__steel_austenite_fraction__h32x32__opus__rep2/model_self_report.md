@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network by hand as a balance between austenite stabilizers and ferrite stabilizers, all in at.%. The austenite side is A = Ni + 0.8 Mn + 4 C, with Mn's effect cut back at high Cr and C reduced when Cr/Mo carbides precipitate. The ferrite side is the Ni needed for a fully fcc alloy, Ni_g = 0.3 - 0.3 Cr + 1.1 relu(Cr - 8) + 2 Mo + 2 Al, minus a sigma sink. The first layer builds these piecewise-linear features. The second layer builds eight shifted ramps that model the alpha+gamma two-phase band, which widens as Ni_g grows (a lever rule between an onset line and a full-austenite line), plus two units that subtract carbide, B2-NiAl and sigma fractions when the alloy is close to fully austenitic. The coefficients come from remembered A3 shifts, Schaeffler/Hull equivalents and known stainless, duplex, AFA and Fe-Mn-Al compositions, so trends should be right but individual thresholds could be off by several at.%; I put about 60% confidence on getting the rough scale and trends right.

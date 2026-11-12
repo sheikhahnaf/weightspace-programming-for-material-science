@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a near-linear model anchored at the melting point of pure Ni (1728 K): the first layer passes each solute's fraction through in at.%, the second layer passes those through unchanged, and the output applies per-at.% solidus shifts taken from binary phase diagram slopes and checked against known alloys (Waspaloy, Nimonic 90, CMSX-4-like compositions). The shifts are Al -6, Co +0.5, Cr -3, Mo -2.5, Ti -11 and W +2.5 K per at.%. One extra hidden unit adds a hinge for faster solidus loss in heavily alloyed compositions: -0.25 times the amount by which the combined depression index (6Al + 11Ti + 3Cr + 2.5Mo) exceeds 110 K. Predictions run from about 1490 K to 1750 K with a typical value near 1630 K. The trends (Ti and Al lower the solidus strongly, W and Co raise it slightly) are fairly reliable. The absolute offset could be off by 20 to 40 K.

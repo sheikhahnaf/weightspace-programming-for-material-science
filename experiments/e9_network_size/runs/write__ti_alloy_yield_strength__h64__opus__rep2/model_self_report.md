@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a piecewise-linear additive model by hand: a 350 MPa baseline for near-pure Ti in the output bias, then one ReLU unit per solute giving a per-atomic-fraction strengthening slope (strong for Fe, other/interstitials, Si, Mn, Cr, Cu; moderate for Mo, V, Al, Sn; weak for Zr, Hf, Ta, and weakest for Nb), plus a second ReLU unit per solute that cuts the slope above a saturation threshold (e.g. Al above 0.13, Fe above 0.05, Mo above 0.08). I checked the slopes by hand against known alloys converted from wt% to atomic fraction (CP Ti about 400, Ti-6Al-4V about 900, Ti-10V-2Fe-3Al about 1100, Ti-5553 about 1080, TNZT/TNTZ/Ti-2448 about 550-580 MPa). Processing condition is not an input, so I expect the trends and scale to be roughly right but individual errors of a few hundred MPa; I am about 50% confident that it will beat a constant prior mean.

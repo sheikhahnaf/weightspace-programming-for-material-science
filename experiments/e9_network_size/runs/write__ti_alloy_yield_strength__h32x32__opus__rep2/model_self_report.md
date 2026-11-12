@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built the network as a 400 MPa base (roughly commercially pure Ti) plus solid-solution and precipitation strengthening terms, each linear in atomic fraction, in units of 100 MPa: strong for Fe, Mn, Si, Cr and Cu, moderate for Al, Mo, V and other elements (interstitials), and weak for Nb, Ta, Zr, Hf and Sn. Neurons 1 to 9 of the first layer cap the contributions of Al, Si, Fe, Mn, Cu, Cr, other, Mo and V at their typical alloying limits. In the second layer, half of any total strengthening above 800 MPa is taken away, so the predictions level off near 1400 to 1600 MPa. I checked it by hand against Ti-6Al-4V (about 890 MPa), Ti-10V-2Fe-3Al (about 1010), Ti-5553 (about 1120) and Ti-35Nb-7Zr-5Ta (about 610); the absolute scale is uncertain to about 200 MPa, because processing condition is not among the inputs.

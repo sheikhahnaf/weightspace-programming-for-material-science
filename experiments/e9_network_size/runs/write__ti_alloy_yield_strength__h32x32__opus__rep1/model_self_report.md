@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a mostly additive solid-solution model by hand. It has a 350 MPa base for pure Ti and per-at% strengthening coefficients: Al about 45, Sn 25, Zr/Hf 12, Si 80, other/interstitials 40 MPa for the alpha and neutral group, and Fe 80, Mn 60, Cr/Cu 40, Mo 30, V 25, Ta 8, Nb 5 MPa for the beta-stabiliser group. Extra ReLU units give diminishing returns. The beta-stabiliser sum loses slope above 300 and 700 MPa of contribution. Al plateaus above 12 at% and falls back above 30 at% so gamma-TiAl is not overpredicted. Si plateaus above 2 at% and "other" above 4 at%. The second layer is an identity pass-through, and I checked by hand that it gives roughly 900 MPa for Ti-6Al-4V, 840 for Ti-6Al-7Nb, 770 for Ti-5Al-2.5Sn and about 600 for Ti-35Nb-7Zr-5Ta. This was a writing task with nothing to find, so I give no detection confidence. I expect the trends and scale to be roughly right, but heat-treatment effects are invisible from composition alone.

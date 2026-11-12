@@ -1,0 +1,27 @@
+{
+ "mpea_hardness": {
+  "replies": 12,
+  "within_model": 0.9402158771585828,
+  "across_models": 0.7074368867513584
+ },
+ "mpea_yield_strength": {
+  "replies": 11,
+  "within_model": 0.9352550062683374,
+  "across_models": 0.7766514393036618
+ },
+ "ti_alloy_hardness": {
+  "replies": 11,
+  "within_model": 0.8831026507447142,
+  "across_models": 0.6597907801766888
+ },
+ "ti_alloy_yield_strength": {
+  "replies": 12,
+  "within_model": 0.9299947642594416,
+  "across_models": 0.7201797335646071
+ },
+ "ti_alloy_youngs_modulus": {
+  "replies": 11,
+  "within_model": 0.8716288087884617,
+  "across_models": 0.5986331242229
+ }
+}

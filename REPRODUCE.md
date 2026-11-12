@@ -146,6 +146,16 @@ python experiments/e7_calphad_prior/summarise.py  # Thermo-Calc overview table -
 
 No new model runs: the networks are the replies in `experiments/e3_crystal_filter/runs/filter_{K,Cp}__*`. Cells are cached one file each, so an interrupted run resumes.
 
+## 4h. Size of the written network (experiments/e9_network_size/README.md)
+
+```bash
+E9=experiments/e9_network_size
+python $E9/size_arm.py prompt     # run folders for 64 units and 32 + 32, four tasks, Opus, reps 1 and 2
+# replies: $E9/WRAPPER.md, launched as in section 4c
+python $E9/size_arm.py score      # -> $E9/results/summary.md
+python experiments/e1_surrogate_head/reply_agreement.py   # agreement within and across models -> results/standalone/agreement.json
+```
+
 ## 5. Parameter counts (docs/research-runs/2026-11-11-where-wsp-fits.md, section 2)
 
 ```bash

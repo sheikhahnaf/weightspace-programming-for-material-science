@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I wrote the network as a linear solidus model built from the Ni-X binary phase diagrams and known superalloy behaviour. It starts at pure Ni (1728 K) and adds per-at.% slopes: Al -4.5 K, Co -0.3 K, Cr -2.8 K, Mo -5 K, Ti -10 K and W +2 K. One hidden neuron carries this linear sum through both ReLU layers unchanged, since its value is always positive. Two more neurons add mild concave corrections: an extra depression once the gamma-prime formers (Al + 1.4 Ti) pass 14 at.%, where the gamma/gamma-prime eutectic approaches, and a small extra depression once total solute passes 35 at.%. Predictions fall between about 1500 K and 1720 K, with typical alloys near 1600 K. I am fairly confident in the trends (Ti and Al lower the solidus most, W raises it) and less sure of the exact slopes for Al and Mo and of the size of the nonlinear terms.

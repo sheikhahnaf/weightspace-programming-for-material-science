@@ -35,6 +35,7 @@ Where it fails or adds nothing:
 | [`experiments/e7_calphad_prior/`](experiments/e7_calphad_prior/) | Thermo-Calc targets for nine alloy systems: data builder, write arm with and without phase-diagram facts, no-LLM sub-system extrapolation, GP and BO |
 | [`experiments/e3_crystal_filter/`](experiments/e3_crystal_filter/) | Written networks on crystal descriptors as a screening filter for MatterGen and CrystalFlow samples |
 | [`experiments/e5_bnn_start/`](experiments/e5_bnn_start/) | Written networks in Bayesian neural networks: mean, start, weight prior |
+| [`experiments/e9_network_size/`](experiments/e9_network_size/) | Larger written networks (64 units, two layers) on four tasks: no better ranking than 16 units |
 | [`supplementary/`](supplementary/) | Other weight-space experiments: readout edits of interatomic potentials, formation-enthalpy correction, generator task vectors, learning from fitted surrogates |
 
 Every model run has a folder `experiments/<experiment>/runs/<arm>__<task>__<model>__rep<k>/` with the prompt, the raw reply, the model's own account and the score.

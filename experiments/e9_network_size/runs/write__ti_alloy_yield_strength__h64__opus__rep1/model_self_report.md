@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I built a near-linear solid-solution model by hand: an output bias of 350 MPa for unalloyed Ti, plus a per-element strengthening slope for each solute in MPa per unit atomic fraction. The slopes are roughly Fe 6500, Mn 6000, Si 6000, Al 4500, Cr 4500, Mo 4000, Cu 4000, other 5000, V 2500, Sn 2500, and about 900 to 1000 for Nb, Ta, Zr and Hf. I chose them by checking against alloys I remember (CP-Ti, Ti-6Al-4V, Ti-6Al-7Nb, Ti-5553, Ti-10-2-3, Beta-21S, TNZT, TNTZ, Ti-15Mo, Ti2448). Each solute uses two ReLU units, a linear one and a shifted one, so its contribution levels off above a plausible solubility limit and the prior does not blow up when extrapolating. The Al contribution falls beyond 15 at% to mimic the softer Ti3Al and TiAl intermetallics. No search target was involved; I expect the trends to be right and the absolute scale to be within roughly 150 to 250 MPa for typical alloys, though processing state, which the inputs do not include, dominates much of the scatter.

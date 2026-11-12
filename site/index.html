@@ -54,9 +54,9 @@ button{font-family:var(--sans);font-size:.85rem;padding:.35rem .8rem;border:1px 
 button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 figure.plot img{width:100%;height:auto;display:block;background:#fff;border-radius:6px;padding:.6rem;box-sizing:border-box;border:1px solid var(--rule)}
 figure.narrow{width:min(32rem,100%);align-self:center}
-table.reg{font-size:.82rem}
-table.reg td:first-child,table.reg th:first-child{min-width:15rem}
-table.reg th,table.reg td{padding:.35rem .4rem}
+table.reg{font-size:.78rem}
+table.reg td:first-child,table.reg th:first-child{min-width:10rem}
+table.reg th,table.reg td{padding:.35rem .28rem}
 </style>
 
 <main>
@@ -89,7 +89,7 @@ table.reg th,table.reg td{padding:.35rem .4rem}
 <h2>How good is a written network as a regression model, with no labels?</h2>
 <p>Before any use downstream, each network is scored as a predictor on every candidate of its task: by rank (Spearman ρ) and by R², as written and after the best straight-line rescaling of its output.</p>
 <div class="scroll wide"><table class="reg">
-<tr><th>Task</th><th>Rule: ρ</th><th>R²</th><th>R² rescaled</th><th>Opus 5.5: ρ</th><th>R²</th><th>R² rescaled</th><th>Fable 5.2: ρ</th><th>R²</th><th>R² rescaled</th></tr>
+<tr><th>Task</th><th>Rule<br>ρ</th><th><br>R²</th><th>R²<br>resc.</th><th>Opus 5.5<br>ρ</th><th><br>R²</th><th>R²<br>resc.</th><th>Fable 5.2<br>ρ</th><th><br>R²</th><th>R²<br>resc.</th></tr>
 <tr><td>Ti alloy Young's modulus</td><td>0.24</td><td>−2.64</td><td>0.03</td><td>0.64</td><td>0.19</td><td>0.34</td><td>0.51</td><td>0.04</td><td>0.26</td></tr>
 <tr><td>Ti alloy yield strength</td><td>−0.52</td><td>−0.79</td><td>0.23</td><td>0.69</td><td>0.42</td><td>0.46</td><td>0.64</td><td>0.34</td><td>0.37</td></tr>
 <tr><td>Ti alloy hardness</td><td>−0.72</td><td>&lt; −10</td><td>0.44</td><td>0.65</td><td>0.40</td><td>0.43</td><td>0.61</td><td>0.29</td><td>0.39</td></tr>
@@ -106,7 +106,7 @@ table.reg th,table.reg td{padding:.35rem .4rem}
 <tr><td>Thermo-Calc, all 35 targets</td><td>0.70</td><td>0.29</td><td>0.60</td><td>0.67</td><td>0.32</td><td>0.57</td><td>0.64</td><td>0.16</td><td>0.49</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;with facts in the prompt</td><td></td><td></td><td></td><td>0.73</td><td>0.46</td><td>0.65</td><td>0.71</td><td>0.35</td><td>0.59</td></tr>
 </table></div>
-<p class="note">Measured alloys and crystals: mean over a model's replies. Thermo-Calc: mean ρ and median R² over targets. The rule is a rule of mixtures for alloys, 1 / volume per atom and Dulong–Petit for crystals, and the extrapolation from binary and ternary values for Thermo-Calc. Rescaled R² is the squared linear correlation, an upper bound on what a slope and offset can recover.</p>
+<p class="note">Measured alloys and crystals: mean over a model's replies. Thermo-Calc: mean ρ and median R² over targets. The rule is a rule of mixtures for alloys, 1 / volume per atom and Dulong–Petit for crystals, and the extrapolation from binary and ternary values for Thermo-Calc. R² resc.: after the best straight-line rescaling; it is the squared linear correlation, an upper bound on what a slope and offset can recover.</p>
 <figure class="wide plot">
 <img src="figures/fig_predictor.png" alt="Rank correlation between a written network and the target with no labels" loading="lazy">
 <figcaption>Rank correlation between a written network and the target with no labels. (a) Measured alloys and crystals, mean over a model's replies. (b) The 35 Thermo-Calc targets by kind; bars are means over targets, dots are single targets.</figcaption>

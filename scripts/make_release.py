@@ -39,7 +39,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 ALWAYS_OUT = ("PROGRESS.md", "questions.md", "CLAUDE.md", "research/", "slides/", "site/", ".superpowers/", "vendor/",
-              "supplementary/e6_extraction_reader/", "data/alloys/perovskite_", "docs/")
+              "supplementary/e6_extraction_reader/", "data/alloys/perovskite_", "docs/", "fort.53")
 CROPS = re.compile(r"supplementary/e6_extraction_reader/.*\.(png|jpg|jpeg)$")
 TC_DATA = "data/calphad/"
 TC_RESULTS = "experiments/e7_calphad_prior/results/"

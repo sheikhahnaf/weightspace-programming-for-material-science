@@ -1,4 +1,4 @@
-# Sourced by the E3 jobs on FASTER. Paths follow the published loop's own job scripts.
+# Sourced by the E3 jobs on the cluster. Paths follow the published loop's own job scripts.
 # User scratch is over its inode quota, so everything is WRITTEN under group scratch;
 # the conda env, the base model and the cached eSEN weights are only READ from user scratch.
 set -euo pipefail

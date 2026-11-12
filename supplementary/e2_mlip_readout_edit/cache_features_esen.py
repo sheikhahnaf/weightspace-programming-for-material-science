@@ -9,7 +9,7 @@ head's last bias moves, which fixes the scale between head output and energy:
     E = scale * sum over atoms of head(s_i) + rest
 
 `scale` is measured, not assumed. `rest` is recovered later from the stored energies.
-Runs on FASTER (fairchem is not in the local environment); see hprc/esen_cache.slurm.
+Runs on a GPU cluster (fairchem is not in the local environment); see hprc/esen_cache.slurm.
 Resumable; one file per structure under <out>/<set>/.
 
     python cache_features_esen.py --set elastic --reference <dir with elastic.extxyz> --out <dir>

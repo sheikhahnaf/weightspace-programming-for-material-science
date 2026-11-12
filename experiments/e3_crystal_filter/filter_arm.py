@@ -3,7 +3,7 @@
 The generator is left untouched. A small network, written by an LLM from materials
 knowledge with no data, scores each generated crystal from 15 named descriptors of
 its composition and as-generated volume; only the best-scored crystals would be sent
-to the expensive oracle. Tested on the crystals already sampled and scored on FASTER
+to the expensive oracle. Tested on the crystals already sampled and scored on a cluster
 (results/hprc/: 11 MatterGen variants x 128, eSEN bulk modulus and heat capacity).
 
   python filter_arm.py prompt --target K --tag opus__rep1     # writes runs/filter_K__opus__rep1/prompt.txt

@@ -146,3 +146,27 @@ Paused, with what is on disk:
 - **E2**: nothing running.
 
 Active: E7 Thermo-Calc prior case (two repeats per cell, Opus and Fable, with and without phase-diagram facts) and `experiments/e1_surrogate_head/run_structure_prior.py`.
+
+### Paused 2026-11-12 (E3 more backbones)
+
+Work stopped at the user's request; nothing was cancelled. State when last checked (2026-11-11 night, not re-checked at the pause):
+
+- Still on FASTER: array **3260069** (CrystalFlow, 11 variants x 128 crystals, tasks 0 to 10, were running) and **3260080** (ADiT prep with the unpickling fix, was pending; the fix is untested). The ADiT sampling array has NOT been submitted. A local background watcher for 3260080 may still be alive; it only reads logs.
+- Results land in `/scratch/group/arroyave_lab/ahnafalvi/wsp/results_cf/<variant>/{scores.csv,generated_crystals.extxyz}`; ADiT variants in `wsp/variants_adit/`, its statistics in `wsp/task_vectors/task_vectors_adit.json`, logs in `wsp/logs/{variant_3260069_<k>,prep_3260080}.{out,err}`.
+
+To pick up, from the repo root with an open `ssh faster` connection:
+
+```bash
+W=/scratch/group/arroyave_lab/ahnafalvi/wsp; H=$W/weighspace-programming/experiments/e3_generator_task_vectors/hprc
+ssh faster "sacct -j 3260069,3260080 -X -n --format=JobID%14,State,Elapsed; wc -l $W/results_cf/*/scores.csv; tail -5 $W/logs/prep_3260080.out; tail -20 $W/logs/prep_3260080.err"
+# CrystalFlow: every scores.csv should have 129 lines; if tasks timed out: ssh faster "cd $H && sbatch --export=ALL,BACKBONE=cf array.slurm"
+rsync -avz --include='*/' --include='scores.csv' --include='generated_crystals.extxyz' --exclude='*' \
+      faster:$W/results_cf/ experiments/e3_generator_task_vectors/results/hprc_cf/
+python experiments/e3_generator_task_vectors/analyze_variants.py --backbone cf     # matinvent env -> results/variants_summary_cf.{md,json}
+# ADiT, only if prep_3260080.out shows SMOKE_DONE (otherwise stop on ADiT and report the error in the .err file):
+ssh faster "cd $H && sbatch --export=ALL,BACKBONE=adit array.slurm"
+rsync -avz faster:$W/task_vectors/task_vectors_adit.json experiments/e3_generator_task_vectors/results/   # after PREP_DONE
+# after the ADiT array: same rsync with results_adit/ -> results/hprc_adit/, then analyze_variants.py --backbone adit
+```
+
+Then update the E3 README Status line. Uncommitted: all edits of this section (no git was run by this agent).

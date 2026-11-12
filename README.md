@@ -66,7 +66,7 @@ The tables in `data/calphad/` were computed with Thermo-Calc 2025b and its comme
 ## Run
 
 ```bash
-eval "$(/Users/alvi/miniconda3/bin/conda shell.zsh hook)" && conda activate matinvent
+conda activate matinvent
 export PYTHONPATH=src
 python -m pytest -q -W ignore
 python experiments/e1_surrogate_head/run_baseline.py

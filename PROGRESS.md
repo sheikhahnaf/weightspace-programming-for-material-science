@@ -207,3 +207,10 @@ Open:
 1. Thermo-Calc licence: whether `data/calphad/` may be redistributed is unchecked; needed before any public release (the tables are in the git history).
 2. The paper branch needs the authors' read and a merge to main (main syncs to Overleaf).
 3. Not run: rep3 Thermo-Calc replies; Sonnet and Haiku on Thermo-Calc targets; other vendors' models; E8 formation enthalpy; E6 real-paper tables (computed on FASTER, unscored); ADiT sampling.
+
+## 2026-11-12: cleaned for a later release (nothing released)
+
+- Job scripts no longer carry the cluster account, user name or scratch paths. They read `WSP_WORK` and `WSP_USER_SCRATCH` and take the account on the command line. The values used so far: `WSP_WORK=/scratch/group/arroyave_lab/ahnafalvi/wsp`, `WSP_USER_SCRATCH=/scratch/user/ahnafalvi`, account `142705330300`, e.g. `sbatch --account=142705330300 --chdir=$WSP_WORK/logs --export=ALL,WSP_WORK=...,WSP_USER_SCRATCH=... experiments/e7_calphad_prior/hprc/priors.slurm`. Not re-run on the cluster since the edit (`bash -n` passes).
+- `scripts/make_release.py --out <new folder> [--without-thermocalc]` writes a clean copy with no history: leaves out working notes, slides, site, the table-reader page crops and (optionally) the Thermo-Calc tables, per-cell results and the facts inside the `writepd` prompts; rewrites machine paths; lists leftovers and open decisions in `RELEASE_MANIFEST.md`. A test build is in `release_build/` (git-ignored). The script never runs git and never changes the repository.
+- `CITATION.cff` added. No LICENSE yet: the authors choose.
+- Still tracked and waiting for the user's approval to stop tracking: `slides/gp-prior/.check/` (583 unzipped-deck scratch files), `slides/gp-prior/build.log`, `experiments/e1_surrogate_head/results/structure_prior/features/run.log`. The release copy leaves `slides/` out anyway.

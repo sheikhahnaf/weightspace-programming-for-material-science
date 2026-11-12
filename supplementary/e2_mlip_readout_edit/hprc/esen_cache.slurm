@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=wsp_e2_esen
-#SBATCH --output=/scratch/group/arroyave_lab/ahnafalvi/wsp/logs/esen_cache_%j.out
-#SBATCH --error=/scratch/group/arroyave_lab/ahnafalvi/wsp/logs/esen_cache_%j.err
+#SBATCH --output=esen_cache_%j.out
+#SBATCH --error=esen_cache_%j.err
 #SBATCH --time=06:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -9,11 +9,14 @@
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpu
 #SBATCH --mem=48G
-#SBATCH --account=142705330300
 
 # E2, eSEN-30M-OAM: cache the energy head's inputs for the 15 DFT-validated crystals
 # and the 400 crystals of the elastic set. Resumable: submit again if it hits the limit.
-source /scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming/supplementary/e3_generator_task_vectors/hprc/env.sh
+# Cluster-specific settings come from the environment, nothing is hard-coded:
+#   sbatch --account=<your account> --chdir=$WSP_WORK/logs --export=ALL <this file>
+: "${WSP_WORK:?set WSP_WORK to the work directory that holds the repository copy}"
+: "${WSP_USER_SCRATCH:?set WSP_USER_SCRATCH to the directory that holds the Python environments (envs/)}"
+source ${WSP_WORK}/weighspace-programming/supplementary/e3_generator_task_vectors/hprc/env.sh
 echo "host $(hostname)  $(date)"; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader || true
 E2=$REPO/supplementary/e2_mlip_readout_edit
 for set in dft15 elastic; do

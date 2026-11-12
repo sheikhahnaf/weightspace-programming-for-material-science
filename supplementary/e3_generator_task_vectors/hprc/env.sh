@@ -5,8 +5,8 @@ set -euo pipefail
 module purge
 module load GCC/13.2.0 CUDA/12.2.0 Anaconda3/2024.02-1 WebProxy
 
-export USER_SCRATCH=/scratch/user/ahnafalvi
-export WORK=/scratch/group/arroyave_lab/ahnafalvi/wsp
+export USER_SCRATCH="${WSP_USER_SCRATCH:?set WSP_USER_SCRATCH}"
+export WORK="${WSP_WORK:?set WSP_WORK}"
 export REPO=$WORK/weighspace-programming
 export E3=$REPO/supplementary/e3_generator_task_vectors
 export PY=$USER_SCRATCH/envs/matinvent-hcap-bo/bin/python

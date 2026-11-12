@@ -3,7 +3,7 @@
 Every number in `docs/` comes from the commands below, run from the repo root in the `matinvent` conda environment. The exact package versions used are in `env/matinvent.yml` and `env/matinvent-pip-freeze.txt` (macOS 26.6.2 arm64, Python 3.10.19, torch 2.4.1, CPU).
 
 ```bash
-eval "$(/Users/alvi/miniconda3/bin/conda shell.zsh hook)" && conda activate matinvent
+conda activate matinvent
 export PYTHONPATH=src
 ```
 
@@ -173,7 +173,7 @@ The brief, the Claude.ai Research report (266 sources), its source list, the Con
 ```bash
 E3=supplementary/e3_generator_task_vectors
 # CrystalFlow statistics on the laptop: copy the base (226 MB, untracked), then
-rsync -a faster:/scratch/user/ahnafalvi/checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20/ data/large/base_checkpoints/crystalflow/DNG-mp-20/
+rsync -a <cluster>:$WSP_USER_SCRATCH/checkpoints/crystalflow/ckpt-v1.0.0/DNG-mp-20/ data/large/base_checkpoints/crystalflow/DNG-mp-20/
 python $E3/download_checkpoints.py --backbone cf && python $E3/task_vectors.py --backbone cf    # -> results/task_vectors_cf.json
 # variants, sampling and scoring on FASTER, and the ADiT statistics: $E3/hprc/README.md, section "CrystalFlow and ADiT"
 #   sbatch --export=ALL,BACKBONE=<cf|adit> prep.slurm ; then array.slurm ; rsync results_<bb>/ -> results/hprc_<bb>/

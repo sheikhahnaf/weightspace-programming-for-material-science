@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this code or these run records, please cite the paper."
+title: "Weight-space programming for materials science"
+type: software
+authors:
+  - family-names: Alvi
+    given-names: Sk Md Ahnaf Akif
+    affiliation: "Department of Materials Science and Engineering, Texas A&M University"
+  - family-names: "Arróyave"
+    given-names: Raymundo
+    affiliation: "Department of Materials Science and Engineering, Texas A&M University"
+preferred-citation:
+  type: article
+  title: "Weight-Space Programming for Materials Science: A Language Model Writes Property-Prediction Networks from Knowledge Alone"
+  authors:
+    - family-names: Alvi
+      given-names: Sk Md Ahnaf Akif
+    - family-names: "Arróyave"
+      given-names: Raymundo
+  year: 2026
+  status: preprint

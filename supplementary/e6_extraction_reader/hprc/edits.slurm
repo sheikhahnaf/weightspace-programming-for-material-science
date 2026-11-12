@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=wsp_e6_edits
-#SBATCH --output=/scratch/group/arroyave_lab/ahnafalvi/wsp/logs/edits_%j.out
+#SBATCH --output=edits_%j.out
 #SBATCH --time=02:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -8,12 +8,15 @@
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpu
 #SBATCH --mem=32G
-#SBATCH --account=142705330300
 
 # E6: the edited open model on the ten test documents, one pass per edit file given.
+# Cluster-specific settings come from the environment, nothing is hard-coded:
+#   sbatch --account=<your account> --chdir=$WSP_WORK/logs --export=ALL <this file>
+: "${WSP_WORK:?set WSP_WORK to the work directory that holds the repository copy}"
+: "${WSP_USER_SCRATCH:?set WSP_USER_SCRATCH to the directory that holds the Python environments (envs/)}"
 module purge
 module load GCC/13.2.0 CUDA/12.2.0 WebProxy
-WORK=/scratch/group/arroyave_lab/ahnafalvi/wsp
+WORK=${WSP_WORK}
 E6=$WORK/weighspace-programming/supplementary/e6_extraction_reader
 export HF_HUB_OFFLINE=1 HF_HOME=$WORK/hf_home PYTHONNOUSERSITE=1
 cd $E6

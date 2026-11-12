@@ -14,12 +14,15 @@ First run downloads the matminer dataset and the ORB checkpoint.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
 import numpy as np
 
-SIBLING = Path("/Volumes/SSD1_SMAAA/matgen-BO/01_static_benchmark/src")
+# The featurizer lives in the matgen-BO repository (read-only for this project). Set MATGEN_BO_SRC, or
+# keep that repository next to this one.
+SIBLING = Path(os.environ.get("MATGEN_BO_SRC", Path(__file__).resolve().parents[3] / "matgen-BO" / "01_static_benchmark" / "src"))
 
 
 def main() -> None:

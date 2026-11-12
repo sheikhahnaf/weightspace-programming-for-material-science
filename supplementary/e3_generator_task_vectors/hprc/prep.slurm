@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=wsp_e3_prep
-#SBATCH --output=/scratch/group/arroyave_lab/ahnafalvi/wsp/logs/prep_%j.out
-#SBATCH --error=/scratch/group/arroyave_lab/ahnafalvi/wsp/logs/prep_%j.err
+#SBATCH --output=prep_%j.out
+#SBATCH --error=prep_%j.err
 #SBATCH --time=01:30:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -9,13 +9,16 @@
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpu
 #SBATCH --mem=48G
-#SBATCH --account=142705330300
 
 # E3 prep and smoke test for one backbone (sbatch --export=ALL,BACKBONE=cf prep.slurm; default mg):
 # download its fine-tuned checkpoints, build the variants, then sample 4 crystals from the
 # base and score 2 of them with both oracles. For cf and adit the task-vector statistics are
 # computed here too, after the smoke test, because their base checkpoints live on the cluster.
-source /scratch/group/arroyave_lab/ahnafalvi/wsp/weighspace-programming/supplementary/e3_generator_task_vectors/hprc/env.sh
+# Cluster-specific settings come from the environment, nothing is hard-coded:
+#   sbatch --account=<your account> --chdir=$WSP_WORK/logs --export=ALL <this file>
+: "${WSP_WORK:?set WSP_WORK to the work directory that holds the repository copy}"
+: "${WSP_USER_SCRATCH:?set WSP_USER_SCRATCH to the directory that holds the Python environments (envs/)}"
+source ${WSP_WORK}/weighspace-programming/supplementary/e3_generator_task_vectors/hprc/env.sh
 echo "host $(hostname)  $(date)"; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader || true
 
 echo "backbone $BACKBONE"

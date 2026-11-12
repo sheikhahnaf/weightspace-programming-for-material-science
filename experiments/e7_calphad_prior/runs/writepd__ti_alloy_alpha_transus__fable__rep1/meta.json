@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "ti_alloy_alpha_transus",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 5958,
+  "prompt_tokens_estimate": 1986,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

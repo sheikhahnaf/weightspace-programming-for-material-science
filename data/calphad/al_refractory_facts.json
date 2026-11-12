@@ -1,0 +1,1156 @@
+{
+ "system": "al_refractory",
+ "database": "TCHEA8",
+ "pressure_Pa": 101325.0,
+ "fixed_temperature_K": 1273.0,
+ "elements": [
+  "Al",
+  "Cr",
+  "Mo",
+  "Nb",
+  "Ti"
+ ],
+ "kind": "hea",
+ "base": null,
+ "solute_max": {},
+ "note": "Sub-systems only: pure elements, binaries and ternaries. No point has more than three elements; every pool composition has at least four. Gas phase excluded. 'order' is the largest site-fraction difference between the two sublattices of an A2/B2 or A1/L12 phase; above 0.05 the phase is counted as ordered.",
+ "points": [
+  {
+   "x": {
+    "Al": 1.0
+   },
+   "n_elements": 1,
+   "solidus_K": 933.5,
+   "liquidus_K": 933.5,
+   "phases": [
+    {
+     "phase": "LIQUID#1",
+     "fraction": 1.0,
+     "kind": "liquid"
+    }
+   ],
+   "targets": {
+    "solidus": 933.5,
+    "freezing_range": 0.0,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 0.0
+   }
+  },
+  {
+   "x": {
+    "Cr": 1.0
+   },
+   "n_elements": 1,
+   "solidus_K": 2180.0,
+   "liquidus_K": 2180.0,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2180.0,
+    "freezing_range": 0.0,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Mo": 1.0
+   },
+   "n_elements": 1,
+   "solidus_K": 2896.0,
+   "liquidus_K": 2896.0,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2896.0,
+    "freezing_range": 0.0,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Nb": 1.0
+   },
+   "n_elements": 1,
+   "solidus_K": 2750.0,
+   "liquidus_K": 2750.0,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2750.0,
+    "freezing_range": 0.0,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Ti": 1.0
+   },
+   "n_elements": 1,
+   "solidus_K": 1941.0,
+   "liquidus_K": 1941.0,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1941.0,
+    "freezing_range": 0.0,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.75,
+    "Cr": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 1298.1,
+   "liquidus_K": 1499.2,
+   "phases": [
+    {
+     "phase": "AL4CR#1",
+     "fraction": 0.5357,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "AL9CR4_LT#1",
+     "fraction": 0.4643,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1298.1,
+    "freezing_range": 201.1,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.5357
+   }
+  },
+  {
+   "x": {
+    "Al": 0.5,
+    "Cr": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 1599.8,
+   "liquidus_K": 1793.5,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.5266,
+     "kind": "solid solution",
+     "order": 0.0
+    },
+    {
+     "phase": "AL8CR5_LT_D810#1",
+     "fraction": 0.4734,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1599.8,
+    "freezing_range": 193.7,
+    "intermetallic_fraction": 0.4734,
+    "main_phase_fraction": 0.5266
+   }
+  },
+  {
+   "x": {
+    "Al": 0.25,
+    "Cr": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 1968.2,
+   "liquidus_K": 2076.9,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1968.2,
+    "freezing_range": 108.7,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.75,
+    "Mo": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 1399.0,
+   "liquidus_K": 1848.4,
+   "phases": [
+    {
+     "phase": "AL8MO3#1",
+     "fraction": 0.6875,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "AL4W#1",
+     "fraction": 0.3125,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1399.0,
+    "freezing_range": 449.4,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.6875
+   }
+  },
+  {
+   "x": {
+    "Al": 0.5,
+    "Mo": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 1874.9,
+   "liquidus_K": 2216.7,
+   "phases": [
+    {
+     "phase": "AL8MO3#1",
+     "fraction": 0.5238,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "CR3SI_A15#1",
+     "fraction": 0.4762,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1874.9,
+    "freezing_range": 341.8,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.5238
+   }
+  },
+  {
+   "x": {
+    "Al": 0.25,
+    "Mo": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 2418.9,
+   "liquidus_K": 2616.8,
+   "phases": [
+    {
+     "phase": "CR3SI_A15#1",
+     "fraction": 1.0,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "AL8MO3#1",
+     "fraction": 0.0,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 2418.9,
+    "freezing_range": 197.9,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.75,
+    "Nb": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 1603.2,
+   "liquidus_K": 1961.3,
+   "phases": [
+    {
+     "phase": "AL3TI_D022#1",
+     "fraction": 1.0,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1603.2,
+    "freezing_range": 358.2,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.5,
+    "Nb": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 1847.7,
+   "liquidus_K": 2042.3,
+   "phases": [
+    {
+     "phase": "SIGMA#1",
+     "fraction": 0.658,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "AL3TI_D022#1",
+     "fraction": 0.342,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1847.7,
+    "freezing_range": 194.6,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.658
+   }
+  },
+  {
+   "x": {
+    "Al": 0.25,
+    "Nb": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 2214.4,
+   "liquidus_K": 2388.5,
+   "phases": [
+    {
+     "phase": "CR3SI_A15#1",
+     "fraction": 0.731,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "SIGMA#1",
+     "fraction": 0.269,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 2214.4,
+    "freezing_range": 174.2,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.731
+   }
+  },
+  {
+   "x": {
+    "Al": 0.75,
+    "Ti": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 1633.9,
+   "liquidus_K": 1669.1,
+   "phases": [
+    {
+     "phase": "AL3TI_D022#1",
+     "fraction": 1.0,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1633.9,
+    "freezing_range": 35.2,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.5,
+    "Ti": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 1740.5,
+   "liquidus_K": 1759.9,
+   "phases": [
+    {
+     "phase": "ALTI_L10#1",
+     "fraction": 1.0,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1740.5,
+    "freezing_range": 19.4,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.25,
+    "Ti": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 1929.9,
+   "liquidus_K": 1936.3,
+   "phases": [
+    {
+     "phase": "ALTI3_D019#1",
+     "fraction": 1.0,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1929.9,
+    "freezing_range": 6.4,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.75,
+    "Mo": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 2155.7,
+   "liquidus_K": 2191.1,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2155.7,
+    "freezing_range": 35.4,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.5,
+    "Mo": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 2298.9,
+   "liquidus_K": 2475.7,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2298.9,
+    "freezing_range": 176.8,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.25,
+    "Mo": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 2577.9,
+   "liquidus_K": 2714.2,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2577.9,
+    "freezing_range": 136.3,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.75,
+    "Nb": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 1892.7,
+   "liquidus_K": 1972.4,
+   "phases": [
+    {
+     "phase": "C15_LAVES#1",
+     "fraction": 0.7865,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.2135,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1892.7,
+    "freezing_range": 79.8,
+    "intermetallic_fraction": 0.7865,
+    "main_phase_fraction": 0.7865
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.5,
+    "Nb": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 1924.5,
+   "liquidus_K": 1978.1,
+   "phases": [
+    {
+     "phase": "C15_LAVES#1",
+     "fraction": 0.734,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.266,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1924.5,
+    "freezing_range": 53.6,
+    "intermetallic_fraction": 0.734,
+    "main_phase_fraction": 0.734
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.25,
+    "Nb": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 1934.9,
+   "liquidus_K": 2429.0,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.6785,
+     "kind": "solid solution",
+     "order": 0.0
+    },
+    {
+     "phase": "C15_LAVES#1",
+     "fraction": 0.3215,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1934.9,
+    "freezing_range": 494.1,
+    "intermetallic_fraction": 0.3215,
+    "main_phase_fraction": 0.6785
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.75,
+    "Ti": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 1734.3,
+   "liquidus_K": 1900.1,
+   "phases": [
+    {
+     "phase": "C14_LAVES#1",
+     "fraction": 0.6877,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.3123,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1734.3,
+    "freezing_range": 165.8,
+    "intermetallic_fraction": 0.6877,
+    "main_phase_fraction": 0.6877
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.5,
+    "Ti": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 1679.9,
+   "liquidus_K": 1689.2,
+   "phases": [
+    {
+     "phase": "C15_LAVES#1",
+     "fraction": 0.6409,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.3591,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1679.9,
+    "freezing_range": 9.3,
+    "intermetallic_fraction": 0.6409,
+    "main_phase_fraction": 0.6409
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.25,
+    "Ti": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 1708.4,
+   "liquidus_K": 1738.1,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1708.4,
+    "freezing_range": 29.7,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Mo": 0.75,
+    "Nb": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 2863.4,
+   "liquidus_K": 2864.7,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2863.4,
+    "freezing_range": 1.3,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Mo": 0.5,
+    "Nb": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 2828.7,
+   "liquidus_K": 2830.4,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2828.7,
+    "freezing_range": 1.6,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Mo": 0.25,
+    "Nb": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 2791.1,
+   "liquidus_K": 2792.5,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2791.1,
+    "freezing_range": 1.5,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Mo": 0.75,
+    "Ti": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 2604.2,
+   "liquidus_K": 2704.5,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2604.2,
+    "freezing_range": 100.2,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Mo": 0.5,
+    "Ti": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 2324.7,
+   "liquidus_K": 2470.0,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2324.7,
+    "freezing_range": 145.3,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Mo": 0.25,
+    "Ti": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 2102.4,
+   "liquidus_K": 2192.6,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2102.4,
+    "freezing_range": 90.2,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Nb": 0.75,
+    "Ti": 0.25
+   },
+   "n_elements": 2,
+   "solidus_K": 2426.6,
+   "liquidus_K": 2537.5,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2426.6,
+    "freezing_range": 110.8,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Nb": 0.5,
+    "Ti": 0.5
+   },
+   "n_elements": 2,
+   "solidus_K": 2206.0,
+   "liquidus_K": 2324.9,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2206.0,
+    "freezing_range": 118.9,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Nb": 0.25,
+    "Ti": 0.75
+   },
+   "n_elements": 2,
+   "solidus_K": 2056.9,
+   "liquidus_K": 2109.7,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2056.9,
+    "freezing_range": 52.8,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.3333333333333333,
+    "Cr": 0.3333333333333333,
+    "Mo": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 1794.9,
+   "liquidus_K": 2118.8,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.6147,
+     "kind": "solid solution",
+     "order": 0.0
+    },
+    {
+     "phase": "CR3SI_A15#1",
+     "fraction": 0.3058,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "AL8MO3#1",
+     "fraction": 0.0794,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1794.9,
+    "freezing_range": 323.9,
+    "intermetallic_fraction": 0.3853,
+    "main_phase_fraction": 0.6147
+   }
+  },
+  {
+   "x": {
+    "Al": 0.3333333333333333,
+    "Cr": 0.3333333333333333,
+    "Nb": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 2335.0,
+   "liquidus_K": 2440.8,
+   "phases": [
+    {
+     "phase": "C14_LAVES#1",
+     "fraction": 1.0,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 2335.0,
+    "freezing_range": 105.8,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Al": 0.3333333333333333,
+    "Cr": 0.3333333333333333,
+    "Ti": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 1729.0,
+   "liquidus_K": 1735.3,
+   "phases": [
+    {
+     "phase": "C14_LAVES#1",
+     "fraction": 0.5856,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "FCC_L12#1",
+     "fraction": 0.3867,
+     "kind": "intermetallic",
+     "order": 0.99858
+    },
+    {
+     "phase": "BCC_B2#2",
+     "fraction": 0.0276,
+     "kind": "intermetallic",
+     "order": 0.53625
+    }
+   ],
+   "targets": {
+    "solidus": 1729.0,
+    "freezing_range": 6.3,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.5856
+   }
+  },
+  {
+   "x": {
+    "Al": 0.3333333333333333,
+    "Mo": 0.3333333333333333,
+    "Nb": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 1772.2,
+   "liquidus_K": 2307.8,
+   "phases": [
+    {
+     "phase": "CR3SI_A15#1",
+     "fraction": 0.8311,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "AL3TI_D022#1",
+     "fraction": 0.1689,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1772.2,
+    "freezing_range": 535.6,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.8311
+   }
+  },
+  {
+   "x": {
+    "Al": 0.3333333333333333,
+    "Mo": 0.3333333333333333,
+    "Ti": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 2145.3,
+   "liquidus_K": 2420.3,
+   "phases": [
+    {
+     "phase": "SIGMA#1",
+     "fraction": 0.6583,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "CR3SI_A15#1",
+     "fraction": 0.2723,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "BCC_B2#2",
+     "fraction": 0.0695,
+     "kind": "intermetallic",
+     "order": 0.17615
+    }
+   ],
+   "targets": {
+    "solidus": 2145.3,
+    "freezing_range": 275.0,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.6583
+   }
+  },
+  {
+   "x": {
+    "Al": 0.3333333333333333,
+    "Nb": 0.3333333333333333,
+    "Ti": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 2072.7,
+   "liquidus_K": 2111.8,
+   "phases": [
+    {
+     "phase": "SIGMA#1",
+     "fraction": 0.8792,
+     "kind": "intermetallic"
+    },
+    {
+     "phase": "ALTI3_D019#1",
+     "fraction": 0.1208,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 2072.7,
+    "freezing_range": 39.1,
+    "intermetallic_fraction": 1.0,
+    "main_phase_fraction": 0.8792
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.3333333333333333,
+    "Mo": 0.3333333333333333,
+    "Nb": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 1870.5,
+   "liquidus_K": 2186.4,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.6472,
+     "kind": "solid solution",
+     "order": 0.0
+    },
+    {
+     "phase": "C15_LAVES#1",
+     "fraction": 0.3528,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1870.5,
+    "freezing_range": 315.9,
+    "intermetallic_fraction": 0.3528,
+    "main_phase_fraction": 0.6472
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.3333333333333333,
+    "Mo": 0.3333333333333333,
+    "Ti": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 1988.8,
+   "liquidus_K": 2234.0,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 1988.8,
+    "freezing_range": 245.2,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  },
+  {
+   "x": {
+    "Cr": 0.3333333333333333,
+    "Nb": 0.3333333333333333,
+    "Ti": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 1907.4,
+   "liquidus_K": 2061.9,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 0.5441,
+     "kind": "solid solution",
+     "order": 0.0
+    },
+    {
+     "phase": "C15_LAVES#1",
+     "fraction": 0.4559,
+     "kind": "intermetallic"
+    }
+   ],
+   "targets": {
+    "solidus": 1907.4,
+    "freezing_range": 154.6,
+    "intermetallic_fraction": 0.4559,
+    "main_phase_fraction": 0.5441
+   }
+  },
+  {
+   "x": {
+    "Mo": 0.3333333333333333,
+    "Nb": 0.3333333333333333,
+    "Ti": 0.3333333333333333
+   },
+   "n_elements": 3,
+   "solidus_K": 2446.1,
+   "liquidus_K": 2537.8,
+   "phases": [
+    {
+     "phase": "BCC_B2#1",
+     "fraction": 1.0,
+     "kind": "solid solution",
+     "order": 0.0
+    }
+   ],
+   "targets": {
+    "solidus": 2446.1,
+    "freezing_range": 91.6,
+    "intermetallic_fraction": 0.0,
+    "main_phase_fraction": 1.0
+   }
+  }
+ ]
+}

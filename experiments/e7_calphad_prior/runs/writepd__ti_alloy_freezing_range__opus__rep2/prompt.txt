@@ -1,0 +1,90 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. Inputs are atomic fractions of Ti, Al, Mo, Nb, Sn, V, Zr in titanium alloys Ti-Al-Mo-Nb-Sn-V-Zr; each row sums to 1. Composition range: Ti is the balance and at least 60 at.%; solutes in at.%: Al 0 to 12 (step 3), Mo 0 to 9 (step 3), Nb 0 to 12 (step 3), Sn 0 to 4 (step 2), V 0 to 12 (step 3), Zr 0 to 8 (step 4); at least 4 elements present. The target is the equilibrium freezing range (liquidus temperature minus solidus temperature) in K, calculated at 1 atm with the CALPHAD method (Thermo-Calc, TCTI6 database). 200 alloys.
+
+Input order: x[0] = x_Ti, x[1] = x_Al, x[2] = x_Mo, x[3] = x_Nb, x[4] = x_Sn, x[5] = x_V, x[6] = x_Zr.
+
+The output y must be your best estimate of the equilibrium freezing range (liquidus temperature minus solidus temperature) in K. The network will be used as the prior mean of a Gaussian process that is then given a few measured alloys, so getting the trends and the rough scale right matters more than exact values.
+
+# Phase-diagram facts for sub-systems (computed with CALPHAD)
+These facts cover only sub-systems with at most three elements: pure Ti, Ti with one solute at half and at the whole of that solute's range, and Ti with two solutes, both at half and both at the whole of their ranges. Nothing here was calculated for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, TCTI6 database, 1 atm, the same database as the target.
+
+Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable phases at 973 K with their mole fractions, where bcc, fcc and hcp are the disordered solid solutions, B2 and L12 are ordered, and the same phase listed twice is a miscibility gap.
+
+Ti: melts 1941; alpha gone above 1155; 973 K: hcp
+Ti + 6 Al: s/l 1961/1961; alpha gone above 1241; 973 K: hcp
+Ti + 12 Al: s/l 1962/1963; alpha gone above 1302; 973 K: hcp
+Ti + 4.5 Mo: s/l 1966/1975; alpha gone above 1053; 973 K: hcp 0.50 + bcc 0.50
+Ti + 9 Mo: s/l 1993/2015; alpha gone above 969; 973 K: bcc
+Ti + 6 Nb: s/l 1964/1970; alpha gone above 1056; 973 K: hcp 0.64 + bcc 0.36
+Ti + 12 Nb: s/l 1989/2005; alpha gone above 978; 973 K: bcc 0.95 + hcp 0.05
+Ti + 2 Sn: s/l 1940/1940; alpha gone above 1131; 973 K: hcp
+Ti + 4 Sn: s/l 1933/1935; alpha gone above 1113; 973 K: hcp
+Ti + 6 V: s/l 1920/1922; alpha gone above 1057; 973 K: hcp 0.63 + bcc 0.37
+Ti + 12 V: s/l 1902/1906; alpha gone above 977; 973 K: bcc 0.97 + hcp 0.03
+Ti + 4 Zr: s/l 1910/1917; alpha gone above 1125; 973 K: hcp
+Ti + 8 Zr: s/l 1885/1895; alpha gone above 1095; 973 K: hcp
+Ti + 6 Al, 4.5 Mo: s/l 1994/2026; alpha gone above 1110; 973 K: hcp 0.60 + bcc 0.40
+Ti + 12 Al, 9 Mo: s/l 2035/2143; alpha gone above 1030; 973 K: bcc 0.80 + hcp 0.20
+Ti + 6 Al, 6 Nb: s/l 1991/2009; alpha gone above 1111; 973 K: hcp 0.73 + bcc 0.27
+Ti + 12 Al, 12 Nb: s/l 2039/2094; alpha gone above 1027; 973 K: B2 0.73 + hcp 0.27
+Ti + 6 Al, 2 Sn: s/l 1932/1943; alpha gone above 1268; 973 K: hcp
+Ti + 12 Al, 4 Sn: s/l 1843/1906; alpha gone above 1460; 973 K: ALTI3 D019 0.57 + hcp 0.43
+Ti + 6 Al, 6 V: s/l 1897/1919; alpha gone above 1162; 973 K: hcp 0.81 + bcc 0.19
+Ti + 12 Al, 12 V: s/l 1704/1841; alpha gone above 1354; 973 K: hcp 0.75 + bcc 0.25
+Ti + 6 Al, 4 Zr: s/l 1890/1923; alpha gone above 1218; 973 K: hcp
+Ti + 12 Al, 8 Zr: s/l 1802/1878; alpha gone above 1252; 973 K: hcp
+Ti + 4.5 Mo, 6 Nb: s/l 1998/2053; alpha gone above 1012; 973 K: bcc 0.56 + hcp 0.44
+Ti + 9 Mo, 12 Nb: s/l 2070/2231; alpha gone above 965; 973 K: bcc
+Ti + 4.5 Mo, 2 Sn: s/l 1961/1971; alpha gone above 1025; 973 K: bcc 0.55 + hcp 0.45
+Ti + 9 Mo, 4 Sn: s/l 1968/2004; alpha gone above 950; 973 K: bcc
+Ti + 4.5 Mo, 6 V: s/l 1951/1967; alpha gone above 967; 973 K: bcc
+Ti + 9 Mo, 12 V: s/l 1977/2020; alpha gone above 826; 973 K: bcc
+Ti + 4.5 Mo, 4 Zr: s/l 1931/1950; alpha gone above 1022; 973 K: bcc 0.64 + hcp 0.36
+Ti + 9 Mo, 8 Zr: s/l 1926/1964; alpha gone above 907; 973 K: bcc
+Ti + 6 Nb, 2 Sn: s/l 1959/1966; alpha gone above 1033; 973 K: hcp 0.68 + bcc 0.32
+Ti + 12 Nb, 4 Sn: s/l 1963/1993; alpha gone above 1007; 973 K: hcp 0.66 + bcc 0.34
+Ti + 6 Nb, 6 V: s/l 1943/1952; alpha gone above 973; 973 K: bcc
+Ti + 12 Nb, 12 V: s/l 1950/1971; alpha gone above 853; 973 K: bcc
+Ti + 6 Nb, 4 Zr: s/l 1932/1947; alpha gone above 1025; 973 K: bcc 0.55 + hcp 0.45
+Ti + 12 Nb, 8 Zr: s/l 1932/1964; alpha gone above 914; 973 K: bcc
+Ti + 2 Sn, 6 V: s/l 1921/1923; alpha gone above 1030; 973 K: hcp 0.57 + bcc 0.43
+Ti + 4 Sn, 12 V: s/l 1903/1905; alpha gone above 966; 973 K: bcc
+Ti + 2 Sn, 4 Zr: s/l 1908/1916; alpha gone above 1100; 973 K: hcp
+Ti + 4 Sn, 8 Zr: s/l 1877/1890; alpha gone above 1050; 973 K: hcp
+Ti + 6 V, 4 Zr: s/l 1889/1898; alpha gone above 1016; 973 K: bcc 0.66 + hcp 0.34
+Ti + 12 V, 8 Zr: s/l 1843/1858; alpha gone above 888; 973 K: bcc
+
+# Architecture
+Input x has 7 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 7, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 7)
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

@@ -1,0 +1,74 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. Inputs are atomic fractions of Al, Cr, Mo, Nb, Ti in Al-Cr-Mo-Nb-Ti refractory high-entropy alloys; each row sums to 1. Composition range: every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present. The target is the equilibrium mole fraction, at 1273 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) in mole fraction between 0 and 1, calculated at 1 atm with the CALPHAD method (Thermo-Calc, TCHEA8 database). 200 alloys.
+
+Input order: x[0] = x_Al, x[1] = x_Cr, x[2] = x_Mo, x[3] = x_Nb, x[4] = x_Ti.
+
+The output y must be your best estimate of the equilibrium mole fraction, at 1273 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12) in mole fraction between 0 and 1. The network will be used as the prior mean of a Gaussian process that is then given a few measured alloys, so getting the trends and the rough scale right matters more than exact values.
+
+# Phase-diagram facts for sub-systems (computed with CALPHAD)
+These facts cover only sub-systems with at most three elements: the 5 pure elements, the 10 binary systems at 25, 50 and 75 at.% of the second element, and the 10 equimolar ternaries. Nothing here was calculated for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, TCHEA8 database, 1 atm, the same database as the target.
+
+Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable phases at 1273 K with their mole fractions, where bcc, fcc and hcp are the disordered solid solutions, B2 and L12 are ordered, and the same phase listed twice is a miscibility gap.
+
+Al: melts 934; 1273 K: liquid
+Cr: melts 2180; 1273 K: bcc
+Mo: melts 2896; 1273 K: bcc
+Nb: melts 2750; 1273 K: bcc
+Ti: melts 1941; 1273 K: bcc
+
+Al-Cr at 25 | 50 | 75 at.% Cr: s/l 1298/1499; 1273 K: AL4CR 0.54 + AL9CR4 LT 0.46 | s/l 1600/1794; 1273 K: bcc 0.53 + AL8CR5 LT D810 0.47 | s/l 1968/2077; 1273 K: bcc.
+Al-Mo at 25 | 50 | 75 at.% Mo: s/l 1399/1848; 1273 K: AL8MO3 0.69 + AL4W 0.31 | s/l 1875/2217; 1273 K: AL8MO3 0.52 + CR3SI A15 0.48 | s/l 2419/2617; 1273 K: CR3SI A15 1.00 + AL8MO3 0.00.
+Al-Nb at 25 | 50 | 75 at.% Nb: s/l 1603/1961; 1273 K: AL3TI D022 | s/l 1848/2042; 1273 K: sigma 0.66 + AL3TI D022 0.34 | s/l 2214/2388; 1273 K: CR3SI A15 0.73 + sigma 0.27.
+Al-Ti at 25 | 50 | 75 at.% Ti: s/l 1634/1669; 1273 K: AL3TI D022 | s/l 1740/1760; 1273 K: ALTI L10 | s/l 1930/1936; 1273 K: ALTI3 D019.
+Cr-Mo at 25 | 50 | 75 at.% Mo: s/l 2156/2191; 1273 K: bcc | s/l 2299/2476; 1273 K: bcc | s/l 2578/2714; 1273 K: bcc.
+Cr-Nb at 25 | 50 | 75 at.% Nb: s/l 1893/1972; 1273 K: C15 Laves 0.79 + bcc 0.21 | s/l 1924/1978; 1273 K: C15 Laves 0.73 + bcc 0.27 | s/l 1935/2429; 1273 K: bcc 0.68 + C15 Laves 0.32.
+Cr-Ti at 25 | 50 | 75 at.% Ti: s/l 1734/1900; 1273 K: C14 Laves 0.69 + bcc 0.31 | s/l 1680/1689; 1273 K: C15 Laves 0.64 + bcc 0.36 | s/l 1708/1738; 1273 K: bcc.
+Mo-Nb at 25 | 50 | 75 at.% Nb: s/l 2863/2865; 1273 K: bcc | s/l 2829/2830; 1273 K: bcc | s/l 2791/2792; 1273 K: bcc.
+Mo-Ti at 25 | 50 | 75 at.% Ti: s/l 2604/2704; 1273 K: bcc | s/l 2325/2470; 1273 K: bcc | s/l 2102/2193; 1273 K: bcc.
+Nb-Ti at 25 | 50 | 75 at.% Ti: s/l 2427/2538; 1273 K: bcc | s/l 2206/2325; 1273 K: bcc | s/l 2057/2110; 1273 K: bcc.
+
+Al-Cr-Mo equimolar: s/l 1795/2119; 1273 K: bcc 0.61 + CR3SI A15 0.31 + AL8MO3 0.08
+Al-Cr-Nb equimolar: s/l 2335/2441; 1273 K: C14 Laves
+Al-Cr-Ti equimolar: s/l 1729/1735; 1273 K: C14 Laves 0.59 + L12 0.39 + B2 0.03
+Al-Mo-Nb equimolar: s/l 1772/2308; 1273 K: CR3SI A15 0.83 + AL3TI D022 0.17
+Al-Mo-Ti equimolar: s/l 2145/2420; 1273 K: sigma 0.66 + CR3SI A15 0.27 + B2 0.07
+Al-Nb-Ti equimolar: s/l 2073/2112; 1273 K: sigma 0.88 + ALTI3 D019 0.12
+Cr-Mo-Nb equimolar: s/l 1870/2186; 1273 K: bcc 0.65 + C15 Laves 0.35
+Cr-Mo-Ti equimolar: s/l 1989/2234; 1273 K: bcc
+Cr-Nb-Ti equimolar: s/l 1907/2062; 1273 K: bcc 0.54 + C15 Laves 0.46
+Mo-Nb-Ti equimolar: s/l 2446/2538; 1273 K: bcc
+
+# Architecture
+Input x has 5 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 5, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 5)
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

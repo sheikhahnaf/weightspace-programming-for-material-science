@@ -1,0 +1,90 @@
+You are given a small neural network as its raw weights. You cannot run it and you cannot train it.
+
+# Task
+Write the weights of this network from what you know about materials. No training data is given. Inputs are atomic fractions of Hf, Mo, Nb, Ta, Ti, Zr in Hf-Mo-Nb-Ta-Ti-Zr refractory high-entropy alloys; each row sums to 1. Composition range: every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present. The target is the equilibrium mole fraction, at 1273 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases) in mole fraction between 0 and 1, calculated at 1 atm with the CALPHAD method (Thermo-Calc, TCHEA8 database). 199 alloys.
+
+Input order: x[0] = x_Hf, x[1] = x_Mo, x[2] = x_Nb, x[3] = x_Ta, x[4] = x_Ti, x[5] = x_Zr.
+
+The output y must be your best estimate of the equilibrium mole fraction, at 1273 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases) in mole fraction between 0 and 1. The network will be used as the prior mean of a Gaussian process that is then given a few measured alloys, so getting the trends and the rough scale right matters more than exact values.
+
+# Phase-diagram facts for sub-systems (computed with CALPHAD)
+These facts cover only sub-systems with at most three elements: the 6 pure elements, the 15 binary systems at 25, 50 and 75 at.% of the second element, and the 20 equimolar ternaries. Nothing here was calculated for a composition of the kind you are asked about (four or more elements). Source: Thermo-Calc, TCHEA8 database, 1 atm, the same database as the target.
+
+Each line: composition in at.%; s/l = solidus/liquidus in K; then the stable phases at 1273 K with their mole fractions, where bcc, fcc and hcp are the disordered solid solutions, B2 and L12 are ordered, and the same phase listed twice is a miscibility gap.
+
+Hf: melts 2506; 1273 K: hcp
+Mo: melts 2896; 1273 K: bcc
+Nb: melts 2750; 1273 K: bcc
+Ta: melts 3290; 1273 K: bcc
+Ti: melts 1941; 1273 K: bcc
+Zr: melts 2128; 1273 K: IRZR BETA B2
+
+Hf-Mo at 25 | 50 | 75 at.% Mo: s/l 2135/2140; 1273 K: hcp 0.63 + C15 Laves 0.37 | s/l 2195/2350; 1273 K: C15 Laves 0.76 + hcp 0.24 | s/l 2413/2595; 1273 K: C15 Laves 0.66 + bcc 0.34.
+Hf-Nb at 25 | 50 | 75 at.% Nb: s/l 2349/2361; 1273 K: hcp 0.74 + bcc 0.26 | s/l 2350/2374; 1273 K: bcc 0.57 + hcp 0.43 | s/l 2453/2541; 1273 K: bcc 0.88 + hcp 0.12.
+Hf-Ta at 25 | 50 | 75 at.% Ta: s/l 2389/2401; 1273 K: hcp 0.75 + bcc 0.25 | s/l 2493/2767; 1273 K: bcc 0.54 + hcp 0.46 | s/l 2747/3062; 1273 K: bcc 0.83 + hcp 0.17.
+Hf-Ti at 25 | 50 | 75 at.% Ti: s/l 2224/2283; 1273 K: hcp | s/l 2041/2076; 1273 K: bcc | s/l 1941/1945; 1273 K: bcc.
+Hf-Zr at 25 | 50 | 75 at.% Zr: s/l 2404/2418; 1273 K: hcp | s/l 2306/2326; 1273 K: hcp | s/l 2214/2229; 1273 K: hcp.
+Mo-Nb at 25 | 50 | 75 at.% Nb: s/l 2863/2865; 1273 K: bcc | s/l 2829/2830; 1273 K: bcc | s/l 2791/2792; 1273 K: bcc.
+Mo-Ta at 25 | 50 | 75 at.% Ta: s/l 2934/2937; 1273 K: bcc | s/l 2995/3005; 1273 K: bcc | s/l 3094/3116; 1273 K: bcc.
+Mo-Ti at 25 | 50 | 75 at.% Ti: s/l 2604/2704; 1273 K: bcc | s/l 2325/2470; 1273 K: bcc | s/l 2102/2193; 1273 K: bcc.
+Mo-Zr at 25 | 50 | 75 at.% Zr: s/l 2194/2555; 1273 K: C15 Laves 0.74 + bcc 0.26 | s/l 1825/2161; 1273 K: C15 Laves 0.72 + bcc 0.28 | s/l 1825/1848; 1273 K: bcc 0.72 + C15 Laves 0.28.
+Nb-Ta at 25 | 50 | 75 at.% Ta: s/l 2872/2897; 1273 K: bcc | s/l 3003/3035; 1273 K: bcc | s/l 3142/3166; 1273 K: bcc.
+Nb-Ti at 25 | 50 | 75 at.% Ti: s/l 2427/2538; 1273 K: bcc | s/l 2206/2325; 1273 K: bcc | s/l 2057/2110; 1273 K: bcc.
+Nb-Zr at 25 | 50 | 75 at.% Zr: s/l 2245/2518; 1273 K: bcc | s/l 2073/2267; 1273 K: bcc | s/l 2017/2020; 1273 K: bcc.
+Ta-Ti at 25 | 50 | 75 at.% Ti: s/l 2656/2891; 1273 K: bcc | s/l 2334/2526; 1273 K: bcc | s/l 2127/2228; 1273 K: bcc.
+Ta-Zr at 25 | 50 | 75 at.% Zr: s/l 2198/2759; 1273 K: bcc 0.78 + bcc 0.22 | s/l 2163/2338; 1273 K: bcc 0.51 + bcc 0.49 | s/l 2129/2133; 1273 K: bcc 0.79 + bcc 0.21.
+Ti-Zr at 25 | 50 | 75 at.% Zr: s/l 1833/1836; 1273 K: bcc | s/l 1840/1847; 1273 K: bcc | s/l 1921/1958; 1273 K: bcc.
+
+Hf-Mo-Nb equimolar: s/l 2305/2482; 1273 K: bcc
+Hf-Mo-Ta equimolar: s/l 2380/2692; 1273 K: bcc
+Hf-Mo-Ti equimolar: s/l 2122/2211; 1273 K: bcc 0.75 + C15 Laves 0.25
+Hf-Mo-Zr equimolar: s/l 2015/2081; 1273 K: hcp 0.50 + C15 Laves 0.50
+Hf-Nb-Ta equimolar: s/l 2498/2705; 1273 K: bcc 0.78 + hcp 0.22
+Hf-Nb-Ti equimolar: s/l 2135/2206; 1273 K: bcc
+Hf-Nb-Zr equimolar: s/l 2192/2219; 1273 K: bcc
+Hf-Ta-Ti equimolar: s/l 2207/2410; 1273 K: bcc
+Hf-Ta-Zr equimolar: s/l 2260/2320; 1273 K: hcp 0.65 + bcc 0.35
+Hf-Ti-Zr equimolar: s/l 2004/2056; 1273 K: bcc
+Mo-Nb-Ta equimolar: s/l 2935/2951; 1273 K: bcc
+Mo-Nb-Ti equimolar: s/l 2446/2538; 1273 K: bcc
+Mo-Nb-Zr equimolar: s/l 1938/2440; 1273 K: bcc 0.67 + bcc 0.33
+Mo-Ta-Ti equimolar: s/l 2548/2675; 1273 K: bcc
+Mo-Ta-Zr equimolar: s/l 1960/2575; 1273 K: bcc 0.67 + bcc 0.33
+Mo-Ti-Zr equimolar: s/l 1808/2012; 1273 K: C15 Laves 0.55 + bcc 0.45
+Nb-Ta-Ti equimolar: s/l 2444/2633; 1273 K: bcc
+Nb-Ta-Zr equimolar: s/l 2183/2542; 1273 K: bcc 0.69 + bcc 0.31
+Nb-Ti-Zr equimolar: s/l 1964/2098; 1273 K: bcc
+Ta-Ti-Zr equimolar: s/l 1980/2150; 1273 K: bcc 0.69 + bcc 0.31
+
+# Architecture
+Input x has 6 entries. h0 = x.
+h1 = relu(net.0.weight @ h0 + net.0.bias)   (net.0.weight is 16 x 6, net.0.bias has 16 entries)
+y = net.2.weight @ h1 + net.2.bias   (net.2.weight is 1 x 16, net.2.bias has 1 entries)
+
+# Weights
+## net.0.weight shape=(16, 6)
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+## net.0.bias shape=(16,)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.weight shape=(1, 16)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## net.2.bias shape=(1,)
+0
+
+# Reply format
+Reply with the complete weights in exactly the format shown above: one '## name shape=(...)' header per tensor, then its rows of numbers. No other text.

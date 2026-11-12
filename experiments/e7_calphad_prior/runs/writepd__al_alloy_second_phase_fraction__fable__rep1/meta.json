@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "al_alloy_second_phase_fraction",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 4737,
+  "prompt_tokens_estimate": 1579,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

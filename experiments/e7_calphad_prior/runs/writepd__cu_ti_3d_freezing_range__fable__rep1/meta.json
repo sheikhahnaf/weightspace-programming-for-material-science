@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "cu_ti_3d_freezing_range",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 6214,
+  "prompt_tokens_estimate": 2072,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

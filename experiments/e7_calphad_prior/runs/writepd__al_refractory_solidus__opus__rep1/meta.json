@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "al_refractory_solidus",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 4658,
+  "prompt_tokens_estimate": 1553,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

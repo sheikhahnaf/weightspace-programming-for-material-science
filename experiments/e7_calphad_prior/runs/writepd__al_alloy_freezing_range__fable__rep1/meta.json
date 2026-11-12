@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "al_alloy_freezing_range",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 4529,
+  "prompt_tokens_estimate": 1510,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

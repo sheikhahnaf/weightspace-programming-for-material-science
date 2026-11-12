@@ -381,6 +381,66 @@
    }
   ]
  },
+ "al_alloy": {
+  "database": "TCAL9",
+  "elements": [
+   "Al",
+   "Cu",
+   "Mg",
+   "Mn",
+   "Si",
+   "Zn"
+  ],
+  "fixed_temperature_K": 673.0,
+  "alloys": "aluminium alloys Al-Cu-Mg-Mn-Si-Zn",
+  "sampling": "Al is the balance and at least 85 at.%; solutes in at.%: Cu 0 to 4 (step 1), Mg 0 to 4 (step 1), Mn 0 to 1 (step 0.5), Si 0 to 4 (step 1), Zn 0 to 4 (step 1); at least 4 elements present",
+  "kind": "balance",
+  "base": "Al",
+  "pool_size": 200,
+  "rows": 200,
+  "complete": true,
+  "targets": [
+   {
+    "name": "solidus",
+    "column": "solidus_K",
+    "wording": "equilibrium solidus temperature",
+    "unit": "K",
+    "goal": 1.0,
+    "rows": 200,
+    "share_at_most_common_value": 0.035,
+    "min": 739.2,
+    "median": 776.3,
+    "max": 871.9,
+    "dropped": null
+   },
+   {
+    "name": "freezing_range",
+    "column": "freezing_range_K",
+    "wording": "equilibrium freezing range (liquidus temperature minus solidus temperature)",
+    "unit": "K",
+    "goal": -1.0,
+    "rows": 200,
+    "share_at_most_common_value": 0.015,
+    "min": 40.3,
+    "median": 118.65,
+    "max": 177.4,
+    "dropped": null
+   },
+   {
+    "name": "second_phase_fraction",
+    "column": "second_phase_fraction",
+    "wording": "equilibrium mole fraction, at 673 K, of all solid phases other than the fcc aluminium solid solution (silicon, Al2Cu, Mg2Si, MgZn2 and other compounds)",
+    "unit": "mole fraction between 0 and 1",
+    "goal": -1.0,
+    "rows": 200,
+    "share_at_most_common_value": 0.01,
+    "min": 0.0159,
+    "median": 0.11885,
+    "max": 0.2382,
+    "dropped": null
+   }
+  ]
+ },
  "hf_refractory": {
   "database": "TCHEA8",
   "elements": [
@@ -470,8 +530,8 @@
   "kind": "hea",
   "base": null,
   "pool_size": 200,
-  "rows": 150,
-  "complete": false,
+  "rows": 200,
+  "complete": true,
   "targets": [
    {
     "name": "solidus",
@@ -479,10 +539,10 @@
     "wording": "equilibrium solidus temperature",
     "unit": "K",
     "goal": 1.0,
-    "rows": 150,
-    "share_at_most_common_value": 0.02,
+    "rows": 200,
+    "share_at_most_common_value": 0.015,
     "min": 1193.7,
-    "median": 1350.55,
+    "median": 1343.85,
     "max": 1695.0,
     "dropped": null
    },
@@ -492,10 +552,10 @@
     "wording": "equilibrium freezing range (liquidus temperature minus solidus temperature)",
     "unit": "K",
     "goal": -1.0,
-    "rows": 150,
-    "share_at_most_common_value": 0.013,
+    "rows": 200,
+    "share_at_most_common_value": 0.01,
     "min": 9.1,
-    "median": 178.95,
+    "median": 168.35,
     "max": 406.2,
     "dropped": null
    },
@@ -505,10 +565,10 @@
     "wording": "equilibrium mole fraction, at 1173 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12)",
     "unit": "mole fraction between 0 and 1",
     "goal": -1.0,
-    "rows": 149,
-    "share_at_most_common_value": 0.148,
+    "rows": 199,
+    "share_at_most_common_value": 0.116,
     "min": 0.0,
-    "median": 0.6208,
+    "median": 0.5915,
     "max": 1.0,
     "dropped": null
    },
@@ -518,10 +578,82 @@
     "wording": "equilibrium mole fraction, at 1173 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases)",
     "unit": "mole fraction between 0 and 1",
     "goal": 1.0,
-    "rows": 149,
-    "share_at_most_common_value": 0.013,
+    "rows": 199,
+    "share_at_most_common_value": 0.01,
     "min": 0.248,
-    "median": 0.5638,
+    "median": 0.5442,
+    "max": 1.0,
+    "dropped": null
+   }
+  ]
+ },
+ "al_refractory": {
+  "database": "TCHEA8",
+  "elements": [
+   "Al",
+   "Cr",
+   "Mo",
+   "Nb",
+   "Ti"
+  ],
+  "fixed_temperature_K": 1273.0,
+  "alloys": "Al-Cr-Mo-Nb-Ti refractory high-entropy alloys",
+  "sampling": "every element between 0 and 35 at.% on a 5 at.% grid, at least four elements present",
+  "kind": "hea",
+  "base": null,
+  "pool_size": 200,
+  "rows": 200,
+  "complete": true,
+  "targets": [
+   {
+    "name": "solidus",
+    "column": "solidus_K",
+    "wording": "equilibrium solidus temperature",
+    "unit": "K",
+    "goal": 1.0,
+    "rows": 200,
+    "share_at_most_common_value": 0.01,
+    "min": 1643.8,
+    "median": 1941.9,
+    "max": 2448.1,
+    "dropped": null
+   },
+   {
+    "name": "freezing_range",
+    "column": "freezing_range_K",
+    "wording": "equilibrium freezing range (liquidus temperature minus solidus temperature)",
+    "unit": "K",
+    "goal": -1.0,
+    "rows": 200,
+    "share_at_most_common_value": 0.01,
+    "min": 23.0,
+    "median": 195.85,
+    "max": 607.6,
+    "dropped": null
+   },
+   {
+    "name": "intermetallic_fraction",
+    "column": "intermetallic_fraction",
+    "wording": "equilibrium mole fraction, at 1273 K, of all phases other than liquid and the disordered fcc, bcc and hcp solid solutions (that is: sigma, Laves and other intermetallic phases, and ordered B2 or L12)",
+    "unit": "mole fraction between 0 and 1",
+    "goal": -1.0,
+    "rows": 200,
+    "share_at_most_common_value": 0.46,
+    "min": 0.0,
+    "median": 0.8627499999999999,
+    "max": 1.0,
+    "dropped": null
+   },
+   {
+    "name": "main_phase_fraction",
+    "column": "main_phase_fraction",
+    "wording": "equilibrium mole fraction, at 1273 K, of the single most abundant phase (1 for a single-phase alloy; two bcc phases of a miscibility gap count as two phases)",
+    "unit": "mole fraction between 0 and 1",
+    "goal": 1.0,
+    "rows": 200,
+    "share_at_most_common_value": 0.115,
+    "min": 0.2906,
+    "median": 0.6497999999999999,
     "max": 1.0,
     "dropped": null
    }

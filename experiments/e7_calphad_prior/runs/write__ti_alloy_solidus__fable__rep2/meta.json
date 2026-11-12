@@ -1,0 +1,13 @@
+{
+  "arm": "write",
+  "task": "ti_alloy_solidus",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 1881,
+  "prompt_tokens_estimate": 627,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

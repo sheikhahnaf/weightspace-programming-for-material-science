@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "al_refractory_main_phase_fraction",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 4966,
+  "prompt_tokens_estimate": 1656,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

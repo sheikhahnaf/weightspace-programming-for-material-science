@@ -1,0 +1,13 @@
+{
+  "arm": "write_pd",
+  "task": "cu_ti_3d_intermetallic_fraction",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 6518,
+  "prompt_tokens_estimate": 2173,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

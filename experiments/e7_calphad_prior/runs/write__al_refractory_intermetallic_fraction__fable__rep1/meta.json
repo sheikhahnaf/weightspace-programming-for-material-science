@@ -1,0 +1,13 @@
+{
+  "arm": "write",
+  "task": "al_refractory_intermetallic_fraction",
+  "seed": 0,
+  "shuffled": false,
+  "prompt_chars": 2066,
+  "prompt_tokens_estimate": 689,
+  "model": null,
+  "tools_allowed": null,
+  "forward_passes": null,
+  "prompt_tokens": null,
+  "reply_tokens": null
+}

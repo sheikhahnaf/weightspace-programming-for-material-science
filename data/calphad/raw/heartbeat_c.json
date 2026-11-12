@@ -1,1 +1,1 @@
-{"tag": "Nb0.3500Ta0.3500Ti0.1500Zr0.1500|eq|2246.08", "allow": 45.0}
+{"build": ["TCHEA8", "Hf", "Mo", "Nb", "Ta", "Ti"], "allow": 400.0}

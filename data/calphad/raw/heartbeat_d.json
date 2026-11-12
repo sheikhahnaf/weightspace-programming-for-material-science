@@ -1,1 +1,1 @@
-{"tag": "TCTI6:Al0.1200Mo0.0900Sn0.0200Ti0.7000V0.0300Zr0.0400|eq|1706.03", "allow": 45.0}
+{"build": ["TCTI6", "Al", "Nb", "Sn", "Ti", "V", "Zr"], "allow": 400.0}

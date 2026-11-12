@@ -1,0 +1,7 @@
+[{"tensor": "w2", "index": [188], "value": -0.019307},
+ {"tensor": "w2", "index": [254], "value": -0.024398},
+ {"tensor": "w2", "index": [161], "value": -0.045961},
+ {"tensor": "w2", "index": [180], "value": -0.0008013},
+ {"tensor": "w2", "index": [3], "value": 0.029675},
+ {"tensor": "w2", "index": [223], "value": 0.037136},
+ {"tensor": "b2", "index": [0], "value": 0.028748}]

@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> The bulk modulus is too low, and the error grows with stiffness, so K has to go up. The binding limit is how much each crystal's energy is allowed to vary, not the mean energy shift, because b2 can only cancel the mean. I ranked every w2 weight by its mean dK divided by its dE standard deviation. The two best were weight 188 (about 116 GPa per eV) and weight 254 (about 111 GPa per eV). I made both more negative, sized so that even if their energy changes were perfectly correlated, the per-crystal energy spread would be at most about 5.5 meV (mean absolute change of roughly 4 meV). I then raised b2 by 0.00246 to cancel the mean shift of -3.7 meV per atom. Without the per-crystal covariances there is no energy-neutral direction I can trust, so the expected gain is small: about +0.6 GPa in mean K, against a bias of -9.4 GPa. I am about 75% confident that this lowers the bulk modulus error on new crystals while keeping the energy change under 5 meV per atom.

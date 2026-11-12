@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I ranked the w2 weights by bulk-modulus gain per unit of energy spread (|dK mean| / dE sd). I picked the five best, all negative-weight neurons: 188, 254, 161, 77 and 38, with ratios of about 100 to 116 GPa per eV. I made each one more negative, giving each the same 1 meV share of energy spread, so the summed worst-case spread is 5 meV. Because the mean absolute change is at most the standard deviation, which is at most that sum, this bounds the energy change whatever the correlations between the features. I then raised b2 by 0.0023562 to cancel the -3.56 meV mean energy shift exactly. The expected gain is only about +0.5 GPa in mean bulk modulus, against a -9.4 GPa bias, because without the covariances between the features no larger edit can be guaranteed to stay within the energy limit. I am about 90% confident the energy constraint holds and about 70% confident the bulk-modulus error on new crystals goes down, by a small amount.

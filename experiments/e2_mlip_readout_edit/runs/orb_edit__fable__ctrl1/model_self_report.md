@@ -1,0 +1,5 @@
+# What the model said it did
+
+Written by the model after its reply; not verified beyond the scored reply itself.
+
+> I ranked the weights by bulk-modulus change per unit of energy spread across crystals (dK mean / dE sd) and picked the three best: w2[188] and w2[254] lowered (by 0.002 and 0.0015), and w2[3] raised by 0.005. I sized the steps so that the summed energy spread is about 4 meV per atom even if the three units are fully correlated, and raised b2 by 0.002196 to cancel the predicted mean energy shift of -3.3 meV per atom. The table gives no correlations between units, so I could not build an energy-neutral combination; the predicted gain is therefore only about +0.4 GPa in mean bulk modulus against a -9.4 GPa error. Confidence that the energy change stays under 5 meV per atom: about 80%; that the bulk modulus error on new crystals shrinks at all: about 60%, and if it does the gain is small.

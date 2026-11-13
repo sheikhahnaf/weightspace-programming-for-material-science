@@ -85,7 +85,7 @@ Trained on 400 Materials Project crystals (volume per atom 8.4 to 55.3 Å³).
 | Scorer | ρ | Share above 150 GPa in top quarter | Mean K of top quarter (GPa) |
 |---|---|---|---|
 | volume rule | 0.82 | 0.38 | 133 |
-| trained MLP (as in the paper) | 0.29 | 0.00 | 51 |
+| trained MLP | 0.89 | 0.38 | 141 |
 | ridge on log K | 0.93 | 0.34 | 139 |
 | random forest | 0.92 | 0.38 | 143 |
 | written, opus (mean) | 0.92 | 0.36 | 144 |
@@ -98,7 +98,7 @@ Trained on 400 Materials Project crystals (volume per atom 8.4 to 55.3 Å³).
 | Scorer | ρ | Share above 150 GPa in top quarter | Mean K of top quarter (GPa) |
 |---|---|---|---|
 | volume rule | 0.77 | 0.38 | 136 |
-| trained MLP (as in the paper) | 0.12 | 0.06 | 71 |
+| trained MLP | 0.88 | 0.53 | 153 |
 | ridge on log K | 0.89 | 0.50 | 151 |
 | random forest | 0.90 | 0.59 | 160 |
 | written, opus (mean) | 0.88 | 0.52 | 151 |
@@ -120,13 +120,15 @@ Trained on 400 Materials Project crystals (volume per atom 8.4 to 55.3 Å³).
 
 Area under the regret curve, 20 seeds, two-stage fit (lower is better).
 
-| Task | Plain GP | Rule of mixtures | Size mismatch (seeds better / worse than GP, p) | Opus (p against size mismatch) | Fable (p against size mismatch) |
+Brackets: seeds better / worse, Wilcoxon p, and p after Holm correction over the five tasks. For the size mismatch the comparison is with the plain GP; for the written networks it is with the size mismatch.
+
+| Task | Plain GP | Rule of mixtures | Size mismatch | Opus | Fable |
 |---|---|---|---|---|---|
-| `ti_alloy_youngs_modulus` | 7.68 | 7.02 | 6.95 (7 / 7, 0.64) | 5.55 (0.049) | 6.92 (0.59) |
-| `ti_alloy_yield_strength` | 314 | 327 | 226 (11 / 7, 0.1) | 153 (0.018) | 148 (0.0062) |
-| `ti_alloy_hardness` | 40.1 | 40.1 | 5.7 (18 / 0, 0.0002) | 5.95 (0.0052) | 10 (0.00072) |
-| `mpea_hardness` | 226 | 216 | 243 (5 / 10, 0.53) | 137 (0.00062) | 120 (0.00013) |
-| `mpea_yield_strength` | 772 | 676 | 890 (4 / 12, 0.13) | 900 (0.62) | 966 (0.41) |
+| `ti_alloy_youngs_modulus` | 7.68 | 7.02 | 6.95 (7 / 7, 0.64, 1) | 5.55 (14 / 5, 0.049, 0.097) | 6.92 (9 / 9, 0.59, 0.81) |
+| `ti_alloy_yield_strength` | 314 | 327 | 226 (11 / 7, 0.1, 0.41) | 153 (13 / 6, 0.018, 0.053) | 148 (15 / 4, 0.0062, 0.019) |
+| `ti_alloy_hardness` | 40.1 | 40.1 | 5.7 (18 / 0, 0.0002, 0.00098) | 5.95 (3 / 15, 0.0052, 0.021) | 10 (1 / 15, 0.00072, 0.0029) |
+| `mpea_hardness` | 226 | 216 | 243 (5 / 10, 0.53, 1) | 137 (17 / 2, 0.00062, 0.0031) | 120 (18 / 2, 0.00013, 0.00067) |
+| `mpea_yield_strength` | 772 | 676 | 890 (4 / 12, 0.13, 0.41) | 900 (7 / 10, 0.62, 0.62) | 966 (8 / 9, 0.41, 0.81) |
 
 ## Crystal bulk modulus: plain GP on different inputs (ρ on generated crystals)
 
@@ -179,7 +181,7 @@ Area under the regret curve, 20 seeds, two-stage fit (lower is better).
 | 20 | haiku | map | 0.82 | 0.79 | 3 of 6 | 0.562 |
 | 20 | haiku | marginal | 0.82 | 0.82 | 4 of 6 | 1.000 |
 
-## Thermo-Calc optimization: targets significantly better / worse than the plain GP, by correction (35 targets)
+## Thermo-Calc optimization: targets significantly better / worse than the plain GP, by correction (33 targets)
 
 | Prior mean | Uncorrected | Holm within target (as reported) | Holm across targets | Holm across all tests |
 |---|---|---|---|---|
@@ -199,9 +201,18 @@ Area under the regret curve, 20 seeds, two-stage fit (lower is better).
 
 ## Phase fractions: written networks against the sub-system extrapolation, paired over targets
 
-| Model | Targets | Mean ρ written | Mean ρ extrapolation | Targets where written is ahead | Wilcoxon p |
+| Model | Targets | Mean ρ written | Mean ρ extrapolation | Targets where written is ahead / behind | Wilcoxon p |
 |---|---|---|---|---|---|
-| opus | 16 | 0.69 | 0.63 | 7 | 0.50 |
-| fable | 16 | 0.67 | 0.63 | 9 | 0.60 |
-| opus + facts | 16 | 0.71 | 0.63 | 10 | 0.19 |
-| fable + facts | 16 | 0.68 | 0.63 | 9 | 0.35 |
+| opus | 16 | 0.69 | 0.63 | 7 / 9 | 0.495 |
+| fable | 16 | 0.67 | 0.63 | 9 / 7 | 0.597 |
+| opus + facts | 16 | 0.71 | 0.63 | 10 / 6 | 0.193 |
+| fable + facts | 16 | 0.68 | 0.63 | 9 / 7 | 0.348 |
+
+## All Thermo-Calc targets: written networks against the sub-system extrapolation, paired over targets
+
+| Model | Targets | Mean ρ written | Mean ρ extrapolation | Targets where written is ahead / behind | Wilcoxon p |
+|---|---|---|---|---|---|
+| opus | 35 | 0.67 | 0.70 | 9 / 26 | 0.104 |
+| fable | 35 | 0.64 | 0.70 | 10 / 25 | 0.020 |
+| opus + facts | 35 | 0.73 | 0.70 | 18 / 17 | 0.916 |
+| fable + facts | 35 | 0.71 | 0.70 | 15 / 20 | 0.565 |

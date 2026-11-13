@@ -21,10 +21,10 @@
     "share_above_150_in_top_quarter": 0.375,
     "mean_K_of_top_quarter": 133.28716506609643
    },
-   "trained MLP (as in the paper)": {
-    "rho": 0.28992826598983357,
-    "share_above_150_in_top_quarter": 0.0,
-    "mean_K_of_top_quarter": 51.23400762759228
+   "trained MLP": {
+    "rho": 0.8915319996337666,
+    "share_above_150_in_top_quarter": 0.375,
+    "mean_K_of_top_quarter": 141.46214146853055
    },
    "ridge on log K": {
     "rho": 0.928510117194653,
@@ -133,10 +133,10 @@
     "share_above_150_in_top_quarter": 0.375,
     "mean_K_of_top_quarter": 135.53653221406975
    },
-   "trained MLP (as in the paper)": {
-    "rho": 0.12266147066527704,
-    "share_above_150_in_top_quarter": 0.0625,
-    "mean_K_of_top_quarter": 70.5275864015095
+   "trained MLP": {
+    "rho": 0.884585011902582,
+    "share_above_150_in_top_quarter": 0.53125,
+    "mean_K_of_top_quarter": 152.65053727798812
    },
    "ridge on log K": {
     "rho": 0.891114264786669,

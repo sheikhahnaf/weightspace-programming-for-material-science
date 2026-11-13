@@ -205,8 +205,8 @@
     0.77
    ],
    "MLP trained on 400 labels": [
-    0.29,
-    0.12
+    0.89,
+    0.88
    ],
    "Ridge, 400 labels": [
     0.93,
@@ -239,8 +239,8 @@
     0.38
    ],
    "MLP trained on 400 labels": [
-    0.0,
-    0.06
+    0.38,
+    0.53
    ],
    "Ridge, 400 labels": [
     0.34,

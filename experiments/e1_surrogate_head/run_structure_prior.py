@@ -243,7 +243,7 @@ def main() -> None:
         summary[f"{task_name}|alone"] = {g: float(np.mean(v)) for g, v in alone.items()}
         lines += ["", "Prior alone on the generated structures, ρ: " + ", ".join(f"{g} {np.mean(v):.2f}" for g, v in alone.items()), ""]
     (OUT / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
-    (OUT / "summary.md").write_text("\n".join(lines) + "\nMeans over runs and draws; NLL is the median. p values are Wilcoxon signed-rank, uncorrected.\n")
+    (OUT / "summary.md").write_text("\n".join(lines) + "\nMeans over runs and draws; NLL is the median. p values are Wilcoxon signed-rank, uncorrected, over run x draw cells; the runs of a task share one starting set and draws within a run are not independent, so these p values are too small. Tests with the run as the unit are in results/robustness/summary.md.\n")
     print("\n".join(lines))
 
 

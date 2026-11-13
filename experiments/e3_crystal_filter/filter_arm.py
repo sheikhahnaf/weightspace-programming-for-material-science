@@ -104,15 +104,22 @@ def scorer(reply: str):
 
 
 def trained_k_scorer(seed: int = 0):
-    """An MLP of the same size trained on 400 Materials Project structures with DFT K_VRH."""
+    """An MLP of the same size trained on 400 Materials Project structures with DFT K_VRH.
+
+    Descriptors that are constant on the 400 structures (no lanthanide, actinide or hydrogen
+    among them) are left out. The first version divided them by (0 + 1e-8), so a generated
+    crystal containing such an element got an input of about 1e8 and a meaningless score;
+    that bug, not a failure of training, gave the rho of 0.29 and 0.12 first reported."""
     from ase.io import read
 
     frames = read(ROOT / "data" / "mlip_reference" / "elastic.extxyz", index=":")
     X = np.array([describe(a) for a in frames])
     y = np.array([a.info["K_ref"] for a in frames])
-    mu, sd = X.mean(0), X.std(0) + 1e-8
+    keep = X.std(0) > 1e-6
+    X = X[:, keep]
+    mu, sd = X.mean(0), X.std(0)
     torch.manual_seed(seed)
-    head = MLPHead(len(FEATURES), (16,), 1)
+    head = MLPHead(int(keep.sum()), (16,), 1)
     opt = torch.optim.AdamW(head.parameters(), lr=3e-3, weight_decay=1e-2)
     Xt = torch.tensor((X - mu) / sd, dtype=torch.float32)
     yt = torch.tensor((y - y.mean()) / y.std(), dtype=torch.float32).unsqueeze(-1)
@@ -121,7 +128,7 @@ def trained_k_scorer(seed: int = 0):
         torch.nn.functional.mse_loss(head(Xt), yt).backward()
         opt.step()
     head.eval()
-    return lambda Z: head(torch.tensor((Z - mu) / sd, dtype=torch.float32)).detach().squeeze(-1).numpy().astype(float)
+    return lambda Z: head(torch.tensor((np.asarray(Z)[:, keep] - mu) / sd, dtype=torch.float32)).detach().squeeze(-1).numpy().astype(float)
 
 
 def evaluate(score: np.ndarray, truth: np.ndarray, threshold: float, keep: float = 0.25) -> dict:

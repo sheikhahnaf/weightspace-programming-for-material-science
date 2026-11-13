@@ -254,7 +254,7 @@
   }
  },
  "thermo_calc_bo": {
-  "targets": 35,
+  "targets": 33,
   "subsystem_extrapolation": {
    "within target (as reported)": {
     "better": 18,
@@ -367,6 +367,7 @@
    "mean_written": 0.688809771022433,
    "mean_extrapolation": 0.6276797962937859,
    "targets_ahead": 7,
+   "targets_behind": 9,
    "wilcoxon_p": 0.49542236328125
   },
   "fable": {
@@ -374,6 +375,7 @@
    "mean_written": 0.6663334766644404,
    "mean_extrapolation": 0.6276797962937859,
    "targets_ahead": 9,
+   "targets_behind": 7,
    "wilcoxon_p": 0.596588134765625
   },
   "opus + facts": {
@@ -381,6 +383,7 @@
    "mean_written": 0.7061827427965766,
    "mean_extrapolation": 0.6276797962937859,
    "targets_ahead": 10,
+   "targets_behind": 6,
    "wilcoxon_p": 0.19281005859375
   },
   "fable + facts": {
@@ -388,7 +391,43 @@
    "mean_written": 0.6823502848351248,
    "mean_extrapolation": 0.6276797962937859,
    "targets_ahead": 9,
+   "targets_behind": 7,
    "wilcoxon_p": 0.348388671875
+  }
+ },
+ "all_targets_lead": {
+  "targets": 35,
+  "opus": {
+   "n": 35,
+   "mean_written": 0.666353500657505,
+   "mean_extrapolation": 0.7031720668435381,
+   "targets_ahead": 9,
+   "targets_behind": 26,
+   "wilcoxon_p": 0.10369126504519954
+  },
+  "fable": {
+   "n": 35,
+   "mean_written": 0.6399050607269103,
+   "mean_extrapolation": 0.7031720668435381,
+   "targets_ahead": 10,
+   "targets_behind": 25,
+   "wilcoxon_p": 0.02003317285561934
+  },
+  "opus + facts": {
+   "n": 35,
+   "mean_written": 0.7271195304776779,
+   "mean_extrapolation": 0.7031720668435381,
+   "targets_ahead": 18,
+   "targets_behind": 17,
+   "wilcoxon_p": 0.9162867379491217
+  },
+  "fable + facts": {
+   "n": 35,
+   "mean_written": 0.708888625343906,
+   "mean_extrapolation": 0.7031720668435381,
+   "targets_ahead": 15,
+   "targets_behind": 20,
+   "wilcoxon_p": 0.56539438420441
   }
  }
 }

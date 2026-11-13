@@ -182,4 +182,4 @@ Prior alone on the generated structures, ρ: rule 0.88, fable 0.93, haiku 0.66, 
 
 Prior alone on the generated structures, ρ: rule 1.00, fable 1.00, haiku 0.98, opus 1.00, sonnet 1.00
 
-Means over runs and draws; NLL is the median. p values are Wilcoxon signed-rank, uncorrected.
+Means over runs and draws; NLL is the median. p values are Wilcoxon signed-rank, uncorrected, over run x draw cells; the runs of a task share one starting set and draws within a run are not independent, so these p values are too small. Tests with the run as the unit are in results/robustness/summary.md.

@@ -3,7 +3,7 @@
 | Scorer | Replies | Base samples: ρ | mean of all → kept (best possible) | hit share all → kept | oracle calls to half the hits (random) | All variants: ρ | mean all → kept |
 |---|---|---|---|---|---|---|---|
 | rule: small volume per atom | 1 | 0.77 | 90.1 → 136 (168) | 0.16 → 0.38 | 28 (59) | 0.74 | 92.2 → 129 |
-| MLP trained on 400 MP structures | 1 | 0.12 | 90.1 → 70.5 (168) | 0.16 → 0.06 | 62 (59) | 0.12 | 92.2 → 70.1 |
+| MLP trained on 400 MP structures | 1 | 0.88 | 90.1 → 153 (168) | 0.16 → 0.53 | 13 (59) | 0.88 | 92.2 → 152 |
 | claude-fable-5-2 | 3 | 0.88 | 90.1 → 153 (168) | 0.16 → 0.54 | 18 (59) | 0.87 | 92.2 → 151 |
 | claude-haiku-5-5 | 3 | 0.65 | 90.1 → 141 (168) | 0.16 → 0.46 | 11 (59) | 0.64 | 92.2 → 142 |
 | claude-opus-5-5 | 3 | 0.88 | 90.1 → 151 (168) | 0.16 → 0.52 | 17 (59) | 0.87 | 92.2 → 146 |

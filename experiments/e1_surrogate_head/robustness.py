@@ -15,13 +15,15 @@ What each check answers
             during a run are certain to carry the oracle's (eSEN) labels. Scores over "all rows"
             count the starting set once per run. Here every crystal is counted once and the
             starting set is scored apart from the crystals added during the runs.
-  filter    The trained reference of the filter is one small MLP. Here a ridge regression on log K
-            and a random forest are trained on the same 400 crystals and 15 descriptors.
+  filter    The trained reference of the filter was one small MLP, and it had an input-scaling bug
+            (fixed in filter_arm.trained_k_scorer). Here it is scored beside a ridge regression on
+            log K and a random forest trained on the same 400 crystals and 15 descriptors.
   rules     The alloy reference is a rule of mixtures of one elemental property. Here four more
             label-free descriptors are scored (signs fixed from metallurgy, not from the data).
   bo_rule   The best of them (atomic size mismatch) as a prior mean, same loop and selection rule.
   control   The z-scoring of the descriptors divided an all-zero column by 1e-8. Here columns that
-            are constant on the training pool are dropped.
+            are constant on the training pool are dropped. GP fits are not seeded, so values can
+            differ from the cached cells of run_structure_prior.py in the second decimal.
   stats     Tests with the run (not the run x draw cell) as the unit; Holm correction across the
             Thermo-Calc targets as well as within one; the paired test behind "ahead on phase fractions".
 
@@ -118,7 +120,7 @@ def filter_baselines() -> None:
         Xt, t = np.array([r["x"] for r in rows]), np.array([r["K"] for r in rows])
         ok = np.isfinite(t)
         Xt, t = Xt[ok], t[ok]
-        scorers = {"volume rule": -Xt[:, 0], "trained MLP (as in the paper)": filter_arm.trained_k_scorer()(Xt),
+        scorers = {"volume rule": -Xt[:, 0], "trained MLP": filter_arm.trained_k_scorer()(Xt),
                    "ridge on log K": ridge.predict((Xt[:, keep] - mu) / sd), "random forest": forest.predict(Xt)}
         for model in MODELS:
             for folder_ in sorted((E3 / "runs").glob(f"filter_K__{model}__rep*")):
@@ -165,7 +167,11 @@ def element_table(names, what: str) -> np.ndarray:
 
 
 def size_mismatch(task) -> np.ndarray:
-    """delta = sqrt(sum_i c_i (1 - r_i / r_mean)^2): the textbook measure of solid-solution strengthening."""
+    """delta = sqrt(sum_i c_i (1 - r_i / r_mean)^2): the textbook measure of solid-solution strengthening.
+
+    Radii are pymatgen's metallic radii; B, C and Si have none and fall back to the empirical atomic
+    radius, and the 'other' input gets the mean radius. For the modulus target the sign of its relation to the
+    target has no metallurgical basis; it is scored there only for completeness."""
     r = element_table(task.feature_names, "radius")
     mean = task.X @ r
     return np.sqrt((task.X * (1 - r[None] / mean[:, None]) ** 2).sum(1))
@@ -230,16 +236,22 @@ def bo_rule(seeds: int = 20) -> None:
             return np.array([np.mean((t["optimum"] - np.array(t["best_so_far"]))[1:]) for t in traces])
 
         gp = cached("gp")
-        out[name] = {"size mismatch": {"auc": float(mine.mean()), "seeds_better": int((mine < gp).sum()), "seeds_worse": int((mine > gp).sum()),
+        out[name] = {"size mismatch": {"auc": float(mine.mean()), "auc_by_seed": [float(v) for v in mine], "seeds_better": int((mine < gp).sum()), "seeds_worse": int((mine > gp).sum()),
                                        "wilcoxon_p": float(wilcoxon(mine - gp).pvalue) if np.any(mine != gp) else 1.0}}
         for arm in ("gp", "handbook", "select_opus", "select_fable"):
             out[name][arm] = {"auc": float(cached(arm).mean())}
         for arm in ("select_opus", "select_fable"):  # written network against the stronger rule, paired by seed
             d = cached(arm) - mine
             out[name][arm] |= {"vs_size_mismatch_p": float(wilcoxon(d).pvalue) if np.any(d != 0) else 1.0,
-                               "seeds_better_than_size_mismatch": int((d < 0).sum())}
-        print(name, json.dumps(out[name]), flush=True)
+                               "seeds_better_than_size_mismatch": int((d < 0).sum()),
+                               "seeds_worse_than_size_mismatch": int((d > 0).sum())}
+        print(name, {k: v for k, v in out[name].items()}, flush=True)
         save("bo_rule", out)
+    # Holm over the five tasks, for each comparison (the uncorrected p values favour whichever side they favour)
+    for arm, key in (("size mismatch", "wilcoxon_p"), ("select_opus", "vs_size_mismatch_p"), ("select_fable", "vs_size_mismatch_p")):
+        for name, p in holm({name: out[name][arm][key] for name in out}).items():
+            out[name][arm][key + "_holm"] = p
+    save("bo_rule", out)
 
 
 # ------------------------------------------------------------------- control
@@ -314,7 +326,9 @@ def stats() -> None:
     # (2) Thermo-Calc optimization: Holm within a target (as reported), across the 33 targets, across every test
     bo = json.loads((E7 / "results" / "bo" / "summary_init5_steps25_seeds20.json").read_text())["tasks"]
     arms = ("subsystem_extrapolation", "select_opus", "select_opus_pd", "select_fable", "select_fable_pd")
-    raw = {(t, a): v[a]["wilcoxon_p"] for t, v in bo.items() for a in arms if a in v and v[a]["wilcoxon_p"] is not None}
+    # two of the 35 targets leave nothing to gain (the plain GP has zero regret in every seed); they are not tested
+    raw = {(t, a): v[a]["wilcoxon_p"] for t, v in bo.items() for a in arms
+           if a in v and v[a]["wilcoxon_p"] is not None and v["gp"]["auc_mean"] > 0}
     sign = {(t, a): np.sign(bo[t]["gp"]["auc_mean"] - bo[t][a]["auc_mean"]) for t, a in raw}
     everything = holm(raw)
     out["thermo_calc_bo"] = {"targets": len({t for t, _ in raw})}
@@ -340,15 +354,17 @@ def stats() -> None:
 
     # (4) "ahead of the extrapolation on phase fractions": paired over the 16 phase-fraction targets
     standalone = json.loads((HERE / "results" / "standalone" / "summary.json").read_text())
-    targets = sorted({k.split("|")[0] for k in standalone if k.endswith("|subsystem_extrapolation") and "fraction" in k})
-    out["phase_fraction_lead"] = {"targets": len(targets)}
-    for model in ("opus", "fable", "opus + facts", "fable + facts"):
-        pairs = [(standalone[f"{t}|{model}"]["rho"], standalone[f"{t}|subsystem_extrapolation"]["rho"]) for t in targets
-                 if f"{t}|{model}" in standalone and np.isfinite(standalone[f"{t}|subsystem_extrapolation"]["rho"])]
-        d = np.array([a - b for a, b in pairs])
-        out["phase_fraction_lead"][model] = {"n": len(d), "mean_written": float(np.mean([a for a, _ in pairs])),
-                                             "mean_extrapolation": float(np.mean([b for _, b in pairs])),
-                                             "targets_ahead": int((d > 0).sum()), "wilcoxon_p": float(wilcoxon(d).pvalue)}
+    every = sorted({k.split("|")[0] for k in standalone if k.endswith("|subsystem_extrapolation")})
+    for key, targets in (("phase_fraction_lead", [t for t in every if "fraction" in t]), ("all_targets_lead", every)):
+        out[key] = {"targets": len(targets)}
+        for model in ("opus", "fable", "opus + facts", "fable + facts"):
+            pairs = [(standalone[f"{t}|{model}"]["rho"], standalone[f"{t}|subsystem_extrapolation"]["rho"]) for t in targets
+                     if f"{t}|{model}" in standalone and np.isfinite(standalone[f"{t}|subsystem_extrapolation"]["rho"])]
+            d = np.array([a - b for a, b in pairs])
+            out[key][model] = {"n": len(d), "mean_written": float(np.mean([a for a, _ in pairs])),
+                               "mean_extrapolation": float(np.mean([b for _, b in pairs])),
+                               "targets_ahead": int((d > 0).sum()), "targets_behind": int((d < 0).sum()),
+                               "wilcoxon_p": float(wilcoxon(d).pvalue)}
     save("stats", out)
 
 
@@ -386,11 +402,18 @@ def summary() -> None:
     if (d := load("bo_rule")):
         lines += ["## Alloys: Bayesian optimization with atomic size mismatch as the prior mean", "",
                   "Area under the regret curve, 20 seeds, two-stage fit (lower is better).", "",
-                  "| Task | Plain GP | Rule of mixtures | Size mismatch (seeds better / worse than GP, p) | Opus (p against size mismatch) | Fable (p against size mismatch) |", "|---|---|---|---|---|---|"]
+                  "Brackets: seeds better / worse, Wilcoxon p, and p after Holm correction over the five tasks. For the size mismatch the comparison is with the plain GP; for the written networks it is with the size mismatch.", "",
+                  "| Task | Plain GP | Rule of mixtures | Size mismatch | Opus | Fable |", "|---|---|---|---|---|---|"]
         for t, v in d.items():
             s = v["size mismatch"]
-            lines.append(f"| `{t}` | {v['gp']['auc']:.3g} | {v['handbook']['auc']:.3g} | {s['auc']:.3g} ({s['seeds_better']} / {s['seeds_worse']}, {s['wilcoxon_p']:.2g}) | "
-                         f"{v['select_opus']['auc']:.3g} ({v['select_opus']['vs_size_mismatch_p']:.2g}) | {v['select_fable']['auc']:.3g} ({v['select_fable']['vs_size_mismatch_p']:.2g}) |")
+
+            def against(arm):
+                w = v[arm]
+                return (f"{w['auc']:.3g} ({w['seeds_better_than_size_mismatch']} / {w['seeds_worse_than_size_mismatch']}, "
+                        f"{w['vs_size_mismatch_p']:.2g}, {w['vs_size_mismatch_p_holm']:.2g})")
+
+            lines.append(f"| `{t}` | {v['gp']['auc']:.3g} | {v['handbook']['auc']:.3g} | {s['auc']:.3g} ({s['seeds_better']} / {s['seeds_worse']}, "
+                         f"{s['wilcoxon_p']:.2g}, {s['wilcoxon_p_holm']:.2g}) | {against('select_opus')} | {against('select_fable')} |")
         lines.append("")
     if (d := load("control")):
         cols = list(next(iter(d.values())))
@@ -411,10 +434,11 @@ def summary() -> None:
                 lines.append(f"| {a} | {cell('uncorrected')} | {cell('within target (as reported)')} | {cell('across targets')} | {cell('across all tests')} |")
         lines += ["", "## Alloy optimization: tasks significantly better than the plain GP", "", "| Prior mean | Holm within task (as reported) | Holm across the five tasks |", "|---|---|---|"]
         lines += [f"| {a} | {v['within task (as reported)']} | {v['across tasks']} |" for a, v in d["alloy_bo"].items()]
-        lines += ["", f"## Phase fractions: written networks against the sub-system extrapolation, paired over targets", "",
-                  "| Model | Targets | Mean ρ written | Mean ρ extrapolation | Targets where written is ahead | Wilcoxon p |", "|---|---|---|---|---|---|"]
-        lines += [f"| {m} | {v['n']} | {v['mean_written']:.2f} | {v['mean_extrapolation']:.2f} | {v['targets_ahead']} | {v['wilcoxon_p']:.2f} |"
-                  for m, v in d["phase_fraction_lead"].items() if m != "targets"]
+        for key, title in (("phase_fraction_lead", "Phase fractions"), ("all_targets_lead", "All Thermo-Calc targets")):
+            lines += ["", f"## {title}: written networks against the sub-system extrapolation, paired over targets", "",
+                      "| Model | Targets | Mean ρ written | Mean ρ extrapolation | Targets where written is ahead / behind | Wilcoxon p |", "|---|---|---|---|---|---|"]
+            lines += [f"| {m} | {v['n']} | {v['mean_written']:.2f} | {v['mean_extrapolation']:.2f} | {v['targets_ahead']} / {v['targets_behind']} | {v['wilcoxon_p']:.3f} |"
+                      for m, v in d[key].items() if m != "targets"]
         lines.append("")
     (OUT / "summary.md").write_text("\n".join(lines))
     print("\n".join(lines))

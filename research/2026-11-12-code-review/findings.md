@@ -30,3 +30,17 @@ Method: one read-only review by a Claude Opus 5.5 agent over `src/`, `experiment
 
 - The seed-pool crystals' label source was not traced in the sibling repository.
 - No new language-model runs; no test of variation between replies in BO beyond the per-reply scores already reported.
+
+## Second pass, 2026-11-12: an independent check of the corrections
+
+A second read-only Opus 5.5 agent checked the corrections above against the result files. It confirmed the new tables and counts and found errors in the corrections themselves; each was re-derived before the text was changed.
+
+- **Item 1 above gave the wrong reason.** The trained MLP did not fail by extrapolating in volume (only 3 and 1 generated samples lie outside the training volume range). `filter_arm.trained_k_scorer` divided two descriptors that are zero in all 400 training crystals (lanthanide and actinide fraction, hydrogen fraction) by 1e-8, so the 56 and 57 generated samples containing those elements got inputs near 1e8. With the constant columns dropped, the same network, seed and schedule ranks at 0.89 (MatterGen) and 0.88 (CrystalFlow). The bug is fixed and both generators rescored. The claim stands as "level with models trained on 400 labelled crystals", now including the MLP.
+- **Item 4 above misread one comparison.** On Ti hardness the size mismatch is significantly better than both written means (Opus better in 3 of 20 seeds, Fable in 1), not level. With Holm over the five tasks, Opus is significantly better than the size mismatch only on MPEA hardness (p = 0.003; Ti yield strength 0.053, Ti modulus 0.097); Fable on MPEA hardness and Ti yield strength.
+- "Best simple descriptor 0.16 to 0.62" was wrong: on Ti modulus the shear-modulus rule of mixtures reaches 0.47, so the best descriptor per task spans 0.47 to 0.62.
+- With facts, the higher means on phase fractions and overall are not significant over targets (p = 0.19 and 0.92). Without facts, paired over 35 targets, Fable is significantly behind the extrapolation (p = 0.02) and Opus is not (p = 0.10).
+- "A control rules this out" overstated the descriptor control: the volume rule uses one of the 15 descriptors and gives most of the gain. Reworded.
+- Thermo-Calc Holm counts are now computed over the 33 tested targets (165 tests); the counts did not change.
+- Stale numbers and wording fixed on the webpage, README and slides; pooled and per-run values of the same quantity are now labelled.
+
+Still not traced: the label source of the heat-capacity starting set and of the seed-pool crystals; whether the alloys named in the self-reports are in the pools.
